@@ -1,8 +1,12 @@
 # AETHER Framework
 
-AETHER is the internal architecture concept of AURA-Embodied.
+AETHER is the evolving physical-intelligence architecture concept of AURA-Embodied.
 
-The purpose is not to define one fixed model, but to organize capabilities required for autonomous physical agents.
+Its purpose is **not** to prescribe one fixed neural architecture or one software module per capability. AETHER is a capability-and-interface framework for analyzing, designing, and experimentally testing adaptive physical intelligence systems.
+
+## Historical Starting Point
+
+The project originally used the following sequential representation as a capability inventory:
 
 ```
 Perception
@@ -22,42 +26,91 @@ Recovery
 Learning
 ```
 
-## Components
+This remains useful as a list of required capabilities, but it should **not** be interpreted as the current assumption that embodied intelligence is a one-directional pipeline.
 
-### Perception
+## Current Interpretation — after Intelligence Landscape v0.1
 
-Understanding objects, scenes, and physical states.
+The first landscape synthesis found that embodied intelligence is better treated as a system of interacting capabilities operating at different timescales.
 
-### Reasoning
+A current working representation is:
 
-Task understanding and decision making.
+```
+Memory ↔ World Understanding ↔ Reasoning / Planning ↔ Policy ↔ Physical Interaction
+                                      ↕
+                                  Verification
+                                      ↓
+                              Diagnosis / Recovery
+                                      ↓
+                                   Learning
+```
 
-### Action
+This is **not a frozen architecture**. It is a research scaffold.
 
-Generating and executing manipulation behaviors.
+### Capability / Interface Principle
 
-### Verification
+Names such as `Memory`, `Reasoning`, `Verification`, or `Recovery` denote capabilities and interfaces, not assumed software modules.
 
-Checking whether the physical result matches expectations.
+A capability may ultimately be implemented by:
 
-### Failure Diagnosis
+- one foundation model;
+- several specialized models;
+- structured state;
+- deterministic logic;
+- learned policies;
+- external tools;
+- or a hybrid of these.
 
-Understanding why an action failed.
+Whether a capability should be explicit, latent, modular, or unified is itself a research question.
 
-### Recovery
+## Architectural Themes from the Landscape
 
-Selecting corrective behaviors instead of restarting blindly.
+Current frontier systems increasingly distinguish among:
 
-### Learning
+- **semantic intelligence** — understanding goals, objects, context, and task meaning;
+- **physical intelligence** — generating and executing manipulation behavior;
+- **embodiment-specific execution** — adapting shared knowledge to a particular robot body.
 
-Turning experience into future capability.
+AURA therefore treats the boundary between transferable intelligence and embodiment-specific execution as an important architectural question.
 
----
+## Open AETHER Research Questions
+
+The current architecture work should investigate rather than assume:
+
+1. Which capabilities must be explicit?
+2. Which capabilities can remain latent inside learned models?
+3. How should task state and memory be represented?
+4. Should verification continuously monitor execution or occur only after actions?
+5. How should failure diagnosis influence replanning and recovery?
+6. How should capabilities interact across different timescales?
+7. What information should cross the boundary between transferable intelligence and embodiment-specific execution?
+8. Which architecture choices actually improve measurable physical autonomy?
+
+## Evidence Rule
+
+AETHER should evolve from evidence:
+
+```
+Observation
+    ↓
+Existing-system limitation
+    ↓
+Hypothesis
+    ↓
+Prototype / intervention
+    ↓
+Experiment
+    ↓
+Architecture update
+```
+
+Do not expand AETHER merely because a capability sounds conceptually desirable.
 
 ## Design Principle
 
 Embodied intelligence is a system problem.
 
-Models are components.
-The architecture connects capabilities.
-Physical interaction creates feedback.
+Models provide capabilities.
+Architecture organizes interaction.
+Physical execution creates consequences.
+Verification and failure expose weaknesses.
+Experience should become future capability.
