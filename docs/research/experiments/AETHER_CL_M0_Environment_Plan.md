@@ -1,6 +1,7 @@
 # AETHER CL Milestone 0 Environment Plan
 
-Status: implementation prepared; A100 validation pending.
+Status: basic A100 rendering smoke and live browser display confirmed;
+fixed manipulation controller pending.
 
 ## Objective
 
@@ -36,8 +37,10 @@ offline `--copy` clone into `aether-cl` were confirmed by user-provided server
 output. The clone retains PyTorch 2.4.1+cu121 and NumPy 1.26.4. Its initial
 `pip check` reports SAPIEN's missing `opencv-python` distribution because only
 the headless variant was present. The incremental offline installer resolves
-the wheel set before replacing that variant in the copy. Simulator runtime and
-camera acceptance are still pending; cloning an environment is not that evidence.
+the wheel set before replacing that variant in the copy. Later user-provided
+output confirms installation, imports, and a rendered five-step smoke. The
+standard OpenCV import required a private matching Ubuntu Jammy GLVND set;
+see the experiment log for the process-scoped workaround and remaining warnings.
 
 ## Acceptance evidence
 
@@ -47,8 +50,12 @@ camera acceptance are still pending; cloning an environment is not that evidence
 4. Logs record seeds, actions, observations, episode boundaries, runtime versions,
    code revision, errors, and termination/truncation conditions.
 
-Server acceptance is pending until the commands are actually run. Random-action
-task failure is expected and does not count as simulator failure. PickCube's
+The five-step rendering smoke returned `state: finished`; three browser
+screenshots show changing poses and episode/step counters through port 8765.
+A separate camera-disabled run and independent inspection of the saved logs
+remain unconfirmed. This establishes basic infrastructure operation, not a
+completed baseline manipulation task. Random-action task failure is expected
+and does not count as simulator failure. PickCube's
 standard goal criterion does not require object release; a full placement
 criterion must be defined before the policy baseline.
 
@@ -56,7 +63,7 @@ The local dependency resolution and logging/HTTP tests passed. An attempted
 local CPU-physics run could not complete: this workspace has no available SAPIEN
 rendering device, and PickCube constructs render materials even with camera
 capture disabled. This does not validate or reject the A100 setup; actual
-simulator execution remains a server acceptance check.
+simulator execution was subsequently confirmed by the server evidence above.
 
 ## Experimental controls to resolve before policy evaluation
 

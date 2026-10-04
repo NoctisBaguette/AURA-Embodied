@@ -22,6 +22,13 @@ require releasing the cube onto a support surface. Use it as an infrastructure
 smoke test; the research pick-and-place task needs an explicit placement/release
 condition before policy evaluation.
 
+The red cube is the manipulated object. The green sphere is a noncolliding
+target marker, sampled at each reset and fixed during the episode. It may float
+above the table or overlap the robot in the camera image. The random controller
+does not attempt to reach it. Basic A100 rendering and live browser display were
+confirmed by user-provided output/screenshots on 2026-10-05; see the experiment
+log for the evidence and limits.
+
 ## Offline deployment through a connected laptop
 
 The target server cannot reliably retrieve GitHub and package downloads. Use a
@@ -131,6 +138,27 @@ the Vulkan/renderer configuration before changing simulator or hardware. A
 missing `vulkaninfo` utility does not establish whether Vulkan rendering works.
 No system driver changes are performed by these commands.
 
+### Process-scoped OpenGL workaround observed on the target server
+
+The copied environment's standard OpenCV initially failed with
+`libGL.so.1: undefined symbol: _glapi_tls_Current`. Clearing `LD_LIBRARY_PATH`
+and `LD_PRELOAD`, and preloading system Mesa glapi, did not resolve it. Matching
+Ubuntu 22.04 amd64 packages `libgl1`, `libglx0`, and `libglvnd0`, all `1.4.0-1`,
+were downloaded on the laptop from the official Ubuntu archive, transferred,
+and extracted into an AETHER-only directory using `dpkg-deb --extract`.
+
+Selecting that extracted `usr/lib/x86_64-linux-gnu` directory via
+`LD_LIBRARY_PATH` for the AETHER process resolved imports and GPU camera capture.
+Supply this setting again when launching smoke or viewer commands; a subshell's
+setting does not persist after it exits. Keep the override local to the process
+rather than modifying global shell configuration or replacing system libraries.
+The packages are available under
+<https://archive.ubuntu.com/ubuntu/pool/main/libg/libglvnd/>.
+
+SAPIEN used its builtin Vulkan loader successfully despite a missing-system-loader
+warning. PyTorch warned that RNG initialization touched all visible CUDA devices;
+this was nonfatal but is not proof that execution is isolated to one GPU.
+
 ## Live browser viewer
 
 After both smoke tests pass, run in the server terminal:
@@ -151,7 +179,9 @@ LingBot service on 8000. Check local port availability as well as server port
 availability. If needed, choose another port in both commands.
 
 The viewer starts one finite run and remains available with the final frame.
-Ctrl+C stops the process. It provides no robot-control endpoints. An occupied
+Ctrl+C stops the process. If a browser continues polling through the tunnel
+afterward, SSH may print `connect failed: Connection refused`; close the viewer
+tab to stop those requests. It provides no robot-control endpoints. An occupied
 port is detected before creating the simulator. Camera rendering is observational
 and introduces no changes to policy behavior; the viewer adds wall-clock pacing
 for visibility, which is recorded in the run configuration.
