@@ -105,3 +105,9 @@ It records:
 - failures;
 - hypotheses;
 - architectural evolution.
+
+## Prototype Implementations
+
+- [AETHER-CL Prototype A environment milestone](aura-sim/prototype_aether_cl/README.md)
+  — simulation smoke tests, browser viewing, and episode logging. A100 runtime
+  validation is pending; manipulation-policy evaluation follows this milestone.
