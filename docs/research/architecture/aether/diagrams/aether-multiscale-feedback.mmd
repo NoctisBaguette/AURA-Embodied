@@ -1,0 +1,13 @@
+flowchart TD
+    A[Control Loop<br/>milliseconds]
+    B[Skill Loop<br/>seconds]
+    C[Task Loop<br/>minutes]
+    D[Experience Learning Loop<br/>long term]
+
+    A --> B
+    B --> C
+    C --> D
+
+    D --> C
+    C --> B
+    B --> A
