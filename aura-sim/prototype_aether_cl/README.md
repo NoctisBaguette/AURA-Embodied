@@ -22,7 +22,58 @@ require releasing the cube onto a support surface. Use it as an infrastructure
 smoke test; the research pick-and-place task needs an explicit placement/release
 condition before policy evaluation.
 
-## Isolated server environment
+## Offline deployment through a connected laptop
+
+The target server cannot reliably retrieve GitHub and package downloads. Use a
+connected laptop for downloading and transfer the Git repository and wheels over
+SSH. The laptop does not need to run the simulator.
+
+The current offline path starts from a separate copy of the existing
+`robotwin-sim` environment. The confirmed copy uses Python 3.10.22,
+PyTorch 2.4.1+cu121, and NumPy 1.26.4. Clone with Conda's `--offline --copy`
+options into `aether-cl`; never install into the original environment.
+
+`requirements-offline.txt` is an **incremental wheel set for that copied
+environment**, not a complete environment lock. It includes the missing and
+changed simulator dependencies, including ManiSkill's Linux-only mplib pin.
+Existing compatible packages, PyTorch, and CUDA libraries are reused. A
+different starting environment may need additional wheels; the server dry run
+must resolve successfully before installation.
+
+On the connected laptop, from this directory:
+
+```powershell
+py -3 scripts/download_offline.py --output C:\Workspace\AURA-Deploy\aether-wheelhouse --archive C:\Workspace\AURA-Deploy\aether-wheels-cp310-linux.tar
+```
+
+The script downloads explicitly pinned Linux x86_64 / CPython 3.10 or portable
+wheels, creates a SHA-256 manifest, and archives the selected wheels. It installs
+nothing. `--no-deps` is used only for downloading the reviewed incremental list;
+the server install performs normal dependency resolution.
+
+Transfer the archive with `scp -P SSH_PORT`, alongside a Git bundle made with
+`git bundle create PATH --all`. On the server, clone from the uploaded bundle or
+fetch the branch from it and merge with `--ff-only`. No server GitHub connection
+is needed. Extract the wheel archive into its own directory and activate
+`aether-cl`, then run:
+
+```bash
+python scripts/install_offline.py --wheelhouse /absolute/path/to/extracted/wheels
+```
+
+The installer checks the environment identity, core package versions, and wheel
+checksums. It uses `--no-index` and performs a dry run before changing packages.
+It replaces the copied `opencv-python-headless` with the pinned `opencv-python`
+required by SAPIEN, so only one distribution supplies `cv2`. It then installs the
+incremental pins, runs `pip check`, and saves the resulting package inventory.
+Native imports, physics stepping, and camera rendering still need server checks.
+If a later installation step fails, inspect the copied environment before retrying;
+installation is not an atomic transaction.
+
+Do not use `scripts/setup.sh` on this network-restricted server: it is the
+alternative online installation path described below.
+
+## Alternative online server environment
 
 Initial target: Ubuntu 22.04 and the available A100 server. The existing
 `robotwin-sim` and `lingbotvla` environments are useful references but have

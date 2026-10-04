@@ -21,6 +21,13 @@ verification/recovery results. Server physics and rendering validation are pendi
 See [the milestone plan](docs/research/experiments/AETHER_CL_M0_Environment_Plan.md)
 and [implementation instructions](aura-sim/prototype_aether_cl/README.md).
 
+Deployment update (2026-10-05, project timezone): direct server retrieval was
+replaced by laptop downloads and SSH transfer. User-provided output confirms the
+repository arrived via Git bundle and `aether-cl` was copied offline from
+`robotwin-sim`. The copied package inventory guides an incremental Linux/Python
+3.10 wheel set; it does not establish successful simulator execution. Installation,
+native imports, physics, and rendering remain server acceptance steps.
+
 ---
 
 # Experiment Template

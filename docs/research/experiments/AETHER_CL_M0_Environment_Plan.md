@@ -29,6 +29,16 @@ The existing RoboTwin environment uses Python 3.10.22, PyTorch 2.4.1+cu121, and
 SAPIEN 3.0.0b1. LingBot inference uses a separate Python 3.12.14 environment.
 ManiSkill 3.0.1 requires stable SAPIEN on Linux, so its environment is independent.
 
+Server network access is not dependable for GitHub/package retrieval. The
+deployment route is GitHub to the connected laptop, then a Git bundle and
+Linux CPython 3.10 wheels transferred over SSH. The repository transfer and an
+offline `--copy` clone into `aether-cl` were confirmed by user-provided server
+output. The clone retains PyTorch 2.4.1+cu121 and NumPy 1.26.4. Its initial
+`pip check` reports SAPIEN's missing `opencv-python` distribution because only
+the headless variant was present. The incremental offline installer resolves
+the wheel set before replacing that variant in the copy. Simulator runtime and
+camera acceptance are still pending; cloning an environment is not that evidence.
+
 ## Acceptance evidence
 
 1. A command without camera capture completes bounded episodes and writes valid logs.
