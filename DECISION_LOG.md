@@ -63,6 +63,65 @@ See `AURA-Embodied Intelligence Landscape v0.1` and the corresponding research h
 
 ---
 
+# DEC-0002
+
+## Date
+
+2026-10-04
+
+## Topic
+
+Record AETHER Architecture Evolution v0.1 checkpoint.
+
+## Context
+
+Following deeper architecture exploration, AETHER evolved beyond a capability list into a broader research framework involving:
+
+- multi-timescale feedback loops;
+- state and uncertainty management;
+- dependency-aware long-horizon intelligence;
+- verification and hierarchical recovery;
+- experience transformation;
+- embodiment-aware transfer.
+
+The checkpoint documents architectural evolution after comparing AETHER concepts against major embodied AI systems.
+
+## Decision
+
+Create `docs/research/architecture/aether/AETHER_Architecture_Evolution_v0.1.md` and associated Mermaid diagrams.
+
+The checkpoint records:
+
+- stable architectural principles;
+- research hypotheses;
+- open questions;
+- experimental directions.
+
+It does not define a final implementation architecture.
+
+## Reasoning
+
+The project should preserve architectural evolution rather than prematurely freezing a design.
+
+Important conclusions:
+
+- AETHER is a capability/interface framework, not a sequential pipeline.
+- Physical intelligence requires interacting feedback loops across timescales.
+- Long-horizon intelligence concerns relevant dependencies rather than unlimited context.
+- Experience should become reusable capability rather than remain raw replay data.
+- Embodiment should be treated as a variable with adaptation interfaces.
+
+## Future Re-evaluation Condition
+
+Revisit after experimental validation of candidate AETHER architectures, especially around:
+
+- explicit versus latent state;
+- memory mechanisms;
+- verification and recovery systems;
+- embodiment transfer.
+
+---
+
 # Decision Template
 
 ## Decision ID
