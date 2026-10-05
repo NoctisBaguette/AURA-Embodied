@@ -2,9 +2,10 @@
 
 Date: 2026-10-05 (Asia/Shanghai)
 
-Status: initial native behavior audited; original suite failed on a harness
-FPS mismatch. Corrected native acceptance and paused live inspection remain
-pending. This is Prototype A's next intervention, not full AETHER.
+Status: corrected seed-0 native acceptance is audited and live recovery has
+operator/screenshot evidence. The larger reused-environment batch is rejected
+by strict pairing; per-episode process correction is prepared, with native
+results pending. This is Prototype A's intervention, not full AETHER.
 
 ## Evidence motivating the intervention
 
@@ -214,3 +215,18 @@ episodes. It retains the accepted scientific files and shared budget, and
 measures failures and aborts without imposing successful recovery as an
 acceptance gate. Native screening results and rendered drop inspection remain
 pending.
+
+## Native fresh-seed pairing failure and live drop screenshot
+
+The original seed-40–59 batch completed all 180 resets/171 eligible episodes,
+but disturbed recovery comparisons fail full-reset equality and, for four
+drop seeds, pre-recovery physical equality. All 61,560 actions and raw outcomes
+audit correctly; the failed comparison remains rejected. The separate
+[episode-isolation correction](AETHER_CL_M3_Isolated_Screening.md) retains all
+scientific settings and strict checks while giving each episode a fresh
+interpreter/simulator. Corrected native results are pending.
+
+The operator's live drop screenshot shows task success, 156/177 retry actions,
+and a 1.4 cm displayed final target distance. Their comments on slow approach,
+raised transfer waypoints, goal-marker size and future precision are recorded
+in that correction note. This is screenshot evidence, not a live raw-log audit.

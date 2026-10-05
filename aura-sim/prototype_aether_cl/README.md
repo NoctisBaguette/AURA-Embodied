@@ -9,7 +9,9 @@ paired traces, and startup environments pass after process isolation. Frozen
 fresh-seed screening is complete and audited. M3 recovery is implemented and
 locally tested. Corrected seed-0 native acceptance is complete and audited;
 live shifted-cube recovery was observed by the operator. Frozen fresh-seed
-recovery evaluation and live drop inspection remain pending.
+recovery comparison is rejected because reused native resets fail strict
+pairing. Live drop completion is visible in the operator screenshot. A
+per-episode process correction is prepared; corrected native results remain pending.
 
 Prototype A will test whether explicit verification and bounded recovery improve
 manipulation autonomy under disturbances while keeping the manipulation policy
@@ -432,8 +434,9 @@ its completion is not task success. The first native suite recovered both seed-0
 configuration matching because FPS was not forwarded. The correction retains
 strict matching; the corrected archive passes all nine trial and four paired
 checks and reproduces the original raw traces exactly. The operator observed
-live shifted-cube recovery; fresh-seed evaluation and live drop inspection
-remain pending. Screening adds ten tests to the previous 78 passing tests.
+live shifted-cube recovery, and live drop completion is visible in a supplied
+screenshot. The larger disturbed comparison is
+rejected; its correction is documented below.
 The original four frozen M2 source files remain byte-identical. The process
 runner gains an optional entry module; its M2 default behavior is unchanged.
 
@@ -505,4 +508,32 @@ failures. It compares baseline/V1 full traces and V1/V2 prefixes through the
 first intervention, or full traces when there is none. Matched outcome counts
 include any recovery regressions. Existing archives are never replaced;
 interrupted/error runs retain available evidence. Native fresh-seed results
-remain pending. Follow the batch with the paused live drop command above.
+were rejected by the strict recovery-pair checks. Keep the original archive;
+use the per-episode process correction below rather than relaxing the checks.
+
+### M3 per-episode process correction
+
+The [native audit and correction](../../docs/research/experiments/AETHER_CL_M3_Isolated_Screening.md)
+verify all 61,560 batch actions but reject disturbed V1/V2 comparisons: reused
+resets differ in grasp flags, and four drop seeds physically diverge before
+recovery. The original failed archive and original protocol remain preserved.
+
+```bash
+cd /home/jiangle/aura-work/AURA-Embodied-offline/aura-sim/prototype_aether_cl
+source /home/jiangle/miniconda3/etc/profile.d/conda.sh
+conda activate aether-cl
+unset LD_PRELOAD
+export LD_LIBRARY_PATH=/home/jiangle/aura-work/aether-glvnd-1.4.0/usr/lib/x86_64-linux-gnu
+export CUDA_VISIBLE_DEVICES=1
+python -m aether_cl.m3_isolated_screening \
+    --output runs/m3-screening-isolated-seeds40-59 \
+    --archive /home/jiangle/aura-work/aether-cl-m3-screening-isolated-seeds40-59.tar.gz
+```
+
+Every condition/system/seed now runs in a fresh interpreter and simulator with
+one episode. All settings and nine source hashes stay frozen; full-reset and
+causal-prefix equality remain strict. The same preselected seeds are retained,
+including zero-action exclusions. This is a correction replication of already
+observed seeds, not additional held-out evidence. Progress prints all 180
+trials. Native startup makes this slower. This measurement command runs
+independently; launch live viewing separately from batch success/failure.

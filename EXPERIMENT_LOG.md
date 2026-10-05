@@ -434,6 +434,47 @@ claim follows from these fixtures. See the
 
 ---
 
+# EXP-0011 Native M3 Pairing Failure and Episode Isolation
+
+Date: 2026-10-05 (Asia/Shanghai)
+
+Audit the original seed-40–59 archive, SHA-256
+`c8c73ef11f91c9ea55d519701660c89456b55cbd5fc1e283fbd5fa2a1257fb74`:
+all 47 indexed hashes, 180 original resets/171 eligible episodes, and 61,560
+actions verify on clean `3284b504`. Seed 58 is excluded identically in each
+cell, with zero actions. Policy/recovery replay, reference/verifier/metric
+replay and individual outcomes agree. Normal reports 19/19 success per system;
+shift/drop report 0/19 baseline/V1 and 19/19 V2. All passive pairs match.
+These disturbed outcomes are not accepted paired recovery evidence.
+
+The native comparison remains failed. Reused reset observation grasp flags
+differ for seeds 41–59 after previous recovery. Drop seeds 48, 50, 54 and 59
+also physically differ before recovery, beginning at steps 101/102. The exact
+internal engine mechanism is not established. Do not waive reset fields or
+numeric differences. Preserve the original failed archive/protocol and
+implement a separate correction: fresh Python interpreter/simulator for every
+condition/system/seed, 180 one-episode children, unchanged settings and nine
+frozen source hashes. Strict reset/prefix checks remain. The original selected
+seeds are now seen, so this is correction replication, not a new held-out sample.
+
+The supplied live drop screenshot shows finished step 360, task success,
+156/177 retry actions and 1.4 cm displayed goal distance. Operator observes
+slow staged approach and raised transport. Fixed 60/40-step approach/descent
+and 6 cm goal clearance explain that behavior; 2 cm recovery arrival/2.5 cm
+task tolerances permit the final offset. Marker size follows the upstream
+5 cm sphere diameter beside a 4 cm cube. Future movement/precision changes
+need separate frozen comparisons.
+
+Local regressions reproduce stale reset carryover in the reused fixture,
+retain strict rejection, and run all 180 independent one-episode calls with
+the same captured startup environment, original seed order, exclusion 58,
+60 passive pairs, 60 causal pairs, exclusive archives and all file hashes.
+Failure/interruption retains partial evidence and null incomplete rates.
+Corrected native execution remains pending. See the
+[audit and correction](docs/research/experiments/AETHER_CL_M3_Isolated_Screening.md).
+
+---
+
 # Experiment Template
 
 ## Experiment ID

@@ -3,7 +3,9 @@
 Date: 2026-10-05 (Asia/Shanghai)
 
 Status: protocol frozen and runner prepared before native fresh-seed execution.
-Native results are pending. This is a bounded single-task screening experiment,
+The native batch completed but its recovery comparison was rejected; see the
+[audit and episode-isolation amendment](AETHER_CL_M3_Isolated_Screening.md).
+The original protocol below remains preserved. This is a bounded single-task screening experiment,
 not the full Prototype A benchmark or a robustness curve.
 
 ## Prerequisite and operator observation
