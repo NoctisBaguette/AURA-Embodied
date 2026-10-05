@@ -91,6 +91,29 @@ fixed-seed batches before freezing the candidate for intervention comparisons.
 
 See [the M1 protocol](docs/research/experiments/AETHER_CL_M1_Fixed_Controller.md).
 
+## A100 acceptance attempt and action-shape correction
+
+The target server deployed commit `1f0b0a2890ecc1f1c33816fb3fc38b3a8920b51f`.
+All 16 tests passed under Python 3.10.22, and Torch confirmed one visible
+A100 with physical GPU 1 selected. Native environment initialization/reset
+succeeded, but the runtime stopped before its first action or rendered frame:
+`Unexpected Panda pd_ee_pose action shape: (7,)`.
+The failed run is `runs/baseline-live/20261005T003332Z-8adcbe5d`.
+
+The runtime incorrectly required a batched `(1, 7)` action space. The installed
+ManiSkill 3.0.1 source accepts unbatched single-environment actions and batches
+them internally. The correction accepts `(7,)` or `(1, 7)`, adapts the fixed
+controller command to the declared space, retains Box validation, and records
+the declared shape and actual executed action. Policy values, inputs, schedule,
+and settings are unchanged.
+
+All 19 local tests passed after the correction, including complete logging runs
+with both action shapes, invalid-action rejection, and unsupported-space cleanup.
+These fixtures do not simulate contacts. The corrected native A100 run remains
+pending; the blocked attempt is an implementation error, not grasp-failure data
+or evidence for/against verification and recovery. No environment reinstall is
+required for this correction.
+
 ---
 
 # Experiment Template

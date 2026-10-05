@@ -2,8 +2,9 @@
 
 Date: 2026-10-05 (Asia/Shanghai)
 
-Status: implemented and checked without native simulator execution; target-server
-controller acceptance and success-rate measurement pending.
+Status: target-server initialization reached the controller action-space check,
+which exposed an implementation error before the first action. That check is
+corrected; native controller acceptance and success-rate measurement pending.
 
 ## Objective and scope
 
@@ -54,6 +55,9 @@ Baseline/V1/V2 comparisons.
 
 `manifest.json` records the code revision, runtime versions, controller settings,
 input boundaries, control mode, GPU visibility, and native library environment.
+It also records the declared action-space shape. Single-environment `(7,)` and
+single-batch `(1, 7)` spaces are supported; the runtime adapts the same seven
+controller values to the declared shape and validates them before execution.
 Each action event records phase, expected target TCP position, commanded TCP
 position, action, observation, environment info, and evaluator-only object/goal
 distance. These diagnostics do not feed the controller. `result.json` records
@@ -73,6 +77,15 @@ future object/goal/evaluator data from action inputs, config guards, evaluation
 denominators, stopped-run handling, and existing logging/render encoding/HTTP
 contracts. Controller integration fixtures do not simulate native contacts or
 grasp physics. CLI and Python compilation checks passed.
+
+The first native acceptance attempt at commit `1f0b0a2` passed those 16 tests on
+Python 3.10.22 and confirmed one visible A100. Its action space was `(7,)`, while
+the initial runtime required `(1, 7)`; execution stopped before the first action
+or frame. The corrected runtime passed 19 local tests, including full evaluation
+and logging with both shapes, preservation of action values, invalid-action
+rejection, and cleanup before stepping unsupported spaces. The policy itself
+is unchanged. This blocked run is an implementation error and supplies no
+native grasp or success-rate evidence.
 
 Next on the A100: inspect seed 0 for one 360-step episode with the live viewer,
 then run fixed-seed batches and inspect saved episode results. Reuse the private

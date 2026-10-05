@@ -153,6 +153,19 @@ def encode_frame(frame):
     return buffer.getvalue()
 
 
+def fixed_action_for_space(action, action_space):
+    """Match a single Panda command to the environment's declared Box shape."""
+    if action.shape != (1, 7):
+        raise RuntimeError(f"Unexpected controller action shape: {action.shape}")
+    if action_space.shape == (7,):
+        action = action[0].copy()
+    elif action_space.shape != (1, 7):
+        raise RuntimeError(f"Unexpected Panda pd_ee_pose action shape: {action_space.shape}")
+    if not action_space.contains(action):
+        raise RuntimeError("Controller produced an invalid action")
+    return action
+
+
 def run(config: RunConfig, publish: Callable | None = None,
         stop: threading.Event | None = None, env_factory=build_env):
     config.validate()
@@ -212,10 +225,11 @@ def run(config: RunConfig, publish: Callable | None = None,
                 if config.controller == "fixed_pick_cube":
                     from .policies import FixedPickCube, task_diagnostics
                     policy = FixedPickCube(observation, env.unwrapped.agent.robot.pose.raw_pose)
-                    if env.action_space.shape != (1, 7):
+                    if env.action_space.shape not in ((7,), (1, 7)):
                         raise RuntimeError(f"Unexpected Panda pd_ee_pose action shape: {env.action_space.shape}")
                     diagnostics = task_diagnostics(observation, info)
                     manifest["policy_details"] = policy.manifest()
+                    manifest["action_space_shape"] = list(env.action_space.shape)
                     (directory / "manifest.json").write_text(
                         json.dumps(manifest, indent=2, allow_nan=False) + "\n", encoding="utf-8",
                     )
@@ -238,10 +252,9 @@ def run(config: RunConfig, publish: Callable | None = None,
                     tick = time.monotonic()
                     if policy:
                         action, decision = policy.action(observation, step - 1)
+                        action = fixed_action_for_space(action, env.action_space)
                     else:
                         action = env.action_space.sample()
-                    if policy and not env.action_space.contains(action):
-                        raise RuntimeError("Controller produced an invalid action")
                     logged_action = json_value(action)
                     observation, reward, term, trunc, info = env.step(action)
                     terminated, truncated = bool(scalar(term)), bool(scalar(trunc))

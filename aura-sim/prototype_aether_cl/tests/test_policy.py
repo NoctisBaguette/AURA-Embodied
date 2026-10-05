@@ -12,7 +12,7 @@ import numpy as np
 from scipy.spatial.transform import Rotation
 
 from aether_cl.policies import FixedPickCube, PickCubeSettings, pose_rotation
-from aether_cl.runtime import RunConfig, config_from_args, parser, run
+from aether_cl.runtime import RunConfig, config_from_args, fixed_action_for_space, parser, run
 
 
 def observation():
@@ -108,13 +108,15 @@ class PolicyTests(unittest.TestCase):
 
 
 class Actions:
-    shape = (1, 7)
+    def __init__(self, shape=(7,)):
+        self.shape = shape
 
     def seed(self, seed):
         pass
 
     def contains(self, action):
-        return action.shape == self.shape and np.isfinite(action).all()
+        return (action.shape == self.shape and np.isfinite(action).all()
+                and abs(action.reshape(-1)[-1]) <= 1)
 
     def sample(self):
         raise AssertionError("Fixed controller must never sample random actions")
@@ -123,9 +125,9 @@ class Actions:
 class Environment:
     """Fixture for logging contracts, not a substitute for native physics."""
 
-    def __init__(self, stop=None):
+    def __init__(self, stop=None, action_shape=(7,)):
         self.unwrapped = self
-        self.action_space = Actions()
+        self.action_space = Actions(action_shape)
         self.agent = SimpleNamespace(robot=SimpleNamespace(pose=SimpleNamespace(raw_pose=BASE)))
         self.closed = False
         self.stop = stop
@@ -137,10 +139,13 @@ class Environment:
         return copy.deepcopy(self.obs), {"success": [False], "is_grasped": [False]}
 
     def step(self, action):
+        if not self.action_space.contains(action):
+            raise AssertionError("Action must match the declared environment space")
         self.step_number += 1
         # Emulate absolute Cartesian pose updates to exercise state flow.
-        self.obs["extra"]["tcp_pose"][0, :3] = action[0, :3] + BASE[0, :3]
-        q = Rotation.from_euler("XYZ", action[0, 3:6]).as_quat()
+        command = action.reshape(7)
+        self.obs["extra"]["tcp_pose"][0, :3] = command[:3] + BASE[0, :3]
+        q = Rotation.from_euler("XYZ", command[3:6]).as_quat()
         self.obs["extra"]["tcp_pose"][0, 3:] = [q[3], *q[:3]]
         success = self.step_number == 359 or (self.step_number == 360 and self.seed % 2 == 0)
         self.obs["extra"]["obj_pose"][0, :3] = self.obs["extra"]["goal_pos"][0] if success else [0.03, 0.02, 0.02]
@@ -155,8 +160,13 @@ class Environment:
 
 class IntegrationTests(unittest.TestCase):
     def test_evaluation_and_logs_distinguish_final_from_ever_success(self):
+        for shape in ((7,), (1, 7)):
+            with self.subTest(action_space_shape=shape):
+                self.check_evaluation_and_logs(shape)
+
+    def check_evaluation_and_logs(self, shape):
         with tempfile.TemporaryDirectory() as temporary:
-            env = Environment()
+            env = Environment(action_shape=shape)
             config = RunConfig(controller="fixed_pick_cube", max_steps=360,
                                episodes=2, render=False, output=Path(temporary))
             result = run(config, env_factory=lambda _: env)
@@ -169,12 +179,14 @@ class IntegrationTests(unittest.TestCase):
             manifest = json.loads((directory / "manifest.json").read_text())
             self.assertEqual(manifest["policy_details"]["step_inputs"], ["tcp_pose"])
             self.assertEqual(manifest["control_mode"], "pd_ee_pose")
+            self.assertEqual(manifest["action_space_shape"], list(shape))
             self.assertFalse(manifest["verification"])
             events = [json.loads(line) for line in (directory / "events.jsonl").read_text().splitlines()]
             steps = [e for e in events if e["event"] == "step"]
             self.assertEqual(len(steps), 720)
             self.assertEqual(steps[0]["controller_decision"]["phase"], "approach")
-            self.assertLess(steps[0]["action"][0][0], 2)  # storage mutation was snapshotted
+            self.assertEqual(np.asarray(steps[0]["action"]).shape, shape)
+            self.assertLess(np.asarray(steps[0]["action"]).reshape(-1)[0], 2)  # storage mutation was snapshotted
             self.assertIn("cube_goal_distance_m", steps[-1]["evaluator"])
             self.assertEqual(json.loads((directory / "result.json").read_text()), result)
 
@@ -190,6 +202,41 @@ class IntegrationTests(unittest.TestCase):
             self.assertEqual(result["evaluation"]["completed_episodes"], 0)
             self.assertIsNone(result["evaluation"]["success_rate_at_end"])
             self.assertFalse(result["episodes"][0]["schedule_complete"])
+
+    def test_action_adapter_preserves_commands_for_both_spaces(self):
+        command, _ = FixedPickCube(observation(), BASE).action(observation(), 0)
+        for shape in ((7,), (1, 7)):
+            with self.subTest(action_space_shape=shape):
+                actual = fixed_action_for_space(command, Actions(shape))
+                self.assertEqual(actual.shape, shape)
+                self.assertEqual(actual.dtype, np.float32)
+                np.testing.assert_array_equal(actual.reshape(1, 7), command)
+
+    def test_action_adapter_rejects_malformed_nonfinite_and_out_of_bounds(self):
+        command, _ = FixedPickCube(observation(), BASE).action(observation(), 0)
+        with self.assertRaisesRegex(RuntimeError, "controller action shape"):
+            fixed_action_for_space(command.reshape(7), Actions())
+        with self.assertRaisesRegex(RuntimeError, "Panda pd_ee_pose action shape"):
+            fixed_action_for_space(command, Actions((2, 7)))
+        for shape in ((7,), (1, 7)):
+            for bad_value in (float("nan"), 2):
+                with self.subTest(action_space_shape=shape, gripper=bad_value):
+                    invalid = command.copy()
+                    invalid[0, -1] = bad_value
+                    with self.assertRaisesRegex(RuntimeError, "invalid action"):
+                        fixed_action_for_space(invalid, Actions(shape))
+
+    def test_unsupported_space_fails_before_any_step_and_closes_environment(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            env = Environment(action_shape=(2, 7))
+            with self.assertRaisesRegex(RuntimeError, "Panda pd_ee_pose action shape"):
+                run(RunConfig(controller="fixed_pick_cube", max_steps=360,
+                              render=False, output=Path(temporary)),
+                    env_factory=lambda _: env)
+            self.assertEqual(env.step_number, 0)
+            self.assertTrue(env.closed)
+            result_path = next(Path(temporary).glob("*/result.json"))
+            self.assertEqual(json.loads(result_path.read_text())["state"], "error")
 
 
 if __name__ == "__main__":
