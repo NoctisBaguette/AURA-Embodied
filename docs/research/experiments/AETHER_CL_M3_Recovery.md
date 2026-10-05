@@ -119,7 +119,8 @@ nine-cell hashed archives. Fixture success is not native physics validation.
 
 The live display shows recovery state, action budget, controller phase, diagnosis,
 and the separate shared task outcome. Browser access is read-only. A100 rendering
-already works for M0-M2; M3 seed-0 behavior has been audited; corrected acceptance and live results remain pending.
+already works for M0-M2. Corrected M3 seed-0 acceptance is now complete and
+audited; live results and fresh-seed recovery evaluation remain pending.
 
 
 ## First native suite: useful behavior, rejected configuration
@@ -158,3 +159,43 @@ All 78 local tests pass. Added tests round-trip every configuration field throug
 the actual child parser with both default and nondefault FPS, require an explicit
 preview release, and establish zero actions/environment cleanup when cancelled.
 The original failed archive and its requested settings remain preserved.
+
+## Corrected native acceptance: passed
+
+The corrected `aether-cl-m3-evidence-fps-fixed.tar.gz` (SHA-256
+`22871e65df0d946abb53382a86e4299d17ebbc028ce2505ee55758d1fdd182aa`,
+1,202,382 bytes) records clean revision `2d1c063`. All 47 unique regular
+members and 46 indexed size/hash records verify. All nine trial configurations
+match exactly, including requested/recorded FPS 5. Every episode is eligible
+and executes its full 360-action budget without execution/cleanup errors.
+
+Recomputing all nine trial checks and four pair checks from the raw files
+reproduces the suite's `passed` result. Replay of all 3,240 actions, decisions,
+reference/verifier verdicts, and recovery snapshots agrees, with maximum action
+error 2.98e-8 from float32 base-pose arithmetic. Independent task geometry,
+stability and detection metrics agree. All nine canonical traces, verifier and
+recovery sequences, and evaluations exactly reproduce the original failed
+archive. Thus the FPS correction changes recorded configuration and evidence
+acceptance, without changing the scientific behavior. The original rejected
+archive and audit remain preserved. See the
+[corrected raw audit](evidence/AETHER_CL_M3_Corrected_Native_Audit.json).
+
+| Condition (seed 0) | Baseline | V1 verification | V2 verification + recovery |
+| --- | --- | --- | --- |
+| Normal | Success | Success | Success, no retry |
+| Object shift | Failure | Failure | Success, 170/230 retry actions |
+| Object drop | Failure | Failure | Success, 156/177 retry actions |
+
+The two V2 retries begin at steps 128/184, immediately after the first confirmed
+diagnoses at 127/183; strict task success first occurs at 287/329. Final success
+requires contact grasp, lift, goal distance and static persistence; retry
+completion alone does not qualify. All systems retain the same total episode
+budget. Normal V2 remains exactly identical to V1, and disturbed V2 prefixes
+remain identical through diagnosis.
+
+This is a single-seed development check with privileged observations and
+synthetic pose relocation. It establishes functioning bounded recovery in these
+two cases, not a recovery robustness rate or physical disturbance realism.
+This archive contains no rendered/live runs, so it cannot certify the preview
+pause or browser behavior. Next inspect live shift/drop, then freeze recovery
+parameters and preregister a fresh-seed paired evaluation before running it.

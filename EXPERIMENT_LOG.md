@@ -374,6 +374,35 @@ are the next checkpoints. See [the audit](docs/research/experiments/AETHER_CL_M3
 
 ---
 
+# EXP-0009 Corrected Native M3 Acceptance
+
+Date: 2026-10-05 (Asia/Shanghai)
+
+The corrected archive `aether-cl-m3-evidence-fps-fixed.tar.gz` (SHA-256
+`22871e65df0d946abb53382a86e4299d17ebbc028ce2505ee55758d1fdd182aa`)
+passes all nine trial and four paired checks on clean `2d1c063`. All 46 indexed
+hashes, exact configurations (FPS 5), nine eligible episodes/3,240 actions,
+policy/recovery replay, reference/verifier agreement, task/metric calculations,
+and raw stdout/results verify. Recomputed checks reproduce the suite result.
+All nine original canonical traces, verdict/recovery sequences and evaluations
+reproduce exactly: the forwarding correction changes metadata acceptance, not
+the scientific behavior. The original failed archive remains preserved.
+
+Normal succeeds for baseline/V1/V2; shifted/drop cases fail for baseline/V1 and
+succeed for V2. Shift retry starts at 128, uses 170/230 allocated actions, and
+first meets the strict task at 287. Drop starts at 184, uses 156/177, and first
+meets it at 329. Normal V2 makes no retry, and disturbed prefixes remain equal
+through diagnosis. Total episode budget is 360 for every system.
+
+This completes native seed-0 M3 development acceptance, not held-out robustness.
+The archive contains batch runs only; live browser inspection remains pending.
+Next inspect live shift/drop, freeze parameters and preregister the fresh-seed
+paired evaluation. See the
+[protocol](docs/research/experiments/AETHER_CL_M3_Recovery.md) and
+[raw audit](docs/research/experiments/evidence/AETHER_CL_M3_Corrected_Native_Audit.json).
+
+---
+
 # Experiment Template
 
 ## Experiment ID

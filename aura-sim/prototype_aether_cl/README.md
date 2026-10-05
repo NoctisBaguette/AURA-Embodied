@@ -7,8 +7,8 @@ using simulator state and a timed sequence. M1 native baseline screening is
 complete. M2 seed-0 native acceptance is complete: all six behavior checks,
 paired traces, and startup environments pass after process isolation. Frozen
 fresh-seed screening is complete and audited. M3 recovery is implemented and
-locally tested. Initial native behavior was audited; corrected acceptance and
-live recovery inspection are pending.
+locally tested. Corrected seed-0 native acceptance is complete and audited;
+live recovery inspection and fresh-seed recovery evaluation remain pending.
 
 Prototype A will test whether explicit verification and bounded recovery improve
 manipulation autonomy under disturbances while keeping the manipulation policy
@@ -429,7 +429,9 @@ It reuses the unchanged fixed-policy motion primitives and retains the same
 transitions use observed arrival and grasp/lift evidence. An attempt can abort;
 its completion is not task success. The first native suite recovered both seed-0 disturbed cases but failed strict
 configuration matching because FPS was not forwarded. The correction retains
-strict matching; a new archive and live inspection are pending. All 78 local
+strict matching; the corrected archive passes all nine trial and four paired
+checks and reproduces the original raw traces exactly. Live inspection and
+fresh-seed recovery evaluation remain pending. All 78 local
 tests pass.
 The original four frozen M2 source files remain byte-identical. The process
 runner gains an optional entry module; its M2 default behavior is unchanged.
