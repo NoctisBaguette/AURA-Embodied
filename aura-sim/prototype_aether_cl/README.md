@@ -15,11 +15,17 @@ is now natively executed and audited: all 180 trial checks, 60 passive pairs and
 is 0/19 for baseline/V1 and 19/19 for V2. Seed 58 remains excluded throughout.
 This replicates the original preselected seeds, rather than adding unseen seeds.
 
-M4's [frozen magnitude sweep](../../docs/research/experiments/AETHER_CL_M4_Robustness.md)
-is prepared for new seeds 60–79: normal plus 2/4/8/12/20 cm shift/drop points,
-660 fresh one-episode children, strict paired and cross-magnitude controls.
-Its resumable evaluation records successes and failed retries without tuning.
-Native M4 results remain pending. The batch and live viewer run separately.
+M4's [frozen magnitude sweep](../../docs/research/experiments/AETHER_CL_M4_Robustness.md#audited-native-results)
+is complete and audited on new seeds 60–79: all 660 trial checks, 237,600 actions
+and 640 strict paired/control comparisons pass, with no exclusions. V2 achieves
+20/20 final task success at every tested point, rescuing 180 paired V1 failures.
+Baseline/V1 succeeds on normal and 2 cm shift; it fails on larger shifts and all
+drops. Of 180 retries, 178 complete and two 20 cm drop retries exhaust their hold
+budget after already attaining task success. Costs rise with magnitude; recovery
+precision remains around a centimetre. The [audited curve and paused live commands](../../docs/research/experiments/AETHER_CL_M4_Robustness.md)
+keep task success separate from retry completion. The batch and live viewer run
+separately. All scientific execution sources and preregistered scoring remain
+unchanged.
 
 Prototype A will test whether explicit verification and bounded recovery improve
 manipulation autonomy under disturbances while keeping the manipulation policy

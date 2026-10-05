@@ -624,3 +624,46 @@ Why did it fail?
 ## Lessons Learned
 
 ## Next Direction
+
+
+# EXP-0014 — M4 Native Magnitude Robustness Audited
+
+Date: 2026-10-05 (UTC)
+
+Status: accepted finite native evidence; Prototype A remains in progress.
+
+The preregistered seed-60–79 archive from clean source
+`67a44d13b5363b615b5214ff543c34224e6af745` passes independent replay.
+Archive SHA-256:
+`a183e1357d6aba771fa193ae358dbcd1af30d11325eb3898ec4e93cf2a0f0bbd`.
+All 3,304 indexed files, 660 trials, 237,600 actions, 220 passive pairs,
+220 recovery pairs and 200 normal pre-injection controls validate. Aggregate
+JSON and CSV match exactly; strict tolerances, source and scoring are unchanged.
+All 660 selected episodes are eligible; there are no exclusions.
+
+Normal and 2 cm shift succeed 20/20 per system without retries. Baseline/V1
+have 0/20 success at shifts 4/8/12/20 cm and every 2/4/8/12/20 cm drop. V2 succeeds
+20/20 at every point: 180 paired rescues, 40 both-success pairs, no regressions.
+Retry action/path costs rise with magnitude. This does not locate an eventual
+final-task failure threshold or demonstrate real-force/camera robustness.
+
+Of 180 attempted retries, 178 finish their phases and two budget-abort.
+At 20 cm drop seeds 69/76, shared task success begins at steps 352/353,
+recovery hold begins at 353/354, and abort occurs at step 360. They meet the
+task before their ten-action hold phase exhausts the remaining 177 actions.
+Final task success and controller completion are separately recorded; no
+post-deadline success or silently redefined outcome is counted. All attempted
+costs, including both aborts, remain included.
+
+First detected retry failures retain two-step latency and the expected
+GRASP_FAILURE/OBJECT_LOST labels. Dense later agreement remains reported
+separately and shares privileged geometry with the reference. Median recovered
+goal errors across retry cells are 1.11–1.34 cm, versus 0.459 mm normal.
+The same 20 seeds are reused across conditions; frames and points are correlated.
+
+See the [native result report and paused live commands](docs/research/experiments/AETHER_CL_M4_Robustness.md#audited-native-results),
+[machine audit](docs/research/experiments/evidence/AETHER_CL_M4_Native_Audit.json),
+and [robustness figure](docs/research/experiments/evidence/AETHER_CL_M4_Robustness.svg).
+This publication changes documentation and derived evidence only. Future
+motion/precision, release/support, physical disturbance and perception variants
+need separate protocols. Findings return to 02; this is not AETHER v1.0.
