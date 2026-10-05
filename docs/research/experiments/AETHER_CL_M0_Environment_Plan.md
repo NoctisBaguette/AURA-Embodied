@@ -2,7 +2,8 @@
 
 Status: basic A100 rendering smoke and live browser display confirmed.
 A [fixed controller candidate](AETHER_CL_M1_Fixed_Controller.md) is prepared;
-its native manipulation acceptance is pending.
+one native seed-0 success has been reported with a matching screenshot;
+multi-seed acceptance and raw trajectory inspection remain pending.
 
 ## Objective
 

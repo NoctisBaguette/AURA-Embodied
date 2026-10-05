@@ -109,10 +109,38 @@ and settings are unchanged.
 
 All 19 local tests passed after the correction, including complete logging runs
 with both action shapes, invalid-action rejection, and unsupported-space cleanup.
-These fixtures do not simulate contacts. The corrected native A100 run remains
-pending; the blocked attempt is an implementation error, not grasp-failure data
+These fixtures do not simulate contacts. At this correction checkpoint the native
+A100 rerun was pending; the blocked attempt is an implementation error, not grasp-failure data
 or evidence for/against verification and recovery. No environment reinstall is
 required for this correction.
+
+## First successful native fixed-controller episode
+
+The user supplied viewer status JSON and a matching rendered browser screenshot
+for `runs/baseline-live/20261005T004231Z-59ee234d`, following deployment instructions
+for correction commit `bfd144646187bb4985e5d6678320651e3b94b022`. The raw manifest
+and event log have not yet been retrieved to independently verify the deployed
+revision and trajectory. The [supplied status JSON](docs/research/experiments/evidence/AETHER_CL_M1_seed0_viewer_status.json)
+is preserved as reported evidence.
+
+Seed 0 finished successfully at step 202, during transport, with final cube-to-goal
+distance 0.023378149725868044 m. The environment reported grasped, object placed,
+and robot static, with `terminated: true`, `truncated: false`, and no interruption.
+The screenshot shows the cube held near the green goal marker and displays the
+same step, phase, and success result.
+
+The schedule was incomplete because the task terminated on success before lower
+and hold. This is expected under the current runtime termination contract; it
+does not establish sustained holding or release onto a support surface. The
+reported 1.0 success rate has denominator one and is not a robustness estimate.
+No verification or recovery was active. This is initial native manipulation
+evidence, not a result for the Prototype A research intervention.
+
+Next acceptance check: keep controller code/settings unchanged at `bfd1446`, run
+seeds 0 through 19 with a 360-step limit and rendering disabled, and retrieve
+manifest/result/event logs. Repeating seed 0 checks agreement with the rendered
+episode; the remaining seeds probe ordinary reset variation. This is candidate
+baseline screening, not the final disturbance benchmark or held-out evaluation.
 
 ---
 

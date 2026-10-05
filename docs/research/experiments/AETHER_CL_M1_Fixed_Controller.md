@@ -2,17 +2,18 @@
 
 Date: 2026-10-05 (Asia/Shanghai)
 
-Status: target-server initialization reached the controller action-space check,
-which exposed an implementation error before the first action. That check is
-corrected; native controller acceptance and success-rate measurement pending.
+Status: the action-space correction enabled a user-reported successful native
+seed-0 episode with matching rendered screenshot. Multi-seed baseline screening
+and raw manifest/event-log inspection remain pending.
 
 ## Objective and scope
 
 Replace random smoke actions with an inspectable, repeatable PickCube attempt.
 This is the first engineering controller baseline. It does not establish the
 research hypothesis about verification/recovery and is not a learned VLA policy.
-The M0 server evidence establishes that the environment and raster renderer work;
-it does not establish that this new controller grasps successfully.
+The M0 server evidence establishes that the environment and raster renderer work.
+The first M1 native result establishes one successful attempt; it does not
+establish reliability across resets or robustness under disturbances.
 
 PickCube-v1 uses a Panda robot, CPU physics, privileged `state_dict` observations,
 and GPU offscreen rendering. Success means cube-to-goal distance at most 0.025 m
@@ -87,8 +88,21 @@ rejection, and cleanup before stepping unsupported spaces. The policy itself
 is unchanged. This blocked run is an implementation error and supplies no
 native grasp or success-rate evidence.
 
-Next on the A100: inspect seed 0 for one 360-step episode with the live viewer,
-then run fixed-seed batches and inspect saved episode results. Reuse the private
+The corrected seed-0 live episode finished at step 202 during transport, with
+cube-to-goal distance 0.023378149725868044 m and environment success/grasp/static
+flags true. The screenshot agrees with the supplied
+[viewer status JSON](evidence/AETHER_CL_M1_seed0_viewer_status.json).
+The environment terminated on success before the 320-step schedule finished;
+`schedule_complete: false` is expected for this early successful termination.
+This does not test release or subsequent holding. Deployment followed the
+instructions for `bfd1446`; raw manifest/event logs remain to be retrieved.
+The single-episode 1.0 success rate does not measure general reliability.
+
+Next on the A100: run seeds 0 through 19 without rendering, keeping the same
+controller revision/settings and 360-step limit. Retrieve the manifest, result,
+and event logs from both the live episode and batch. This screens the candidate
+on ordinary reset variation and repeats seed 0; it is not the final held-out
+disturbance benchmark. Reuse the private
 OpenGL workaround from M0. Expose the selected physical GPU with
 `CUDA_VISIBLE_DEVICES=1` and render with process-local `cuda:0`, following
 ManiSkill's documented mapping. No dependency/driver reinstall is needed.
