@@ -73,6 +73,9 @@
           text('notice', status.recovery_enabled
             ? 'One bounded retry after a confirmed failed grasp or lost object. The arm reopens, approaches the observed cube position, and checks its new grasp and lift before transport. An attempt can abort; final task success is measured separately.'
             : 'Matched 360-step baseline or passive verification run. Recovery is disabled.');
+          if (status.state === 'ready_to_start') {
+            text('notice', 'Preview ready. The arm is paused. Press Enter in the server terminal when you are ready to watch the live run.');
+          }
         }
       } else if (status.controller === 'random') {
         text('title', 'AETHER-CL Environment Smoke Test');

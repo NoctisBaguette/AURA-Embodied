@@ -69,6 +69,30 @@ class M3AcceptanceTests(unittest.TestCase):
         self.assertEqual(commands[0][commands[0].index("--system") + 1], "v2")
         self.assertEqual(result["environment"], "captured")
 
+    def test_actual_child_parser_round_trips_every_parent_config_field(self):
+        from dataclasses import asdict
+        from aether_cl.runtime import json_value
+        program = """
+from dataclasses import asdict
+import json, sys
+from aether_cl.m3 import parser, config_from_args
+from aether_cl.runtime import json_value
+config = config_from_args(parser().parse_args(sys.argv[1:]))
+config.validate()
+p = config.output / 'parsed-child'
+p.mkdir()
+(p / 'result.json').write_text(json.dumps(json_value(asdict(config))))
+"""
+        real_popen = subprocess.Popen
+        def launch(command, **kwargs):
+            return real_popen([sys.executable, "-c", program, *command[3:]], **kwargs)
+        with tempfile.TemporaryDirectory() as temporary, patch("aether_cl.acceptance.subprocess.Popen", side_effect=launch):
+            for fps in (5.0, 7.25):
+                config = M3Config(render=False, fps=fps, seed=4, episodes=2,
+                                  disturbance="object_drop", output=Path(temporary) / str(fps))
+                actual = run_in_process(config, os.environ.copy(), module="aether_cl.m3")
+                self.assertEqual(actual, json_value(asdict(config)))
+
 
 if __name__ == "__main__":
     unittest.main()

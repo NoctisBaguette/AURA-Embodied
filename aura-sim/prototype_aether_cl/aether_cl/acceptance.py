@@ -227,6 +227,7 @@ def run_in_process(config, environment, module="aether_cl.experiment"):
                getattr(config, "system", "v1" if config.verification else "baseline"), "--no-render",
                "--seed", str(config.seed), "--episodes", str(config.episodes),
                "--max-steps", str(config.max_steps), "--render-device", config.render_device,
+               "--fps", str(config.fps),
                "--disturbance", config.disturbance, "--disturbance-magnitude",
                str(config.disturbance_magnitude), "--output", str(config.output)]
     with (config.output / "process.stdout.log").open("w", encoding="utf-8") as stdout, \

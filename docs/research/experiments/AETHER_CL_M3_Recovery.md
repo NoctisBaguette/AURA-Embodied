@@ -2,8 +2,9 @@
 
 Date: 2026-10-05 (Asia/Shanghai)
 
-Status: implemented and locally validated; native physics and live recovery
-inspection pending. This is Prototype A's next intervention, not full AETHER.
+Status: initial native behavior audited; original suite failed on a harness
+FPS mismatch. Corrected native acceptance and paused live inspection remain
+pending. This is Prototype A's next intervention, not full AETHER.
 
 ## Evidence motivating the intervention
 
@@ -118,4 +119,42 @@ nine-cell hashed archives. Fixture success is not native physics validation.
 
 The live display shows recovery state, action budget, controller phase, diagnosis,
 and the separate shared task outcome. Browser access is read-only. A100 rendering
-already works for M0-M2; M3 native recovery results remain pending.
+already works for M0-M2; M3 seed-0 behavior has been audited; corrected acceptance and live results remain pending.
+
+
+## First native suite: useful behavior, rejected configuration
+
+The uploaded `aether-cl-m3-evidence.tar.gz`, SHA-256
+`864497126cc991ca3d1af724c60436b79f14acbea73680149bd17a166a121727`,
+contains nine clean `380648c` episodes and 3,240 actions. All 47 unique regular
+members and 46 indexed size/hash records match. Action/decision, reference,
+verifier, and recovery-state replay, independent task/metric calculations,
+child stdout/results, four full paired traces, and disturbed V2 prefixes agree.
+See the [native audit](evidence/AETHER_CL_M3_Native_Audit.json).
+
+Normal baseline/V1/V2 all succeed. Shift/drop baseline/V1 fail; V2 succeeds
+in both single-seed cases. Shift detects at 127, starts retry at 128, spends
+170 of 230 allocated actions, and first satisfies the strict task at 287.
+Drop detects at 183, starts at 184, spends 156 of 177 actions, and first
+satisfies the task at 329. These are development cases, not robustness rates.
+
+The original suite remains `failed`: every trial requests FPS 5 but records
+10. The shared subprocess helper omitted `--fps`, exposing M3 CLI's different
+default. No other configuration field differs. The nonrendered runner has no
+FPS pacing, so these outcomes remain useful evidence, but exact configuration
+matching is not waived. Fix the forwarded argument and rerun into a distinct
+archive. This change does not alter policy, recovery, verifier, task, or physics.
+The launch script used `set -e`; suite exit 2 prevented the viewer command
+from running. The observed SSH connection-refused messages are consistent with
+no HTTP listener, not a missed live episode.
+
+M3 live now publishes the initial frame with `ready_to_start`, serves HTTP,
+and waits for Enter in the server terminal before any task action. The browser
+can remain on the preview indefinitely. Ctrl+C or EOF cancels the wait, releases
+the worker, and closes the environment. After completion, the final frame stays
+available until Ctrl+C. This is a presentation change, not policy feedback.
+
+All 78 local tests pass. Added tests round-trip every configuration field through
+the actual child parser with both default and nondefault FPS, require an explicit
+preview release, and establish zero actions/environment cleanup when cancelled.
+The original failed archive and its requested settings remain preserved.

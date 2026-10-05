@@ -7,7 +7,8 @@ using simulator state and a timed sequence. M1 native baseline screening is
 complete. M2 seed-0 native acceptance is complete: all six behavior checks,
 paired traces, and startup environments pass after process isolation. Frozen
 fresh-seed screening is complete and audited. M3 recovery is implemented and
-locally tested; native recovery outcomes are pending.
+locally tested. Initial native behavior was audited; corrected acceptance and
+live recovery inspection are pending.
 
 Prototype A will test whether explicit verification and bounded recovery improve
 manipulation autonomy under disturbances while keeping the manipulation policy
@@ -426,7 +427,10 @@ M3 adds one bounded observed-state retry for `GRASP_FAILURE` or `OBJECT_LOST`.
 It reuses the unchanged fixed-policy motion primitives and retains the same
 360-step episode, task, verifier, and scripted disturbance. Recovery phase
 transitions use observed arrival and grasp/lift evidence. An attempt can abort;
-its completion is not task success. M3 native recovery results are pending. All 75 local tests passed.
+its completion is not task success. The first native suite recovered both seed-0 disturbed cases but failed strict
+configuration matching because FPS was not forwarded. The correction retains
+strict matching; a new archive and live inspection are pending. All 78 local
+tests pass.
 The original four frozen M2 source files remain byte-identical. The process
 runner gains an optional entry module; its M2 default behavior is unchanged.
 
@@ -455,3 +459,18 @@ command with `--disturbance object_drop --output runs/m3-v2-drop-live`.
 Use a distinct archive path for a rerun; existing evidence is never replaced.
 The next larger paired benchmark follows native development review, with
 parameters frozen before choosing fresh evaluation seeds.
+
+
+### M3 preview and FPS correction
+
+The first native M3 archive remains failed because requested FPS 5 differed
+from recorded CLI default 10. The subprocess now explicitly forwards FPS;
+all other settings and scientific behavior are unchanged. See
+[the audit and correction](../../docs/research/experiments/AETHER_CL_M3_Recovery.md).
+Use a new archive such as `/home/jiangle/aura-work/aether-cl-m3-evidence-fps-fixed.tar.gz`
+for corrected acceptance; do not overwrite the original failed evidence.
+
+`--live` now renders an initial frame and prints an explicit browser address
+and Enter prompt. Open `http://127.0.0.1:8765`, confirm the preview is visible,
+then press Enter in the server terminal. The arm stays paused until that input.
+Ctrl+C cancels safely during the preview or ends the viewer after the run.

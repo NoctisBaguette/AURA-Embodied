@@ -344,6 +344,36 @@ shift/drop inspection. See [the recovery protocol](docs/research/experiments/AET
 
 ---
 
+# EXP-0008 Native M3 Audit, FPS Forwarding, and Live Preview Pause
+
+Date: 2026-10-05 (Asia/Shanghai)
+
+Audited the original failed native M3 archive (SHA-256
+`864497126cc991ca3d1af724c60436b79f14acbea73680149bd17a166a121727`):
+all 46 indexed hashes, nine clean `380648c` episodes/3,240 actions, raw policy
+and recovery replay, task/verifier/reference agreement, four exact paired
+traces, and unchanged disturbed prefixes pass. Normal succeeds for all three
+systems; shift/drop fail for baseline/V1 and succeed for V2. V2 uses 170/230
+allocated retry actions after shift and 156/177 after drop. This is seed-0
+native development evidence, not held-out recovery robustness.
+
+Every trial fails only `config_matches`: the parent requested FPS 5 and the
+child recorded its CLI default 10. The process helper omitted that argument.
+Nonrendered trials have no FPS pacing, but strict matching must remain. The
+original failed suite/archive is preserved; forward FPS explicitly and rerun
+to a new archive. No policy, recovery, verifier, task, physics, or frozen M2
+source changes accompany this correction.
+
+Because the suite returned exit 2 under `set -e`, the live viewer never started.
+M3 live now serves an initial rendered preview and waits for Enter before task
+actions. Cancellation releases the worker and closes the environment; final
+frames remain available after completion. All 78 local tests pass, including
+actual child-parser full-config round-trips, explicit preview release, and
+zero-action cancellation cleanup. Corrected native acceptance and live viewing
+are the next checkpoints. See [the audit](docs/research/experiments/AETHER_CL_M3_Recovery.md).
+
+---
+
 # Experiment Template
 
 ## Experiment ID
