@@ -2,9 +2,11 @@
 
 Date: 2026-10-05 (Asia/Shanghai)
 
-Status: the action-space correction enabled a user-reported successful native
-seed-0 episode with matching rendered screenshot. Multi-seed baseline screening
-and raw manifest/event-log inspection remain pending.
+Status: native baseline screening and supplied raw-log inspection complete.
+The current PickCube baseline reported 20/20 successes; one reset was already
+solved and the other 19 episodes grasped and lifted the cube. See the
+[screening report](AETHER_CL_M1_Baseline_Screening.md) for task/reset limitations
+to address before verification/recovery comparisons.
 
 ## Objective and scope
 
@@ -95,14 +97,22 @@ flags true. The screenshot agrees with the supplied
 The environment terminated on success before the 320-step schedule finished;
 `schedule_complete: false` is expected for this early successful termination.
 This does not test release or subsequent holding. Deployment followed the
-instructions for `bfd1446`; raw manifest/event logs remain to be retrieved.
+instructions for `bfd1446`; the subsequently supplied raw manifest/event logs
+confirm that clean revision and the complete 202-step trajectory.
 The single-episode 1.0 success rate does not measure general reliability.
 
-Next on the A100: run seeds 0 through 19 without rendering, keeping the same
-controller revision/settings and 360-step limit. Retrieve the manifest, result,
-and event logs from both the live episode and batch. This screens the candidate
-on ordinary reset variation and repeats seed 0; it is not the final held-out
-disturbance benchmark. Reuse the private
+The subsequent nonrendered 20-seed batch used the same clean code/settings and
+360-step limit. All 4,042 batch step records were audited; seed 0's actions,
+observations, and diagnostics match the rendered trajectory exactly. Seed 8
+started inside the goal tolerance and terminated without grasping, so 20/20
+raw environment successes include one already-solved episode. All 19 initially
+unsolved episodes grasped and lifted before success. This post-hoc subset
+description does not replace a predeclared benchmark denominator.
+
+Next: retain the current controller as the nominal baseline, resolve shared
+reset eligibility/task criteria and fresh verification observations, then
+implement M2 verification and controlled disturbances. The current batch is
+not the final held-out disturbance benchmark. Reuse the private
 OpenGL workaround from M0. Expose the selected physical GPU with
 `CUDA_VISIBLE_DEVICES=1` and render with process-local `cuda:0`, following
 ManiSkill's documented mapping. No dependency/driver reinstall is needed.

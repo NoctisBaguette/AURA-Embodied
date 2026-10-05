@@ -1,9 +1,10 @@
 # AETHER CL Milestone 0 Environment Plan
 
 Status: basic A100 rendering smoke and live browser display confirmed.
-A [fixed controller candidate](AETHER_CL_M1_Fixed_Controller.md) is prepared;
-one native seed-0 success has been reported with a matching screenshot;
-multi-seed acceptance and raw trajectory inspection remain pending.
+A [fixed controller](AETHER_CL_M1_Fixed_Controller.md) completed native screening
+and raw trajectory inspection: 20/20 environment successes, including one
+already-solved reset. See the [M1 screening report](AETHER_CL_M1_Baseline_Screening.md)
+for task/reset limitations and the next verification step.
 
 ## Objective
 

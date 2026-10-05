@@ -119,8 +119,8 @@ required for this correction.
 The user supplied viewer status JSON and a matching rendered browser screenshot
 for `runs/baseline-live/20261005T004231Z-59ee234d`, following deployment instructions
 for correction commit `bfd144646187bb4985e5d6678320651e3b94b022`. The raw manifest
-and event log have not yet been retrieved to independently verify the deployed
-revision and trajectory. The [supplied status JSON](docs/research/experiments/evidence/AETHER_CL_M1_seed0_viewer_status.json)
+and event log were not yet retrieved at that checkpoint. The later archive audit
+below confirms the recorded clean revision and trajectory. The [supplied status JSON](docs/research/experiments/evidence/AETHER_CL_M1_seed0_viewer_status.json)
 is preserved as reported evidence.
 
 Seed 0 finished successfully at step 202, during transport, with final cube-to-goal
@@ -141,6 +141,33 @@ seeds 0 through 19 with a 360-step limit and rendering disabled, and retrieve
 manifest/result/event logs. Repeating seed 0 checks agreement with the rendered
 episode; the remaining seeds probe ordinary reset variation. This is candidate
 baseline screening, not the final disturbance benchmark or held-out evaluation.
+
+## Native 20-seed batch audit
+
+The supplied `aether-cl-m1-evidence.tar.gz` archive contains both live and batch
+manifests/results plus complete event logs. Both manifests record clean
+`bfd144646187bb4985e5d6678320651e3b94b022`. Audited 4,042 batch action records,
+20 resets/results, and 202 live actions. Seed 0's actions, observations, info,
+decisions, and evaluator records match exactly between live and nonrendered runs.
+No execution/cleanup errors were recorded; aggregates, step counts, distances,
+phases, action shape/gripper schedule, and terminal records are consistent.
+
+All 20 episodes reported environment success, but seed 8 started already inside
+the goal tolerance (0.01482 m) and ended after four open-gripper approach steps
+without grasping/lifting. The other 19 episodes grasped at step 102 and lifted
+before success. This is a post-hoc subset description, not a changed benchmark
+denominator. The batch episode execution times sum to 16.95 s excluding startup
+and resets; rendering/browser pacing was disabled.
+
+Eighteen reset grasp flags were true then false on the first action. Potential
+stale reset/contact information requires validation before verifier use; it
+does not enter the fixed policy. Seed 2's nearby goal also permits success after
+only 0.01153 m lift. Current success does not establish release or sustained hold.
+
+Accept this as nominal engineering baseline evidence, retain controller code and
+settings, and address shared task/reset criteria and fresh verification evidence
+before M2/comparison runs. Disturbance performance and verification/recovery
+benefits remain untested. See the [complete audit and saved source records](docs/research/experiments/AETHER_CL_M1_Baseline_Screening.md).
 
 ---
 
