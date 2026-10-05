@@ -31,17 +31,23 @@ Prototype A will test whether explicit verification and bounded recovery improve
 manipulation autonomy under disturbances while keeping the manipulation policy
 fixed. Its findings return to branch 02 for AETHER architecture research.
 
-## Engineering round closure
+## Current engineering round — M5
 
-**06-01's current engineering round is complete. Return to 02 for research review
-and the next scope decision.** The [engineering handoff](../../docs/research/experiments/AETHER_CL_06_01_Return_to_02.md)
-records accepted evidence, GitHub/archive provenance and all remaining scope.
-This closes the held-cube experiment; the original broader Prototype A task
-scope still lacks placement/release and insertion. No acceptance criterion is
-waived, no new architecture is activated, and the PR remains draft/unmerged.
-The operator has confirmed watching the full live process; this is qualitative
-observation, not an additional audited measurement. No further server run is
-needed for this handoff.
+**06-01 is active again for M5 Verification-Gating Attribution only.**
+[02's review](../../docs/research/experiments/AETHER_CL_02_Research_Review_v0.1.md)
+and DEC-0003 accept M0–M4 within scope and require a scheduled V3 control before
+broader Prototype A expansion. The [M5 plan](../../docs/research/experiments/AETHER_CL_M5_Attribution.md)
+freezes first retry actions at 128/184 in separate shift/drop families, with
+corresponding normal controls and fresh seeds 80–99: 960 isolated trials.
+Baseline/V1/V2 and all prior scientific sources remain unchanged. V3 reuses
+recovery execution without consuming verifier/failure output. Implementation
+and preregistration are prepared; native outcomes remain pending.
+
+The [earlier return-to-02 handoff](../../docs/research/experiments/AETHER_CL_06_01_Return_to_02.md)
+closed only M0–M4; it is historical, not the current chat status. Prototype A
+remains open and the PR stays draft/unmerged. After audited M5, return to 02
+again before further implementation. Motion, new tasks, perception and 02W
+are not authorized in M5.
 
 ## Current milestone
 

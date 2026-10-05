@@ -690,3 +690,48 @@ The root README's obsolete runtime-pending statement is updated. Implementation
 is on `06-01/aether-cl-m0`; PR #1 stays open, draft and unmerged. No additional
 native run is needed to deliver this round's findings. Next scope belongs to 02;
 no Prototype B/C/D, 02W, memory, world model or motion variant is activated here.
+
+
+# EXP-0016 — 02 Reopens 06-01 for M5 Verification-Gating Attribution
+
+Date: 2026-10-05 (Asia/Shanghai)
+
+Authority: DEC-0003 and the 02 review at
+`3c919ecca401a73fe04a676c019c33b8a85b440a`.
+Status: implementation/preregistration prepared; native results pending.
+The earlier closure was the M0–M4 engineering round, not Prototype A completion.
+
+Add V3: one scheduled retry using the same recovery motion/observe methods,
+target-refresh startup and limits, without constructing or consuming a verifier.
+First retry actions are frozen at 128 (shift family) and 184 (drop family),
+independent of magnitude, failure labels and current success. Both schedules
+also run on corresponding normal controls. Invocation is ablated; local
+attachment/arrival feedback inside the retry remains the same capability.
+Baseline/V1/V2, nominal motion, scoring, disturbances, physics and accepted
+comparison tolerances remain unchanged.
+
+Fresh preselected seeds 80–99 across two six-point family curves and four
+systems give 960 fresh-process trials, 48 cells and 1,160 strict paired/control
+comparisons. First four slots may be paused/checked before background resume;
+no observed outcome is used to retime or tune the frozen schedule. Comparison
+failure is not a reason to relax tolerances or change the comparator after data.
+
+Metrics separate V2/V3 final outcome, unnecessary attempts against matched
+baseline success, regressions, paired costs including no-attempt zeros,
+conditional costs, trigger timing, completion/abort state and final goal error.
+Performance failures remain evidence; invalid/incomplete comparisons produce
+null estimates. Software/environment/raw replay and archive preservation remain
+mandatory. Local fixtures do not provide native M5 results.
+
+See the [M5 frozen plan](docs/research/experiments/AETHER_CL_M5_Attribution.md)
+and [machine protocol](docs/research/experiments/evidence/AETHER_CL_M5_Attribution_Protocol.json).
+After native M5 evidence is uploaded and audited, return to 02 again before
+further work. No placement, insertion, visual verification, physical-force
+protocol, motion optimization, memory, world model, Prototype B/C/D or 02W
+is activated in this round. PR #1 remains draft/unmerged.
+
+
+M5 validation: all 105 local tests pass in 203.496 seconds, including seven
+M5 tests. Python 3.10 syntax, CLI help and documentation links pass. All
+previous scientific source blobs/protocols and 02 decision/review files remain
+unchanged. No native M5 outcome has been observed; publication precedes data.

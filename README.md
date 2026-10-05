@@ -110,7 +110,9 @@ It records:
 
 - [AETHER-CL v0.1 — Prototype A held-cube experiment](aura-sim/prototype_aether_cl/README.md)
   — fixed policy, passive verification, bounded recovery and audited A100
-  magnitude evaluation. The current 06-01 engineering round is complete;
-  [findings return to 02](docs/research/experiments/AETHER_CL_06_01_Return_to_02.md).
+  magnitude evaluation. M0–M4 findings
+  [returned to 02](docs/research/experiments/AETHER_CL_06_01_Return_to_02.md);
+  [M5 verification-gating attribution](docs/research/experiments/AETHER_CL_M5_Attribution.md)
+  is now authorized and prepared for native execution.
   Placement/release and insertion remain outstanding in the broader Prototype A
   scope. This is the first AETHER experiment, not AETHER v1.0.

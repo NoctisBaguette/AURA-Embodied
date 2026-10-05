@@ -2,6 +2,11 @@
 
 Date: 2026-10-05 (Asia/Shanghai)
 
+**Historical M0–M4 handoff.** 02 subsequently accepted this evidence and returned
+06-01 to [M5 Verification-Gating Attribution](AETHER_CL_M5_Attribution.md) under
+[DEC-0003 and the 02 review](AETHER_CL_02_Research_Review_v0.1.md). The chat is
+active for M5 only; the closure below applies to the earlier engineering round.
+
 Status: **06-01's current engineering round is complete; return to 02 for research review and the next scope decision.**
 
 This closes the implemented held-cube experiment, not the entire original
