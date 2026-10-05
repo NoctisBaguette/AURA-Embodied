@@ -1,9 +1,11 @@
 # AETHER CL Prototype A
 
-This directory implements the first environment milestone for AETHER-CL v0.1.
-Its current commands run **seeded random actions**, check CPU physics and
-offscreen camera rendering, and record the resulting episode. They do not yet
-implement a manipulation policy, verification, diagnosis, or recovery.
+This directory implements environment smoke tests and a **fixed PickCube
+controller candidate** for AETHER-CL v0.1. Smoke mode runs seeded random actions;
+fixed mode attempts grasping and transport using simulator state and a timed
+sequence. Both record their actions and outcomes. Verification, diagnosis, and
+recovery are not implemented. The fixed controller's native performance still
+needs target-server evaluation.
 
 Prototype A will test whether explicit verification and bounded recovery improve
 manipulation autonomy under disturbances while keeping the manipulation policy
@@ -28,6 +30,50 @@ above the table or overlap the robot in the camera image. The random controller
 does not attempt to reach it. Basic A100 rendering and live browser display were
 confirmed by user-provided output/screenshots on 2026-10-05; see the experiment
 log for the evidence and limits.
+
+## Fixed controller candidate (Milestone 1)
+
+The controller reads the initial cube pose and goal from simulator state, then
+executes approach (60 steps), descend (40), close (25), lift (45), transport (60),
+lower (40), and hold (50). Phase changes depend only on elapsed control steps.
+It caches the initial cube/goal and uses current TCP pose only for low-level
+Cartesian servoing. It does not consume evaluator success or grasp flags,
+retry, observe again, or change its task sequence when the grasp fails.
+
+The Panda uses `pd_ee_pose`: absolute translation and intrinsic XYZ Euler angles
+in the robot base frame, plus normalized gripper control. This is a scripted
+**privileged-state baseline**, not a learned policy or a perception result.
+Its NumPy/SciPy dependencies already exist in the copied environment. No new
+wheel download is needed for this increment.
+
+After activating `aether-cl` and supplying the private OpenGL setting if needed,
+expose only the selected physical GPU. ManiSkill documents that visible GPU 1
+then becomes process-local `cuda:0`:
+
+```bash
+export CUDA_VISIBLE_DEVICES=1
+python -m aether_cl.baseline --render-device cuda:0 --episodes 5 --seed 0 --max-steps 360 --output runs/baseline
+```
+
+Inspect one episode in the viewer first:
+
+```bash
+python -m aether_cl.viewer --controller fixed_pick_cube --render-device cuda:0 --episodes 1 --seed 0 --max-steps 360 --fps 10 --port 8765 --output runs/baseline-live
+```
+
+The viewer shows the current phase, ground-truth cube-to-target distance, and
+environment success flag. Red is the object; green is its goal marker. These
+displayed diagnostics do not feed the policy. The run's `result.json` reports
+final-step and any-step success rates separately; interrupted runs have null
+aggregate success rates. `state: finished` means execution finished, not that
+the cube reached its goal.
+
+The 320-step sequence requires `--max-steps` at least 320; 360 leaves extra hold
+time. Runtime errors remain errors rather than failed-task episode scores.
+Controller settings and input boundaries are saved in `manifest.json`, and
+every action logs its phase and expected/commanded TCP positions. Do not freeze
+this candidate for comparison until native baseline behavior has been inspected
+and measured. See [the M1 protocol](../../docs/research/experiments/AETHER_CL_M1_Fixed_Controller.md).
 
 ## Offline deployment through a connected laptop
 

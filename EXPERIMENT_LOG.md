@@ -65,10 +65,31 @@ table. It is fixed within each episode. Camera projection can overlap it with
 the arm. PickCube success requires cube-to-goal distance at most 0.025 m and a
 static robot, and does not require release onto a support surface.
 
-Next: implement and freeze a fixed task controller before testing verification
-or recovery. The current runtime samples actions randomly and has none of these
-components. Define actual placement/release criteria separately from this
+At this checkpoint the runtime sampled actions randomly and had no task
+controller, verification, or recovery. The next step was a fixed controller,
+prepared in EXP-0002 below; it must be accepted and frozen before intervention
+comparisons. Define actual placement/release criteria separately from this
 initial PickCube infrastructure task.
+
+---
+
+# EXP-0002 Fixed PickCube Controller Preparation
+
+Date: 2026-10-05 (Asia/Shanghai)
+
+A fixed state-based controller candidate now replaces random actions when
+`--controller fixed_pick_cube` is selected. It caches initial cube/goal poses,
+uses TCP feedback with Panda's absolute `pd_ee_pose` interface, and follows a
+320-step approach/descend/close/lift/transport/lower/hold schedule without
+verification or recovery. Default baseline evaluation allows 360 steps.
+
+Sixteen local policy/runtime tests, CLI checks, and Python compilation passed.
+Fixtures validate coordinate/action contracts, information boundaries, logging,
+and aggregate metrics; they are not native contact/grasp simulations. No native
+controller success rate is claimed. Inspect a live A100 episode and measure
+fixed-seed batches before freezing the candidate for intervention comparisons.
+
+See [the M1 protocol](docs/research/experiments/AETHER_CL_M1_Fixed_Controller.md).
 
 ---
 

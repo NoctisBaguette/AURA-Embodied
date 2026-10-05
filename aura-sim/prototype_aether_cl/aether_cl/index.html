@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AETHER-CL Environment Smoke Test</title>
+  <title>AETHER-CL Simulator</title>
   <style>
     :root { color-scheme: dark; font-family: system-ui, sans-serif; }
     body { margin: 0; background: #111820; color: #e7edf3; }
@@ -21,17 +21,20 @@
 </head>
 <body>
 <main>
-  <h1>AETHER-CL Environment Smoke Test</h1>
-  <p class="notice">Seeded random actions test simulation, rendering, and logging.
-    This run does not measure a manipulation policy, verification, or recovery.</p>
+  <h1 id="title">AETHER-CL Simulator</h1>
+  <p class="notice" id="notice">Waiting for the selected controller.</p>
   <div class="stats">
     <div><span>Run state</span><strong id="state">Connecting</strong></div>
     <div><span>Episode</span><strong id="episode">—</strong></div>
     <div><span>Step</span><strong id="step">—</strong></div>
+    <div><span>Controller phase</span><strong id="phase">—</strong></div>
     <div><span>Environment success flag</span><strong id="success">—</strong></div>
+    <div><span>Cube–target distance</span><strong id="distance">—</strong></div>
   </div>
   <img id="frame" alt="Latest frame rendered by the running simulator" hidden>
   <p id="frame-note">Waiting for the simulator to render its first frame.</p>
+  <p>Red cube: grasped object. Green sphere: target for the cube's centre;
+    it has no collisions and can float above the table.</p>
   <p id="error" role="alert"></p>
   <p>Run output: <span id="directory">—</span></p>
   <p>The viewer displays a finite run. After it finishes, the last frame remains visible.</p>
@@ -47,6 +50,16 @@
       text('state', status.state);
       text('episode', status.episode === undefined ? '—' : status.episode + 1);
       text('step', status.step ?? '—');
+      text('phase', status.phase ?? '—');
+      text('distance', Number.isFinite(status.cube_goal_distance_m)
+        ? `${(status.cube_goal_distance_m * 100).toFixed(1)} cm` : '—');
+      if (status.controller === 'fixed_pick_cube') {
+        text('title', 'AETHER-CL Fixed PickCube Controller');
+        text('notice', 'Fixed sequence using simulator state: approach, descend, close, lift, transport, lower, hold. No verification or recovery. Candidate baseline; server performance is being measured.');
+      } else if (status.controller === 'random') {
+        text('title', 'AETHER-CL Environment Smoke Test');
+        text('notice', 'Seeded random actions test simulation, rendering, and logging. This run does not measure a manipulation policy, verification, or recovery.');
+      }
       text('success', status.success === undefined ? '—' : String(status.success));
       text('directory', status.run_directory ?? '—');
       text('error', status.error ?? '');

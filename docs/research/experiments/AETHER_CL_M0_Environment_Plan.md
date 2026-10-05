@@ -1,7 +1,8 @@
 # AETHER CL Milestone 0 Environment Plan
 
-Status: basic A100 rendering smoke and live browser display confirmed;
-fixed manipulation controller pending.
+Status: basic A100 rendering smoke and live browser display confirmed.
+A [fixed controller candidate](AETHER_CL_M1_Fixed_Controller.md) is prepared;
+its native manipulation acceptance is pending.
 
 ## Objective
 

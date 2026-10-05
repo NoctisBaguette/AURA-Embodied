@@ -1,4 +1,4 @@
-"""Read-only browser viewer for one bounded smoke-test run."""
+"""Read-only browser viewer for a bounded simulator or controller run."""
 
 from __future__ import annotations
 
@@ -69,7 +69,7 @@ def make_server(port, snapshot):
 
 
 def main():
-    args_parser = parser("AETHER-CL live environment smoke viewer")
+    args_parser = parser("AETHER-CL live simulator and fixed-controller viewer")
     args_parser.add_argument("--port", type=int, default=8765)
     args = args_parser.parse_args()
     config = config_from_args(args)
@@ -94,7 +94,7 @@ def main():
     thread = threading.Thread(target=worker, name="aether-simulation", daemon=True)
     thread.start()
     print(f"AETHER-CL viewer: http://127.0.0.1:{args.port}", flush=True)
-    print("Random-action smoke test. Ctrl+C stops the viewer and the run.", flush=True)
+    print(f"Controller: {config.controller}. Ctrl+C stops the viewer and the run.", flush=True)
     try:
         server.serve_forever(poll_interval=0.2)
     except KeyboardInterrupt:

@@ -1,4 +1,4 @@
-"""Bounded, logged environment smoke tests; no manipulation policy yet."""
+"""Bounded simulator runs with distinct smoke and fixed-controller modes."""
 
 from __future__ import annotations
 
@@ -28,6 +28,15 @@ class RunConfig:
     render_device: str = "cuda:1"
     fps: float = 5.0
     output: Path = Path("runs")
+    controller: str = "random"
+
+    @property
+    def control_mode(self):
+        return "pd_ee_pose" if self.controller == "fixed_pick_cube" else "pd_joint_delta_pos"
+
+    @property
+    def purpose(self):
+        return "fixed_pick_cube_baseline_candidate" if self.controller == "fixed_pick_cube" else "random_action_environment_smoke"
 
     def validate(self):
         if self.episodes < 1 or self.max_steps < 1:
@@ -36,6 +45,14 @@ class RunConfig:
             raise ValueError("fps must be greater than zero and at most 60")
         if self.seed < 0 or self.seed + self.episodes > 2**32:
             raise ValueError("episode seeds must fit in unsigned 32-bit integers")
+        if self.controller not in ("random", "fixed_pick_cube"):
+            raise ValueError("Unknown controller")
+        if self.controller == "fixed_pick_cube":
+            from .policies import PickCubeSettings
+            if self.env_id != "PickCube-v1":
+                raise ValueError("fixed_pick_cube supports only PickCube-v1 with the Panda robot")
+            if self.max_steps < PickCubeSettings().scheduled_steps:
+                raise ValueError("fixed_pick_cube needs at least 320 max_steps for its complete schedule")
 
 
 def json_value(value):
@@ -94,6 +111,8 @@ def software_manifest():
         "python": platform.python_version(), "platform": platform.platform(),
         "packages": packages, "git_commit": commit, "git_dirty": dirty,
         "cuda_visible_devices": os.environ.get("CUDA_VISIBLE_DEVICES"),
+        "native_library_environment": {key: os.environ.get(key)
+                                       for key in ("LD_LIBRARY_PATH", "LD_PRELOAD")},
         "gpu_inventory": gpu_inventory,
     }
 
@@ -103,8 +122,8 @@ def build_env(config):
     import mani_skill.envs  # Registers tasks with Gymnasium.
 
     return gym.make(
-        config.env_id, num_envs=1, obs_mode="state_dict",
-        control_mode="pd_joint_delta_pos", reward_mode="none",
+        config.env_id, num_envs=1, obs_mode="state_dict", robot_uids="panda",
+        control_mode=config.control_mode, reward_mode="none",
         sim_backend="cpu",
         render_backend=config.render_device if config.render else "none",
         render_mode="rgb_array" if config.render else None,
@@ -142,10 +161,11 @@ def run(config: RunConfig, publish: Callable | None = None,
     directory = config.output / f"{stamp}-{uuid4().hex[:8]}"
     directory.mkdir(parents=True, exist_ok=False)
     manifest = {
-        "schema_version": 1, "purpose": "random_action_environment_smoke",
+        "schema_version": 2, "purpose": config.purpose,
         "config": json_value(asdict(config)), "software": software_manifest(),
         "physics_backend": "cpu", "observation_mode": "state_dict",
-        "control_mode": "pd_joint_delta_pos", "policy": "seeded_random_actions",
+        "control_mode": config.control_mode,
+        "policy": "fixed_pick_cube" if config.controller == "fixed_pick_cube" else "seeded_random_actions",
         "verification": False, "recovery": False,
     }
     (directory / "manifest.json").write_text(
@@ -153,7 +173,8 @@ def run(config: RunConfig, publish: Callable | None = None,
     )
     env = None
     result = {"state": "starting", "run_directory": str(directory),
-              "purpose": manifest["purpose"], "episodes": []}
+              "purpose": manifest["purpose"], "controller": config.controller,
+              "episodes": []}
     with (directory / "events.jsonl").open("w", encoding="utf-8", buffering=1) as log:
         def event(kind, **fields):
             record = {"event": kind, "time_utc": datetime.now(timezone.utc).isoformat(),
@@ -185,10 +206,27 @@ def run(config: RunConfig, publish: Callable | None = None,
                 seed = config.seed + episode
                 observation, info = env.reset(seed=seed)
                 env.action_space.seed(seed)
+                policy = None
+                diagnostics = {}
+                decision = {"phase": "random", "schedule_complete": False}
+                if config.controller == "fixed_pick_cube":
+                    from .policies import FixedPickCube, task_diagnostics
+                    policy = FixedPickCube(observation, env.unwrapped.agent.robot.pose.raw_pose)
+                    if env.action_space.shape != (1, 7):
+                        raise RuntimeError(f"Unexpected Panda pd_ee_pose action shape: {env.action_space.shape}")
+                    diagnostics = task_diagnostics(observation, info)
+                    manifest["policy_details"] = policy.manifest()
+                    (directory / "manifest.json").write_text(
+                        json.dumps(manifest, indent=2, allow_nan=False) + "\n", encoding="utf-8",
+                    )
+                    event("controller_reset", episode=episode, policy=policy.manifest(),
+                          initial_cube_position_world_m=policy.cube.tolist(),
+                          initial_goal_position_world_m=policy.goal.tolist())
                 event("reset", episode=episode, seed=seed,
                       observation=observation, info=info)
                 update(state="running", episode=episode, step=0,
-                       success=bool(scalar(info.get("success", False))))
+                       phase="approach" if policy else "random",
+                       success=bool(scalar(info.get("success", False))), **diagnostics)
                 capture()
                 success_ever = result["success"]
                 terminated = truncated = False
@@ -198,17 +236,25 @@ def run(config: RunConfig, publish: Callable | None = None,
                     if stop.is_set():
                         break
                     tick = time.monotonic()
-                    action = env.action_space.sample()
+                    if policy:
+                        action, decision = policy.action(observation, step - 1)
+                    else:
+                        action = env.action_space.sample()
+                    if policy and not env.action_space.contains(action):
+                        raise RuntimeError("Controller produced an invalid action")
                     logged_action = json_value(action)
                     observation, reward, term, trunc, info = env.step(action)
                     terminated, truncated = bool(scalar(term)), bool(scalar(trunc))
                     success = bool(scalar(info.get("success", False)))
                     success_ever = success_ever or success
                     steps = step
+                    if policy:
+                        diagnostics = task_diagnostics(observation, info)
                     event("step", episode=episode, step=step, action=logged_action,
                           observation=observation, reward=reward,
-                          terminated=terminated, truncated=truncated, info=info)
-                    update(step=step, success=success)
+                          terminated=terminated, truncated=truncated, info=info,
+                          controller_decision=decision, evaluator=diagnostics)
+                    update(step=step, success=success, phase=decision["phase"], **diagnostics)
                     capture()
                     if terminated or truncated:
                         break
@@ -220,9 +266,29 @@ def run(config: RunConfig, publish: Callable | None = None,
                     "terminated": terminated, "truncated": truncated,
                     "stopped": stop.is_set(), "seconds": time.monotonic() - start,
                 }
+                if policy:
+                    summary.update(final_phase=decision["phase"],
+                                   schedule_complete=decision["schedule_complete"],
+                                   final_cube_goal_distance_m=diagnostics["cube_goal_distance_m"],
+                                   final_is_grasped=bool(scalar(info.get("is_grasped", False))),
+                                   final_is_obj_placed=bool(scalar(info.get("is_obj_placed", False))),
+                                   final_is_robot_static=bool(scalar(info.get("is_robot_static", False))))
                 result["episodes"].append(summary)
                 event("episode_finished", **summary)
             update(state="stopped" if stop.is_set() else "finished")
+            if config.controller == "fixed_pick_cube":
+                complete = result["state"] == "finished" and len(result["episodes"]) == config.episodes
+                evaluation = {
+                    "requested_episodes": config.episodes,
+                    "recorded_episodes": len(result["episodes"]),
+                    "completed_episodes": sum(not e["stopped"] for e in result["episodes"]),
+                    "complete": complete,
+                    "success_rate_at_end": (sum(e["success_at_end"] for e in result["episodes"]) / config.episodes) if complete else None,
+                    "success_rate_ever": (sum(e["success_ever"] for e in result["episodes"]) / config.episodes) if complete else None,
+                    "verification": False, "recovery": False,
+                    "input_source": "privileged_simulator_state",
+                }
+                update(evaluation=evaluation)
             event("run_finished", result=result)
         except BaseException as error:
             update(state="error", error=f"{type(error).__name__}: {error}")
@@ -254,9 +320,12 @@ def parser(description):
     args.add_argument("--no-render", action="store_true")
     args.add_argument("--fps", type=float, default=5)
     args.add_argument("--output", type=Path, default=Path("runs"))
+    args.add_argument("--controller", choices=("random", "fixed_pick_cube"), default="random")
     return args
 
 
 def config_from_args(args):
-    return RunConfig(args.env_id, args.seed, args.episodes, args.max_steps,
-                     not args.no_render, args.render_device, args.fps, args.output)
+    return RunConfig(env_id=args.env_id, seed=args.seed, episodes=args.episodes,
+                     max_steps=args.max_steps, render=not args.no_render,
+                     render_device=args.render_device, fps=args.fps,
+                     output=Path(args.output), controller=args.controller)
