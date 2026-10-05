@@ -171,6 +171,36 @@ benefits remain untested. See the [complete audit and saved source records](docs
 
 ---
 
+# EXP-0003 Passive Verification Preparation
+
+Date: 2026-10-05 (Asia/Shanghai)
+
+M2 adds passive state verification with grasp/lift/goal checks and the initial
+failure categories, while retaining the exact M1 policy file/settings. Baseline
+and V1 share a revised task contract: explicitly exclude already-solved starts,
+run the full action budget despite intermediate environment success, and require
+lifted grasp plus five static goal observations at the end. This requires fresh
+M2 baseline measurements; M1's environment success rate is historical evidence.
+
+Controlled one-time cube shift/drop interventions and their pose/velocity changes
+are logged independently from fresh simulator failure references. Verifier inputs
+are geometry/joint state only; reset contact flags, evaluator info, disturbance
+identity, and reference labels are excluded. No action intervention or recovery
+is added. Passive V1 cannot increase success under identical actions/task rules.
+
+Forty local tests passed, including baseline/V1 action equality under all three
+conditions, observation freshness, diagnosis/persistence, task denominators,
+full-horizon/partial-run behavior, and simulator-error cleanup. CLI, compilation,
+and JavaScript update checks passed. Replay of 4,038 eligible M1 normal-state
+observations produced no failure/uncertainty alarms, while seed 8 was excluded.
+Those old prefixes cannot validate the new full-horizon task contract, and
+fixtures do not simulate native contacts. Native M2 acceptance remains pending.
+
+See [the M2 protocol](docs/research/experiments/AETHER_CL_M2_Verification.md) for
+input boundaries, task rules, disturbance timing, metrics, and evidence limits.
+
+---
+
 # Experiment Template
 
 ## Experiment ID

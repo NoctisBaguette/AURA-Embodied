@@ -1,0 +1,486 @@
+{
+  "scope": "replay_of_M1_normal_prefixes_not_native_M2_execution",
+  "source_archive_sha256": "dd740a3868398826a8d48307a39e6633ad0902925ef9302e5e0e79cf660af6e2",
+  "verdict_counts": {
+    "pending": 4038
+  },
+  "episodes": [
+    {
+      "seed": 0,
+      "steps": 202,
+      "failures": [],
+      "metrics": {
+        "scope": "privileged_state_simulator_reference_agreement",
+        "complete": true,
+        "steps": 202,
+        "uncertain_steps": 0,
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 0,
+        "true_negative": 202,
+        "uncertain_on_negative": 0,
+        "failure_detection_precision": null,
+        "failure_detection_recall": null,
+        "diagnosis_accuracy_when_failure_detected": null,
+        "observation_coverage": 1.0,
+        "confusion": {
+          "NONE->NONE": 202
+        }
+      }
+    },
+    {
+      "seed": 1,
+      "steps": 190,
+      "failures": [],
+      "metrics": {
+        "scope": "privileged_state_simulator_reference_agreement",
+        "complete": true,
+        "steps": 190,
+        "uncertain_steps": 0,
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 0,
+        "true_negative": 190,
+        "uncertain_on_negative": 0,
+        "failure_detection_precision": null,
+        "failure_detection_recall": null,
+        "diagnosis_accuracy_when_failure_detected": null,
+        "observation_coverage": 1.0,
+        "confusion": {
+          "NONE->NONE": 190
+        }
+      }
+    },
+    {
+      "seed": 2,
+      "steps": 128,
+      "failures": [],
+      "metrics": {
+        "scope": "privileged_state_simulator_reference_agreement",
+        "complete": true,
+        "steps": 128,
+        "uncertain_steps": 0,
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 0,
+        "true_negative": 128,
+        "uncertain_on_negative": 0,
+        "failure_detection_precision": null,
+        "failure_detection_recall": null,
+        "diagnosis_accuracy_when_failure_detected": null,
+        "observation_coverage": 1.0,
+        "confusion": {
+          "NONE->NONE": 128
+        }
+      }
+    },
+    {
+      "seed": 3,
+      "steps": 238,
+      "failures": [],
+      "metrics": {
+        "scope": "privileged_state_simulator_reference_agreement",
+        "complete": true,
+        "steps": 238,
+        "uncertain_steps": 0,
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 0,
+        "true_negative": 238,
+        "uncertain_on_negative": 0,
+        "failure_detection_precision": null,
+        "failure_detection_recall": null,
+        "diagnosis_accuracy_when_failure_detected": null,
+        "observation_coverage": 1.0,
+        "confusion": {
+          "NONE->NONE": 238
+        }
+      }
+    },
+    {
+      "seed": 4,
+      "steps": 238,
+      "failures": [],
+      "metrics": {
+        "scope": "privileged_state_simulator_reference_agreement",
+        "complete": true,
+        "steps": 238,
+        "uncertain_steps": 0,
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 0,
+        "true_negative": 238,
+        "uncertain_on_negative": 0,
+        "failure_detection_precision": null,
+        "failure_detection_recall": null,
+        "diagnosis_accuracy_when_failure_detected": null,
+        "observation_coverage": 1.0,
+        "confusion": {
+          "NONE->NONE": 238
+        }
+      }
+    },
+    {
+      "seed": 5,
+      "steps": 238,
+      "failures": [],
+      "metrics": {
+        "scope": "privileged_state_simulator_reference_agreement",
+        "complete": true,
+        "steps": 238,
+        "uncertain_steps": 0,
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 0,
+        "true_negative": 238,
+        "uncertain_on_negative": 0,
+        "failure_detection_precision": null,
+        "failure_detection_recall": null,
+        "diagnosis_accuracy_when_failure_detected": null,
+        "observation_coverage": 1.0,
+        "confusion": {
+          "NONE->NONE": 238
+        }
+      }
+    },
+    {
+      "seed": 6,
+      "steps": 190,
+      "failures": [],
+      "metrics": {
+        "scope": "privileged_state_simulator_reference_agreement",
+        "complete": true,
+        "steps": 190,
+        "uncertain_steps": 0,
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 0,
+        "true_negative": 190,
+        "uncertain_on_negative": 0,
+        "failure_detection_precision": null,
+        "failure_detection_recall": null,
+        "diagnosis_accuracy_when_failure_detected": null,
+        "observation_coverage": 1.0,
+        "confusion": {
+          "NONE->NONE": 190
+        }
+      }
+    },
+    {
+      "seed": 7,
+      "steps": 181,
+      "failures": [],
+      "metrics": {
+        "scope": "privileged_state_simulator_reference_agreement",
+        "complete": true,
+        "steps": 181,
+        "uncertain_steps": 0,
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 0,
+        "true_negative": 181,
+        "uncertain_on_negative": 0,
+        "failure_detection_precision": null,
+        "failure_detection_recall": null,
+        "diagnosis_accuracy_when_failure_detected": null,
+        "observation_coverage": 1.0,
+        "confusion": {
+          "NONE->NONE": 181
+        }
+      }
+    },
+    {
+      "seed": 8,
+      "excluded": true,
+      "reason": "initially_at_goal"
+    },
+    {
+      "seed": 9,
+      "steps": 238,
+      "failures": [],
+      "metrics": {
+        "scope": "privileged_state_simulator_reference_agreement",
+        "complete": true,
+        "steps": 238,
+        "uncertain_steps": 0,
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 0,
+        "true_negative": 238,
+        "uncertain_on_negative": 0,
+        "failure_detection_precision": null,
+        "failure_detection_recall": null,
+        "diagnosis_accuracy_when_failure_detected": null,
+        "observation_coverage": 1.0,
+        "confusion": {
+          "NONE->NONE": 238
+        }
+      }
+    },
+    {
+      "seed": 10,
+      "steps": 204,
+      "failures": [],
+      "metrics": {
+        "scope": "privileged_state_simulator_reference_agreement",
+        "complete": true,
+        "steps": 204,
+        "uncertain_steps": 0,
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 0,
+        "true_negative": 204,
+        "uncertain_on_negative": 0,
+        "failure_detection_precision": null,
+        "failure_detection_recall": null,
+        "diagnosis_accuracy_when_failure_detected": null,
+        "observation_coverage": 1.0,
+        "confusion": {
+          "NONE->NONE": 204
+        }
+      }
+    },
+    {
+      "seed": 11,
+      "steps": 242,
+      "failures": [],
+      "metrics": {
+        "scope": "privileged_state_simulator_reference_agreement",
+        "complete": true,
+        "steps": 242,
+        "uncertain_steps": 0,
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 0,
+        "true_negative": 242,
+        "uncertain_on_negative": 0,
+        "failure_detection_precision": null,
+        "failure_detection_recall": null,
+        "diagnosis_accuracy_when_failure_detected": null,
+        "observation_coverage": 1.0,
+        "confusion": {
+          "NONE->NONE": 242
+        }
+      }
+    },
+    {
+      "seed": 12,
+      "steps": 238,
+      "failures": [],
+      "metrics": {
+        "scope": "privileged_state_simulator_reference_agreement",
+        "complete": true,
+        "steps": 238,
+        "uncertain_steps": 0,
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 0,
+        "true_negative": 238,
+        "uncertain_on_negative": 0,
+        "failure_detection_precision": null,
+        "failure_detection_recall": null,
+        "diagnosis_accuracy_when_failure_detected": null,
+        "observation_coverage": 1.0,
+        "confusion": {
+          "NONE->NONE": 238
+        }
+      }
+    },
+    {
+      "seed": 13,
+      "steps": 238,
+      "failures": [],
+      "metrics": {
+        "scope": "privileged_state_simulator_reference_agreement",
+        "complete": true,
+        "steps": 238,
+        "uncertain_steps": 0,
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 0,
+        "true_negative": 238,
+        "uncertain_on_negative": 0,
+        "failure_detection_precision": null,
+        "failure_detection_recall": null,
+        "diagnosis_accuracy_when_failure_detected": null,
+        "observation_coverage": 1.0,
+        "confusion": {
+          "NONE->NONE": 238
+        }
+      }
+    },
+    {
+      "seed": 14,
+      "steps": 241,
+      "failures": [],
+      "metrics": {
+        "scope": "privileged_state_simulator_reference_agreement",
+        "complete": true,
+        "steps": 241,
+        "uncertain_steps": 0,
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 0,
+        "true_negative": 241,
+        "uncertain_on_negative": 0,
+        "failure_detection_precision": null,
+        "failure_detection_recall": null,
+        "diagnosis_accuracy_when_failure_detected": null,
+        "observation_coverage": 1.0,
+        "confusion": {
+          "NONE->NONE": 241
+        }
+      }
+    },
+    {
+      "seed": 15,
+      "steps": 238,
+      "failures": [],
+      "metrics": {
+        "scope": "privileged_state_simulator_reference_agreement",
+        "complete": true,
+        "steps": 238,
+        "uncertain_steps": 0,
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 0,
+        "true_negative": 238,
+        "uncertain_on_negative": 0,
+        "failure_detection_precision": null,
+        "failure_detection_recall": null,
+        "diagnosis_accuracy_when_failure_detected": null,
+        "observation_coverage": 1.0,
+        "confusion": {
+          "NONE->NONE": 238
+        }
+      }
+    },
+    {
+      "seed": 16,
+      "steps": 183,
+      "failures": [],
+      "metrics": {
+        "scope": "privileged_state_simulator_reference_agreement",
+        "complete": true,
+        "steps": 183,
+        "uncertain_steps": 0,
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 0,
+        "true_negative": 183,
+        "uncertain_on_negative": 0,
+        "failure_detection_precision": null,
+        "failure_detection_recall": null,
+        "diagnosis_accuracy_when_failure_detected": null,
+        "observation_coverage": 1.0,
+        "confusion": {
+          "NONE->NONE": 183
+        }
+      }
+    },
+    {
+      "seed": 17,
+      "steps": 180,
+      "failures": [],
+      "metrics": {
+        "scope": "privileged_state_simulator_reference_agreement",
+        "complete": true,
+        "steps": 180,
+        "uncertain_steps": 0,
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 0,
+        "true_negative": 180,
+        "uncertain_on_negative": 0,
+        "failure_detection_precision": null,
+        "failure_detection_recall": null,
+        "diagnosis_accuracy_when_failure_detected": null,
+        "observation_coverage": 1.0,
+        "confusion": {
+          "NONE->NONE": 180
+        }
+      }
+    },
+    {
+      "seed": 18,
+      "steps": 178,
+      "failures": [],
+      "metrics": {
+        "scope": "privileged_state_simulator_reference_agreement",
+        "complete": true,
+        "steps": 178,
+        "uncertain_steps": 0,
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 0,
+        "true_negative": 178,
+        "uncertain_on_negative": 0,
+        "failure_detection_precision": null,
+        "failure_detection_recall": null,
+        "diagnosis_accuracy_when_failure_detected": null,
+        "observation_coverage": 1.0,
+        "confusion": {
+          "NONE->NONE": 178
+        }
+      }
+    },
+    {
+      "seed": 19,
+      "steps": 253,
+      "failures": [],
+      "metrics": {
+        "scope": "privileged_state_simulator_reference_agreement",
+        "complete": true,
+        "steps": 253,
+        "uncertain_steps": 0,
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 0,
+        "true_negative": 253,
+        "uncertain_on_negative": 0,
+        "failure_detection_precision": null,
+        "failure_detection_recall": null,
+        "diagnosis_accuracy_when_failure_detected": null,
+        "observation_coverage": 1.0,
+        "confusion": {
+          "NONE->NONE": 253
+        }
+      }
+    }
+  ],
+  "verifier_manifest": {
+    "name": "geometric_state_verifier",
+    "version": "0.1",
+    "task": {
+      "goal_tolerance_m": 0.025,
+      "minimum_lift_m": 0.05,
+      "stable_steps": 5,
+      "robot_static_threshold": 0.2
+    },
+    "settings": {
+      "cube_tcp_tolerance_m": 0.04,
+      "minimum_aperture_m": 0.01,
+      "maximum_aperture_m": 0.06,
+      "attachment_lift_m": 0.01,
+      "failure_persistence_steps": 3
+    },
+    "inputs": [
+      "obj_pose",
+      "goal_pos",
+      "tcp_pose",
+      "qpos",
+      "qvel",
+      "post_action_step"
+    ],
+    "excluded_inputs": [
+      "reset_grasp_flags",
+      "is_grasped",
+      "info",
+      "disturbance",
+      "reference"
+    ],
+    "confidence": "not_calibrated",
+    "changes_actions": false
+  },
+  "validation_limits": "Development-data observation replay only; no native M2 horizon or disturbed physics execution."
+}

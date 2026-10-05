@@ -75,7 +75,7 @@ def main():
     config = config_from_args(args)
     config.validate()
     if not config.render:
-        args_parser.error("the live viewer requires rendering; use smoke --no-render instead")
+        args_parser.error("the live viewer requires rendering; use experiment --no-render for M2 batches")
     if not 1 <= args.port <= 65535:
         args_parser.error("port must be between 1 and 65535")
     snapshot, stop = Snapshot(), threading.Event()

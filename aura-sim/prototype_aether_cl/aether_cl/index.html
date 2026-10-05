@@ -30,7 +30,12 @@
     <div><span>Controller phase</span><strong id="phase">—</strong></div>
     <div><span>Environment success flag</span><strong id="success">—</strong></div>
     <div><span>Cube–target distance</span><strong id="distance">—</strong></div>
+    <div><span>M2 task success</span><strong id="task-success">—</strong></div>
+    <div><span>Verification</span><strong id="verification">—</strong></div>
+    <div><span>Failure diagnosis</span><strong id="failure">—</strong></div>
+    <div><span>Disturbance</span><strong id="disturbance">—</strong></div>
   </div>
+  <p id="verification-note"></p>
   <img id="frame" alt="Latest frame rendered by the running simulator" hidden>
   <p id="frame-note">Waiting for the simulator to render its first frame.</p>
   <p>Red cube: grasped object. Green sphere: target for the cube's centre;
@@ -56,11 +61,24 @@
       if (status.controller === 'fixed_pick_cube') {
         text('title', 'AETHER-CL Fixed PickCube Controller');
         text('notice', 'Fixed sequence using simulator state: approach, descend, close, lift, transport, lower, hold. No verification or recovery. Candidate baseline; server performance is being measured.');
+        if (status.protocol === 'm2') {
+          text('title', status.verification_enabled
+            ? 'AETHER-CL V1: Passive Verification' : 'AETHER-CL M2 Policy Baseline');
+          text('notice', 'The controller keeps the same fixed sequence for the full budget. M2 task success requires grasping, lifting, and five stable observations at the goal. Verification reports outcomes; recovery is not active.');
+        }
       } else if (status.controller === 'random') {
         text('title', 'AETHER-CL Environment Smoke Test');
         text('notice', 'Seeded random actions test simulation, rendering, and logging. This run does not measure a manipulation policy, verification, or recovery.');
       }
       text('success', status.success === undefined ? '—' : String(status.success));
+      text('task-success', status.protocol === 'm2' ? String(status.task_success ?? false) : '—');
+      text('verification', status.verification?.status ?? 'disabled');
+      text('failure', status.verification?.failure ?? '—');
+      text('verification-note', status.eligibility?.eligible === false
+        ? 'Excluded from manipulation scoring: the cube started inside the goal tolerance.'
+        : status.verification?.reason ?? '');
+      text('disturbance', status.disturbance && status.disturbance !== 'none'
+        ? `${status.disturbance}: ${status.disturbance_applied ? 'applied' : 'scheduled'}` : 'none');
       text('directory', status.run_directory ?? '—');
       text('error', status.error ?? '');
       if (status.frame_number > lastFrame) {

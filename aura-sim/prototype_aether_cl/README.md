@@ -1,11 +1,11 @@
 # AETHER CL Prototype A
 
-This directory implements environment smoke tests and a **fixed PickCube
-controller candidate** for AETHER-CL v0.1. Smoke mode runs seeded random actions;
-fixed mode attempts grasping and transport using simulator state and a timed
-sequence. Both record their actions and outcomes. Verification, diagnosis, and
-recovery are not implemented. The fixed controller's native performance still
-needs target-server evaluation.
+This directory implements environment smoke tests, a fixed PickCube controller,
+and **M2 passive verification with controlled disturbances** for AETHER-CL v0.1.
+Smoke mode runs seeded random actions; fixed mode attempts grasping and transport
+using simulator state and a timed sequence. M1 native baseline screening is
+complete. M2 verification/diagnosis is implemented and locally checked, with
+target-server acceptance pending. Recovery is the next implementation milestone.
 
 Prototype A will test whether explicit verification and bounded recovery improve
 manipulation autonomy under disturbances while keeping the manipulation policy
@@ -18,6 +18,7 @@ fixed. Its findings return to branch 02 for AETHER architecture research.
 - Finite episodes with deterministic reset/action seeds and step limits.
 - A read-only browser viewer bound to `127.0.0.1:8765`.
 - Run metadata, action/observation events, episode results, and the latest frame.
+- Opt-in M2 task rules, passive verification, diagnosis, and cube shift/drop tests.
 
 `PickCube-v1` tests reaching a goal with the cube and a static robot. It does not
 require releasing the cube onto a support surface. Use it as an infrastructure
@@ -71,9 +72,69 @@ the cube reached its goal.
 The 320-step sequence requires `--max-steps` at least 320; 360 leaves extra hold
 time. Runtime errors remain errors rather than failed-task episode scores.
 Controller settings and input boundaries are saved in `manifest.json`, and
-every action logs its phase and expected/commanded TCP positions. Do not freeze
-this candidate for comparison until native baseline behavior has been inspected
-and measured. See [the M1 protocol](../../docs/research/experiments/AETHER_CL_M1_Fixed_Controller.md).
+every action logs its phase and expected/commanded TCP positions. The native M1
+screening reported 20/20 environment successes, including one already-solved
+reset; the other 19 episodes grasped and lifted. The current controller is
+retained as the nominal baseline. See [the M1 protocol](../../docs/research/experiments/AETHER_CL_M1_Fixed_Controller.md)
+and [raw-log audit](../../docs/research/experiments/AETHER_CL_M1_Baseline_Screening.md).
+
+## Passive verification (Milestone 2)
+
+M2 adds a state-based verifier and two controlled interventions while retaining
+the exact M1 controller implementation/settings. The verifier reports outcomes
+without changing actions, stage progression, or the action budget. Recovery is
+not active. A passive verifier is expected to improve failure visibility; it
+cannot improve task success if actions and termination rules remain identical.
+
+Both M2 baseline and V1 use the same revised task contract: exclude resets where
+the cube already lies within 0.025 m of its goal, run the full 360-step budget
+despite intermediate environment success, require at least 0.05 m cube lift,
+and require a fresh contact grasp plus five consecutive static goal observations
+at the episode end. Exclusions stay in the logs with a reason; task-rate
+denominators include eligible episodes only. Release is not required. These
+stricter results must not be compared directly with the old M1 success rates.
+
+The verifier consumes post-action cube/TCP/goal geometry and Panda joint
+position/velocity, ignoring reset grasp flags and all evaluator/contact info.
+It checks deadlines for grasp (125), lift (170), and target arrival (320), with
+three-step failure persistence. Final failure checks need no additional budget.
+Its labels are `GRASP_FAILURE`, `OBJECT_LOST`, `TARGET_NOT_REACHED`,
+`STATE_MISMATCH`, and `UNCERTAIN`; confidence is explicitly uncalibrated.
+The separate simulator reference supplies contact-based task/failure labels for
+agreement metrics. This is privileged-state engineering evaluation, not visual
+perception accuracy.
+
+`object_shift` relocates the cube along world y before action 81; `object_drop`
+relocates it along world y and to its initial height before action 181. Default
+displacement is 0.12 m. These are one-time pose interventions, not physical push
+models. Orientation is preserved and velocities are zeroed. Timing, magnitude,
+and before/after poses are logged. Native CPU adapter acceptance remains pending;
+no extra packages or system changes are needed.
+
+Example batch commands after environment activation:
+
+```bash
+python -m aether_cl.experiment --system baseline --no-render --episodes 20 --seed 20 --max-steps 360 --disturbance object_shift --output runs/m2-baseline-shift
+python -m aether_cl.experiment --system v1 --no-render --episodes 20 --seed 20 --max-steps 360 --disturbance object_shift --output runs/m2-v1-shift
+```
+
+For native acceptance, inspect a live seed-0 trial first:
+
+```bash
+python -m aether_cl.viewer --controller fixed_pick_cube --protocol m2 --verification --disturbance object_shift --render-device cuda:0 --episodes 1 --seed 0 --max-steps 360 --fps 10 --port 8765 --output runs/m2-v1-live
+```
+
+The browser shows environment success, separate M2 task success, verification,
+failure diagnosis, and intervention status. The final result includes eligible
+task rates, first reference/detected failure steps, conditional diagnosis latency,
+and step-level detection/diagnosis agreement counts. Missing denominators and
+incomplete-run rates are null; uncertainty and coverage are explicit.
+
+Forty local tests passed, including action equality between baseline/V1 under
+all three conditions, budget/denominator/cleanup handling, freshness, uncertainty,
+and checkpoint logic. Replaying the verifier on 4,038 eligible M1 normal-state
+observations produced no alarms; those old episodes ended early and cannot
+validate the new full-horizon success contract. See [the M2 protocol](../../docs/research/experiments/AETHER_CL_M2_Verification.md).
 
 ## Offline deployment through a connected laptop
 
@@ -237,16 +298,17 @@ for visibility, which is recorded in the run configuration.
 Each invocation creates a new UTC/UUID directory under `runs/` containing:
 
 - `manifest.json`: runtime packages, code commit/dirty state, seeds, backends,
-  action/observation modes, and a clear random-action smoke-test label.
+  action/observation modes, and controller/protocol/verification labels.
 - `events.jsonl`: resets, per-step actions and observations, termination flags,
   errors, selected rendering device, and episode boundaries.
 - `result.json`: final run state and per-episode outcomes, distinguishing success
   at the final step from success at any earlier step.
 - `latest.jpg`: the latest actual simulator frame, when rendering is enabled.
 
-`runs/` is excluded from Git. No benchmark numbers or policy results are claimed
-by this milestone. CPU tests of logging and HTTP behavior do not validate GPU
-rendering; the server smoke tests provide that evidence.
+`runs/` is excluded from Git. M0 smoke results establish infrastructure; the M1
+and M2 sections describe their separate policy/task evidence. CPU tests of logging
+and HTTP behavior do not validate GPU rendering; native server runs supply that
+evidence. M2 adds reference/verifier records and logs its shared task contract.
 
 ## Local checks
 
@@ -258,9 +320,9 @@ python -m aether_cl.viewer --help
 
 ## Next implementation milestones
 
-1. Reproduce a competent fixed policy and define full task success.
-2. Add verification with explicit observation access and checkpoint semantics.
-3. Add failure classification and recovery within a fixed total action budget.
+1. Accept the new M2 task/verifier/disturbance behavior on the target server.
+2. Measure matched baseline/V1 pairs with the shared task contract.
+3. Add rule-based recovery within a fixed total action budget.
 4. Compare policy-only, passive verification, verification/recovery, and a
    budget-matched simple retry control on matched disturbance schedules.
 
