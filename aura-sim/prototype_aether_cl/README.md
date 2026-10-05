@@ -8,7 +8,8 @@ complete. M2 seed-0 native acceptance is complete: all six behavior checks,
 paired traces, and startup environments pass after process isolation. Frozen
 fresh-seed screening is complete and audited. M3 recovery is implemented and
 locally tested. Corrected seed-0 native acceptance is complete and audited;
-live recovery inspection and fresh-seed recovery evaluation remain pending.
+live shifted-cube recovery was observed by the operator. Frozen fresh-seed
+recovery evaluation and live drop inspection remain pending.
 
 Prototype A will test whether explicit verification and bounded recovery improve
 manipulation autonomy under disturbances while keeping the manipulation policy
@@ -430,9 +431,9 @@ transitions use observed arrival and grasp/lift evidence. An attempt can abort;
 its completion is not task success. The first native suite recovered both seed-0 disturbed cases but failed strict
 configuration matching because FPS was not forwarded. The correction retains
 strict matching; the corrected archive passes all nine trial and four paired
-checks and reproduces the original raw traces exactly. Live inspection and
-fresh-seed recovery evaluation remain pending. All 78 local
-tests pass.
+checks and reproduces the original raw traces exactly. The operator observed
+live shifted-cube recovery; fresh-seed evaluation and live drop inspection
+remain pending. Screening adds ten tests to the previous 78 passing tests.
 The original four frozen M2 source files remain byte-identical. The process
 runner gains an optional entry module; its M2 default behavior is unchanged.
 
@@ -476,3 +477,32 @@ for corrected acceptance; do not overwrite the original failed evidence.
 and Enter prompt. Open `http://127.0.0.1:8765`, confirm the preview is visible,
 then press Enter in the server terminal. The arm stays paused until that input.
 Ctrl+C cancels safely during the preview or ends the viewer after the run.
+
+### Frozen M3 fresh-seed screening
+
+The [preregistered protocol](../../docs/research/experiments/AETHER_CL_M3_Frozen_Screening.md)
+uses seeds 40–59 across baseline/V1/V2 and normal/shift/drop: 180 requested
+episodes, each eligible episode retaining the same 360-action budget. Eight
+accepted source hashes and all settings are checked before output or execution.
+The original policy, verifier, disturbances, runtime, and recovery remain frozen.
+
+```bash
+cd /home/jiangle/aura-work/AURA-Embodied-offline/aura-sim/prototype_aether_cl
+source /home/jiangle/miniconda3/etc/profile.d/conda.sh
+conda activate aether-cl
+unset LD_PRELOAD
+export LD_LIBRARY_PATH=/home/jiangle/aura-work/aether-glvnd-1.4.0/usr/lib/x86_64-linux-gnu
+export CUDA_VISIBLE_DEVICES=1
+python -m aether_cl.m3_screening \
+    --output runs/m3-screening-seeds40-59 \
+    --archive /home/jiangle/aura-work/aether-cl-m3-screening-seeds40-59.tar.gz
+```
+
+This batch does not render or open a viewer. Each cell prints its condition,
+system, and final evidence/task summary. A passing suite means valid matched
+evidence, including failed/aborted retries, uncertainty and natural policy
+failures. It compares baseline/V1 full traces and V1/V2 prefixes through the
+first intervention, or full traces when there is none. Matched outcome counts
+include any recovery regressions. Existing archives are never replaced;
+interrupted/error runs retain available evidence. Native fresh-seed results
+remain pending. Follow the batch with the paused live drop command above.

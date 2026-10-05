@@ -199,3 +199,18 @@ two cases, not a recovery robustness rate or physical disturbance realism.
 This archive contains no rendered/live runs, so it cannot certify the preview
 pause or browser behavior. Next inspect live shift/drop, then freeze recovery
 parameters and preregister a fresh-seed paired evaluation before running it.
+
+## Operator shift observation and frozen screening
+
+The operator subsequently reports seeing the live shift run reacquire the cube,
+grasp it and move it to the green goal. They noted slow staged motions and an
+unnecessary initial empty grasp. This is recorded as an operator observation;
+no live raw-log archive was supplied for this checkpoint. Camera perception,
+physical force disturbances and policy optimization remain separate changes.
+
+The next [frozen screening protocol](AETHER_CL_M3_Frozen_Screening.md) uses
+fresh seeds 40–59 across all nine system/condition cells: 180 requested
+episodes. It retains the accepted scientific files and shared budget, and
+measures failures and aborts without imposing successful recovery as an
+acceptance gate. Native screening results and rendered drop inspection remain
+pending.

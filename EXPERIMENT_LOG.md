@@ -403,6 +403,37 @@ paired evaluation. See the
 
 ---
 
+# EXP-0010 Live Shift Observation and Frozen M3 Fresh-Seed Protocol
+
+Date: 2026-10-05 (Asia/Shanghai)
+
+The operator reports observing live shifted-cube reacquisition, regrasp and
+goal transport, with slow staged movement and an initial empty grasp. This is
+operator evidence; no new live raw-log archive was supplied. Preserve the
+fixed nominal sequence for causal comparison. Five-FPS browser pacing is not
+model reasoning latency; the present controller is rule based.
+
+Freeze seeds 40–59 and all accepted settings before native execution: nine
+baseline/V1/V2 × normal/shift/drop cells, 180 requested episodes, shared
+360-action budgets and unchanged 0.12 m interventions. A new runner enforces
+eight accepted source hashes and the committed protocol before output,
+isolates cell processes, retains exclusions/failures/abort/uncertainty, replays
+reference/verifier metrics and recovery costs, and checks full passive traces
+and recovery causal prefixes. Paired episode counts include normal-condition
+regressions. Conditional recovery success includes all attempted eligible
+episodes; failed attempts remain in costs. All available evidence is archived
+on failure/interruption, without replacing earlier archives.
+
+Local validation: previous 78 tests plus ten screening regressions pass (87
+full-suite tests and one subsequently added missing-TCP check). A 180-episode
+fixture exercises the matrix and hashed archive. Final checks also accept all
+nine existing native pilot cells and three causal pairs. Native fresh-seed
+results and rendered drop inspection remain pending; no new policy or physics
+claim follows from these fixtures. See the
+[frozen protocol](docs/research/experiments/AETHER_CL_M3_Frozen_Screening.md).
+
+---
+
 # Experiment Template
 
 ## Experiment ID
