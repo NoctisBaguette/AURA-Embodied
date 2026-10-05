@@ -194,7 +194,26 @@ full-horizon/partial-run behavior, and simulator-error cleanup. CLI, compilation
 and JavaScript update checks passed. Replay of 4,038 eligible M1 normal-state
 observations produced no failure/uncertainty alarms, while seed 8 was excluded.
 Those old prefixes cannot validate the new full-horizon task contract, and
-fixtures do not simulate native contacts. Native M2 acceptance remains pending.
+fixtures do not simulate native contacts. Matched native M2 acceptance remains
+pending.
+
+First native V1 shift evidence supplied by the user: seed 0, run
+`runs/m2-v1-live/20261005T020329Z-d194299a`, 360 actions, no lift/task success,
+final cube-goal distance 0.32238 m. The reference first labeled `GRASP_FAILURE`
+at step 125 and V1 confirmed at 127; TP 234, FP 0, FN 2, TN 124 are dense
+observations of this single episode. The screenshot agrees with the final
+status: empty gripper, cube on the table, diagnosis displayed, unchanged
+schedule completed. This supports native detection in this case, not overall
+precision/recall or robustness claims. Raw manifest/events are not yet audited.
+
+The user's realism concern identifies an important boundary: `object_shift`
+is a scripted 0.12 m pose relocation before action 81, with velocities zeroed.
+Its discontinuity is synthetic fault injection, not a calibrated physical
+push. Possible additional finger-contact motion cannot be resolved from final
+status/screenshot alone. Preserve this condition for controlled attribution;
+any continuous force/contact disturbance must be defined and evaluated as a
+separate condition. V1 continuing empty-handed is expected because its
+verifier cannot alter actions; recovery remains M3.
 
 See [the M2 protocol](docs/research/experiments/AETHER_CL_M2_Verification.md) for
 input boundaries, task rules, disturbance timing, metrics, and evidence limits.

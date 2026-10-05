@@ -154,11 +154,34 @@ budget; their verdicts stayed pending. This checks compatibility with observed
 normal prefixes and does not validate native M2 success or failure detection.
 Thresholds used development observations, so this is not held-out validation.
 
-Next on the A100: run the 40 tests, view a seed-0 M2 V1 object-shift trial on
-8765, and inspect status/logs. Then accept normal/shift/drop baseline/V1 pairs
-under the same task rules before drawing any performance conclusion. The
-predicted shifted-grasp alert must be confirmed in real simulator execution.
-Native disturbance, full-horizon success, and metric results remain pending.
+The first user-reported native A100 V1 object-shift trial completed on seed 0:
+`runs/m2-v1-live/20261005T020329Z-d194299a`. The supplied
+[viewer status](evidence/AETHER_CL_M2_seed0_shift_viewer_status.json) and matching
+final browser screenshot show 360 actions, no task success or achieved lift,
+an empty gripper, and a final cube-goal distance of 0.32238 m. The separate
+reference first reported `GRASP_FAILURE` at step 125; the verifier confirmed it
+at step 127, consistent with three-observation persistence. V1 continued its
+unchanged schedule through transport/hold because recovery is inactive.
+
+Dense counts were TP 234, FP 0, FN 2, TN 124, with no uncertain observations.
+The two missed frames precede confirmation. These are correlated frames from
+one failure episode, not 234 independent tests or evidence of general 99%
+detection accuracy. The result supports this native shifted-grasp detection
+case; normal full-horizon success, object-loss detection, and matched baseline/V1
+native acceptance remain pending. The run manifest and raw events have not yet
+been retrieved, so revision, exact injection trajectory, and contact motion
+have not been independently audited.
+
+The user observed a sudden sideways jump and possible finger contact. The
+configured `object_shift` deliberately relocates the cube by 0.12 m before
+action 81; that discontinuity is not a physical push. The final screenshot
+cannot establish whether contact caused additional movement. This trial must
+be described as synthetic state perturbation, not realistic disturbance
+physics. A continuous force/contact disturbance needs a separately specified
+and logged condition with matched baseline/V1 runs.
+
+Next, retrieve the live manifest/events and accept normal/shift/drop baseline/V1
+pairs under the same task rules before drawing any performance conclusion.
 No wheel, environment, driver, or 4090 change is required for this increment.
 
 After acceptance, run matched seed-20+ batches and freeze settings/budgets before
