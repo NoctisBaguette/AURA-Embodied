@@ -122,11 +122,55 @@ Revisit after experimental validation of candidate AETHER architectures, especia
 
 ---
 
+# DEC-0003
+
+## Date
+
+2026-10-05
+
+## Topic
+
+Accept the first AETHER-CL engineering evidence within scope and require verification-gating attribution before broader Prototype A expansion.
+
+## Context
+
+06-01 completed M0–M4 of AETHER-CL on one privileged-state held-cube ManiSkill task. M4 audited 660 eligible trials and showed that V2 (passive verification plus one verifier-gated bounded recovery attempt) rescued 180 matched V1 failures with no observed final-task regressions. Passive V1 alone detected failures but deliberately did not alter behavior or task success.
+
+The experiment did not include a blind/scheduled recovery comparator. Therefore the combined intervention is supported, but the necessity or causal value of explicit verification gating is unresolved.
+
+## Options Considered
+
+1. Treat M4 as sufficient to close Prototype A and advance to memory/state/embodiment work.
+2. Broaden immediately to new tasks, perception or realistic disturbances without isolating the current causal ambiguity.
+3. Run a verifier-independent recovery control first, then broaden Prototype A only after attribution is clearer.
+
+## Decision
+
+Choose Option 3.
+
+The next 06-01 round is **M5 Verification-Gating Attribution**. Keep the current nominal controller and M4 scientific assumptions frozen. Add a preregistered recovery-only control using the same bounded recovery capability without verifier/failure-classifier gating.
+
+Prototype A remains open. Broader closure still requires support placement/release, insertion, at least one physically propagated disturbance protocol, and at least one non-privileged verification protocol.
+
+## Reasoning
+
+The strongest current unresolved question is causal attribution. M4 demonstrates that adding a gated recovery pathway can rescue the tested failures, but it does not show that explicit verification is needed rather than simply granting a refreshed-target retry. Resolving that ambiguity before changing tasks, motion or perception preserves interpretability and prevents AETHER from attributing recovery success to the wrong architectural mechanism.
+
+## Future Re-evaluation Condition
+
+Return to 02 immediately after M5 audited evidence. Reassess H3 (verification-centered autonomy), H4 (recovery as intelligence), the remaining Prototype A closure sequence, and whether a 02W investigation is justified.
+
+## Notes
+
+See `docs/research/experiments/AETHER_CL_02_Research_Review_v0.1.md`. PR #1 remains draft/unmerged unless separately reviewed.
+
+---
+
 # Decision Template
 
 ## Decision ID
 
-Example: DEC-0002
+Example: DEC-0004
 
 ## Date
 
