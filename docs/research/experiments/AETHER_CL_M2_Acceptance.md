@@ -113,3 +113,12 @@ policy and shared evaluation budget fixed. Recovery may reopen/reapproach/retry
 after confirmed failure; it must not receive disturbance identity or reference
 labels. The eventual baseline/V1/V2 matrix will measure episode outcomes and
 recovery cost alongside detection/diagnosis. Prototype A findings return to 02.
+
+
+Fresh-seed screening completion (2026-10-05): seeds 20-39 completed all 120
+requested episodes with exact baseline/V1 traces and no exclusions. Normal
+final task success was 20/20 per system; shifted/drop cases were 0/20. All first
+failures were correctly diagnosed with two-step delay. Raw audit and limits are
+recorded in [the screening results](AETHER_CL_M2_Frozen_Screening.md).
+The [M3 candidate](AETHER_CL_M3_Recovery.md) now adds bounded action intervention;
+its native recovery outcomes remain pending.

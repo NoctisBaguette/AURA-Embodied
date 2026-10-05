@@ -307,6 +307,43 @@ results are pending before M3 recovery. See [the frozen plan](docs/research/expe
 
 ---
 
+# EXP-0007 Fresh-Seed M2 Results and M3 Recovery Candidate
+
+Date: 2026-10-05 (Asia/Shanghai)
+
+Audited all 120 native episodes/43,200 actions from the frozen seeds 20-39
+batch on clean revision `472dfbaf`. Archive SHA-256:
+`182d9728cea439b84e6f7517a7dd829db91fc7687f940f00c998d867b8f16f16`.
+All 31 indexed hashes, frozen sources, raw reference/verifier replay, episode
+summaries, and exact paired traces pass. Normal final task success is 20/20
+for each system; shift and drop are 0/20 for each. V1 diagnoses all 20 grasp
+failures and all 20 object losses with two-step first-detection latency and
+no false alarms or uncertainty. Drop seed 33's temporary raw environment
+success never satisfies the strict task. See [the results](docs/research/experiments/AETHER_CL_M2_Frozen_Screening.md).
+
+This confirms passive verification identifies the chosen disturbances but
+cannot improve autonomy without an action intervention. Prepared M3 V2 with
+one observed-state retry: reopen/retract, approach current cube, descend,
+close, lift, transport, lower, hold. Motion primitives and nominal targets are
+unchanged; retry targets are cached at the trigger. Arrival and fresh geometry
+candidate evidence advance retry phases, each with a timeout. Confirmed
+candidate persistence and 0.05 m attempt lift gate transport. Failure stops
+retry actions and repeats the last absolute command, without resuming nominal
+transport. The remaining episode budget caps the attempt; all systems retain
+360 steps. Reference contact truth and disturbance identity do not trigger
+recovery. UNCERTAIN observations do not trigger a retry; two confirmed failure
+categories are supported initially.
+
+All 75 local tests passed. A separate M3 runner preserves all four frozen M2 source files. Matched normal
+traces and disturbed prefixes are tested against frozen execution. Nine
+process-isolated seed-0 development cells archive successes, aborted retries,
+errors, and action costs. Passing the evidence checks does not require disturbed
+recovery to succeed. Native M3 physics and browser behavior remain untested at
+publication; the next checkpoint is the server development suite and live V2
+shift/drop inspection. See [the recovery protocol](docs/research/experiments/AETHER_CL_M3_Recovery.md).
+
+---
+
 # Experiment Template
 
 ## Experiment ID

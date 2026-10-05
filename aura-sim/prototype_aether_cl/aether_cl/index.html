@@ -30,10 +30,12 @@
     <div><span>Controller phase</span><strong id="phase">—</strong></div>
     <div><span>Environment success flag</span><strong id="success">—</strong></div>
     <div><span>Cube–target distance</span><strong id="distance">—</strong></div>
-    <div><span>M2 task success</span><strong id="task-success">—</strong></div>
+    <div><span>Task success</span><strong id="task-success">—</strong></div>
     <div><span>Verification</span><strong id="verification">—</strong></div>
     <div><span>Failure diagnosis</span><strong id="failure">—</strong></div>
     <div><span>Disturbance</span><strong id="disturbance">—</strong></div>
+    <div><span>Recovery state</span><strong id="recovery">—</strong></div>
+    <div><span>Recovery actions</span><strong id="recovery-cost">—</strong></div>
   </div>
   <p id="verification-note"></p>
   <img id="frame" alt="Latest frame rendered by the running simulator" hidden>
@@ -66,17 +68,26 @@
             ? 'AETHER-CL V1: Passive Verification' : 'AETHER-CL M2 Policy Baseline');
           text('notice', 'The controller keeps the same fixed sequence for the full budget. M2 task success requires grasping, lifting, and five stable observations at the goal. Verification reports outcomes; recovery is not active.');
         }
+        if (status.protocol === 'm3') {
+          text('title', `AETHER-CL M3: ${status.system === 'v2' ? 'Bounded Recovery' : status.system === 'v1' ? 'Passive Verification' : 'Policy Baseline'}`);
+          text('notice', status.recovery_enabled
+            ? 'One bounded retry after a confirmed failed grasp or lost object. The arm reopens, approaches the observed cube position, and checks its new grasp and lift before transport. An attempt can abort; final task success is measured separately.'
+            : 'Matched 360-step baseline or passive verification run. Recovery is disabled.');
+        }
       } else if (status.controller === 'random') {
         text('title', 'AETHER-CL Environment Smoke Test');
         text('notice', 'Seeded random actions test simulation, rendering, and logging. This run does not measure a manipulation policy, verification, or recovery.');
       }
       text('success', status.success === undefined ? '—' : String(status.success));
-      text('task-success', status.protocol === 'm2' ? String(status.task_success ?? false) : '—');
+      text('task-success', ['m2', 'm3'].includes(status.protocol) ? String(status.task_success ?? false) : '—');
+      text('recovery', status.recovery?.state ?? 'disabled');
+      text('recovery-cost', status.recovery_enabled
+        ? `${status.recovery?.action_steps ?? 0} / ${status.recovery?.action_budget ?? 230}` : '—');
       text('verification', status.verification?.status ?? 'disabled');
       text('failure', status.verification?.failure ?? '—');
       text('verification-note', status.eligibility?.eligible === false
         ? 'Excluded from manipulation scoring: the cube started inside the goal tolerance.'
-        : status.verification?.reason ?? '');
+        : status.recovery?.failure_detail ?? status.verification?.reason ?? '');
       text('disturbance', status.disturbance && status.disturbance !== 'none'
         ? `${status.disturbance}: ${status.disturbance_applied ? 'applied' : 'scheduled'}` : 'none');
       text('directory', status.run_directory ?? '—');

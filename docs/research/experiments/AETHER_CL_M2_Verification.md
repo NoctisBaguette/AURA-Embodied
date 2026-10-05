@@ -234,4 +234,8 @@ Native seed-0 acceptance is complete. The next [frozen screening](AETHER_CL_M2_F
 uses seeds 20-39 and measures outcomes without requiring seed-0 performance.
 The policy, verifier, runtime, disturbance implementation, thresholds, and task
 budget remain fixed. Screening integrity checks and CLI support bring local
-validation to 58 tests; target-server screening remains pending.
+validation to 58 tests. The target-server screening has now been audited:
+120 complete episodes, no exclusions, normal success 20/20 per system, and
+shift/drop success 0/20. All first failures were correctly diagnosed after
+two steps; paired traces remain exact. See the [fresh-seed results](AETHER_CL_M2_Frozen_Screening.md).
+M3 recovery is a separate candidate with native outcomes pending.

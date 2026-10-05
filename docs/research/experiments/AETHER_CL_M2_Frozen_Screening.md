@@ -2,7 +2,7 @@
 
 Date: 2026-10-05 (Asia/Shanghai)
 
-Status: protocol frozen and runner tested locally; native results pending.
+Status: fresh-seed native screening complete and raw logs audited.
 
 ## Accepted prerequisite
 
@@ -92,3 +92,40 @@ settings for M3 bounded recovery. Recovery will consume observed state and
 verifier outputs rather than disturbance identity or simulator reference labels.
 Its retries/actions/cost and final outcomes will be logged against the same
 baseline/V1 conditions. Prototype A findings return to 02.
+
+
+## Native results and audit
+
+Uploaded archive `aether-cl-m2-screening-seeds20-39.tar.gz`:
+SHA-256 `182d9728cea439b84e6f7517a7dd829db91fc7687f940f00c998d867b8f16f16`.
+All 31 indexed file sizes/hashes and the exact archive member set match.
+Clean revision `472dfbaf75131d8a9b77cef21fa53435bf8e32e0` completed all 120
+requested episodes and 43,200 actions, with no exclusions or execution errors.
+All four frozen source hashes match. Raw replay reproduces every reference and
+verifier result; policy action replay differs by at most 2.98e-8 due to the
+known float32 Panda base pose. Episode summaries and child stdout/results agree.
+
+| Condition | Baseline final task success | V1 final task success | V1 first diagnosis |
+| --- | --- | --- | --- |
+| Normal | 20/20 | 20/20 | No failures or false alarms |
+| Object shift | 0/20 | 0/20 | GRASP_FAILURE, 20/20 |
+| Object drop | 0/20 | 0/20 | OBJECT_LOST, 20/20 |
+
+Every detected first failure followed its simulator reference by two control
+steps. There were no uncertain observations or false alarms. Dense failure
+recall was 0.991525 for shift and 0.988889 for drop, accounting for the two-step
+detection delay per episode. Diagnosis agreement on detected positive frames
+was 1.0. These are simulator-reference agreement measures, not perception
+accuracy, and the correlated frames are not thousands of independent tests.
+
+All three baseline/V1 canonical traces and startup software/policy/task
+contracts are exactly equal. Passive verification changes no actions and does
+not improve task success. Drop seed 33 temporarily satisfied the environment's
+looser success flag at steps 133-137, before injection; it never satisfied the
+strict grasp/lift/static task. Its final task outcome remains a failure.
+
+The [compact audit](evidence/AETHER_CL_M2_Fresh_Seed_Audit.json) preserves cell
+metrics, trace hashes, first-failure latencies, and this transient exception.
+The evidence supports adding bounded recovery while retaining the frozen M2
+policy, verifier, disturbances, and final task/budget. M3 native recovery
+success remains a separate experiment.

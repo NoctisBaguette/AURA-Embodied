@@ -1,12 +1,13 @@
 # AETHER CL Prototype A
 
 This directory implements environment smoke tests, a fixed PickCube controller,
-and **M2 passive verification with controlled disturbances** for AETHER-CL v0.1.
+**M2 passive verification**, and **M3 bounded recovery** for AETHER-CL v0.1.
 Smoke mode runs seeded random actions; fixed mode attempts grasping and transport
 using simulator state and a timed sequence. M1 native baseline screening is
 complete. M2 seed-0 native acceptance is complete: all six behavior checks,
 paired traces, and startup environments pass after process isolation. Frozen
-fresh-seed screening is prepared; recovery follows its review.
+fresh-seed screening is complete and audited. M3 recovery is implemented and
+locally tested; native recovery outcomes are pending.
 
 Prototype A will test whether explicit verification and bounded recovery improve
 manipulation autonomy under disturbances while keeping the manipulation policy
@@ -20,6 +21,7 @@ fixed. Its findings return to branch 02 for AETHER architecture research.
 - A read-only browser viewer bound to `127.0.0.1:8765`.
 - Run metadata, action/observation events, episode results, and the latest frame.
 - Opt-in M2 task rules, passive verification, diagnosis, and cube shift/drop tests.
+- M3 baseline/V1/V2 runs with one bounded observed-state recovery attempt.
 
 `PickCube-v1` tests reaching a goal with the cube and a static robot. It does not
 require releasing the cube onto a support surface. Use it as an infrastructure
@@ -207,8 +209,11 @@ automatic rejection of evidence. `state: passed` means valid paired evidence,
 not perfect manipulation/detection. Existing raw metrics and all per-episode
 records are archived. There is no resampling or threshold tuning on these seeds.
 See [the frozen screening plan](../../docs/research/experiments/AETHER_CL_M2_Frozen_Screening.md).
-All 58 local tests passed, including seed coverage, measured policy failure,
-exclusions, denominator checks, and precise reset-comparison metadata.
+All 58 M2 local tests passed, including seed coverage, measured policy failure,
+exclusions, denominator checks, and precise reset-comparison metadata. Native
+screening completed all 120 episodes without exclusions: normal 20/20 success
+per system, shift/drop 0/20, all first failures identified after two steps.
+All paired canonical traces and startup contracts match exactly.
 
 ## Offline deployment through a connected laptop
 
@@ -408,3 +413,45 @@ planner, world models, and foundation-model training remain outside Prototype A.
 - [ManiSkill 3.0.1 dependency definitions](https://github.com/mani-skill/ManiSkill/blob/v3.0.1/setup.py)
 - [ManiSkill installation and Vulkan troubleshooting](https://maniskill.readthedocs.io/en/latest/user_guide/getting_started/installation.html)
 - [PickCube task definition](https://github.com/mani-skill/ManiSkill/blob/v3.0.1/mani_skill/envs/tasks/tabletop/pick_cube.py)
+
+
+## M3 bounded recovery candidate
+
+M2 fresh-seed screening is complete: 120 episodes across 20 unique seeds,
+normal success 20/20 per system, shift/drop success 0/20, all first failures
+correctly diagnosed with two-step latency. See
+[the audited results](../../docs/research/experiments/AETHER_CL_M2_Frozen_Screening.md).
+
+M3 adds one bounded observed-state retry for `GRASP_FAILURE` or `OBJECT_LOST`.
+It reuses the unchanged fixed-policy motion primitives and retains the same
+360-step episode, task, verifier, and scripted disturbance. Recovery phase
+transitions use observed arrival and grasp/lift evidence. An attempt can abort;
+its completion is not task success. M3 native recovery results are pending. All 75 local tests passed.
+The original four frozen M2 source files remain byte-identical. The process
+runner gains an optional entry module; its M2 default behavior is unchanged.
+
+A nine-cell native development suite runs baseline/V1/V2 in normal/shift/drop
+conditions, each in a fresh process. It checks nominal trace equality, causal
+prefixes, trigger timing, transport gates, and bounded evidence. Disturbed V2
+success or failure is measured, not forced by the acceptance gate.
+
+```bash
+cd /home/jiangle/aura-work/AURA-Embodied-offline/aura-sim/prototype_aether_cl
+source /home/jiangle/miniconda3/etc/profile.d/conda.sh
+conda activate aether-cl
+unset LD_PRELOAD
+export LD_LIBRARY_PATH=/home/jiangle/aura-work/aether-glvnd-1.4.0/usr/lib/x86_64-linux-gnu
+export CUDA_VISIBLE_DEVICES=1
+python -m aether_cl.m3_acceptance \
+    --output runs/m3-acceptance \
+    --archive /home/jiangle/aura-work/aether-cl-m3-evidence.tar.gz
+python -m aether_cl.m3 --system v2 --live --seed 0 --episodes 1 \
+    --disturbance object_shift --max-steps 360 --render-device cuda:0 \
+    --fps 5 --port 8765 --output runs/m3-v2-shift-live
+```
+
+For drop inspection, stop the viewer with Ctrl+C, then run the same live
+command with `--disturbance object_drop --output runs/m3-v2-drop-live`.
+Use a distinct archive path for a rerun; existing evidence is never replaced.
+The next larger paired benchmark follows native development review, with
+parameters frozen before choosing fresh evaluation seeds.

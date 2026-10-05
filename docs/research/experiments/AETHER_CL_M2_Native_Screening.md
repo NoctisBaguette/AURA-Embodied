@@ -127,5 +127,7 @@ observations. New metadata distinguishes the two locations without changing
 traces or acceptance results. This clarification affects metadata only, not
 policy/verifier input boundaries.
 
-Next is [frozen fresh-seed screening](AETHER_CL_M2_Frozen_Screening.md), followed
-by review before recovery. No further seed-0 acceptance rerun is required.
+The [frozen fresh-seed screening](AETHER_CL_M2_Frozen_Screening.md) is now
+complete and audited: all 120 episodes, exact paired traces, no exclusions.
+M3 recovery is implemented as a locally tested candidate with native results
+pending. No further seed-0 M2 acceptance rerun is required.

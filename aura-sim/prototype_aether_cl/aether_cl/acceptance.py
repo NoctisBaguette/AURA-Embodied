@@ -220,11 +220,11 @@ def archive_evidence(directory, archive, live_run, root="acceptance",
     return hashlib.sha256(archive.read_bytes()).hexdigest()
 
 
-def run_in_process(config, environment):
+def run_in_process(config, environment, module="aether_cl.experiment"):
     """Use exec, not fork reuse: native imports can modify process environment."""
     config.output.mkdir(parents=True, exist_ok=False)
-    command = [sys.executable, "-m", "aether_cl.experiment", "--system",
-               "v1" if config.verification else "baseline", "--no-render",
+    command = [sys.executable, "-m", module, "--system",
+               getattr(config, "system", "v1" if config.verification else "baseline"), "--no-render",
                "--seed", str(config.seed), "--episodes", str(config.episodes),
                "--max-steps", str(config.max_steps), "--render-device", config.render_device,
                "--disturbance", config.disturbance, "--disturbance-magnitude",
