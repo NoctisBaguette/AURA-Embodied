@@ -108,6 +108,9 @@ It records:
 
 ## Prototype Implementations
 
-- [AETHER-CL Prototype A environment milestone](aura-sim/prototype_aether_cl/README.md)
-  — simulation smoke tests, browser viewing, and episode logging. A100 runtime
-  validation is pending; manipulation-policy evaluation follows this milestone.
+- [AETHER-CL v0.1 — Prototype A held-cube experiment](aura-sim/prototype_aether_cl/README.md)
+  — fixed policy, passive verification, bounded recovery and audited A100
+  magnitude evaluation. The current 06-01 engineering round is complete;
+  [findings return to 02](docs/research/experiments/AETHER_CL_06_01_Return_to_02.md).
+  Placement/release and insertion remain outstanding in the broader Prototype A
+  scope. This is the first AETHER experiment, not AETHER v1.0.

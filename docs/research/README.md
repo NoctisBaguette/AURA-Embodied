@@ -23,3 +23,10 @@ This directory stores stable research knowledge extracted from discussions, expe
   - advisor/team discussion records when applicable
 
 Documentation should be created when knowledge becomes stable enough to preserve.
+
+
+## Current engineering handoff
+
+[AETHER-CL v0.1: 06-01 return to 02](experiments/AETHER_CL_06_01_Return_to_02.md)
+records completion of the current held-cube experiment, accepted results,
+remaining original task scope and research decisions for the next round.

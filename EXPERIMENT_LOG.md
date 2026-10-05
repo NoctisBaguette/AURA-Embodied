@@ -667,3 +667,26 @@ and [robustness figure](docs/research/experiments/evidence/AETHER_CL_M4_Robustne
 This publication changes documentation and derived evidence only. Future
 motion/precision, release/support, physical disturbance and perception variants
 need separate protocols. Findings return to 02; this is not AETHER v1.0.
+
+
+# EXP-0015 — 06-01 Engineering Round Closed; Return to 02
+
+Date: 2026-10-05 (Asia/Shanghai)
+
+Status: current held-cube engineering round complete; return to 02 for research
+review. Broader Prototype A scope remains open, particularly placement/release
+and insertion. This closure does not waive the original handoff requirements.
+
+The operator reports seeing the full live process following the M4 handoff.
+This is qualitative observation; no additional raw live-log audit or numerical
+measurement is claimed. Accepted M2/M3/M4 results and all rejected evidence
+remain preserved. No policy, verifier, recovery, task definition, protocol,
+source hash, tolerance or raw evidence changes accompany this closure.
+
+The [return-to-02 handoff](docs/research/experiments/AETHER_CL_06_01_Return_to_02.md)
+reconciles delivered components with original scope, provides accepted archive
+and GitHub provenance, and returns the finite findings and remaining decisions.
+The root README's obsolete runtime-pending statement is updated. Implementation
+is on `06-01/aether-cl-m0`; PR #1 stays open, draft and unmerged. No additional
+native run is needed to deliver this round's findings. Next scope belongs to 02;
+no Prototype B/C/D, 02W, memory, world model or motion variant is activated here.

@@ -31,6 +31,18 @@ Prototype A will test whether explicit verification and bounded recovery improve
 manipulation autonomy under disturbances while keeping the manipulation policy
 fixed. Its findings return to branch 02 for AETHER architecture research.
 
+## Engineering round closure
+
+**06-01's current engineering round is complete. Return to 02 for research review
+and the next scope decision.** The [engineering handoff](../../docs/research/experiments/AETHER_CL_06_01_Return_to_02.md)
+records accepted evidence, GitHub/archive provenance and all remaining scope.
+This closes the held-cube experiment; the original broader Prototype A task
+scope still lacks placement/release and insertion. No acceptance criterion is
+waived, no new architecture is activated, and the PR remains draft/unmerged.
+The operator has confirmed watching the full live process; this is qualitative
+observation, not an additional audited measurement. No further server run is
+needed for this handoff.
+
 ## Current milestone
 
 - A single `PickCube-v1` environment, Panda arm, CPU physics, state observations.
