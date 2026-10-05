@@ -3,9 +3,12 @@
 Date: 2026-10-05 (Asia/Shanghai)
 
 Status: corrected seed-0 native acceptance is audited and live recovery has
-operator/screenshot evidence. The larger reused-environment batch is rejected
-by strict pairing; per-episode process correction is prepared, with native
-results pending. This is Prototype A's intervention, not full AETHER.
+operator/screenshot evidence. The original reused-environment batch remains
+rejected. The [per-episode isolation replication](AETHER_CL_M3_Isolated_Screening.md#corrected-native-results)
+now passes all 180 native trials and 120 paired checks: 19/19 normal successes
+per system, 0/19 disturbed baseline/V1 and 19/19 disturbed V2 for both shift
+and drop. This is Prototype A's bounded intervention on one task/magnitude,
+not full AETHER or the completed robustness benchmark.
 
 ## Evidence motivating the intervention
 

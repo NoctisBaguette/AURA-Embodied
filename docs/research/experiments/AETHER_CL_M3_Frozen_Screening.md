@@ -5,6 +5,9 @@ Date: 2026-10-05 (Asia/Shanghai)
 Status: protocol frozen and runner prepared before native fresh-seed execution.
 The native batch completed but its recovery comparison was rejected; see the
 [audit and episode-isolation amendment](AETHER_CL_M3_Isolated_Screening.md).
+That separate correction replication now passes native trial and strict paired
+checks on the same selected seeds. This original batch remains rejected;
+its source, protocol and failed archive are preserved.
 The original protocol below remains preserved. This is a bounded single-task screening experiment,
 not the full Prototype A benchmark or a robustness curve.
 

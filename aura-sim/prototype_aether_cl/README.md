@@ -8,10 +8,12 @@ complete. M2 seed-0 native acceptance is complete: all six behavior checks,
 paired traces, and startup environments pass after process isolation. Frozen
 fresh-seed screening is complete and audited. M3 recovery is implemented and
 locally tested. Corrected seed-0 native acceptance is complete and audited;
-live shifted-cube recovery was observed by the operator. Frozen fresh-seed
-recovery comparison is rejected because reused native resets fail strict
-pairing. Live drop completion is visible in the operator screenshot. A
-per-episode process correction is prepared; corrected native results remain pending.
+live shifted-cube recovery was observed by the operator. The original reused-
+environment screening remains rejected. Its per-episode isolation correction
+is now natively executed and audited: all 180 trial checks, 60 passive pairs and
+60 recovery pairs pass. Normal success is 19/19 per system; shift/drop success
+is 0/19 for baseline/V1 and 19/19 for V2. Seed 58 remains excluded throughout.
+This replicates the original preselected seeds, rather than adding unseen seeds.
 
 Prototype A will test whether explicit verification and bounded recovery improve
 manipulation autonomy under disturbances while keeping the manipulation policy
@@ -537,3 +539,15 @@ including zero-action exclusions. This is a correction replication of already
 observed seeds, not additional held-out evidence. Progress prints all 180
 trials. Native startup makes this slower. This measurement command runs
 independently; launch live viewing separately from batch success/failure.
+
+The uploaded isolated native archive is now fully audited: all 902 indexed
+hashes, 180 resets/171 eligible episodes, and 61,560 actions verify on clean
+`c4a9b304`. Full reset observations and preintervention traces/injections match
+exactly in all 60 recovery pairs; all 60 passive traces also match. Recovery
+rescues 19/19 shift and 19/19 drop cases, with no normal-condition retries or
+regressions. First disturbed diagnoses retain their two-step latency. See the
+[accepted correction results](../../docs/research/experiments/AETHER_CL_M3_Isolated_Screening.md#corrected-native-results)
+and [machine audit](../../docs/research/experiments/evidence/AETHER_CL_M3_Isolated_Screening_Audit.json).
+The current result covers one held-cube task and one synthetic magnitude.
+Next measure a robustness curve on newly selected seeds with the controller
+still frozen. Motion/precision changes need their own subsequent comparison.

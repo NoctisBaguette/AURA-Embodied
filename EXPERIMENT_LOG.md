@@ -475,6 +475,56 @@ Corrected native execution remains pending. See the
 
 ---
 
+# EXP-0012 — M3 Isolated Native Replication Accepted
+
+Date: 2026-10-05 (Asia/Shanghai)
+
+The new isolated seed-40–59 archive is fully audited on clean `c4a9b304`.
+SHA-256: `87d1ada67b827e6a6c8b5b074d0654fbf3b03176d62c7b01714bd05584cc1421`.
+All 902 indexed hashes, 180 selected resets, 171 eligible episodes and
+61,560 actions verify. Seed 58 stays excluded with zero actions in all nine
+cells. Raw native episode indices remain zero; no data is rewritten or seed
+resampled. All 180 native trial contracts, 60 passive full traces and 60
+recovery reset/causal-prefix/injection pairs pass without comparison waivers.
+The nine original first-seed traces and verifier/recovery sequences reproduce
+exactly. Policies, task, verifier, recovery, disturbance and budget remain frozen.
+
+| Condition | Baseline success | Passive V1 success | Recovery V2 success |
+| --- | --- | --- | --- |
+| Normal | 19/19 | 19/19 | 19/19 |
+| Shift 0.12 m | 0/19 | 0/19 | 19/19 |
+| Drop + shift 0.12 m | 0/19 | 0/19 | 19/19 |
+
+V2 rescues all 19 matched failures in each disturbed condition without normal
+regressions or normal retries. All first disturbed diagnoses retain two-step
+latency and the correct first label. Mean attempt costs are 155.84 actions /
+0.66289 m TCP path for shift, 137.16 / 0.56263 m for drop. Normal conditional
+recovery rates/costs remain null. All raw action, diagnosis, task stability,
+recovery gate/budget/snapshot/cost and aggregate metric replay checks pass.
+Explicit ordered binary64 accumulation exactly reproduces the native Python
+3.10 path mean; the audit host Python 3.12 builtin sum differs by one ULP for
+one cell, without any per-episode data or strict pair tolerance change.
+
+This fixes experimental comparability through fresh per-episode native
+processes. The internal engine-history mechanism remains unproven. The
+original failed archive/protocol stay rejected and preserved. These are the
+same original selected seeds, now observed, not a new independent held-out
+sample. Result scope: one privileged-state held-cube task and synthetic
+relocations, not release/support placement, physical-force robustness or
+camera perception. M3 is accepted within this scope; Prototype A remains open.
+
+Final recovery goal-distance medians are 1.201 cm (shift) and 1.375 cm (drop),
+versus 0.0498 cm nominal; current success does not establish fine precision.
+Next preregister a magnitude robustness curve on new seeds with the current
+controller still fixed. Later motion/precision variants need separate evidence.
+The existing 92 local tests remain valid; this update changes only evidence
+and documentation. No new server execution is requested.
+
+See the [accepted result and limitations](docs/research/experiments/AETHER_CL_M3_Isolated_Screening.md#corrected-native-results)
+and [machine audit](docs/research/experiments/evidence/AETHER_CL_M3_Isolated_Screening_Audit.json).
+
+---
+
 # Experiment Template
 
 ## Experiment ID
