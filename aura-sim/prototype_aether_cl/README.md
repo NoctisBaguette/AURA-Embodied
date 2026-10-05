@@ -15,6 +15,12 @@ is now natively executed and audited: all 180 trial checks, 60 passive pairs and
 is 0/19 for baseline/V1 and 19/19 for V2. Seed 58 remains excluded throughout.
 This replicates the original preselected seeds, rather than adding unseen seeds.
 
+M4's [frozen magnitude sweep](../../docs/research/experiments/AETHER_CL_M4_Robustness.md)
+is prepared for new seeds 60–79: normal plus 2/4/8/12/20 cm shift/drop points,
+660 fresh one-episode children, strict paired and cross-magnitude controls.
+Its resumable evaluation records successes and failed retries without tuning.
+Native M4 results remain pending. The batch and live viewer run separately.
+
 Prototype A will test whether explicit verification and bounded recovery improve
 manipulation autonomy under disturbances while keeping the manipulation policy
 fixed. Its findings return to branch 02 for AETHER architecture research.

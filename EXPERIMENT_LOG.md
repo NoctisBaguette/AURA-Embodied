@@ -525,6 +525,51 @@ and [machine audit](docs/research/experiments/evidence/AETHER_CL_M3_Isolated_Scr
 
 ---
 
+# EXP-0013 — M4 Magnitude Robustness Preregistered
+
+Date: 2026-10-05 (Asia/Shanghai)
+
+Status: prepared; native execution/results pending.
+
+After the accepted M3 isolation replication, freeze a new magnitude curve
+without changing the controller, verifier, physics, task scoring or budgets.
+Preselected seeds 60–79 are new to native evaluation. Normal control and
+2/4/8/12/20 cm shift/drop points give 660 requested one-episode children,
+33 cells, 220 passive pairs, 220 causal recovery pairs and 200 normal-baseline
+pre-injection controls. The existing 2–20 cm runtime validation stays intact.
+Drop changes height as well as horizontal position; normal is a separate
+no-injection control, not a zero-magnitude drop.
+
+Every trial launches a fresh interpreter/simulator using the accepted M3 CLI.
+Ten accepted source hashes, the new runner hash and exact committed protocols
+are guarded before output/launch and each new trial. Full reset/prefix checks
+are retained. The new cross-magnitude check requires baseline resets and
+pre-injection trajectories to match each seed's normal control exactly.
+All systems share the same preselected seeds; frames/conditions are correlated.
+
+The parent writes raw trial manifests/logs/results, checkpoint file hashes,
+cell/reference-agreement metrics, paired rescues/regressions and curve.csv.
+Failures, aborts, unsupported diagnoses, exclusions and zero attempts stay
+measured; incomplete or invalid comparison curve estimates remain null.
+Graceful pauses make new exclusive partial archives. Continuation replays
+recorded checks, verifies hashes/protocol/software/startup environment and
+continues unstarted slots only, retaining all failures. An OS-held study lock
+prevents competing writers. Final and partial archives remain separate.
+Long server runs use nohup so SSH disconnection does not terminate the batch.
+
+All 98 local tests pass, including the 660-slot continuation/archive fixture,
+strict small/large-magnitude runtime pairs, control-prefix tamper rejection,
+source/protocol/environment/raw-hash guards, competing-writer rejection and
+dense metric aggregation with uncertainty. Python 3.10 syntax, CLI help and
+documentation links verify. Fixture results do not establish native physics.
+Validation is recorded in the [M4 protocol and implementation note](docs/research/experiments/AETHER_CL_M4_Robustness.md).
+No new native result or robustness claim is made. Continue using the A100;
+no packages/4090 are required. Live observation remains a separate paused-viewer
+launch after selecting useful cases from the audited curve. Precision/speed
+changes or richer perception/physics tasks require subsequent protocols.
+
+---
+
 # Experiment Template
 
 ## Experiment ID
