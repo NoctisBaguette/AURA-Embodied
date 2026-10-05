@@ -233,7 +233,8 @@ Checks require complete eligible episodes, expected task/failure outcomes,
 logged intervention timing/pose changes, clean revision evidence, and exact
 paired action/observation/reference traces with matching software, policy, and
 task rules. Differences are reported with the first differing field/step.
-Reset contact flags remain excluded, consistent with the M2 input boundary.
+Reset `info` is omitted; the full reset observation remains compared. The
+verifier ignores reset contact flags from either location.
 Failed/interrupted trials retain their available raw logs; exclusions cannot
 pass and are not resampled. The archive records content hashes and can include
 the earlier rendered shift run for independent audit.
@@ -273,6 +274,36 @@ runtime, disturbances, packages, and settings are unchanged. All 52 local tests
 passed, including four subprocess/environment regressions. Corrected native
 rerun remains pending with a new archive filename. These are seed-0 development
 checks, not held-out robustness results. See [the native audit report](docs/research/experiments/AETHER_CL_M2_Native_Screening.md).
+
+---
+
+# EXP-0006 M2 Acceptance Complete and Frozen Fresh-Seed Screening
+
+Date: 2026-10-05 (Asia/Shanghai)
+
+Audited `aether-cl-m2-evidence-isolated.tar.gz` (SHA-256
+`6e6c513ab126db079730351917a09e2bb481291ce68ded930121892d27ebae6e`).
+All 35 indexed file hashes, seven episodes/2,520 actions, six clean batch
+manifests at `3e07c58`, and child stdout/results agree. All six native behavior
+checks and three exact paired traces pass, including strict startup software
+equality. Outcomes/detection steps and trace hashes reproduce the original
+native suite. The original failed archive is preserved. M2 seed-0 development
+acceptance is complete; broad robustness remains unmeasured.
+
+Prepared a frozen screening mode for seeds 20-39: 20 episodes per cell,
+normal/shift/drop baseline/V1, 360 actions per eligible episode, 0.12 m
+interventions, 120 requested episodes and 20 unique reset seeds. Four frozen
+source-file hashes and settings are preregistered. No policy, verifier, runtime,
+disturbance, or threshold changes accompany screening. Exclusions are retained
+without replacement. Performance is measured rather than forced to match
+seed-0 outcomes; only completeness, denominators, and paired evidence are gated.
+
+Clarified comparator metadata: reset `info` is omitted, while complete reset
+observations (including raw `extra.is_grasped`) are compared. The old generic
+metadata label was imprecise; canonical traces and verifier inputs are unchanged.
+All 58 local tests passed, including frozen seed coverage, natural task failure,
+exclusions, denominator errors, and metadata boundaries. Fresh native screening
+results are pending before M3 recovery. See [the frozen plan](docs/research/experiments/AETHER_CL_M2_Frozen_Screening.md).
 
 ---
 

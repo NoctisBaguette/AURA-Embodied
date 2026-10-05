@@ -4,10 +4,9 @@ This directory implements environment smoke tests, a fixed PickCube controller,
 and **M2 passive verification with controlled disturbances** for AETHER-CL v0.1.
 Smoke mode runs seeded random actions; fixed mode attempts grasping and transport
 using simulator state and a timed sequence. M1 native baseline screening is
-complete. The six native M2 seed-0 normal/shift/drop behavioral checks and paired
-traces were audited. A startup library-path mismatch exposed process reuse in
-the acceptance runner; its correction awaits a native rerun. Recovery is the
-next implementation milestone.
+complete. M2 seed-0 native acceptance is complete: all six behavior checks,
+paired traces, and startup environments pass after process isolation. Frozen
+fresh-seed screening is prepared; recovery follows its review.
 
 Prototype A will test whether explicit verification and bounded recovery improve
 manipulation autonomy under disturbances while keeping the manipulation policy
@@ -147,8 +146,9 @@ The acceptance runner executes six seed-0, 360-action, nonrendered trials:
 normal/shift/drop, each with policy-only baseline and passive V1. It checks the
 expected task/detection outcomes and compares reset geometry, every action,
 post-action observation, controller decision, simulator info, reference, and
-intervention record between each pair. Reset contact flags are deliberately
-excluded from comparison because they are outside the M2 observation boundary.
+intervention record between each pair. Reset `info` is omitted, while the full
+reset observation remains compared, including its raw `extra.is_grasped` flag.
+The verifier does not consume reset contact flags from either location.
 It also requires recorded clean revisions and matching software/policy/task
 contracts. Exact equality is a check to perform, not an assumed native result.
 
@@ -181,8 +181,34 @@ captured suite-start environment and retains child stdout/stderr in the archive.
 It signals and joins the active child on Ctrl+C before archiving. Library-path
 equality stays strict. All 52 local tests passed, including fresh-process
 isolation, nonzero child exits, interrupt cleanup, and rejection of real library
-environment differences. Recheck the native suite with a new archive filename;
-the prior failed archive is preserved.
+environment differences. This prompted a native rerun with a new archive;
+the prior failed archive is preserved. The isolated rerun has now been audited:
+all 35 indexed hashes, six expected native outcomes, and three paired traces
+pass, with identical startup software records. M2 seed-0 development acceptance
+is complete; this does not establish broad robustness.
+
+### Frozen fresh-seed screening
+
+```bash
+python -m aether_cl.acceptance --screening --output runs/m2-screening
+```
+
+This fixes seeds 20-39, 20 episodes per cell, normal/shift/drop baseline/V1,
+360 actions per eligible episode, and 0.12 m perturbations: 120 requested
+episodes across 20 unique reset seeds. Policy, task rules, verifier thresholds,
+runtime, and disturbances remain frozen. Accepted source hashes are enforced
+before any trial. Each cell
+uses a fresh process with the same startup environment.
+
+Screening checks data integrity, full budgets, original seed order, exclusions,
+eligible-only denominators, and paired traces. Task failures, false alarms,
+uncertainty, and unexpected diagnoses remain measured outcomes rather than
+automatic rejection of evidence. `state: passed` means valid paired evidence,
+not perfect manipulation/detection. Existing raw metrics and all per-episode
+records are archived. There is no resampling or threshold tuning on these seeds.
+See [the frozen screening plan](../../docs/research/experiments/AETHER_CL_M2_Frozen_Screening.md).
+All 58 local tests passed, including seed coverage, measured policy failure,
+exclusions, denominator checks, and precise reset-comparison metadata.
 
 ## Offline deployment through a connected laptop
 

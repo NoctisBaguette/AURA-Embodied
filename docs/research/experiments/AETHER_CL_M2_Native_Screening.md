@@ -2,8 +2,9 @@
 
 Date: 2026-10-05 (Asia/Shanghai)
 
-Status: native behavior and traces audited; original suite failed one environment
-comparison. Process-isolation correction tested locally; native rerun pending.
+Status: both original and isolated native behavior/traces audited. The original
+failed archive remains preserved; the isolated rerun passes all environment and
+paired-trace checks. Seed-0 development acceptance is complete.
 
 ## Source and integrity
 
@@ -59,7 +60,8 @@ against raw observations. Reference and verifier replay matches every frame;
 confusion counts/rates independently recomputed from recorded labels match.
 All three canonical baseline/V1 traces match exactly, including actions,
 observations, fresh simulator info, reference, and disturbance poses. Reset
-contact flags are intentionally outside that comparison and M2 input boundary.
+`info` is omitted, while full reset observations remain compared, including raw
+`extra.is_grasped`. The verifier ignores reset contact flags from both locations.
 
 The earlier rendered shift trace matches nonrendered V1 exactly, including all
 360 verdicts. The user-supplied viewer status equals the raw result after removing
@@ -93,7 +95,8 @@ joins the child on interruption before archiving. Policy, runtime, verifier,
 disturbance implementation, thresholds, packages, and budget are unchanged.
 All 52 local tests passed, including fresh-process environment isolation,
 nonzero-child evidence preservation, interrupt cleanup, and continued rejection
-of differing library environments. Corrected native execution is still pending.
+of differing library environments. Corrected native execution was pending at
+that point; its completion is recorded below.
 
 ## Next gate
 
@@ -103,3 +106,26 @@ checks. Freeze the shared policy/task/detection settings and screen fresh seeds
 before M3 recovery comparisons. Prototype A remains scoped to verification and
 bounded recovery; these seed-0 development cases do not establish held-out
 robustness or full AETHER implementation.
+
+## Isolated rerun completion
+
+User-supplied `aether-cl-m2-evidence-isolated.tar.gz`, 885,102 bytes, SHA-256
+`6e6c513ab126db079730351917a09e2bb481291ce68ded930121892d27ebae6e`.
+All 36 unique regular archive members and 35 indexed hashes were checked.
+Six clean batch manifests record `3e07c58d68290d009d9a7c175ee22104a9b51379`.
+All six startup software dictionaries agree exactly, with the private GLVND
+path alone. Every child stdout result equals its raw result; stderr has no
+Python tracebacks. Native outcomes, first failure/detection steps, and all three
+canonical trace hashes are identical to the original failed suite. The prior
+rendered case and its supplied status also match as before. All trial and pair
+checks pass; the original failure is retained as historical evidence.
+
+The [isolated audit](evidence/AETHER_CL_M2_Isolated_Audit.json) records these
+checks and scope. The old generic `reset_contact_flags_compared: false` label
+referred to omitted reset `info`; the actual comparator retained raw reset
+observations. New metadata distinguishes the two locations without changing
+traces or acceptance results. This clarification affects metadata only, not
+policy/verifier input boundaries.
+
+Next is [frozen fresh-seed screening](AETHER_CL_M2_Frozen_Screening.md), followed
+by review before recovery. No further seed-0 acceptance rerun is required.

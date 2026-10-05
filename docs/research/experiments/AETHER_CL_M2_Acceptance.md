@@ -2,8 +2,8 @@
 
 Date: 2026-10-05 (Asia/Shanghai)
 
-Status: first native behavioral/trace checks audited; a startup environment
-mismatch exposed runner process reuse. Corrected process-isolated rerun pending.
+Status: M2 seed-0 development acceptance complete. The original startup mismatch
+was corrected, and all isolated native trial/pair/software checks pass.
 
 ## Purpose and boundary
 
@@ -71,8 +71,10 @@ revisions and compares software, policy settings, task rules, and task outcome.
 Canonical paired traces contain reset seed/geometry/eligibility, each applied
 intervention, and every action, observation, controller decision, fresh simulator
 info, reward, termination flag, and reference output. Times, wall duration,
-verification output, and output paths are not compared. Reset contact flags are
-excluded because they were observed to be stale-looking and are not M2 inputs.
+verification output, and output paths are not compared. Reset `info` is omitted;
+the complete reset observation, including `extra.is_grasped`, remains compared.
+The verifier ignores all reset contact flags. Comparison metadata now names
+these two locations explicitly; canonical traces themselves are unchanged.
 First differing record/field/step and trace SHA-256 values are reported. Exact
 equality is demanded for this narrow deterministic development gate; any native
 difference needs inspection rather than an automatic change to policy/settings.
@@ -99,7 +101,10 @@ is not waived. The corrected runner executes each cell in a new process.
 All 52 local tests passed, including four regressions for import-side environment
 mutation, nonzero child exits, joined interrupt cleanup, and continued rejection
 of differing library environments. See [the audit](AETHER_CL_M2_Native_Screening.md).
-The corrected native suite still needs execution.
+The corrected native suite has now been audited successfully. All 35 indexed
+file hashes, six native trials, and three canonical pair traces pass; all six
+startup software records agree exactly. Its trace hashes reproduce the original
+suite. See [the isolated audit](evidence/AETHER_CL_M2_Isolated_Audit.json).
 
 After native evidence passes and the earlier live run is audited, freeze the
 settings and run matched fresh-seed screening before recovery comparisons.

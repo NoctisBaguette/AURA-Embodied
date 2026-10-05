@@ -1,4 +1,4 @@
-"""Six bounded M2 development checks; archive evidence even when checks fail."""
+"""M2 acceptance or frozen fresh-seed screening, with archived evidence."""
 
 from __future__ import annotations
 
@@ -20,6 +20,12 @@ from .runtime import RunConfig, json_value, software_manifest
 
 
 CONDITIONS = {"none": None, "object_shift": "GRASP_FAILURE", "object_drop": "OBJECT_LOST"}
+FROZEN_FILES_SHA256 = {
+    "policies.py": "c4e16450ad64ad8683db69d7a166720e411e5e97c8c1def3471b1b04ced04f29",
+    "verification.py": "472073de5db587de20c2185b324181f169a7bc0e52cd5706aef7506f928f83a7",
+    "disturbances.py": "d745ca4368fdee0a2fcc9abba02a9db069a652b8cabcb7feb9f761a6cebbb95d",
+    "runtime.py": "471a5d26a384c6997f0d5a6713d5595bc07dcfe64e0bc2a19b13c786d9449c07",
+}
 STEP_FIELDS = ("step", "action", "observation", "controller_decision", "reference",
                "info", "reward", "terminated", "truncated")
 
@@ -116,6 +122,50 @@ def trace(events):
     return records
 
 
+def check_screening(directory, config):
+    """Check integrity and denominators; performance is measured, not gated."""
+    manifest, result, events = load_trial(directory)
+    episodes = result.get("episodes", [])
+    eligible = [e for e in episodes if not e.get("excluded", False)]
+    evaluation = result.get("evaluation", {})
+    step_events = [e for e in events if e["event"] == "step"]
+    checks = {
+        "config_matches": manifest.get("config") == json_value(asdict(config)),
+        "clean_revision_recorded": bool(manifest["software"].get("git_commit"))
+        and manifest["software"].get("git_dirty") is False,
+        "finished": result.get("state") == "finished" and evaluation.get("complete") is True,
+        "exact_requested_seeds": [e.get("seed") for e in episodes] == list(range(config.seed, config.seed + config.episodes)),
+        "episode_indices": [e.get("episode") for e in episodes] == list(range(config.episodes)),
+        "has_eligible_episode": bool(eligible),
+        "eligible_full_budget": all(e.get("steps") == config.max_steps and not e.get("stopped") for e in eligible),
+        "exclusions_have_no_actions": all(e.get("steps") == 0 for e in episodes if e.get("excluded", False)),
+        "no_execution_errors": not any(e["event"] in ("run_failed", "cleanup_failed") for e in events),
+        "logged_step_count": len(step_events) == sum(e.get("steps", 0) for e in episodes),
+        "logged_step_sequences": all([e["step"] for e in step_events if e["episode"] == episode["episode"]]
+                                     == list(range(1, episode.get("steps", 0) + 1)) for episode in episodes),
+        "eligible_denominator": evaluation.get("eligible_episodes") == len(eligible)
+        and evaluation.get("excluded_episodes") == len(episodes) - len(eligible),
+        "task_rate_matches_episodes": evaluation.get("task_success_rate_at_end")
+        == (sum(e["task_success_at_end"] for e in eligible) / len(eligible) if eligible else None),
+    }
+    injections = [e for e in events if e["event"] == "disturbance_applied"]
+    expected_step = {"none": None, "object_shift": 81, "object_drop": 181}[config.disturbance]
+    expected_ids = [e["episode"] for e in eligible] if expected_step else []
+    checks["injection_per_eligible_episode"] = [e["episode"] for e in injections] == expected_ids
+    checks["injection_plan_matches"] = all(e["step"] == expected_step and
+                                           all(e["disturbance"].get(k) == v for k, v in manifest["disturbance"].items())
+                                           for e in injections)
+    metrics = evaluation.get("verification_metrics")
+    checks["verification_accounted"] = (metrics is not None and metrics.get("complete") is True
+                                        and metrics.get("steps") == len(step_events)
+                                        if config.verification else metrics is None)
+    # False alarms, uncertain observations, and task failures remain measured
+    # outcomes. Requiring seed-0 behavior here would bias fresh-seed results.
+    return {"passed": all(checks.values()), "checks": checks,
+            "failed_checks": [k for k, v in checks.items() if not v],
+            "episodes": episodes, "evaluation": evaluation}
+
+
 def compare_pair(baseline, v1):
     left_manifest, left_result, left_events = load_trial(baseline)
     right_manifest, right_result, right_events = load_trial(v1)
@@ -142,11 +192,13 @@ def compare_pair(baseline, v1):
     return {"passed": all(checks.values()), "checks": checks, "first_difference": first_difference,
             "baseline_records": len(left), "v1_records": len(right),
             "baseline_trace_sha256": digest(left), "v1_trace_sha256": digest(right),
-            "reset_contact_flags_compared": False}
+            "reset_info_contact_flags_compared": False,
+            "reset_observation_contact_flags_compared": True}
 
 
-def archive_evidence(directory, archive, live_run):
-    files = [(p, str(Path("acceptance") / p.relative_to(directory)))
+def archive_evidence(directory, archive, live_run, root="acceptance",
+                     scope="development_acceptance_evidence_not_held_out_benchmark"):
+    files = [(p, str(Path(root) / p.relative_to(directory)))
              for p in sorted(directory.rglob("*")) if p.is_file() and not p.is_symlink()]
     if live_run:
         files.extend((live_run / name, str(Path("prior-live-run") / name))
@@ -156,9 +208,9 @@ def archive_evidence(directory, archive, live_run):
                          "sha256": hashlib.sha256(path.read_bytes()).hexdigest()}
                         for path, name in files],
              "prior_live_run": str(live_run) if live_run else None,
-             "scope": "development_acceptance_evidence_not_held_out_benchmark"}
+             "scope": scope}
     write_json(directory / "archive_index.json", index)
-    files.append((directory / "archive_index.json", "acceptance/archive_index.json"))
+    files.append((directory / "archive_index.json", str(Path(root) / "archive_index.json")))
     archive.parent.mkdir(parents=True, exist_ok=True)
     # Exclusive creation prevents accidental replacement of earlier evidence.
     with archive.open("xb") as output:
@@ -207,8 +259,15 @@ def run_in_process(config, environment):
     return json.loads(results[0].read_text(encoding="utf-8"))
 
 
-def run_acceptance(output, archive=None, live_run=None, run_fn=None):
+def run_acceptance(output, archive=None, live_run=None, run_fn=None, screening=False):
     output = Path(output).resolve()
+    frozen = None
+    if screening:
+        frozen = {name: hashlib.sha256((Path(__file__).parent / name).read_bytes()).hexdigest()
+                  for name in FROZEN_FILES_SHA256}
+        changed = [name for name in frozen if frozen[name] != FROZEN_FILES_SHA256[name]]
+        if changed:
+            raise ValueError("Frozen M2 source hashes differ: " + ", ".join(changed))
     live_run = Path(live_run).resolve() if live_run else None
     if live_run:
         for name in ("manifest.json", "result.json", "events.jsonl"):
@@ -222,13 +281,18 @@ def run_acceptance(output, archive=None, live_run=None, run_fn=None):
     if archive == directory or directory in archive.parents:
         raise ValueError("Archive must be outside the acceptance directory")
     directory.mkdir(parents=True, exist_ok=False)
+    seed, episodes = (20, 20) if screening else (0, 1)
     report = {"state": "running", "run_directory": str(directory), "archive": str(archive),
-              "scope": "seed0_development_acceptance_not_held_out_benchmark",
-              "seed": 0, "max_steps": 360, "disturbance_magnitude_m": 0.12,
+              "scope": "frozen_seed20_39_screening" if screening else "seed0_development_acceptance_not_held_out_benchmark",
+              "seed": seed, "episodes_per_cell": episodes, "max_steps": 360, "disturbance_magnitude_m": 0.12,
               "software": software_manifest(), "trials": [], "pairs": [],
               "prior_live_run": str(live_run) if live_run else None,
               "trial_process_isolation": "fresh_python_interpreter_same_suite_start_environment"
               if run_fn is None else "injected_test_runner"}
+    if screening:
+        report["acceptance_revision"] = "3e07c58d68290d009d9a7c175ee22104a9b51379"
+        report["frozen_files_sha256"] = frozen
+        report["passed_means"] = "complete_valid_paired_evidence_not_successful_manipulation_or_perfect_detection"
     trial_environment = os.environ.copy()
     interrupted = False
     for condition in CONDITIONS:
@@ -236,16 +300,17 @@ def run_acceptance(output, archive=None, live_run=None, run_fn=None):
             cell = directory / f"{condition}-{system}"
             config = RunConfig(controller="fixed_pick_cube", protocol="m2", verification=system == "v1",
                                disturbance=condition, max_steps=360, render=False, render_device="cuda:0",
-                               output=cell, seed=0, episodes=1, disturbance_magnitude=0.12)
+                               output=cell, seed=seed, episodes=episodes, disturbance_magnitude=0.12)
             trial = {"condition": condition, "system": system, "config": json_value(asdict(config)),
                      "run_directory": None, "passed": False, "state": "running"}
             report["trials"].append(trial)
             write_json(directory / "suite.json", report)
-            print(f"M2 acceptance: {condition} / {system}", flush=True)
+            print(f"M2 {'screening' if screening else 'acceptance'}: {condition} / {system}; seeds {seed}-{seed + episodes - 1}", flush=True)
             try:
                 result = run_fn(config) if run_fn else run_in_process(config, trial_environment)
                 trial["run_directory"] = result["run_directory"]
-                trial.update(check_trial(Path(result["run_directory"]), config), state="checked")
+                check = check_screening if screening else check_trial
+                trial.update(check(Path(result["run_directory"]), config), state="checked")
             except (Exception, KeyboardInterrupt) as error:
                 trial.update(state="error", error=f"{type(error).__name__}: {error}")
                 # runtime writes its error result in finally; retain that directory.
@@ -273,7 +338,8 @@ def run_acceptance(output, archive=None, live_run=None, run_fn=None):
                        len(report["trials"]) == 6 and all(t["passed"] for t in report["trials"])
                        and all(p["passed"] for p in report["pairs"]) else "failed")
     write_json(directory / "suite.json", report)
-    report["archive_sha256"] = archive_evidence(directory, archive, live_run)
+    report["archive_sha256"] = archive_evidence(directory, archive, live_run,
+                                               root="screening" if screening else "acceptance", scope=report["scope"])
     # The archive contains the pre-hash suite; this file adds the archive receipt.
     write_json(directory / "receipt.json", report)
     return report
@@ -284,12 +350,16 @@ def main():
     cli.add_argument("--output", type=Path, default=Path("runs/m2-acceptance"))
     cli.add_argument("--archive", type=Path)
     cli.add_argument("--live-run", type=Path, help="Include a prior live run's raw evidence")
+    cli.add_argument("--screening", action="store_true", help="Run frozen seeds 20-39; task/detection outcomes are measured, not gated")
     args = cli.parse_args()
-    result = run_acceptance(args.output, args.archive, args.live_run)
+    result = run_acceptance(args.output, args.archive, args.live_run, screening=args.screening)
     print(json.dumps({"state": result["state"], "run_directory": result["run_directory"],
+                      "scope": result["scope"], "seed": result["seed"],
+                      "episodes_per_cell": result["episodes_per_cell"],
+                      "passed_means": result.get("passed_means", "seed0_expected_outcomes_and_pair_integrity"),
                       "archive": result["archive"], "archive_sha256": result["archive_sha256"],
                       "trials": [{k: t.get(k) for k in
-                                  ("condition", "system", "passed", "failed_checks", "error")}
+                                  ("condition", "system", "passed", "failed_checks", "error", "evaluation")}
                                  for t in result["trials"]],
                       "pairs": result["pairs"]}, indent=2, allow_nan=False))
     raise SystemExit(0 if result["state"] == "passed" else 2)

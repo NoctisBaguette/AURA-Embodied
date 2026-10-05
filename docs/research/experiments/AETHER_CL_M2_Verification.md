@@ -2,9 +2,9 @@
 
 Date: 2026-10-05 (Asia/Shanghai)
 
-Status: implemented and locally checked. Native seed-0 normal/shift/drop outcomes
-and matched baseline/V1 traces were audited. The acceptance runner's startup
-environment mismatch was diagnosed; a process-isolated rerun remains pending.
+Status: M2 seed-0 native development acceptance is complete. Normal/shift/drop
+outcomes, paired traces, and identical process-isolated startup environments
+were audited. Frozen fresh-seed screening is prepared, with results pending.
 
 ## Purpose
 
@@ -214,7 +214,24 @@ comparison fails because OpenCV prepended its bundled library path after the
 first manifest. The runner reused one process. Do not relabel that original
 result. The corrected runner uses fresh interpreters with identical captured
 startup environments, preserves stdout/stderr, and keeps equality strict.
-All 52 local tests passed; native rerun pending. See the
+At correction time all 52 local tests passed and native rerun was pending;
+the completion update follows below. See the
 [screening report](AETHER_CL_M2_Native_Screening.md) and
 [audit records](evidence/AETHER_CL_M2_Native_Audit.json). These seed-0 development
 checks do not establish held-out robustness or perception accuracy.
+
+## Isolated acceptance completion
+
+The process-isolated rerun on clean `3e07c58` passes all six trial checks and all
+three pair checks, including strict software equality. All 35 indexed hashes
+and seven episodes/2,520 actions (including the prior live case) were audited.
+All six child stdout results match their raw results; no Python tracebacks
+appear in stderr. Pair trace hashes reproduce the original suite exactly.
+The original failed archive remains unchanged. See the
+[isolated audit](evidence/AETHER_CL_M2_Isolated_Audit.json).
+
+Native seed-0 acceptance is complete. The next [frozen screening](AETHER_CL_M2_Frozen_Screening.md)
+uses seeds 20-39 and measures outcomes without requiring seed-0 performance.
+The policy, verifier, runtime, disturbance implementation, thresholds, and task
+budget remain fixed. Screening integrity checks and CLI support bring local
+validation to 58 tests; target-server screening remains pending.
