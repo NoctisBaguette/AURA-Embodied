@@ -2,8 +2,9 @@
 
 Date: 2026-10-05 (Asia/Shanghai)
 
-Status: implemented and locally checked. Native M2 task-contract, disturbance
-adapter, and browser acceptance remain pending on the A100 server.
+Status: implemented and locally checked. A native seed-0 shifted-grasp alert and
+browser display were user-confirmed; raw-log audit and matched normal/shift/drop
+baseline/V1 acceptance remain pending on the A100 server.
 
 ## Purpose
 
@@ -183,6 +184,10 @@ and logged condition with matched baseline/V1 runs.
 Next, retrieve the live manifest/events and accept normal/shift/drop baseline/V1
 pairs under the same task rules before drawing any performance conclusion.
 No wheel, environment, driver, or 4090 change is required for this increment.
+The [acceptance runner](AETHER_CL_M2_Acceptance.md) automates these six development
+trials, paired trace checks, and evidence archiving without changing any M2
+policy/runtime/verifier/intervention code. Its eight additional tests bring the
+local suite to 48; native outcomes remain to be checked on the target server.
 
 After acceptance, run matched seed-20+ batches and freeze settings/budgets before
 M3 rule-based recovery. Results and limitations return to 02 after Prototype A;

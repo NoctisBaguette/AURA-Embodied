@@ -220,6 +220,32 @@ input boundaries, task rules, disturbance timing, metrics, and evidence limits.
 
 ---
 
+# EXP-0004 M2 Native Acceptance Harness
+
+Date: 2026-10-05 (Asia/Shanghai)
+
+Prepared a bounded six-cell native acceptance runner: seed 0, normal/shift/drop,
+baseline/V1, 360 actions each, no rendering. The underlying policy, verifier,
+runtime, thresholds, and disturbance code are unchanged. This is development
+acceptance, not a held-out benchmark or a robustness result.
+
+Checks require complete eligible episodes, expected task/failure outcomes,
+logged intervention timing/pose changes, clean revision evidence, and exact
+paired action/observation/reference traces with matching software, policy, and
+task rules. Differences are reported with the first differing field/step.
+Reset contact flags remain excluded, consistent with the M2 input boundary.
+Failed/interrupted trials retain their available raw logs; exclusions cannot
+pass and are not resampled. The archive records content hashes and can include
+the earlier rendered shift run for independent audit.
+
+All 48 local tests passed, including eight acceptance checks for trace drift,
+incorrect outcomes, execution errors, interruption, exclusions, dirty revisions,
+archive integrity, and missing evidence. Fixtures do not simulate native contact
+physics. The six-cell native results and prior-live raw-log audit remain pending.
+See [the acceptance procedure](docs/research/experiments/AETHER_CL_M2_Acceptance.md).
+
+---
+
 # Experiment Template
 
 ## Experiment ID

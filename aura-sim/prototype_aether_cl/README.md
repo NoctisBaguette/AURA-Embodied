@@ -4,8 +4,9 @@ This directory implements environment smoke tests, a fixed PickCube controller,
 and **M2 passive verification with controlled disturbances** for AETHER-CL v0.1.
 Smoke mode runs seeded random actions; fixed mode attempts grasping and transport
 using simulator state and a timed sequence. M1 native baseline screening is
-complete. M2 verification/diagnosis is implemented and locally checked, with
-target-server acceptance pending. Recovery is the next implementation milestone.
+complete. A native M2 seed-0 shifted-grasp failure was detected; matched normal,
+shift, and drop acceptance remains pending. Recovery is the next implementation
+milestone.
 
 Prototype A will test whether explicit verification and bounded recovery improve
 manipulation autonomy under disturbances while keeping the manipulation policy
@@ -108,8 +109,10 @@ perception accuracy.
 relocates it along world y and to its initial height before action 181. Default
 displacement is 0.12 m. These are one-time pose interventions, not physical push
 models. Orientation is preserved and velocities are zeroed. Timing, magnitude,
-and before/after poses are logged. Native CPU adapter acceptance remains pending;
-no extra packages or system changes are needed.
+and before/after poses are logged. The user-supplied native shift run detected
+`GRASP_FAILURE` with a two-step persistence delay. Its sudden sideways jump is
+scripted relocation, not a simulated physical push; raw events still need audit.
+No extra packages or system changes are needed.
 
 Example batch commands after environment activation:
 
@@ -135,6 +138,37 @@ all three conditions, budget/denominator/cleanup handling, freshness, uncertaint
 and checkpoint logic. Replaying the verifier on 4,038 eligible M1 normal-state
 observations produced no alarms; those old episodes ended early and cannot
 validate the new full-horizon success contract. See [the M2 protocol](../../docs/research/experiments/AETHER_CL_M2_Verification.md).
+
+### Matched native acceptance and evidence collection
+
+The acceptance runner executes six seed-0, 360-action, nonrendered trials:
+normal/shift/drop, each with policy-only baseline and passive V1. It checks the
+expected task/detection outcomes and compares reset geometry, every action,
+post-action observation, controller decision, simulator info, reference, and
+intervention record between each pair. Reset contact flags are deliberately
+excluded from comparison because they are outside the M2 observation boundary.
+It also requires recorded clean revisions and matching software/policy/task
+contracts. Exact equality is a check to perform, not an assumed native result.
+
+```bash
+python -m aether_cl.acceptance --output runs/m2-acceptance
+```
+
+The printed archive includes manifests, raw events, results, suite checks, and
+file hashes. `--live-run /absolute/path/to/prior/run` adds the earlier rendered
+trial; `--archive /absolute/path/to/evidence.tar.gz` sets the transfer filename.
+Existing archives are never overwritten. Execution errors or Ctrl+C produce a
+failed/interrupted report and retain available evidence; exit status is 2.
+A failed task in a disturbed trial can be an expected outcome, while an
+execution error cannot count as acceptance. An excluded reset cannot pass and
+is never replaced with a different seed.
+
+All 48 local tests passed, including eight acceptance-runner checks for trace
+drift, wrong outcomes, errors, interruption, exclusions, dirty revisions, archive
+hashes, and missing evidence. These tests use state-flow fixtures, not native
+physics. See [the acceptance procedure](../../docs/research/experiments/AETHER_CL_M2_Acceptance.md)
+for the interpretation and next-stage gate. The fixed policy, verifier,
+disturbances, and runtime are unchanged by this runner.
 
 ## Offline deployment through a connected laptop
 
