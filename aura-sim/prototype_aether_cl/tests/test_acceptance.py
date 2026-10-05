@@ -2,13 +2,17 @@
 
 import hashlib
 import json
+import os
 from pathlib import Path
+import subprocess
+import sys
 import tarfile
 import tempfile
+import time
 import unittest
 from unittest.mock import patch
 
-from aether_cl.acceptance import run_acceptance
+from aether_cl.acceptance import run_acceptance, run_in_process
 from aether_cl.runtime import RunConfig, run
 from test_m2 import Environment, inject
 
@@ -122,7 +126,7 @@ class AcceptanceTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temporary:
             archive = Path(temporary) / "existing.tar.gz"
             archive.write_bytes(b"previous evidence")
-            with patch("aether_cl.acceptance.run") as mock_run:
+            with patch("aether_cl.acceptance.run_in_process") as mock_run:
                 with self.assertRaises(FileExistsError):
                     run_acceptance(Path(temporary) / "runs", archive, run_fn=mock_run)
                 with self.assertRaises(ValueError):
@@ -142,6 +146,116 @@ class AcceptanceTests(unittest.TestCase):
             self.assertIn("clean_revision_recorded", report["trials"][0]["failed_checks"])
             with tarfile.open(report["archive"]) as bundle:
                 self.assertIn("prior-live-run/events.jsonl", bundle.getnames())
+
+    def test_library_environment_difference_still_rejects_a_pair(self):
+        def change_manifest(config):
+            result = fixture_run(config)
+            if config.verification and config.disturbance == "none":
+                path = Path(result["run_directory"]) / "manifest.json"
+                manifest = json.loads(path.read_text())
+                manifest["software"]["native_library_environment"] = {"LD_LIBRARY_PATH": "/unexpected"}
+                path.write_text(json.dumps(manifest))
+            return result
+        with tempfile.TemporaryDirectory() as temporary:
+            report = run_acceptance(temporary, run_fn=change_manifest)
+            self.assertEqual(report["state"], "failed")
+            self.assertTrue(report["pairs"][0]["checks"]["trace_equal"])
+            self.assertFalse(report["pairs"][0]["checks"]["software_equal"])
+
+    def test_each_trial_has_a_fresh_interpreter_and_identical_start_environment(self):
+        program = """
+import json, os, sys
+from pathlib import Path
+p = Path(sys.argv[1]) / 'child-run'
+p.mkdir()
+original = os.environ.get('LD_LIBRARY_PATH')
+os.environ['LD_LIBRARY_PATH'] = 'cv2-added:' + (original or '')
+(p / 'result.json').write_text(json.dumps({'run_directory': str(p), 'initial_path': original, 'pid': os.getpid()}))
+print('child completed', flush=True)
+"""
+        real_popen = subprocess.Popen
+        commands = []
+        def launch(command, **kwargs):
+            commands.append(command)
+            output = command[command.index("--output") + 1]
+            return real_popen([sys.executable, "-c", program, output], **kwargs)
+        with tempfile.TemporaryDirectory() as temporary, patch.dict(os.environ, {"LD_LIBRARY_PATH": "suite-start"}):
+            environment = os.environ.copy()
+            with patch("aether_cl.acceptance.subprocess.Popen", side_effect=launch):
+                first = run_in_process(RunConfig(output=Path(temporary) / "baseline", verification=False), environment)
+                second = run_in_process(RunConfig(output=Path(temporary) / "v1", verification=True), environment)
+            self.assertEqual(first["initial_path"], second["initial_path"])
+            self.assertEqual(second["initial_path"], "suite-start")
+            self.assertNotEqual(first["pid"], second["pid"])
+            self.assertEqual(os.environ["LD_LIBRARY_PATH"], "suite-start")
+            self.assertEqual(commands[0][commands[0].index("--system") + 1], "baseline")
+            self.assertEqual(commands[1][commands[1].index("--system") + 1], "v1")
+            self.assertIn("child completed", (Path(temporary) / "v1/process.stdout.log").read_text())
+
+    def test_nonzero_child_exit_preserves_result_and_stderr(self):
+        program = """
+import json, sys
+from pathlib import Path
+p = Path(sys.argv[1]) / 'child-run'
+p.mkdir()
+(p / 'result.json').write_text(json.dumps({'state': 'error'}))
+print('native fixture failure', file=sys.stderr)
+sys.exit(3)
+"""
+        real_popen = subprocess.Popen
+        def launch(command, **kwargs):
+            return real_popen([sys.executable, "-c", program,
+                               command[command.index("--output") + 1]], **kwargs)
+        with tempfile.TemporaryDirectory() as temporary:
+            directory = Path(temporary) / "trial"
+            with patch("aether_cl.acceptance.subprocess.Popen", side_effect=launch):
+                with self.assertRaisesRegex(RuntimeError, "exited 3"):
+                    run_in_process(RunConfig(output=directory), os.environ.copy())
+            self.assertEqual(json.loads((directory / "child-run/result.json").read_text())["state"], "error")
+            self.assertIn("native fixture failure", (directory / "process.stderr.log").read_text())
+
+    def test_interrupt_joins_child_before_returning_evidence_to_suite(self):
+        program = """
+import json, sys, time
+from pathlib import Path
+p = Path(sys.argv[1]) / 'child-run'
+p.mkdir()
+try:
+    (p / 'ready').write_text('ready')
+    time.sleep(30)
+finally:
+    (p / 'result.json').write_text(json.dumps({'state': 'error', 'error': 'interrupted'}))
+"""
+        real_popen = subprocess.Popen
+        children = []
+        def launch(command, **kwargs):
+            output = command[command.index("--output") + 1]
+            process = real_popen([sys.executable, "-c", program, output], **kwargs)
+            children.append(process)
+            original_wait = process.wait
+            first = True
+            def interrupt_wait(*args, **kwargs):
+                nonlocal first
+                if first:
+                    first = False
+                    deadline = time.monotonic() + 5
+                    while not (Path(output) / "child-run/ready").exists():
+                        if time.monotonic() > deadline:
+                            process.kill()
+                            original_wait()
+                            self.fail("Child fixture did not initialize")
+                        time.sleep(.01)
+                    raise KeyboardInterrupt()
+                return original_wait(*args, **kwargs)
+            process.wait = interrupt_wait
+            return process
+        with tempfile.TemporaryDirectory() as temporary:
+            directory = Path(temporary) / "trial"
+            with patch("aether_cl.acceptance.subprocess.Popen", side_effect=launch):
+                with self.assertRaises(KeyboardInterrupt):
+                    run_in_process(RunConfig(output=directory), os.environ.copy())
+            self.assertIsNotNone(children[0].poll())
+            self.assertEqual(json.loads((directory / "child-run/result.json").read_text())["error"], "interrupted")
 
 
 if __name__ == "__main__":

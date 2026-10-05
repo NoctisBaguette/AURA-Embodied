@@ -2,15 +2,17 @@
 
 Date: 2026-10-05 (Asia/Shanghai)
 
-Status: runner implemented and locally tested; target-server execution pending.
+Status: first native behavioral/trace checks audited; a startup environment
+mismatch exposed runner process reuse. Corrected process-isolated rerun pending.
 
 ## Purpose and boundary
 
 Before M3 recovery, accept M2's native task contract, passive verification, and
 controlled disturbance path. The seed-0 rendered object-shift trial supplied by
-the user detected grasp failure, but it is one case and its manifest/events still
-need independent audit. Six matched nonrendered runs supply the missing normal
-and dropped-object checks and compare baseline/V1 traces under identical settings.
+the user detected grasp failure. Its raw evidence and the first six-cell native
+archive have now been audited; see the report linked below. Six matched
+nonrendered runs supply the normal and dropped-object checks and compare
+baseline/V1 traces under identical settings.
 The manipulation policy, verifier, runtime, and disturbance modules are unchanged.
 
 | Condition | Baseline | V1 expectation |
@@ -43,7 +45,7 @@ export CUDA_VISIBLE_DEVICES=1
 python -m unittest discover -s tests -v
 python -m aether_cl.acceptance \
     --output /home/jiangle/aura-work/AURA-Embodied-offline/aura-sim/prototype_aether_cl/runs/m2-acceptance \
-    --archive /home/jiangle/aura-work/aether-cl-m2-evidence.tar.gz \
+    --archive /home/jiangle/aura-work/aether-cl-m2-evidence-isolated.tar.gz \
     --live-run /home/jiangle/aura-work/AURA-Embodied-offline/aura-sim/prototype_aether_cl/runs/m2-v1-live/20261005T020329Z-d194299a
 ```
 
@@ -53,7 +55,11 @@ any new trials. Existing archives are not overwritten; for a later rerun, choose
 a new filename. A failed acceptance check or interrupt exits with status 2 after
 retaining available evidence. Initialization or cleanup exceptions remain errors,
 not failed-task scores. Ordinary cell errors allow the remaining cells to run;
-Ctrl+C stops the suite and collects partial evidence.
+Ctrl+C stops the suite and collects partial evidence. Every cell now starts in a
+fresh interpreter with the same captured suite-start environment. Child stdout
+and stderr are archived. On Ctrl+C the suite signals and joins the child before
+collecting its files; a ten-second grace period is followed by forced termination
+if it cannot exit. The initial native failed archive is retained for audit.
 
 ## Evidence and checks
 
@@ -80,11 +86,20 @@ audit the prior live run; collecting it enables the subsequent raw-log review.
 
 ## Validation and next stage
 
-All 48 local tests passed. Eight new tests establish that trace drift, incorrect
+The initial 48 local tests passed. Eight acceptance tests establish that trace drift, incorrect
 task outcomes, execution errors, interruption, exclusions, dirty revisions, and
 missing prior evidence cannot pass, and that archived content hashes match.
 The earlier runtime/verifier/controller tests remain intact. Local fixtures
 test data flow and failure handling; they do not model native contacts/physics.
+
+The initial native suite's expected outcomes and all three canonical traces
+passed, but the normal pair's startup library environment differed because
+OpenCV amended `LD_LIBRARY_PATH` in the shared runner process. Library equality
+is not waived. The corrected runner executes each cell in a new process.
+All 52 local tests passed, including four regressions for import-side environment
+mutation, nonzero child exits, joined interrupt cleanup, and continued rejection
+of differing library environments. See [the audit](AETHER_CL_M2_Native_Screening.md).
+The corrected native suite still needs execution.
 
 After native evidence passes and the earlier live run is audited, freeze the
 settings and run matched fresh-seed screening before recovery comparisons.

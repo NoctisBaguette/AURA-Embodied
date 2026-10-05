@@ -2,9 +2,9 @@
 
 Date: 2026-10-05 (Asia/Shanghai)
 
-Status: implemented and locally checked. A native seed-0 shifted-grasp alert and
-browser display were user-confirmed; raw-log audit and matched normal/shift/drop
-baseline/V1 acceptance remain pending on the A100 server.
+Status: implemented and locally checked. Native seed-0 normal/shift/drop outcomes
+and matched baseline/V1 traces were audited. The acceptance runner's startup
+environment mismatch was diagnosed; a process-isolated rerun remains pending.
 
 ## Purpose
 
@@ -169,9 +169,10 @@ The two missed frames precede confirmation. These are correlated frames from
 one failure episode, not 234 independent tests or evidence of general 99%
 detection accuracy. The result supports this native shifted-grasp detection
 case; normal full-horizon success, object-loss detection, and matched baseline/V1
-native acceptance remain pending. The run manifest and raw events have not yet
-been retrieved, so revision, exact injection trajectory, and contact motion
-have not been independently audited.
+native acceptance were still pending at initial receipt. The run manifest and
+raw events had not yet been retrieved, so revision, exact injection trajectory,
+and contact motion had not been independently audited. The later native audit
+below resolves those checks against raw logs.
 
 The user observed a sudden sideways jump and possible finger contact. The
 configured `object_shift` deliberately relocates the cube by 0.12 m before
@@ -181,15 +182,39 @@ be described as synthetic state perturbation, not realistic disturbance
 physics. A continuous force/contact disturbance needs a separately specified
 and logged condition with matched baseline/V1 runs.
 
-Next, retrieve the live manifest/events and accept normal/shift/drop baseline/V1
-pairs under the same task rules before drawing any performance conclusion.
+The initial next step was to retrieve the live manifest/events and accept
+normal/shift/drop baseline/V1 pairs under the same task rules. The subsequent
+audit below records those findings and the remaining corrected-runner rerun.
 No wheel, environment, driver, or 4090 change is required for this increment.
 The [acceptance runner](AETHER_CL_M2_Acceptance.md) automates these six development
 trials, paired trace checks, and evidence archiving without changing any M2
-policy/runtime/verifier/intervention code. Its eight additional tests bring the
-local suite to 48; native outcomes remain to be checked on the target server.
+policy/runtime/verifier/intervention code. Its first eight additional tests
+brought the local suite to 48; the subsequent process-isolation correction and
+native results are recorded below.
 
 After acceptance, run matched seed-20+ batches and freeze settings/budgets before
 M3 rule-based recovery. Results and limitations return to 02 after Prototype A;
 motion-policy optimization remains a separate experiment from the verification/
 recovery intervention.
+
+## Native raw-log audit update
+
+The uploaded six-cell archive and earlier rendered run were audited: all 23
+indexed file hashes, seven clean revision manifests, and 2,520 action records
+were checked. Normal baseline/V1 both succeed; shifted grasps fail with V1
+confirmation at 127 versus reference 125; dropped objects fail with V1
+confirmation at 183 versus reference 181. All three canonical paired traces
+match exactly. The rendered shift run matches the nonrendered V1 trace and all
+360 verdicts. The prior viewer status matches its raw result. The cube's maximum
+movement after the scripted shift was 1.262 micrometres, supporting relocation
+as the explanation for the observed jump in this recorded trial.
+
+The original suite nevertheless reports `failed`: only the normal pair's software
+comparison fails because OpenCV prepended its bundled library path after the
+first manifest. The runner reused one process. Do not relabel that original
+result. The corrected runner uses fresh interpreters with identical captured
+startup environments, preserves stdout/stderr, and keeps equality strict.
+All 52 local tests passed; native rerun pending. See the
+[screening report](AETHER_CL_M2_Native_Screening.md) and
+[audit records](evidence/AETHER_CL_M2_Native_Audit.json). These seed-0 development
+checks do not establish held-out robustness or perception accuracy.

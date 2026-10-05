@@ -4,9 +4,10 @@ This directory implements environment smoke tests, a fixed PickCube controller,
 and **M2 passive verification with controlled disturbances** for AETHER-CL v0.1.
 Smoke mode runs seeded random actions; fixed mode attempts grasping and transport
 using simulator state and a timed sequence. M1 native baseline screening is
-complete. A native M2 seed-0 shifted-grasp failure was detected; matched normal,
-shift, and drop acceptance remains pending. Recovery is the next implementation
-milestone.
+complete. The six native M2 seed-0 normal/shift/drop behavioral checks and paired
+traces were audited. A startup library-path mismatch exposed process reuse in
+the acceptance runner; its correction awaits a native rerun. Recovery is the
+next implementation milestone.
 
 Prototype A will test whether explicit verification and bounded recovery improve
 manipulation autonomy under disturbances while keeping the manipulation policy
@@ -111,7 +112,8 @@ displacement is 0.12 m. These are one-time pose interventions, not physical push
 models. Orientation is preserved and velocities are zeroed. Timing, magnitude,
 and before/after poses are logged. The user-supplied native shift run detected
 `GRASP_FAILURE` with a two-step persistence delay. Its sudden sideways jump is
-scripted relocation, not a simulated physical push; raw events still need audit.
+scripted relocation, not a simulated physical push. Raw events now confirm that
+the cube stayed within 1.3 micrometres of the injected position afterward.
 No extra packages or system changes are needed.
 
 Example batch commands after environment activation:
@@ -163,12 +165,24 @@ A failed task in a disturbed trial can be an expected outcome, while an
 execution error cannot count as acceptance. An excluded reset cannot pass and
 is never replaced with a different seed.
 
-All 48 local tests passed, including eight acceptance-runner checks for trace
+The original 48 local tests passed, including eight acceptance-runner checks for trace
 drift, wrong outcomes, errors, interruption, exclusions, dirty revisions, archive
 hashes, and missing evidence. These tests use state-flow fixtures, not native
 physics. See [the acceptance procedure](../../docs/research/experiments/AETHER_CL_M2_Acceptance.md)
 for the interpretation and next-stage gate. The fixed policy, verifier,
 disturbances, and runtime are unchanged by this runner.
+
+The [first native raw-log audit](../../docs/research/experiments/AETHER_CL_M2_Native_Screening.md)
+confirmed all six expected outcomes and three exact pair traces, but the original
+suite remains `failed`: importing OpenCV during the first trial modified the
+process's `LD_LIBRARY_PATH`, so the second manifest had different startup values.
+The runner now starts a fresh Python interpreter for each cell from the same
+captured suite-start environment and retains child stdout/stderr in the archive.
+It signals and joins the active child on Ctrl+C before archiving. Library-path
+equality stays strict. All 52 local tests passed, including fresh-process
+isolation, nonzero child exits, interrupt cleanup, and rejection of real library
+environment differences. Recheck the native suite with a new archive filename;
+the prior failed archive is preserved.
 
 ## Offline deployment through a connected laptop
 

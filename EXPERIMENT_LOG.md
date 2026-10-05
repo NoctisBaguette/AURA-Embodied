@@ -246,6 +246,36 @@ See [the acceptance procedure](docs/research/experiments/AETHER_CL_M2_Acceptance
 
 ---
 
+# EXP-0005 M2 Native Audit and Trial Process Isolation
+
+Date: 2026-10-05 (Asia/Shanghai)
+
+Audited `aether-cl-m2-evidence.tar.gz` (SHA-256
+`d157a2e11268a170515e4f5f36b6be5f8080a001e03b998aac500757d970e306`).
+All 23 indexed hashes and 2,520 action records across six batch trials plus the
+earlier live trial were checked. Six clean batch manifests record `3ae3099`;
+the clean live manifest records `34ce567`. All native trials executed 360 steps
+without exclusion or execution/cleanup error. Normal baseline/V1 succeed; shift
+and drop fail with the expected V1 diagnoses, each confirmed two steps after
+reference onset. All three paired traces match exactly, as does the live versus
+nonrendered shift trajectory. Reference/verifier replay, geometry, stability,
+policy replay, and dense metric counts match raw records.
+
+The original suite state is still `failed`: its normal-pair software comparison
+differs only in the recorded `LD_LIBRARY_PATH`. OpenCV's reviewed wheel loader
+prepends a bundled path during import, while the runner reused the same process
+for the next manifest. Do not rewrite the original outcome or relax the guard.
+
+Corrected the acceptance runner to execute every native trial in a fresh Python
+interpreter from the same suite-start environment. Child stdout/stderr are
+archived, and Ctrl+C signals/joins the child before collection. Policy, verifier,
+runtime, disturbances, packages, and settings are unchanged. All 52 local tests
+passed, including four subprocess/environment regressions. Corrected native
+rerun remains pending with a new archive filename. These are seed-0 development
+checks, not held-out robustness results. See [the native audit report](docs/research/experiments/AETHER_CL_M2_Native_Screening.md).
+
+---
+
 # Experiment Template
 
 ## Experiment ID

@@ -8,11 +8,15 @@ from datetime import datetime, timezone
 import hashlib
 import json
 import math
+import os
 from pathlib import Path
+import signal
+import subprocess
+import sys
 import tarfile
 from uuid import uuid4
 
-from .runtime import RunConfig, json_value, run, software_manifest
+from .runtime import RunConfig, json_value, software_manifest
 
 
 CONDITIONS = {"none": None, "object_shift": "GRASP_FAILURE", "object_drop": "OBJECT_LOST"}
@@ -164,7 +168,46 @@ def archive_evidence(directory, archive, live_run):
     return hashlib.sha256(archive.read_bytes()).hexdigest()
 
 
-def run_acceptance(output, archive=None, live_run=None, run_fn=run):
+def run_in_process(config, environment):
+    """Use exec, not fork reuse: native imports can modify process environment."""
+    config.output.mkdir(parents=True, exist_ok=False)
+    command = [sys.executable, "-m", "aether_cl.experiment", "--system",
+               "v1" if config.verification else "baseline", "--no-render",
+               "--seed", str(config.seed), "--episodes", str(config.episodes),
+               "--max-steps", str(config.max_steps), "--render-device", config.render_device,
+               "--disturbance", config.disturbance, "--disturbance-magnitude",
+               str(config.disturbance_magnitude), "--output", str(config.output)]
+    with (config.output / "process.stdout.log").open("w", encoding="utf-8") as stdout, \
+            (config.output / "process.stderr.log").open("w", encoding="utf-8") as stderr:
+        # The target is Linux. A separate session lets Ctrl+C reach the suite,
+        # which then signals and joins this child before evidence is archived.
+        process = subprocess.Popen(command, env=environment.copy(), stdout=stdout,
+                                   stderr=stderr, start_new_session=True)
+        try:
+            returncode = process.wait()
+        except KeyboardInterrupt:
+            try:
+                os.killpg(process.pid, signal.SIGINT)
+            except ProcessLookupError:
+                pass
+            try:
+                process.wait(timeout=10)
+            except subprocess.TimeoutExpired:
+                try:
+                    os.killpg(process.pid, signal.SIGKILL)
+                except ProcessLookupError:
+                    pass
+                process.wait()
+            raise
+    if returncode:
+        raise RuntimeError(f"Trial process exited {returncode}; see {config.output / 'process.stderr.log'}")
+    results = sorted(config.output.glob("*/result.json"))
+    if len(results) != 1:
+        raise RuntimeError(f"Expected one trial result, found {len(results)} in {config.output}")
+    return json.loads(results[0].read_text(encoding="utf-8"))
+
+
+def run_acceptance(output, archive=None, live_run=None, run_fn=None):
     output = Path(output).resolve()
     live_run = Path(live_run).resolve() if live_run else None
     if live_run:
@@ -183,7 +226,10 @@ def run_acceptance(output, archive=None, live_run=None, run_fn=run):
               "scope": "seed0_development_acceptance_not_held_out_benchmark",
               "seed": 0, "max_steps": 360, "disturbance_magnitude_m": 0.12,
               "software": software_manifest(), "trials": [], "pairs": [],
-              "prior_live_run": str(live_run) if live_run else None}
+              "prior_live_run": str(live_run) if live_run else None,
+              "trial_process_isolation": "fresh_python_interpreter_same_suite_start_environment"
+              if run_fn is None else "injected_test_runner"}
+    trial_environment = os.environ.copy()
     interrupted = False
     for condition in CONDITIONS:
         for system in ("baseline", "v1"):
@@ -197,7 +243,7 @@ def run_acceptance(output, archive=None, live_run=None, run_fn=run):
             write_json(directory / "suite.json", report)
             print(f"M2 acceptance: {condition} / {system}", flush=True)
             try:
-                result = run_fn(config)
+                result = run_fn(config) if run_fn else run_in_process(config, trial_environment)
                 trial["run_directory"] = result["run_directory"]
                 trial.update(check_trial(Path(result["run_directory"]), config), state="checked")
             except (Exception, KeyboardInterrupt) as error:
