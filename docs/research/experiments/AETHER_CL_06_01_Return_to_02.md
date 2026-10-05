@@ -132,6 +132,11 @@ planner, world models and foundation-model training remain excluded, exactly
 as requested by the original scope freeze. The current findings do not prove
 that adding any of those components is necessary.
 
+The three-system matrix also lacks a blind-retry or recovery-without-verification
+comparison. It establishes the combined verification/recovery intervention's
+benefit over the fixed baseline and passive V1; it does not establish that the
+verifier itself is necessary or superior to an ungated retry/replanning rule.
+
 ## Operator observation versus measured evidence
 
 The operator observed shifted-cube recovery and later the complete live process
@@ -199,6 +204,8 @@ Then decide the next engineering round before additional implementation:
   applied disturbances, perception-based verification, or motion/precision cost?
 - If motion changes are selected, define a new frozen nominal baseline and
   rerun baseline/V1/V2 fairly rather than attaching improved motions to V2 only.
+- Is a blind-retry/ungated-recovery comparator needed to isolate the value of
+  explicit verification beyond simply allowing a refreshed target and retry?
 - Do any measured limitations justify Prototype B/C/D or an 02W investigation?
   Current evidence does not automatically establish a memory or world-model need.
 
