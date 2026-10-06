@@ -315,6 +315,80 @@ PR #1 remains draft/unmerged unless separately accepted.
 
 ---
 
+
+# DEC-0006
+
+## Date
+
+2026-10-06
+
+## Topic
+
+Accept M6R effect-aligned placement recovery and advance Prototype A to contact-rich insertion.
+
+## Context
+
+M6R isolates one authorized change from the failed M6 executor: V2R replaces
+the recovery lower phase's dedicated 3 mm TCP-Z completion requirement with
+controller-side geometric support plus the frozen 25 mm object goal-XY
+condition, retaining all other recovery motions, gates, budgets, verification
+and scoring.
+
+On fresh seeds 120–139, 480 selected records and 460 strict comparisons pass.
+V2-old and V2R are identical through the first justified lower-readiness
+difference. Both attempt the same 70 failed placements. V2-old rescues none;
+V2R reaches release/retraction and rescues all 70, with zero unnecessary
+attempts or regressions on 44 Baseline-success pairs.
+
+## Options Considered
+
+1. Treat M6R as a placement-only repair and continue tuning placement.
+2. Accept the narrow causal result and proceed to Prototype A's next
+   task-semantic closure dimension: contact-rich insertion.
+3. Skip directly to physics-propagated disturbances or sensor verification.
+4. Activate Prototype B/C/D or 02W.
+
+## Decision
+
+Choose Option 2.
+
+Accept the narrow effect-aligned phase-completion claim for this released
+placement task. Update H4 to include task-effect-aligned phase-transition
+semantics as a condition of effective recovery. Record stronger bounded support
+for cross-level task/skill feedback and retain the skill-contract abstraction as
+a working research idea, not a mandatory module.
+
+Authorize **M7 Contact-Rich Insertion** using a new matched task-specific
+Baseline/V1/V2 design. Prefer an installed rigid single-arm ManiSkill insertion
+task. Define success from the object-target insertion relation, not TCP arrival.
+Use one frozen synthetic insertion-misalignment family and one bounded
+verification-gated recovery episode.
+
+## Reasoning
+
+M6/M6R show that placement recovery can fail or succeed solely because of how a
+phase boundary interprets physical completion, while motion remains unchanged.
+Insertion is the next planned Prototype A dimension and provides a stronger
+contact-rich test of the same closed-loop architecture without simultaneously
+adding sensor uncertainty or external force-disturbance confounds.
+
+Physics-propagated disturbances and non-privileged verification remain separate
+required closure dimensions after insertion.
+
+## Future Re-evaluation Condition
+
+Return to 02 immediately after audited M7 evidence. Reassess whether closed-loop
+verification/recovery transfers to contact-rich insertion and then decide the
+order/design of physics-propagated disturbance and non-privileged verification
+studies.
+
+## Notes
+
+See `docs/research/experiments/AETHER_CL_M6R_02_Research_Review_v0.1.md`.
+PR #1 remains draft/unmerged unless separately accepted.
+
+---
+
 # Decision Template
 
 ## Decision ID
