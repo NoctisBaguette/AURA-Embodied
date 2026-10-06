@@ -239,6 +239,82 @@ PR #1 remains draft/unmerged unless separately reviewed.
 
 ---
 
+
+# DEC-0005
+
+## Date
+
+2026-10-06
+
+## Topic
+
+Accept negative M6 placement-recovery evidence and authorize an effect-aligned recovery-transition repair.
+
+## Context
+
+M6 validly extends Prototype A from held-cube target reaching to actual release
+and stable table support. Baseline/V1/V2 all succeed on normal and small-shift
+controls, but V2 rescues none of 62 failed placements.
+
+All 62 V2 attempts successfully regrasp, lift and move the cube near the target,
+then abort during the recovery lower phase before release. The object is already
+within task-level horizontal tolerance and table-supported, while the recovery
+controller still requires a dedicated 3 mm TCP vertical residual. The nominal
+placement controller advances through this same semantic boundary by phase time
+rather than the recovery arrival gate.
+
+## Options Considered
+
+1. Treat M6 as evidence that verification/recovery does not transfer to placement
+   and proceed directly to insertion.
+2. Relax the 3 mm threshold or increase lower duration using the observed M6
+   residual range.
+3. Run a narrow fresh-seed experiment replacing only the recovery lower-phase
+   vertical gate with a task-relevant placement-ready state condition.
+4. Abandon Prototype A and activate later memory/world-model/embodiment work.
+
+## Decision
+
+Choose Option 3.
+
+Accept M6 as valid negative evidence and preserve the failed V2 unchanged.
+Authorize **M6R Effect-Aligned Lower-to-Release Transition**.
+
+V2R keeps the M6 motion/recovery capability fixed and changes only the lower
+phase completion contract: retain the existing general distance, rotation,
+minimum-step and attachment checks; replace the dedicated 3 mm vertical
+residual requirement with controller-visible placement readiness
+(`supported_geometry` plus the frozen horizontal task tolerance).
+
+Evaluate Baseline, V1, frozen V2-old and V2R on fresh preselected seeds after
+the repair is frozen. Already-observed M6 seeds may be used only for engineering
+commissioning.
+
+## Reasoning
+
+M6 localizes the failure to a mismatch between an end-effector-space phase gate
+and the task-relevant physical state. Simply tuning the 3 mm threshold to the
+observed residuals would overfit the failed sample. Proceeding to insertion
+would carry a known recovery-contract defect into a harder task.
+
+The narrow V2-old/V2R comparison can test whether task-effect-aligned phase
+completion is the missing interface while preserving all other recovery motion
+and verification behavior.
+
+## Future Re-evaluation Condition
+
+Return to 02 immediately after M6R audited fresh-seed evidence. If V2R reaches
+release and recovery succeeds, reassess readiness for insertion. If it fails,
+use the newly localized downstream failure rather than post-hoc threshold tuning
+to define the next decision.
+
+## Notes
+
+See `docs/research/experiments/AETHER_CL_M6_02_Research_Review_v0.1.md`.
+PR #1 remains draft/unmerged unless separately accepted.
+
+---
+
 # Decision Template
 
 ## Decision ID
