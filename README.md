@@ -114,9 +114,11 @@ It records:
   [returned to 02](docs/research/experiments/AETHER_CL_06_01_Return_to_02.md);
   [M5 verification-gating attribution](docs/research/experiments/AETHER_CL_M5_Attribution.md)
   is complete, independently audited and [accepted by 02](docs/research/experiments/AETHER_CL_M5_02_Research_Review_v0.1.md).
-  The active round is [M6 support placement/release](docs/research/experiments/AETHER_CL_M6_Placement.md):
+  [M6 support placement/release](docs/research/experiments/AETHER_CL_M6_Placement.md):
   native execution and [independent audit](docs/research/experiments/AETHER_CL_M6_Results.md)
   are complete. V2 rescues none of 62 failed placements; all retries abort before release.
   Prototype A remains open; insertion, physically applied disturbances and a
   non-privileged verifier remain later closure dimensions. The
-  [M6 return to 02](docs/research/experiments/AETHER_CL_M6_Return_to_02.md) is ready for review. This is the first AETHER experiment, not AETHER v1.0.
+  [M6 return to 02](docs/research/experiments/AETHER_CL_M6_Return_to_02.md) was [accepted by 02](docs/research/experiments/AETHER_CL_M6_02_Research_Review_v0.1.md).
+  The active round is [M6R effect-aligned lowering/release](docs/research/experiments/AETHER_CL_M6R_Placement.md)
+  under DEC-0005; native known-seed commissioning and fresh evaluation are pending. This is the first AETHER experiment, not AETHER v1.0.

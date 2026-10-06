@@ -6,6 +6,11 @@ Date: 2026-10-06 (Asia/Shanghai).
 independent audit. Please review the negative recovery result before authorizing
 further implementation. Prototype A remains scientifically open.**
 
+Historical handoff: [02 accepted this result](AETHER_CL_M6_02_Research_Review_v0.1.md)
+at `33918f5f2da97c355a0c2d7cda60b448f77bb2a6` under DEC-0005 and authorized
+[M6R only](AETHER_CL_M6R_Placement.md). The original M6 result remains unchanged;
+M6R native commissioning and fresh evidence are pending.
+
 Authority: DEC-0004 and [02's M5 acceptance](AETHER_CL_M5_02_Research_Review_v0.1.md).
 Executed scientific revision: `7059c713d3b36e3f032aab8d1f87662ed6fdab91`, clean.
 M0–M5 scientific sources and protocols, M6 frozen sources, scoring, matrix,

@@ -56,7 +56,7 @@ has been [accepted by 02](../../docs/research/experiments/AETHER_CL_M5_02_Resear
 reuse the existing paused viewer without replacing the measurement batch. Motion, new tasks, perception and 02W
 are not authorized in M5.
 
-## Current engineering round — M6
+## Completed engineering round — M6
 
 [M6 Support Placement and Release](../../docs/research/experiments/AETHER_CL_M6_Placement.md)
 implements a new matched Baseline/V1/V2 task. Success requires release,
@@ -98,6 +98,30 @@ to preserve the first completed child after a parent serialization failure.
 That study is complete; these commands describe its protocol. Prior slots are not rerun.
 Do not modify repository/environment while a study is active. After the native
 M6 audit, return to 02 before insertion, sensor/force work or any further scope.
+
+## Current engineering round — M6R
+
+[02 accepted M6 as valid negative evidence](../../docs/research/experiments/AETHER_CL_M6_02_Research_Review_v0.1.md)
+and DEC-0005 authorizes [M6R Effect-Aligned Lower-to-Release Transition](../../docs/research/experiments/AETHER_CL_M6R_Placement.md) only.
+Keep frozen M6 Baseline/V1/V2 as V2-old. V2R changes one recovery lower predicate:
+replace the 3 mm TCP-Z gate with geometric support plus frozen 25 mm goal XY
+readiness. General distance/rotation/minimum-motion/attachment gates, all motions,
+phases, targets, budgets, verifier and scoring remain unchanged.
+
+Archived M6 development checks replay all 120 V2 slots / 86,400 actions exactly
+and find the authorized boundary difference in all 62 attempts. They stop V2R
+at divergence and establish no repaired native outcome. Native known-seed
+commissioning runs only 16 separate development slots on seeds 100/101.
+After validation, fresh seeds 120–139 cover 480 selected slots across four systems,
+with a retained first24 pilot and 460 strict comparisons.
+
+See [native execution steps](../../docs/research/experiments/AETHER_CL_M6R_Execution.md).
+Use `python -m aether_cl.m6r_sweep --commission-known --output ... --archive ...`
+first. New native fresh studies require a replayed `--commission-report` and
+reject already-recorded resets of selected seeds. Native commissioning and fresh
+evidence are pending. Return to 02 after M6R audit before any broader scope.
+The separate live CLI is `python -m aether_cl.m6r --system v2r --live --seed 100 ...`.
+It labels V2-old and V2R explicitly; it is not archive playback.
 
 ## Current milestone
 

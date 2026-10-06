@@ -888,3 +888,62 @@ recovery benefit for this frozen executor. See
 and [return to 02](docs/research/experiments/AETHER_CL_M6_Return_to_02.md).
 Return for review before any correction or new scope. Prototype A stays open;
 PR #1 stays draft/unmerged and main unchanged.
+
+
+# EXP-0021 — M6R Effect-Aligned Lower-to-Release Implementation and Preregistration
+
+Date: 2026-10-06 (Asia/Shanghai).
+
+[02's M6 acceptance and DEC-0005](docs/research/experiments/AETHER_CL_M6_02_Research_Review_v0.1.md)
+at `33918f5f2da97c355a0c2d7cda60b448f77bb2a6` authorize M6R only.
+The valid negative M6 results remain retained. Baseline/V1 and original failed
+M6 V2 remain frozen, with V2 exposed as V2-old in the new isolated experiment.
+
+V2R inherits all motion/target/settings/terminal methods and changes one lower
+completion predicate: replace 3 mm absolute TCP-Z attainment with controller
+geometric support and the frozen 25 mm task XY tolerance. Minimum motion steps,
+20 mm distance, 0.15 rad rotation, attachment-loss monitoring, all phases and
+durations, target refresh, one-attempt/retry/global budgets, verifier and
+contact-scored task success are unchanged. No evaluator labels enter recovery.
+All M0–M6 scientific sources and historical machine protocols remain unchanged.
+
+Archived known-M6 development checking reproduces all 120 V2 slots / 86,400
+actions and shares the repaired trajectory through the first authorized lower
+state divergence in all 62 attempts, at steps 429–498. V2R stops there; no old
+post-divergence physics is treated as repaired rollout or success evidence.
+This is already-observed development evidence, not confirmatory M6R results.
+
+The native entry sequence first executes 16 separate known-seed development
+slots on seeds 100/101, normal/8 cm, with 14 strict comparisons and no V2R success
+gate. A fresh study requires validated same-revision commissioning evidence and
+checks prior recorded native resets for selected seeds. Fresh seeds 120–139
+cover 480 selected slots / 24 cells across Baseline/V1/V2-old/V2R, with retained
+first24 commissioning then only 456 unstarted slots. All exclusions/failures/
+missed injections stay retained, without adaptive replacement or tuning.
+The first24 is fresh confirmatory evidence, unlike the known-seed development.
+
+All 460 passive/causal/repair/control comparisons require exact common physical
+traces; repair pairs additionally prove recovery/verifier/trigger equality
+through the first lower-state divergence, including its common action and
+resulting observation. Independent predicates justify that first divergence.
+Reports separate release/retraction reached and executed, lower-transition step
+and timeouts, endpoint score, controller completion, success effects, healthy
+regressions and costs. Invalid comparisons/source drift yield null effects.
+
+All 136 local tests pass in 288.791 seconds, including 12 M6R tests. They cover
+single-factor source identity, retained gates and input isolation, realistic
+contact-constrained fixture contrast, terminal budgets, raw replay/tamper
+rejection, 480 distinct slots and first24 continuation, 460 comparisons,
+known16 separation, entry/history/source/environment/hash/lock guards, and the
+original NumPy scalar parent-report regression/NaN policy. Python 3.10 syntax,
+CLI help, viewer labels/paused preview/final-frame retention and Bash syntax pass.
+These fixtures do not establish native V2R physics outcomes.
+
+See [M6R protocol](docs/research/experiments/AETHER_CL_M6R_Placement.md),
+[machine preregistration](docs/research/experiments/evidence/AETHER_CL_M6R_Placement_Protocol.json),
+[known-trace check](docs/research/experiments/evidence/AETHER_CL_M6R_Known_Trace_Commission.json)
+and [native execution](docs/research/experiments/AETHER_CL_M6R_Execution.md).
+Native known-seed commissioning and fresh execution/independent audit remain
+pending. After M6R audit, return to 02 before further implementation. Prototype A
+stays open; PR #1 stays draft/unmerged. No insertion, force/sensor work, motion
+redesign, memory/world models, B/C/D or 02W is authorized.
