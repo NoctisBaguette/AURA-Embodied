@@ -735,3 +735,45 @@ M5 validation: all 105 local tests pass in 203.496 seconds, including seven
 M5 tests. Python 3.10 syntax, CLI help and documentation links pass. All
 previous scientific source blobs/protocols and 02 decision/review files remain
 unchanged. No native M5 outcome has been observed; publication precedes data.
+
+
+# EXP-0017 — M5 Native Attribution Audit and Return to 02
+
+Date: 2026-10-06 (Asia/Shanghai).
+
+Native implementation: `12a9d2626636206e1687fa24df507bbadbc2a37d`, clean.
+Archive SHA-256:
+`a14d7542fcff8f025f13c72fb209f9c13e8666af0d8571855e3ad7035f6bbcab`.
+All 960 selected trials are eligible; all 4,804 indexed file hashes, 345,600
+actions, controller/reference/verifier replay, 1,160 strict comparisons and
+exact native aggregate JSON/CSV reproduction pass independent archive audit.
+No outcome was replaced and no strict tolerance was relaxed.
+
+V2 avoids all 60 unnecessary V3 retries in baseline-success controls. Normal
+shift and 2 cm shift retries add cost/error while retaining 20/20 success.
+Normal drop-family V3 opens the valid held grasp, loses the cube and fails
+20/20; V2 succeeds 20/20 without retry. This supports bounded selective
+invocation value. All 180 aligned disturbed V2/V3 pairs have identical full
+physical traces, cost and outcomes, with 177 successes. General verification
+necessity is not established by these phase-aware aligned schedules.
+
+Fresh 20 cm cases fail for shift seed 99 (transport timeout) and drop seeds
+87/99 (remaining budget). Five other drop attempts per system abort at step
+360 but meet the shared task by that observation; seeds 88/92 first succeed
+exactly at step 360. No post-budget success is counted. All failures and costs
+remain in denominators. V2 has 172 completed/eight aborted attempts; V3 has
+212 completed/28 aborted, including 20 healthy-control regressions.
+
+The unrendered archive contains no video/images. Its inherited unused
+render_device cuda:1 is retained; effective render backend is none and
+physics is CPU. Separate live demonstration commands reuse existing runtimes
+and preview server, wait for Enter and retain the final image. These are new
+rendered runs, not archive playback or replacement measured outcomes.
+
+See [M5 results](docs/research/experiments/AETHER_CL_M5_Attribution.md#audited-native-results),
+[machine audit](docs/research/experiments/evidence/AETHER_CL_M5_Native_Audit.json),
+[live commands](docs/research/experiments/AETHER_CL_M5_Live_Demonstrations.md) and
+[return to 02](docs/research/experiments/AETHER_CL_M5_Return_to_02.md).
+M5's engineering round is complete; Prototype A remains scientifically open.
+Return to 02 before further implementation. PR #1 stays draft/unmerged;
+no new task, motion variant, sensor/force protocol, B/C/D or 02W is activated.

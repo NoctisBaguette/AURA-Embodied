@@ -2,8 +2,8 @@
 
 Date: 2026-10-05 (Asia/Shanghai)
 
-Status: implementation and preregistration prepared; native execution pending.
-06-01 is active for M5 only. Prototype A remains scientifically open.
+Status: M5 native execution and independent archive audit complete (2026-10-06).
+Return to 02 before further implementation; Prototype A remains scientifically open.
 
 Authority: [02 review](AETHER_CL_02_Research_Review_v0.1.md) and
 [DEC-0003](../../../DECISION_LOG.md), accepted at
@@ -90,7 +90,8 @@ The no-injection control is not a zero-magnitude drop.
 Order: shift normal then ascending magnitudes; drop normal then ascending
 magnitudes; seed; baseline/V1/V2/V3. CPU physics, state_dict observation,
 360 actions, unrendered/unpaced batch, recorded FPS 5 and process-local
-GPU 1/cuda:0 are unchanged. Existing installed packages suffice.
+GPU visibility selection are unchanged. Rendering is disabled; the native
+manifest retains the unused inherited render_device default (see provenance below). Existing installed packages suffice.
 
 The [machine protocol](evidence/AETHER_CL_M5_Attribution_Protocol.json) freezes
 the matrix, timing, definitions and six new source hashes. M4/M3/M2 preflights
@@ -201,3 +202,129 @@ motion or precision, add placement/release, insertion, realistic force
 perturbations, visual verification, memory, world models, Prototype B/C/D or 02W.
 After M5 is frozen, executed and independently audited, return to 02 again
 before further implementation. Prototype A closure is still a research decision.
+
+## Audited native results
+
+Date: 2026-10-06 (Asia/Shanghai). The native study ran on clean implementation
+commit `12a9d2626636206e1687fa24df507bbadbc2a37d`. The uploaded archive is
+`aether-cl-m5-attribution-seeds80-99.tar.gz`, 129,811,535 bytes, SHA-256:
+
+`a14d7542fcff8f025f13c72fb209f9c13e8666af0d8571855e3ad7035f6bbcab`
+
+The [independent machine audit](evidence/AETHER_CL_M5_Native_Audit.json)
+verified all 4,804 indexed file hashes and exact archive membership; all 960
+selected one-episode children are eligible, with no replacement or exclusion.
+All 345,600 actions, controller decisions/snapshots and reference/verifier
+observations replay. Maximum action reconstruction error is
+2.9802322387695312e-08, below the existing 3e-7 action replay tolerance.
+Strict physical comparisons retain exact equality; no tolerance was relaxed.
+
+All 240 passive, 240 V1/V2 causal, 240 baseline/V3 scheduled, 240 V2/V3
+attribution and 200 normal pre-injection comparisons independently pass.
+The 180 V2/V3 pairs with aligned triggers have identical **entire physical
+traces**. All 48 cell summaries, 12 paired outcomes and native CSV reproduce
+exactly. Python 3.10 ordered binary64 addition is reproduced under audit
+Python 3.12 rather than relaxing aggregate equality. All 96 repository blobs
+used for the audit matched the implementation Git tree before documentation
+updates. This replays logged computations; it does not rerun native physics.
+
+### Final shared task success and paired costs
+
+Each point uses the same 20 preselected seeds. Baseline and V1 agree exactly.
+Costs below are V3 minus V2 **per eligible paired episode**, including zero
+cost when no retry occurred and all failed/aborted retry costs.
+
+| Point | Baseline / V1 | V2 | V3 | V3 extra retry actions / TCP path vs V2 |
+| --- | --- | --- | --- | --- |
+| shift-normal | 20/20 | 20/20 | 20/20 | 132.15 / 0.5479 m |
+| shift-020mm | 20/20 | 20/20 | 20/20 | 131.70 / 0.5473 m |
+| shift-040mm | 0/20 | 20/20 | 20/20 | 0.00 / 0.0000 m |
+| shift-080mm | 0/20 | 20/20 | 20/20 | 0.00 / 0.0000 m |
+| shift-120mm | 0/20 | 20/20 | 20/20 | 0.00 / 0.0000 m |
+| shift-200mm | 0/20 | 19/20 | 19/20 | 0.00 / 0.0000 m |
+| drop-normal | 20/20 | 20/20 | 0/20 | 71.70 / 0.2338 m |
+| drop-020mm | 0/20 | 20/20 | 20/20 | 0.00 / 0.0000 m |
+| drop-040mm | 0/20 | 20/20 | 20/20 | 0.00 / 0.0000 m |
+| drop-080mm | 0/20 | 20/20 | 20/20 | 0.00 / 0.0000 m |
+| drop-120mm | 0/20 | 20/20 | 20/20 | 0.00 / 0.0000 m |
+| drop-200mm | 0/20 | 18/20 | 18/20 | 0.00 / 0.0000 m |
+
+Normal points have no injection; their different labels select the two frozen
+V3 schedules. They are correlated repeats of the same 20 initial scenes.
+Do not pool this table as independent initial scenes or infer an exact
+failure threshold from the finite tested magnitudes.
+
+### What verification gating contributes
+
+All 60 baseline-success point/seed pairs (two healthy controls and 2 cm shift)
+complete without a V2 retry. V3 retries unnecessarily in all 60. Its normal
+shift and 2 cm shift attempts still succeed but cost 132.15 / 131.70 extra
+actions and 0.5479 / 0.5473 m extra TCP travel on average. Median final goal
+error worsens from 0.510 mm to 18.378 mm on healthy shift and from 9.651 mm
+to 18.414 mm on the 2 cm shift; both remain inside the 25 mm tolerance.
+
+On the healthy **drop-family schedule** control, V2 succeeds 20/20 with no
+attempt. V3 retries 20/20, fails 20/20 and aborts with
+`retry_grasp_not_established`. The unnecessary-recovery and regression rates
+are both 100% of baseline-success pairs; V2's corresponding rates are zero.
+Archived step 183 contains a valid grasp. Action 184 begins retry retraction
+and opens it; contact grasp is lost in all 20 episodes. The cube falls toward
+the table after the controller has cached its elevated pose for that attempt.
+The unchanged retry does not refresh again, and cannot establish its new
+grasp. This is a specific measured failure mechanism of this scheduled
+comparator plus the existing recovery capability, not a universal property
+of verifier-free manipulation.
+
+The 180 disturbed cases that need recovery align at trigger 127 for shift
+or 183 for drop. V2 and V3 have identical physical traces, costs and outcomes:
+177 successes and three final failures in each system. M5 therefore shows
+**selective invocation value on controls that do not need recovery**, while
+showing **no extra success advantage from gating when this phase-aware
+schedule already invokes the same retry at the same time**. It supports
+bounded H3 claims about avoiding harmful/costly interventions, not general
+necessity of explicit verification for every recovery or real-world task.
+
+### Completion, aborts and new large-disturbance failures
+
+V2 makes 180 attempts: 172 complete and eight abort. V3 makes 240 attempts:
+212 complete and 28 abort, including the 20 healthy-control failures.
+Five aborted 20 cm drop attempts per system still achieve the shared task;
+attempt completion and task success remain distinct.
+
+- **20 cm shift, seed 99:** both V2/V3 fail after
+  `retry_transport_target_not_reached`; 19/20 final successes at this point.
+- **20 cm drop, seeds 87 and 99:** both V2/V3 exhaust the 177-action remaining
+  budget without final task success; 18/20 final successes at this point.
+- **20 cm drop, seeds 88/90/92/93/96:** both V2/V3 exhaust the budget but are
+  successful by the final scored observation. First shared task success is
+  at steps 360/354/360/354/355 respectively. Seeds 88/92 achieve it exactly
+  on the last allowed step; no post-deadline action or success is counted.
+
+The original M4 20/20 successes remain valid for seeds 60–79. M5's new
+seeds reveal finite-sample limits at 20 cm; the accepted controller was not
+tuned and these failures are retained. The per-episode machine audit includes
+all terminal snapshots, first-success steps and abort transitions.
+
+### Renderer provenance and live viewing
+
+The measurement manifest carries inherited unused `render_device: cuda:1`
+even though CUDA_VISIBLE_DEVICES is 1. All 960 configs have render=false:
+`build_env` selects render_backend=none, with CPU physics. No renderer uses
+that ordinal; no images/video were archived. The earlier planning prose
+describing local cuda:0 applies to explicitly enabled rendering, not this
+unused batch config field. The recorded native environment is preserved.
+
+[Separate live demonstration commands](AETHER_CL_M5_Live_Demonstrations.md)
+reuse existing runtimes/viewer without tracked source edits, pause before
+each new run and retain its final image. They are not playback or a substitute
+for the original native evidence; rendered traces are not assumed identical.
+
+### Research return boundary
+
+**M5 implementation, native execution and independent archive audit are
+complete. Return to 02 for interpretation and the next scope decision.**
+Prototype A remains scientifically open. No release/support placement,
+contact-rich insertion, physics-propagated disturbance, non-privileged sensor
+verifier, motion redesign, memory, world model, B/C/D or 02W is activated.
+The [M5 handoff](AETHER_CL_M5_Return_to_02.md) records the bounded H3/H4 update.
+PR #1 remains open, draft and unmerged; 02's research acceptance is pending.

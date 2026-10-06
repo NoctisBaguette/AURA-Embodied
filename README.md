@@ -113,6 +113,7 @@ It records:
   magnitude evaluation. M0–M4 findings
   [returned to 02](docs/research/experiments/AETHER_CL_06_01_Return_to_02.md);
   [M5 verification-gating attribution](docs/research/experiments/AETHER_CL_M5_Attribution.md)
-  is now authorized and prepared for native execution.
+  is complete and independently audited; [return to 02](docs/research/experiments/AETHER_CL_M5_Return_to_02.md)
+  before further implementation.
   Placement/release and insertion remain outstanding in the broader Prototype A
   scope. This is the first AETHER experiment, not AETHER v1.0.

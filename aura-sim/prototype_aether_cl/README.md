@@ -33,7 +33,7 @@ fixed. Its findings return to branch 02 for AETHER architecture research.
 
 ## Current engineering round — M5
 
-**06-01 is active again for M5 Verification-Gating Attribution only.**
+**M5 implementation, native execution and independent archive audit are complete.**
 [02's review](../../docs/research/experiments/AETHER_CL_02_Research_Review_v0.1.md)
 and DEC-0003 accept M0–M4 within scope and require a scheduled V3 control before
 broader Prototype A expansion. The [M5 plan](../../docs/research/experiments/AETHER_CL_M5_Attribution.md)
@@ -41,12 +41,18 @@ freezes first retry actions at 128/184 in separate shift/drop families, with
 corresponding normal controls and fresh seeds 80–99: 960 isolated trials.
 Baseline/V1/V2 and all prior scientific sources remain unchanged. V3 reuses
 recovery execution without consuming verifier/failure output. Implementation
-and preregistration are prepared; native outcomes remain pending.
+and preregistration remained frozen during all 960 native trials. All 345,600
+actions and 1,160 strict comparisons pass independent audit. V2 avoids 60
+unnecessary scheduled retries, including 20 healthy-control regressions.
+V2/V3 physical traces and outcomes match exactly in the 180 aligned failure
+cases; both reveal three final failures at 20 cm. See the
+[audited results](../../docs/research/experiments/AETHER_CL_M5_Attribution.md#audited-native-results).
 
 The [earlier return-to-02 handoff](../../docs/research/experiments/AETHER_CL_06_01_Return_to_02.md)
 closed only M0–M4; it is historical, not the current chat status. Prototype A
-remains open and the PR stays draft/unmerged. After audited M5, return to 02
-again before further implementation. Motion, new tasks, perception and 02W
+remains open and the PR stays draft/unmerged. [Return to 02 now](../../docs/research/experiments/AETHER_CL_M5_Return_to_02.md)
+before further implementation. [Separate live demonstrations](../../docs/research/experiments/AETHER_CL_M5_Live_Demonstrations.md)
+reuse the existing paused viewer without replacing the measurement batch. Motion, new tasks, perception and 02W
 are not authorized in M5.
 
 ## Current milestone
