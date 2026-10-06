@@ -250,6 +250,11 @@ links and frozen source/protocol agreement were checked before publication.
 Native commissioning, full measured evidence and independent archive audit
 remain pending. Record their actual failures as well as successes here.
 
+The first native launch encountered a parent JSON serialization failure after
+its completed first child. Continue that retained study using the separate
+[reporting repair](AETHER_CL_M6_Reporting_Repair.md) on the original scientific
+checkout; do not restart or discard the first trial.
+
 ## Return boundary
 
 After M6 native execution and independent audit, **return to 02 before any

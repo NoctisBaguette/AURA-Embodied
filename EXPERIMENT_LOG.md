@@ -824,3 +824,28 @@ CLI help, documentation links and frozen source/protocol agreement passed.
 Native commissioning, full execution and independent archive audit remain
 pending. Return to 02 after M6 audit. No insertion, force disturbance, sensor
 verifier, memory/world model, B/C/D or 02W is authorized by this round.
+
+# EXP-0019 — M6 Native Parent-Report Serialization Failure and Bounded Repair
+
+Date: 2026-10-06 (Asia/Shanghai).
+
+The uploaded server screenshot shows all 16 M6 tests passing in 23.139 seconds,
+then normal / seed 100 / Baseline completing with evidence passed, eligible,
+task success true. These are provisional outputs awaiting raw archive audit.
+Parent `suite.json` persistence then fails because an audit check is a NumPy
+`bool_`. SSH closes under the supplied `set -e` execution block. The first raw
+child remains complete; the persisted parent slot remains running.
+
+A separate external reporting launcher converts parent JSON values using the
+existing converter and adopts only that finished first slot after full replay.
+It exclusively backs up original study bytes and records hashes/provenance.
+The scientific checkout remains clean at `7059c713d3b36e3f032aab8d1f87662ed6fdab91`;
+all scientific modules and the frozen protocol are unchanged. The child is
+never rerun; first-18 commissioning continues only the next 17 slots, then
+uses the original viability gate. All ordinary continuation guards remain.
+
+Three focused regressions reproduce NumPy-boolean failure and check preserved
+raw/backup bytes, distinct child calls, commissioning, rejection of incomplete
+or tampered evidence, identity drift and duplicate repair, and retained NaN
+rejection. See [reporting repair](docs/research/experiments/AETHER_CL_M6_Reporting_Repair.md).
+Native continuation and independent audit remain pending; scope is still M6.
