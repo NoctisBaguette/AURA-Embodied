@@ -1,5 +1,10 @@
 # M6R native execution
 
+Status: known16 commissioning and the 480-slot fresh native run are complete and
+[independently audited](AETHER_CL_M6R_Results.md). The blocks below document the
+completed execution procedure. [Return to 02](AETHER_CL_M6R_Return_to_02.md)
+before further scope; existing measurement slots must not be relaunched.
+
 Use the published M6R implementation commit supplied with the command block.
 Keep the existing native `aether-cl` environment. The completed M6 study stays
 retained; no previous evidence is removed, restarted or overwritten.

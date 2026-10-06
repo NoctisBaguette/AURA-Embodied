@@ -981,3 +981,57 @@ measurement SHA, with first24 retained pilot followed only by 456 unstarted slot
 No implementation or parameter tuning follows development results. Fresh native
 execution/audit remains pending; return to 02 after that audit. Prototype A stays
 open, PR #1 draft/unmerged and main unchanged.
+
+
+# EXP-0023 — M6R Fresh Native Matrix and Independent Audit
+
+Date: 2026-10-06 (Asia/Shanghai).
+
+The DEC-0005 one-predicate repair completes at unchanged clean native revision
+`9ac5439e003f2ed65ecf2ea02f59a6186c7b6714`. Known16 development evidence was
+audited first; its raw report identity is retained. Prior native history checked
+2,235 event files, with no selected 120–139 resets. The fresh 480-slot matrix
+retains seed 132's initial-target exclusion in all 24 cells: 456 eligible records,
+19 per cell and 364,800 actions. All 380 eligible assigned post-release shifts
+apply at step 296; there are no missed injections or replaced outcomes.
+
+First24 passes its preregistered evidence/viability gate and stays in the final
+dataset. All 120 pilot child files remain byte-identical. Only 456 unstarted slots
+resume under the same detached parent environment. Final archive SHA-256:
+`d3427dbdd9759ee018ad82182273462c6481869f54234e9d1523f4934857a391`.
+Pilot SHA-256: `dc388e5bb6b96f4de838bab4494384de86cd38265327b6fb78e0ba80e149cbc0`.
+
+All 480 raw controller/reference/verifier/recovery/summary/evaluation replays and
+direct contact endpoint reconstructions pass. Action error is exactly zero.
+All 460 strict comparisons, both aggregate reports/curve CSVs and 2,404 final /
+124 pilot indexed-file hashes pass. All five native upstream source identities
+match throughout fresh and known16. Twenty-one derived angle diagnostics differ
+by at most 2.46e-13 rad under local math; the bounded 1e-12 diagnostic comparison
+does not relax any physical/controller/verifier/gate equality or native tolerance.
+
+Baseline/V1/V2-old each score normal 19/19, 1 cm 19/19, 4 cm 6/19, and 8/12/20 cm
+0/19 each. V2R scores 19/19 in all six cells. Both recovery systems attempt the
+same 70 failed placements; all old attempts time out after 40 lower actions and
+never release/retract, while all R attempts complete release/retraction and final
+independent placed success. Every common old/R trajectory is exact through the
+authorized lower-state difference at 426–497; actual action differences start at
+t+1. The 44 eligible no-attempt old/R pairs have full 800-step equality. There are
+70 paired rescues, zero old-only successes, and no unnecessary attempt or healthy
+regression among the 44 matched Baseline-success pairs. The six baseline 4 cm
+successes arise from passive dynamics, not recovery.
+
+R adds an average 18.286 retry actions and 123.075 mm TCP travel over old in the
+70 attempted pairs. Every eligible episode keeps the 800-action budget; all
+attempts keep the one-attempt/400 limit and final-command terminal hold. Final R
+rescue XY error is 0.437–4.116 mm, with released/supported/stable/retracted and
+non-grasped endpoints. Failed old held endpoints remain retained despite small XY.
+
+This supports the narrow effect-aligned lower completion claim in this single
+privileged-state cube task with synthetic relocation on 19 common eligible scenes.
+It is not learning, insertion, force/sensor robustness or 70 independent scenes.
+No source/parameter/motion/seed tuning followed development or fresh observations.
+See [full results](docs/research/experiments/AETHER_CL_M6R_Results.md),
+[machine audit](docs/research/experiments/evidence/AETHER_CL_M6R_Native_Audit.json)
+and [return to 02](docs/research/experiments/AETHER_CL_M6R_Return_to_02.md).
+Research acceptance is pending 02 review. Prototype A stays open, PR #1 stays
+draft/unmerged, main unchanged, and no follow-up scope starts automatically.

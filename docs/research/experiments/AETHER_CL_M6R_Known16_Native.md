@@ -2,6 +2,10 @@
 
 Date: 2026-10-06 (Asia/Shanghai).
 
+Subsequent status: the [fresh matrix and independent audit](AETHER_CL_M6R_Results.md)
+are complete. [Return to 02](AETHER_CL_M6R_Return_to_02.md). The next-step section
+below records the transition authorized by this earlier development audit.
+
 The returned native development archive passes independent raw replay and the
 preregistered commissioning gate. Proceed with the unchanged frozen 480-slot
 study on seeds 120–139. These 16 known-seed trials are development evidence,
