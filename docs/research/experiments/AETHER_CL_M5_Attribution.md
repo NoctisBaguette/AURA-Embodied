@@ -5,6 +5,11 @@ Date: 2026-10-05 (Asia/Shanghai)
 Status: M5 native execution and independent archive audit complete (2026-10-06).
 Return to 02 before further implementation; Prototype A remains scientifically open.
 
+02 accepted this evidence on 2026-10-06 in
+[the M5 research review](AETHER_CL_M5_02_Research_Review_v0.1.md) and DEC-0004.
+The separately authorized active round is [M6 support placement/release](AETHER_CL_M6_Placement.md).
+The protocol and measured M5 evidence below remain unchanged.
+
 Authority: [02 review](AETHER_CL_02_Research_Review_v0.1.md) and
 [DEC-0003](../../../DECISION_LOG.md), accepted at
 `3c919ecca401a73fe04a676c019c33b8a85b440a`. The earlier engineering handoff

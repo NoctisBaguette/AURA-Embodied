@@ -42,3 +42,12 @@ M5 native execution and independent audit are complete. The
 [M5 return to 02](experiments/AETHER_CL_M5_Return_to_02.md) records selective
 invocation benefits, identical aligned recovery traces and retained large
 disturbance failures. Prototype A remains open; further scope requires 02.
+
+## Active engineering round
+
+[02's M5 acceptance and DEC-0004](experiments/AETHER_CL_M5_02_Research_Review_v0.1.md)
+authorize [M6 Support Placement and Release](experiments/AETHER_CL_M6_Placement.md)
+only. M6 is implemented and preregistered on fresh seeds 100–119; native
+commissioning, the full 360-trial matrix and independent audit are pending.
+Return to 02 after that audit. The earlier return documents are historical
+checkpoints, not authorization to activate later tasks or close Prototype A.

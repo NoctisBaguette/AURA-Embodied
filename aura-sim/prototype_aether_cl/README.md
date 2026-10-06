@@ -31,7 +31,7 @@ Prototype A will test whether explicit verification and bounded recovery improve
 manipulation autonomy under disturbances while keeping the manipulation policy
 fixed. Its findings return to branch 02 for AETHER architecture research.
 
-## Current engineering round — M5
+## Completed engineering round — M5
 
 **M5 implementation, native execution and independent archive audit are complete.**
 [02's review](../../docs/research/experiments/AETHER_CL_02_Research_Review_v0.1.md)
@@ -50,10 +50,45 @@ cases; both reveal three final failures at 20 cm. See the
 
 The [earlier return-to-02 handoff](../../docs/research/experiments/AETHER_CL_06_01_Return_to_02.md)
 closed only M0–M4; it is historical, not the current chat status. Prototype A
-remains open and the PR stays draft/unmerged. [Return to 02 now](../../docs/research/experiments/AETHER_CL_M5_Return_to_02.md)
-before further implementation. [Separate live demonstrations](../../docs/research/experiments/AETHER_CL_M5_Live_Demonstrations.md)
+remains open and the PR stays draft/unmerged. The [M5 return](../../docs/research/experiments/AETHER_CL_M5_Return_to_02.md)
+has been [accepted by 02](../../docs/research/experiments/AETHER_CL_M5_02_Research_Review_v0.1.md), which authorizes M6 only.
+[Separate M5 live demonstrations](../../docs/research/experiments/AETHER_CL_M5_Live_Demonstrations.md)
 reuse the existing paused viewer without replacing the measurement batch. Motion, new tasks, perception and 02W
 are not authorized in M5.
+
+## Current engineering round — M6
+
+[M6 Support Placement and Release](../../docs/research/experiments/AETHER_CL_M6_Placement.md)
+implements a new matched Baseline/V1/V2 task. Success requires release,
+contact-supported stable placement within 2.5 cm horizontally and gripper
+retraction. The original M0–M5 execution sources/protocols stay unchanged.
+V3 does not continue in the M6 matrix.
+
+Fresh seeds 100–119 cover normal and 1/4/8/12/20 cm synthetic post-release
+shifts: 360 isolated trials, 800 actions each. One bounded replacement retry
+may regrasp, replace and release. The first 18 native slots pause for
+commissioning before resuming the remaining 342. Initial exclusions, failed
+attempts and missed release preconditions remain recorded without replacement.
+Native commissioning, full execution and independent audit are pending.
+
+The new live viewer uses a dedicated M6 page and correct system labels:
+
+```bash
+python -m aether_cl.m6 --system v2 --live --seed 100 \
+    --disturbance post_release_shift --disturbance-magnitude 0.08 \
+    --render-device cuda:0 --fps 10 --output runs/m6-live --port 8765
+```
+
+It shows a preview, waits for Enter, and holds the final frame until Ctrl+C.
+This is a separate demonstration, not measured archive playback. Use the
+existing environment/SSH tunnel setup and avoid live runs during the measured
+batch. A full 800-step demonstration takes about 80 seconds at 10 FPS; the
+stationary tail still counts toward the frozen budget.
+
+Batch CLI: `python -m aether_cl.m6_sweep --output ... --archive ... --stop-after 18`,
+then inspect with `--check-pilot`, then `--resume`. Prior slots are not rerun.
+Do not modify repository/environment while a study is active. After the native
+M6 audit, return to 02 before insertion, sensor/force work or any further scope.
 
 ## Current milestone
 

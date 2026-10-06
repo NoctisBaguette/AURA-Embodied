@@ -777,3 +777,50 @@ See [M5 results](docs/research/experiments/AETHER_CL_M5_Attribution.md#audited-n
 M5's engineering round is complete; Prototype A remains scientifically open.
 Return to 02 before further implementation. PR #1 stays draft/unmerged;
 no new task, motion variant, sensor/force protocol, B/C/D or 02W is activated.
+
+
+# EXP-0018 — M6 Support Placement/Release Implementation and Preregistration
+
+Date: 2026-10-06 (Asia/Shanghai).
+
+Authority: 02 accepts M5 and authorizes M6 only under DEC-0004 and
+`AETHER_CL_M5_02_Research_Review_v0.1.md` at
+`03b9b2dc77c33dc1aa47edd67dcb20238ad8b0bb`. The earlier return boundary
+is superseded for this bounded new round; Prototype A remains open.
+
+M6 extends the Panda/cube task to real release and independent table support.
+Goal XY is retained, Z projected onto table support. New matched Baseline/V1/V2
+nominal behavior adds release/retraction; the original motion servo and all
+M0–M5 scientific execution modules/protocols stay unchanged. V3 is absent.
+Shared success requires historical contact grasp/lift, current non-grasp/open
+gripper, designated table contact and geometry, 2.5 cm horizontal tolerance,
+retraction and five fresh stable observations. The environment success flag
+does not score the task.
+
+At step 296, attempt a one-time synthetic positive-Y displacement following
+release. If release preconditions fail, preserve the missed injection and
+episode without exclusion/replacement. One bounded recovery episode may
+regrasp, replace, release and retract; no second retry after abort/completion.
+
+Fresh preselected seeds 100–119 cover normal plus 1/4/8/12/20 cm shifts:
+360 isolated native children, 18 cells and an identical 800-action global
+budget. The first 18 normal/easy/8 cm slots on seeds 100/101 stay in the dataset
+and pause for preregistered commissioning, with no V2 success requirement.
+Then continue only the remaining 342. Exact physical pairing requires 120
+passive pairs, 120 causal recovery pairs and 100 pre-injection controls.
+
+Owned source/protocol and unchanged M0–M5 guards, installed upstream source
+identity, normalized startup environment, raw hashes, controller/state/metric
+replay, a study lock and immutable partial archives protect execution.
+All failed costs remain included; invalid/incomplete comparisons yield null
+scientific effects. The dedicated M6 viewer has correct names, a paused
+initial frame and retained final image; live demonstrations are separate.
+
+See [M6 specification](docs/research/experiments/AETHER_CL_M6_Placement.md)
+and [machine preregistration](docs/research/experiments/evidence/AETHER_CL_M6_Placement_Protocol.json).
+All 121 local tests passed in 211.364 seconds, including 16 M6 tests. The
+targeted M6 suite separately passed in 22.705 seconds. Python 3.10 parsing,
+CLI help, documentation links and frozen source/protocol agreement passed.
+Native commissioning, full execution and independent archive audit remain
+pending. Return to 02 after M6 audit. No insertion, force disturbance, sensor
+verifier, memory/world model, B/C/D or 02W is authorized by this round.
