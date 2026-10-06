@@ -2,8 +2,11 @@
 
 Date: 2026-10-06 (Asia/Shanghai).
 
-Request independent research review of M6R under DEC-0005. The frozen experiment
-and independent raw audit are complete. No follow-up implementation is started.
+This is the historical M6R review handoff under DEC-0005. [02 accepted the
+returned evidence under DEC-0006](AETHER_CL_M6R_02_Research_Review_v0.1.md) at
+`145aadce249b23a49ecb899ff273e93f673dd03b` and authorized
+[M7 contact-rich insertion only](AETHER_CL_M7_Inspection.md).
+The frozen M6R experiment and independent raw audit remain unchanged.
 
 Repository: `NoctisBaguette/AURA-Embodied`, branch `06-01/aether-cl-m0`, PR #1
 draft/open/unmerged. Native measurement revision:

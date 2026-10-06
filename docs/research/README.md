@@ -52,7 +52,10 @@ are complete: all 360 trials and 340 comparisons pass evidence checks, but
 all 62 V2 placement retries abort before release, with no rescues.
 The [M6 return to 02](experiments/AETHER_CL_M6_Return_to_02.md) was
 [accepted under DEC-0005](experiments/AETHER_CL_M6_02_Research_Review_v0.1.md).
-The active round is [M6R](experiments/AETHER_CL_M6R_Placement.md), one lower-to-release
-contract substitution with Baseline/V1/V2-old/V2R on fresh seeds 120–139.
-[Fresh M6R native evidence is audited](experiments/AETHER_CL_M6R_Results.md), with 70 paired rescues and no observed healthy regressions. [Return to 02](experiments/AETHER_CL_M6R_Return_to_02.md) before further scope. The earlier return documents are historical
-checkpoints, not authorization to activate later tasks or close Prototype A.
+[Fresh M6R native evidence](experiments/AETHER_CL_M6R_Results.md) is
+[accepted by 02 under DEC-0006](experiments/AETHER_CL_M6R_02_Research_Review_v0.1.md):
+70 paired rescues and no observed healthy regressions. The active round is
+[M7 contact-rich insertion](experiments/AETHER_CL_M7_Inspection.md), beginning
+with installed-task inspection. Earlier return documents remain historical checkpoints.
+Prototype A stays open. Return to 02 after M7; physics-propagated disturbances,
+non-privileged verification, memory/world models, B/C/D and 02W remain deferred.

@@ -5,7 +5,8 @@ Date: 2026-10-06 (Asia/Shanghai).
 Status: implementation frozen at `9ac5439e003f2ed65ecf2ea02f59a6186c7b6714`.
 Archived known-M6 checks, [native known16 commissioning audit](AETHER_CL_M6R_Known16_Native.md),
 fresh native execution and [independent M6R audit](AETHER_CL_M6R_Results.md) are
-complete. [Return to 02](AETHER_CL_M6R_Return_to_02.md) before further scope.
+complete. [02 accepted M6R under DEC-0006](AETHER_CL_M6R_02_Research_Review_v0.1.md)
+and authorized [M7 insertion only](AETHER_CL_M7_Inspection.md).
 The evidence documentation commit is not a new measurement revision.
 
 Authority: [02's M6 review](AETHER_CL_M6_02_Research_Review_v0.1.md), DEC-0005,

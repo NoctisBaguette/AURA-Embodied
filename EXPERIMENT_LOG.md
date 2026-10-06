@@ -1035,3 +1035,32 @@ See [full results](docs/research/experiments/AETHER_CL_M6R_Results.md),
 and [return to 02](docs/research/experiments/AETHER_CL_M6R_Return_to_02.md).
 Research acceptance is pending 02 review. Prototype A stays open, PR #1 stays
 draft/unmerged, main unchanged, and no follow-up scope starts automatically.
+
+
+# EXP-0024 — M7 Installed-Task Inspection Preparation
+
+Date: 2026-10-06 (UTC).
+
+02 accepted M6R and authorized M7 contact-rich insertion only under DEC-0006
+at `145aadce249b23a49ecb899ff273e93f673dd03b`. The accepted review and decision
+are preserved verbatim. This entry supersedes EXP-0023's pending-review status.
+
+Added an external standard-library inspection script that reads the installed
+ManiSkill 3.0.1 task registrations, candidate source bytes/hashes, Panda
+controller/URDF sources and available native reset history. It never imports
+the simulator, creates an environment or resets a seed. Empty history fails
+rather than certifying freshness. Preferred 140–159 is checked and the first
+unused contiguous 20-seed range from 140 is reported, without adaptive replacement.
+
+Official documentation suggests PegInsertionSide-v1 as a candidate; selection
+is pending exact installed-source inspection. The local runtime lacks ManiSkill
+and cannot substitute for that inspection. No M7 outcome, numerical scorer,
+misalignment magnitude, controller budget or fresh protocol is frozen here.
+Next: inspect the server report, choose a suitable installed task, commission
+on previously observed development seeds, then freeze before fresh execution.
+See [M7 inspection and scope](docs/research/experiments/AETHER_CL_M7_Inspection.md).
+
+Validation: Python 3.10 grammar and CLI help pass. Bounded static fixtures verify
+source/registration extraction and hashes, observed-seed overlap/range selection,
+rejection of empty and invalid history, complete report generation without
+simulation and exclusive report retention. Native execution remains pending.

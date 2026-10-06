@@ -99,7 +99,7 @@ That study is complete; these commands describe its protocol. Prior slots are no
 Do not modify repository/environment while a study is active. After the native
 M6 audit, return to 02 before insertion, sensor/force work or any further scope.
 
-## Current engineering round — M6R
+## Completed engineering round — M6R
 
 [02 accepted M6 as valid negative evidence](../../docs/research/experiments/AETHER_CL_M6_02_Research_Review_v0.1.md)
 and DEC-0005 authorizes [M6R Effect-Aligned Lower-to-Release Transition](../../docs/research/experiments/AETHER_CL_M6R_Placement.md) only.
@@ -121,10 +121,24 @@ first. New native fresh studies require a replayed `--commission-report` and
 reject already-recorded resets of selected seeds. [Fresh native evidence is
 audited](../../docs/research/experiments/AETHER_CL_M6R_Results.md), with 70 paired
 placement rescues and no observed healthy regressions, at unchanged measurement
-revision `9ac5439e003f2ed65ecf2ea02f59a6186c7b6714`. [Return to 02](../../docs/research/experiments/AETHER_CL_M6R_Return_to_02.md)
-before any broader scope; Prototype A stays open.
+revision `9ac5439e003f2ed65ecf2ea02f59a6186c7b6714`. [02 accepted M6R under DEC-0006](../../docs/research/experiments/AETHER_CL_M6R_02_Research_Review_v0.1.md); Prototype A stays open.
 The separate live CLI is `python -m aether_cl.m6r --system v2r --live --seed 100 ...`.
 It labels V2-old and V2R explicitly; it is not archive playback.
+
+## Current engineering round — M7
+
+[M7 contact-rich insertion](../../docs/research/experiments/AETHER_CL_M7_Inspection.md)
+is authorized by DEC-0006. First inspect exact installed ManiSkill 3.0.1 task,
+controller and asset sources without creating or resetting environments. The
+external `tools/m7_task_inspection.py` also checks available native reset history
+for preferred seeds 140–159. The server's M6R measurement checkout can remain unchanged.
+
+Task selection, geometry-dependent scorer thresholds, disturbance magnitudes,
+controller and recovery budgets are pending installed-source inspection and
+known-seed development commissioning. No fresh M7 execution is authorized by an
+inspection report alone. Use a new task-specific matched Baseline/V1/V2 matrix,
+independent object-target scoring and one bounded retreat/realign/reinsert episode.
+Return to 02 after frozen native M7 evidence before further scope.
 
 ## Current milestone
 

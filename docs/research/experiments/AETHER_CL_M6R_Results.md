@@ -7,8 +7,9 @@ the fresh matrix, while V2-old aborts all 70 before release. V2R finishes with
 released, supported, stable and retracted placement in every eligible selected
 slot, with no observed unnecessary recovery or healthy-case regression. Strict
 raw replay and common-prefix comparisons support the narrow causal attribution
-to the lower completion contract in this setup. Independent research acceptance
-remains with 02; Prototype A stays open.
+to the lower completion contract in this setup. [02 accepted M6R under DEC-0006](AETHER_CL_M6R_02_Research_Review_v0.1.md)
+at `145aadce249b23a49ecb899ff273e93f673dd03b` and authorized M7 insertion only;
+Prototype A stays open.
 
 ## Frozen method and provenance
 

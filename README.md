@@ -120,5 +120,9 @@ It records:
   Prototype A remains open; insertion, physically applied disturbances and a
   non-privileged verifier remain later closure dimensions. The
   [M6 return to 02](docs/research/experiments/AETHER_CL_M6_Return_to_02.md) was [accepted by 02](docs/research/experiments/AETHER_CL_M6_02_Research_Review_v0.1.md).
-  The active round is [M6R effect-aligned lowering/release](docs/research/experiments/AETHER_CL_M6R_Placement.md)
-  under DEC-0005; [fresh native evidence is audited](docs/research/experiments/AETHER_CL_M6R_Results.md), with 70 paired placement rescues and no observed healthy regressions. [Return to 02](docs/research/experiments/AETHER_CL_M6R_Return_to_02.md) before further scope. This is the first AETHER experiment, not AETHER v1.0.
+  [M6R fresh native evidence](docs/research/experiments/AETHER_CL_M6R_Results.md)
+  is [accepted by 02 under DEC-0006](docs/research/experiments/AETHER_CL_M6R_02_Research_Review_v0.1.md):
+  70 paired placement rescues, exact common-prefix evidence and no observed healthy regressions.
+  The active round is [M7 contact-rich insertion](docs/research/experiments/AETHER_CL_M7_Inspection.md),
+  starting with read-only inspection of installed ManiSkill 3.0.1 tasks and native seed history.
+  Return to 02 after M7 before further scope. This is the first AETHER experiment, not AETHER v1.0.
