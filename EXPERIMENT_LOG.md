@@ -849,3 +849,42 @@ raw/backup bytes, distinct child calls, commissioning, rejection of incomplete
 or tampered evidence, identity drift and duplicate repair, and retained NaN
 rejection. See [reporting repair](docs/research/experiments/AETHER_CL_M6_Reporting_Repair.md).
 Native continuation and independent audit remain pending; scope is still M6.
+
+
+# EXP-0020 — M6 Native Placement Completion and Independent Audit
+
+Date: 2026-10-06 (Asia/Shanghai).
+
+M6 completes at the original clean scientific commit `7059c713d3b36e3f032aab8d1f87662ed6fdab91`.
+All three returned archive hashes, 1,804 final and 94 pilot indexed files,
+per-trial file lists, 360 trial replays and 340 strict paired/control comparisons
+pass. A separate endpoint implementation agrees at every step. All 259,200
+actions replay with zero maximum error; pilot/final aggregates and curve CSVs
+reproduce exactly. The report-only repair preserves the completed first child,
+immutable backup and first 18 pilot records/raw files without reruns. Restoring
+the recorded XDG_SESSION_ID resolves the reconnect-only environment mismatch
+without weakening guards.
+
+Seeds 107 and 111 remain initial-horizontal-tolerance exclusions throughout:
+36 excluded and 324 eligible slots. Per system, normal and 1 cm shifts succeed
+18/18, 4 cm succeeds 10/18, and 8/12/20 cm succeeds 0/18: 46/108 overall.
+All 270 eligible disturbances apply after release as frozen. V2 attempts the
+62 paired failures, rescues none, and makes no unnecessary attempts or endpoint
+regressions. The ten successful 4 cm cases already succeed under Baseline.
+
+All 62 retries abort `retry_lower_not_completed` after 40 lower actions. They
+regrasp/lift/reposition near goal XY but remain closed and unretracted. At abort,
+TCP vertical residuals 7.592–12.001 mm violate the 3 mm lower gate; one also
+violates orientation. No attempt executes recovery release. This is a local
+phase allowance failure, not the global action deadline. All aborted holds
+retain their final command and finish contact-grasped. No controller tuning,
+endpoint relaxation, seed replacement or second attempt was introduced.
+
+The result establishes native released-placement viability but no placement
+recovery benefit for this frozen executor. See
+[audited results](docs/research/experiments/AETHER_CL_M6_Results.md),
+[machine audit](docs/research/experiments/evidence/AETHER_CL_M6_Native_Audit.json),
+[episode CSV](docs/research/experiments/evidence/AETHER_CL_M6_Episode_Outcomes.csv)
+and [return to 02](docs/research/experiments/AETHER_CL_M6_Return_to_02.md).
+Return for review before any correction or new scope. Prototype A stays open;
+PR #1 stays draft/unmerged and main unchanged.

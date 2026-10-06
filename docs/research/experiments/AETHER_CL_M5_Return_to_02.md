@@ -5,7 +5,9 @@ Date: 2026-10-06 (Asia/Shanghai)
 Historical handoff: subsequently [accepted by 02](AETHER_CL_M5_02_Research_Review_v0.1.md)
 under DEC-0004 at `03b9b2dc77c33dc1aa47edd67dcb20238ad8b0bb`.
 The new active round is [M6 Support Placement and Release](AETHER_CL_M6_Placement.md),
-with native evidence still pending. The original return and findings below are retained.
+whose [native execution and audit](AETHER_CL_M6_Results.md) are now complete.
+The [M6 return](AETHER_CL_M6_Return_to_02.md) is the current handoff; the original
+M5 return and findings below are retained.
 
 **M5's engineering round is complete: implementation, frozen native execution
 and independent archive audit. Return to 02 now for research review before

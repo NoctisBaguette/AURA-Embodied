@@ -115,7 +115,8 @@ It records:
   [M5 verification-gating attribution](docs/research/experiments/AETHER_CL_M5_Attribution.md)
   is complete, independently audited and [accepted by 02](docs/research/experiments/AETHER_CL_M5_02_Research_Review_v0.1.md).
   The active round is [M6 support placement/release](docs/research/experiments/AETHER_CL_M6_Placement.md):
-  implemented and preregistered; native commissioning/execution/audit pending.
+  native execution and [independent audit](docs/research/experiments/AETHER_CL_M6_Results.md)
+  are complete. V2 rescues none of 62 failed placements; all retries abort before release.
   Prototype A remains open; insertion, physically applied disturbances and a
-  non-privileged verifier remain later closure dimensions. Return to 02 after
-  M6 audit. This is the first AETHER experiment, not AETHER v1.0.
+  non-privileged verifier remain later closure dimensions. The
+  [M6 return to 02](docs/research/experiments/AETHER_CL_M6_Return_to_02.md) is ready for review. This is the first AETHER experiment, not AETHER v1.0.

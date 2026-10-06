@@ -69,7 +69,13 @@ shifts: 360 isolated trials, 800 actions each. One bounded replacement retry
 may regrasp, replace and release. The first 18 native slots pause for
 commissioning before resuming the remaining 342. Initial exclusions, failed
 attempts and missed release preconditions remain recorded without replacement.
-Native commissioning, full execution and independent audit are pending.
+Native commissioning, all 360 retained trials and independent audit are complete.
+All 340 comparisons and 259,200 actions replay. Normal/1 cm: 18/18 success per
+system; 4 cm: 10/18; 8/12/20 cm: 0/18. Two initially-in-tolerance seeds stay
+excluded in every cell. V2 makes 62 required attempts, all aborting at lower before
+release; no rescues or unnecessary interventions. See the
+[audited results](../../docs/research/experiments/AETHER_CL_M6_Results.md) and
+[return to 02](../../docs/research/experiments/AETHER_CL_M6_Return_to_02.md).
 
 The new live viewer uses a dedicated M6 page and correct system labels:
 
@@ -86,7 +92,10 @@ batch. A full 800-step demonstration takes about 80 seconds at 10 FPS; the
 stationary tail still counts toward the frozen budget.
 
 Batch CLI: `python -m aether_cl.m6_sweep --output ... --archive ... --stop-after 18`,
-then inspect with `--check-pilot`, then `--resume`. Prior slots are not rerun.
+then inspect with `--check-pilot`, then `--resume`. The measured native study
+used the [external report-only helper](../../docs/research/experiments/AETHER_CL_M6_Reporting_Repair.md)
+to preserve the first completed child after a parent serialization failure.
+That study is complete; these commands describe its protocol. Prior slots are not rerun.
 Do not modify repository/environment while a study is active. After the native
 M6 audit, return to 02 before insertion, sensor/force work or any further scope.
 

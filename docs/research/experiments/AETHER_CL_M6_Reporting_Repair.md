@@ -56,4 +56,22 @@ They also verify false/true preservation and retained NaN rejection. Python
 3.10 syntax passes. The prior 121-test result remains the original engineering
 validation; the focused tests validate this separate reporting correction.
 
-Native continuation and independent archive audit remain pending.
+## Audited completion
+
+Native continuation and independent archive audit are complete. The before-repair
+backup matches its recorded hash; every original non-parent file is unchanged
+in the pilot and final archives. The completed first child was adopted once,
+not rerun. All first-18 trial records and raw pilot files are preserved in the
+360-slot final archive; both aggregate reports and CSVs reproduce exactly.
+
+On reconnection, the initial repair guard rejected an environment mismatch.
+Read-only diagnostics found only `XDG_SESSION_ID`, recorded 876 versus current
+879. Exporting the recorded value reconstructed the exact original full child
+environment hash; no guard was waived or rewritten. A separate pilot check
+from base Conda failed to import SciPy, then passed under the original `aether-cl`
+environment. Neither check changed measured trials.
+
+The full study finishes with valid evidence, while all 62 required recovery
+attempts abort before release. This scientific result is independent of the
+reporting transport repair. See [audited results](AETHER_CL_M6_Results.md)
+and [return to 02](AETHER_CL_M6_Return_to_02.md).

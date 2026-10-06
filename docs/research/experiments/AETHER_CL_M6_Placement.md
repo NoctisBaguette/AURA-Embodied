@@ -2,8 +2,11 @@
 
 Date: 2026-10-06 (Asia/Shanghai).
 
-Status: implemented and preregistered; native commissioning, full execution and
-independent archive audit are pending. No native M6 outcome has been observed.
+Status: implementation, native commissioning, full execution and independent
+archive audit are complete. The original preregistered method below is retained.
+See [audited native results](AETHER_CL_M6_Results.md): V2 rescues none of 62
+failed placements; all attempts abort at lower before release.
+[Return to 02](AETHER_CL_M6_Return_to_02.md) for review before further work.
 
 Authority: [02's M5 acceptance and M6 scope](AETHER_CL_M5_02_Research_Review_v0.1.md)
 and DEC-0004, accepted at `03b9b2dc77c33dc1aa47edd67dcb20238ad8b0bb`.
@@ -233,7 +236,7 @@ A100 selection. The measured archive contains no video. Separate live runs
 have separate directories and do not replace or stand in for measured evidence.
 Choose a useful case after the native audit.
 
-## Validation and pending work
+## Validation and native completion
 
 Local fixtures test actual endpoint semantics, reused servo input boundaries,
 intentional release handling, replacement and release, one-attempt preservation,
@@ -247,13 +250,16 @@ All **121 local tests passed in 211.364 seconds**, including 16 M6 tests.
 The targeted M6 suite separately passed in 22.705 seconds. Documentation
 links and frozen source/protocol agreement were checked before publication.
 
-Native commissioning, full measured evidence and independent archive audit
-remain pending. Record their actual failures as well as successes here.
+Native commissioning, all 360 retained trials and independent archive audit
+are complete. All 259,200 actions, 340 strict comparisons and endpoint scoring
+replay; pilot/final JSON and CSV reproduce exactly. The
+[audited results](AETHER_CL_M6_Results.md) retain all exclusions and failures.
 
 The first native launch encountered a parent JSON serialization failure after
-its completed first child. Continue that retained study using the separate
-[reporting repair](AETHER_CL_M6_Reporting_Repair.md) on the original scientific
-checkout; do not restart or discard the first trial.
+its completed first child. The separate
+[reporting repair](AETHER_CL_M6_Reporting_Repair.md) continued the retained study
+on the original scientific checkout, preserving the first child and pilot bytes
+without reruns. The reporting exception and recovery failures are distinct.
 
 ## Return boundary
 

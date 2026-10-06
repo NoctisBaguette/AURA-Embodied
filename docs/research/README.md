@@ -47,7 +47,8 @@ disturbance failures. Prototype A remains open; further scope requires 02.
 
 [02's M5 acceptance and DEC-0004](experiments/AETHER_CL_M5_02_Research_Review_v0.1.md)
 authorize [M6 Support Placement and Release](experiments/AETHER_CL_M6_Placement.md)
-only. M6 is implemented and preregistered on fresh seeds 100–119; native
-commissioning, the full 360-trial matrix and independent audit are pending.
-Return to 02 after that audit. The earlier return documents are historical
+only. M6 native execution and [independent audit](experiments/AETHER_CL_M6_Results.md)
+are complete: all 360 trials and 340 comparisons pass evidence checks, but
+all 62 V2 placement retries abort before release, with no rescues.
+The [M6 return to 02](experiments/AETHER_CL_M6_Return_to_02.md) is ready for review. The earlier return documents are historical
 checkpoints, not authorization to activate later tasks or close Prototype A.
