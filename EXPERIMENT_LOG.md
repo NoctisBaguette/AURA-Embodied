@@ -947,3 +947,37 @@ Native known-seed commissioning and fresh execution/independent audit remain
 pending. After M6R audit, return to 02 before further implementation. Prototype A
 stays open; PR #1 stays draft/unmerged. No insertion, force/sensor work, motion
 redesign, memory/world models, B/C/D or 02W is authorized.
+
+
+# EXP-0022 — M6R Known16 Native Commissioning and Independent Audit
+
+Date: 2026-10-06 (Asia/Shanghai).
+
+Native known-seed commissioning at clean frozen revision
+`9ac5439e003f2ed65ecf2ea02f59a6186c7b6714` passes. Returned archive SHA-256:
+`779b8cc01ab2f0c47ff4d7a407750c20a17fd46f98bf93fc3726bf38eb912bb1`.
+All 84 indexed files, 16 child records / 12,800 actions and 14 strict comparisons
+are independently checked; all action replay errors are exactly zero.
+Baseline/V1/V2-old match their retained M6 physical trajectories exactly in
+all 12 overlapping slots / 9,600 steps. The native source/protocol and
+commissioning evidence/viability gates pass. Server focused tests passed 12/12
+in 38.470 seconds according to the returned terminal evidence.
+
+Normal placement succeeds 2/2 for each system with full old/R equality and no
+retry. At 8 cm Baseline/V1/V2-old succeed 0/2, V2R 2/2. The old/R common physical
+trace remains exact through post-observation lower-state differences at 446/447.
+The old Z predicate fails while retained gates and replacement support/XY pass.
+V2R releases at 447/448, retracts at 457/458 and reaches task success at 477/478,
+ending released/supported/stable/retracted within 2.757/1.713 mm XY. Old retries
+retain their lower timeout and held endpoint. One locally recomputed diagnostic
+angle differs by 2.36e-13 rad due to the replay math environment; raw trajectories,
+decisions and readiness remain exact. The machine audit records that distinction.
+
+See [native development audit](docs/research/experiments/AETHER_CL_M6R_Known16_Native.md)
+and [machine evidence](docs/research/experiments/evidence/AETHER_CL_M6R_Known16_Native_Audit.json).
+These known seeds are development-only, not fresh scientific outcomes. The
+unchanged preregistered 480-slot 120–139 study may now proceed at the same frozen
+measurement SHA, with first24 retained pilot followed only by 456 unstarted slots.
+No implementation or parameter tuning follows development results. Fresh native
+execution/audit remains pending; return to 02 after that audit. Prototype A stays
+open, PR #1 draft/unmerged and main unchanged.

@@ -118,8 +118,10 @@ with a retained first24 pilot and 460 strict comparisons.
 See [native execution steps](../../docs/research/experiments/AETHER_CL_M6R_Execution.md).
 Use `python -m aether_cl.m6r_sweep --commission-known --output ... --archive ...`
 first. New native fresh studies require a replayed `--commission-report` and
-reject already-recorded resets of selected seeds. Native commissioning and fresh
-evidence are pending. Return to 02 after M6R audit before any broader scope.
+reject already-recorded resets of selected seeds. [Native known16 commissioning
+is audited](../../docs/research/experiments/AETHER_CL_M6R_Known16_Native.md); fresh
+evidence is next at the unchanged frozen measurement revision
+`9ac5439e003f2ed65ecf2ea02f59a6186c7b6714`. Return to 02 after M6R audit before any broader scope.
 The separate live CLI is `python -m aether_cl.m6r --system v2r --live --seed 100 ...`.
 It labels V2-old and V2R explicitly; it is not archive playback.
 

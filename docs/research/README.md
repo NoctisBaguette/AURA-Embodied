@@ -54,5 +54,5 @@ The [M6 return to 02](experiments/AETHER_CL_M6_Return_to_02.md) was
 [accepted under DEC-0005](experiments/AETHER_CL_M6_02_Research_Review_v0.1.md).
 The active round is [M6R](experiments/AETHER_CL_M6R_Placement.md), one lower-to-release
 contract substitution with Baseline/V1/V2-old/V2R on fresh seeds 120–139.
-Native known-seed commissioning and fresh execution/audit are pending. The earlier return documents are historical
+[Native known16 commissioning is audited](experiments/AETHER_CL_M6R_Known16_Native.md); fresh execution/audit is next. The earlier return documents are historical
 checkpoints, not authorization to activate later tasks or close Prototype A.

@@ -121,4 +121,4 @@ It records:
   non-privileged verifier remain later closure dimensions. The
   [M6 return to 02](docs/research/experiments/AETHER_CL_M6_Return_to_02.md) was [accepted by 02](docs/research/experiments/AETHER_CL_M6_02_Research_Review_v0.1.md).
   The active round is [M6R effect-aligned lowering/release](docs/research/experiments/AETHER_CL_M6R_Placement.md)
-  under DEC-0005; native known-seed commissioning and fresh evaluation are pending. This is the first AETHER experiment, not AETHER v1.0.
+  under DEC-0005; [native known16 commissioning is audited](docs/research/experiments/AETHER_CL_M6R_Known16_Native.md) and fresh evaluation is next. This is the first AETHER experiment, not AETHER v1.0.
