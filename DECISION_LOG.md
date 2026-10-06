@@ -166,6 +166,79 @@ See `docs/research/experiments/AETHER_CL_02_Research_Review_v0.1.md`. PR #1 rema
 
 ---
 
+
+# DEC-0004
+
+## Date
+
+2026-10-06
+
+## Topic
+
+Accept M5 verification-gating attribution and advance Prototype A to support placement/release.
+
+## Context
+
+M5 compared verifier-gated V2 against a preregistered verifier-independent V3
+using the same bounded recovery capability. Fresh seeds 80–99 produced 960
+eligible isolated episodes, 345,600 actions and 1,160 strict comparisons.
+
+V2 avoided all 60 unnecessary V3 attempts on baseline-success controls. On the
+healthy drop-family control, scheduled V3 recovery destroyed a valid grasp and
+failed 20/20 while V2 preserved nominal 20/20 success. In all 180 disturbed
+cases requiring recovery, V2/V3 triggers aligned and their complete physical
+traces, costs and outcomes were identical, with 177/180 final successes.
+
+## Options Considered
+
+1. Treat M5 as evidence that explicit verification universally improves
+   recovery success.
+2. Treat M5 as evidence only for selective intervention gating and proceed to
+   the next Prototype A task-semantic closure dimension.
+3. Stop Prototype A and activate memory/state/embodiment work.
+4. Optimize the existing held-cube motion/precision before adding a new task.
+
+## Decision
+
+Choose Option 2.
+
+M5 satisfies its causal-attribution objective. Update H3 so that verification's
+demonstrated value is selective recovery invocation rather than universal
+recovery necessity. Update H4 so that recovery benefit is conditional on
+appropriate invocation. Record first bounded empirical support for H7's
+adaptive capability-allocation idea.
+
+The next authorized 06-01 round is **M6 Support Placement and Release** under a
+new matched task-specific baseline. Success must require actual release and
+stable support in the target region. Include a controlled placement-phase
+failure family and one bounded verification-gated recovery opportunity.
+
+V3 does not continue as a default system; it served the M5 attribution control.
+
+## Reasoning
+
+The current held-cube task does not yet test a completed placement state.
+Support placement/release is the smallest next task-semantic extension that
+meaningfully changes the desired physical state transition while preserving the
+ability to isolate verification/recovery effects.
+
+Insertion, physics-propagated disturbances and non-privileged verification
+remain required before Prototype A scientific closure, but introducing them
+simultaneously would confound the interpretation.
+
+## Future Re-evaluation Condition
+
+Return to 02 immediately after M6 audited evidence. Reassess whether the
+closed-loop findings transfer to a released/stably-supported outcome and then
+decide whether to proceed to contact-rich insertion or revise the sequence.
+
+## Notes
+
+See `docs/research/experiments/AETHER_CL_M5_02_Research_Review_v0.1.md`.
+PR #1 remains draft/unmerged unless separately reviewed.
+
+---
+
 # Decision Template
 
 ## Decision ID
