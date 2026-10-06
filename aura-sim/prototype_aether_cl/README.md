@@ -133,9 +133,12 @@ controller and asset sources without creating or resetting environments. The
 external `tools/m7_task_inspection.py` also checks available native reset history
 for preferred seeds 140–159. The server's M6R measurement checkout can remain unchanged.
 
-Task selection, geometry-dependent scorer thresholds, disturbance magnitudes,
-controller and recovery budgets are pending installed-source inspection and
-known-seed development commissioning. No fresh M7 execution is authorized by an
+Installed source inspection is complete; `PegInsertionSide-v1` is selected.
+[M7 development](../../docs/research/experiments/AETHER_CL_M7_Development.md)
+implements the task-specific controller/scorer/verifier/recovery and read-only
+replay. Start with six normal commissioning slots on known seeds 100/101.
+Geometry-dependent thresholds, magnitudes and budgets are development candidates,
+pending native commissioning before fresh freeze. No fresh M7 execution is authorized by an
 inspection report alone. Use a new task-specific matched Baseline/V1/V2 matrix,
 independent object-target scoring and one bounded retreat/realign/reinsert episode.
 Return to 02 after frozen native M7 evidence before further scope.

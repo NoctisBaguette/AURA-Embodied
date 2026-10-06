@@ -2,8 +2,9 @@
 
 Date: 2026-10-06 (UTC).
 
-Status: authorized scope; installed-task inspection pending. No M7 native
-outcomes or numerical protocol have been produced or frozen.
+Status: installed report verified and `PegInsertionSide-v1` selected. See
+[M7 development implementation and first native step](AETHER_CL_M7_Development.md).
+No M7 native outcomes or fresh numerical protocol have been produced or frozen.
 
 Authority: [02's M6R acceptance](AETHER_CL_M6R_02_Research_Review_v0.1.md),
 DEC-0006 at `145aadce249b23a49ecb899ff273e93f673dd03b`.
@@ -19,12 +20,11 @@ Prefer an existing rigid single-arm insertion task in installed ManiSkill 3.0.1.
 Official [task documentation](https://maniskill.readthedocs.io/en/latest/tasks/table_top_gripper/index.html)
 and [API documentation](https://maniskill.readthedocs.io/en/latest/api/mani_skill/index.html)
 identify `PegInsertionSide-v1` as a candidate with randomized peg/hole geometry,
-3 mm hole clearance and Panda wrist-camera robot support. This is a candidate,
-not selection based on locally installed source. Read the exact server version
-and collision geometry first. If no suitable installed task exists, return to
-02 before creating a custom environment or changing the question.
+3 mm hole clearance and Panda wrist-camera robot support. The returned server source now confirms this task is suitable; the selection
+and exact collision geometry are recorded in [M7 development](AETHER_CL_M7_Development.md).
+No custom environment or research-question change is needed.
 
-## First action: static inspection
+## Completed first action: static inspection
 
 [`tools/m7_task_inspection.py`](../../../tools/m7_task_inspection.py) uses only
 Python's standard library and installed distribution metadata. Run it in the

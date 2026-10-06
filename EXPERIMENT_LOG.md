@@ -1064,3 +1064,46 @@ Validation: Python 3.10 grammar and CLI help pass. Bounded static fixtures verif
 source/registration extraction and hashes, observed-seed overlap/range selection,
 rejection of empty and invalid history, complete report generation without
 simulation and exclusive report retention. Native execution remains pending.
+
+
+# EXP-0025 — M7 Installed-Task Selection and Development Implementation
+
+Date: 2026-10-07 (Asia/Shanghai).
+
+The returned 406,401-byte inspection report verifies against SHA-256
+`901a789c374e203d8ad59a9e012ca6364ee0ae8a6c557a324545ebed0e7ea828`;
+all embedded source hashes/byte counts verify. Installed PegInsertionSide-v1
+fits the authorized rigid single-arm insertion question; no custom task or
+installed-source changes are needed. Use its supported panda_wristcam arm with
+privileged state and CPU physics. The built-in head-only scorer is logged,
+not used for control or as the independent score. Retained native history
+checks 2,715 event files, seeds0–139 only, and no preferred140–159 overlap.
+
+Added new task-specific nominal controller, geometric passive verifier,
+bilateral-contact/lift acquisition plus clipped-cuboid/depth/orientation/stability
+reference, and one bounded physical-effect-gated backout/refresh/realign/reinsert/
+verify episode. An acquisition failure consumes the episode. Development-only
+waypoint bias induces lateral misalignment while holding the peg; the actual
+physical precontact relation is logged rather than assumed from the bias.
+Normal plus .5/1/2/4/8-clearance ratios are candidates, not frozen magnitudes.
+
+The native entry allows known100/101 only, uses one fresh interpreter per slot,
+checks exact inspected package/task/controller/URDF source identity and startup
+environment, retains full logs/source/report snapshots and archives failed
+partial evidence. Replay reconstructs every action/controller/verifier/recovery/
+reference state and a separate raw-force/rigid-pose endpoint, with exact
+physical/action/reference paired prefixes. No fresh-native entry exists yet.
+All historical M0–M6R execution modules and machine protocols stay unchanged.
+
+First native step is normal-six (100/101 x Baseline/V1/V2, 1,200 actions each),
+followed by independent archive review, magnitude commissioning and numerical
+freeze before fresh native outcomes. No M7 native result is claimed here.
+See [M7 development](docs/research/experiments/AETHER_CL_M7_Development.md) and
+[inspection receipt](docs/research/experiments/evidence/AETHER_CL_M7_Installed_Inspection.json).
+
+Validation: all 21 focused tests pass (19 contract/controller/full-budget
+fixture replay tests in 19.903 s; two native-source/partial-archive guards in
+0.048 s). Fixtures replay 3,600 endpoints and exact matched actions, reject
+forged acquisition and tampered actions/outcomes, and never establish native
+physics viability. Python3.10 syntax, CLI help, local links and unchanged
+historical M0–M6R source/protocol preflight pass. Native normal-six remains pending.

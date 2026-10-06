@@ -1,0 +1,179 @@
+# M7 development — PegInsertionSide-v1
+
+Date: 2026-10-07 (Asia/Shanghai).
+
+Status: installed task selected; development implementation prepared. Native
+M7 commissioning has not run. No fresh-native M7 protocol or result is frozen.
+Authority remains [02's M6R acceptance / DEC-0006](AETHER_CL_M6R_02_Research_Review_v0.1.md)
+at `145aadce249b23a49ecb899ff273e93f673dd03b`.
+
+## Installed-source selection
+
+The operator returned `m7-task-inspection.json`: 406,401 bytes, SHA-256
+`901a789c374e203d8ad59a9e012ca6364ee0ae8a6c557a324545ebed0e7ea828`.
+All embedded source byte counts and hashes verify. The clean native measurement
+checkout was `9ac5439e003f2ed65ecf2ea02f59a6186c7b6714`, with Python 3.10.22,
+ManiSkill 3.0.1, Sapien 3.0.3, NumPy 1.26.4, SciPy 1.10.1, Torch 2.4.1+cu121
+and Gymnasium 1.1.1. Inspection created no environment and reset no seed.
+
+Select installed `PegInsertionSide-v1`, using its supported `panda_wristcam`
+single arm, state observations, CPU physics and `pd_ee_pose` control. No camera
+observations enter control or verification. The installed Panda-v3 URDF is
+present and hashed. No task assets, reset poses, collision shapes, physics or
+installed package bytes are changed. The native registration has a 100-step
+TimeLimit; development explicitly sets a 1,200-action budget without modifying
+the task itself.
+
+The peg is a rigid box: half-length 85–125 mm and square half-width 15–25 mm.
+Four rigid box walls form a channel along the target's local X axis. Its axial
+half-length equals the peg half-length; its square hole half-width equals the
+peg half-width plus 3 mm. The peg, target yaw and hole offset are randomized.
+This is a simpler single-peg relation than the installed two-prong PlugCharger
+with 0.5 mm clearance or a multi-shape kit task. The existing task fits the
+authorized question, so no custom environment is required.
+
+The installed built-in test uses only the peg-head position: head X at least
+-15 mm and head Y/Z within the hole radius. It has no explicit upper depth,
+orientation, acquisition or persistence requirement. This is logged separately
+and never used as controller input or the independent task score.
+
+The [inspection receipt](evidence/AETHER_CL_M7_Installed_Inspection.json) retains
+all source hashes, versions and seed provenance. Native preflight requires those
+exact package/source/URDF bytes. The original full inspection report is copied
+into every development archive, alongside the new execution source snapshot.
+
+## Development contract and matched systems
+
+These numerical candidates may change on development evidence before fresh freeze.
+They are not confirmatory preregistration.
+
+Independent acquisition requires fresh bilateral finger contact while the peg
+is at least 30 mm above its reset height. Contact history alone plus a later
+ungrasped flight does not satisfy acquisition. Raw finger forces and directions
+are retained and independently checked against the native contact label.
+
+Insertion depth is the peg-head center's local X plus channel half-length L.
+The candidate final interval is 0.8L–1.2L, around nominal depth L. Orientation
+error must be at most 0.05 rad, allowing equivalent quarter-turn roll of a square
+peg but rejecting reversed entry. All vertices of the peg volume clipped to the
+channel's axial slab must fit its square cross section, with 0.2 mm collision
+slop. Checking clipped edge intersections at the entry plane rejects a tilted
+peg whose head is centered but whose inserted body intersects a wall.
+
+Require ten consecutive fresh stable observations: linear speed at most
+10 mm/s, angular speed at most 0.15 rad/s, frame translation at most 0.5 mm and
+frame rotation at most 0.01 rad. Final release is not required for this insertion
+task; grasp/contact status is logged. Final success is not latched forever.
+
+| System | Nominal motion | Verification | Recovery |
+| --- | --- | --- | --- |
+| Baseline | Fixed task-specific insertion schedule | Disabled | Disabled |
+| V1 | Exact same controller | Passive pose/velocity/attachment proxy | Disabled |
+| V2 | Exact same controller until confirmed failure | Same verifier | One bounded episode |
+
+The nominal schedule is approach/descend/close/lift/carry/prealign/offset/insert/
+settle, with durations 80/60/30/60/100/100/60/140/80 actions (710 total). Grasp
+the peg 60 mm behind its center. Refresh the actual TCP-in-peg grasp transform
+once after lift. Cache the target and insertion poses; only TCP feedback enters
+the nominal servo after that calibration. No contact, score or verifier output
+enters nominal action selection. Translation/rotation limits are 12 mm/0.06 rad
+per command, with 4 mm translation during insertion.
+
+V2 has one 420-action recovery episode, stage caps 120/120/140/40 for backout/
+realign/reinsert/verify. Phase progression requires the physical effect:
+entire peg safely before the entry plane by 40 mm; acceptable orientation and
+projected cross-section alignment; valid inserted depth/clearance; then ten
+stable observations. Refresh object/target/grasp geometry after safe backout.
+TCP arrival alone completes none of those stages. An earlier acquisition or
+attachment failure consumes the episode and aborts if a held peg is unavailable;
+it does not grant a second acquisition/insertion retry. Failure and costs remain
+retained. Terminal recovery repeats the last absolute command.
+
+## Synthetic misalignment commissioning
+
+The development injector biases cached nominal offset/insert/settle waypoints
+along target-local positive Y after nominal prealignment, before meaningful
+contact. The arm carries the held peg laterally, then executes the nominal
+axial insertion. This is a synthetic waypoint-induced misalignment, not a
+force disturbance or a teleport of the object out of its gripper. It introduces
+no new controller branch and never passes a disturbance label to verification
+or recovery. Recovery uses freshly observed object/target geometry.
+
+Candidate ratios are normal plus 0.5/1/2/4/8 times the installed 3 mm clearance:
+1.5/3/6/12/24 mm. They are a development search series, not frozen magnitudes.
+Angular perturbations remain deferred. Injection requires valid acquisition,
+actual prealignment, the entire peg at least 40 mm before entry and peg-box
+contact force at most 0.05 N. Missed preconditions remain recorded, not excluded
+or replaced. Record actual pre-insertion object-target error and force, first
+positive depth and first peg-box contact. Commissioning must establish that
+the requested bias produces the intended physical misalignment before choosing
+the final family. Requested waypoint offset is not assumed to equal peg offset.
+
+## Local validation
+
+All 21 focused tests pass: 19 contract/controller/logging/replay tests (19.903 s)
+and two source/parent-retention guard tests (0.048 s). The pipeline fixture runs
+three matched 1,200-action kinematic episodes, reconstructs all 3,600 physical
+endpoints and verifies exact Baseline/V1/V2 equality, then rejects tampered action
+and outcome records. These are software fixtures, not native-physics outcomes.
+Counterexamples include head-only false positives, out-of-range depth, reversed
+entry, wall interference, missing contact/lift, ungrasped flight, unstable/stale
+frames, TCP arrival without safe backout, stage timeout and second-attempt denial.
+Source/version/worktree mismatch, failed-slot archive integrity and exclusive
+output retention checks pass. New files parse under Python 3.10, CLI help and
+local links pass, and historical M0–M6R source/protocol preflight passes unchanged.
+
+## First native operation: normal-six only
+
+Run the focused M7 test file on the inspected server first. Then execute six
+fresh-process development slots: known seeds 100/101, normal condition,
+Baseline/V1/V2. Each child receives one 1,200-action episode. Its source,
+software and startup-environment digest must match the parent. Replay every
+action, decision, verifier/recovery/reference state, raw-force acquisition,
+independent physical endpoint and final report. Compare Baseline/V1 exactly
+through the full budget, and V1/V2 exactly through the preceding observation of
+the first retry action, or the full budget when no retry occurs.
+
+Fresh seeds 140–159 are still unused in 2,715 retained event logs (recorded
+range 0–139). The development entry accepts only 100/101 and checks retained
+history before/after execution. It offers no fresh-native entry. History must
+be checked again at final freeze/entry; deleted or unreported runs are outside
+this guard's scope. No adaptive seed replacement is allowed.
+
+Use the published development commit supplied in the command block. Transfer
+a Git bundle from the laptop over SSH port 2221, fetch it on the offline server,
+check the worktree clean and detach at that exact commit. Then:
+
+```bash
+source /home/jiangle/miniconda3/etc/profile.d/conda.sh
+conda activate aether-cl
+unset LD_PRELOAD
+export LD_LIBRARY_PATH=/home/jiangle/aura-work/aether-glvnd-1.4.0/usr/lib/x86_64-linux-gnu
+export CUDA_VISIBLE_DEVICES=1
+cd /home/jiangle/aura-work/AURA-Embodied-offline/aura-sim/prototype_aether_cl
+python -m unittest discover -s tests -p test_m7.py -v
+```
+
+After tests pass, launch normal-six detached from SSH:
+
+```bash
+nohup python -u -m aether_cl.m7_development \
+  --output runs/m7-development-normal6 \
+  --archive /home/jiangle/aura-work/aether-cl-m7-development-normal6.tar.gz \
+  > /home/jiangle/aura-work/m7-development-normal6.log 2>&1 < /dev/null &
+echo "M7 development PID: $!"
+tail -f /home/jiangle/aura-work/m7-development-normal6.log
+```
+
+`M7_DEVELOPMENT_EVIDENCE_VALID` means valid matched development evidence, not
+successful insertion or recovery. A child/evidence error stops later slots and
+still archives partial evidence; nothing is overwritten or rerun. Ctrl+C stops
+`tail`, not the detached runner. Return the archive/log for independent review.
+Run the optional candidate series only after the normal behavior is understood.
+Freeze the task contract, controller/recovery, offsets and fresh matrix after
+development commissioning and before any fresh native M7 outcome.
+
+Return to 02 after frozen native M7 evidence before further scope.
+Physics-propagated disturbance, camera verification, memory/world models,
+Prototype B/C/D, foundation models and 02W remain deferred. PR stays draft,
+open and unmerged; Prototype A stays open.

@@ -124,5 +124,5 @@ It records:
   is [accepted by 02 under DEC-0006](docs/research/experiments/AETHER_CL_M6R_02_Research_Review_v0.1.md):
   70 paired placement rescues, exact common-prefix evidence and no observed healthy regressions.
   The active round is [M7 contact-rich insertion](docs/research/experiments/AETHER_CL_M7_Inspection.md),
-  starting with read-only inspection of installed ManiSkill 3.0.1 tasks and native seed history.
+  with installed `PegInsertionSide-v1` selected and [normal-six development commissioning prepared](docs/research/experiments/AETHER_CL_M7_Development.md).
   Return to 02 after M7 before further scope. This is the first AETHER experiment, not AETHER v1.0.

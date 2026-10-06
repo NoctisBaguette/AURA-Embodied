@@ -1,0 +1,235 @@
+"""Task-specific development insertion controller and one effect-gated backout/retry."""
+
+from dataclasses import asdict, dataclass
+
+import numpy as np
+from scipy.spatial.transform import Rotation
+
+from .policies import bounded, pose_rotation, vector
+from .m7_task import SETTINGS, geometry
+
+PHASES = ("approach", "descend", "close", "lift", "carry", "prealign", "offset", "insert", "settle")
+DURATIONS = (80, 60, 30, 60, 100, 100, 60, 140, 80)
+INJECTION_STEP = sum(DURATIONS[:6]) + 1
+MAX_STEPS = 1200
+
+
+def command(observation, base_pose, position, rotation, gripper=-1., slow=False):
+    tcp = vector(observation["extra"]["tcp_pose"], 7, "tcp_pose")
+    base = vector(base_pose, 7, "robot_base_pose")
+    next_p = tcp[:3] + bounded(position - tcp[:3], .004 if slow else .012)
+    current_r = pose_rotation(tcp)
+    error = Rotation.from_matrix(rotation @ current_r.T).as_rotvec()
+    next_r = Rotation.from_rotvec(bounded(error, .06)).as_matrix() @ current_r
+    rb = pose_rotation(base)
+    action = np.r_[rb.T @ (next_p - base[:3]), Rotation.from_matrix(rb.T @ next_r).as_euler("XYZ"), gripper]
+    return action.astype(np.float32)[None, :], {"expected_tcp_position_world_m": position.tolist(),
+        "commanded_tcp_position_world_m": next_p.tolist(), "expected_tcp_rotation_world": rotation.tolist(),
+        "gripper": "open" if gripper > 0 else "closed"}
+
+
+class FixedInsertion:
+    """Timed nominal sequence, one post-lift grasp transform calibration, cached targets.
+
+    Only TCP servo feedback is consumed after calibration. A separate experiment
+    injector may bias the cached offset/insert/settle waypoints before contact.
+    Neither evaluator data nor verifier labels enter this nominal controller.
+    """
+
+    def __init__(self, observation, base_pose):
+        g = geometry(observation)
+        self.base = vector(base_pose, 7, "base_pose")
+        self.hole, self.half = g["hole"].copy(), g["half"].copy()
+        self.rh = pose_rotation(self.hole)
+        self.grasp_rotation = pose_rotation(g["pose"]) @ np.diag([1., -1., -1.])
+        self.grasp_position = g["pose"][:3] + pose_rotation(g["pose"]) @ [-SETTINGS.grasp_tail_offset_m, 0, 0]
+        self.calibrated = False
+        self.targets = {"approach": self.grasp_position + [0, 0, .15], "descend": self.grasp_position.copy(),
+                        "close": self.grasp_position.copy(), "lift": self.grasp_position + [0, 0, .15]}
+        self.rotations = {p: self.grasp_rotation.copy() for p in self.targets}
+        self.bias_world = np.zeros(3)
+
+    def manifest(self):
+        return {"name": "fixed_side_insertion_development", "phases": PHASES, "durations": DURATIONS,
+                "total_nominal_steps": sum(DURATIONS), "status": "development_not_frozen",
+                "grasp_tail_offset_m": SETTINGS.grasp_tail_offset_m, "precontact_head_gap_m": .06,
+                "maximum_translation_m": .012, "insertion_translation_m": .004, "maximum_rotation_rad": .06,
+                "phase_transition": "elapsed_steps_only", "post_lift_calibration": "once_actual_tcp_in_peg_transform",
+                "after_calibration_inputs": ["tcp_pose"], "evaluator_inputs": False, "verifier_inputs": False}
+
+    @staticmethod
+    def phase(index):
+        start = 0
+        for phase, duration in zip(PHASES, DURATIONS):
+            if index < start + duration:
+                return phase, index - start + 1
+            start += duration
+        return "settle", index - sum(DURATIONS[:-1]) + 1
+
+    def calibrate(self, observation):
+        g = geometry(observation)
+        rp = pose_rotation(g["pose"])
+        self.tcp_in_peg = rp.T @ (g["tcp"][:3] - g["pose"][:3])
+        self.tcp_rotation_in_peg = rp.T @ pose_rotation(g["tcp"])
+        pre_peg = self.hole[:3] + self.rh @ [-2 * self.half[0] - .06, 0, 0]
+        inserted_peg = self.hole[:3] + self.rh @ [-self.half[0], 0, 0]
+        pre_tcp = pre_peg + self.rh @ self.tcp_in_peg
+        insert_tcp = inserted_peg + self.rh @ self.tcp_in_peg
+        carry = pre_tcp.copy(); carry[2] = max(.35, pre_tcp[2] + .15)
+        self.targets.update(carry=carry, prealign=pre_tcp, offset=pre_tcp.copy(), insert=insert_tcp, settle=insert_tcp.copy())
+        self.rotations.update({p: self.rh @ self.tcp_rotation_in_peg for p in ("carry", "prealign", "offset", "insert", "settle")})
+        self.calibrated = True
+
+    def bias_insertion_waypoints(self, world_offset):
+        if not self.calibrated or np.linalg.norm(self.bias_world) != 0:
+            raise ValueError("Waypoint perturbation requires calibrated, unperturbed nominal path")
+        self.bias_world = np.asarray(world_offset, dtype=float).copy()
+        for phase in ("offset", "insert", "settle"):
+            self.targets[phase] += self.bias_world
+
+    def action(self, observation, index):
+        phase, local = self.phase(index)
+        if phase == "carry" and not self.calibrated:
+            self.calibrate(observation)
+        action, detail = command(observation, self.base, self.targets[phase], self.rotations[phase],
+                                 1. if phase in ("approach", "descend") else -1., phase in ("insert", "settle"))
+        return action, {**detail, "phase": phase, "phase_step": local,
+                        "schedule_complete": index + 1 >= sum(DURATIONS)}
+
+
+@dataclass(frozen=True)
+class RecoverySettings:
+    maximum_attempts: int = 1
+    action_budget: int = 420
+    minimum_remaining_steps: int = 80
+    stage_caps: tuple = (120, 120, 140, 40)
+    minimum_stage_steps: int = 3
+    safe_head_gap_m: float = .04
+
+
+RETRY_PHASES = ("backout", "realign", "reinsert", "verify")
+
+
+class InsertionRecovery:
+    def __init__(self, nominal, max_steps=MAX_STEPS):
+        self.nominal, self.max_steps = nominal, max_steps
+        self.settings = RecoverySettings()
+        self.state = "nominal"
+        self.attempts = self.steps = self.stage = self.stage_steps = self.stable_steps = self.missing = 0
+        self.reason = self.trigger_step = self.first_action_step = self.failure_detail = None
+        self.completed_stages = []
+        self.path = 0.
+        self.previous_tcp = self.previous_pose = self.last_action = self.last_decision = None
+        self.target = self.target_rotation = None
+        self.refresh_record = None
+
+    def manifest(self):
+        return {"name": "one_bounded_insertion_recovery", "settings": asdict(self.settings),
+                "phases": RETRY_PHASES, "trigger": "preceding_confirmed_geometry_verdict",
+                "backout_readiness": "entire_peg_before_channel_entry_with_safe_head_gap",
+                "realign_readiness": "object_axis_and_projected_cross_section_fit_channel",
+                "reinsert_readiness": "object_target_depth_orientation_and_clipped_volume_clearance",
+                "verify_readiness": "consecutive_stable_object_target_relation",
+                "refresh": "object_target_and_grasp_transform_after_safe_backout",
+                "evaluator_inputs": False, "terminal": "repeat_last_absolute_command_no_second_attempt"}
+
+    def snapshot(self):
+        return {"state": self.state, "attempts": self.attempts, "reason": self.reason,
+                "trigger_step": self.trigger_step, "first_action_step": self.first_action_step,
+                "phase": RETRY_PHASES[self.stage] if self.attempts else None, "phase_step": self.stage_steps,
+                "action_steps": self.steps, "observed_tcp_path_m": self.path,
+                "completed_stages": self.completed_stages.copy(), "failure_detail": self.failure_detail,
+                "stable_steps": self.stable_steps, "refresh_record": self.refresh_record}
+
+    def abort(self, reason):
+        self.state, self.failure_detail = "aborted", reason
+
+    def start(self, observation, step, verdict):
+        self.attempts, self.trigger_step, self.first_action_step = 1, step - 1, step
+        self.reason = verdict["failure"]
+        g = geometry(observation)
+        self.previous_tcp, self.previous_pose = g["tcp"][:3].copy(), g["pose"].copy()
+        if self.max_steps - step + 1 < self.settings.minimum_remaining_steps:
+            self.abort("insufficient_remaining_budget"); return
+        if not g["attachment_proxy"]:
+            self.abort("acquisition_or_attachment_unavailable_consumes_single_episode"); return
+        self.hole = g["hole"].copy(); self.rh = pose_rotation(self.hole)
+        current_head = g["head_position_hole_m"][0]
+        distance = max(0., current_head + g["half"][0] + .06)
+        self.target = g["tcp"][:3] - self.rh[:, 0] * distance
+        self.target_rotation = pose_rotation(g["tcp"])
+        self.state = "attempting"
+
+    def refresh(self, observation):
+        g = geometry(observation)
+        self.hole, self.rh = g["hole"].copy(), pose_rotation(g["hole"])
+        rp = pose_rotation(g["pose"])
+        offset = rp.T @ (g["tcp"][:3] - g["pose"][:3])
+        rel_r = rp.T @ pose_rotation(g["tcp"])
+        pre_peg = self.hole[:3] + self.rh @ [-2 * g["half"][0] - .06, 0, 0]
+        inserted_peg = self.hole[:3] + self.rh @ [-g["half"][0], 0, 0]
+        self.pre_target, self.insert_target = pre_peg + self.rh @ offset, inserted_peg + self.rh @ offset
+        self.target_rotation = self.rh @ rel_r
+        self.refresh_record = {"peg_pose_world": g["pose"].tolist(), "hole_pose_world": self.hole.tolist(),
+                               "tcp_in_peg_m": offset.tolist(), "tcp_rotation_in_peg": rel_r.tolist()}
+
+    def action(self, observation, step, verdict):
+        if self.state == "nominal" and verdict.get("status") == "failed":
+            self.start(observation, step, verdict)
+        if self.state == "nominal":
+            action, decision = self.nominal.action(observation, step - 1)
+        elif self.state == "attempting":
+            phase = RETRY_PHASES[self.stage]
+            self.stage_steps += 1; self.steps += 1
+            action, detail = command(observation, self.nominal.base, self.target, self.target_rotation,
+                                     slow=phase in ("backout", "reinsert", "verify"))
+            decision = {**detail, "phase": "recovery_" + phase, "phase_step": self.stage_steps, "schedule_complete": False}
+        elif self.last_action is not None:
+            action, decision = self.last_action.copy(), {**self.last_decision, "phase": "recovery_" + self.state,
+                                                       "schedule_complete": self.state == "attempt_complete"}
+        else:
+            action, detail = command(observation, self.nominal.base,
+                vector(observation["extra"]["tcp_pose"], 7, "tcp_pose")[:3],
+                pose_rotation(vector(observation["extra"]["tcp_pose"], 7, "tcp_pose")))
+            decision = {**detail, "phase": "recovery_aborted", "phase_step": 0, "schedule_complete": False}
+        self.last_action, self.last_decision = action.copy(), decision.copy()
+        return action, decision
+
+    def observe(self, observation):
+        if self.state != "attempting":
+            return
+        g = geometry(observation, self.previous_pose)
+        if not np.array_equal(g["hole"], self.hole):
+            self.abort("target_changed_during_recovery"); return
+        self.path += float(np.linalg.norm(g["tcp"][:3] - self.previous_tcp))
+        self.previous_tcp, self.previous_pose = g["tcp"][:3].copy(), g["pose"].copy()
+        self.missing = self.missing + 1 if not g["attachment_proxy"] else 0
+        if self.missing >= SETTINGS.failure_persistence_steps:
+            self.abort("attachment_lost_during_episode"); return
+        phase = RETRY_PHASES[self.stage]
+        if phase == "backout":
+            ready = g["maximum_vertex_axial_m"] <= -g["half"][0] - self.settings.safe_head_gap_m
+        elif phase == "realign":
+            ready = (g["orientation_error_rad"] <= SETTINGS.orientation_tolerance_rad and
+                     g["alignment_margin_m"] >= -SETTINGS.collision_slop_m and
+                     g["maximum_vertex_axial_m"] <= -g["half"][0] - self.settings.safe_head_gap_m)
+        elif phase == "reinsert":
+            ready = g["relation_ready"]
+        else:
+            self.stable_steps = self.stable_steps + 1 if g["relation_ready"] and g["stable_frame"] else 0
+            ready = self.stable_steps >= SETTINGS.stable_steps
+        ready = bool(ready and self.stage_steps >= self.settings.minimum_stage_steps and g["attachment_proxy"])
+        if ready:
+            self.completed_stages.append(phase)
+            if phase == "verify":
+                self.state = "attempt_complete"
+            else:
+                self.stage += 1; self.stage_steps = 0
+                if phase == "backout":
+                    self.refresh(observation); self.target = self.pre_target.copy()
+                elif phase == "realign":
+                    self.target = self.insert_target.copy()
+        elif self.stage_steps >= self.settings.stage_caps[self.stage]:
+            self.abort(phase + "_physical_effect_not_completed")
+        if self.state == "attempting" and self.steps >= self.settings.action_budget:
+            self.abort("one_episode_action_budget_exhausted")
