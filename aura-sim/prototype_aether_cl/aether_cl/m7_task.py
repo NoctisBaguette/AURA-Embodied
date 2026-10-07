@@ -33,6 +33,22 @@ SIGNS = np.array(list(product((-1, 1), repeat=3)))
 EDGES = [(i, j) for i in range(8) for j in range(i + 1, 8)
          if np.count_nonzero(SIGNS[i] != SIGNS[j]) == 1]
 
+# Fixed-target identity only: independent of insertion success and paired traces.
+TARGET_TRANSLATION_ROUNDOFF_M = 1e-6
+TARGET_ROTATION_ROUNDOFF_RAD = 1e-6
+
+
+def fixed_target_check(current, expected):
+    translation = float(np.linalg.norm(current[:3] - expected[:3]))
+    rotation = float(Rotation.from_matrix(
+        pose_rotation(current) @ pose_rotation(expected).T).magnitude())
+    return {"raw_pose_equal": bool(np.array_equal(current, expected)),
+            "translation_delta_m": translation, "rotation_delta_rad": rotation,
+            "maximum_translation_delta_m": TARGET_TRANSLATION_ROUNDOFF_M,
+            "maximum_rotation_delta_rad": TARGET_ROTATION_ROUNDOFF_RAD,
+            "passed": translation <= TARGET_TRANSLATION_ROUNDOFF_M
+                      and rotation <= TARGET_ROTATION_ROUNDOFF_RAD}
+
 
 def channel_section(vertices, low, high):
     """Vertices of a box clipped to the channel's axial slab, including cut edges."""
@@ -136,6 +152,7 @@ class InsertionReference:
         self.initial_z = g["pose"][2]
         self.previous = g["pose"].copy()
         self.hole, self.half = g["hole"].copy(), g["half"].copy()
+        self.radius = g["radius"]
         self.last_step = self.stable_count = 0
         self.ever_attached = False
         self.acquired = False
@@ -146,8 +163,11 @@ class InsertionReference:
         if step != self.last_step + 1:
             raise ValueError("Fresh consecutive insertion reference observations required")
         g = geometry(observation, self.previous)
-        if not np.array_equal(g["hole"], self.hole) or not np.array_equal(g["half"], self.half):
-            raise ValueError("Insertion target/geometry changed")
+        target_check = fixed_target_check(g["hole"], self.hole)
+        target_check.update(half_size_equal=bool(np.array_equal(g["half"], self.half)),
+                            hole_radius_equal=g["radius"] == self.radius)
+        if not (target_check["passed"] and target_check["half_size_equal"] and target_check["hole_radius_equal"]):
+            raise ValueError(f"Insertion target/geometry changed: {target_check}")
         self.previous, self.last_step = g["pose"].copy(), step
         held = single_bool(info["contact_grasped"], "contact_grasped")
         self.ever_attached |= held
@@ -162,7 +182,7 @@ class InsertionReference:
             self.first_failure = {"step": step, "failure": failure}
         if success and self.first_success_step is None:
             self.first_success_step = step
-        return {**diagnostics(g), "task_success": success, "failure": failure,
+        return {**diagnostics(g), "fixed_target_check": target_check, "task_success": success, "failure": failure,
                 "stable_steps": self.stable_count, "valid_acquisition": self.acquired,
                 "ever_contact_grasped": self.ever_attached, "current_contact_grasped": held, "max_lift_m": self.max_lift}
 
@@ -206,6 +226,10 @@ class InsertionVerifier:
 def task_manifest():
     return {"name": "validly_acquired_peg_stably_inserted_in_designated_square_channel",
             "status": "development_only_not_frozen", **asdict(SETTINGS),
+            "fixed_target_identity": {"translation_roundoff_m": TARGET_TRANSLATION_ROUNDOFF_M,
+                "rotation_roundoff_rad": TARGET_ROTATION_ROUNDOFF_RAD,
+                "anchor": "reset_pose_no_cumulative_drift", "dimensions": "exact",
+                "paired_raw_observations": "exact_no_tolerance"},
             "depth": "peg_head_center_x_in_hole_frame_plus_channel_half_length",
             "clearance": "all_vertices_of_peg_volume_clipped_to_channel_axial_slab_inside_square_channel",
             "final_release_required": False, "historical_contact_grasp_and_lift_required": True,

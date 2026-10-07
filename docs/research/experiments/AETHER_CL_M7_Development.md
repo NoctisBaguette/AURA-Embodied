@@ -2,8 +2,10 @@
 
 Date: 2026-10-07 (Asia/Shanghai).
 
-Status: installed task selected; development implementation prepared. Native
-M7 commissioning has not run. No fresh-native M7 protocol or result is frozen.
+Status: first native normal-six development launch stopped at the first
+Baseline seed-100 target guard. Its failed evidence is retained; a bounded
+pose-identity repair is locally tested and awaits a new native launch.
+No fresh-native M7 protocol or result is frozen.
 Authority remains [02's M6R acceptance / DEC-0006](AETHER_CL_M6R_02_Research_Review_v0.1.md)
 at `145aadce249b23a49ecb899ff273e93f673dd03b`.
 
@@ -111,19 +113,47 @@ the final family. Requested waypoint offset is not assumed to equal peg offset.
 
 ## Local validation
 
-All 21 focused tests pass: 19 contract/controller/logging/replay tests (19.903 s)
-and two source/parent-retention guard tests (0.048 s). The pipeline fixture runs
-three matched 1,200-action kinematic episodes, reconstructs all 3,600 physical
-endpoints and verifies exact Baseline/V1/V2 equality, then rejects tampered action
-and outcome records. These are software fixtures, not native-physics outcomes.
-Counterexamples include head-only false positives, out-of-range depth, reversed
-entry, wall interference, missing contact/lift, ungrasped flight, unstable/stale
-frames, TCP arrival without safe backout, stage timeout and second-attempt denial.
-Source/version/worktree mismatch, failed-slot archive integrity and exclusive
-output retention checks pass. New files parse under Python 3.10, CLI help and
-local links pass, and historical M0–M6R source/protocol preflight passes unchanged.
+All 26 focused tests pass (19.369 s). Three matched 1,200-action kinematic
+episodes reconstruct all 3,600 endpoints, verify exact Baseline/V1/V2 equality,
+and reject altered actions, physical observations and outcomes. These are
+software fixtures, not native insertion viability evidence. New checks cover
+quaternion sign/normalization equivalence, bounded target roundoff anchored to
+reset, rejection of larger translation/rotation and any dimension/radius change,
+recovery target identity and retention of the raw failing post-action frame.
+Modified sources parse as Python 3.10. M0–M6R source/protocol preflight passes
+unchanged. Native repaired execution remains pending.
 
-## First native operation: normal-six only
+## First development failure and repair
+
+At `a1cab433f33755641c4113557cf666b37c0c5418`, native normal-six stopped during
+the first Baseline seed-100 episode after its first action returned. The other
+five slots did not launch. The [failure receipt](evidence/AETHER_CL_M7_Development_Failure.json)
+verifies all 16 indexed files and exact archive membership. Archive SHA-256:
+`0043f87ba74dd6aa2b23bf293cab660d2eb8b4718ee3fae9d39d2cc69f248c8f`.
+Only run_started/reset/run_failed events exist: the failing observation was
+checked before it could be logged. Its actual target/geometry delta is unknown.
+The SAPIEN Vulkan fallback warning preceded a successful environment reset and
+action; the fatal exception came from our target identity guard.
+
+The old guard demanded bitwise equality of a composed floating-point target
+pose. The repaired development guard compares physical translation and SO(3)
+rotation, accepting at most 1 micrometre and 1 microradian relative to the reset
+anchor. Quaternion sign and normalization are handled by the existing pose
+rotation conversion. Dimensions and hole radius remain exact. This is a fixed
+target identity roundoff bound, separate from task readiness/scoring and exact
+matched raw traces. Every reference frame logs raw equality and physical deltas;
+recovery uses the same physical check. Larger changes stop the run. Reference,
+verifier or recovery-check exceptions now retain the raw post-action observation,
+info, action, decision, reward and termination flags before raising.
+
+Floating-point representation is a plausible cause, not proved by the missing
+frame. The new native record must resolve it. Keep the original failed directory,
+archive and log intact. Do not resume or rewrite them. Repaired commissioning
+uses `m7-development-normal6-v2` as a new run/output/archive/log, still known seeds
+100/101 only. Nominal motion, success thresholds, recovery effects/budget and
+M0–M6R remain unchanged.
+
+## Repaired native operation: normal-six only
 
 Run the focused M7 test file on the inspected server first. Then execute six
 fresh-process development slots: known seeds 100/101, normal condition,
@@ -158,11 +188,11 @@ After tests pass, launch normal-six detached from SSH:
 
 ```bash
 nohup python -u -m aether_cl.m7_development \
-  --output runs/m7-development-normal6 \
-  --archive /home/jiangle/aura-work/aether-cl-m7-development-normal6.tar.gz \
-  > /home/jiangle/aura-work/m7-development-normal6.log 2>&1 < /dev/null &
+  --output runs/m7-development-normal6-v2 \
+  --archive /home/jiangle/aura-work/aether-cl-m7-development-normal6-v2.tar.gz \
+  > /home/jiangle/aura-work/m7-development-normal6-v2.log 2>&1 < /dev/null &
 echo "M7 development PID: $!"
-tail -f /home/jiangle/aura-work/m7-development-normal6.log
+tail -f /home/jiangle/aura-work/m7-development-normal6-v2.log
 ```
 
 `M7_DEVELOPMENT_EVIDENCE_VALID` means valid matched development evidence, not

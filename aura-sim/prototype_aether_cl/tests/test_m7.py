@@ -46,6 +46,42 @@ BASE = pose([-.615, 0, 0])
 
 
 class ContractTests(unittest.TestCase):
+    def test_fixed_target_accepts_equivalent_quaternion_and_bounded_roundoff(self):
+        initial = observation()
+        for translation, quaternion in ((0., [-1., 0., 0., 0.]),
+                                        (2e-8, [1.0000001, 0., 0., 0.])):
+            o = copy.deepcopy(initial)
+            o['extra']['box_hole_pose'][0] += translation
+            o['extra']['box_hole_pose'][3:] = quaternion
+            state = InsertionReference(initial).observe(o, info(), 1, {'phase':'approach','phase_step':1})
+            self.assertTrue(state['fixed_target_check']['passed'])
+            self.assertFalse(state['fixed_target_check']['raw_pose_equal'])
+            self.assertAlmostEqual(state['fixed_target_check']['translation_delta_m'], translation)
+
+    def test_fixed_target_rejects_motion_and_exact_dimension_changes(self):
+        initial = observation()
+        for kind in ('translation', 'rotation', 'half', 'radius'):
+            o = copy.deepcopy(initial)
+            if kind == 'translation':
+                o['extra']['box_hole_pose'][0] += 2e-6
+            elif kind == 'rotation':
+                o['extra']['box_hole_pose'] = pose([0, 0, .1], Rotation.from_euler('z', 2e-6).as_matrix())
+            elif kind == 'half':
+                o['extra']['peg_half_size'][0][0] += 1e-9
+            else:
+                o['extra']['box_hole_radius'][0] += 1e-9
+            with self.subTest(kind=kind), self.assertRaisesRegex(ValueError, 'Insertion target/geometry changed:'):
+                InsertionReference(initial).observe(o, info(), 1, {'phase':'approach','phase_step':1})
+
+    def test_target_roundoff_is_anchored_to_reset(self):
+        initial = observation(); ref = InsertionReference(initial)
+        for step in range(1, 6):
+            o = copy.deepcopy(initial); o['extra']['box_hole_pose'][0] = step * 2e-7
+            ref.observe(o, info(), step, {'phase':'approach','phase_step':step})
+        o['extra']['box_hole_pose'][0] = 1.2e-6
+        with self.assertRaises(ValueError):
+            ref.observe(o, info(), 6, {'phase':'approach','phase_step':6})
+
     def test_healthy_volume_and_quarter_turn(self):
         for r in (np.eye(3), Rotation.from_euler('x', np.pi / 2).as_matrix()):
             self.assertTrue(geometry(observation(rotation=r))["relation_ready"])
@@ -157,6 +193,18 @@ class PreflightTests(unittest.TestCase):
 
 
 class PolicyTests(unittest.TestCase):
+    def test_recovery_target_guard_uses_physical_pose_and_rejects_motion(self):
+        initial = observation()
+        for delta in (2e-8, 2e-6):
+            recovery = InsertionRecovery(FixedInsertion(initial, BASE))
+            recovery.action(initial, 635, {'status':'failed','failure':'INSERTION_DEPTH_NOT_ACHIEVED'})
+            o = copy.deepcopy(initial)
+            o['extra']['box_hole_pose'][0] += delta
+            o['extra']['box_hole_pose'][3] = -1.
+            recovery.observe(o)
+            self.assertEqual(recovery.state, 'attempting' if delta < 1e-6 else 'aborted')
+            self.assertEqual(recovery.snapshot()['fixed_target_check']['passed'], delta < 1e-6)
+
     def test_fresh_seeds_and_unfrozen_magnitudes_blocked(self):
         for config in (M7DevelopmentConfig(seed=140), M7DevelopmentConfig(offset_clearance_ratio=3.), M7DevelopmentConfig(system='v2-old')):
             with self.assertRaises(ValueError):config.validate()
@@ -250,6 +298,29 @@ class KinematicFixture:
 
 
 class PipelineTests(unittest.TestCase):
+    def test_failed_target_guard_retains_post_action_observation(self):
+        class MovingTargetFixture(KinematicFixture):
+            def step(self, action):
+                o, reward, term, trunc, i = super().step(action)
+                o['extra']['box_hole_pose'][0] += 2e-6
+                return o, reward, term, trunc, i
+        with tempfile.TemporaryDirectory() as d:
+            env = MovingTargetFixture()
+            with self.assertRaisesRegex(ValueError, 'translation_delta_m'):
+                run(M7DevelopmentConfig(output=Path(d)), env_factory=lambda:env,
+                    observe_fn=lambda env,o,i:(json_value(o),json_value(i)), preflight_fn=lambda:{})
+            directory = next(Path(d).iterdir())
+            events = [json.loads(line) for line in (directory/'events.jsonl').read_text().splitlines()]
+            failed = next(e for e in events if e['event']=='post_action_check_failed')
+            self.assertEqual(failed['step'], 1)
+            self.assertEqual(failed['observation']['extra']['box_hole_pose'][0], 2e-6)
+            self.assertEqual(len(failed['action']), 7)
+            self.assertEqual(failed['info'], info(False))
+            self.assertTrue(env.closed)
+            result = json.loads((directory/'result.json').read_text())
+            self.assertEqual(result['failed_step'], 1)
+            self.assertEqual(result['state'], 'error')
+
     def test_matched_logs_replay_and_detect_action_or_physical_tampering(self):
         with tempfile.TemporaryDirectory() as d:
             results=[]
@@ -268,6 +339,13 @@ class PipelineTests(unittest.TestCase):
             e=next(e for e in events if e['event']=='step');e['action'][0]+=.001
             path.write_text('\n'.join(json.dumps(e) for e in events)+'\n')
             with self.assertRaises(ValueError):replay(directory)
+            with self.assertRaises(ValueError):compare(results[0]['run_directory'],directory)
+            path.write_text(original)
+            events=[json.loads(line) for line in original.splitlines()]
+            # Target identity bounds do not relax exact physical matched-pair checks.
+            e=next(e for e in events if e['event']=='step')
+            e['observation']['extra']['box_hole_pose'][0] += 2e-8
+            path.write_text('\n'.join(json.dumps(e) for e in events)+'\n')
             with self.assertRaises(ValueError):compare(results[0]['run_directory'],directory)
             path.write_text(original)
             result=json.loads((directory/'result.json').read_text());result['task_success_at_end']=False

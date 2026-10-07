@@ -151,11 +151,19 @@ def run(config, env_factory=build_env, observe_fn=observe_native, preflight_fn=p
                 action = fixed_action_for_space(action, env.action_space)
                 observation, reward, term, trunc, info = env.step(action)
                 observation, info = observe_fn(env, observation, info)
-                truth = reference.observe(observation, info, step, decision, final=step == MAX_STEPS)
-                if verifier:
-                    verdict = verifier.observe(observation, step, decision, final=step == MAX_STEPS)
-                if recovery:
-                    recovery.observe(observation)
+                try:
+                    truth = reference.observe(observation, info, step, decision, final=step == MAX_STEPS)
+                    if verifier:
+                        verdict = verifier.observe(observation, step, decision, final=step == MAX_STEPS)
+                    if recovery:
+                        recovery.observe(observation)
+                except Exception as error:
+                    result["failed_step"] = step
+                    event("post_action_check_failed", step=step, action=action,
+                          observation=observation, info=info, reward=reward,
+                          terminated=term, truncated=trunc, controller_decision=decision,
+                          error=f"{type(error).__name__}: {error}")
+                    raise
                 tcp = vector(observation["extra"]["tcp_pose"], 7, "tcp_pose")[:3]
                 path += float(np.linalg.norm(tcp - previous_tcp)); previous_tcp = tcp
                 nominal_complete |= not decision["phase"].startswith("recovery_") and decision["schedule_complete"]

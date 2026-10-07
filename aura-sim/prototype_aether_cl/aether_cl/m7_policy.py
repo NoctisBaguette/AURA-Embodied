@@ -6,7 +6,7 @@ import numpy as np
 from scipy.spatial.transform import Rotation
 
 from .policies import bounded, pose_rotation, vector
-from .m7_task import SETTINGS, geometry
+from .m7_task import SETTINGS, geometry, fixed_target_check
 
 PHASES = ("approach", "descend", "close", "lift", "carry", "prealign", "offset", "insert", "settle")
 DURATIONS = (80, 60, 30, 60, 100, 100, 60, 140, 80)
@@ -122,6 +122,7 @@ class InsertionRecovery:
         self.previous_tcp = self.previous_pose = self.last_action = self.last_decision = None
         self.target = self.target_rotation = None
         self.refresh_record = None
+        self.target_check = None
 
     def manifest(self):
         return {"name": "one_bounded_insertion_recovery", "settings": asdict(self.settings),
@@ -139,7 +140,8 @@ class InsertionRecovery:
                 "phase": RETRY_PHASES[self.stage] if self.attempts else None, "phase_step": self.stage_steps,
                 "action_steps": self.steps, "observed_tcp_path_m": self.path,
                 "completed_stages": self.completed_stages.copy(), "failure_detail": self.failure_detail,
-                "stable_steps": self.stable_steps, "refresh_record": self.refresh_record}
+                "stable_steps": self.stable_steps, "refresh_record": self.refresh_record,
+                "fixed_target_check": self.target_check}
 
     def abort(self, reason):
         self.state, self.failure_detail = "aborted", reason
@@ -199,7 +201,8 @@ class InsertionRecovery:
         if self.state != "attempting":
             return
         g = geometry(observation, self.previous_pose)
-        if not np.array_equal(g["hole"], self.hole):
+        self.target_check = fixed_target_check(g["hole"], self.hole)
+        if not self.target_check["passed"]:
             self.abort("target_changed_during_recovery"); return
         self.path += float(np.linalg.norm(g["tcp"][:3] - self.previous_tcp))
         self.previous_tcp, self.previous_pose = g["tcp"][:3].copy(), g["pose"].copy()
