@@ -2,11 +2,14 @@
 
 Date: 2026-10-07 (Asia/Shanghai).
 
-Status: normal-six-v3 evidence passes with 0/6 insertion successes. Seed100
-meets geometric insertion but fails velocity-based stability; seed101 remains
-at the entry with residual interference. Bounded transverse TCP tracking,
-a calibrated holding aperture and read-only substep logging are locally tested;
-normal-six-v4 native commissioning is pending. No fresh-native M7 protocol or
+Status: normal-six-v4 is independently audited, retaining 0/6 insertion
+successes under its original score. Seed100 meets insertion geometry while
+reported velocities veto stability despite micrometre-scale pose changes at
+100 Hz physics-step resolution. The reduced-force holding change permits
+large in-hand rotation and creates a seed101 grasp-transform/alignment
+regression. Transverse TCP compensation converges, but cannot correct object
+slip. The next commissioning design must address both issues; runtime code
+and thresholds are unchanged by this review. No fresh-native M7 protocol or
 result is frozen.
 Authority remains [02's M6R acceptance / DEC-0006](AETHER_CL_M6R_02_Research_Review_v0.1.md)
 at `145aadce249b23a49ecb899ff273e93f673dd03b`.
@@ -248,6 +251,109 @@ without modifying installed task/physics bytes.
 Retain all three earlier development archives/directories/logs. Run new
 normal-six-v4 on known100/101 only and review before misalignment commissioning
 or any fresh freeze. Native improvement is unverified.
+
+## Completed normal-six-v4 diagnosis
+
+[Independent v4 receipt](evidence/AETHER_CL_M7_Normal6_v4_Review.json) verifies
+all 41 indexed files, exact archive membership and all eight execution source
+Git blobs at `faff2ae53b4618eb02f212b0d7883bfba76b9902`. Archive SHA-256:
+`3398df1655a68f99873e251a395f69a585e6ce0d2d34dbee89b1f01c2d43c087`.
+Archived-source replay in Python3.10.21/NumPy1.26.4/SciPy1.10.1 reproduces
+7,200 actions with zero error and agrees at all independent endpoints.
+All 740 selected physics samples pass completeness and exact endpoint checks.
+Baseline/V1 pairs match for 1,200 actions each and V1/V2 for 642 each. All
+six acquire/lift the peg, all six retain task failure, and both bounded
+recoveries abort. These are two known scenes, not six independent scenes.
+
+| Seed | Nominal endpoint | V2 episode | Primary blocker |
+| --- | --- | --- | --- |
+| 100 | 106.177 mm depth; 0.00801 rad orientation error; +1.598 mm clearance | Backout, realign and reinsert complete; verify hits 40-action cap | Original raw-velocity stability veto |
+| 101 | -1.397 mm depth; 0.15949 rad orientation error; head Z -32.205 mm | Backout completes; realign hits 120-action cap; no reinsert | In-hand slip invalidates cached grasp geometry |
+
+### Stability signal discrepancy
+
+Seed100's final normal linear/angular fields read 0.03214 m/s and
+0.35592 rad/s against the unchanged 0.01/0.15 candidate limits. However,
+the complete final ten control actions contain fifty consecutive external
+physics steps at 100 Hz. Across those fifty recorded poses, the maximum
+pairwise translation is 5.166 micrometres and rotation is 79.471 microradians.
+The maximum adjacent-pose difference divided by the 10 ms physics interval
+is 0.000517 m/s and 0.007947 rad/s. Every recorded raw linear/angular velocity
+in that final window exceeds its respective limit. The recovered seed100
+endpoint likewise has a 5.539 micrometre / 80.499 microradian sampled window.
+All forty recovery-verify frames meet insertion geometry and none passes
+the original stable-frame predicate. More waiting has not fixed this in
+the retained 1,200-action episode.
+
+[PhysX's constraint-solver documentation](https://nvidia-omniverse.github.io/PhysX/physx/5.4.0/docs/RigidBodyDynamics.html#constraint-solver)
+explicitly explains that reported body velocities can differ from pose
+differences under contact/joint constraints because positional integration
+and reported velocity use different solver outputs. Its
+[TGS steady-state discussion](https://nvidia-omniverse.github.io/PhysX/physx/5.8.0/docs/Simulation.html#tgs-steady-state-velocity-and-position-discrepancy)
+describes a related driven-joint discrepancy. Installed ManiSkill configuration
+uses TGS, 100 Hz physics / 20 Hz control, 15 position iterations and one
+velocity iteration. The archive establishes the external pose/velocity
+discrepancy, not a specific internal PhysX failure or the applicability of a
+newer SDK flag to this installed SAPIEN version. These samples do not observe
+internal TGS iterations or establish stability after release. No v4 outcome
+is retrospectively converted to success.
+
+The candidate task score therefore needs a documented stability-signal
+validation before fresh freeze. A proposed next design should require
+consecutive stable object-target relations with bounds on drift and jitter,
+including all external physics-step poses in each stability window. Raw
+solver velocities should remain logged with both old and proposed verdicts.
+Validate against motion, oscillation, transient insertion, bad geometry and
+unacquired-object counterexamples; simply raising velocity limits to pass
+these endpoints is not justified. No such scoring change is implemented
+by this evidence review.
+
+### Holding change and stale grasp transform
+
+V3 and v4 action/observation/info traces are exact through step170 for both
+seeds. Holding commands first differ at171, while transverse integration
+does not begin until331. During lift171-230, relative hand/peg rotation
+changes by 50.961 degrees (seed100) and 43.489 degrees (seed101); v3 changes
+only 0.259 and 0.314 degrees. Relative translation changes by 6.105 and
+3.753 mm, versus 0.014 and 0.017 mm in v3. The new cached holding targets are
+12.247/15.025 mm per finger, yielding normalized actions -0.11012/+0.000995.
+Post-lift finger forces fall from approximately26/29 N to approximately5 N.
+Fresh bilateral contact remains true, so contact acquisition and the broad
+25 mm position/aperture proxy do not establish a rigid grasp transform.
+The holding change is rejected as the current commissioning default.
+
+Post-lift calibration absorbs most of seed100's tilt, and its later hand/peg
+rotation changes by only about0.34 degrees. Seed101 instead drifts another
+6.744 degrees before entry and 8.983 degrees by the nominal endpoint.
+At step430, its expected TCP transverse errors are about0.001/0.004 mm,
+but the object is misoriented by0.11781 rad and its head is24.006 mm below
+the hole center. There is no box contact yet, and the zero-ratio disturbance
+is not applied. The normal alignment disturbance-readiness check is already
+false, so this is an underlying grip/controller failure before synthetic
+misalignment. The timed nominal insertion then contacts the front face and
+does not achieve depth.
+
+V2 refreshes once after backout. During seed101 realignment the grasp changes
+again. At the120-action cap, transverse TCP errors are less than0.001 mm
+and TCP rotation error is0.00361 rad, but object orientation error remains
+0.05667 rad and projected clearance is-8.603 mm. The phase gate correctly
+retains failure: TCP tracking completion does not imply object alignment
+when the grasp transform slips. It never begins reinsertion; negative final
+depth denotes retained backout distance, not a completed retry.
+
+The justified mechanical next step is to isolate restoration of the stronger
+holding command while leaving transverse compensation unchanged. That
+previous hold retained the grasp much better; stable insertion improvement
+remains unverified. After grip retention, reassess whether one-time grasp
+calibration suffices. Do not add repeated object refresh solely to conceal
+an inadequate grasp or extend stage caps to declare progress. Any further
+controller changes must remain shared by Baseline/V1/V2 and precede freeze.
+
+Retain every previous archive/log/output and the original failed scores.
+After v4, the native history guard checks2734 event files with no140-159
+overlap. Do not launch misalignment commissioning or fresh M7 from the current
+normal-six controller. This review adds evidence/documentation only; existing
+runtime/scorer and all M0-M6R sources remain byte-identical.
 
 ## Repaired native operation: normal-six only
 
