@@ -25,6 +25,50 @@ DEVELOPMENT_SEEDS = (100, 101)
 CANDIDATE_RATIOS = (0., .5, 1., 2., 4., 8.)
 
 
+class PhysicsSubstepTrace:
+    """Read-only samples after the installed CPU physics hook; no control inputs."""
+
+    selected_steps = (170, 230, 430, 490, 530, 630, 640, 710)
+
+    def __init__(self, env):
+        self.base = env.unwrapped
+        self.enabled = hasattr(self.base, "_after_simulation_step") and hasattr(self.base, "peg")
+        self.samples = []
+        self.selected = False
+        if self.enabled:
+            self.had_instance_hook = "_after_simulation_step" in self.base.__dict__
+            self.original = self.base._after_simulation_step
+            self.base._after_simulation_step = self.sample
+
+    def manifest(self):
+        return {"enabled": self.enabled, "selected_steps": list(self.selected_steps),
+            "final_steps": 10, "recovery_phase": "recovery_verify",
+            "sim_steps_per_control": int(self.base._sim_steps_per_control) if self.enabled else None,
+            "sim_freq_hz": int(self.base.sim_freq) if self.enabled else None,
+            "controller_or_scorer_input": False}
+
+    def begin(self, step, decision):
+        self.samples = []
+        self.selected = (step in self.selected_steps or step > MAX_STEPS - 10
+                         or decision["phase"] == "recovery_verify")
+
+    def sample(self):
+        result = self.original()
+        if self.selected:
+            peg = self.base.peg
+            self.samples.append(json_value({"substep": len(self.samples) + 1,
+                "peg_pose": peg.pose.raw_pose, "linear_velocity": peg.linear_velocity,
+                "angular_velocity": peg.angular_velocity}))
+        return result
+
+    def close(self):
+        if self.enabled:
+            if self.had_instance_hook:
+                self.base._after_simulation_step = self.original
+            else:
+                del self.base._after_simulation_step
+
+
 def preflight_native():
     receipt = json.loads(RECEIPT_PATH.read_text())
     if sys.version_info[:2] != (3, 10) or any(version(k) != v for k, v in receipt["packages"].items()):
@@ -109,12 +153,13 @@ def run(config, env_factory=build_env, observe_fn=observe_native, preflight_fn=p
     directory.mkdir(parents=True, exist_ok=False)
     result = {"state": "starting", "run_directory": str(directory), "config": json_value(asdict(config)),
               "development_only": True, "fresh_native": False}
-    env = None
+    env = trace = None
     with (directory / "events.jsonl").open("x", buffering=1, encoding="utf-8") as log:
         def event(kind, **fields):
             log.write(json.dumps(json_value({"event": kind, "time_utc": datetime.now(timezone.utc).isoformat(), **fields}), allow_nan=False) + "\n")
         try:
             env = env_factory()
+            trace = PhysicsSubstepTrace(env)
             observation, info = env.reset(seed=config.seed)
             observation, info = observe_fn(env, observation, info)
             env.action_space.seed(config.seed)
@@ -126,6 +171,7 @@ def run(config, env_factory=build_env, observe_fn=observe_native, preflight_fn=p
             manifest = {**preflight, "development_only": True, "task": "PegInsertionSide-v1", "robot": "panda_wristcam",
                 "physics_backend": "cpu", "control_mode": "pd_ee_pose", "observation_mode": "state_dict",
                 "config": json_value(asdict(config)), "max_steps": MAX_STEPS, "robot_base_pose": base,
+                "physics_substep_trace": trace.manifest(),
                 "task_contract": task_manifest(), "nominal": nominal.manifest(),
                 "recovery": recovery.manifest() if recovery else None,
                 "action_space_shape": list(env.action_space.shape),
@@ -149,8 +195,11 @@ def run(config, env_factory=build_env, observe_fn=observe_native, preflight_fn=p
                                         "peg_box_contact_force_world_n": info["peg_box_contact_force_world_n"]}
                 action, decision = recovery.action(observation, step, verdict) if recovery else nominal.action(observation, step - 1)
                 action = fixed_action_for_space(action, env.action_space)
+                trace.begin(step, decision)
                 observation, reward, term, trunc, info = env.step(action)
                 observation, info = observe_fn(env, observation, info)
+                if trace.enabled and trace.selected:
+                    event("physics_substeps", step=step, samples=trace.samples)
                 try:
                     truth = reference.observe(observation, info, step, decision, final=step == MAX_STEPS)
                     if verifier:
@@ -192,6 +241,8 @@ def run(config, env_factory=build_env, observe_fn=observe_native, preflight_fn=p
             raise
         finally:
             try:
+                if trace is not None:
+                    trace.close()
                 if env is not None:
                     env.close()
             except BaseException as error:

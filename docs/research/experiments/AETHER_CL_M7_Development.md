@@ -2,11 +2,12 @@
 
 Date: 2026-10-07 (Asia/Shanghai).
 
-Status: repaired normal-six execution completed with valid evidence and 0/6
-normal insertion successes. Acquisition/lift worked; both bounded recoveries
-completed backout/realignment and timed out during reinsertion. A shared slow
-servo correction is locally tested; new normal-six-v3 native commissioning is
-pending. No fresh-native M7 protocol or result is frozen.
+Status: normal-six-v3 evidence passes with 0/6 insertion successes. Seed100
+meets geometric insertion but fails velocity-based stability; seed101 remains
+at the entry with residual interference. Bounded transverse TCP tracking,
+a calibrated holding aperture and read-only substep logging are locally tested;
+normal-six-v4 native commissioning is pending. No fresh-native M7 protocol or
+result is frozen.
 Authority remains [02's M6R acceptance / DEC-0006](AETHER_CL_M6R_02_Research_Review_v0.1.md)
 at `145aadce249b23a49ecb899ff273e93f673dd03b`.
 
@@ -76,14 +77,21 @@ task; grasp/contact status is logged. Final success is not latched forever.
 
 The nominal schedule is approach/descend/close/lift/carry/prealign/offset/insert/
 settle, with durations 80/60/30/60/100/100/60/140/80 actions (710 total). Grasp
-the peg 60 mm behind its center. Refresh the actual TCP-in-peg grasp transform
+the peg 60 mm behind its center. Close fully during acquisition, then once
+at the first lift cache a holding command from measured finger qpos minus
+4 mm per finger. Map through the installed -10/+40 mm target range; invalid
+aperture proxy retains the closed command and its outcome. Refresh the actual TCP-in-peg grasp transform
 once after lift. Cache the target and insertion poses; only TCP feedback enters
 the nominal servo after that calibration. No contact, score or verifier output
 enters nominal action selection. Translation/rotation limits are 12 mm/0.06 rad
 per command, with independent 4 mm axial and 4 mm transverse-norm bounds during insertion
 and settling (maximum combined norm 5.657 mm). A long remaining axial distance
 does not reduce height/lateral correction. The cached target frame and TCP are
-the only inputs to this nominal servo.
+the only inputs to this nominal servo. A transverse TCP integral correction
+(gain 0.1 per action, 6 mm norm cap, learn only within 6 mm transverse error)
+compensates persistent tracking bias. It never integrates axial insertion error.
+The same cached holding command and bounded transverse compensation are used
+by recovery; evaluator contacts/success remain absent from these inputs.
 
 V2 has one 420-action recovery episode, stage caps 120/120/140/40 for backout/
 realign/reinsert/verify. Phase progression requires the physical effect:
@@ -117,16 +125,15 @@ the final family. Requested waypoint offset is not assumed to equal peg offset.
 
 ## Local validation
 
-All 28 focused tests pass (20.308 s in the primary runtime; 13.876 s with
-Python 3.10.21, NumPy 1.26.4 and SciPy 1.10.1). Three matched
-1,200-action kinematic episodes reconstruct 3,600 endpoints and verify exact
-paired logs while rejecting tampered actions, observations and outcomes. A
-finite-gain/downward-load fixture reproduces the original long-distance
-transverse correction failure and shows the repaired servo maintains the
-3 mm alignment band. A rotated-axis check verifies that axial distance does
-not attenuate transverse correction. These are software fixtures, not native
-insertion viability evidence. Python 3.10 parsing and unchanged M0–M6R
-source/protocol preflight pass.
+All 31 focused tests pass in the primary runtime (20.851 s) and with Python
+3.10.21 / NumPy 1.26.4 / SciPy 1.10.1 (15.852 s). New counterexamples
+exercise transverse bias correction without axial windup, installed negative
+gripper lower-bound mapping and once-only holding calibration, and diagnostic
+hook chaining/restoration plus rejection of missing/altered substep data. The
+full matched fixture reconstructs 3,600 endpoints and checks exact paired raw
+observations and selected substeps, with tamper rejection. Python 3.10 parsing
+and unchanged M0–M6R preflight pass. These fixtures establish software behavior,
+not native grip stability or insertion viability.
 
 ## First development failure and repair
 
@@ -201,6 +208,47 @@ archives, directories and logs unchanged. Launch known-seed normal-six-v3
 in a new output/archive/log. Do not launch misalignment commissioning until
 normal insertion behavior has been independently reviewed.
 
+## Normal-six-v3: two remaining failure mechanisms
+
+[Independent v3 review](evidence/AETHER_CL_M7_Normal6_v3_Review.json) verifies
+all 41 indexed files, exact membership and all 7,200 replayed actions/endpoints.
+Archive SHA-256:
+`67e7da8b67994e1659627d41797beaa7befb8470c16228df81bf98f9ae77c272`.
+Four strict comparisons pass: Baseline/V1 at 1,200 each, V1/V2 at 642 each.
+All records acquired/lifted the peg and retained failure.
+
+Seed100 ends at depth 106.248 mm with orientation error 0.00356 rad and positive
+1.048 mm channel margin. Geometric insertion passes, but reported linear/angular
+speeds remain 0.02059 m/s and 0.54740 rad/s, above unchanged 0.01/0.15 limits.
+Success is false. Consecutive final poses differ by only 0.300 micrometre and
+2.218 microradian; these control-frame data cannot resolve intra-step motion
+versus a physics velocity discrepancy. V2 completes reinsert, then times out
+at the 40-action verify cap. Do not call this a stable success or weaken scoring
+to accept it. Seed101 head Z is -3.775 mm with -0.394 mm channel margin: it
+clips the entry and fails depth. Its V2 completes backout/realign and times out
+during reinsert.
+
+Installed Panda finger targets span -10 to +40 mm. Continuing action -1 after
+grasp requests -10 mm while held fingers sit near +16/+19 mm; measured loads
+are roughly 26/29 N. Closing overdrive is a plausible contributor to velocity
+behavior, not established causation. The next development controller caches a
+post-close holding aperture with 4 mm overdrive per finger, and adds bounded
+transverse TCP integral correction. Both systems remain matched; grip loss,
+missed disturbance readiness and score failures are retained. Scorer, thresholds,
+phase effects/durations, single-attempt limits and old sources remain unchanged.
+
+Selected physics substeps now record raw peg pose and velocities immediately
+after chaining the original CPU simulation hook. Sampling covers steps
+170/230/430/490/530/630/640/710, final10 and each recovery verify action. The
+original hook is restored at cleanup. Samples enter neither motion nor scoring.
+Audit requires full selected counts, exact final-substep/observation agreement,
+and exact matched prefix samples. This diagnoses the sampling discrepancy
+without modifying installed task/physics bytes.
+
+Retain all three earlier development archives/directories/logs. Run new
+normal-six-v4 on known100/101 only and review before misalignment commissioning
+or any fresh freeze. Native improvement is unverified.
+
 ## Repaired native operation: normal-six only
 
 Run the focused M7 test file on the inspected server first. Then execute six
@@ -212,8 +260,9 @@ independent physical endpoint and final report. Compare Baseline/V1 exactly
 through the full budget, and V1/V2 exactly through the preceding observation of
 the first retry action, or the full budget when no retry occurs.
 
-Fresh seeds 140–159 are still unused in 2,715 retained event logs (recorded
-range 0–139). The development entry accepts only 100/101 and checks retained
+The installed inspection checked 2,715 retained event logs (reset range 0–139).
+After normal-six-v3, history checked 2728 event logs and again found no
+preferred-seed 140–159 overlap. The development entry accepts only 100/101 and checks retained
 history before/after execution. It offers no fresh-native entry. History must
 be checked again at final freeze/entry; deleted or unreported runs are outside
 this guard's scope. No adaptive seed replacement is allowed.
@@ -236,11 +285,11 @@ After tests pass, launch normal-six detached from SSH:
 
 ```bash
 nohup python -u -m aether_cl.m7_development \
-  --output runs/m7-development-normal6-v3 \
-  --archive /home/jiangle/aura-work/aether-cl-m7-development-normal6-v3.tar.gz \
-  > /home/jiangle/aura-work/m7-development-normal6-v3.log 2>&1 < /dev/null &
+  --output runs/m7-development-normal6-v4 \
+  --archive /home/jiangle/aura-work/aether-cl-m7-development-normal6-v4.tar.gz \
+  > /home/jiangle/aura-work/m7-development-normal6-v4.log 2>&1 < /dev/null &
 echo "M7 development PID: $!"
-tail -f /home/jiangle/aura-work/m7-development-normal6-v3.log
+tail -f /home/jiangle/aura-work/m7-development-normal6-v4.log
 ```
 
 `M7_DEVELOPMENT_EVIDENCE_VALID` means valid matched development evidence, not

@@ -97,10 +97,46 @@ def read_episode(directory):
     return manifest, result, resets[0], steps, events
 
 
+def check_substeps(manifest, steps, events):
+    config = manifest.get("physics_substep_trace", {"enabled": False})
+    traces = [e for e in events if e["event"] == "physics_substeps"]
+    if not config["enabled"]:
+        if traces:
+            raise ValueError("Unexpected physics substep records")
+        return 0
+    lookup = {e["step"]: e for e in traces}
+    required = {e["step"] for e in steps if e["step"] in config["selected_steps"]
+                or e["step"] > MAX_STEPS - config["final_steps"]
+                or e["controller_decision"]["phase"] == config["recovery_phase"]}
+    if len(lookup) != len(traces) or set(lookup) != required:
+        raise ValueError("Physics substep selection incomplete or duplicated")
+    count = 0
+    for event in steps:
+        if event["step"] not in required:
+            continue
+        samples = lookup[event["step"]]["samples"]
+        if len(samples) != config["sim_steps_per_control"]:
+            raise ValueError("Physics substep count differs")
+        for n, sample in enumerate(samples, 1):
+            if sample["substep"] != n:
+                raise ValueError("Physics substeps nonconsecutive")
+            for key, size in (("peg_pose", 7), ("linear_velocity", 3), ("angular_velocity", 3)):
+                vector(sample[key], size, key)
+        extra = event["observation"]["extra"]
+        for key, raw_key, size in (("peg_pose", "peg_pose", 7),
+                                   ("linear_velocity", "peg_linear_velocity", 3),
+                                   ("angular_velocity", "peg_angular_velocity", 3)):
+            if not np.array_equal(vector(samples[-1][key], size, key), vector(extra[raw_key], size, raw_key)):
+                raise ValueError("Final physics substep differs from raw observation")
+        count += len(samples)
+    return count
+
+
 def replay(directory):
     manifest, result, reset, steps, events = read_episode(directory)
     if result["state"] != "finished" or result["steps"] != MAX_STEPS or len(steps) != MAX_STEPS:
         raise ValueError("Development episode not complete; retain failed evidence")
+    substep_count = check_substeps(manifest, steps, events)
     config = M7DevelopmentConfig(**{**manifest["config"], "output": Path(manifest["config"]["output"])})
     config.validate()
     nominal = FixedInsertion(reset["observation"], manifest["robot_base_pose"])
@@ -180,13 +216,14 @@ def replay(directory):
     for key, value in expected_result.items():
         equal_replay(result[key], value, "result." + key)
     return {"passed": True, "steps": len(steps), "maximum_action_replay_error": maximum_action_error,
+            "physics_substep_samples": substep_count,
             "raw_endpoint_reconstructions": len(steps), "action_replay_bound": 3e-7,
             "derived_scalar_replay_bound": 1e-10, "physical_pair_tolerance": "exact"}
 
 
 def compare(left, right, stop=None):
-    lm, lr, lreset, ls, _ = read_episode(left)
-    rm, rr, rreset, rs, _ = read_episode(right)
+    lm, lr, lreset, ls, le = read_episode(left)
+    rm, rr, rreset, rs, re = read_episode(right)
     for key in ("observation", "info", "seed"):
         if lreset[key] != rreset[key]:
             raise ValueError("Matched reset differs: " + key)
@@ -195,6 +232,8 @@ def compare(left, right, stop=None):
             raise ValueError("Matched startup differs: " + key)
     if lm["config"]["seed"] != rm["config"]["seed"]:
         raise ValueError("Matched seeds differ")
+    if lm.get("physics_substep_trace") != rm.get("physics_substep_trace"):
+        raise ValueError("Matched physics substep settings differ")
     bound = MAX_STEPS if stop is None else stop
     if len(ls) < bound or len(rs) < bound:
         raise ValueError("Matched prefix incomplete")
@@ -202,6 +241,10 @@ def compare(left, right, stop=None):
         for key in ("step", "observation", "info", "reward", "action", "terminated", "truncated", "reference", "controller_decision"):
             if a[key] != b[key]:
                 raise ValueError(f"Strict physical/action/reference pair differs at step{a['step']}: {key}")
+    ltrace = [{k: e[k] for k in ("step", "samples")} for e in le if e["event"] == "physics_substeps" and e["step"] <= bound]
+    rtrace = [{k: e[k] for k in ("step", "samples")} for e in re if e["event"] == "physics_substeps" and e["step"] <= bound]
+    if ltrace != rtrace:
+        raise ValueError("Strict matched physics substeps differ")
     return {"passed": True, "exact_steps": bound}
 
 

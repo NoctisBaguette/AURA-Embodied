@@ -14,7 +14,7 @@ from scipy.spatial.transform import Rotation
 
 from aether_cl.runtime import json_value
 from aether_cl.m7_task import geometry, InsertionReference, InsertionVerifier
-from aether_cl.m7_policy import FixedInsertion, InsertionRecovery, INJECTION_STEP, command
+from aether_cl.m7_policy import FixedInsertion, InsertionRecovery, INJECTION_STEP, command, TransverseTracking
 from aether_cl.m7_runtime import M7DevelopmentConfig, run, perturb_waypoints
 from aether_cl.m7_audit import independent_endpoint, replay, compare
 from aether_cl import m7_runtime
@@ -193,6 +193,38 @@ class PreflightTests(unittest.TestCase):
 
 
 class PolicyTests(unittest.TestCase):
+    def test_transverse_integral_corrects_bias_without_winding_up_axially(self):
+        tracking = TransverseTracking(); axis = np.array([1., 0., 0.])
+        target = np.array([-.16, 0., .1]); tcp = np.array([-.32, 0., .0985])
+        for _ in range(200):
+            o = observation(tcp + [.06, 0., 0.])
+            goal, detail = tracking.correct(o, target, axis)
+            # Axial blockage deliberately retained while transverse load is corrected.
+            tcp[1:] += .4 * (goal[1:] - tcp[1:]) - [0., .0006]
+        self.assertLess(abs(tcp[2] - target[2]), 1e-6)
+        self.assertEqual(tracking.offset[0], 0.)
+        for _ in range(100):
+            tracking.correct(observation((-.3, .005, .1)), target, axis)
+        self.assertLessEqual(np.linalg.norm(tracking.offset), .006 + 1e-15)
+        before = tracking.offset.copy()
+        tracking.correct(observation((-.3, .02, .1)), target, axis)
+        np.testing.assert_array_equal(before, tracking.offset)
+
+    def test_post_close_hold_uses_installed_negative_lower_bound(self):
+        o = observation(aperture=.04); policy = FixedInsertion(o, BASE)
+        action, detail = policy.action(o, 170)
+        target = -.01 + (float(action[0, -1]) + 1) * .05 / 2
+        self.assertAlmostEqual(target, .016, places=8)
+        self.assertEqual(detail['gripper'], 'holding')
+        self.assertEqual(detail['hold_gripper_calibration']['step'], 171)
+        cached = policy.hold_gripper
+        policy.action(observation(aperture=.038), 171)
+        self.assertEqual(policy.hold_gripper, cached)
+        failed = FixedInsertion(observation(aperture=.08), BASE)
+        action, detail = failed.action(observation(aperture=.08), 170)
+        self.assertEqual(float(action[0,-1]), -1.)
+        self.assertFalse(detail['hold_gripper_calibration']['aperture_proxy_valid'])
+
     def test_slow_insertion_preserves_transverse_correction_under_long_travel(self):
         rotation = Rotation.from_euler('z', .7).as_matrix()
         axis = rotation[:, 0]
@@ -311,6 +343,11 @@ class KinematicFixture:
     action_space=Box()
     def __init__(self):
         self.unwrapped=SimpleNamespace(agent=SimpleNamespace(robot=SimpleNamespace(pose=SimpleNamespace(raw_pose=BASE))))
+        self.unwrapped._after_simulation_step = lambda:None
+        self.unwrapped._sim_steps_per_control = 2
+        self.unwrapped.sim_freq = 40
+        self.unwrapped.peg = SimpleNamespace(pose=SimpleNamespace(raw_pose=pose([-.3,0,.02])),
+            linear_velocity=[0.,0.,0.], angular_velocity=[0.,0.,0.])
         self.closed=False
     def reset(self,seed):
         self.o=observation((-.3,0,.02),aperture=.08)
@@ -329,11 +366,38 @@ class KinematicFixture:
             self.o['extra']['peg_linear_velocity']=((new-old)/.05).tolist()
         self.o['agent']['qpos'][-2:]=[.02,.02] if self.held else [.04,.04]
         self.steps+=1
+        actor = self.unwrapped.peg
+        actor.pose.raw_pose = copy.deepcopy(self.o['extra']['peg_pose'])
+        actor.linear_velocity = copy.deepcopy(self.o['extra']['peg_linear_velocity'])
+        actor.angular_velocity = copy.deepcopy(self.o['extra']['peg_angular_velocity'])
+        for _ in range(2):self.unwrapped._after_simulation_step()
         return copy.deepcopy(self.o),np.array([0.]),np.array([False]),np.array([self.steps==1200]),info(self.held)
     def close(self):self.closed=True
 
 
 class PipelineTests(unittest.TestCase):
+    def test_substep_trace_chains_hook_restores_it_and_rejects_missing_or_altered_data(self):
+        from aether_cl.m7_runtime import PhysicsSubstepTrace
+        from aether_cl.m7_audit import check_substeps
+        calls=[]
+        original=lambda:calls.append('original')
+        o=observation()
+        base=SimpleNamespace(_after_simulation_step=original,_sim_steps_per_control=2,sim_freq=40,
+            peg=SimpleNamespace(pose=SimpleNamespace(raw_pose=o['extra']['peg_pose']),
+                linear_velocity=o['extra']['peg_linear_velocity'],angular_velocity=o['extra']['peg_angular_velocity']))
+        trace=PhysicsSubstepTrace(SimpleNamespace(unwrapped=base))
+        trace.begin(630,{'phase':'insert'})
+        for _ in range(2):base._after_simulation_step()
+        self.assertEqual(calls,['original','original'])
+        steps=[{'step':630,'controller_decision':{'phase':'insert'},'observation':o}]
+        events=[{'event':'physics_substeps','step':630,'samples':trace.samples}]
+        manifest={'physics_substep_trace':trace.manifest()}
+        self.assertEqual(check_substeps(manifest,steps,events),2)
+        with self.assertRaises(ValueError):check_substeps(manifest,steps,[])
+        events=copy.deepcopy(events);events[0]['samples'][-1]['peg_pose'][0]+=.001
+        with self.assertRaises(ValueError):check_substeps(manifest,steps,events)
+        trace.close();self.assertIs(base._after_simulation_step,original)
+
     def test_failed_target_guard_retains_post_action_observation(self):
         class MovingTargetFixture(KinematicFixture):
             def step(self, action):
@@ -365,7 +429,9 @@ class PipelineTests(unittest.TestCase):
                 result=run(M7DevelopmentConfig(system=system,output=Path(d)/system),env_factory=KinematicFixture,
                            observe_fn=lambda env,o,i:(json_value(o),json_value(i)),preflight_fn=lambda:native)
                 results.append(result)
-                self.assertTrue(replay(result['run_directory'])['passed'])
+                audit=replay(result['run_directory'])
+                self.assertTrue(audit['passed'])
+                self.assertEqual(audit['physics_substep_samples'],36)
                 self.assertTrue(result['task_success_at_end'])
             self.assertEqual(results[2]['recovery']['attempts'],0)
             self.assertEqual(compare(results[0]['run_directory'],results[1]['run_directory'])['exact_steps'],1200)
