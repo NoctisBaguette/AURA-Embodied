@@ -2,16 +2,16 @@
 
 Date: 2026-10-07 (Asia/Shanghai).
 
-Status: normal-six-v5 is independently audited with 6/6 original active-score
-successes on two known scenes, zero recovery attempts and 0/6 legacy-velocity
-shadow successes. Sustained full close retains the grasp through lift; the
-complete physics-sampled object-target relation passes insertion and stability.
-All 7,200 actions, 36,000 physics samples and independent endpoints replay;
-all four matched pairs are exact through 1,200 actions. This establishes normal
-development viability in these scenes, not recovery or fresh-seed generalization.
-Original v1-v4 failures remain retained. Next is unfrozen lateral-magnitude
-commissioning on known100/101. No model training occurs, and no fresh-native
-M7 protocol or result is frozen.
+Status: known-seed candidate commissioning is independently audited across
+36 trials: normal/easy controls succeed in all systems, and V2 rescues all
+eight harder nominal failures with one bounded episode each. All43,200 actions,
+216,000 physics samples and34 exact comparisons pass. The design is now frozen
+in [M7 preregistration](AETHER_CL_M7_Insertion_Preregistration.md) and its
+[machine protocol](evidence/AETHER_CL_M7_Insertion_Protocol.json), before any
+fresh M7 outcome. Next is the retained first18 pilot on fresh140/141, followed
+by unstarted slots of the360-trial matrix only after independent pilot review.
+These development results reuse two known scenes and do not establish fresh
+generalization. Original v1-v4 failures remain retained. No model training occurs.
 Authority remains [02's M6R acceptance / DEC-0006](AETHER_CL_M6R_02_Research_Review_v0.1.md)
 at `145aadce249b23a49ecb899ff273e93f673dd03b`.
 
@@ -462,6 +462,49 @@ ratios are still development choices, not a frozen robustness result.
 
 This review changes only documentation and adds the audit receipt. All runtime,
 tests, previous M7 evidence and M0-M6R sources/protocols/results stay unchanged.
+
+## Completed lateral-candidate commissioning and freeze
+
+[Candidate commissioning receipt](evidence/AETHER_CL_M7_Candidates_v5_Review.json)
+verifies archive SHA-256
+`21b58777ce05db80edd35c24457f7778dd2edbacfab729adb94005c7ff4f3f68`,191 indexed
+files, eight producer-source Git blobs, all43,200 actions with zero replay
+error,216,000 physics samples and34 exact matched comparisons. Normal and1.5mm
+offsets succeed without intervention on both known scenes. At3/6/12/24mm,
+Baseline/V1 each fail2/2 and V2 succeeds2/2, completing all four recovery effects
+within148–160 actions. Every acquisition/readiness check passes, all30 nonzero
+injections apply before contact, and achieved pre-insertion object-target
+displacements track requests within1.932micrometres. V1 depth diagnoses match
+the reference with12-action latency. There are zero unnecessary attempts or
+regressions in the four healthy normal/easy pairs. The old velocity shadow
+fails on all36 new trajectories and does not drive the active controller.
+
+Freeze the commissioned ratios0/.5/1/2/4/8, task/scorer, nominal/recovery logic
+and seed140–159 matrix before fresh execution. The final development history
+checks2776 event files and records only0–139. The new fresh entry rechecks this
+history and the complete reviewed commissioning evidence before reset. It
+automatically stops after18 retained pilot slots: normal/easy/6mm,140/141,
+Baseline/V1/V2. Full matrix is360 episodes and432,000 planned actions with
+340 exact comparisons. No adaptive exclusion, replacement or slot rerun.
+
+Shared runtime/replay receive only optional scope/configuration/metadata entry
+parameters. The commissioned motion, geometry, verifier/reference/stability
+and recovery source logic remains unchanged. Current-source compatibility
+reconstructs all36 commissioning trials with exactly the same archived-source
+checks, including zero-error43,200 actions/216,000 samples and34 pairs. All52
+focused M7 tests pass in the primary and matching Python3.10 environment;
+fresh fixture logs reconstruct3,600 actions/18,000 substeps across all systems,
+with exact pairs. Counterexamples cover source/protocol changes, seed overlap,
+standalone reset blocking, physical environment changes, immutable pilot/raw
+tampering, exclusive ownership, failed-slot retention, unstarted-only resume
+and a pilot that still passes when all V2 outcomes fail. Fixtures do not reset
+native ManiSkill seeds or establish native fresh performance.
+
+The [freeze receipt](evidence/AETHER_CL_M7_Freeze_Receipt.json) records source,
+protocol and validation identities. See the preregistration for first18 gating,
+immutable pilot/checkpoint archives, session normalization, final metrics and
+the return-to02 boundary. Fresh native outcomes remain pending. Earlier command
+blocks below describe retained commissioning only; do not rerun those outputs.
 
 ## Native operation: retained normal-six commissioning
 

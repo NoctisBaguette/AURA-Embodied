@@ -186,12 +186,12 @@ def check_substeps(manifest, steps, events):
     return count
 
 
-def replay(directory):
+def replay(directory, config_type=M7DevelopmentConfig, task_contract_fn=task_manifest):
     manifest, result, reset, steps, events = read_episode(directory)
     if result["state"] != "finished" or result["steps"] != MAX_STEPS or len(steps) != MAX_STEPS:
         raise ValueError("Development episode not complete; retain failed evidence")
     substep_count = check_substeps(manifest, steps, events)
-    config = M7DevelopmentConfig(**{**manifest["config"], "output": Path(manifest["config"]["output"])})
+    config = config_type(**{**manifest["config"], "output": Path(manifest["config"]["output"])})
     config.validate()
     nominal = FixedInsertion(reset["observation"], manifest["robot_base_pose"])
     reference = InsertionReference(reset["observation"])
@@ -200,7 +200,7 @@ def replay(directory):
     independent_motion = IndependentPoseStability(reset["observation"])
     samples_by_step = {e["step"]: e["samples"] for e in events if e["event"] == "physics_substeps"}
     equal_replay(manifest["nominal"], nominal.manifest())
-    equal_replay(manifest["task_contract"], task_manifest())
+    equal_replay(manifest["task_contract"], task_contract_fn())
     equal_replay(manifest["recovery"], recovery.manifest() if recovery else None)
     observation, info = reset["observation"], reset["info"]
     verdict, truth = {"status": "waiting" if verifier else "disabled", "failure": None}, {}

@@ -154,13 +154,14 @@ def perturb_waypoints(policy, observation, reference_state, info, ratio, recover
             "actual_offset_must_be_measured_before_insertion": True}
 
 
-def run(config, env_factory=build_env, observe_fn=observe_native, preflight_fn=preflight_native):
+def run(config, env_factory=build_env, observe_fn=observe_native, preflight_fn=preflight_native,
+        development_only=True, task_contract_fn=task_manifest, preregistration=None):
     config.validate()
     preflight = preflight_fn()
     directory = config.output / (datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ") + "-" + uuid4().hex[:8])
     directory.mkdir(parents=True, exist_ok=False)
     result = {"state": "starting", "run_directory": str(directory), "config": json_value(asdict(config)),
-              "development_only": True, "fresh_native": False}
+              "development_only": development_only, "fresh_native": not development_only}
     env = trace = None
     with (directory / "events.jsonl").open("x", buffering=1, encoding="utf-8") as log:
         def event(kind, **fields):
@@ -179,15 +180,18 @@ def run(config, env_factory=build_env, observe_fn=observe_native, preflight_fn=p
             reference = InsertionReference(observation)
             verifier = InsertionVerifier(observation) if config.system != "baseline" else None
             recovery = InsertionRecovery(nominal) if config.system == "v2" else None
-            manifest = {**preflight, "development_only": True, "task": "PegInsertionSide-v1", "robot": "panda_wristcam",
+            manifest = {**preflight, "development_only": development_only, "fresh_native": not development_only,
+                "task": "PegInsertionSide-v1", "robot": "panda_wristcam",
                 "physics_backend": "cpu", "control_mode": "pd_ee_pose", "observation_mode": "state_dict",
                 "config": json_value(asdict(config)), "max_steps": MAX_STEPS, "robot_base_pose": base,
                 "physics_substep_trace": trace.manifest(),
-                "task_contract": task_manifest(), "nominal": nominal.manifest(),
+                "task_contract": task_contract_fn(), "nominal": nominal.manifest(),
                 "recovery": recovery.manifest() if recovery else None,
                 "action_space_shape": list(env.action_space.shape),
                 "episode_geometry": {"peg_half_size": observation["extra"]["peg_half_size"],
                     "hole_radius": observation["extra"]["box_hole_radius"], "hole_pose": observation["extra"]["box_hole_pose"]}}
+            if preregistration is not None:
+                manifest["preregistration"] = preregistration
             (directory / "manifest.json").write_text(json.dumps(json_value(manifest), indent=2, allow_nan=False) + "\n")
             event("run_started", manifest=manifest)
             event("reset", seed=config.seed, observation=observation, info=info)
