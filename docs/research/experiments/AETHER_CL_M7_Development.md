@@ -2,16 +2,16 @@
 
 Date: 2026-10-07 (Asia/Shanghai).
 
-Status: normal-six-v4 is independently audited, retaining 0/6 insertion
-successes under its original score. Seed100 meets insertion geometry while
-reported velocities veto stability despite micrometre-scale pose changes at
-100 Hz physics-step resolution. The reduced-force holding change permits
-large in-hand rotation and creates a seed101 grasp-transform/alignment
-regression. Transverse TCP compensation converges, but cannot correct object
-slip. Normal-six-v5 restores sustained full close and commissions complete
-physics-sampled object-target pose stability with the former velocity score
-retained as a shadow. Local validation passes; native v5 outcomes are pending.
-No fresh-native M7 protocol or result is frozen.
+Status: normal-six-v5 is independently audited with 6/6 original active-score
+successes on two known scenes, zero recovery attempts and 0/6 legacy-velocity
+shadow successes. Sustained full close retains the grasp through lift; the
+complete physics-sampled object-target relation passes insertion and stability.
+All 7,200 actions, 36,000 physics samples and independent endpoints replay;
+all four matched pairs are exact through 1,200 actions. This establishes normal
+development viability in these scenes, not recovery or fresh-seed generalization.
+Original v1-v4 failures remain retained. Next is unfrozen lateral-magnitude
+commissioning on known100/101. No model training occurs, and no fresh-native
+M7 protocol or result is frozen.
 Authority remains [02's M6R acceptance / DEC-0006](AETHER_CL_M6R_02_Research_Review_v0.1.md)
 at `145aadce249b23a49ecb899ff273e93f673dd03b`.
 
@@ -406,7 +406,64 @@ old scoring rule on the new trajectory, not a separate matched controller.
 Grip restoration and the new candidate stability signal are jointly evaluated
 for viability here; this is not an isolated causal claim about either one.
 
-## Repaired native operation: normal-six only
+## Completed normal-six-v5 audit
+
+[Independent v5 receipt](evidence/AETHER_CL_M7_Normal6_v5_Review.json) verifies
+the returned archive at native producer commit
+`fff75c25f2b5d1dc01a224be86a4cb60b1152afb`. Archive SHA-256:
+`ef02160bb65d45ac0c283c75b3458e315e7f45f4d8f2ce717f4ad4a7acfff0c1`.
+All41 indexed files have exact membership, size and hash agreement; all eight
+execution-source Git blobs, original inspection report/receipt and child
+software/source/startup-environment/configuration identities match. Archived
+source replay with Python3.10.21/NumPy1.26.4/SciPy1.10.1 reproduces all7,200
+actions with zero error, reconstructs every independent endpoint and validates
+all36,000 consecutive external physics samples. Baseline/V1 and V1/V2 each
+remain exactly matched through the full1,200-action budget for both scenes.
+
+| Seed | Final depth | Orientation error | Clipped-volume margin | First active success | Recovery attempts |
+| --- | --- | --- | --- | --- | --- |
+| 100 | 106.250 mm | 0.003566 rad | +2.672 mm | 618 | 0 |
+| 101 | 105.299 mm | 0.004971 rad | +2.632 mm | 612 | 0 |
+
+Each scene has the same outcomes in all three systems. Success remains true
+from its first successful observation through the final endpoint. Acquisition
+and lift are independently valid. Both zero-offset readiness checks pass and
+no synthetic disturbance is applied. The built-in success agrees at the end,
+but never supplies the active task score or controller decision.
+
+Lift-time hand/peg rotation changes only0.259/0.314 degrees, matching retained
+v3 grip behavior and removing v4's50.961/43.489-degree slip in these scenes.
+Post-lift grasp rotation drift before injection readiness is0.0099/0.0485 degrees.
+The final50-sample pose-window translation diameters are0.720/0.938 micrometres
+and rotation diameters13.374/9.462 microradians. Every one of the final ten
+control windows passes. Original v5 active scores and their old-velocity shadow
+scores independently reproduce; no prior outcome is reclassified. Grip
+restoration and stability-signal commissioning remain a joint viability test,
+not a single-change causal claim. V2 never intervenes, so recovery effectiveness
+is still unmeasured in v5. These are two known scenes reused across systems,
+not six independent scenes or confirmatory generalization evidence.
+
+The retained native-history guard now checks2740 event files and records reset
+seeds0-139 only, with no140-159 overlap. The suite explicitly records
+`fresh_native=false`, `protocol_frozen=false` and `candidate_series=false`.
+There is no model training or optimizer update: the systems use fixed controller
+code. These are actual simulator development trials before the fresh experiment.
+
+Next, commission the existing candidate series0/.5/1/2/4/8 of3mm clearance on
+known100/101 only, in a new output/archive/log. This is36 development slots
+(six conditions, two known scenes, three systems), with the normal controls
+retained. Inspect achieved pre-insertion object-target offsets, contact/jam
+behavior, detection, each recovery effect gate and one-attempt costs. Retain
+every outcome and missed injection precondition; do not adaptively replace
+seeds. Select/freeze the final family, scorer/controller/recovery and fresh
+matrix only after commissioning and before any fresh-native M7 outcome.
+Fresh entry must recheck the available native history. The documented candidate
+ratios are still development choices, not a frozen robustness result.
+
+This review changes only documentation and adds the audit receipt. All runtime,
+tests, previous M7 evidence and M0-M6R sources/protocols/results stay unchanged.
+
+## Native operation: retained normal-six commissioning
 
 Run the focused M7 test file on the inspected server first. Then execute six
 fresh-process development slots: known seeds 100/101, normal condition,
