@@ -6,7 +6,7 @@ import numpy as np
 from scipy.spatial.transform import Rotation
 
 from .policies import bounded, pose_rotation, vector
-from .m7_task import SETTINGS, geometry, fixed_target_check
+from .m7_task import SETTINGS, geometry, fixed_target_check, PoseStability
 
 PHASES = ("approach", "descend", "close", "lift", "carry", "prealign", "offset", "insert", "settle")
 DURATIONS = (80, 60, 30, 60, 100, 100, 60, 140, 80)
@@ -16,7 +16,6 @@ SLOW_AXIAL_STEP_M = .004
 SLOW_TRANSVERSE_STEP_M = .004
 GRIPPER_LOWER_M = -.01
 GRIPPER_UPPER_M = .04
-HOLD_OVERDRIVE_M = .004
 
 
 @dataclass(frozen=True)
@@ -94,7 +93,6 @@ class FixedInsertion:
         self.bias_world = np.zeros(3)
         self.tracking = TransverseTracking()
         self.hold_gripper = -1.
-        self.hold_calibration = None
 
     def manifest(self):
         return {"name": "fixed_side_insertion_development", "phases": PHASES, "durations": DURATIONS,
@@ -105,8 +103,8 @@ class FixedInsertion:
                 "insertion_maximum_translation_norm_m": float(np.hypot(SLOW_AXIAL_STEP_M, SLOW_TRANSVERSE_STEP_M)),
                 "insertion_servo": "independent_axial_and_transverse_error_bounds_in_cached_target_frame",
                 "transverse_tcp_tracking": asdict(self.tracking.settings),
-                "hold_gripper": {"calibration": "one_post_close_proprioceptive_aperture",
-                    "overdrive_per_finger_m": HOLD_OVERDRIVE_M,
+                "hold_gripper": {"command": "sustained_full_close_after_acquisition",
+                    "normalized_action": -1.,
                     "installed_joint_target_range_m": [GRIPPER_LOWER_M, GRIPPER_UPPER_M]},
                 "maximum_rotation_rad": .06,
                 "phase_transition": "elapsed_steps_only", "post_lift_calibration": "once_actual_tcp_in_peg_transform",
@@ -144,15 +142,6 @@ class FixedInsertion:
 
     def action(self, observation, index):
         phase, local = self.phase(index)
-        if phase == "lift" and self.hold_calibration is None:
-            q = vector(observation["agent"]["qpos"], 9, "qpos")
-            valid = abs(float(q[-2:].sum()) - 2 * self.half[1]) <= .01
-            target = float(np.clip(q[-2:].mean() - HOLD_OVERDRIVE_M, GRIPPER_LOWER_M, GRIPPER_UPPER_M))
-            if valid:
-                self.hold_gripper = 2 * (target - GRIPPER_LOWER_M) / (GRIPPER_UPPER_M - GRIPPER_LOWER_M) - 1
-            self.hold_calibration = {"step": index + 1, "measured_finger_qpos_m": q[-2:].tolist(),
-                "aperture_proxy_valid": bool(valid), "target_per_finger_m": target if valid else GRIPPER_LOWER_M,
-                "normalized_action": self.hold_gripper}
         if phase == "carry" and not self.calibrated:
             self.calibrate(observation)
         target = self.targets[phase]
@@ -164,7 +153,6 @@ class FixedInsertion:
                                  gripper, phase in ("insert", "settle"),
                                  self.rh[:, 0])
         return action, {**detail, **tracking, "expected_tcp_position_world_m": self.targets[phase].tolist(),
-                        "hold_gripper_calibration": self.hold_calibration,
                         "phase": phase, "phase_step": local,
                         "schedule_complete": index + 1 >= sum(DURATIONS)}
 
@@ -196,6 +184,8 @@ class InsertionRecovery:
         self.refresh_record = None
         self.target_check = None
         self.tracking = TransverseTracking()
+        self.pose_stability = None
+        self.motion = None
 
     def manifest(self):
         return {"name": "one_bounded_insertion_recovery", "settings": asdict(self.settings),
@@ -206,7 +196,8 @@ class InsertionRecovery:
                 "verify_readiness": "consecutive_stable_object_target_relation",
                 "refresh": "object_target_and_grasp_transform_after_safe_backout",
                 "transverse_tcp_tracking": asdict(self.tracking.settings),
-                "hold_gripper": "same_cached_post_close_aperture_as_nominal",
+                "hold_gripper": "same_sustained_full_close_as_nominal",
+                "verify_stability": "same_complete_physics_sampled_pose_window_as_verifier",
                 "slow_servo": {"axis": "cached_hole_local_x", "axial_step_m": SLOW_AXIAL_STEP_M,
                     "transverse_step_m": SLOW_TRANSVERSE_STEP_M,
                     "maximum_step_norm_m": float(np.hypot(SLOW_AXIAL_STEP_M, SLOW_TRANSVERSE_STEP_M))},
@@ -220,6 +211,7 @@ class InsertionRecovery:
                 "completed_stages": self.completed_stages.copy(), "failure_detail": self.failure_detail,
                 "stable_steps": self.stable_steps, "refresh_record": self.refresh_record,
                 "fixed_target_check": self.target_check,
+                "pose_stability": self.motion,
                 "tcp_tracking_offset_world_m": self.tracking.offset.tolist()}
 
     def abort(self, reason):
@@ -230,6 +222,7 @@ class InsertionRecovery:
         self.reason = verdict["failure"]
         g = geometry(observation)
         self.previous_tcp, self.previous_pose = g["tcp"][:3].copy(), g["pose"].copy()
+        self.pose_stability = PoseStability(observation)
         if self.max_steps - step + 1 < self.settings.minimum_remaining_steps:
             self.abort("insufficient_remaining_budget"); return
         if not g["attachment_proxy"]:
@@ -279,13 +272,14 @@ class InsertionRecovery:
         self.last_action, self.last_decision = action.copy(), decision.copy()
         return action, decision
 
-    def observe(self, observation):
+    def observe(self, observation, physics_samples=None):
         if self.state != "attempting":
             return
         g = geometry(observation, self.previous_pose)
         self.target_check = fixed_target_check(g["hole"], self.hole)
         if not self.target_check["passed"]:
             self.abort("target_changed_during_recovery"); return
+        self.motion = self.pose_stability.observe(observation, physics_samples)
         self.path += float(np.linalg.norm(g["tcp"][:3] - self.previous_tcp))
         self.previous_tcp, self.previous_pose = g["tcp"][:3].copy(), g["pose"].copy()
         self.missing = self.missing + 1 if not g["attachment_proxy"] else 0
@@ -301,8 +295,9 @@ class InsertionRecovery:
         elif phase == "reinsert":
             ready = g["relation_ready"]
         else:
-            self.stable_steps = self.stable_steps + 1 if g["relation_ready"] and g["stable_frame"] else 0
-            ready = self.stable_steps >= SETTINGS.stable_steps
+            self.stable_steps = self.stable_steps + 1 if (g["relation_ready"] and self.motion["stable_frame"]
+                and self.motion["relation_all_substeps"]) else 0
+            ready = self.stable_steps >= SETTINGS.stable_steps and self.motion["window_ready"]
         ready = bool(ready and self.stage_steps >= self.settings.minimum_stage_steps and g["attachment_proxy"])
         if ready:
             self.completed_stages.append(phase)

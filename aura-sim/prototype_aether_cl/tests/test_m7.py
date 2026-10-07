@@ -13,10 +13,10 @@ import numpy as np
 from scipy.spatial.transform import Rotation
 
 from aether_cl.runtime import json_value
-from aether_cl.m7_task import geometry, InsertionReference, InsertionVerifier
+from aether_cl.m7_task import geometry, InsertionReference, InsertionVerifier, PoseStability
 from aether_cl.m7_policy import FixedInsertion, InsertionRecovery, INJECTION_STEP, command, TransverseTracking
 from aether_cl.m7_runtime import M7DevelopmentConfig, run, perturb_waypoints
-from aether_cl.m7_audit import independent_endpoint, replay, compare
+from aether_cl.m7_audit import independent_endpoint, IndependentPoseStability, replay, compare
 from aether_cl import m7_runtime
 
 
@@ -42,6 +42,14 @@ def info(held=True):
         "peg_box_contact_force_world_n": [0., 0., 0.], "peg_table_contact_force_world_n": [0., 0., 0.]}
 
 
+def physics_samples(o, peg_poses=None, hole_poses=None):
+    e = o['extra']
+    return [{'substep': n + 1, 'peg_pose': copy.deepcopy(peg_poses[n] if peg_poses else e['peg_pose']),
+        'hole_pose': copy.deepcopy(hole_poses[n] if hole_poses else e['box_hole_pose']),
+        'linear_velocity': copy.deepcopy(e['peg_linear_velocity']),
+        'angular_velocity': copy.deepcopy(e['peg_angular_velocity'])} for n in range(5)]
+
+
 BASE = pose([-.615, 0, 0])
 
 
@@ -53,7 +61,7 @@ class ContractTests(unittest.TestCase):
             o = copy.deepcopy(initial)
             o['extra']['box_hole_pose'][0] += translation
             o['extra']['box_hole_pose'][3:] = quaternion
-            state = InsertionReference(initial).observe(o, info(), 1, {'phase':'approach','phase_step':1})
+            state = InsertionReference(initial).observe(o, info(), 1, {'phase':'approach','phase_step':1}, physics_samples=physics_samples(o))
             self.assertTrue(state['fixed_target_check']['passed'])
             self.assertFalse(state['fixed_target_check']['raw_pose_equal'])
             self.assertAlmostEqual(state['fixed_target_check']['translation_delta_m'], translation)
@@ -71,16 +79,16 @@ class ContractTests(unittest.TestCase):
             else:
                 o['extra']['box_hole_radius'][0] += 1e-9
             with self.subTest(kind=kind), self.assertRaisesRegex(ValueError, 'Insertion target/geometry changed:'):
-                InsertionReference(initial).observe(o, info(), 1, {'phase':'approach','phase_step':1})
+                InsertionReference(initial).observe(o, info(), 1, {'phase':'approach','phase_step':1}, physics_samples=physics_samples(o))
 
     def test_target_roundoff_is_anchored_to_reset(self):
         initial = observation(); ref = InsertionReference(initial)
         for step in range(1, 6):
             o = copy.deepcopy(initial); o['extra']['box_hole_pose'][0] = step * 2e-7
-            ref.observe(o, info(), step, {'phase':'approach','phase_step':step})
+            ref.observe(o, info(), step, {'phase':'approach','phase_step':step}, physics_samples=physics_samples(o))
         o['extra']['box_hole_pose'][0] = 1.2e-6
         with self.assertRaises(ValueError):
-            ref.observe(o, info(), 6, {'phase':'approach','phase_step':6})
+            ref.observe(o, info(), 6, {'phase':'approach','phase_step':6}, physics_samples=physics_samples(o))
 
     def test_healthy_volume_and_quarter_turn(self):
         for r in (np.eye(3), Rotation.from_euler('x', np.pi / 2).as_matrix()):
@@ -109,18 +117,20 @@ class ContractTests(unittest.TestCase):
         d = {"phase": "settle", "phase_step": 20}
         o = observation()
         for step in range(1, 11):
-            state = ref.observe(o, info(), step, d)
+            state = ref.observe(o, info(), step, d, physics_samples=physics_samples(o))
             self.assertFalse(state["task_success"])
-        self.assertTrue(ref.observe(o, info(), 11, d)["task_success"])
+        self.assertTrue(ref.observe(o, info(), 11, d, physics_samples=physics_samples(o))["task_success"])
         o["extra"]["peg_linear_velocity"][0] = .02
-        self.assertFalse(ref.observe(o, info(), 12, d)["task_success"])
-        with self.assertRaises(ValueError):ref.observe(o, info(), 12, d)
+        state = ref.observe(o, info(), 12, d, physics_samples=physics_samples(o))
+        self.assertTrue(state["task_success"])
+        self.assertFalse(state["legacy_velocity_task_success"])
+        with self.assertRaises(ValueError):ref.observe(o, info(), 12, d, physics_samples=physics_samples(o))
 
     def test_builtin_true_without_acquisition_or_lift_never_scores(self):
         for reset, held in ((observation((-.3, 0, .02)), False), (observation(), True)):
             ref = InsertionReference(reset)
             for step in range(1, 15):
-                state = ref.observe(observation(), info(held), step, {"phase": "settle", "phase_step": step})
+                state = ref.observe(observation(), info(held), step, {"phase": "settle", "phase_step": step}, physics_samples=physics_samples(observation()))
             self.assertFalse(state["task_success"])
 
     def test_raw_force_endpoint_detects_forged_acquisition(self):
@@ -129,9 +139,9 @@ class ContractTests(unittest.TestCase):
 
     def test_contact_before_ungrasped_flight_is_not_valid_acquisition(self):
         reset=observation((-.3,0,.02));ref=InsertionReference(reset)
-        ref.observe(reset,info(True),1,{"phase":"close","phase_step":30})
+        ref.observe(reset,info(True),1,{"phase":"close","phase_step":30}, physics_samples=physics_samples(reset))
         for step in range(2,16):
-            state=ref.observe(observation(),info(False),step,{"phase":"settle","phase_step":20})
+            state=ref.observe(observation(),info(False),step,{"phase":"settle","phase_step":20}, physics_samples=physics_samples(observation()))
         self.assertFalse(state['valid_acquisition']);self.assertFalse(state['task_success'])
 
     def test_independent_geometry_agrees_on_clipped_rotated_counterexamples(self):
@@ -146,6 +156,106 @@ class ContractTests(unittest.TestCase):
     def test_invalid_geometry_rejected(self):
         o = observation(); o["extra"]["box_hole_radius"] = [.024]
         with self.assertRaises(ValueError):geometry(o)
+
+
+class PoseStabilityTests(unittest.TestCase):
+    def check_both(self, state, audit, o, samples):
+        result = state.observe(o, samples)
+        raw = audit.observe(o, samples)
+        from aether_cl.m7_audit import equal_replay
+        equal_replay(result, raw)
+        return result
+
+    def test_stationary_relation_with_large_solver_velocities_keeps_shadow_failure(self):
+        initial = observation((-.3, 0, .02)); o = observation()
+        o['extra']['peg_linear_velocity'] = [0., 0., .04]
+        o['extra']['peg_angular_velocity'] = [.5, 0., 0.]
+        ref = InsertionReference(initial); verifier = InsertionVerifier(initial)
+        for step in range(1, 12):
+            samples = physics_samples(o)
+            truth = ref.observe(o, info(), step, {'phase':'settle','phase_step':20}, physics_samples=samples)
+            verdict = verifier.observe(o, step, {'phase':'settle','phase_step':20}, physics_samples=samples)
+        self.assertTrue(truth['task_success'])
+        self.assertEqual(verdict['status'], 'succeeded')
+        self.assertFalse(truth['legacy_velocity_task_success'])
+        self.assertFalse(verdict['legacy_velocity_task_success'])
+
+    def test_late_acquisition_requires_ten_new_eligible_observations(self):
+        ref = InsertionReference(observation((-.3, 0, .02)))
+        o = observation(); decision = {'phase':'settle','phase_step':20}
+        for step in range(1, 13):
+            state = ref.observe(o, info(False), step, decision, physics_samples=physics_samples(o))
+            self.assertFalse(state['task_success'])
+        for step in range(13, 23):
+            state = ref.observe(o, info(True), step, decision, physics_samples=physics_samples(o))
+            self.assertEqual(state['task_success'], step == 22)
+
+    def test_ten_complete_observations_required_with_quaternion_sign_equivalence(self):
+        o = observation(); state = PoseStability(o); audit = IndependentPoseStability(o)
+        for step in range(1, 11):
+            q = copy.deepcopy(o)
+            if step % 2:q['extra']['peg_pose'][3:] = [-x for x in q['extra']['peg_pose'][3:]]
+            result = self.check_both(state, audit, q, physics_samples(q))
+            self.assertEqual(result['window_ready'], step == 10)
+
+    def test_translational_oscillation_hidden_by_equal_control_endpoints_rejected(self):
+        o = observation(); state = PoseStability(o); audit = IndependentPoseStability(o)
+        path = [pose([-.1, y, .1]) for y in (.0002, -.0002, .0002, -.0002, 0.)]
+        for _ in range(12):
+            result = self.check_both(state, audit, o, physics_samples(o, path))
+        self.assertTrue(geometry(o, np.asarray(o['extra']['peg_pose']))['stable_frame'])
+        self.assertFalse(result['stable_frame']); self.assertFalse(result['window_ready'])
+
+    def test_rotational_oscillation_hidden_by_equal_control_endpoints_rejected(self):
+        o = observation(); state = PoseStability(o); audit = IndependentPoseStability(o)
+        path = [pose([-.1, 0., .1], Rotation.from_euler('x', x).as_matrix()) for x in (.003, -.003, .003, -.003, 0.)]
+        for _ in range(12):result = self.check_both(state, audit, o, physics_samples(o, path))
+        self.assertFalse(result['stable_frame']); self.assertFalse(result['window_ready'])
+
+    def test_slow_translation_drift_rejected_by_whole_window(self):
+        o = observation(); state = PoseStability(o); audit = IndependentPoseStability(o)
+        for step in range(1, 11):
+            path = [pose([-.1 + (5 * (step - 1) + n) * .000025, 0, .1]) for n in range(1, 6)]
+            current = observation(path[-1][:3])
+            result = self.check_both(state, audit, current, physics_samples(current, path))
+            self.assertTrue(result['stable_frame']); self.assertTrue(result['relation_all_substeps'])
+        self.assertGreater(result['window_translation_diameter_m'], .0005)
+        self.assertFalse(result['window_ready'])
+
+    def test_slow_rotation_drift_rejected_by_whole_window(self):
+        o = observation(); state = PoseStability(o); audit = IndependentPoseStability(o)
+        for step in range(1, 11):
+            angles = [(5 * (step - 1) + n) * .00025 for n in range(1, 6)]
+            path = [pose([-.1, 0, .1], Rotation.from_euler('x', angle).as_matrix()) for angle in angles]
+            current = observation(rotation=Rotation.from_euler('x', angles[-1]).as_matrix())
+            result = self.check_both(state, audit, current, physics_samples(current, path))
+            self.assertTrue(result['stable_frame']); self.assertTrue(result['relation_all_substeps'])
+        self.assertGreater(result['window_rotation_diameter_rad'], .01)
+        self.assertFalse(result['window_ready'])
+
+    def test_brief_wall_intersection_between_valid_endpoints_rejected(self):
+        o = observation((-.1, .00319, .1)); state = PoseStability(o); audit = IndependentPoseStability(o)
+        path = [pose([-.1, y, .1]) for y in (.00319, .00323, .00319, .00319, .00319)]
+        self.assertTrue(geometry(o)['relation_ready'])
+        for _ in range(12):result = self.check_both(state, audit, o, physics_samples(o, path))
+        self.assertTrue(result['stable_frame']); self.assertFalse(result['relation_all_substeps'])
+        self.assertFalse(result['window_ready'])
+
+    def test_missing_duplicate_nonfinite_and_mismatched_samples_rejected(self):
+        o = observation()
+        for kind in ('missing', 'duplicate', 'nonfinite', 'endpoint'):
+            samples = physics_samples(o)
+            if kind == 'missing':samples.pop()
+            elif kind == 'duplicate':samples[2]['substep'] = 2
+            elif kind == 'nonfinite':samples[1]['peg_pose'][0] = float('nan')
+            else:samples[-1]['peg_pose'][0] += 1e-8
+            with self.subTest(kind=kind), self.assertRaises(ValueError):PoseStability(o).observe(o, samples)
+        with self.assertRaises(ValueError):PoseStability(o).observe(o, None)
+
+    def test_target_motion_between_identical_endpoints_rejected(self):
+        o = observation(); samples = physics_samples(o)
+        samples[2]['hole_pose'][0] += 2e-6
+        with self.assertRaisesRegex(ValueError, 'target/geometry changed'):PoseStability(o).observe(o, samples)
 
 
 class PreflightTests(unittest.TestCase):
@@ -210,20 +320,15 @@ class PolicyTests(unittest.TestCase):
         tracking.correct(observation((-.3, .02, .1)), target, axis)
         np.testing.assert_array_equal(before, tracking.offset)
 
-    def test_post_close_hold_uses_installed_negative_lower_bound(self):
+    def test_stronger_hold_is_sustained_through_all_post_acquisition_phases(self):
         o = observation(aperture=.04); policy = FixedInsertion(o, BASE)
-        action, detail = policy.action(o, 170)
-        target = -.01 + (float(action[0, -1]) + 1) * .05 / 2
-        self.assertAlmostEqual(target, .016, places=8)
-        self.assertEqual(detail['gripper'], 'holding')
-        self.assertEqual(detail['hold_gripper_calibration']['step'], 171)
-        cached = policy.hold_gripper
-        policy.action(observation(aperture=.038), 171)
-        self.assertEqual(policy.hold_gripper, cached)
-        failed = FixedInsertion(observation(aperture=.08), BASE)
-        action, detail = failed.action(observation(aperture=.08), 170)
-        self.assertEqual(float(action[0,-1]), -1.)
-        self.assertFalse(detail['hold_gripper_calibration']['aperture_proxy_valid'])
+        for index in (140, 170, 230, 330, 430, 490, 630, 1199):
+            action, detail = policy.action(o, index)
+            self.assertEqual(float(action[0, -1]), -1.)
+            self.assertEqual(detail['gripper'], 'closed')
+        recovery = InsertionRecovery(policy)
+        action, _ = recovery.action(o, 635, {'status':'failed','failure':'INSERTION_DEPTH_NOT_ACHIEVED'})
+        self.assertEqual(float(action[0, -1]), -1.)
 
     def test_slow_insertion_preserves_transverse_correction_under_long_travel(self):
         rotation = Rotation.from_euler('z', .7).as_matrix()
@@ -269,7 +374,7 @@ class PolicyTests(unittest.TestCase):
             o = copy.deepcopy(initial)
             o['extra']['box_hole_pose'][0] += delta
             o['extra']['box_hole_pose'][3] = -1.
-            recovery.observe(o)
+            recovery.observe(o, physics_samples=physics_samples(o))
             self.assertEqual(recovery.state, 'attempting' if delta < 1e-6 else 'aborted')
             self.assertEqual(recovery.snapshot()['fixed_target_check']['passed'], delta < 1e-6)
 
@@ -306,23 +411,23 @@ class PolicyTests(unittest.TestCase):
         r.action(o,635,{'status':'failed','failure':'INSERTION_DEPTH_NOT_ACHIEVED'})
         r.stage_steps=3
         # TCP coordinates alone cannot establish the peg's safe physical relation.
-        r.target=np.array(o['extra']['tcp_pose'][:3]);r.observe(o)
+        r.target=np.array(o['extra']['tcp_pose'][:3]);r.observe(o, physics_samples=physics_samples(o))
         self.assertEqual(r.stage,0);self.assertEqual(r.completed_stages,[])
 
     def test_effect_gates_refresh_and_complete_in_order(self):
         o=observation();p=FixedInsertion(o,BASE);r=InsertionRecovery(p)
         r.action(o,635,{'status':'failed','failure':'INSERTION_DEPTH_NOT_ACHIEVED'})
-        safe=observation((-.36,0,.1));r.stage_steps=3;r.observe(safe)
+        safe=observation((-.36,0,.1));r.stage_steps=3;r.observe(safe, physics_samples=physics_samples(safe))
         self.assertEqual(r.completed_stages,['backout']);self.assertIsNotNone(r.refresh_record)
-        r.stage_steps=3;r.observe(safe);self.assertEqual(r.completed_stages,['backout','realign'])
-        r.stage_steps=3;r.observe(o);self.assertEqual(r.completed_stages,['backout','realign','reinsert'])
-        for _ in range(10):r.stage_steps+=1;r.observe(o)
+        r.stage_steps=3;r.observe(safe, physics_samples=physics_samples(safe));self.assertEqual(r.completed_stages,['backout','realign'])
+        r.stage_steps=3;r.observe(o, physics_samples=physics_samples(o));self.assertEqual(r.completed_stages,['backout','realign','reinsert'])
+        for _ in range(10):r.stage_steps+=1;r.observe(o, physics_samples=physics_samples(o))
         self.assertEqual(r.state,'attempt_complete');self.assertEqual(r.attempts,1)
 
     def test_stage_cap_aborts_without_reinsert(self):
         o=observation();p=FixedInsertion(o,BASE);r=InsertionRecovery(p)
         r.action(o,635,{'status':'failed','failure':'INSERTION_DEPTH_NOT_ACHIEVED'})
-        r.stage_steps=120;r.observe(o)
+        r.stage_steps=120;r.observe(o, physics_samples=physics_samples(o))
         self.assertEqual(r.state,'aborted');self.assertEqual(r.completed_stages,[])
 
     def test_failed_verdict_is_required_to_start(self):
@@ -344,8 +449,9 @@ class KinematicFixture:
     def __init__(self):
         self.unwrapped=SimpleNamespace(agent=SimpleNamespace(robot=SimpleNamespace(pose=SimpleNamespace(raw_pose=BASE))))
         self.unwrapped._after_simulation_step = lambda:None
-        self.unwrapped._sim_steps_per_control = 2
-        self.unwrapped.sim_freq = 40
+        self.unwrapped._sim_steps_per_control = 5
+        self.unwrapped.sim_freq = 100
+        self.unwrapped.box_hole_pose = SimpleNamespace(raw_pose=pose([0, 0, .1]))
         self.unwrapped.peg = SimpleNamespace(pose=SimpleNamespace(raw_pose=pose([-.3,0,.02])),
             linear_velocity=[0.,0.,0.], angular_velocity=[0.,0.,0.])
         self.closed=False
@@ -370,7 +476,7 @@ class KinematicFixture:
         actor.pose.raw_pose = copy.deepcopy(self.o['extra']['peg_pose'])
         actor.linear_velocity = copy.deepcopy(self.o['extra']['peg_linear_velocity'])
         actor.angular_velocity = copy.deepcopy(self.o['extra']['peg_angular_velocity'])
-        for _ in range(2):self.unwrapped._after_simulation_step()
+        for _ in range(5):self.unwrapped._after_simulation_step()
         return copy.deepcopy(self.o),np.array([0.]),np.array([False]),np.array([self.steps==1200]),info(self.held)
     def close(self):self.closed=True
 
@@ -382,17 +488,18 @@ class PipelineTests(unittest.TestCase):
         calls=[]
         original=lambda:calls.append('original')
         o=observation()
-        base=SimpleNamespace(_after_simulation_step=original,_sim_steps_per_control=2,sim_freq=40,
+        base=SimpleNamespace(_after_simulation_step=original,_sim_steps_per_control=5,sim_freq=100,
+            box_hole_pose=SimpleNamespace(raw_pose=o['extra']['box_hole_pose']),
             peg=SimpleNamespace(pose=SimpleNamespace(raw_pose=o['extra']['peg_pose']),
                 linear_velocity=o['extra']['peg_linear_velocity'],angular_velocity=o['extra']['peg_angular_velocity']))
         trace=PhysicsSubstepTrace(SimpleNamespace(unwrapped=base))
         trace.begin(630,{'phase':'insert'})
-        for _ in range(2):base._after_simulation_step()
-        self.assertEqual(calls,['original','original'])
+        for _ in range(5):base._after_simulation_step()
+        self.assertEqual(calls,['original'] * 5)
         steps=[{'step':630,'controller_decision':{'phase':'insert'},'observation':o}]
         events=[{'event':'physics_substeps','step':630,'samples':trace.samples}]
         manifest={'physics_substep_trace':trace.manifest()}
-        self.assertEqual(check_substeps(manifest,steps,events),2)
+        self.assertEqual(check_substeps(manifest,steps,events),5)
         with self.assertRaises(ValueError):check_substeps(manifest,steps,[])
         events=copy.deepcopy(events);events[0]['samples'][-1]['peg_pose'][0]+=.001
         with self.assertRaises(ValueError):check_substeps(manifest,steps,events)
@@ -431,7 +538,7 @@ class PipelineTests(unittest.TestCase):
                 results.append(result)
                 audit=replay(result['run_directory'])
                 self.assertTrue(audit['passed'])
-                self.assertEqual(audit['physics_substep_samples'],36)
+                self.assertEqual(audit['physics_substep_samples'],6000)
                 self.assertTrue(result['task_success_at_end'])
             self.assertEqual(results[2]['recovery']['attempts'],0)
             self.assertEqual(compare(results[0]['run_directory'],results[1]['run_directory'])['exact_steps'],1200)
@@ -449,6 +556,12 @@ class PipelineTests(unittest.TestCase):
             e['observation']['extra']['box_hole_pose'][0] += 2e-8
             path.write_text('\n'.join(json.dumps(e) for e in events)+'\n')
             with self.assertRaises(ValueError):compare(results[0]['run_directory'],directory)
+            path.write_text(original)
+            events=[json.loads(line) for line in original.splitlines()]
+            e=next(e for e in events if e['event']=='physics_substeps' and e['step']==1199)
+            e['samples'][1]['peg_pose'][1] += .0035
+            path.write_text('\n'.join(json.dumps(e) for e in events)+'\n')
+            with self.assertRaises(ValueError):replay(directory)
             path.write_text(original)
             result=json.loads((directory/'result.json').read_text());result['task_success_at_end']=False
             (directory/'result.json').write_text(json.dumps(result))

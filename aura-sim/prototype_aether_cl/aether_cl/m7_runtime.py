@@ -16,7 +16,7 @@ import numpy as np
 from .runtime import fixed_action_for_space, json_value, software_manifest
 from .policies import vector
 from .verification import single_bool
-from .m7_task import InsertionReference, InsertionVerifier, geometry, task_manifest
+from .m7_task import SETTINGS, InsertionReference, InsertionVerifier, geometry, task_manifest
 from .m7_policy import FixedInsertion, InsertionRecovery, INJECTION_STEP, MAX_STEPS, DURATIONS
 
 RECEIPT_PATH = Path(__file__).resolve().parents[3] / "docs/research/experiments/evidence/AETHER_CL_M7_Installed_Inspection.json"
@@ -26,13 +26,18 @@ CANDIDATE_RATIOS = (0., .5, 1., 2., 4., 8.)
 
 
 class PhysicsSubstepTrace:
-    """Read-only samples after the installed CPU physics hook; no control inputs."""
+    """Complete raw relation samples after the installed CPU physics hook.
+
+    No action/physics mutation. Pose samples feed verification/reference and
+    recovery verification; reported velocity fields are retained diagnostics.
+    """
 
     selected_steps = (170, 230, 430, 490, 530, 630, 640, 710)
 
     def __init__(self, env):
         self.base = env.unwrapped
-        self.enabled = hasattr(self.base, "_after_simulation_step") and hasattr(self.base, "peg")
+        self.enabled = (hasattr(self.base, "_after_simulation_step") and hasattr(self.base, "peg")
+                        and hasattr(self.base, "box_hole_pose"))
         self.samples = []
         self.selected = False
         if self.enabled:
@@ -41,16 +46,18 @@ class PhysicsSubstepTrace:
             self.base._after_simulation_step = self.sample
 
     def manifest(self):
-        return {"enabled": self.enabled, "selected_steps": list(self.selected_steps),
+        return {"enabled": self.enabled, "selection": "every_action_all_external_physics_steps",
+            "selected_steps": list(self.selected_steps),
             "final_steps": 10, "recovery_phase": "recovery_verify",
             "sim_steps_per_control": int(self.base._sim_steps_per_control) if self.enabled else None,
             "sim_freq_hz": int(self.base.sim_freq) if self.enabled else None,
-            "controller_or_scorer_input": False}
+            "controller_or_scorer_input": True,
+            "nominal_controller_input": False,
+            "consumers": ["reference_pose_stability", "passive_verifier_pose_stability", "recovery_verify_pose_stability"]}
 
     def begin(self, step, decision):
         self.samples = []
-        self.selected = (step in self.selected_steps or step > MAX_STEPS - 10
-                         or decision["phase"] == "recovery_verify")
+        self.selected = True
 
     def sample(self):
         result = self.original()
@@ -58,7 +65,8 @@ class PhysicsSubstepTrace:
             peg = self.base.peg
             self.samples.append(json_value({"substep": len(self.samples) + 1,
                 "peg_pose": peg.pose.raw_pose, "linear_velocity": peg.linear_velocity,
-                "angular_velocity": peg.angular_velocity}))
+                "angular_velocity": peg.angular_velocity,
+                "hole_pose": self.base.box_hole_pose.raw_pose}))
         return result
 
     def close(self):
@@ -160,6 +168,9 @@ def run(config, env_factory=build_env, observe_fn=observe_native, preflight_fn=p
         try:
             env = env_factory()
             trace = PhysicsSubstepTrace(env)
+            if (not trace.enabled or env.unwrapped.sim_freq != SETTINGS.physics_frequency_hz
+                    or env.unwrapped._sim_steps_per_control != SETTINGS.physics_samples_per_action):
+                raise ValueError("M7 pose stability requires complete100Hz physics sampling with five samples per action")
             observation, info = env.reset(seed=config.seed)
             observation, info = observe_fn(env, observation, info)
             env.action_space.seed(config.seed)
@@ -201,11 +212,13 @@ def run(config, env_factory=build_env, observe_fn=observe_native, preflight_fn=p
                 if trace.enabled and trace.selected:
                     event("physics_substeps", step=step, samples=trace.samples)
                 try:
-                    truth = reference.observe(observation, info, step, decision, final=step == MAX_STEPS)
+                    truth = reference.observe(observation, info, step, decision, final=step == MAX_STEPS,
+                                              physics_samples=trace.samples)
                     if verifier:
-                        verdict = verifier.observe(observation, step, decision, final=step == MAX_STEPS)
+                        verdict = verifier.observe(observation, step, decision, final=step == MAX_STEPS,
+                                                   physics_samples=trace.samples)
                     if recovery:
-                        recovery.observe(observation)
+                        recovery.observe(observation, physics_samples=trace.samples)
                 except Exception as error:
                     result["failed_step"] = step
                     event("post_action_check_failed", step=step, action=action,

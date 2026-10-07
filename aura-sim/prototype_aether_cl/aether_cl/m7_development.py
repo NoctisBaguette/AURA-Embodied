@@ -121,7 +121,9 @@ def run_suite(output, archive, candidate_series=False):
             except BaseException as error:
                 trial.update(state="error", error=f"{type(error).__name__}: {error}")
                 raise
-            print(f"END {slot}/{len(selected)} success={result['task_success_at_end']} depth_mm={result['final_reference']['depth_m']*1000:.3f} recovery={result['recovery']['state']}", flush=True)
+            print(f"END {slot}/{len(selected)} success={result['task_success_at_end']} "
+                  f"legacy_velocity_success={result['final_reference']['legacy_velocity_task_success']} "
+                  f"depth_mm={result['final_reference']['depth_m']*1000:.3f} recovery={result['recovery']['state']}", flush=True)
         report["pairs"] = suite_pairs(report["trials"], output, include_controls=candidate_series)
         expected_pairs = len(ratios) * 2 * 2 + ((len(ratios) - 1) * 2 if candidate_series else 0)
         if len(report["pairs"]) != expected_pairs:

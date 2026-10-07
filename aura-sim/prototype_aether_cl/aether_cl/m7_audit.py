@@ -36,8 +36,8 @@ def equal_replay(actual, expected, path="root"):
         raise ValueError("Replay differs " + path)
 
 
-def independent_endpoint(observation, info, previous, acquired, max_lift):
-    """Reconstruct from raw rigid-body poses, velocities, finger forces and geometry.
+def independent_relation(observation):
+    """Reconstruct the insertion relation from raw rigid-body poses and geometry.
 
     Does not call the controller's geometry function or trust built-in success.
     The clipped cuboid vertex/edge construction checks the entire inserted
@@ -66,6 +66,15 @@ def independent_endpoint(observation, info, previous, acquired, max_lift):
     depth = float(head[0] + size[0])
     orientations = [Rotation.from_matrix(relative_rotation @ Rotation.from_rotvec([k * np.pi / 2, 0, 0]).as_matrix().T).magnitude() for k in range(4)]
     relation = (.8 * size[0] <= depth <= 1.2 * size[0] and min(orientations) <= .05 and margin is not None and margin >= -.0002)
+    return {"depth_m": depth, "channel_margin_m": None if margin is None else float(margin),
+            "relation_ready": bool(relation), "position": center, "rotation": relative_rotation}
+
+
+def independent_endpoint(observation, info, previous, acquired, max_lift):
+    """Raw-force acquisition, independent geometry and legacy velocity shadow."""
+    data = independent_relation(observation)
+    e = observation["extra"]
+    peg = vector(e["peg_pose"], 7, "peg")
     finger_flags = []
     for side in ("left", "right"):
         force = vector(info[side + "_finger_peg_force_world_n"], 3, "force")
@@ -79,9 +88,54 @@ def independent_endpoint(observation, info, previous, acquired, max_lift):
     turn = Rotation.from_matrix(pose_rotation(peg) @ pose_rotation(previous).T).magnitude()
     stable = (np.linalg.norm(vector(e["peg_linear_velocity"], 3, "linear")) <= .01 and
               np.linalg.norm(vector(e["peg_angular_velocity"], 3, "angular")) <= .15 and delta <= .0005 and turn <= .01)
-    return {"depth_m": depth, "channel_margin_m": None if margin is None else float(margin),
-            "relation_ready": bool(relation), "stable_frame": bool(stable), "contact_grasped": contact,
-            "ready": bool(acquired and max_lift >= .03 and relation and stable)}
+    return {"depth_m": data["depth_m"], "channel_margin_m": data["channel_margin_m"],
+            "relation_ready": data["relation_ready"], "stable_frame": bool(stable), "contact_grasped": contact,
+            "ready": bool(acquired and max_lift >= .03 and data["relation_ready"] and stable)}
+
+
+class IndependentPoseStability:
+    """Reconstruct pose-window verdicts without calling task/controller stability."""
+
+    def __init__(self, observation):
+        data = independent_relation(observation)
+        self.previous = (data["position"], Rotation.from_matrix(data["rotation"]))
+        self.control_previous = self.previous
+        self.frames = []
+
+    def observe(self, observation, samples):
+        if samples is None or len(samples) != 5:
+            raise ValueError("Independent complete physics samples required")
+        points, rotations, relations, speeds, turns = [], [], [], [], []
+        for sample in samples:
+            raw = {**observation, "extra": {**observation["extra"],
+                "peg_pose": sample["peg_pose"], "box_hole_pose": sample["hole_pose"]}}
+            data = independent_relation(raw)
+            p, r = data["position"], Rotation.from_matrix(data["rotation"])
+            speeds.append(float(np.linalg.norm(p - self.previous[0]) / .01))
+            turns.append(float((r * self.previous[1].inv()).magnitude() / .01))
+            points.append(p); rotations.append(r); relations.append(data["relation_ready"])
+            self.previous = (p, r)
+        distance = float(np.linalg.norm(self.previous[0] - self.control_previous[0]))
+        angle = float((self.previous[1] * self.control_previous[1].inv()).magnitude())
+        self.control_previous = self.previous
+        stable = max(speeds) <= .01 and max(turns) <= .15 and distance <= .0005 and angle <= .01
+        self.frames = (self.frames + [(points, rotations, bool(stable), all(relations))])[-10:]
+        xyz = np.asarray([p for frame in self.frames for p in frame[0]])
+        qs = np.asarray([r.as_quat() for frame in self.frames for r in frame[1]])
+        diameter = float(np.sqrt(np.sum(np.square(xyz[:, None] - xyz[None, :]), axis=2)).max())
+        # Each rotation has two quaternion representatives; use the shorter chord.
+        chords = np.minimum(np.sqrt(np.sum(np.square(qs[:, None] - qs[None, :]), axis=2)),
+                            np.sqrt(np.sum(np.square(qs[:, None] + qs[None, :]), axis=2)))
+        angular_diameter = float(4 * np.arcsin(np.clip(chords.max() / 2, 0, 1)))
+        ready = (len(self.frames) == 10 and all(frame[2] and frame[3] for frame in self.frames)
+                 and diameter <= .0005 and angular_diameter <= .01)
+        return {"stable_frame": bool(stable), "relation_all_substeps": all(relations),
+            "maximum_substep_pose_speed_m_s": max(speeds),
+            "maximum_substep_pose_angular_speed_rad_s": max(turns),
+            "relative_frame_translation_m": distance, "relative_frame_rotation_rad": angle,
+            "window_control_observations": len(self.frames), "window_physics_samples": len(xyz),
+            "window_translation_diameter_m": diameter, "window_rotation_diameter_rad": angular_diameter,
+            "window_ready": bool(ready)}
 
 
 def read_episode(directory):
@@ -101,13 +155,12 @@ def check_substeps(manifest, steps, events):
     config = manifest.get("physics_substep_trace", {"enabled": False})
     traces = [e for e in events if e["event"] == "physics_substeps"]
     if not config["enabled"]:
-        if traces:
-            raise ValueError("Unexpected physics substep records")
-        return 0
+        raise ValueError("Complete physics sampling required for current pose-stability contract")
+    if (config.get("selection") != "every_action_all_external_physics_steps"
+            or config["sim_freq_hz"] != 100 or config["sim_steps_per_control"] != 5):
+        raise ValueError("Physics sampling contract differs")
     lookup = {e["step"]: e for e in traces}
-    required = {e["step"] for e in steps if e["step"] in config["selected_steps"]
-                or e["step"] > MAX_STEPS - config["final_steps"]
-                or e["controller_decision"]["phase"] == config["recovery_phase"]}
+    required = {e["step"] for e in steps}
     if len(lookup) != len(traces) or set(lookup) != required:
         raise ValueError("Physics substep selection incomplete or duplicated")
     count = 0
@@ -120,10 +173,11 @@ def check_substeps(manifest, steps, events):
         for n, sample in enumerate(samples, 1):
             if sample["substep"] != n:
                 raise ValueError("Physics substeps nonconsecutive")
-            for key, size in (("peg_pose", 7), ("linear_velocity", 3), ("angular_velocity", 3)):
+            for key, size in (("peg_pose", 7), ("hole_pose", 7), ("linear_velocity", 3), ("angular_velocity", 3)):
                 vector(sample[key], size, key)
         extra = event["observation"]["extra"]
         for key, raw_key, size in (("peg_pose", "peg_pose", 7),
+                                   ("hole_pose", "box_hole_pose", 7),
                                    ("linear_velocity", "peg_linear_velocity", 3),
                                    ("angular_velocity", "peg_angular_velocity", 3)):
             if not np.array_equal(vector(samples[-1][key], size, key), vector(extra[raw_key], size, raw_key)):
@@ -143,6 +197,8 @@ def replay(directory):
     reference = InsertionReference(reset["observation"])
     verifier = InsertionVerifier(reset["observation"]) if config.system != "baseline" else None
     recovery = InsertionRecovery(nominal) if config.system == "v2" else None
+    independent_motion = IndependentPoseStability(reset["observation"])
+    samples_by_step = {e["step"]: e["samples"] for e in events if e["event"] == "physics_substeps"}
     equal_replay(manifest["nominal"], nominal.manifest())
     equal_replay(manifest["task_contract"], task_manifest())
     equal_replay(manifest["recovery"], recovery.manifest() if recovery else None)
@@ -153,7 +209,7 @@ def replay(directory):
         raise ValueError("One retained perturbation decision required")
     maximum_action_error = path = 0.
     previous_tcp = vector(observation["extra"]["tcp_pose"], 7, "tcp")[:3]
-    acquired, max_lift, stable_count = False, 0., 0
+    acquired, max_lift, stable_count, legacy_count = False, 0., 0, 0
     initial_z = vector(observation["extra"]["peg_pose"], 7, "peg")[2]
     nominal_complete = False
     first_contact = first_depth = None
@@ -179,23 +235,33 @@ def replay(directory):
         equal_replay(event["controller_decision"], decision)
         previous_pose = vector(observation["extra"]["peg_pose"], 7, "previous")
         observation, info = event["observation"], event["info"]
-        truth = reference.observe(observation, info, step, decision, final=step == MAX_STEPS)
+        samples = samples_by_step[step]
+        truth = reference.observe(observation, info, step, decision, final=step == MAX_STEPS, physics_samples=samples)
         equal_replay(event["reference"], truth)
         if verifier:
-            verdict = verifier.observe(observation, step, decision, final=step == MAX_STEPS)
+            verdict = verifier.observe(observation, step, decision, final=step == MAX_STEPS, physics_samples=samples)
         equal_replay(event["verification"], verdict)
         if recovery:
-            recovery.observe(observation)
+            recovery.observe(observation, physics_samples=samples)
         snapshot = recovery.snapshot() if recovery else {"state": "disabled", "attempts": 0}
         equal_replay(event["recovery"], snapshot)
         current_lift = float(vector(observation["extra"]["peg_pose"], 7, "peg")[2] - initial_z)
         acquired |= info["contact_grasped"] and current_lift >= SETTINGS.minimum_lift_m
         max_lift = max(max_lift, current_lift)
         endpoint = independent_endpoint(observation, info, previous_pose, acquired, max_lift)
-        for name in ("depth_m", "channel_margin_m", "relation_ready", "stable_frame"):
+        for name in ("depth_m", "channel_margin_m", "relation_ready"):
             equal_replay(truth[name], endpoint[name])
-        stable_count = stable_count + 1 if endpoint["ready"] else 0
-        if truth["task_success"] != (stable_count >= SETTINGS.stable_steps):
+        equal_replay(truth["legacy_velocity_stable_frame"], endpoint["stable_frame"])
+        legacy_count = legacy_count + 1 if endpoint["ready"] else 0
+        equal_replay(truth["legacy_velocity_stable_steps"], legacy_count)
+        equal_replay(truth["legacy_velocity_task_success"], legacy_count >= 10)
+        raw_motion = independent_motion.observe(observation, samples)
+        equal_replay(truth["pose_stability"], raw_motion)
+        equal_replay(truth["stable_frame"], raw_motion["stable_frame"])
+        pose_ready = acquired and endpoint["relation_ready"] and raw_motion["stable_frame"] and raw_motion["relation_all_substeps"]
+        stable_count = stable_count + 1 if pose_ready else 0
+        equal_replay(truth["stable_steps"], stable_count)
+        if truth["task_success"] != bool(stable_count >= 10 and raw_motion["window_ready"]):
             raise ValueError("Independent physical endpoint/stability disagreement")
         tcp = vector(observation["extra"]["tcp_pose"], 7, "tcp")[:3]
         path += float(np.linalg.norm(tcp - previous_tcp)); previous_tcp = tcp
