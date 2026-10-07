@@ -2,10 +2,11 @@
 
 Date: 2026-10-07 (Asia/Shanghai).
 
-Status: first native normal-six development launch stopped at the first
-Baseline seed-100 target guard. Its failed evidence is retained; a bounded
-pose-identity repair is locally tested and awaits a new native launch.
-No fresh-native M7 protocol or result is frozen.
+Status: repaired normal-six execution completed with valid evidence and 0/6
+normal insertion successes. Acquisition/lift worked; both bounded recoveries
+completed backout/realignment and timed out during reinsertion. A shared slow
+servo correction is locally tested; new normal-six-v3 native commissioning is
+pending. No fresh-native M7 protocol or result is frozen.
 Authority remains [02's M6R acceptance / DEC-0006](AETHER_CL_M6R_02_Research_Review_v0.1.md)
 at `145aadce249b23a49ecb899ff273e93f673dd03b`.
 
@@ -79,7 +80,10 @@ the peg 60 mm behind its center. Refresh the actual TCP-in-peg grasp transform
 once after lift. Cache the target and insertion poses; only TCP feedback enters
 the nominal servo after that calibration. No contact, score or verifier output
 enters nominal action selection. Translation/rotation limits are 12 mm/0.06 rad
-per command, with 4 mm translation during insertion.
+per command, with independent 4 mm axial and 4 mm transverse-norm bounds during insertion
+and settling (maximum combined norm 5.657 mm). A long remaining axial distance
+does not reduce height/lateral correction. The cached target frame and TCP are
+the only inputs to this nominal servo.
 
 V2 has one 420-action recovery episode, stage caps 120/120/140/40 for backout/
 realign/reinsert/verify. Phase progression requires the physical effect:
@@ -113,15 +117,16 @@ the final family. Requested waypoint offset is not assumed to equal peg offset.
 
 ## Local validation
 
-All 26 focused tests pass (19.369 s). Three matched 1,200-action kinematic
-episodes reconstruct all 3,600 endpoints, verify exact Baseline/V1/V2 equality,
-and reject altered actions, physical observations and outcomes. These are
-software fixtures, not native insertion viability evidence. New checks cover
-quaternion sign/normalization equivalence, bounded target roundoff anchored to
-reset, rejection of larger translation/rotation and any dimension/radius change,
-recovery target identity and retention of the raw failing post-action frame.
-Modified sources parse as Python 3.10. M0–M6R source/protocol preflight passes
-unchanged. Native repaired execution remains pending.
+All 28 focused tests pass (20.308 s in the primary runtime; 13.876 s with
+Python 3.10.21, NumPy 1.26.4 and SciPy 1.10.1). Three matched
+1,200-action kinematic episodes reconstruct 3,600 endpoints and verify exact
+paired logs while rejecting tampered actions, observations and outcomes. A
+finite-gain/downward-load fixture reproduces the original long-distance
+transverse correction failure and shows the repaired servo maintains the
+3 mm alignment band. A rotated-axis check verifies that axial distance does
+not attenuate transverse correction. These are software fixtures, not native
+insertion viability evidence. Python 3.10 parsing and unchanged M0–M6R
+source/protocol preflight pass.
 
 ## First development failure and repair
 
@@ -152,6 +157,49 @@ archive and log intact. Do not resume or rewrite them. Repaired commissioning
 uses `m7-development-normal6-v2` as a new run/output/archive/log, still known seeds
 100/101 only. Nominal motion, success thresholds, recovery effects/budget and
 M0–M6R remain unchanged.
+
+## Completed normal-six-v2 review and shared servo repair
+
+[Independent review receipt](evidence/AETHER_CL_M7_Normal6_v2_Review.json) retains
+all six endpoint/replay outcomes, matched boundaries and diagnostic samples.
+Archive SHA-256:
+`aad7c51ee7df126ef8a4a279e7da831b6a25848fa1e40d1d3d096b1dd033fb07`.
+All 41 indexed files and exact membership verify. All 7,200 actions/decisions/
+reference/verifier/recovery states replay against archived source using
+NumPy 1.26.4 and SciPy 1.10.1, with zero action error; all 7,200 independent
+raw-force/geometry/stability endpoints agree. Four strict pairs pass: 1,200
+actions each for Baseline/V1, then 646 and 642 for V1/V2 before recovery.
+A newer SciPy runtime chooses the equivalent opposite-sign pi Euler
+representation on one action, so strict action replay uses matching numerical
+versions, without relaxing raw pairing or replay bounds.
+
+All six runs acquired/lifted the peg. At step 490, normal head alignment was
+within the channel capture band. By step 530, before entry, head lateral/Z
+error reached 12.0/-17.7 mm for seed100 and 19.3/-29.5 mm for seed101.
+The desired TCP Z remained 137.385/77.741 mm, but commanded Z had fallen to
+120.814/49.864 mm. The original servo limited the norm of the entire remaining
+position error to 4 mm: long forward travel scaled away transverse correction,
+allowing the requested height to follow the observed downward drift. Both
+pegs then contacted the front face without meaningful insertion. Both V2
+attempts completed physical backout and realignment, then hit the 140-action
+reinsert cap, retaining failure and costs. These are failed healthy development
+controls, not evidence that insertion recovery generalizes.
+
+The shared slow servo now separates cached target-axis error from its
+perpendicular component, bounding them independently at 4 mm and 4 mm norm.
+This changes the combined maximum step norm to 5.657 mm and is explicitly
+recorded in nominal/recovery manifests. It applies to nominal insert/settle and
+recovery backout/reinsert/verify; other motion, rotation limits, phase criteria,
+budgets, scoring, disturbance semantics and old measurement sources stay fixed.
+No evaluator, object-contact or failure label enters nominal servo feedback.
+
+The repaired target identity checks stayed within about 15 nm and
+0.08–0.12 microradian on the first observations, with unchanged dimensions.
+This supports the target-guard repair; the missing observation from the
+original error archive is still unavailable. Keep both previous development
+archives, directories and logs unchanged. Launch known-seed normal-six-v3
+in a new output/archive/log. Do not launch misalignment commissioning until
+normal insertion behavior has been independently reviewed.
 
 ## Repaired native operation: normal-six only
 
@@ -188,11 +236,11 @@ After tests pass, launch normal-six detached from SSH:
 
 ```bash
 nohup python -u -m aether_cl.m7_development \
-  --output runs/m7-development-normal6-v2 \
-  --archive /home/jiangle/aura-work/aether-cl-m7-development-normal6-v2.tar.gz \
-  > /home/jiangle/aura-work/m7-development-normal6-v2.log 2>&1 < /dev/null &
+  --output runs/m7-development-normal6-v3 \
+  --archive /home/jiangle/aura-work/aether-cl-m7-development-normal6-v3.tar.gz \
+  > /home/jiangle/aura-work/m7-development-normal6-v3.log 2>&1 < /dev/null &
 echo "M7 development PID: $!"
-tail -f /home/jiangle/aura-work/m7-development-normal6-v2.log
+tail -f /home/jiangle/aura-work/m7-development-normal6-v3.log
 ```
 
 `M7_DEVELOPMENT_EVIDENCE_VALID` means valid matched development evidence, not

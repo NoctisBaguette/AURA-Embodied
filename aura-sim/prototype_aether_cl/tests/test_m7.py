@@ -14,7 +14,7 @@ from scipy.spatial.transform import Rotation
 
 from aether_cl.runtime import json_value
 from aether_cl.m7_task import geometry, InsertionReference, InsertionVerifier
-from aether_cl.m7_policy import FixedInsertion, InsertionRecovery, INJECTION_STEP
+from aether_cl.m7_policy import FixedInsertion, InsertionRecovery, INJECTION_STEP, command
 from aether_cl.m7_runtime import M7DevelopmentConfig, run, perturb_waypoints
 from aether_cl.m7_audit import independent_endpoint, replay, compare
 from aether_cl import m7_runtime
@@ -193,6 +193,42 @@ class PreflightTests(unittest.TestCase):
 
 
 class PolicyTests(unittest.TestCase):
+    def test_slow_insertion_preserves_transverse_correction_under_long_travel(self):
+        rotation = Rotation.from_euler('z', .7).as_matrix()
+        axis = rotation[:, 0]
+        o = observation()
+        current = np.asarray(o['extra']['tcp_pose'][:3])
+        for travel in (.06, .2):
+            target = current + travel * axis + .002 * rotation[:, 1] + .002 * rotation[:, 2]
+            _, detail = command(o, BASE, target, np.eye(3), slow=True, axis_world=axis)
+            delta = np.asarray(detail['commanded_tcp_position_world_m']) - current
+            self.assertAlmostEqual(delta @ axis, .004)
+            np.testing.assert_allclose(delta @ rotation[:, 1:], [.002, .002], atol=1e-14)
+            self.assertLessEqual(np.linalg.norm(delta), np.sqrt(2) * .004)
+
+    def test_insertion_under_loaded_tracking_fixture_holds_channel_alignment(self):
+        # Finite tracking gain + downward load; isolates far-distance error scaling.
+        # This is a controller counterexample, not native-physics commissioning.
+        from aether_cl.policies import bounded
+        start = np.array([-.32, 0., .1]); target = np.array([-.16, 0., .1])
+        results = []
+        for repaired in (False, True):
+            tcp = start.copy(); worst_entry_error = 0.
+            for _ in range(160):
+                if repaired:
+                    o = observation(tcp + [.06, 0, 0])
+                    _, detail = command(o, BASE, target, np.diag([1.,-1.,-1.]),
+                                        slow=True, axis_world=np.array([1.,0.,0.]))
+                    commanded = np.asarray(detail['commanded_tcp_position_world_m'])
+                else:
+                    commanded = tcp + bounded(target - tcp, .004)
+                tcp += .4 * (commanded - tcp) - [0., 0., .0006]
+                if tcp[0] + .166 >= -.1:
+                    worst_entry_error = max(worst_entry_error, abs(tcp[2] - .1))
+            results.append(worst_entry_error)
+        self.assertGreater(results[0], .01)
+        self.assertLess(results[1], .003)
+
     def test_recovery_target_guard_uses_physical_pose_and_rejects_motion(self):
         initial = observation()
         for delta in (2e-8, 2e-6):

@@ -12,12 +12,24 @@ PHASES = ("approach", "descend", "close", "lift", "carry", "prealign", "offset",
 DURATIONS = (80, 60, 30, 60, 100, 100, 60, 140, 80)
 INJECTION_STEP = sum(DURATIONS[:6]) + 1
 MAX_STEPS = 1200
+SLOW_AXIAL_STEP_M = .004
+SLOW_TRANSVERSE_STEP_M = .004
 
 
-def command(observation, base_pose, position, rotation, gripper=-1., slow=False):
+def command(observation, base_pose, position, rotation, gripper=-1., slow=False, axis_world=None):
     tcp = vector(observation["extra"]["tcp_pose"], 7, "tcp_pose")
     base = vector(base_pose, 7, "robot_base_pose")
-    next_p = tcp[:3] + bounded(position - tcp[:3], .004 if slow else .012)
+    delta = position - tcp[:3]
+    if slow and axis_world is not None:
+        axis = np.asarray(axis_world, dtype=float)
+        axial_error = float(delta @ axis)
+        transverse_error = delta - axial_error * axis
+        # Long remaining insertion travel must not scale away height/alignment correction.
+        delta = axis * np.clip(axial_error, -SLOW_AXIAL_STEP_M, SLOW_AXIAL_STEP_M) + bounded(
+            transverse_error, SLOW_TRANSVERSE_STEP_M)
+    else:
+        delta = bounded(delta, .004 if slow else .012)
+    next_p = tcp[:3] + delta
     current_r = pose_rotation(tcp)
     error = Rotation.from_matrix(rotation @ current_r.T).as_rotvec()
     next_r = Rotation.from_rotvec(bounded(error, .06)).as_matrix() @ current_r
@@ -53,7 +65,11 @@ class FixedInsertion:
         return {"name": "fixed_side_insertion_development", "phases": PHASES, "durations": DURATIONS,
                 "total_nominal_steps": sum(DURATIONS), "status": "development_not_frozen",
                 "grasp_tail_offset_m": SETTINGS.grasp_tail_offset_m, "precontact_head_gap_m": .06,
-                "maximum_translation_m": .012, "insertion_translation_m": .004, "maximum_rotation_rad": .06,
+                "maximum_translation_m": .012, "insertion_axial_translation_m": SLOW_AXIAL_STEP_M,
+                "insertion_transverse_translation_m": SLOW_TRANSVERSE_STEP_M,
+                "insertion_maximum_translation_norm_m": float(np.hypot(SLOW_AXIAL_STEP_M, SLOW_TRANSVERSE_STEP_M)),
+                "insertion_servo": "independent_axial_and_transverse_error_bounds_in_cached_target_frame",
+                "maximum_rotation_rad": .06,
                 "phase_transition": "elapsed_steps_only", "post_lift_calibration": "once_actual_tcp_in_peg_transform",
                 "after_calibration_inputs": ["tcp_pose"], "evaluator_inputs": False, "verifier_inputs": False}
 
@@ -92,7 +108,8 @@ class FixedInsertion:
         if phase == "carry" and not self.calibrated:
             self.calibrate(observation)
         action, detail = command(observation, self.base, self.targets[phase], self.rotations[phase],
-                                 1. if phase in ("approach", "descend") else -1., phase in ("insert", "settle"))
+                                 1. if phase in ("approach", "descend") else -1., phase in ("insert", "settle"),
+                                 self.rh[:, 0])
         return action, {**detail, "phase": phase, "phase_step": local,
                         "schedule_complete": index + 1 >= sum(DURATIONS)}
 
@@ -132,6 +149,9 @@ class InsertionRecovery:
                 "reinsert_readiness": "object_target_depth_orientation_and_clipped_volume_clearance",
                 "verify_readiness": "consecutive_stable_object_target_relation",
                 "refresh": "object_target_and_grasp_transform_after_safe_backout",
+                "slow_servo": {"axis": "cached_hole_local_x", "axial_step_m": SLOW_AXIAL_STEP_M,
+                    "transverse_step_m": SLOW_TRANSVERSE_STEP_M,
+                    "maximum_step_norm_m": float(np.hypot(SLOW_AXIAL_STEP_M, SLOW_TRANSVERSE_STEP_M))},
                 "evaluator_inputs": False, "terminal": "repeat_last_absolute_command_no_second_attempt"}
 
     def snapshot(self):
@@ -184,7 +204,7 @@ class InsertionRecovery:
             phase = RETRY_PHASES[self.stage]
             self.stage_steps += 1; self.steps += 1
             action, detail = command(observation, self.nominal.base, self.target, self.target_rotation,
-                                     slow=phase in ("backout", "reinsert", "verify"))
+                                     slow=phase in ("backout", "reinsert", "verify"), axis_world=self.rh[:, 0])
             decision = {**detail, "phase": "recovery_" + phase, "phase_step": self.stage_steps, "schedule_complete": False}
         elif self.last_action is not None:
             action, decision = self.last_action.copy(), {**self.last_decision, "phase": "recovery_" + self.state,
