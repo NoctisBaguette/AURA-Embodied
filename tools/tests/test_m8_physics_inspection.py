@@ -44,6 +44,40 @@ class InspectionGuards(unittest.TestCase):
             self.assertEqual(report["first_unused_contiguous20_from160"], list(range(176, 196)))
             self.assertFalse(report["selection_frozen"])
 
+    def test_original_controller_reset_without_seed_matches_later_native_reset(self):
+        with tempfile.TemporaryDirectory() as directory:
+            report = self.history(directory, [
+                {"event": "controller_reset", "episode": 0, "policy": {"name": "fixed_pick_cube"}},
+                {"event": "reset", "episode": 0, "seed": 100},
+                {"event": "controller_reset", "episode": 1, "policy": {}},
+                {"event": "reset", "episode": 1, "seed": 160},
+                {"event": "run_failed", "error": "retained"},
+            ])
+            self.assertEqual(report["preferred_overlap"], [160])
+            self.assertEqual(report["reset_records"], 4)
+            matched = report["legacy_controller_resets_matched"]
+            self.assertEqual([r["seed"] for r in matched], [100, 160])
+            self.assertEqual([r["seed_source_reset_line"] for r in matched], [2, 4])
+
+    def test_unresolved_or_ambiguous_legacy_controller_reset_blocks(self):
+        cases = [
+            [{"event": "controller_reset", "episode": 0, "policy": {}}],
+            [{"event": "controller_reset", "episode": 0, "policy": {}}, {"event": "reset", "episode": 1, "seed": 100}],
+            [{"event": "controller_reset", "episode": 0, "policy": {}}, {"event": "reset", "episode": 0, "seed": 100}, {"event": "reset", "episode": 0, "seed": 160}],
+            [{"event": "controller_reset", "episode": True, "policy": {}}],
+            [{"event": "controller_reset", "episode": 0}],
+        ]
+        for records in cases:
+            with self.subTest(records=records), tempfile.TemporaryDirectory() as directory:
+                with self.assertRaisesRegex(ValueError, "Unresolved legacy"):
+                    self.history(directory, [{"event": "reset", "seed": 100}] + records)
+
+    def test_missing_real_reset_seed_still_blocks_and_explicit_bad_controller_seed_blocks(self):
+        for bad in ({"event": "reset", "episode": 0}, {"event": "controller_reset", "episode": 0, "policy": {}, "seed": None}):
+            with self.subTest(bad=bad), tempfile.TemporaryDirectory() as directory:
+                with self.assertRaisesRegex(ValueError, "reset seed"):
+                    self.history(directory, [{"event": "reset", "seed": 100}, bad])
+
     def test_missing_native_history_and_unobserved_development_seed_block(self):
         with tempfile.TemporaryDirectory() as directory:
             with self.assertRaises(ValueError):

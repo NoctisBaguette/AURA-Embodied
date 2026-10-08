@@ -60,9 +60,11 @@ def inspect_history(root, progress=None):
     if not root.is_dir():
         raise ValueError("Native runs history is missing")
     observed, witnesses, files_checked, reset_records = set(), {}, 0, 0
+    legacy_controllers = []
     digest = hashlib.sha256()
     for path in sorted(root.rglob("events.jsonl")):
         files_checked += 1
+        pending, seeded_resets = [], []
         with path.open(encoding="utf-8") as stream:
             for line_number, line in enumerate(stream, 1):
                 if '"reset"' not in line and '"controller_reset"' not in line:
@@ -70,15 +72,39 @@ def inspect_history(root, progress=None):
                 record = json.loads(line)
                 if record.get("event") not in ("reset", "controller_reset"):
                     continue
+                if record["event"] == "controller_reset" and "seed" not in record:
+                    # Original runtime.py / m3_runtime.py logged policy reset
+                    # before the same episode's seeded simulator reset record.
+                    episode = record.get("episode")
+                    if (not isinstance(episode, int) or isinstance(episode, bool)
+                            or episode < 0 or not isinstance(record.get("policy"), dict)):
+                        raise ValueError(f"Unresolved legacy controller reset: {path}:{line_number}")
+                    pending.append({"line": line_number, "episode": episode})
+                    continue
                 seed = record.get("seed")
                 if not isinstance(seed, int) or isinstance(seed, bool) or not 0 <= seed < 2**32:
                     raise ValueError(f"Missing/invalid recorded reset seed: {path}:{line_number}")
                 observed.add(seed)
+                if record["event"] == "reset":
+                    seeded_resets.append({"line": line_number, "episode": record.get("episode"), "seed": seed})
                 witnesses.setdefault(seed, {"path": str(path.relative_to(root)), "line": line_number})
                 reset_records += 1
                 identity = {"file": str(path.relative_to(root)), "line": line_number,
                             "event": record["event"], "seed": seed}
                 digest.update((json.dumps(identity, sort_keys=True) + "\n").encode())
+        for legacy in pending:
+            matches = [r for r in seeded_resets if r["line"] > legacy["line"]
+                       and type(r["episode"]) is int and r["episode"] == legacy["episode"]]
+            if len(matches) != 1:
+                raise ValueError(f"Unresolved legacy controller reset: {path}:{legacy['line']}; "
+                                 "require exactly one later seeded reset in the same file/episode")
+            matched = matches[0]
+            identity = {"file": str(path.relative_to(root)), "line": legacy["line"],
+                        "event": "controller_reset", "episode": legacy["episode"],
+                        "seed": matched["seed"], "seed_source_reset_line": matched["line"]}
+            legacy_controllers.append(identity)
+            reset_records += 1
+            digest.update((json.dumps(identity, sort_keys=True) + "\n").encode())
         if progress and files_checked % 100 == 0:
             progress(f"History: {files_checked} event files, {reset_records} reset records")
     if not files_checked or not observed:
@@ -89,6 +115,7 @@ def inspect_history(root, progress=None):
     while set(range(proposed, proposed + 20)) & observed:
         proposed += 1
     return {"root": str(root), "event_files_checked": files_checked, "reset_records": reset_records,
+            "legacy_controller_resets_matched": legacy_controllers,
             "reset_index_sha256": digest.hexdigest(), "recorded_reset_seeds": sorted(observed),
             "preferred_seeds": list(PREFERRED_SEEDS),
             "preferred_overlap": sorted(set(PREFERRED_SEEDS) & observed),

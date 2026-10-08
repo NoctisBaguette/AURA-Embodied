@@ -43,6 +43,11 @@ collects that evidence with these boundaries:
 - Scan every retained `events.jsonl` for native reset seeds, including failed
   and stopped runs. Report preferred160–179 overlap and an unused contiguous
   range as provenance only; this does not freeze or execute a fresh selection.
+  Original `runtime.py`/`m3_runtime.py` logs have a seedless `controller_reset`
+  followed by a seeded `reset`. Resolve that controller record only against
+  exactly one later seeded reset in the same file and episode, and record the
+  relationship. Missing/invalid real reset seeds, explicitly invalid controller
+  seeds and unresolved/ambiguous legacy records still block inspection.
 - Require retained proof that development seed100 was already observed.
 - Capture relevant installed ManiSkill sources, SAPIEN interface stubs,
   public binding descriptors/docstrings and native-library hashes.
@@ -139,7 +144,7 @@ deferred by the user and is not part of this inspection.
 
 ## Local validation
 
-Eight focused standard-library tests check retained-history collision handling,
+Eleven focused standard-library tests check retained-history collision handling,
 unobserved/malformed seed rejection, constructor seed guards, descriptor-only
 API inspection, the absence of external rollout/force/pose/velocity mutation
 calls, and indexed retained error bundles without archive/report overwrite.
@@ -147,3 +152,23 @@ CLI help and Python3.10 syntax parse pass. Existing parent file bytes are checke
 against Git blobs before publication. These checks do not validate native
 simulator behavior; that boundary is the server inspection and later development
 force commissioning.
+
+## First native inspection failure and correction
+
+The server successfully received the full bundle and checked out
+`bf8b9850231cbdfcf98f5b144f5a1ae5b71b99d5`; all eight original guard tests passed.
+The inspection then stopped during history scanning at line3 of retained
+`runs/baseline-live/20261005T004231Z-59ee234d/events.jsonl`. The initial scanner
+incorrectly required a seed on the old controller-reset event. The unchanged
+original producers explicitly emit that event without a seed, before the real
+seeded reset record. This is a scanner compatibility bug, not transfer failure.
+
+No environment was constructed and no force command or fresh outcome occurred.
+The caught failure was retained in `aether-cl-m8-physics-inspection-v1.tar.gz`,
+SHA-256 `74a7fc323101c2fc669ac55fcb64ccf9090f9c9e223deeee52eea32289f1d702`,
+according to the returned native console transcript. The archive itself has not
+yet been independently read. Preserve its output/archive/log. The corrected
+inspection must use new `v2` paths and a newly pinned Git bundle; no historical
+log is edited, removed or skipped. Three new regression tests cover the original
+layout, same-episode matching/ambiguity and continued rejection of missing or
+invalid real reset seeds.
