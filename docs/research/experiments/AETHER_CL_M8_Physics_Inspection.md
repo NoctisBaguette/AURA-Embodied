@@ -71,6 +71,14 @@ placement success outcome or a released-cube force-response test.
 
 ## Native inspection
 
+The server is offline, as in the retained M6R/M7 deployment procedure. Fetch
+`06-01/aether-cl-m0` on the Windows laptop, verify the supplied inspection head,
+create a full Git bundle of that remote-tracking ref, and transfer it with
+`scp -P 2221` to `/home/jiangle/aura-work`. Fetch the bundle on the server and
+detach at the supplied exact commit. Do not fetch GitHub from the offline server
+or overwrite a previous bundle. The Windows checkout need not be switched or
+modified to prepare the bundle.
+
 On the existing server, activate the unchanged `aether-cl` environment, unset
 `LD_PRELOAD`, use the established GLVND library directory and GPU visibility,
 and switch a clean checkout to the published inspection revision. Invoke from
