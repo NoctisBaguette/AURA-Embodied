@@ -16,6 +16,12 @@ This directory stores stable research knowledge extracted from discussions, expe
 - `architecture/`
   - AETHER architecture evolution
 
+- `frontier_watch/`
+  - weekly AURA frontier monitoring;
+  - cross-checks the broader Embodied-AI Research frontier watch;
+  - preserves active research radar, persistent trend hypotheses, and dated AURA-specific reports;
+  - flags architecture/experiment candidates without directly rewriting architecture decisions.
+
 - `experiments/`
   - experiment reports and analysis
 
