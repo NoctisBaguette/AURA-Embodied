@@ -172,3 +172,22 @@ inspection must use new `v2` paths and a newly pinned Git bundle; no historical
 log is edited, removed or skipped. Three new regression tests cover the original
 layout, same-episode matching/ambiguity and continued rejection of missing or
 invalid real reset seeds.
+
+## Returned v2 inspection
+
+The clean corrected native revision
+`6a375b2b05abd93c9cd90410dc60123ef8ee2d1c` passed all eleven tests and completed
+inspection. The returned119,282-byte archive, SHA-256
+`b0b0169d01ed0e8bdb898999d6ab08e82bf1f4a66466e59b6be0b91266063c80`,
+has been independently read: indexed sizes/hashes, executed source and accepted/
+installed source identities verify. The history covers3,136 event files and5,639
+reset/controller-reset records, with2,179 resolved legacy controller records and
+no160–179 overlap. Cube mass is64 g and cube/table friction is0.3. The supported
+engine force binding and100 Hz pre/post-physics hooks are captured. No force
+response or fresh evaluation was executed by inspection.
+
+The [compact installed receipt](evidence/AETHER_CL_M8_Installed_Physics_Inspection.json)
+and [known-seed force commissioning plan](AETHER_CL_M8_Force_Commissioning.md)
+now govern the next development-only20-run Baseline mechanism batch. Its actual
+physical response must be independently reviewed before the matched-system
+commissioning, final force-family freeze or fresh execution.
