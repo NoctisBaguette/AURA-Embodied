@@ -389,6 +389,76 @@ PR #1 remains draft/unmerged unless separately accepted.
 
 ---
 
+
+# DEC-0007
+
+## Date
+
+2026-10-08
+
+## Topic
+
+Accept M7 insertion recovery and advance Prototype A to physics-propagated disturbance evaluation.
+
+## Context
+
+M7 uses the installed ManiSkill PegInsertionSide-v1 task with independent
+object-target insertion scoring and a frozen synthetic lateral-misalignment
+family. Across fresh seeds 140–159, all 360 episode replays and 340 matched
+comparisons pass.
+
+Baseline/V1 succeed 18/20 on normal and 1.5 mm conditions and 0/20 at
+3/6/12/24 mm. V2 succeeds 18/20 in every condition, producing 72 paired rescues,
+one unnecessary easy-case recovery and no observed final regression among
+Baseline-success pairs. Seeds 143 and 155 remain persistent failures.
+
+## Options Considered
+
+1. Continue tuning insertion to eliminate the two persistent failed scenes.
+2. Accept the bounded task-generalization result and proceed to Prototype A's
+   physics-propagated-disturbance closure dimension.
+3. Skip directly to non-privileged verification.
+4. Activate memory/world models/Prototype B/C/D or 02W immediately.
+
+## Decision
+
+Choose Option 2.
+
+Accept M7 within its frozen scope. Record stronger bounded support for recovery
+generalization across held transport, released placement and contact-rich
+insertion. Refine verification research to include temporal intervention
+quality: a verifier must distinguish persistent/action-worthy deviations from
+transients, not merely detect any temporary violation.
+
+Authorize **M8 Physics-Propagated Placement Disturbance** using the accepted
+M6R placement stack and a matched Baseline/V1/V2 matrix. The disturbance must
+be applied through the simulator's physical force/impulse mechanism, not by
+direct pose or velocity overwrite.
+
+## Reasoning
+
+Returning to the validated placement task isolates disturbance realism as the
+main new dimension. Running sensor uncertainty at the same time would confound
+whether failures arise from the physical perturbation or the verifier.
+
+Insertion already satisfies Prototype A's contact-rich task-semantic dimension.
+The two persistent insertion failures remain valuable limitations but do not
+justify outcome-driven tuning before evaluating the two remaining closure
+dimensions.
+
+## Future Re-evaluation Condition
+
+Return to 02 immediately after audited M8 evidence. If the physics-propagated
+disturbance dimension is accepted, the expected next step is a 02W investigation
+of non-privileged verifier architectures before authorizing M9.
+
+## Notes
+
+See `docs/research/experiments/AETHER_CL_M7_02_Research_Review_v0.1.md`.
+PR #1 remains draft/unmerged unless separately accepted.
+
+---
+
 # Decision Template
 
 ## Decision ID
