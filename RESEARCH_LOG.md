@@ -4,6 +4,71 @@ This file records research decisions and evolution.
 
 ---
 
+## 2026-10-09 — Zero Point architecture refinement: state transitions, migration, sensing and physical branch
+
+### Existing Knowledge
+
+The Zero Point application synthesis combined the existing physical picking /
+soft-grasping system, Prototype-A M0-M8 evidence, current architecture work and
+Frontier Watch findings.
+
+### Observation
+
+Several project-level relationships became clearer:
+
+- the physical picking system is an active integrated AURA branch rather than a
+  completed legacy demo;
+- migration is a core evaluation principle rather than an optional extension;
+- the physical state transition is a useful common abstraction linking planning,
+  execution, verification and recovery;
+- planning feasibility and execution reliability should be distinguished;
+- non-privileged verification should compare expected and observed physical
+  transition evidence rather than become an unrelated binary classifier;
+- M8 motivates recovery applicability/envelope and escalation;
+- RGB and RGB-D should be treated as collaborative sensing sources, with
+  uncertainty/cost-aware depth use as a research direction.
+
+### Hypothesis
+
+AURA may be organized around task-relevant physical state transitions while
+remaining implementation-agnostic: explicit, latent and hybrid state mechanisms
+should be compared experimentally rather than assumed.
+
+Planning and verification should share compatible transition semantics, while
+recovery should update invalid state, preserve valid progress and choose the
+minimum sufficient corrective level when possible.
+
+### Experiment Opportunity
+
+The next deep-design problem is non-privileged transition verification.
+
+A disciplined sequence is likely:
+
+1. hold task/recovery fixed and replace privileged verification with a realistic
+   RGB/RGB-D/proprioceptive state-estimation/verifier interface;
+2. after that interface is stable, freeze it and test an explicit transfer axis
+   with adaptation-cost metrics.
+
+This avoids conflating sensing realism and migration in the first comparison.
+
+### Decision
+
+Create the architecture checkpoint
+`docs/research/architecture/aura/AURA_State_Transition_Architecture_v0.2.md`
+and update the public `ARCHITECTURE.md` / `ROADMAP.md`.
+
+Do not copy the application handoff's provisional decision IDs into
+`DECISION_LOG.md` yet because main and the active experiment branch have
+diverged and the experiment branch already contains DEC-0001 through DEC-0008.
+Reconcile histories before issuing new global decision numbers.
+
+### Notes
+
+AETHER remains historical/internal provenance; public-facing architecture
+language should use AURA pending the naming review.
+
+---
+
 ## 2026-10-09 — Expanded AETHER prior-art map and architecture questions
 
 ### Existing Knowledge
