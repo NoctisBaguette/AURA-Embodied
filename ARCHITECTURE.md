@@ -3,7 +3,8 @@
 Status: **evolving research architecture**
 
 Public project identity: **AURA-Embodied / AURA**  
-Historical internal codename: **AETHER**
+Historical internal codename: **AETHER**  
+Provisional internal Core/successor codename: **BAGUETTE** (not yet public/frozen)
 
 AURA studies adaptive robotic manipulation intelligence for generalizable
 physical agents. The architecture is not a fixed neural network, software
@@ -16,6 +17,10 @@ Use **AURA** as the public architecture/project identity. Historical AETHER and
 AETHER-CL experiment identifiers remain unchanged for provenance. Because an
 external Physical-AI company named Aether AI now works in nearby technical
 territory, AETHER should not currently be promoted as the main public brand.
+
+**BAGUETTE** is currently only a provisional internal successor/core codename.
+It must not be treated as the published architecture name until a later naming
+decision.
 
 ## 2. Research center
 

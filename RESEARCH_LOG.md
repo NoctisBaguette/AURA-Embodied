@@ -4,6 +4,39 @@ This file records research decisions and evolution.
 
 ---
 
+## 2026-10-09 — BAGUETTE provisional Core and chat-continuity protocol
+
+### Observation
+
+The architecture/research conversation is becoming the persistent intellectual
+core of AURA and will eventually exceed individual chat context limits. The
+project also now has recurring Frontier Watch input, Work-mode deep-research
+branches and substantial experiment histories on a diverged engineering branch.
+
+A durable continuity protocol is therefore necessary so that research decisions
+do not depend on one chat transcript.
+
+### Decision
+
+Use **BAGUETTE** as a provisional internal name for the Core architecture/research
+thread and possible successor codename to AETHER. This is not yet a public or
+frozen architecture name.
+
+Create
+`docs/research/coordination/BAGUETTE_Core_Research_Continuity_v0.1.md`
+to define branch routing, authority, checkpoint cadence and chat-rollover
+procedure.
+
+Historical AETHER/AETHER-CL experiment names remain unchanged.
+
+### Notes
+
+The Core normal-chat thread remains final architecture-decision authority.
+02W/Work investigations return synthesis to Core; 05 supplies frontier evidence;
+06 returns experimental evidence.
+
+---
+
 ## 2026-10-09 — Zero Point architecture refinement: state transitions, migration, sensing and physical branch
 
 ### Existing Knowledge
