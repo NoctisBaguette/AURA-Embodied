@@ -459,6 +459,86 @@ PR #1 remains draft/unmerged unless separately accepted.
 
 ---
 
+
+# DEC-0008
+
+## Date
+
+2026-10-09
+
+## Topic
+
+Accept M8 physics-propagated disturbance evidence and require 02W verifier design before M9.
+
+## Context
+
+M8 evaluates the accepted released-placement verification/recovery stack under
+a disturbance applied through the simulator rigid-body force API. Across 20
+fresh common scenes and six force conditions, Baseline/V1 succeed in 70/120
+condition episodes and V2 in 115/120. V2 attempts all 50 matched failures and
+rescues 45, while preserving all 70 Baseline-success outcomes without recovery.
+
+All 360 replays, 288,000 actions, 1,440,000 external physics samples, 1,500
+force calls and 340 exact comparisons pass independent audit. Five retries
+remain failed because large disturbances leave the cube outside the bounded
+approach/descend strategy's effective arrival envelope before phase deadlines.
+
+## Options Considered
+
+1. Accept M8 and directly implement a camera/RGB-D M9 in 06-01.
+2. Accept M8 and first use 02W to compare non-privileged verifier architectures
+   and design M9.
+3. Extend M8 by tuning recovery to eliminate all five large-disturbance failures.
+4. Stop Prototype A and activate memory/world-model/embodiment work.
+
+## Decision
+
+Choose Option 2.
+
+Accept M8 within its frozen scope. Record stronger bounded support for recovery
+under physics-propagated disturbance and introduce the working concept of a
+recovery/corrective envelope.
+
+Prototype A's remaining planned closure dimension is non-privileged
+sensor-based verification.
+
+Activate **02W — Non-Privileged Verification Architecture & M9 Design** before
+any M9 implementation. 02W must compare structured RGB/RGB-D state estimation,
+learned detectors, multimodal/VLM verification and hybrid approaches; address
+uncertainty, temporal persistence, latency and failure attribution; and return a
+decision-quality M9 experiment proposal to 02.
+
+No M9 implementation is authorized until normal 02 reviews the 02W output.
+
+## Reasoning
+
+Replacing privileged state with realistic sensing changes the information
+interface at the core of verification and can introduce perception uncertainty,
+staleness, latency and false interventions. Choosing an implementation ad hoc in
+06-01 would conflate architecture selection with engineering convenience.
+
+M8 also completes the planned physics-disturbance dimension, so the sensor
+boundary is now the only planned Prototype A closure dimension.
+
+## Future Re-evaluation Condition
+
+Return to normal 02 after the 02W verifier investigation. Decide whether M9 is
+sufficiently specified for 06-01 and whether Prototype A closure criteria need
+revision.
+
+## Notes
+
+See `docs/research/experiments/AETHER_CL_M8_02_Research_Review_v0.1.md` and
+`docs/research/experiments/AETHER_Live_View_Requirements.md`.
+
+The external Aether AI / CRIS-0 naming and conceptual overlap requires a
+separate 00/HQ naming decision before further public-facing use of "AETHER" as a
+framework brand. Historical identifiers remain unchanged for provenance.
+
+PR #1 remains draft/unmerged unless separately accepted.
+
+---
+
 # Decision Template
 
 ## Decision ID
