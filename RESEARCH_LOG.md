@@ -4,6 +4,78 @@ This file records research decisions and evolution.
 
 ---
 
+## 2026-10-09 — Expanded AETHER prior-art map and architecture questions
+
+### Existing Knowledge
+
+The weekly Frontier Watch added several high-priority systems:
+
+- HELM: episodic memory + learned state verification + rollback/replanning;
+- Long-WAM: integrated long historical context in a causal world-action model;
+- EvoMem-VLA: state-evolution memory;
+- FoldBack: selective rollback and trajectory repair;
+- CRIS-0 from Aether AI: explicit task-relevant state + causal prediction + verification + retry/replanning;
+- VPP2: a strong Tsinghua/RobotEra-linked world-action model and current RoboDojo simulation leader.
+
+### Observation
+
+AETHER's easy novelty space is narrower than previously understood. Memory, verification, rollback, execution governance, task-state tracking, and replanning all have substantial external prior art.
+
+At the same time, the literature does not establish one universally best architecture. Important unresolved design choices remain:
+
+- integrated temporal memory vs explicit external memory vs hybrid;
+- snapshot history vs state-transition / outcome memory;
+- bounded predictive verification vs long-horizon imagination;
+- local recovery vs hierarchical rollback/replanning;
+- recovery vs persistent learning;
+- architecture intelligence vs physical response latency.
+
+Aether AI also creates a significant naming collision with the internal AETHER architecture name in nearly the same technical domain.
+
+### Hypothesis
+
+The more defensible AURA direction is not to add more modules by default, but to identify the **smallest architecture that measurably maintains task-relevant state, physical foresight, outcome verification, appropriate recovery, and future improvement under uncertainty.**
+
+### Experiment Opportunity
+
+Priority comparisons now include:
+
+1. strong policy vs governed execution;
+2. integrated long history vs explicit event/task memory;
+3. snapshot vs state-evolution memory;
+4. full restart vs minimum-change hierarchical recovery;
+5. no prediction vs bounded action ranking/verification;
+6. recovery-only vs recovery-to-learning;
+7. latency-aware architecture ablations.
+
+VPP2 is a candidate strong policy baseline where tractable.
+
+### Decision
+
+Frontier Watch does **not** modify AETHER architecture directly.
+
+Branch 02 should review:
+
+- AETHER vs DynaHarness vs HELM vs CRIS-0;
+- memory implementation choices;
+- task-state representation;
+- recovery hierarchy;
+- role of world models;
+- latency constraints;
+- the AETHER/Aether naming collision.
+
+06 should receive experiment candidates only after architecture/research prioritization, without interrupting active milestones solely to chase new papers.
+
+### Notes
+
+See:
+
+- `docs/research/frontier_watch/2026/2026-10-09.md`
+- `docs/research/frontier_watch/CURRENT.md`
+- `docs/research/frontier_watch/TREND_LEDGER.md`
+
+---
+
 ## 2026-10-08 — Frontier Watch integration and AETHER competitive signal
 
 ### Existing Knowledge
