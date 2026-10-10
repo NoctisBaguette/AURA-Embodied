@@ -1,0 +1,518 @@
+{
+  "native_commit": "38c816ec217f11e56818cea8d3ebc4dc7a8448e5",
+  "review_numpy": "1.26.4",
+  "review_scipy": "1.10.1",
+  "rows": [
+    {
+      "seed": 100,
+      "system": "baseline",
+      "audit": {
+        "passed": true,
+        "steps": 1200,
+        "maximum_action_replay_error": 0.0,
+        "raw_endpoint_reconstructions": 1200,
+        "action_replay_bound": 3e-07,
+        "derived_scalar_replay_bound": 1e-10,
+        "physical_pair_tolerance": "exact"
+      },
+      "task_success": false,
+      "valid_acquisition": true,
+      "first_failure": {
+        "step": 630,
+        "failure": "INSERTION_DEPTH_NOT_ACHIEVED"
+      },
+      "first_detection": null,
+      "recovery": {
+        "state": "disabled",
+        "attempts": 0,
+        "action_steps": 0,
+        "observed_tcp_path_m": 0.0,
+        "completed_stages": []
+      },
+      "first_guard": {
+        "raw_pose_equal": false,
+        "translation_delta_m": 1.4901161193847656e-08,
+        "rotation_delta_rad": 1.2115067967921062e-07,
+        "maximum_translation_delta_m": 1e-06,
+        "maximum_rotation_delta_rad": 1e-06,
+        "passed": true,
+        "half_size_equal": true,
+        "hole_radius_equal": true
+      },
+      "maximum_target_translation_m": 1.4901161193847656e-08,
+      "maximum_target_rotation_rad": 1.2115067967921062e-07
+    },
+    {
+      "seed": 100,
+      "system": "v1",
+      "audit": {
+        "passed": true,
+        "steps": 1200,
+        "maximum_action_replay_error": 0.0,
+        "raw_endpoint_reconstructions": 1200,
+        "action_replay_bound": 3e-07,
+        "derived_scalar_replay_bound": 1e-10,
+        "physical_pair_tolerance": "exact"
+      },
+      "task_success": false,
+      "valid_acquisition": true,
+      "first_failure": {
+        "step": 630,
+        "failure": "INSERTION_DEPTH_NOT_ACHIEVED"
+      },
+      "first_detection": {
+        "step": 646,
+        "failure": "INSERTION_DEPTH_NOT_ACHIEVED"
+      },
+      "recovery": {
+        "state": "disabled",
+        "attempts": 0,
+        "action_steps": 0,
+        "observed_tcp_path_m": 0.0,
+        "completed_stages": []
+      },
+      "first_guard": {
+        "raw_pose_equal": false,
+        "translation_delta_m": 1.4901161193847656e-08,
+        "rotation_delta_rad": 1.2115067967921062e-07,
+        "maximum_translation_delta_m": 1e-06,
+        "maximum_rotation_delta_rad": 1e-06,
+        "passed": true,
+        "half_size_equal": true,
+        "hole_radius_equal": true
+      },
+      "maximum_target_translation_m": 1.4901161193847656e-08,
+      "maximum_target_rotation_rad": 1.2115067967921062e-07
+    },
+    {
+      "seed": 100,
+      "system": "v2",
+      "audit": {
+        "passed": true,
+        "steps": 1200,
+        "maximum_action_replay_error": 0.0,
+        "raw_endpoint_reconstructions": 1200,
+        "action_replay_bound": 3e-07,
+        "derived_scalar_replay_bound": 1e-10,
+        "physical_pair_tolerance": "exact"
+      },
+      "task_success": false,
+      "valid_acquisition": true,
+      "first_failure": {
+        "step": 630,
+        "failure": "INSERTION_DEPTH_NOT_ACHIEVED"
+      },
+      "first_detection": {
+        "step": 646,
+        "failure": "INSERTION_DEPTH_NOT_ACHIEVED"
+      },
+      "recovery": {
+        "state": "aborted",
+        "attempts": 1,
+        "reason": "INSERTION_DEPTH_NOT_ACHIEVED",
+        "trigger_step": 646,
+        "first_action_step": 647,
+        "phase": "reinsert",
+        "phase_step": 140,
+        "action_steps": 178,
+        "observed_tcp_path_m": 0.1698373179278922,
+        "completed_stages": [
+          "backout",
+          "realign"
+        ],
+        "failure_detail": "reinsert_physical_effect_not_completed",
+        "stable_steps": 0,
+        "refresh_record": {
+          "peg_pose_world": [
+            -0.05489015579223633,
+            0.010325105860829353,
+            0.09406313300132751,
+            0.806591808795929,
+            0.001706365612335503,
+            0.003000125987455249,
+            0.5910988450050354
+          ],
+          "hole_pose_world": [
+            0.031805574893951416,
+            0.2505539357662201,
+            0.1374049037694931,
+            0.8048332929611206,
+            9.313225746154785e-10,
+            0.0,
+            0.593501091003418
+          ],
+          "tcp_in_peg_m": [
+            -0.05998083766108545,
+            -5.605039325550807e-05,
+            -1.8433628943192016e-05
+          ],
+          "tcp_rotation_in_peg": [
+            [
+              0.9999891750970303,
+              0.00033685919197635875,
+              0.00464071273032587
+            ],
+            [
+              0.00033927029347544,
+              -0.9999998078831819,
+              -0.0005187767024603579
+            ],
+            [
+              0.004640537084066098,
+              0.0005203455427228421,
+              -0.999989097268609
+            ]
+          ]
+        },
+        "fixed_target_check": {
+          "raw_pose_equal": true,
+          "translation_delta_m": 0.0,
+          "rotation_delta_rad": 0.0,
+          "maximum_translation_delta_m": 1e-06,
+          "maximum_rotation_delta_rad": 1e-06,
+          "passed": true
+        }
+      },
+      "first_guard": {
+        "raw_pose_equal": false,
+        "translation_delta_m": 1.4901161193847656e-08,
+        "rotation_delta_rad": 1.2115067967921062e-07,
+        "maximum_translation_delta_m": 1e-06,
+        "maximum_rotation_delta_rad": 1e-06,
+        "passed": true,
+        "half_size_equal": true,
+        "hole_radius_equal": true
+      },
+      "maximum_target_translation_m": 1.4901161193847656e-08,
+      "maximum_target_rotation_rad": 1.2115067967921062e-07
+    },
+    {
+      "seed": 101,
+      "system": "baseline",
+      "audit": {
+        "passed": true,
+        "steps": 1200,
+        "maximum_action_replay_error": 0.0,
+        "raw_endpoint_reconstructions": 1200,
+        "action_replay_bound": 3e-07,
+        "derived_scalar_replay_bound": 1e-10,
+        "physical_pair_tolerance": "exact"
+      },
+      "task_success": false,
+      "valid_acquisition": true,
+      "first_failure": {
+        "step": 630,
+        "failure": "INSERTION_LATERAL_INTERFERENCE"
+      },
+      "first_detection": null,
+      "recovery": {
+        "state": "disabled",
+        "attempts": 0,
+        "action_steps": 0,
+        "observed_tcp_path_m": 0.0,
+        "completed_stages": []
+      },
+      "first_guard": {
+        "raw_pose_equal": false,
+        "translation_delta_m": 1.5359765386647212e-08,
+        "rotation_delta_rad": 7.626123652783102e-08,
+        "maximum_translation_delta_m": 1e-06,
+        "maximum_rotation_delta_rad": 1e-06,
+        "passed": true,
+        "half_size_equal": true,
+        "hole_radius_equal": true
+      },
+      "maximum_target_translation_m": 1.5359765386647212e-08,
+      "maximum_target_rotation_rad": 7.626123652783102e-08
+    },
+    {
+      "seed": 101,
+      "system": "v1",
+      "audit": {
+        "passed": true,
+        "steps": 1200,
+        "maximum_action_replay_error": 0.0,
+        "raw_endpoint_reconstructions": 1200,
+        "action_replay_bound": 3e-07,
+        "derived_scalar_replay_bound": 1e-10,
+        "physical_pair_tolerance": "exact"
+      },
+      "task_success": false,
+      "valid_acquisition": true,
+      "first_failure": {
+        "step": 630,
+        "failure": "INSERTION_LATERAL_INTERFERENCE"
+      },
+      "first_detection": {
+        "step": 642,
+        "failure": "INSERTION_DEPTH_NOT_ACHIEVED"
+      },
+      "recovery": {
+        "state": "disabled",
+        "attempts": 0,
+        "action_steps": 0,
+        "observed_tcp_path_m": 0.0,
+        "completed_stages": []
+      },
+      "first_guard": {
+        "raw_pose_equal": false,
+        "translation_delta_m": 1.5359765386647212e-08,
+        "rotation_delta_rad": 7.626123652783102e-08,
+        "maximum_translation_delta_m": 1e-06,
+        "maximum_rotation_delta_rad": 1e-06,
+        "passed": true,
+        "half_size_equal": true,
+        "hole_radius_equal": true
+      },
+      "maximum_target_translation_m": 1.5359765386647212e-08,
+      "maximum_target_rotation_rad": 7.626123652783102e-08
+    },
+    {
+      "seed": 101,
+      "system": "v2",
+      "audit": {
+        "passed": true,
+        "steps": 1200,
+        "maximum_action_replay_error": 0.0,
+        "raw_endpoint_reconstructions": 1200,
+        "action_replay_bound": 3e-07,
+        "derived_scalar_replay_bound": 1e-10,
+        "physical_pair_tolerance": "exact"
+      },
+      "task_success": false,
+      "valid_acquisition": true,
+      "first_failure": {
+        "step": 630,
+        "failure": "INSERTION_LATERAL_INTERFERENCE"
+      },
+      "first_detection": {
+        "step": 642,
+        "failure": "INSERTION_DEPTH_NOT_ACHIEVED"
+      },
+      "recovery": {
+        "state": "aborted",
+        "attempts": 1,
+        "reason": "INSERTION_DEPTH_NOT_ACHIEVED",
+        "trigger_step": 642,
+        "first_action_step": 643,
+        "phase": "reinsert",
+        "phase_step": 140,
+        "action_steps": 187,
+        "observed_tcp_path_m": 0.19107850761027545,
+        "completed_stages": [
+          "backout",
+          "realign"
+        ],
+        "failure_detail": "reinsert_physical_effect_not_completed",
+        "stable_steps": 0,
+        "refresh_record": {
+          "peg_pose_world": [
+            0.0011434098705649376,
+            0.13446596264839172,
+            0.023632319644093513,
+            0.6417595148086548,
+            0.0015044172760099173,
+            0.0035439212806522846,
+            0.7668962478637695
+          ],
+          "hole_pose_world": [
+            -0.00875050202012062,
+            0.3891793489456177,
+            0.07775196433067322,
+            0.6397255659103394,
+            0.0,
+            0.0,
+            0.7686033248901367
+          ],
+          "tcp_in_peg_m": [
+            -0.06000285554195672,
+            -4.525918273250533e-05,
+            -8.17427726384152e-06
+          ],
+          "tcp_rotation_in_peg": [
+            [
+              0.9999803798734002,
+              0.00031342723417972533,
+              0.00625632732673887
+            ],
+            [
+              0.0003146353869225549,
+              -0.9999999320461548,
+              -0.00019212563419314762
+            ],
+            [
+              0.00625626668419123,
+              0.00019409032663304405,
+              -0.9999804105361871
+            ]
+          ]
+        },
+        "fixed_target_check": {
+          "raw_pose_equal": true,
+          "translation_delta_m": 0.0,
+          "rotation_delta_rad": 0.0,
+          "maximum_translation_delta_m": 1e-06,
+          "maximum_rotation_delta_rad": 1e-06,
+          "passed": true
+        }
+      },
+      "first_guard": {
+        "raw_pose_equal": false,
+        "translation_delta_m": 1.5359765386647212e-08,
+        "rotation_delta_rad": 7.626123652783102e-08,
+        "maximum_translation_delta_m": 1e-06,
+        "maximum_rotation_delta_rad": 1e-06,
+        "passed": true,
+        "half_size_equal": true,
+        "hole_radius_equal": true
+      },
+      "maximum_target_translation_m": 1.5359765386647212e-08,
+      "maximum_target_rotation_rad": 7.626123652783102e-08
+    }
+  ],
+  "pairs": [
+    {
+      "ratio": 0.0,
+      "seed": 100,
+      "systems": [
+        "baseline",
+        "v1"
+      ],
+      "passed": true,
+      "exact_steps": 1200
+    },
+    {
+      "ratio": 0.0,
+      "seed": 100,
+      "systems": [
+        "v1",
+        "v2"
+      ],
+      "passed": true,
+      "exact_steps": 646
+    },
+    {
+      "ratio": 0.0,
+      "seed": 101,
+      "systems": [
+        "baseline",
+        "v1"
+      ],
+      "passed": true,
+      "exact_steps": 1200
+    },
+    {
+      "ratio": 0.0,
+      "seed": 101,
+      "systems": [
+        "v1",
+        "v2"
+      ],
+      "passed": true,
+      "exact_steps": 642
+    }
+  ],
+  "scope": "M7 known-seed normal development review; no fresh native claim",
+  "archive_name": "aether-cl-m7-development-normal6-v2.tar.gz",
+  "archive_sha256": "aad7c51ee7df126ef8a4a279e7da831b6a25848fa1e40d1d3d096b1dd033fb07",
+  "archive_index_verified_files": 41,
+  "archive_membership_exact": true,
+  "total_actions": 7200,
+  "successes": 0,
+  "normal_viability": false,
+  "servo_trace_samples": [
+    {
+      "seed": 100,
+      "step": 490,
+      "target_tcp_z_m": 0.13738545500061086,
+      "commanded_tcp_z_m": 0.13738545500061086,
+      "observed_tcp_z_m": 0.13602867722511292,
+      "head_target_yz_m": [
+        0.0009144549469537322,
+        -0.0014802073027748368
+      ]
+    },
+    {
+      "seed": 100,
+      "step": 510,
+      "target_tcp_z_m": 0.13738545500061086,
+      "commanded_tcp_z_m": 0.12764838066230652,
+      "observed_tcp_z_m": 0.12694904208183289,
+      "head_target_yz_m": [
+        0.007085832829553214,
+        -0.010611700882890087
+      ]
+    },
+    {
+      "seed": 100,
+      "step": 530,
+      "target_tcp_z_m": 0.13738545500061086,
+      "commanded_tcp_z_m": 0.12081434504208573,
+      "observed_tcp_z_m": 0.11991441249847412,
+      "head_target_yz_m": [
+        0.012049288292771099,
+        -0.017663486686228042
+      ]
+    },
+    {
+      "seed": 101,
+      "step": 490,
+      "target_tcp_z_m": 0.07774084846312405,
+      "commanded_tcp_z_m": 0.07774084846312405,
+      "observed_tcp_z_m": 0.07538826018571854,
+      "head_target_yz_m": [
+        0.001426155877345683,
+        -0.0024405968907201476
+      ]
+    },
+    {
+      "seed": 101,
+      "step": 510,
+      "target_tcp_z_m": 0.07774084846312405,
+      "commanded_tcp_z_m": 0.06110370481316728,
+      "observed_tcp_z_m": 0.05991283804178238,
+      "head_target_yz_m": [
+        0.011426941107139179,
+        -0.017955471223031535
+      ]
+    },
+    {
+      "seed": 101,
+      "step": 530,
+      "target_tcp_z_m": 0.07774084846312405,
+      "commanded_tcp_z_m": 0.049864152556452095,
+      "observed_tcp_z_m": 0.04837409406900406,
+      "head_target_yz_m": [
+        0.019346011527434693,
+        -0.029521628771586116
+      ]
+    }
+  ],
+  "findings": [
+    "All six runs validly acquired and lifted the peg; all six final insertion scores false.",
+    "Both V2 attempts completed backout and realign, then hit the 140-action reinsert physical-effect cap.",
+    "Nominal precontact alignment was viable, but commanded height tracked falling actual height during insertion. Whole-vector 4 mm scaling weakened transverse error correction in the presence of long axial error.",
+    "First target checks differ only by about 15 nm and 0.08\u20130.12 microradian; dimensions/radius exact. This supports the bounded guard repair, without recovering the missing earlier frame."
+  ],
+  "repair": {
+    "scope": "development shared nominal/recovery slow servo only",
+    "axial_limit_m": 0.004,
+    "transverse_norm_limit_m": 0.004,
+    "maximum_translation_norm_m": 0.00565685424949238,
+    "frame": "cached target local X separates axial from transverse; nominal consumes TCP only",
+    "unchanged": "scorer thresholds, phase effects/durations, one-attempt budgets, disturbance semantics, seeds, strict paired observations, all M0\u2013M6R",
+    "retained_output": "normal6-v2 remains immutable",
+    "next_output": "m7-development-normal6-v3",
+    "fresh_native": "not implemented; not authorized until development freeze",
+    "native_repair_result": "pending"
+  },
+  "validation": {
+    "focused_primary_tests": 28,
+    "primary_seconds": 20.308,
+    "Python_3_10_parse": "passed",
+    "M0_M6R_preflight": "passed unchanged",
+    "matched_numerical_versions_tests": 28,
+    "matched_numerical_versions_seconds": 13.876
+  },
+  "review_python": "3.10.21 (native producer 3.10.22)"
+}

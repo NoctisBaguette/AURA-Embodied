@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AETHER-CL Simulator</title>
+  <style>
+    :root { color-scheme: dark; font-family: system-ui, sans-serif; }
+    body { margin: 0; background: #111820; color: #e7edf3; }
+    main { max-width: 960px; margin: auto; padding: 32px 24px; }
+    h1 { font-size: 26px; margin-bottom: 10px; }
+    p { color: #b8c6d4; line-height: 1.5; }
+    .notice { border-left: 3px solid #dcb475; padding: 12px 16px; background: #22262a; }
+    .stats { display: flex; flex-wrap: wrap; gap: 24px; margin: 24px 0; }
+    .stats span { display: block; color: #9fabb9; font-size: 13px; margin-bottom: 5px; }
+    .stats strong { font-size: 20px; }
+    img { display: block; width: 100%; max-width: 720px; background: #202b36; border-radius: 8px; }
+    #error { color: #ffb9b9; white-space: pre-wrap; }
+    #directory { font-family: monospace; overflow-wrap: anywhere; }
+  </style>
+</head>
+<body>
+<main>
+  <h1 id="title">AETHER-CL Simulator</h1>
+  <p class="notice" id="notice">Waiting for the selected controller.</p>
+  <div class="stats">
+    <div><span>Run state</span><strong id="state">Connecting</strong></div>
+    <div><span>Episode</span><strong id="episode">—</strong></div>
+    <div><span>Step</span><strong id="step">—</strong></div>
+    <div><span>Controller phase</span><strong id="phase">—</strong></div>
+    <div><span>Environment success flag</span><strong id="success">—</strong></div>
+    <div><span>Cube–target distance</span><strong id="distance">—</strong></div>
+    <div><span>Task success</span><strong id="task-success">—</strong></div>
+    <div><span>Verification</span><strong id="verification">—</strong></div>
+    <div><span>Failure diagnosis</span><strong id="failure">—</strong></div>
+    <div><span>Disturbance</span><strong id="disturbance">—</strong></div>
+    <div><span>Recovery state</span><strong id="recovery">—</strong></div>
+    <div><span>Recovery actions</span><strong id="recovery-cost">—</strong></div>
+  </div>
+  <p id="verification-note"></p>
+  <img id="frame" alt="Latest frame rendered by the running simulator" hidden>
+  <p id="frame-note">Waiting for the simulator to render its first frame.</p>
+  <p>Red cube: grasped object. Green sphere: target for the cube's centre;
+    it has no collisions and can float above the table.</p>
+  <p id="error" role="alert"></p>
+  <p>Run output: <span id="directory">—</span></p>
+  <p>The viewer displays a finite run. After it finishes, the last frame remains visible.</p>
+</main>
+<script>
+  let lastFrame = 0;
+  const text = (id, value) => document.getElementById(id).textContent = value;
+  async function refresh() {
+    try {
+      const response = await fetch('/api/status', {cache: 'no-store'});
+      if (!response.ok) throw new Error(`Status request failed: ${response.status}`);
+      const status = await response.json();
+      text('state', status.state);
+      text('episode', status.episode === undefined ? '—' : status.episode + 1);
+      text('step', status.step ?? '—');
+      text('phase', status.phase ?? '—');
+      text('distance', Number.isFinite(status.cube_goal_distance_m)
+        ? `${(status.cube_goal_distance_m * 100).toFixed(1)} cm` : '—');
+      if (status.controller === 'fixed_pick_cube') {
+        text('title', 'AETHER-CL Fixed PickCube Controller');
+        text('notice', 'Fixed sequence using simulator state: approach, descend, close, lift, transport, lower, hold. No verification or recovery. Candidate baseline; server performance is being measured.');
+        if (status.protocol === 'm2') {
+          text('title', status.verification_enabled
+            ? 'AETHER-CL V1: Passive Verification' : 'AETHER-CL M2 Policy Baseline');
+          text('notice', 'The controller keeps the same fixed sequence for the full budget. M2 task success requires grasping, lifting, and five stable observations at the goal. Verification reports outcomes; recovery is not active.');
+        }
+        if (status.protocol === 'm3') {
+          text('title', `AETHER-CL M3: ${status.system === 'v2' ? 'Bounded Recovery' : status.system === 'v1' ? 'Passive Verification' : 'Policy Baseline'}`);
+          text('notice', status.recovery_enabled
+            ? 'One bounded retry after a confirmed failed grasp or lost object. The arm reopens, approaches the observed cube position, and checks its new grasp and lift before transport. An attempt can abort; final task success is measured separately.'
+            : 'Matched 360-step baseline or passive verification run. Recovery is disabled.');
+          if (status.state === 'ready_to_start') {
+            text('notice', 'Preview ready. The arm is paused. Press Enter in the server terminal when you are ready to watch the live run.');
+          }
+        }
+      } else if (status.controller === 'random') {
+        text('title', 'AETHER-CL Environment Smoke Test');
+        text('notice', 'Seeded random actions test simulation, rendering, and logging. This run does not measure a manipulation policy, verification, or recovery.');
+      }
+      text('success', status.success === undefined ? '—' : String(status.success));
+      text('task-success', ['m2', 'm3'].includes(status.protocol) ? String(status.task_success ?? false) : '—');
+      text('recovery', status.recovery?.state ?? 'disabled');
+      text('recovery-cost', status.recovery_enabled
+        ? `${status.recovery?.action_steps ?? 0} / ${status.recovery?.action_budget ?? 230}` : '—');
+      text('verification', status.verification?.status ?? 'disabled');
+      text('failure', status.verification?.failure ?? '—');
+      text('verification-note', status.eligibility?.eligible === false
+        ? 'Excluded from manipulation scoring: the cube started inside the goal tolerance.'
+        : status.recovery?.failure_detail ?? status.verification?.reason ?? '');
+      text('disturbance', status.disturbance && status.disturbance !== 'none'
+        ? `${status.disturbance}: ${status.disturbance_applied ? 'applied' : 'scheduled'}` : 'none');
+      text('directory', status.run_directory ?? '—');
+      text('error', status.error ?? '');
+      if (status.frame_number > lastFrame) {
+        lastFrame = status.frame_number;
+        const frame = document.getElementById('frame');
+        frame.src = `/frame.jpg?v=${lastFrame}`;
+        frame.hidden = false;
+        text('frame-note', 'Latest rendered simulation frame');
+      }
+    } catch (error) {
+      text('state', 'Disconnected');
+      text('error', String(error));
+    } finally {
+      setTimeout(refresh, 200);
+    }
+  }
+  refresh();
+</script>
+</body>
+</html>

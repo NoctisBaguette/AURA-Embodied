@@ -1,0 +1,242 @@
+{
+  "name": "m5_seed80_99_verification_gating_attribution",
+  "date": "2026-10-05",
+  "acceptance_revision": "2d1c063e13811d9ad935504eaa46546f9d7aa86a",
+  "acceptance_archive_sha256": "22871e65df0d946abb53382a86e4299d17ebbc028ce2505ee55758d1fdd182aa",
+  "seeds": [
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88,
+    89,
+    90,
+    91,
+    92,
+    93,
+    94,
+    95,
+    96,
+    97,
+    98,
+    99
+  ],
+  "episodes_per_cell": 20,
+  "systems": [
+    "baseline",
+    "v1",
+    "v2",
+    "v3"
+  ],
+  "conditions": [
+    {
+      "point_id": "shift-normal",
+      "family": "shift",
+      "condition": "none",
+      "magnitude_m": null,
+      "config_magnitude_m": 0.12
+    },
+    {
+      "point_id": "shift-020mm",
+      "family": "shift",
+      "condition": "object_shift",
+      "magnitude_m": 0.02,
+      "config_magnitude_m": 0.02
+    },
+    {
+      "point_id": "shift-040mm",
+      "family": "shift",
+      "condition": "object_shift",
+      "magnitude_m": 0.04,
+      "config_magnitude_m": 0.04
+    },
+    {
+      "point_id": "shift-080mm",
+      "family": "shift",
+      "condition": "object_shift",
+      "magnitude_m": 0.08,
+      "config_magnitude_m": 0.08
+    },
+    {
+      "point_id": "shift-120mm",
+      "family": "shift",
+      "condition": "object_shift",
+      "magnitude_m": 0.12,
+      "config_magnitude_m": 0.12
+    },
+    {
+      "point_id": "shift-200mm",
+      "family": "shift",
+      "condition": "object_shift",
+      "magnitude_m": 0.2,
+      "config_magnitude_m": 0.2
+    },
+    {
+      "point_id": "drop-normal",
+      "family": "drop",
+      "condition": "none",
+      "magnitude_m": null,
+      "config_magnitude_m": 0.12
+    },
+    {
+      "point_id": "drop-020mm",
+      "family": "drop",
+      "condition": "object_drop",
+      "magnitude_m": 0.02,
+      "config_magnitude_m": 0.02
+    },
+    {
+      "point_id": "drop-040mm",
+      "family": "drop",
+      "condition": "object_drop",
+      "magnitude_m": 0.04,
+      "config_magnitude_m": 0.04
+    },
+    {
+      "point_id": "drop-080mm",
+      "family": "drop",
+      "condition": "object_drop",
+      "magnitude_m": 0.08,
+      "config_magnitude_m": 0.08
+    },
+    {
+      "point_id": "drop-120mm",
+      "family": "drop",
+      "condition": "object_drop",
+      "magnitude_m": 0.12,
+      "config_magnitude_m": 0.12
+    },
+    {
+      "point_id": "drop-200mm",
+      "family": "drop",
+      "condition": "object_drop",
+      "magnitude_m": 0.2,
+      "config_magnitude_m": 0.2
+    }
+  ],
+  "requested_episodes": 960,
+  "max_steps": 360,
+  "shift_step": 81,
+  "drop_step": 181,
+  "env_id": "PickCube-v1",
+  "physics_backend": "cpu",
+  "render": false,
+  "fps": 5.0,
+  "policy_settings": {
+    "approach_steps": 60,
+    "descend_steps": 40,
+    "close_steps": 25,
+    "lift_steps": 45,
+    "transport_steps": 60,
+    "lower_steps": 40,
+    "hold_steps": 50,
+    "clearance_m": 0.12,
+    "goal_clearance_m": 0.06,
+    "max_translation_m": 0.012,
+    "max_rotation_rad": 0.08
+  },
+  "task_settings": {
+    "goal_tolerance_m": 0.025,
+    "minimum_lift_m": 0.05,
+    "stable_steps": 5,
+    "robot_static_threshold": 0.2
+  },
+  "verification_settings": {
+    "cube_tcp_tolerance_m": 0.04,
+    "minimum_aperture_m": 0.01,
+    "maximum_aperture_m": 0.06,
+    "attachment_lift_m": 0.01,
+    "failure_persistence_steps": 3
+  },
+  "recovery_settings": {
+    "retract_steps": 35,
+    "approach_steps": 60,
+    "descend_steps": 35,
+    "close_steps": 25,
+    "lift_steps": 35,
+    "transport_steps": 80,
+    "lower_steps": 30,
+    "hold_steps": 10,
+    "arrival_tolerance_m": 0.02,
+    "arrival_rotation_tolerance_rad": 0.15,
+    "maximum_attempts": 1,
+    "action_budget": 230,
+    "minimum_remaining_steps": 40,
+    "minimum_close_steps": 10,
+    "minimum_motion_steps": 3
+  },
+  "frozen_files_sha256": {
+    "policies.py": "c4e16450ad64ad8683db69d7a166720e411e5e97c8c1def3471b1b04ced04f29",
+    "verification.py": "472073de5db587de20c2185b324181f169a7bc0e52cd5706aef7506f928f83a7",
+    "disturbances.py": "d745ca4368fdee0a2fcc9abba02a9db069a652b8cabcb7feb9f761a6cebbb95d",
+    "runtime.py": "471a5d26a384c6997f0d5a6713d5595bc07dcfe64e0bc2a19b13c786d9449c07",
+    "recovery.py": "cb553d923c171e2582e8d41b77b4571118f166057b3f6cd0f4dc674dc2b04103",
+    "m3_runtime.py": "a88fccf0dd257a356f71fbecb14636ec04a360b438f8fbac6d762a25977edd24",
+    "m3.py": "0ceee0b8743345af3fce58e20e23e6c17e0660ec1ec068810cda59065dd3fa68",
+    "acceptance.py": "09c8d44568330ba90ba7237bd2b25bf636b118fc037df82c14475599cae7b960",
+    "m3_screening.py": "1a7a01e4f23e012d675f3dbf7a111b25d44b6440961ece158007edf835597d7d",
+    "m3_isolated_screening.py": "4ae4ff7ee1cf919898a786a79ba398c452984f72bf1e64429ed68a59fa966fbd"
+  },
+  "exclusions": "original seed order; no replacement; eligible-only denominators",
+  "performance_gate": "none; task failures, false alarms, uncertainty, aborts and zero attempts remain measured outcomes",
+  "analysis_unit": "matched seed episodes; same 20 seeds reused across both family controls and magnitudes; not 960 independent scenes",
+  "pairing": "baseline/V1 full traces; V1/V2 identical reset and trace through first intervention, or entire trace without intervention",
+  "limitations": "one held-cube task, privileged state, synthetic relocations, phase-aware scheduled causal control; no deployable ungated-policy claim",
+  "magnitudes_m": [
+    0.02,
+    0.04,
+    0.08,
+    0.12,
+    0.2
+  ],
+  "cells": 48,
+  "execution": "fresh_python_interpreter_and_simulator_per_point_seed_system",
+  "child_episodes": 1,
+  "m4_basis_commit": "67a44d13b5363b615b5214ff543c34224e6af745",
+  "m4_archive_sha256": "a183e1357d6aba771fa193ae358dbcd1af30d11325eb3898ec4e93cf2a0f0bbd",
+  "02_decision_commit": "3c919ecca401a73fe04a676c019c33b8a85b440a",
+  "new_sources_sha256": {
+    "m5_scheduled.py": "4a900f908131afaab499f5d13c32aec72aff40f13a74be8a55a7db2dcc13a0d8",
+    "m5_v3_runtime.py": "32e4acd544580278165c5898a125cd9672e83482ca10530221f8e44dc272d0e9",
+    "m5_v3.py": "349f304f33f288a49cbaa2b7cfb5d6d810b2bb265c27ed3f3871699ed279704e",
+    "m5_process.py": "98677f66ccdd21f298e373fe161e085b93ab160cf4351c5f56fec2e6f4b343c3",
+    "m5_audit.py": "67847c6ede339ef0ffd81a0b043b40f474e26d5c593bddf1fe4502488c88b9dc",
+    "m5_attribution.py": "a5a90a1789c5febf54999cc6baebf3cb39b1fd9e9526d0216fc680b4f00f0dec"
+  },
+  "v3_first_action_steps": {
+    "shift": 128,
+    "drop": 184
+  },
+  "schedule_basis": "Frozen nominal close endpoint 125 / transport entry 171; M4 first persistence-confirmed failures 127 / 183; no seed80-99 native outcome used",
+  "schedule_independence": "same within family for all magnitudes and normal; no verdict, label, magnitude, event or evaluator input",
+  "recovery_feedback": "same inherited post-invocation attachment/arrival checks; this ablates invocation gating, not all feedback",
+  "order": "shift normal then ascending magnitudes; drop normal then ascending magnitudes; seed; baseline/V1/V2/V3",
+  "seed_selection": "fresh preselected seeds 80-99; no outcome-based replacement or tuning",
+  "resume": "verify source/protocol/software/environment and raw hashes; only unstarted slots; retain errors/interruptions",
+  "comparison_counts": {
+    "pairs": 240,
+    "recovery_pairs": 240,
+    "scheduled_pairs": 240,
+    "attribution_pairs": 240,
+    "control_pairs": 200
+  },
+  "environment_normalization": [
+    "SSH_CLIENT",
+    "SSH_CONNECTION",
+    "SSH_TTY",
+    "TERM",
+    "SHLVL",
+    "_",
+    "PWD",
+    "OLDPWD"
+  ],
+  "unnecessary_recovery_definition": "attempt in an eligible matched pair whose baseline succeeds; counterfactual metric, never controller input",
+  "paired_cost_definition": "V3 minus V2 retry actions/path over all eligible matched pairs including zero cost for no attempt; failed attempts included",
+  "attribution_effect": "V2 minus V3 final shared task success; null unless complete strict comparisons pass",
+  "regression_definition": "baseline final success and active final failure in an eligible matched pair",
+  "return_boundary": "After frozen audited M5 return to 02; no next task/perception/architecture/motion round authorized"
+}

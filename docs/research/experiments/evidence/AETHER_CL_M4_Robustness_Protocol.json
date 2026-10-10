@@ -1,0 +1,194 @@
+{
+  "name": "m4_seed60_79_frozen_magnitude_robustness",
+  "date": "2026-10-05",
+  "acceptance_revision": "c4a9b30475e60794f893b415f6ee4f5b70a2540e",
+  "acceptance_archive_sha256": "87d1ada67b827e6a6c8b5b074d0654fbf3b03176d62c7b01714bd05584cc1421",
+  "seeds": [
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79
+  ],
+  "episodes_per_cell": 20,
+  "systems": [
+    "baseline",
+    "v1",
+    "v2"
+  ],
+  "conditions": [
+    {
+      "point_id": "normal",
+      "condition": "none",
+      "magnitude_m": null,
+      "config_magnitude_m": 0.12
+    },
+    {
+      "point_id": "object_shift-020mm",
+      "condition": "object_shift",
+      "magnitude_m": 0.02,
+      "config_magnitude_m": 0.02
+    },
+    {
+      "point_id": "object_shift-040mm",
+      "condition": "object_shift",
+      "magnitude_m": 0.04,
+      "config_magnitude_m": 0.04
+    },
+    {
+      "point_id": "object_shift-080mm",
+      "condition": "object_shift",
+      "magnitude_m": 0.08,
+      "config_magnitude_m": 0.08
+    },
+    {
+      "point_id": "object_shift-120mm",
+      "condition": "object_shift",
+      "magnitude_m": 0.12,
+      "config_magnitude_m": 0.12
+    },
+    {
+      "point_id": "object_shift-200mm",
+      "condition": "object_shift",
+      "magnitude_m": 0.2,
+      "config_magnitude_m": 0.2
+    },
+    {
+      "point_id": "object_drop-020mm",
+      "condition": "object_drop",
+      "magnitude_m": 0.02,
+      "config_magnitude_m": 0.02
+    },
+    {
+      "point_id": "object_drop-040mm",
+      "condition": "object_drop",
+      "magnitude_m": 0.04,
+      "config_magnitude_m": 0.04
+    },
+    {
+      "point_id": "object_drop-080mm",
+      "condition": "object_drop",
+      "magnitude_m": 0.08,
+      "config_magnitude_m": 0.08
+    },
+    {
+      "point_id": "object_drop-120mm",
+      "condition": "object_drop",
+      "magnitude_m": 0.12,
+      "config_magnitude_m": 0.12
+    },
+    {
+      "point_id": "object_drop-200mm",
+      "condition": "object_drop",
+      "magnitude_m": 0.2,
+      "config_magnitude_m": 0.2
+    }
+  ],
+  "requested_episodes": 660,
+  "max_steps": 360,
+  "shift_step": 81,
+  "drop_step": 181,
+  "env_id": "PickCube-v1",
+  "physics_backend": "cpu",
+  "render": false,
+  "fps": 5.0,
+  "policy_settings": {
+    "approach_steps": 60,
+    "descend_steps": 40,
+    "close_steps": 25,
+    "lift_steps": 45,
+    "transport_steps": 60,
+    "lower_steps": 40,
+    "hold_steps": 50,
+    "clearance_m": 0.12,
+    "goal_clearance_m": 0.06,
+    "max_translation_m": 0.012,
+    "max_rotation_rad": 0.08
+  },
+  "task_settings": {
+    "goal_tolerance_m": 0.025,
+    "minimum_lift_m": 0.05,
+    "stable_steps": 5,
+    "robot_static_threshold": 0.2
+  },
+  "verification_settings": {
+    "cube_tcp_tolerance_m": 0.04,
+    "minimum_aperture_m": 0.01,
+    "maximum_aperture_m": 0.06,
+    "attachment_lift_m": 0.01,
+    "failure_persistence_steps": 3
+  },
+  "recovery_settings": {
+    "retract_steps": 35,
+    "approach_steps": 60,
+    "descend_steps": 35,
+    "close_steps": 25,
+    "lift_steps": 35,
+    "transport_steps": 80,
+    "lower_steps": 30,
+    "hold_steps": 10,
+    "arrival_tolerance_m": 0.02,
+    "arrival_rotation_tolerance_rad": 0.15,
+    "maximum_attempts": 1,
+    "action_budget": 230,
+    "minimum_remaining_steps": 40,
+    "minimum_close_steps": 10,
+    "minimum_motion_steps": 3
+  },
+  "frozen_files_sha256": {
+    "policies.py": "c4e16450ad64ad8683db69d7a166720e411e5e97c8c1def3471b1b04ced04f29",
+    "verification.py": "472073de5db587de20c2185b324181f169a7bc0e52cd5706aef7506f928f83a7",
+    "disturbances.py": "d745ca4368fdee0a2fcc9abba02a9db069a652b8cabcb7feb9f761a6cebbb95d",
+    "runtime.py": "471a5d26a384c6997f0d5a6713d5595bc07dcfe64e0bc2a19b13c786d9449c07",
+    "recovery.py": "cb553d923c171e2582e8d41b77b4571118f166057b3f6cd0f4dc674dc2b04103",
+    "m3_runtime.py": "a88fccf0dd257a356f71fbecb14636ec04a360b438f8fbac6d762a25977edd24",
+    "m3.py": "0ceee0b8743345af3fce58e20e23e6c17e0660ec1ec068810cda59065dd3fa68",
+    "acceptance.py": "09c8d44568330ba90ba7237bd2b25bf636b118fc037df82c14475599cae7b960",
+    "m3_screening.py": "1a7a01e4f23e012d675f3dbf7a111b25d44b6440961ece158007edf835597d7d",
+    "m3_isolated_screening.py": "4ae4ff7ee1cf919898a786a79ba398c452984f72bf1e64429ed68a59fa966fbd"
+  },
+  "exclusions": "original seed order; no replacement; eligible-only denominators",
+  "performance_gate": "none; task failures, false alarms, uncertainty, aborts and zero attempts remain measured outcomes",
+  "analysis_unit": "matched seed episodes; same 20 seeds reused across magnitudes; no frame-level independence",
+  "pairing": "baseline/V1 full traces; V1/V2 identical reset and trace through first intervention, or entire trace without intervention",
+  "limitations": "one held-cube task, privileged state, synthetic positive world-Y relocation; drop also resets height; finite 2-20 cm range",
+  "magnitudes_m": [
+    0.02,
+    0.04,
+    0.08,
+    0.12,
+    0.2
+  ],
+  "execution": "fresh_python_interpreter_and_simulator_per_point_seed_system",
+  "child_episodes": 1,
+  "runner_sha256": "d37e8973d110ec7823e08d2159a3c5c0f15941aa36b492a7e6a9310b19073923",
+  "order": "normal, ascending shift magnitudes, ascending drop magnitudes; seed; baseline/V1/V2",
+  "seed_selection": "new preselected contiguous seeds 60-79; no adaptive selection or replacement",
+  "resume": "verify source/protocol/software/environment and raw hashes; continue unstarted slots only; retain errors",
+  "cross_magnitude_control": "each baseline reset and pre-injection prefix must exactly match the same-seed normal baseline",
+  "environment_normalization": [
+    "SSH_CLIENT",
+    "SSH_CONNECTION",
+    "SSH_TTY",
+    "TERM",
+    "SHLVL",
+    "_",
+    "PWD",
+    "OLDPWD"
+  ]
+}
