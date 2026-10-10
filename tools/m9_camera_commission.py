@@ -24,11 +24,25 @@ REVIEW_SHA256 = "5a5750a14e209977072af06f02848043bf094605aef0e4267bf7cf5790298f7
 INSPECTION_ARCHIVE_SHA256 = "c3afdec4f968f5c18466e6ec29554424ce82a816b300923e5c0469e72a1760d2"
 MODES = ("unrendered", "render_idle", "capture_only", "record_no_view", "record_with_view")
 SEED, ACTIONS, PORT = 100, 800, 18709
+REPORTING_FAILURE_HEAD = "c05ee86c98ba7dd6a372d27c12dc3d51f1ea9b34"
+REPORTING_FAILURE_ARCHIVE_SHA256 = "d4726e7a043622a92a3d6c8f516f231ba70c4c2c5cdf73007d11c64228d85565"
+REPORTING_FAILURE_ERROR = "TypeError: Object of type bool_ is not JSON serializable"
+
+
+def json_default(value):
+    if isinstance(value, Path):
+        return str(value)
+    if hasattr(value, "tolist"):
+        return value.tolist()
+    raise TypeError(f"Object of type {type(value).__name__} is not JSON serializable")
 
 
 def write_json(path, data):
+    # Audit calculations can return NumPy bool_/integer/float/array values.
+    # Encode before creating the file, retaining false checks and rejecting NaN.
+    encoded = json.dumps(data, indent=2, allow_nan=False, default=json_default) + "\n"
     with Path(path).open("x", encoding="utf-8") as stream:
-        stream.write(json.dumps(data, indent=2, allow_nan=False) + "\n")
+        stream.write(encoded)
 
 
 def read_lines(path):
@@ -258,6 +272,8 @@ def child(args):
                 robot_rows.append(robot)
                 log(robots, robot)
                 capture(env, env.step_number)
+                if env.step_number % 100 == 0:
+                    print(f"{args.mode}: action {env.step_number}/{ACTIONS}", flush=True)
                 return observation, info
 
             result = accepted_run(config, env_factory=create, reset_fn=reset, observe_fn=observe)
@@ -358,6 +374,111 @@ def compare_modes(output):
     return results
 
 
+def recover_reporting_failure(args, report):
+    """Re-audit exactly the retained first slot; never reset or replay motion."""
+    source = args.recover_reporting_archive.resolve()
+    if inspection.sha256(source) != REPORTING_FAILURE_ARCHIVE_SHA256:
+        raise ValueError("Not the pinned first-slot bool_ reporting failure; retain evidence")
+    with tarfile.open(source) as archive:
+        members = archive.getmembers()
+        if len({m.name for m in members}) != len(members) or sum(m.size for m in members) > 250_000_000:
+            raise ValueError("Invalid reporting-failure archive membership/size")
+        files = {}
+        for member in members:
+            path = PurePosixPath(member.name)
+            if (path.is_absolute() or ".." in path.parts or not path.parts
+                    or path.parts[0] != "m9-camera-commissioning"
+                    or not (member.isfile() or member.isdir())):
+                raise ValueError("Unsafe reporting-failure archive entry")
+            if member.isfile():
+                files[str(path.relative_to("m9-camera-commissioning"))] = member
+        index = json.load(archive.extractfile(files["file_index.json"]))
+        if set(files) != set(index) | {"file_index.json"}:
+            raise ValueError("Reporting-failure archive index mismatch")
+        for name, record in index.items():
+            raw = archive.extractfile(files[name]).read()
+            if len(raw) != record["bytes"] or hashlib.sha256(raw).hexdigest() != record["sha256"]:
+                raise ValueError("Reporting-failure archive hash mismatch: " + name)
+        def read(name):
+            return json.load(archive.extractfile(files[name]))
+        previous = read("commissioning.json")
+        trials = previous.get("trials", [])
+        carrier = read("unrendered/camera_result.json")
+        manifest = read("unrendered/camera_manifest.json")
+        if (previous.get("native_head") != REPORTING_FAILURE_HEAD
+                or previous.get("state") != "error_retained_no_replacement"
+                or previous.get("fresh_matrix_started") is not False
+                or previous.get("sensor_verifier_implemented") is not False
+                or len(trials) != 1 or trials[0].get("mode") != "unrendered"
+                or trials[0].get("returncode") != 1
+                or carrier.get("state") != "error_retained"
+                or carrier.get("error") != REPORTING_FAILURE_ERROR
+                or any(name.startswith(mode + "/") for mode in MODES[1:] for name in files)):
+            raise ValueError("Not the guarded completed-first-slot reporting failure")
+        if previous.get("preflight") != report["preflight"] or any(
+                manifest.get(key) != value for key, value in report["preflight"].items()):
+            raise ValueError("Native environment/source/encoder identity differs from retained first slot")
+        review = json.loads(REVIEW.read_text())
+        for name, digest in review["frozen_sources_sha256"].items():
+            if index.get("source_snapshot/" + name, {}).get("sha256") != digest:
+                raise ValueError("Retained accepted source differs: " + name)
+        shutil.copyfile(source, args.output / "preserved_reporting_failure_v1.tar.gz")
+        for name, member in files.items():
+            if name.startswith("unrendered/"):
+                target = args.output / name
+                if name == "unrendered/camera_result.json":
+                    target = target.with_name("camera_result_before_reporting_repair.json")
+                target.parent.mkdir(parents=True, exist_ok=True)
+                with archive.extractfile(member) as incoming, target.open("xb") as outgoing:
+                    shutil.copyfileobj(incoming, outgoing)
+    report["reporting_recovery"] = {"state": "revalidating_retained_first_slot",
+        "source_archive_sha256": REPORTING_FAILURE_ARCHIVE_SHA256,
+        "original_native_head": REPORTING_FAILURE_HEAD, "native_motion_rerun": False}
+    item = {"mode": "unrendered", "state": "revalidating_retained", "retained": True,
+            "native_motion_rerun": False, "original_returncode": 1}
+    report["trials"].append(item)
+    sys.path.insert(0, str(PROTOTYPE))
+    from aether_cl.m6r_runtime import M6RConfig
+    from aether_cl.acceptance import load_trial
+    from aether_cl.m6r_audit import check_trial
+    from aether_cl.m8_matched import candidate_points, audit_gate
+    from aether_cl.m8_force_commission import audit_physics
+    directory = args.output / "unrendered"
+    relative = Path(carrier["run_relative"])
+    if relative.is_absolute() or ".." in relative.parts:
+        raise ValueError("Invalid retained native run path")
+    native_manifest, native_result, events = load_trial(directory / relative)
+    config = M6RConfig(**{**carrier["native_config"], "output": Path(carrier["native_config"]["output"])})
+    config.validate()
+    if (config.seed != SEED or config.system != "baseline" or config.verification or config.render
+            or config.disturbance != "none" or config.max_steps != ACTIONS
+            or native_manifest["software"]["git_commit"] != REPORTING_FAILURE_HEAD
+            or native_manifest["software"]["git_dirty"] is not False
+            or native_result.get("state") != "finished" or native_result.get("episodes") != [carrier["episode"]]
+            or [e["step"] for e in events if e["event"] == "step"] != list(range(1, ACTIONS+1))
+            or [r["step"] for r in read_lines(directory / "robot_state.jsonl")] != list(range(ACTIONS+1))
+            or read_lines(directory / "frames.jsonl")):
+        raise ValueError("Retained first slot is not the complete unrendered Baseline")
+    point = next(p for p in candidate_points() if p["point_id"] == "normal")
+    replay, physical, gate = check_trial(directory / relative, config), audit_physics(directory, carrier, point), audit_gate(directory, carrier)
+    for name, audit in (("accepted_runner_replay", replay), ("physics_audit", physical), ("controller_gate_audit", gate)):
+        write_json(directory / (name + "_revalidated.json"), audit)
+    if (not all(a["passed"] for a in (replay, physical, gate)) or physical["force_calls"]
+            or physical["external_physics_samples"] != ACTIONS * 5 or not carrier["episode"]["task_success"]):
+        raise ValueError("Retained first-slot re-audit failed; no rerun or replacement")
+    # The original error carrier and failed audit file are retained unchanged.
+    repaired = {k: value for k, value in carrier.items() if k not in ("error", "traceback")}
+    repaired.update(state="finished_valid_development_camera_evidence", camera_frames=0,
+        external_physics_samples=physical["external_physics_samples"], force_calls=0,
+        timing={key: {"count": 0} for key in ("capture_ms", "record_ms", "pipeline_ms")},
+        reporting_repair={"original_error": carrier["error"], "native_motion_rerun": False,
+                          "original_native_head": REPORTING_FAILURE_HEAD, "reporting_head": args.expected_head})
+    write_json(directory / "camera_result.json", repaired)
+    item.update(state="finished", result=repaired, reporting_revalidated=True)
+    report["reporting_recovery"]["state"] = "retained_first_slot_revalidated"
+    print("M9_UNRENDERED_REPORTING_REVALIDATED — 800 retained actions; no native rerun", flush=True)
+
+
 def bundle(args, report):
     write_json(args.output / "commissioning.json", report)
     snapshot = args.output / "source_snapshot"
@@ -406,6 +527,8 @@ def main(argv=None):
     parser.add_argument("--inspection-archive", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--archive", type=Path, required=True)
+    parser.add_argument("--recover-reporting-archive", type=Path,
+                        help="Only the pinned c05ee86 completed-first-slot bool_ reporting failure")
     parser.add_argument("--child", action="store_true")
     parser.add_argument("--mode", choices=MODES)
     parser.add_argument("--replay-service-seconds", type=int, default=3600)
@@ -428,7 +551,9 @@ def main(argv=None):
         report["preflight"] = preflight(args)
         with (args.archive.parent / "m9-camera-commissioning.lock").open("a") as lock:
             fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
-            for mode in MODES:
+            if args.recover_reporting_archive:
+                recover_reporting_failure(args, report)
+            for mode in (MODES[1:] if args.recover_reporting_archive else MODES):
                 item = {"mode": mode, "state": "started", "retained": True}
                 report["trials"].append(item)
                 print("Starting", mode, "development seed100 / 800 actions / zero force", flush=True)

@@ -29,7 +29,8 @@ source/capacity evidence, not working cameras, perception accuracy or M9 success
 
 Five isolated processes each reuse development seed100, the accepted Baseline,
 800 actions and zero external force. No seed, force, controller, verifier,
-threshold, replacement or resume CLI is provided.
+threshold or replacement CLI is provided. The specific reporting continuation
+described below reuses the already-completed first slot; it cannot retry motion.
 
 | Mode | Renderer and candidate cameras | Capture | Raw + MP4 | Live camera publication |
 | --- | --- | --- | --- | --- |
@@ -135,3 +136,36 @@ pass. It does not establish observability, calibration accuracy, one-tick sensor
 delivery feasibility, a non-privileged verifier, M9a success or Prototype A
 closure. Estimator/S0/ST implementation and development tests remain next;
 Core must accept the frozen executable protocol before any fresh M9 evaluation.
+
+## First-slot reporting correction, 2026-10-10
+
+The native `c05ee86` run completed the unrendered episode, then failed while
+serializing its audit: `TypeError: Object of type bool_ is not JSON serializable`.
+The parent stopped before any rendered child and retained the failure archive
+with SHA-256 `d4726e7a043622a92a3d6c8f516f231ba70c4c2c5cdf73007d11c64228d85565`.
+This is a reporting defect; no camera neutrality result is claimed from it.
+
+The JSON writer now converts NumPy scalars/arrays into JSON primitives without
+changing true/false check values. It still rejects nonfinite or unsupported
+values and refuses overwrite. Encoding precedes file creation, avoiding empty
+audit files from serialization failures. Regression tests exercise an actual
+accepted auditor return shape containing NumPy true and false checks.
+
+`--recover-reporting-archive` accepts only that exact failed archive. It checks
+safe indexed archive membership, all indexed hashes, the original revision,
+the unique first unrendered slot, the precise error, unchanged preflight/source
+identity, a finished native episode with all 800 actions and all 801 robot
+states, and no camera frames or started rendered slot. It then re-runs only the
+existing offline decision, physics and gate auditors on retained logs. Failed
+audits or an unhealthy episode block continuation. No simulator is created or
+reset by this repair, and no retained action is executed again.
+
+Use new output/log/archive names ending in `v2`. The original v1 output and
+archive are not modified. The continuation includes the original failure
+archive, the original error carrier, the original failed audit file and exact
+native trace bytes. Revalidated reports and a new carrier record the original
+native revision and the corrected reporting revision. The unrendered slot
+stays in the same five-case denominator. Only the four unstarted rendered cases
+execute on the corrected revision, followed by the original strict neutrality
+comparison. Child progress is printed every 100 actions. Native camera success
+remains unestablished until this continuation completes and evidence is reviewed.
