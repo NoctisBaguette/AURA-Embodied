@@ -10,6 +10,7 @@ import sys
 import tempfile
 import tarfile
 import unittest
+from types import SimpleNamespace
 from urllib.error import HTTPError
 from urllib.request import Request, urlopen
 from unittest.mock import patch
@@ -34,6 +35,34 @@ def packet():
 
 
 class CameraCommissionGuards(unittest.TestCase):
+    def accepted_episode(self, success=True):
+        from aether_cl.m6r_runtime import M6RConfig, summarize_episode
+        reference = SimpleNamespace(first_failure=None, first_success_step=316 if success else None,
+            eligibility={"eligible": True, "exclusion_reason": None, "initial_horizontal_error_m": 0.})
+        return summarize_episode(M6RConfig(seed=100, system="baseline", verification=False,
+            render=False, disturbance="none"), reference, None,
+            {"task_success": success, "release_success": success, "support_stability_success": success,
+             "retracted": success, "horizontal_error_m": 0.},
+            {"status": "disabled", "failure": None}, None, 800, False, 0., True, None, 2., [])
+
+    def test_health_gate_consumes_the_unchanged_accepted_episode_summary(self):
+        episode = self.accepted_episode()
+        self.assertNotIn("task_success", episode)
+        self.assertIs(episode["task_success_at_end"], True)
+        COMMISSION.require_healthy_episode(episode)
+        with self.assertRaisesRegex(ValueError, "did not finish healthy"):
+            COMMISSION.require_healthy_episode(self.accepted_episode(False))
+        with self.assertRaisesRegex(ValueError, "Missing accepted episode field"):
+            COMMISSION.require_healthy_episode({"task_success": True})
+
+    def test_both_native_and_retained_completion_paths_use_the_accepted_schema_gate(self):
+        tree = ast.parse(Path(COMMISSION.__file__).read_text())
+        for name in ("child", "recover_reporting_failure"):
+            function = next(n for n in tree.body if isinstance(n, ast.FunctionDef) and n.name == name)
+            gates = [n for n in ast.walk(function) if isinstance(n, ast.Call)
+                     and isinstance(n.func, ast.Name) and n.func.id == "require_healthy_episode"]
+            self.assertEqual(len(gates), 1, name)
+
     def test_json_writer_preserves_numpy_audit_values_including_failed_checks(self):
         from aether_cl.m6r_audit import finish
         audit = finish({"healthy": np.bool_(True), "failed": np.bool_(False)},
@@ -67,7 +96,9 @@ class CameraCommissionGuards(unittest.TestCase):
         from aether_cl.m6r_runtime import M6RConfig
         from aether_cl.runtime import json_value
         identity = {"development_witness": "fixture"}
-        episode = {"task_success": True, "steps": 800}
+        # Generate this through the accepted runtime. A hand-written fixture
+        # previously invented task_success and hid the production schema error.
+        episode = self.accepted_episode()
         carrier = {"state": "error_retained", "error": COMMISSION.REPORTING_FAILURE_ERROR,
             "traceback": "original bool_ serialization failure", "mode": "unrendered",
             "seed": 100, "system": "baseline", "run_relative": "native/retained",
@@ -161,6 +192,15 @@ class CameraCommissionGuards(unittest.TestCase):
             output = Path(temporary)/"continuation/unrendered"
             self.assertFalse((output/"camera_result.json").exists())
             self.assertFalse(json.loads((output/"accepted_runner_replay_revalidated.json").read_text())["checks"]["sample"])
+
+    def test_unhealthy_accepted_episode_blocks_retained_reporting_repair(self):
+        def unhealthy(body):
+            body["unrendered/camera_result.json"]["episode"] = self.accepted_episode(False)
+            body["unrendered/native/retained/result.json"]["episodes"] = [self.accepted_episode(False)]
+        with tempfile.TemporaryDirectory() as temporary:
+            with self.assertRaisesRegex(ValueError, "did not finish healthy"):
+                self.repair_fixture(temporary, unhealthy)
+            self.assertFalse((Path(temporary)/"continuation/unrendered/camera_result.json").exists())
 
     def test_reporting_repair_requires_exact_archive_and_has_no_native_execution_calls(self):
         from argparse import Namespace

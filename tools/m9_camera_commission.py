@@ -50,6 +50,15 @@ def read_lines(path):
         return [json.loads(line) for line in stream]
 
 
+def require_healthy_episode(episode):
+    # Read the terminal episode schema produced by unchanged M6R, rather than
+    # the per-observation reference field named task_success.
+    if "task_success_at_end" not in episode:
+        raise ValueError("Missing accepted episode field task_success_at_end; retain evidence")
+    if episode["task_success_at_end"] is not True:
+        raise ValueError("Known zero-force Baseline did not finish healthy; retain for review")
+
+
 def archive_receipt(path):
     if inspection.sha256(path) != INSPECTION_ARCHIVE_SHA256:
         raise ValueError("Require the independently reviewed native source-inspection archive")
@@ -287,8 +296,7 @@ def child(args):
             write_json(args.output / (name + ".json"), audit)
         if not all(a["passed"] for a in (replay, physical, gate)) or physical["force_calls"] or len(robot_rows) != ACTIONS:
             raise ValueError("Frozen runner/physics/gate audit failed; retain every outcome")
-        if not carrier["episode"]["task_success"]:
-            raise ValueError("Known zero-force Baseline did not finish healthy; retain for review")
+        require_healthy_episode(carrier["episode"])
         if captured and [r["frame_id"] for r in frame_rows] != list(range(ACTIONS+1)):
             raise ValueError("Missing/duplicate camera frame; no frame replacement")
         if recording:
@@ -464,8 +472,9 @@ def recover_reporting_failure(args, report):
     for name, audit in (("accepted_runner_replay", replay), ("physics_audit", physical), ("controller_gate_audit", gate)):
         write_json(directory / (name + "_revalidated.json"), audit)
     if (not all(a["passed"] for a in (replay, physical, gate)) or physical["force_calls"]
-            or physical["external_physics_samples"] != ACTIONS * 5 or not carrier["episode"]["task_success"]):
+            or physical["external_physics_samples"] != ACTIONS * 5):
         raise ValueError("Retained first-slot re-audit failed; no rerun or replacement")
+    require_healthy_episode(carrier["episode"])
     # The original error carrier and failed audit file are retained unchanged.
     repaired = {k: value for k, value in carrier.items() if k not in ("error", "traceback")}
     repaired.update(state="finished_valid_development_camera_evidence", camera_frames=0,
