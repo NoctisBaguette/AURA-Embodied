@@ -314,3 +314,16 @@ HQ + Branch 02 should decide whether **AETHER** remains an internal codename or 
 ## October 15 research trend: selective intervention
 
 RESCUE and ForkCast evaluate whether recovery actions improve expected outcomes relative to continuing. Intervention cost and detection confidence must be measured together. RoboRSI and SEAR challenge AETHER skill learning novelty.
+
+
+## T13 — Verified transferable skills are not just more attempts (2026-10-15)
+
+RoboRSI and SEAR stress skill-scoped updates and held-out transfer under matched trial budgets; EmbodiedEvo stores executable skills/lessons; LoopWAM uses failed futures without blindly imitating them. Test retention, regressions and generalization before calling a system self-improving.
+
+## T14 — Reasoning cadence and physical time matter (2026-10-15)
+
+ChunkAct compiles known routines to reduce high-level deliberation; Chronos Policy uses actual sensor and action timestamps. Compare per-primitive, subtask-boundary and event-driven reasoning while retaining fast local safety feedback.
+
+## T15 — Physical-interface fidelity is distinct from image OOD (2026-10-15)
+
+WorldOracle scores action predictions against executed physical outcomes; ForceWAM models wrench/contact; LIBERO-RIG perturbs camera, calibration, actuation and grippers. Future AURA benchmarks should include these shifts, with clean/perturbed results reported separately.
