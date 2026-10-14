@@ -1,0 +1,1172 @@
+{
+  "name": "M7 first18 independent pilot review",
+  "native_measurement_commit": "a51e5d2073c4033141b26e956804d593aa45d6df",
+  "archive_sha256": "3ec98dea029d19d7237c6ff6579878c87d42d4992fe61563be340dcd62439c66",
+  "archive_bytes": 28513914,
+  "log_sha256": "fa741685db73d9b641e692092f53d9115b1b5daae19a401266371f27d5040ba5",
+  "protocol_sha256": "9c5a713fc1744e11f0d6f6cd1f12ef386948f59bba6982b3c4864a69d54a4e6d",
+  "indexed_files": 111,
+  "indexed_files_exact": true,
+  "execution_sources": [
+    {
+      "name": "m7_task.py",
+      "git_blob": "8bd8196d90895ad689d203760bbd9d004bc6d564",
+      "sha256": "34a59f771446015cd4d0ea1f52ad6e1fcdd16c268d4e3743c0a4583e69ccd72f"
+    },
+    {
+      "name": "m7_policy.py",
+      "git_blob": "3cce4a1913edf5315a697e2a92c408af279f37a1",
+      "sha256": "bcd9a2eae4058726a86cfb38afda4cc0d20e181887b2bde9d0cbeccc65ce5333"
+    },
+    {
+      "name": "m7_runtime.py",
+      "git_blob": "6dbfce94c3e2fdd0542e33fc16f4dc5f4315a62b",
+      "sha256": "2b4a02b926f00c8fb23708c5949fe3c52aa3fcae551f58d1a752c397d2e56206"
+    },
+    {
+      "name": "m7_audit.py",
+      "git_blob": "659c12d6392d470dcd2b0187f476b13aee81b366",
+      "sha256": "2879a6e45ee4a43575a5978648bedd5aee16fd4f0a97e65a8ff6d906674d327a"
+    },
+    {
+      "name": "m7_development.py",
+      "git_blob": "73cf6604e95e8e3b421a64748c6046b16687d6c6",
+      "sha256": "44e271356e025bdc1b3f19081391f305664edc7d961e47f71f79a417a3f24cd2"
+    },
+    {
+      "name": "m7_frozen.py",
+      "git_blob": "65b8eaafa8fa554c3bd9fd4030b674a8a2d3bda8",
+      "sha256": "fea63baf553ea3a94b442e6d2f16277b0e8e1cee29aabc3837e367d72d27bfa9"
+    },
+    {
+      "name": "m7_sweep.py",
+      "git_blob": "d19ff6e8130d597becdaec7f2c46fde003ff9f9a",
+      "sha256": "031e992090317b68f84f2a720f6d4e556ba40748b2683744c1118014d67dd607"
+    },
+    {
+      "name": "m7_summary.py",
+      "git_blob": "9179ab77c46f65739d097f331d6e47b36fca151d",
+      "sha256": "c0871897b03bd9c43f88d19474d7c1dbb20644aba0c9f07859c82d89fe842477"
+    },
+    {
+      "name": "policies.py",
+      "git_blob": "de38891b4c532b2119ff747ca6d588e8cfc3bb70",
+      "sha256": "c4e16450ad64ad8683db69d7a166720e411e5e97c8c1def3471b1b04ced04f29"
+    },
+    {
+      "name": "runtime.py",
+      "git_blob": "70effa40a970d614941a377dc52a53076bfc9f7c",
+      "sha256": "471a5d26a384c6997f0d5a6713d5595bc07dcfe64e0bc2a19b13c786d9449c07"
+    },
+    {
+      "name": "verification.py",
+      "git_blob": "0e2ccb7e0b5b06bcbccec993541afd9355e8cf5d",
+      "sha256": "472073de5db587de20c2185b324181f169a7bc0e52cd5706aef7506f928f83a7"
+    }
+  ],
+  "native": {
+    "software": {
+      "python": "3.10.22",
+      "platform": "Linux-5.15.0-191-generic-x86_64-with-glibc2.35",
+      "packages": {
+        "torch": "2.4.1+cu121",
+        "numpy": "1.26.4",
+        "mani_skill": "3.0.1",
+        "sapien": "3.0.3",
+        "gymnasium": "1.1.1",
+        "Pillow": "11.3.0"
+      },
+      "git_commit": "a51e5d2073c4033141b26e956804d593aa45d6df",
+      "git_dirty": false,
+      "cuda_visible_devices": "1",
+      "native_library_environment": {
+        "LD_LIBRARY_PATH": "/home/jiangle/aura-work/aether-glvnd-1.4.0/usr/lib/x86_64-linux-gnu",
+        "LD_PRELOAD": null
+      },
+      "gpu_inventory": [
+        "0, NVIDIA A100 80GB PCIe, 81920 MiB, 595.91.07",
+        "1, NVIDIA A100 80GB PCIe, 81920 MiB, 595.91.07",
+        "2, NVIDIA A100 80GB PCIe, 81920 MiB, 595.91.07",
+        "3, NVIDIA A100 80GB PCIe, 81920 MiB, 595.91.07"
+      ]
+    },
+    "installed_sources_sha256": {
+      "__init__.py": "35eafdb4f989800edac4909ba8ea5313c917bf9520ddf082db5bc177cf346e74",
+      "agents/controllers/pd_ee_pose.py": "318110fe18cb879eae00ca106f0117eed94679b79ee00ee226bacd38e4755f97",
+      "agents/robots/panda/__init__.py": "5671492dc98f3018e8fa6941a5f328e5a7182ae77fc2781101c7faeee8ae8129",
+      "agents/robots/panda/panda.py": "2a98a2133b49e5a94a83d05019c0ab833ad6767f85ff1bf66265cd9247cb0fda",
+      "agents/robots/panda/panda_stick.py": "3404d5e702e6f0ff5fc4f1002bb9e8c9f55677082559b871c5cfb805456ab2bd",
+      "agents/robots/panda/panda_wristcam.py": "792c3ae7609a03cd987deb42a9ab0718071491a27f6972628c99bab476662b24",
+      "envs/sapien_env.py": "459196c275764eaf53ccba8e154e3207036399e54c8bdd45f9e7d0919970464b",
+      "envs/tasks/dexterity/insert_flower.py": "3d50994864b3b5d71b1649d21d745c9ffcf7cc8e1f235168543c4ef29a009499",
+      "envs/tasks/tabletop/assembling_kits.py": "e89727485819c1c6f544795257410806290a7d2efd491e2a981142790d62272c",
+      "envs/tasks/tabletop/lift_peg_upright.py": "3c8679d25368418edd3a7bd5d43d2122cdd209369350e91f8d471ab9f6fb8063",
+      "envs/tasks/tabletop/peg_insertion_side.py": "79761d7a7b17ebdbd974c58f7427abcd3a50ec115f0340f6ed5d282a0d48fc6e",
+      "envs/tasks/tabletop/plug_charger.py": "13b08f30d4975185fdfa42380ab160f86624419e5d2e0749b3a845c92d81278c",
+      "utils/registration.py": "5e553c27ed82de4f8807f42819ac4c4cacc4a4a4ffbee23c3d6b91282d146060",
+      "utils/scene_builder/table/scene_builder.py": "251d40544a4cc3cbcdd7a8fb81835a898d165330ce819fcf2a9a7fab6c309d3a",
+      "utils/structs/actor.py": "dacf82803b63928a4317f400adfb7766cb7863d914058acbe226c47c90f28f24",
+      "utils/structs/pose.py": "f5578775b35bbd23c8cdcf5384467443a8921ce70120e0495fb06ed5481104f9",
+      "utils/structs/types.py": "86451c45e986ce7f789e01edecaa9ba6c3f89a08c3960ddb212ca0cf4499e156"
+    },
+    "installed_assets_sha256": {
+      "robots/panda/panda_v3.urdf": "d040277352476639950e2ddce1dff8a1c0e95df470e5e9ed186cd01c468fa412"
+    },
+    "startup_environment_sha256": "83b43903c6b1e3adb2fb88867a3483275898598f982f42562009d6a5626b8338",
+    "inspection_receipt_sha256": "a7a0ad779aeba1e7b8afb40568146a1ebd5b47975061027cffd5b2a4508684cb"
+  },
+  "fresh_seed_history": {
+    "root": "/home/jiangle/aura-work/AURA-Embodied-offline/aura-sim/prototype_aether_cl/runs",
+    "event_files_checked": 2776,
+    "recorded_reset_seeds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      96,
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      126,
+      127,
+      128,
+      129,
+      130,
+      131,
+      132,
+      133,
+      134,
+      135,
+      136,
+      137,
+      138,
+      139
+    ],
+    "selected_overlap": [],
+    "scope": "retained_native_history_not_unreported_or_deleted_runs",
+    "own_validated_study_excluded": false
+  },
+  "commissioning": {
+    "archive_sha256": "21b58777ce05db80edd35c24457f7778dd2edbacfab729adb94005c7ff4f3f68",
+    "producer_commit": "fff75c25f2b5d1dc01a224be86a4cb60b1152afb",
+    "indexed_files": 191,
+    "replayed_trials": 36,
+    "strict_pairs": 34,
+    "report_sha256": "e79384584c2821a2a14c82fdf163c73bd904eb0a791c2ad75828a090a925aa86",
+    "review_sha256": "c7370f4ea0655b35e284b49e7bcf69e5df937b417aa0214e8c33d92f4a033c71"
+  },
+  "auditor_versions": {
+    "python": "3.10.21",
+    "numpy": "1.26.4",
+    "scipy": "1.10.1"
+  },
+  "replays": [
+    {
+      "index": 1,
+      "ratio": 0.0,
+      "seed": 140,
+      "system": "baseline",
+      "passed": true,
+      "steps": 1200,
+      "maximum_action_replay_error": 0.0,
+      "physics_substep_samples": 6000,
+      "raw_endpoint_reconstructions": 1200,
+      "action_replay_bound": 3e-07,
+      "derived_scalar_replay_bound": 1e-10,
+      "physical_pair_tolerance": "exact"
+    },
+    {
+      "index": 2,
+      "ratio": 0.0,
+      "seed": 140,
+      "system": "v1",
+      "passed": true,
+      "steps": 1200,
+      "maximum_action_replay_error": 0.0,
+      "physics_substep_samples": 6000,
+      "raw_endpoint_reconstructions": 1200,
+      "action_replay_bound": 3e-07,
+      "derived_scalar_replay_bound": 1e-10,
+      "physical_pair_tolerance": "exact"
+    },
+    {
+      "index": 3,
+      "ratio": 0.0,
+      "seed": 140,
+      "system": "v2",
+      "passed": true,
+      "steps": 1200,
+      "maximum_action_replay_error": 0.0,
+      "physics_substep_samples": 6000,
+      "raw_endpoint_reconstructions": 1200,
+      "action_replay_bound": 3e-07,
+      "derived_scalar_replay_bound": 1e-10,
+      "physical_pair_tolerance": "exact"
+    },
+    {
+      "index": 4,
+      "ratio": 0.0,
+      "seed": 141,
+      "system": "baseline",
+      "passed": true,
+      "steps": 1200,
+      "maximum_action_replay_error": 0.0,
+      "physics_substep_samples": 6000,
+      "raw_endpoint_reconstructions": 1200,
+      "action_replay_bound": 3e-07,
+      "derived_scalar_replay_bound": 1e-10,
+      "physical_pair_tolerance": "exact"
+    },
+    {
+      "index": 5,
+      "ratio": 0.0,
+      "seed": 141,
+      "system": "v1",
+      "passed": true,
+      "steps": 1200,
+      "maximum_action_replay_error": 0.0,
+      "physics_substep_samples": 6000,
+      "raw_endpoint_reconstructions": 1200,
+      "action_replay_bound": 3e-07,
+      "derived_scalar_replay_bound": 1e-10,
+      "physical_pair_tolerance": "exact"
+    },
+    {
+      "index": 6,
+      "ratio": 0.0,
+      "seed": 141,
+      "system": "v2",
+      "passed": true,
+      "steps": 1200,
+      "maximum_action_replay_error": 0.0,
+      "physics_substep_samples": 6000,
+      "raw_endpoint_reconstructions": 1200,
+      "action_replay_bound": 3e-07,
+      "derived_scalar_replay_bound": 1e-10,
+      "physical_pair_tolerance": "exact"
+    },
+    {
+      "index": 7,
+      "ratio": 0.5,
+      "seed": 140,
+      "system": "baseline",
+      "passed": true,
+      "steps": 1200,
+      "maximum_action_replay_error": 0.0,
+      "physics_substep_samples": 6000,
+      "raw_endpoint_reconstructions": 1200,
+      "action_replay_bound": 3e-07,
+      "derived_scalar_replay_bound": 1e-10,
+      "physical_pair_tolerance": "exact"
+    },
+    {
+      "index": 8,
+      "ratio": 0.5,
+      "seed": 140,
+      "system": "v1",
+      "passed": true,
+      "steps": 1200,
+      "maximum_action_replay_error": 0.0,
+      "physics_substep_samples": 6000,
+      "raw_endpoint_reconstructions": 1200,
+      "action_replay_bound": 3e-07,
+      "derived_scalar_replay_bound": 1e-10,
+      "physical_pair_tolerance": "exact"
+    },
+    {
+      "index": 9,
+      "ratio": 0.5,
+      "seed": 140,
+      "system": "v2",
+      "passed": true,
+      "steps": 1200,
+      "maximum_action_replay_error": 0.0,
+      "physics_substep_samples": 6000,
+      "raw_endpoint_reconstructions": 1200,
+      "action_replay_bound": 3e-07,
+      "derived_scalar_replay_bound": 1e-10,
+      "physical_pair_tolerance": "exact"
+    },
+    {
+      "index": 10,
+      "ratio": 0.5,
+      "seed": 141,
+      "system": "baseline",
+      "passed": true,
+      "steps": 1200,
+      "maximum_action_replay_error": 0.0,
+      "physics_substep_samples": 6000,
+      "raw_endpoint_reconstructions": 1200,
+      "action_replay_bound": 3e-07,
+      "derived_scalar_replay_bound": 1e-10,
+      "physical_pair_tolerance": "exact"
+    },
+    {
+      "index": 11,
+      "ratio": 0.5,
+      "seed": 141,
+      "system": "v1",
+      "passed": true,
+      "steps": 1200,
+      "maximum_action_replay_error": 0.0,
+      "physics_substep_samples": 6000,
+      "raw_endpoint_reconstructions": 1200,
+      "action_replay_bound": 3e-07,
+      "derived_scalar_replay_bound": 1e-10,
+      "physical_pair_tolerance": "exact"
+    },
+    {
+      "index": 12,
+      "ratio": 0.5,
+      "seed": 141,
+      "system": "v2",
+      "passed": true,
+      "steps": 1200,
+      "maximum_action_replay_error": 0.0,
+      "physics_substep_samples": 6000,
+      "raw_endpoint_reconstructions": 1200,
+      "action_replay_bound": 3e-07,
+      "derived_scalar_replay_bound": 1e-10,
+      "physical_pair_tolerance": "exact"
+    },
+    {
+      "index": 13,
+      "ratio": 2.0,
+      "seed": 140,
+      "system": "baseline",
+      "passed": true,
+      "steps": 1200,
+      "maximum_action_replay_error": 0.0,
+      "physics_substep_samples": 6000,
+      "raw_endpoint_reconstructions": 1200,
+      "action_replay_bound": 3e-07,
+      "derived_scalar_replay_bound": 1e-10,
+      "physical_pair_tolerance": "exact"
+    },
+    {
+      "index": 14,
+      "ratio": 2.0,
+      "seed": 140,
+      "system": "v1",
+      "passed": true,
+      "steps": 1200,
+      "maximum_action_replay_error": 0.0,
+      "physics_substep_samples": 6000,
+      "raw_endpoint_reconstructions": 1200,
+      "action_replay_bound": 3e-07,
+      "derived_scalar_replay_bound": 1e-10,
+      "physical_pair_tolerance": "exact"
+    },
+    {
+      "index": 15,
+      "ratio": 2.0,
+      "seed": 140,
+      "system": "v2",
+      "passed": true,
+      "steps": 1200,
+      "maximum_action_replay_error": 0.0,
+      "physics_substep_samples": 6000,
+      "raw_endpoint_reconstructions": 1200,
+      "action_replay_bound": 3e-07,
+      "derived_scalar_replay_bound": 1e-10,
+      "physical_pair_tolerance": "exact"
+    },
+    {
+      "index": 16,
+      "ratio": 2.0,
+      "seed": 141,
+      "system": "baseline",
+      "passed": true,
+      "steps": 1200,
+      "maximum_action_replay_error": 0.0,
+      "physics_substep_samples": 6000,
+      "raw_endpoint_reconstructions": 1200,
+      "action_replay_bound": 3e-07,
+      "derived_scalar_replay_bound": 1e-10,
+      "physical_pair_tolerance": "exact"
+    },
+    {
+      "index": 17,
+      "ratio": 2.0,
+      "seed": 141,
+      "system": "v1",
+      "passed": true,
+      "steps": 1200,
+      "maximum_action_replay_error": 0.0,
+      "physics_substep_samples": 6000,
+      "raw_endpoint_reconstructions": 1200,
+      "action_replay_bound": 3e-07,
+      "derived_scalar_replay_bound": 1e-10,
+      "physical_pair_tolerance": "exact"
+    },
+    {
+      "index": 18,
+      "ratio": 2.0,
+      "seed": 141,
+      "system": "v2",
+      "passed": true,
+      "steps": 1200,
+      "maximum_action_replay_error": 0.0,
+      "physics_substep_samples": 6000,
+      "raw_endpoint_reconstructions": 1200,
+      "action_replay_bound": 3e-07,
+      "derived_scalar_replay_bound": 1e-10,
+      "physical_pair_tolerance": "exact"
+    }
+  ],
+  "total_actions": 21600,
+  "physics_substep_samples": 108000,
+  "raw_endpoint_reconstructions": 21600,
+  "maximum_action_replay_error": 0.0,
+  "pairs": [
+    {
+      "ratio": 0.0,
+      "seed": 140,
+      "systems": [
+        "baseline",
+        "v1"
+      ],
+      "passed": true,
+      "exact_steps": 1200
+    },
+    {
+      "ratio": 0.0,
+      "seed": 140,
+      "systems": [
+        "v1",
+        "v2"
+      ],
+      "passed": true,
+      "exact_steps": 1200
+    },
+    {
+      "ratio": 0.0,
+      "seed": 141,
+      "systems": [
+        "baseline",
+        "v1"
+      ],
+      "passed": true,
+      "exact_steps": 1200
+    },
+    {
+      "ratio": 0.0,
+      "seed": 141,
+      "systems": [
+        "v1",
+        "v2"
+      ],
+      "passed": true,
+      "exact_steps": 1200
+    },
+    {
+      "ratio": 0.5,
+      "seed": 140,
+      "systems": [
+        "baseline",
+        "v1"
+      ],
+      "passed": true,
+      "exact_steps": 1200
+    },
+    {
+      "ratio": 0.5,
+      "seed": 140,
+      "systems": [
+        "v1",
+        "v2"
+      ],
+      "passed": true,
+      "exact_steps": 1200
+    },
+    {
+      "ratio": 0.5,
+      "seed": 140,
+      "systems": [
+        "normal_baseline",
+        "disturbed_baseline"
+      ],
+      "passed": true,
+      "exact_steps": 430
+    },
+    {
+      "ratio": 0.5,
+      "seed": 141,
+      "systems": [
+        "baseline",
+        "v1"
+      ],
+      "passed": true,
+      "exact_steps": 1200
+    },
+    {
+      "ratio": 0.5,
+      "seed": 141,
+      "systems": [
+        "v1",
+        "v2"
+      ],
+      "passed": true,
+      "exact_steps": 1200
+    },
+    {
+      "ratio": 0.5,
+      "seed": 141,
+      "systems": [
+        "normal_baseline",
+        "disturbed_baseline"
+      ],
+      "passed": true,
+      "exact_steps": 430
+    },
+    {
+      "ratio": 2.0,
+      "seed": 140,
+      "systems": [
+        "baseline",
+        "v1"
+      ],
+      "passed": true,
+      "exact_steps": 1200
+    },
+    {
+      "ratio": 2.0,
+      "seed": 140,
+      "systems": [
+        "v1",
+        "v2"
+      ],
+      "passed": true,
+      "exact_steps": 642
+    },
+    {
+      "ratio": 2.0,
+      "seed": 140,
+      "systems": [
+        "normal_baseline",
+        "disturbed_baseline"
+      ],
+      "passed": true,
+      "exact_steps": 430
+    },
+    {
+      "ratio": 2.0,
+      "seed": 141,
+      "systems": [
+        "baseline",
+        "v1"
+      ],
+      "passed": true,
+      "exact_steps": 1200
+    },
+    {
+      "ratio": 2.0,
+      "seed": 141,
+      "systems": [
+        "v1",
+        "v2"
+      ],
+      "passed": true,
+      "exact_steps": 642
+    },
+    {
+      "ratio": 2.0,
+      "seed": 141,
+      "systems": [
+        "normal_baseline",
+        "disturbed_baseline"
+      ],
+      "passed": true,
+      "exact_steps": 430
+    }
+  ],
+  "summary_and_csv_exact": true,
+  "csvs": [
+    {
+      "name": "episodes.csv",
+      "sha256": "4c34738dd4b6fc1df7495e7582d9ea9a876ab673cec9e544c1f4908bd0737be3"
+    },
+    {
+      "name": "curve.csv",
+      "sha256": "0633610be371da567340b125174fbe6c40d71dd3b94c4b092b23bb72944fea3b"
+    },
+    {
+      "name": "paired.csv",
+      "sha256": "e49218222d00e2435f28f7ab0ce729e7df4bdf917a72bcf69f632ae7378adddf"
+    }
+  ],
+  "pilot_gate": {
+    "passed": true,
+    "checks": {
+      "first18_complete_replayed": true,
+      "strict_pairs": true,
+      "at_least_one_healthy_normal_baseline": true,
+      "precontact_injections": true
+    },
+    "failed_checks": [],
+    "interpretation": "commissioning_only_no_v2_success_gate_no_exclusions_or_replacement_pilot_retained"
+  },
+  "observed_cells": [
+    {
+      "ratio": 0.0,
+      "system": "baseline",
+      "count": 2,
+      "successes": 2
+    },
+    {
+      "ratio": 0.0,
+      "system": "v1",
+      "count": 2,
+      "successes": 2
+    },
+    {
+      "ratio": 0.0,
+      "system": "v2",
+      "count": 2,
+      "successes": 2
+    },
+    {
+      "ratio": 0.5,
+      "system": "baseline",
+      "count": 2,
+      "successes": 2
+    },
+    {
+      "ratio": 0.5,
+      "system": "v1",
+      "count": 2,
+      "successes": 2
+    },
+    {
+      "ratio": 0.5,
+      "system": "v2",
+      "count": 2,
+      "successes": 2
+    },
+    {
+      "ratio": 2.0,
+      "system": "baseline",
+      "count": 2,
+      "successes": 0
+    },
+    {
+      "ratio": 2.0,
+      "system": "v1",
+      "count": 2,
+      "successes": 0
+    },
+    {
+      "ratio": 2.0,
+      "system": "v2",
+      "count": 2,
+      "successes": 2
+    }
+  ],
+  "recovery_attempts": [
+    {
+      "ratio": 2.0,
+      "seed": 140,
+      "system": "v2",
+      "task_success": true,
+      "legacy_velocity_success": false,
+      "controller_complete": true,
+      "valid_acquisition": true,
+      "depth_m": 0.11445471321041524,
+      "orientation_error_rad": 0.003536847890370732,
+      "lateral_error_m": 0.0002669754880745686,
+      "channel_margin_m": 0.0026912425703562344,
+      "object_target_relative_pose": {
+        "position_m": [
+          -0.1153776078516173,
+          -6.000932568601828e-05,
+          -9.162695210382442e-05
+        ],
+        "rotation_matrix": [
+          [
+            0.9999989596536724,
+            0.00011439808360059936,
+            0.0014379167750231145
+          ],
+          [
+            -0.00010975398080976135,
+            0.9999947794258102,
+            -0.0032294078697585487
+          ],
+          [
+            -0.0014382787063433762,
+            0.003229246692965798,
+            0.9999937516405587
+          ]
+        ]
+      },
+      "depth_error_from_nominal_m": 0.0004615070969349183,
+      "object_target_goal_position_error_m": 0.0005331648073100383,
+      "injection_applied": true,
+      "injection_precondition": true,
+      "requested_magnitude_m": 0.006000000983476639,
+      "preinsert_relative_pose": {
+        "position_m": [
+          -0.29005061329758264,
+          0.005994250019191233,
+          -8.774478048322036e-05
+        ],
+        "rotation_matrix": [
+          [
+            0.9999989963183604,
+            0.00012558980598753128,
+            0.0014112368589769674
+          ],
+          [
+            -0.00012131749290164837,
+            0.9999954111704092,
+            -0.0030270315805508556
+          ],
+          [
+            -0.0014116105473604295,
+            0.003026857334657214,
+            0.999994422729616
+          ]
+        ]
+      },
+      "preinsert_head_hole_m": [
+        -0.1751345083295329,
+        0.005980308671449812,
+        -0.00024996172913187064
+      ],
+      "first_box_contact_step": 533,
+      "first_positive_depth_step": 709,
+      "reference_failure": {
+        "step": 630,
+        "failure": "INSERTION_LATERAL_INTERFERENCE"
+      },
+      "detected_failure": {
+        "step": 642,
+        "failure": "INSERTION_LATERAL_INTERFERENCE"
+      },
+      "detection_latency_steps": 12,
+      "diagnosis_matches": true,
+      "recovery_attempts": 1,
+      "recovery_success": true,
+      "recovery_state": "attempt_complete",
+      "recovery_abort_reason": null,
+      "recovery_reason": "INSERTION_LATERAL_INTERFERENCE",
+      "completed_stages": [
+        "backout",
+        "realign",
+        "reinsert",
+        "verify"
+      ],
+      "retry_actions": 159,
+      "retry_tcp_path_m": 0.22425959313254104,
+      "total_tcp_path_m": 1.2417040608308803,
+      "first_task_success_step": 801
+    },
+    {
+      "ratio": 2.0,
+      "seed": 141,
+      "system": "v2",
+      "task_success": true,
+      "legacy_velocity_success": false,
+      "controller_complete": true,
+      "valid_acquisition": true,
+      "depth_m": 0.12135070202286562,
+      "orientation_error_rad": 0.0057879083850269275,
+      "lateral_error_m": 0.00017523226200027284,
+      "channel_margin_m": 0.002715269695393756,
+      "object_target_relative_pose": {
+        "position_m": [
+          -0.12204009222485197,
+          -2.4532089190147098e-05,
+          -6.207831113378998e-05
+        ],
+        "rotation_matrix": [
+          [
+            0.9999995971541829,
+            0.00017082449827536688,
+            0.0008811983105826794
+          ],
+          [
+            -0.00016578314379931636,
+            0.9999836387876335,
+            -0.005717925584745491
+          ],
+          [
+            -0.0008821606548791731,
+            0.005717777193476848,
+            0.9999832642682298
+          ]
+        ]
+      },
+      "depth_error_from_nominal_m": 0.0003447196132389668,
+      "object_target_goal_position_error_m": 0.0003867013801337605,
+      "injection_applied": true,
+      "injection_precondition": true,
+      "requested_magnitude_m": 0.006000000983476639,
+      "preinsert_relative_pose": {
+        "position_m": [
+          -0.30337105058620073,
+          0.0059902635721423144,
+          -7.177908072222565e-05
+        ],
+        "rotation_matrix": [
+          [
+            0.9999994162150251,
+            0.00018465995471436667,
+            0.00106464562665865
+          ],
+          [
+            -0.00017871526276410268,
+            0.9999844094464492,
+            -0.00558112218928323
+          ],
+          [
+            -0.0010656596380147231,
+            0.005580928662685033,
+            0.9999838586721279
+          ]
+        ]
+      },
+      "preinsert_head_hole_m": [
+        -0.1816756999940548,
+        0.00596851474288743,
+        -0.00020146497969100597
+      ],
+      "first_box_contact_step": 530,
+      "first_positive_depth_step": 709,
+      "reference_failure": {
+        "step": 630,
+        "failure": "INSERTION_LATERAL_INTERFERENCE"
+      },
+      "detected_failure": {
+        "step": 642,
+        "failure": "INSERTION_LATERAL_INTERFERENCE"
+      },
+      "detection_latency_steps": 12,
+      "diagnosis_matches": true,
+      "recovery_attempts": 1,
+      "recovery_success": true,
+      "recovery_state": "attempt_complete",
+      "recovery_abort_reason": null,
+      "recovery_reason": "INSERTION_LATERAL_INTERFERENCE",
+      "completed_stages": [
+        "backout",
+        "realign",
+        "reinsert",
+        "verify"
+      ],
+      "retry_actions": 160,
+      "retry_tcp_path_m": 0.23272584069953856,
+      "total_tcp_path_m": 1.5004597906176287,
+      "first_task_success_step": 802
+    }
+  ],
+  "unnecessary_recoveries": 0,
+  "regressions": 0,
+  "rescues": 2,
+  "pilot_retained": true,
+  "remaining_unstarted_slots": 342,
+  "decision": "continue_frozen_M7_unstarted_slots_only",
+  "scope": "pilot commissioning and evidence integrity; no V2 success gate, no exclusions, no replacement, no training; return to02 after fullM7",
+  "all_snapshot_blobs": [
+    {
+      "path": "docs/research/experiments/evidence/AETHER_CL_M7_Candidates_v5_Review.json",
+      "git_blob": "bbf4c2b2853c4234c68c684bcb1d2acbff0fe12d",
+      "sha256": "c7370f4ea0655b35e284b49e7bcf69e5df937b417aa0214e8c33d92f4a033c71"
+    },
+    {
+      "path": "docs/research/experiments/evidence/AETHER_CL_M7_Insertion_Protocol.json",
+      "git_blob": "90d12f617d7e1e7f9649c92d1fee1dc11927570e",
+      "sha256": "9c5a713fc1744e11f0d6f6cd1f12ef386948f59bba6982b3c4864a69d54a4e6d"
+    },
+    {
+      "path": "docs/research/experiments/evidence/AETHER_CL_M7_Installed_Inspection.json",
+      "git_blob": "e22b3f96adfc1d130bade9276f1f94735966f60d",
+      "sha256": "a7a0ad779aeba1e7b8afb40568146a1ebd5b47975061027cffd5b2a4508684cb"
+    },
+    {
+      "path": "aura-sim/prototype_aether_cl/aether_cl/m7_audit.py",
+      "git_blob": "659c12d6392d470dcd2b0187f476b13aee81b366",
+      "sha256": "2879a6e45ee4a43575a5978648bedd5aee16fd4f0a97e65a8ff6d906674d327a"
+    },
+    {
+      "path": "aura-sim/prototype_aether_cl/aether_cl/m7_development.py",
+      "git_blob": "73cf6604e95e8e3b421a64748c6046b16687d6c6",
+      "sha256": "44e271356e025bdc1b3f19081391f305664edc7d961e47f71f79a417a3f24cd2"
+    },
+    {
+      "path": "aura-sim/prototype_aether_cl/aether_cl/m7_frozen.py",
+      "git_blob": "65b8eaafa8fa554c3bd9fd4030b674a8a2d3bda8",
+      "sha256": "fea63baf553ea3a94b442e6d2f16277b0e8e1cee29aabc3837e367d72d27bfa9"
+    },
+    {
+      "path": "aura-sim/prototype_aether_cl/aether_cl/m7_policy.py",
+      "git_blob": "3cce4a1913edf5315a697e2a92c408af279f37a1",
+      "sha256": "bcd9a2eae4058726a86cfb38afda4cc0d20e181887b2bde9d0cbeccc65ce5333"
+    },
+    {
+      "path": "aura-sim/prototype_aether_cl/aether_cl/m7_runtime.py",
+      "git_blob": "6dbfce94c3e2fdd0542e33fc16f4dc5f4315a62b",
+      "sha256": "2b4a02b926f00c8fb23708c5949fe3c52aa3fcae551f58d1a752c397d2e56206"
+    },
+    {
+      "path": "aura-sim/prototype_aether_cl/aether_cl/m7_summary.py",
+      "git_blob": "9179ab77c46f65739d097f331d6e47b36fca151d",
+      "sha256": "c0871897b03bd9c43f88d19474d7c1dbb20644aba0c9f07859c82d89fe842477"
+    },
+    {
+      "path": "aura-sim/prototype_aether_cl/aether_cl/m7_sweep.py",
+      "git_blob": "d19ff6e8130d597becdaec7f2c46fde003ff9f9a",
+      "sha256": "031e992090317b68f84f2a720f6d4e556ba40748b2683744c1118014d67dd607"
+    },
+    {
+      "path": "aura-sim/prototype_aether_cl/aether_cl/m7_task.py",
+      "git_blob": "8bd8196d90895ad689d203760bbd9d004bc6d564",
+      "sha256": "34a59f771446015cd4d0ea1f52ad6e1fcdd16c268d4e3743c0a4583e69ccd72f"
+    },
+    {
+      "path": "tools/m7_task_inspection.py",
+      "git_blob": "adf401fcec0b06a05683e1a6e9007ebd0ae02fee",
+      "sha256": "2f1bd2b292bce9779f7803f4ca7f0e078e504e7fba339d24ed489a4a4569fa08"
+    },
+    {
+      "path": "aura-sim/prototype_aether_cl/aether_cl/policies.py",
+      "git_blob": "de38891b4c532b2119ff747ca6d588e8cfc3bb70",
+      "sha256": "c4e16450ad64ad8683db69d7a166720e411e5e97c8c1def3471b1b04ced04f29"
+    },
+    {
+      "path": "aura-sim/prototype_aether_cl/aether_cl/runtime.py",
+      "git_blob": "70effa40a970d614941a377dc52a53076bfc9f7c",
+      "sha256": "471a5d26a384c6997f0d5a6713d5595bc07dcfe64e0bc2a19b13c786d9449c07"
+    },
+    {
+      "path": "aura-sim/prototype_aether_cl/aether_cl/verification.py",
+      "git_blob": "0e2ccb7e0b5b06bcbccec993541afd9355e8cf5d",
+      "sha256": "472073de5db587de20c2185b324181f169a7bc0e52cd5706aef7506f928f83a7"
+    }
+  ],
+  "installed_source_and_asset_receipt_exact": true,
+  "review_date_utc": "2026-10-07",
+  "observed_paired_outcomes": [
+    {
+      "ratio": 0.0,
+      "seed": 140,
+      "baseline_success": true,
+      "v1_success": true,
+      "v2_success": true,
+      "rescued": false,
+      "unnecessary_recovery": false,
+      "regression": false,
+      "extra_retry_actions_vs_v1": 0,
+      "extra_total_path_m_vs_v1": 0.0,
+      "baseline_achieved_preinsert_delta_hole_m": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ratio": 0.0,
+      "seed": 141,
+      "baseline_success": true,
+      "v1_success": true,
+      "v2_success": true,
+      "rescued": false,
+      "unnecessary_recovery": false,
+      "regression": false,
+      "extra_retry_actions_vs_v1": 0,
+      "extra_total_path_m_vs_v1": 0.0,
+      "baseline_achieved_preinsert_delta_hole_m": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ratio": 0.5,
+      "seed": 140,
+      "baseline_success": true,
+      "v1_success": true,
+      "v2_success": true,
+      "rescued": false,
+      "unnecessary_recovery": false,
+      "regression": false,
+      "extra_retry_actions_vs_v1": 0,
+      "extra_total_path_m_vs_v1": 0.0,
+      "baseline_achieved_preinsert_delta_hole_m": [
+        2.6855216656018754e-07,
+        0.0014999301268474544,
+        2.905684937751658e-07
+      ]
+    },
+    {
+      "ratio": 0.5,
+      "seed": 141,
+      "baseline_success": true,
+      "v1_success": true,
+      "v2_success": true,
+      "rescued": false,
+      "unnecessary_recovery": false,
+      "regression": false,
+      "extra_retry_actions_vs_v1": 0,
+      "extra_total_path_m_vs_v1": 0.0,
+      "baseline_achieved_preinsert_delta_hole_m": [
+        1.1883197674200652e-06,
+        0.0015003283007912532,
+        1.9371403165758822e-07
+      ]
+    },
+    {
+      "ratio": 2.0,
+      "seed": 140,
+      "baseline_success": false,
+      "v1_success": false,
+      "v2_success": true,
+      "rescued": true,
+      "unnecessary_recovery": false,
+      "regression": false,
+      "extra_retry_actions_vs_v1": 159,
+      "extra_total_path_m_vs_v1": 0.22423101267235435,
+      "baseline_achieved_preinsert_delta_hole_m": [
+        4.418769944947165e-07,
+        0.006001130834846514,
+        3.799630101005547e-07
+      ]
+    },
+    {
+      "ratio": 2.0,
+      "seed": 141,
+      "baseline_success": false,
+      "v1_success": false,
+      "v2_success": true,
+      "rescued": true,
+      "unnecessary_recovery": false,
+      "regression": false,
+      "extra_retry_actions_vs_v1": 160,
+      "extra_total_path_m_vs_v1": 0.2326734352886497,
+      "baseline_achieved_preinsert_delta_hole_m": [
+        4.695492209327856e-06,
+        0.006001375469755899,
+        2.980189683481489e-07
+      ]
+    }
+  ],
+  "native_code_changes": false
+}

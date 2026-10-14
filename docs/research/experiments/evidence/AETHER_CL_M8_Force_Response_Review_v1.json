@@ -1,0 +1,4025 @@
+{
+  "scope": "M8_development_force_response_independent_review_v1",
+  "authority_commit": "4d477da2a583717b773b3a1c746996a3c2127e40",
+  "measurement_commit": "b6b01b863c89190dc795155877d38816216e6df6",
+  "archive_sha256": "309a191f5683f832f1e5a2e338886fcd8c73d9d3c83416ec87a5e58e432da815",
+  "archive_bytes": 8843029,
+  "log_sha256": "fe1228cb0c760ecdddd555d235beda3cdfabfd80ae63cd7c14f04d84ff5302ea",
+  "indexed_files_verified": 188,
+  "source_snapshots_verified": 11,
+  "independent_audit_math": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0"
+  },
+  "native_identity": {
+    "software": {
+      "python": "3.10.22",
+      "platform": "Linux-5.15.0-191-generic-x86_64-with-glibc2.35",
+      "packages": {
+        "torch": "2.4.1+cu121",
+        "numpy": "1.26.4",
+        "mani_skill": "3.0.1",
+        "sapien": "3.0.3",
+        "gymnasium": "1.1.1",
+        "Pillow": "11.3.0"
+      },
+      "git_commit": "b6b01b863c89190dc795155877d38816216e6df6",
+      "git_dirty": false,
+      "cuda_visible_devices": "1",
+      "native_library_environment": {
+        "LD_LIBRARY_PATH": "/home/jiangle/aura-work/aether-glvnd-1.4.0/usr/lib/x86_64-linux-gnu",
+        "LD_PRELOAD": null
+      },
+      "gpu_inventory": [
+        "0, NVIDIA A100 80GB PCIe, 81920 MiB, 595.91.07",
+        "1, NVIDIA A100 80GB PCIe, 81920 MiB, 595.91.07",
+        "2, NVIDIA A100 80GB PCIe, 81920 MiB, 595.91.07",
+        "3, NVIDIA A100 80GB PCIe, 81920 MiB, 595.91.07"
+      ]
+    },
+    "receipt_sha256": "ac5ade880fca62ec42fa7356fc46e981398cde4d511e8426b8bd87fda881405a",
+    "development_sources_sha256": {
+      "m8_force.py": "aafa9cfecb23ec5d6d359fe7eadb6d1db4762b5384852fc13ca04527a9196201",
+      "m8_force_commission.py": "e51d350a6256aa89b65759b59d115f2c8871ead5bde2a8244d04fd0b14c76344"
+    },
+    "installed_sources_sha256": {
+      "__init__.py": "35eafdb4f989800edac4909ba8ea5313c917bf9520ddf082db5bc177cf346e74",
+      "agents/controllers/pd_ee_pose.py": "318110fe18cb879eae00ca106f0117eed94679b79ee00ee226bacd38e4755f97",
+      "agents/robots/panda/__init__.py": "5671492dc98f3018e8fa6941a5f328e5a7182ae77fc2781101c7faeee8ae8129",
+      "agents/robots/panda/panda.py": "2a98a2133b49e5a94a83d05019c0ab833ad6767f85ff1bf66265cd9247cb0fda",
+      "agents/robots/panda/panda_stick.py": "3404d5e702e6f0ff5fc4f1002bb9e8c9f55677082559b871c5cfb805456ab2bd",
+      "agents/robots/panda/panda_wristcam.py": "792c3ae7609a03cd987deb42a9ab0718071491a27f6972628c99bab476662b24",
+      "envs/sapien_env.py": "459196c275764eaf53ccba8e154e3207036399e54c8bdd45f9e7d0919970464b",
+      "envs/tasks/dexterity/insert_flower.py": "3d50994864b3b5d71b1649d21d745c9ffcf7cc8e1f235168543c4ef29a009499",
+      "envs/tasks/tabletop/assembling_kits.py": "e89727485819c1c6f544795257410806290a7d2efd491e2a981142790d62272c",
+      "envs/tasks/tabletop/lift_peg_upright.py": "3c8679d25368418edd3a7bd5d43d2122cdd209369350e91f8d471ab9f6fb8063",
+      "envs/tasks/tabletop/peg_insertion_side.py": "79761d7a7b17ebdbd974c58f7427abcd3a50ec115f0340f6ed5d282a0d48fc6e",
+      "envs/tasks/tabletop/plug_charger.py": "13b08f30d4975185fdfa42380ab160f86624419e5d2e0749b3a845c92d81278c",
+      "utils/registration.py": "5e553c27ed82de4f8807f42819ac4c4cacc4a4a4ffbee23c3d6b91282d146060",
+      "utils/scene_builder/table/scene_builder.py": "251d40544a4cc3cbcdd7a8fb81835a898d165330ce819fcf2a9a7fab6c309d3a",
+      "utils/structs/actor.py": "dacf82803b63928a4317f400adfb7766cb7863d914058acbe226c47c90f28f24",
+      "utils/structs/pose.py": "f5578775b35bbd23c8cdcf5384467443a8921ce70120e0495fb06ed5481104f9",
+      "utils/structs/types.py": "86451c45e986ce7f789e01edecaa9ba6c3f89a08c3960ddb212ca0cf4499e156",
+      "envs/scene.py": "2e875f4a053fb5687bee3b7858716be3196bd8d6cae35fbf9ad110b031156fed",
+      "envs/tasks/tabletop/pick_cube.py": "6f881f11151bd124a4ec6d1189e86e20b17d366aa1cbcc6e2f751f1f5bb03ed1",
+      "utils/building/actor_builder.py": "d2de84ec1b96294d71e368a4c9c7c9c6302c6073b7a338d1d3624e425bd419f2",
+      "utils/building/actors/common.py": "3314dbf270ea34555c009427dd2a0b7fca6296d13972e6af02b186e55971c4d0",
+      "agents/base_agent.py": "64b0c9f45577ef842ae41449af36529e476ad68d26e726de5c9d858496f8824d"
+    },
+    "accepted_placement_sources_sha256": {
+      "runtime.py": "471a5d26a384c6997f0d5a6713d5595bc07dcfe64e0bc2a19b13c786d9449c07",
+      "policies.py": "c4e16450ad64ad8683db69d7a166720e411e5e97c8c1def3471b1b04ced04f29",
+      "verification.py": "472073de5db587de20c2185b324181f169a7bc0e52cd5706aef7506f928f83a7",
+      "m6_task.py": "e63aff47dbc8f0c270f02c6a0d6bfa46970f96d9da149b18990d76eba4f6b62c",
+      "m6_policy.py": "e4b1d7ff5f74b9008c6f170f62f6da0a565873fb9b61cd3dbf798706ad590d4c",
+      "m6_runtime.py": "dd1c26a6299fc1c82fc0e30585f33b905dddecea3e4e6ecf88cf775389473ff7",
+      "m6r_policy.py": "dd2628631641e500fe593155453b5c75408faf2f34c76ea761f057455e4e8981",
+      "m6r_runtime.py": "679faec4707f7d4baed7091f2069ecd18b5a905ef3197b2fe101da3a218f6ad0"
+    },
+    "sapien_binaries": [
+      {
+        "path": "pysapien.cpython-310-x86_64-linux-gnu.so",
+        "bytes": 3146137,
+        "sha256": "bdb8967f4fb2a9cedd1bbfaed0993cd4847a0f664b83d429c937cd0aeca0347c"
+      },
+      {
+        "path": "pysapien_pinocchio.cpython-310-x86_64-linux-gnu.so",
+        "bytes": 1483105,
+        "sha256": "dada569b8f080a6f8cce387f8f3a2ffe2b5849e8c2fb0dbc9e865279be204fcf"
+      }
+    ]
+  },
+  "trial_count": 20,
+  "action_reconstructions": 16000,
+  "external_physics_samples": 72000,
+  "force_calls": 70,
+  "replay_results": [
+    {
+      "slot": 0,
+      "passed": true,
+      "max_action_replay_error": 0.0,
+      "checks": {
+        "config_and_task": true,
+        "software": true,
+        "complete_terminal": true,
+        "single_reset": true,
+        "source_provenance": true,
+        "action_replay": true,
+        "decision_replay": true,
+        "reference_replay": true,
+        "verifier_replay": true,
+        "recovery_replay": true,
+        "path_replay": true,
+        "injection_provenance": true,
+        "summary_replay": true,
+        "m6r_identity": true,
+        "support_geometry_and_goal_projection": true,
+        "full_budget_and_step_sequence": true,
+        "no_unassigned_steps": true,
+        "evaluation_replay": true,
+        "final_result_log": true,
+        "run_manifest_log": true,
+        "no_error_events": true
+      }
+    },
+    {
+      "slot": 1,
+      "passed": true,
+      "max_action_replay_error": 0.0,
+      "checks": {
+        "config_and_task": true,
+        "software": true,
+        "complete_terminal": true,
+        "single_reset": true,
+        "source_provenance": true,
+        "action_replay": true,
+        "decision_replay": true,
+        "reference_replay": true,
+        "verifier_replay": true,
+        "recovery_replay": true,
+        "path_replay": true,
+        "injection_provenance": true,
+        "summary_replay": true,
+        "m6r_identity": true,
+        "support_geometry_and_goal_projection": true,
+        "full_budget_and_step_sequence": true,
+        "no_unassigned_steps": true,
+        "evaluation_replay": true,
+        "final_result_log": true,
+        "run_manifest_log": true,
+        "no_error_events": true
+      }
+    },
+    {
+      "slot": 2,
+      "passed": true,
+      "max_action_replay_error": 0.0,
+      "checks": {
+        "config_and_task": true,
+        "software": true,
+        "complete_terminal": true,
+        "single_reset": true,
+        "source_provenance": true,
+        "action_replay": true,
+        "decision_replay": true,
+        "reference_replay": true,
+        "verifier_replay": true,
+        "recovery_replay": true,
+        "path_replay": true,
+        "injection_provenance": true,
+        "summary_replay": true,
+        "m6r_identity": true,
+        "support_geometry_and_goal_projection": true,
+        "full_budget_and_step_sequence": true,
+        "no_unassigned_steps": true,
+        "evaluation_replay": true,
+        "final_result_log": true,
+        "run_manifest_log": true,
+        "no_error_events": true
+      }
+    },
+    {
+      "slot": 3,
+      "passed": true,
+      "max_action_replay_error": 0.0,
+      "checks": {
+        "config_and_task": true,
+        "software": true,
+        "complete_terminal": true,
+        "single_reset": true,
+        "source_provenance": true,
+        "action_replay": true,
+        "decision_replay": true,
+        "reference_replay": true,
+        "verifier_replay": true,
+        "recovery_replay": true,
+        "path_replay": true,
+        "injection_provenance": true,
+        "summary_replay": true,
+        "m6r_identity": true,
+        "support_geometry_and_goal_projection": true,
+        "full_budget_and_step_sequence": true,
+        "no_unassigned_steps": true,
+        "evaluation_replay": true,
+        "final_result_log": true,
+        "run_manifest_log": true,
+        "no_error_events": true
+      }
+    },
+    {
+      "slot": 4,
+      "passed": true,
+      "max_action_replay_error": 0.0,
+      "checks": {
+        "config_and_task": true,
+        "software": true,
+        "complete_terminal": true,
+        "single_reset": true,
+        "source_provenance": true,
+        "action_replay": true,
+        "decision_replay": true,
+        "reference_replay": true,
+        "verifier_replay": true,
+        "recovery_replay": true,
+        "path_replay": true,
+        "injection_provenance": true,
+        "summary_replay": true,
+        "m6r_identity": true,
+        "support_geometry_and_goal_projection": true,
+        "full_budget_and_step_sequence": true,
+        "no_unassigned_steps": true,
+        "evaluation_replay": true,
+        "final_result_log": true,
+        "run_manifest_log": true,
+        "no_error_events": true
+      }
+    },
+    {
+      "slot": 5,
+      "passed": true,
+      "max_action_replay_error": 0.0,
+      "checks": {
+        "config_and_task": true,
+        "software": true,
+        "complete_terminal": true,
+        "single_reset": true,
+        "source_provenance": true,
+        "action_replay": true,
+        "decision_replay": true,
+        "reference_replay": true,
+        "verifier_replay": true,
+        "recovery_replay": true,
+        "path_replay": true,
+        "injection_provenance": true,
+        "summary_replay": true,
+        "m6r_identity": true,
+        "support_geometry_and_goal_projection": true,
+        "full_budget_and_step_sequence": true,
+        "no_unassigned_steps": true,
+        "evaluation_replay": true,
+        "final_result_log": true,
+        "run_manifest_log": true,
+        "no_error_events": true
+      }
+    },
+    {
+      "slot": 6,
+      "passed": true,
+      "max_action_replay_error": 0.0,
+      "checks": {
+        "config_and_task": true,
+        "software": true,
+        "complete_terminal": true,
+        "single_reset": true,
+        "source_provenance": true,
+        "action_replay": true,
+        "decision_replay": true,
+        "reference_replay": true,
+        "verifier_replay": true,
+        "recovery_replay": true,
+        "path_replay": true,
+        "injection_provenance": true,
+        "summary_replay": true,
+        "m6r_identity": true,
+        "support_geometry_and_goal_projection": true,
+        "full_budget_and_step_sequence": true,
+        "no_unassigned_steps": true,
+        "evaluation_replay": true,
+        "final_result_log": true,
+        "run_manifest_log": true,
+        "no_error_events": true
+      }
+    },
+    {
+      "slot": 7,
+      "passed": true,
+      "max_action_replay_error": 0.0,
+      "checks": {
+        "config_and_task": true,
+        "software": true,
+        "complete_terminal": true,
+        "single_reset": true,
+        "source_provenance": true,
+        "action_replay": true,
+        "decision_replay": true,
+        "reference_replay": true,
+        "verifier_replay": true,
+        "recovery_replay": true,
+        "path_replay": true,
+        "injection_provenance": true,
+        "summary_replay": true,
+        "m6r_identity": true,
+        "support_geometry_and_goal_projection": true,
+        "full_budget_and_step_sequence": true,
+        "no_unassigned_steps": true,
+        "evaluation_replay": true,
+        "final_result_log": true,
+        "run_manifest_log": true,
+        "no_error_events": true
+      }
+    },
+    {
+      "slot": 8,
+      "passed": true,
+      "max_action_replay_error": 0.0,
+      "checks": {
+        "config_and_task": true,
+        "software": true,
+        "complete_terminal": true,
+        "single_reset": true,
+        "source_provenance": true,
+        "action_replay": true,
+        "decision_replay": true,
+        "reference_replay": true,
+        "verifier_replay": true,
+        "recovery_replay": true,
+        "path_replay": true,
+        "injection_provenance": true,
+        "summary_replay": true,
+        "m6r_identity": true,
+        "support_geometry_and_goal_projection": true,
+        "full_budget_and_step_sequence": true,
+        "no_unassigned_steps": true,
+        "evaluation_replay": true,
+        "final_result_log": true,
+        "run_manifest_log": true,
+        "no_error_events": true
+      }
+    },
+    {
+      "slot": 9,
+      "passed": true,
+      "max_action_replay_error": 0.0,
+      "checks": {
+        "config_and_task": true,
+        "software": true,
+        "complete_terminal": true,
+        "single_reset": true,
+        "source_provenance": true,
+        "action_replay": true,
+        "decision_replay": true,
+        "reference_replay": true,
+        "verifier_replay": true,
+        "recovery_replay": true,
+        "path_replay": true,
+        "injection_provenance": true,
+        "summary_replay": true,
+        "m6r_identity": true,
+        "support_geometry_and_goal_projection": true,
+        "full_budget_and_step_sequence": true,
+        "no_unassigned_steps": true,
+        "evaluation_replay": true,
+        "final_result_log": true,
+        "run_manifest_log": true,
+        "no_error_events": true
+      }
+    },
+    {
+      "slot": 10,
+      "passed": true,
+      "max_action_replay_error": 0.0,
+      "checks": {
+        "config_and_task": true,
+        "software": true,
+        "complete_terminal": true,
+        "single_reset": true,
+        "source_provenance": true,
+        "action_replay": true,
+        "decision_replay": true,
+        "reference_replay": true,
+        "verifier_replay": true,
+        "recovery_replay": true,
+        "path_replay": true,
+        "injection_provenance": true,
+        "summary_replay": true,
+        "m6r_identity": true,
+        "support_geometry_and_goal_projection": true,
+        "full_budget_and_step_sequence": true,
+        "no_unassigned_steps": true,
+        "evaluation_replay": true,
+        "final_result_log": true,
+        "run_manifest_log": true,
+        "no_error_events": true
+      }
+    },
+    {
+      "slot": 11,
+      "passed": true,
+      "max_action_replay_error": 0.0,
+      "checks": {
+        "config_and_task": true,
+        "software": true,
+        "complete_terminal": true,
+        "single_reset": true,
+        "source_provenance": true,
+        "action_replay": true,
+        "decision_replay": true,
+        "reference_replay": true,
+        "verifier_replay": true,
+        "recovery_replay": true,
+        "path_replay": true,
+        "injection_provenance": true,
+        "summary_replay": true,
+        "m6r_identity": true,
+        "support_geometry_and_goal_projection": true,
+        "full_budget_and_step_sequence": true,
+        "no_unassigned_steps": true,
+        "evaluation_replay": true,
+        "final_result_log": true,
+        "run_manifest_log": true,
+        "no_error_events": true
+      }
+    },
+    {
+      "slot": 12,
+      "passed": true,
+      "max_action_replay_error": 0.0,
+      "checks": {
+        "config_and_task": true,
+        "software": true,
+        "complete_terminal": true,
+        "single_reset": true,
+        "source_provenance": true,
+        "action_replay": true,
+        "decision_replay": true,
+        "reference_replay": true,
+        "verifier_replay": true,
+        "recovery_replay": true,
+        "path_replay": true,
+        "injection_provenance": true,
+        "summary_replay": true,
+        "m6r_identity": true,
+        "support_geometry_and_goal_projection": true,
+        "full_budget_and_step_sequence": true,
+        "no_unassigned_steps": true,
+        "evaluation_replay": true,
+        "final_result_log": true,
+        "run_manifest_log": true,
+        "no_error_events": true
+      }
+    },
+    {
+      "slot": 13,
+      "passed": true,
+      "max_action_replay_error": 0.0,
+      "checks": {
+        "config_and_task": true,
+        "software": true,
+        "complete_terminal": true,
+        "single_reset": true,
+        "source_provenance": true,
+        "action_replay": true,
+        "decision_replay": true,
+        "reference_replay": true,
+        "verifier_replay": true,
+        "recovery_replay": true,
+        "path_replay": true,
+        "injection_provenance": true,
+        "summary_replay": true,
+        "m6r_identity": true,
+        "support_geometry_and_goal_projection": true,
+        "full_budget_and_step_sequence": true,
+        "no_unassigned_steps": true,
+        "evaluation_replay": true,
+        "final_result_log": true,
+        "run_manifest_log": true,
+        "no_error_events": true
+      }
+    },
+    {
+      "slot": 14,
+      "passed": true,
+      "max_action_replay_error": 0.0,
+      "checks": {
+        "config_and_task": true,
+        "software": true,
+        "complete_terminal": true,
+        "single_reset": true,
+        "source_provenance": true,
+        "action_replay": true,
+        "decision_replay": true,
+        "reference_replay": true,
+        "verifier_replay": true,
+        "recovery_replay": true,
+        "path_replay": true,
+        "injection_provenance": true,
+        "summary_replay": true,
+        "m6r_identity": true,
+        "support_geometry_and_goal_projection": true,
+        "full_budget_and_step_sequence": true,
+        "no_unassigned_steps": true,
+        "evaluation_replay": true,
+        "final_result_log": true,
+        "run_manifest_log": true,
+        "no_error_events": true
+      }
+    },
+    {
+      "slot": 15,
+      "passed": true,
+      "max_action_replay_error": 0.0,
+      "checks": {
+        "config_and_task": true,
+        "software": true,
+        "complete_terminal": true,
+        "single_reset": true,
+        "source_provenance": true,
+        "action_replay": true,
+        "decision_replay": true,
+        "reference_replay": true,
+        "verifier_replay": true,
+        "recovery_replay": true,
+        "path_replay": true,
+        "injection_provenance": true,
+        "summary_replay": true,
+        "m6r_identity": true,
+        "support_geometry_and_goal_projection": true,
+        "full_budget_and_step_sequence": true,
+        "no_unassigned_steps": true,
+        "evaluation_replay": true,
+        "final_result_log": true,
+        "run_manifest_log": true,
+        "no_error_events": true
+      }
+    },
+    {
+      "slot": 16,
+      "passed": true,
+      "max_action_replay_error": 0.0,
+      "checks": {
+        "config_and_task": true,
+        "software": true,
+        "complete_terminal": true,
+        "single_reset": true,
+        "source_provenance": true,
+        "action_replay": true,
+        "decision_replay": true,
+        "reference_replay": true,
+        "verifier_replay": true,
+        "recovery_replay": true,
+        "path_replay": true,
+        "injection_provenance": true,
+        "summary_replay": true,
+        "m6r_identity": true,
+        "support_geometry_and_goal_projection": true,
+        "full_budget_and_step_sequence": true,
+        "no_unassigned_steps": true,
+        "evaluation_replay": true,
+        "final_result_log": true,
+        "run_manifest_log": true,
+        "no_error_events": true
+      }
+    },
+    {
+      "slot": 17,
+      "passed": true,
+      "max_action_replay_error": 0.0,
+      "checks": {
+        "config_and_task": true,
+        "software": true,
+        "complete_terminal": true,
+        "single_reset": true,
+        "source_provenance": true,
+        "action_replay": true,
+        "decision_replay": true,
+        "reference_replay": true,
+        "verifier_replay": true,
+        "recovery_replay": true,
+        "path_replay": true,
+        "injection_provenance": true,
+        "summary_replay": true,
+        "m6r_identity": true,
+        "support_geometry_and_goal_projection": true,
+        "full_budget_and_step_sequence": true,
+        "no_unassigned_steps": true,
+        "evaluation_replay": true,
+        "final_result_log": true,
+        "run_manifest_log": true,
+        "no_error_events": true
+      }
+    },
+    {
+      "slot": 18,
+      "passed": true,
+      "max_action_replay_error": 0.0,
+      "checks": {
+        "config_and_task": true,
+        "software": true,
+        "complete_terminal": true,
+        "single_reset": true,
+        "source_provenance": true,
+        "action_replay": true,
+        "decision_replay": true,
+        "reference_replay": true,
+        "verifier_replay": true,
+        "recovery_replay": true,
+        "path_replay": true,
+        "injection_provenance": true,
+        "summary_replay": true,
+        "m6r_identity": true,
+        "support_geometry_and_goal_projection": true,
+        "full_budget_and_step_sequence": true,
+        "no_unassigned_steps": true,
+        "evaluation_replay": true,
+        "final_result_log": true,
+        "run_manifest_log": true,
+        "no_error_events": true
+      }
+    },
+    {
+      "slot": 19,
+      "passed": true,
+      "max_action_replay_error": 0.0,
+      "checks": {
+        "config_and_task": true,
+        "software": true,
+        "complete_terminal": true,
+        "single_reset": true,
+        "source_provenance": true,
+        "action_replay": true,
+        "decision_replay": true,
+        "reference_replay": true,
+        "verifier_replay": true,
+        "recovery_replay": true,
+        "path_replay": true,
+        "injection_provenance": true,
+        "summary_replay": true,
+        "m6r_identity": true,
+        "support_geometry_and_goal_projection": true,
+        "full_budget_and_step_sequence": true,
+        "no_unassigned_steps": true,
+        "evaluation_replay": true,
+        "final_result_log": true,
+        "run_manifest_log": true,
+        "no_error_events": true
+      }
+    }
+  ],
+  "physics_replay_results": [
+    {
+      "slot": 2,
+      "checks": {
+        "one_known_reset": true,
+        "same_recorded_candidate": true,
+        "no_legacy_synthetic_injection": true,
+        "one_physics_record_per_control_action": true,
+        "only_physics_events": true,
+        "complete_five_substeps": true,
+        "fixed_window_and_precondition": true,
+        "force_call_no_immediate_pose_velocity_change": true,
+        "continuous_sample_state": true,
+        "control_endpoint_matches_physics": true,
+        "force_vector_mode_and_timestep": true,
+        "exact_force_call_count": true
+      },
+      "external_physics_samples": 4000,
+      "force_calls": 0,
+      "passed": true
+    },
+    {
+      "slot": 3,
+      "checks": {
+        "one_known_reset": true,
+        "same_recorded_candidate": true,
+        "no_legacy_synthetic_injection": true,
+        "one_physics_record_per_control_action": true,
+        "only_physics_events": true,
+        "complete_five_substeps": true,
+        "fixed_window_and_precondition": true,
+        "force_call_no_immediate_pose_velocity_change": true,
+        "continuous_sample_state": true,
+        "control_endpoint_matches_physics": true,
+        "force_vector_mode_and_timestep": true,
+        "exact_force_call_count": true
+      },
+      "external_physics_samples": 4000,
+      "force_calls": 0,
+      "passed": true
+    },
+    {
+      "slot": 4,
+      "checks": {
+        "one_known_reset": true,
+        "same_recorded_candidate": true,
+        "no_legacy_synthetic_injection": true,
+        "one_physics_record_per_control_action": true,
+        "only_physics_events": true,
+        "complete_five_substeps": true,
+        "fixed_window_and_precondition": true,
+        "force_call_no_immediate_pose_velocity_change": true,
+        "continuous_sample_state": true,
+        "control_endpoint_matches_physics": true,
+        "force_vector_mode_and_timestep": true,
+        "exact_force_call_count": true
+      },
+      "external_physics_samples": 4000,
+      "force_calls": 5,
+      "passed": true
+    },
+    {
+      "slot": 5,
+      "checks": {
+        "one_known_reset": true,
+        "same_recorded_candidate": true,
+        "no_legacy_synthetic_injection": true,
+        "one_physics_record_per_control_action": true,
+        "only_physics_events": true,
+        "complete_five_substeps": true,
+        "fixed_window_and_precondition": true,
+        "force_call_no_immediate_pose_velocity_change": true,
+        "continuous_sample_state": true,
+        "control_endpoint_matches_physics": true,
+        "force_vector_mode_and_timestep": true,
+        "exact_force_call_count": true
+      },
+      "external_physics_samples": 4000,
+      "force_calls": 5,
+      "passed": true
+    },
+    {
+      "slot": 6,
+      "checks": {
+        "one_known_reset": true,
+        "same_recorded_candidate": true,
+        "no_legacy_synthetic_injection": true,
+        "one_physics_record_per_control_action": true,
+        "only_physics_events": true,
+        "complete_five_substeps": true,
+        "fixed_window_and_precondition": true,
+        "force_call_no_immediate_pose_velocity_change": true,
+        "continuous_sample_state": true,
+        "control_endpoint_matches_physics": true,
+        "force_vector_mode_and_timestep": true,
+        "exact_force_call_count": true
+      },
+      "external_physics_samples": 4000,
+      "force_calls": 5,
+      "passed": true
+    },
+    {
+      "slot": 7,
+      "checks": {
+        "one_known_reset": true,
+        "same_recorded_candidate": true,
+        "no_legacy_synthetic_injection": true,
+        "one_physics_record_per_control_action": true,
+        "only_physics_events": true,
+        "complete_five_substeps": true,
+        "fixed_window_and_precondition": true,
+        "force_call_no_immediate_pose_velocity_change": true,
+        "continuous_sample_state": true,
+        "control_endpoint_matches_physics": true,
+        "force_vector_mode_and_timestep": true,
+        "exact_force_call_count": true
+      },
+      "external_physics_samples": 4000,
+      "force_calls": 5,
+      "passed": true
+    },
+    {
+      "slot": 8,
+      "checks": {
+        "one_known_reset": true,
+        "same_recorded_candidate": true,
+        "no_legacy_synthetic_injection": true,
+        "one_physics_record_per_control_action": true,
+        "only_physics_events": true,
+        "complete_five_substeps": true,
+        "fixed_window_and_precondition": true,
+        "force_call_no_immediate_pose_velocity_change": true,
+        "continuous_sample_state": true,
+        "control_endpoint_matches_physics": true,
+        "force_vector_mode_and_timestep": true,
+        "exact_force_call_count": true
+      },
+      "external_physics_samples": 4000,
+      "force_calls": 5,
+      "passed": true
+    },
+    {
+      "slot": 9,
+      "checks": {
+        "one_known_reset": true,
+        "same_recorded_candidate": true,
+        "no_legacy_synthetic_injection": true,
+        "one_physics_record_per_control_action": true,
+        "only_physics_events": true,
+        "complete_five_substeps": true,
+        "fixed_window_and_precondition": true,
+        "force_call_no_immediate_pose_velocity_change": true,
+        "continuous_sample_state": true,
+        "control_endpoint_matches_physics": true,
+        "force_vector_mode_and_timestep": true,
+        "exact_force_call_count": true
+      },
+      "external_physics_samples": 4000,
+      "force_calls": 5,
+      "passed": true
+    },
+    {
+      "slot": 10,
+      "checks": {
+        "one_known_reset": true,
+        "same_recorded_candidate": true,
+        "no_legacy_synthetic_injection": true,
+        "one_physics_record_per_control_action": true,
+        "only_physics_events": true,
+        "complete_five_substeps": true,
+        "fixed_window_and_precondition": true,
+        "force_call_no_immediate_pose_velocity_change": true,
+        "continuous_sample_state": true,
+        "control_endpoint_matches_physics": true,
+        "force_vector_mode_and_timestep": true,
+        "exact_force_call_count": true
+      },
+      "external_physics_samples": 4000,
+      "force_calls": 5,
+      "passed": true
+    },
+    {
+      "slot": 11,
+      "checks": {
+        "one_known_reset": true,
+        "same_recorded_candidate": true,
+        "no_legacy_synthetic_injection": true,
+        "one_physics_record_per_control_action": true,
+        "only_physics_events": true,
+        "complete_five_substeps": true,
+        "fixed_window_and_precondition": true,
+        "force_call_no_immediate_pose_velocity_change": true,
+        "continuous_sample_state": true,
+        "control_endpoint_matches_physics": true,
+        "force_vector_mode_and_timestep": true,
+        "exact_force_call_count": true
+      },
+      "external_physics_samples": 4000,
+      "force_calls": 5,
+      "passed": true
+    },
+    {
+      "slot": 12,
+      "checks": {
+        "one_known_reset": true,
+        "same_recorded_candidate": true,
+        "no_legacy_synthetic_injection": true,
+        "one_physics_record_per_control_action": true,
+        "only_physics_events": true,
+        "complete_five_substeps": true,
+        "fixed_window_and_precondition": true,
+        "force_call_no_immediate_pose_velocity_change": true,
+        "continuous_sample_state": true,
+        "control_endpoint_matches_physics": true,
+        "force_vector_mode_and_timestep": true,
+        "exact_force_call_count": true
+      },
+      "external_physics_samples": 4000,
+      "force_calls": 5,
+      "passed": true
+    },
+    {
+      "slot": 13,
+      "checks": {
+        "one_known_reset": true,
+        "same_recorded_candidate": true,
+        "no_legacy_synthetic_injection": true,
+        "one_physics_record_per_control_action": true,
+        "only_physics_events": true,
+        "complete_five_substeps": true,
+        "fixed_window_and_precondition": true,
+        "force_call_no_immediate_pose_velocity_change": true,
+        "continuous_sample_state": true,
+        "control_endpoint_matches_physics": true,
+        "force_vector_mode_and_timestep": true,
+        "exact_force_call_count": true
+      },
+      "external_physics_samples": 4000,
+      "force_calls": 5,
+      "passed": true
+    },
+    {
+      "slot": 14,
+      "checks": {
+        "one_known_reset": true,
+        "same_recorded_candidate": true,
+        "no_legacy_synthetic_injection": true,
+        "one_physics_record_per_control_action": true,
+        "only_physics_events": true,
+        "complete_five_substeps": true,
+        "fixed_window_and_precondition": true,
+        "force_call_no_immediate_pose_velocity_change": true,
+        "continuous_sample_state": true,
+        "control_endpoint_matches_physics": true,
+        "force_vector_mode_and_timestep": true,
+        "exact_force_call_count": true
+      },
+      "external_physics_samples": 4000,
+      "force_calls": 0,
+      "passed": true
+    },
+    {
+      "slot": 15,
+      "checks": {
+        "one_known_reset": true,
+        "same_recorded_candidate": true,
+        "no_legacy_synthetic_injection": true,
+        "one_physics_record_per_control_action": true,
+        "only_physics_events": true,
+        "complete_five_substeps": true,
+        "fixed_window_and_precondition": true,
+        "force_call_no_immediate_pose_velocity_change": true,
+        "continuous_sample_state": true,
+        "control_endpoint_matches_physics": true,
+        "force_vector_mode_and_timestep": true,
+        "exact_force_call_count": true
+      },
+      "external_physics_samples": 4000,
+      "force_calls": 0,
+      "passed": true
+    },
+    {
+      "slot": 16,
+      "checks": {
+        "one_known_reset": true,
+        "same_recorded_candidate": true,
+        "no_legacy_synthetic_injection": true,
+        "one_physics_record_per_control_action": true,
+        "only_physics_events": true,
+        "complete_five_substeps": true,
+        "fixed_window_and_precondition": true,
+        "force_call_no_immediate_pose_velocity_change": true,
+        "continuous_sample_state": true,
+        "control_endpoint_matches_physics": true,
+        "force_vector_mode_and_timestep": true,
+        "exact_force_call_count": true
+      },
+      "external_physics_samples": 4000,
+      "force_calls": 5,
+      "passed": true
+    },
+    {
+      "slot": 17,
+      "checks": {
+        "one_known_reset": true,
+        "same_recorded_candidate": true,
+        "no_legacy_synthetic_injection": true,
+        "one_physics_record_per_control_action": true,
+        "only_physics_events": true,
+        "complete_five_substeps": true,
+        "fixed_window_and_precondition": true,
+        "force_call_no_immediate_pose_velocity_change": true,
+        "continuous_sample_state": true,
+        "control_endpoint_matches_physics": true,
+        "force_vector_mode_and_timestep": true,
+        "exact_force_call_count": true
+      },
+      "external_physics_samples": 4000,
+      "force_calls": 5,
+      "passed": true
+    },
+    {
+      "slot": 18,
+      "checks": {
+        "one_known_reset": true,
+        "same_recorded_candidate": true,
+        "no_legacy_synthetic_injection": true,
+        "one_physics_record_per_control_action": true,
+        "only_physics_events": true,
+        "complete_five_substeps": true,
+        "fixed_window_and_precondition": true,
+        "force_call_no_immediate_pose_velocity_change": true,
+        "continuous_sample_state": true,
+        "control_endpoint_matches_physics": true,
+        "force_vector_mode_and_timestep": true,
+        "exact_force_call_count": true
+      },
+      "external_physics_samples": 4000,
+      "force_calls": 5,
+      "passed": true
+    },
+    {
+      "slot": 19,
+      "checks": {
+        "one_known_reset": true,
+        "same_recorded_candidate": true,
+        "no_legacy_synthetic_injection": true,
+        "one_physics_record_per_control_action": true,
+        "only_physics_events": true,
+        "complete_five_substeps": true,
+        "fixed_window_and_precondition": true,
+        "force_call_no_immediate_pose_velocity_change": true,
+        "continuous_sample_state": true,
+        "control_endpoint_matches_physics": true,
+        "force_vector_mode_and_timestep": true,
+        "exact_force_call_count": true
+      },
+      "external_physics_samples": 4000,
+      "force_calls": 5,
+      "passed": true
+    }
+  ],
+  "comparisons": [
+    {
+      "kind": "unchanged_zero_control",
+      "seed": 100,
+      "passed": true,
+      "checks": {
+        "same_software_task_policy_support": true,
+        "exact_reset": true,
+        "exact_physical_trace": true
+      },
+      "matched_steps": 800
+    },
+    {
+      "kind": "pre_force_prefix",
+      "seed": 100,
+      "point": "model-drift-010mm",
+      "passed": true,
+      "checks": {
+        "same_software_task_policy_support": true,
+        "exact_reset": true,
+        "exact_physical_trace": true
+      },
+      "matched_steps": 295
+    },
+    {
+      "kind": "pre_force_prefix",
+      "seed": 100,
+      "point": "model-drift-040mm",
+      "passed": true,
+      "checks": {
+        "same_software_task_policy_support": true,
+        "exact_reset": true,
+        "exact_physical_trace": true
+      },
+      "matched_steps": 295
+    },
+    {
+      "kind": "pre_force_prefix",
+      "seed": 100,
+      "point": "model-drift-080mm",
+      "passed": true,
+      "checks": {
+        "same_software_task_policy_support": true,
+        "exact_reset": true,
+        "exact_physical_trace": true
+      },
+      "matched_steps": 295
+    },
+    {
+      "kind": "pre_force_prefix",
+      "seed": 100,
+      "point": "model-drift-120mm",
+      "passed": true,
+      "checks": {
+        "same_software_task_policy_support": true,
+        "exact_reset": true,
+        "exact_physical_trace": true
+      },
+      "matched_steps": 295
+    },
+    {
+      "kind": "pre_force_prefix",
+      "seed": 100,
+      "point": "model-drift-200mm",
+      "passed": true,
+      "checks": {
+        "same_software_task_policy_support": true,
+        "exact_reset": true,
+        "exact_physical_trace": true
+      },
+      "matched_steps": 295
+    },
+    {
+      "kind": "repeat_reproducibility",
+      "seed": 100,
+      "point": "normal",
+      "passed": true,
+      "checks": {
+        "same_software_task_policy_support": true,
+        "exact_reset": true,
+        "exact_physical_trace": true,
+        "exact_physics_sidecar": true
+      },
+      "matched_steps": 800
+    },
+    {
+      "kind": "repeat_reproducibility",
+      "seed": 100,
+      "point": "model-drift-080mm",
+      "passed": true,
+      "checks": {
+        "same_software_task_policy_support": true,
+        "exact_reset": true,
+        "exact_physical_trace": true,
+        "exact_physics_sidecar": true
+      },
+      "matched_steps": 800
+    },
+    {
+      "kind": "repeat_reproducibility",
+      "seed": 100,
+      "point": "model-drift-200mm",
+      "passed": true,
+      "checks": {
+        "same_software_task_policy_support": true,
+        "exact_reset": true,
+        "exact_physical_trace": true,
+        "exact_physics_sidecar": true
+      },
+      "matched_steps": 800
+    },
+    {
+      "kind": "unchanged_zero_control",
+      "seed": 101,
+      "passed": true,
+      "checks": {
+        "same_software_task_policy_support": true,
+        "exact_reset": true,
+        "exact_physical_trace": true
+      },
+      "matched_steps": 800
+    },
+    {
+      "kind": "pre_force_prefix",
+      "seed": 101,
+      "point": "model-drift-010mm",
+      "passed": true,
+      "checks": {
+        "same_software_task_policy_support": true,
+        "exact_reset": true,
+        "exact_physical_trace": true
+      },
+      "matched_steps": 295
+    },
+    {
+      "kind": "pre_force_prefix",
+      "seed": 101,
+      "point": "model-drift-040mm",
+      "passed": true,
+      "checks": {
+        "same_software_task_policy_support": true,
+        "exact_reset": true,
+        "exact_physical_trace": true
+      },
+      "matched_steps": 295
+    },
+    {
+      "kind": "pre_force_prefix",
+      "seed": 101,
+      "point": "model-drift-080mm",
+      "passed": true,
+      "checks": {
+        "same_software_task_policy_support": true,
+        "exact_reset": true,
+        "exact_physical_trace": true
+      },
+      "matched_steps": 295
+    },
+    {
+      "kind": "pre_force_prefix",
+      "seed": 101,
+      "point": "model-drift-120mm",
+      "passed": true,
+      "checks": {
+        "same_software_task_policy_support": true,
+        "exact_reset": true,
+        "exact_physical_trace": true
+      },
+      "matched_steps": 295
+    },
+    {
+      "kind": "pre_force_prefix",
+      "seed": 101,
+      "point": "model-drift-200mm",
+      "passed": true,
+      "checks": {
+        "same_software_task_policy_support": true,
+        "exact_reset": true,
+        "exact_physical_trace": true
+      },
+      "matched_steps": 295
+    },
+    {
+      "kind": "repeat_reproducibility",
+      "seed": 101,
+      "point": "normal",
+      "passed": true,
+      "checks": {
+        "same_software_task_policy_support": true,
+        "exact_reset": true,
+        "exact_physical_trace": true,
+        "exact_physics_sidecar": true
+      },
+      "matched_steps": 800
+    },
+    {
+      "kind": "repeat_reproducibility",
+      "seed": 101,
+      "point": "model-drift-080mm",
+      "passed": true,
+      "checks": {
+        "same_software_task_policy_support": true,
+        "exact_reset": true,
+        "exact_physical_trace": true,
+        "exact_physics_sidecar": true
+      },
+      "matched_steps": 800
+    },
+    {
+      "kind": "repeat_reproducibility",
+      "seed": 101,
+      "point": "model-drift-200mm",
+      "passed": true,
+      "checks": {
+        "same_software_task_policy_support": true,
+        "exact_reset": true,
+        "exact_physical_trace": true,
+        "exact_physics_sidecar": true
+      },
+      "matched_steps": 800
+    }
+  ],
+  "outcomes": [
+    {
+      "slot": 0,
+      "kind": "original",
+      "point_id": "normal",
+      "seed": 100,
+      "task_success_at_end": true,
+      "final_horizontal_error_m": 0.0002630005483300996,
+      "controller_complete": true,
+      "steps": 800,
+      "excluded": false,
+      "first_reference_failure": null
+    },
+    {
+      "slot": 1,
+      "kind": "original",
+      "point_id": "normal",
+      "seed": 101,
+      "task_success_at_end": true,
+      "final_horizontal_error_m": 0.00024397320931851153,
+      "controller_complete": true,
+      "steps": 800,
+      "excluded": false,
+      "first_reference_failure": null
+    },
+    {
+      "slot": 2,
+      "kind": "main",
+      "point_id": "normal",
+      "seed": 100,
+      "task_success_at_end": true,
+      "final_horizontal_error_m": 0.0002630005483300996,
+      "controller_complete": true,
+      "steps": 800,
+      "excluded": false,
+      "first_reference_failure": null,
+      "command_force_y_n": 0.0,
+      "estimated_drift_m": 0.0,
+      "physical_effects": {
+        "force_calls": 0,
+        "command_integral_y_ns": 0.0,
+        "actual_application_duration_s": 0.0,
+        "release_support_precondition": true,
+        "before_pulse": {
+          "cube_pose_world": [
+            [
+              0.05064164474606514,
+              -0.04724005609750748,
+              0.01999993808567524,
+              0.5272791385650635,
+              5.592035904555814e-06,
+              -1.7938832570507657e-06,
+              -0.8496921062469482
+            ]
+          ],
+          "cube_linear_velocity_m_s": [
+            [
+              0.000112546855234541,
+              -0.0001407616218784824,
+              -0.00010170412133447826
+            ]
+          ],
+          "cube_angular_velocity_rad_s": [
+            [
+              0.0036037026438862085,
+              0.0010472293943166733,
+              0.0006913195829838514
+            ]
+          ],
+          "cube_table_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.6278240084648132
+            ]
+          ],
+          "cube_finger1_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "cube_finger2_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        "after_pulse": {
+          "cube_pose_world": [
+            [
+              0.05064166337251663,
+              -0.04724004864692688,
+              0.01999995857477188,
+              0.5272790789604187,
+              5.442300789582077e-06,
+              -1.9624526430561673e-06,
+              -0.849692165851593
+            ]
+          ],
+          "cube_linear_velocity_m_s": [
+            [
+              0.00010212173947365955,
+              -0.00014923684648238122,
+              -9.938566654454917e-05
+            ]
+          ],
+          "cube_angular_velocity_rad_s": [
+            [
+              0.0037428312934935093,
+              0.0009015276446007192,
+              0.0007174400379881263
+            ]
+          ],
+          "cube_table_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.6279376745223999
+            ]
+          ],
+          "cube_finger1_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "cube_finger2_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        "peak_horizontal_displacement_from_pulse_start_m": 4.107459876609878e-07,
+        "peak_linear_speed_after_pulse_m_s": 0.0003072461491700836,
+        "final_displacement_from_pulse_start_world_m": [
+          -3.0919909477233887e-07,
+          2.60770320892334e-07,
+          4.284083843231201e-08
+        ],
+        "sampled_support_loss_after_pulse": false
+      },
+      "post_pulse_finger_contact": {
+        "samples_above_001n": 0,
+        "first": null,
+        "peak_force_n": 0.0
+      }
+    },
+    {
+      "slot": 3,
+      "kind": "main",
+      "point_id": "normal",
+      "seed": 101,
+      "task_success_at_end": true,
+      "final_horizontal_error_m": 0.00024397320931851153,
+      "controller_complete": true,
+      "steps": 800,
+      "excluded": false,
+      "first_reference_failure": null,
+      "command_force_y_n": 0.0,
+      "estimated_drift_m": 0.0,
+      "physical_effects": {
+        "force_calls": 0,
+        "command_integral_y_ns": 0.0,
+        "actual_application_duration_s": 0.0,
+        "release_support_precondition": true,
+        "before_pulse": {
+          "cube_pose_world": [
+            [
+              -0.09643740952014923,
+              0.08172137290239334,
+              0.019999882206320763,
+              0.6151221990585327,
+              5.429260454548057e-06,
+              -3.8412565572798485e-07,
+              0.7884318232536316
+            ]
+          ],
+          "cube_linear_velocity_m_s": [
+            [
+              -0.00034783556475304067,
+              0.000273108045803383,
+              -6.309919990599155e-05
+            ]
+          ],
+          "cube_angular_velocity_rad_s": [
+            [
+              0.00010346152703277767,
+              -0.004808197263628244,
+              -0.000954096089117229
+            ]
+          ],
+          "cube_table_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.627839207649231
+            ]
+          ],
+          "cube_finger1_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "cube_finger2_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        "after_pulse": {
+          "cube_pose_world": [
+            [
+              -0.09643740952014923,
+              0.08172136545181274,
+              0.019999906420707703,
+              0.6151221990585327,
+              5.461784439830808e-06,
+              -4.549301593215205e-07,
+              0.7884318232536316
+            ]
+          ],
+          "cube_linear_velocity_m_s": [
+            [
+              -0.0003482216561678797,
+              0.0002741807256825268,
+              -6.612502329517156e-05
+            ]
+          ],
+          "cube_angular_velocity_rad_s": [
+            [
+              -2.868337651307229e-05,
+              -0.004866105038672686,
+              -0.000951035472098738
+            ]
+          ],
+          "cube_table_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.6278195381164551
+            ]
+          ],
+          "cube_finger1_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "cube_finger2_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        "peak_horizontal_displacement_from_pulse_start_m": 4.335444130294369e-07,
+        "peak_linear_speed_after_pulse_m_s": 0.0004481137253710101,
+        "final_displacement_from_pulse_start_world_m": [
+          1.7136335372924805e-07,
+          -3.7997961044311523e-07,
+          3.3527612686157227e-08
+        ],
+        "sampled_support_loss_after_pulse": false
+      },
+      "post_pulse_finger_contact": {
+        "samples_above_001n": 0,
+        "first": null,
+        "peak_force_n": 0.0
+      }
+    },
+    {
+      "slot": 4,
+      "kind": "main",
+      "point_id": "model-drift-010mm",
+      "seed": 100,
+      "task_success_at_end": true,
+      "final_horizontal_error_m": 0.010240095603743398,
+      "controller_complete": true,
+      "steps": 800,
+      "excluded": false,
+      "first_reference_failure": null,
+      "command_force_y_n": 0.41868388652801514,
+      "estimated_drift_m": 0.01,
+      "physical_effects": {
+        "force_calls": 5,
+        "command_integral_y_ns": 0.02093419385848505,
+        "actual_application_duration_s": 0.04999999888241291,
+        "release_support_precondition": true,
+        "before_pulse": {
+          "cube_pose_world": [
+            [
+              0.05064164474606514,
+              -0.04724005609750748,
+              0.01999993808567524,
+              0.5272791385650635,
+              5.592035904555814e-06,
+              -1.7938832570507657e-06,
+              -0.8496921062469482
+            ]
+          ],
+          "cube_linear_velocity_m_s": [
+            [
+              0.000112546855234541,
+              -0.0001407616218784824,
+              -0.00010170412133447826
+            ]
+          ],
+          "cube_angular_velocity_rad_s": [
+            [
+              0.0036037026438862085,
+              0.0010472293943166733,
+              0.0006913195829838514
+            ]
+          ],
+          "cube_table_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.6278240084648132
+            ]
+          ],
+          "cube_finger1_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "cube_finger2_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        "after_pulse": {
+          "cube_pose_world": [
+            [
+              0.05064300447702408,
+              -0.04184643179178238,
+              0.020000118762254715,
+              0.5273087620735168,
+              -6.252767548176053e-08,
+              -9.251812116417568e-08,
+              -0.8496737480163574
+            ]
+          ],
+          "cube_linear_velocity_m_s": [
+            [
+              5.697273081750609e-05,
+              0.17977669835090637,
+              -3.889004801749252e-06
+            ]
+          ],
+          "cube_angular_velocity_rad_s": [
+            [
+              0.00046817745896987617,
+              -4.6992136049084365e-05,
+              -0.002899728249758482
+            ]
+          ],
+          "cube_table_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.6285149455070496
+            ]
+          ],
+          "cube_finger1_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "cube_finger2_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        "peak_horizontal_displacement_from_pulse_start_m": 0.010017324239026662,
+        "peak_linear_speed_after_pulse_m_s": 0.17977670742053653,
+        "final_displacement_from_pulse_start_world_m": [
+          -7.562339305877686e-07,
+          0.010017283260822296,
+          5.4016709327697754e-08
+        ],
+        "sampled_support_loss_after_pulse": false
+      },
+      "post_pulse_finger_contact": {
+        "samples_above_001n": 0,
+        "first": null,
+        "peak_force_n": 0.0
+      }
+    },
+    {
+      "slot": 5,
+      "kind": "main",
+      "point_id": "model-drift-010mm",
+      "seed": 101,
+      "task_success_at_end": true,
+      "final_horizontal_error_m": 0.009925153379801481,
+      "controller_complete": true,
+      "steps": 800,
+      "excluded": false,
+      "first_reference_failure": null,
+      "command_force_y_n": 0.41868388652801514,
+      "estimated_drift_m": 0.01,
+      "physical_effects": {
+        "force_calls": 5,
+        "command_integral_y_ns": 0.02093419385848505,
+        "actual_application_duration_s": 0.04999999888241291,
+        "release_support_precondition": true,
+        "before_pulse": {
+          "cube_pose_world": [
+            [
+              -0.09643740952014923,
+              0.08172137290239334,
+              0.019999882206320763,
+              0.6151221990585327,
+              5.429260454548057e-06,
+              -3.8412565572798485e-07,
+              0.7884318232536316
+            ]
+          ],
+          "cube_linear_velocity_m_s": [
+            [
+              -0.00034783556475304067,
+              0.000273108045803383,
+              -6.309919990599155e-05
+            ]
+          ],
+          "cube_angular_velocity_rad_s": [
+            [
+              0.00010346152703277767,
+              -0.004808197263628244,
+              -0.000954096089117229
+            ]
+          ],
+          "cube_table_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.627839207649231
+            ]
+          ],
+          "cube_finger1_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "cube_finger2_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        "after_pulse": {
+          "cube_pose_world": [
+            [
+              -0.09644833207130432,
+              0.0871519148349762,
+              0.020000111311674118,
+              0.6151922941207886,
+              1.615758407069734e-07,
+              2.2842048252869063e-08,
+              0.7883772253990173
+            ]
+          ],
+          "cube_linear_velocity_m_s": [
+            [
+              0.00022680686379317194,
+              0.18020343780517578,
+              -1.6252286059170729e-06
+            ]
+          ],
+          "cube_angular_velocity_rad_s": [
+            [
+              -0.0003174649318680167,
+              0.00016791792586445808,
+              0.006051006726920605
+            ]
+          ],
+          "cube_table_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.6278527975082397
+            ]
+          ],
+          "cube_finger1_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "cube_finger2_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        "peak_horizontal_displacement_from_pulse_start_m": 0.01011241145153487,
+        "peak_linear_speed_after_pulse_m_s": 0.18020358054378022,
+        "final_displacement_from_pulse_start_world_m": [
+          -1.1049211025238037e-05,
+          0.010111525654792786,
+          6.146728992462158e-08
+        ],
+        "sampled_support_loss_after_pulse": false
+      },
+      "post_pulse_finger_contact": {
+        "samples_above_001n": 0,
+        "first": null,
+        "peak_force_n": 0.0
+      }
+    },
+    {
+      "slot": 6,
+      "kind": "main",
+      "point_id": "model-drift-040mm",
+      "seed": 100,
+      "task_success_at_end": true,
+      "final_horizontal_error_m": 0.021104183138459662,
+      "controller_complete": true,
+      "steps": 800,
+      "excluded": false,
+      "first_reference_failure": null,
+      "command_force_y_n": 0.7223591804504395,
+      "estimated_drift_m": 0.04,
+      "physical_effects": {
+        "force_calls": 5,
+        "command_integral_y_ns": 0.03611795821522268,
+        "actual_application_duration_s": 0.04999999888241291,
+        "release_support_precondition": true,
+        "before_pulse": {
+          "cube_pose_world": [
+            [
+              0.05064164474606514,
+              -0.04724005609750748,
+              0.01999993808567524,
+              0.5272791385650635,
+              5.592035904555814e-06,
+              -1.7938832570507657e-06,
+              -0.8496921062469482
+            ]
+          ],
+          "cube_linear_velocity_m_s": [
+            [
+              0.000112546855234541,
+              -0.0001407616218784824,
+              -0.00010170412133447826
+            ]
+          ],
+          "cube_angular_velocity_rad_s": [
+            [
+              0.0036037026438862085,
+              0.0010472293943166733,
+              0.0006913195829838514
+            ]
+          ],
+          "cube_table_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.6278240084648132
+            ]
+          ],
+          "cube_finger1_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "cube_finger2_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        "after_pulse": {
+          "cube_pose_world": [
+            [
+              0.050644539296627045,
+              -0.034732889384031296,
+              0.020000183954834938,
+              0.5273088216781616,
+              -2.7866437903867336e-06,
+              -3.5329510410520015e-06,
+              -0.8496736884117126
+            ]
+          ],
+          "cube_linear_velocity_m_s": [
+            [
+              7.072067091939971e-05,
+              0.4170832931995392,
+              -0.00020409346325322986
+            ]
+          ],
+          "cube_angular_velocity_rad_s": [
+            [
+              0.021138591691851616,
+              -0.0037259545642882586,
+              -0.00151615880895406
+            ]
+          ],
+          "cube_table_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.6271933913230896
+            ]
+          ],
+          "cube_finger1_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "cube_finger2_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        "peak_horizontal_displacement_from_pulse_start_m": 0.021400399289364304,
+        "peak_linear_speed_after_pulse_m_s": 0.4170833491302761,
+        "final_displacement_from_pulse_start_world_m": [
+          -0.0033188387751579285,
+          0.020596884191036224,
+          5.4016709327697754e-08
+        ],
+        "sampled_support_loss_after_pulse": false
+      },
+      "post_pulse_finger_contact": {
+        "samples_above_001n": 1,
+        "first": {
+          "step": 297,
+          "substep": 3,
+          "finger1_force_world_n": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "finger2_force_world_n": [
+            -1.149681568145752,
+            -2.3208749294281006,
+            2.1904515961068682e-05
+          ],
+          "finger1_norm_n": 0.0,
+          "finger2_norm_n": 2.5900247386196478,
+          "cube_pose_world": [
+            [
+              0.05035042017698288,
+              -0.025841638445854187,
+              0.020458487793803215,
+              0.5084953904151917,
+              0.00968108233064413,
+              0.006034098565578461,
+              -0.8609892129898071
+            ]
+          ],
+          "cube_linear_velocity_m_s": [
+            [
+              -0.10905402898788452,
+              -0.04497245326638222,
+              0.04351849481463432
+            ]
+          ]
+        },
+        "peak_force_n": 2.5900247386196478
+      }
+    },
+    {
+      "slot": 7,
+      "kind": "main",
+      "point_id": "model-drift-040mm",
+      "seed": 101,
+      "task_success_at_end": true,
+      "final_horizontal_error_m": 0.020793491881413915,
+      "controller_complete": true,
+      "steps": 800,
+      "excluded": false,
+      "first_reference_failure": null,
+      "command_force_y_n": 0.7223591804504395,
+      "estimated_drift_m": 0.04,
+      "physical_effects": {
+        "force_calls": 5,
+        "command_integral_y_ns": 0.03611795821522268,
+        "actual_application_duration_s": 0.04999999888241291,
+        "release_support_precondition": true,
+        "before_pulse": {
+          "cube_pose_world": [
+            [
+              -0.09643740952014923,
+              0.08172137290239334,
+              0.019999882206320763,
+              0.6151221990585327,
+              5.429260454548057e-06,
+              -3.8412565572798485e-07,
+              0.7884318232536316
+            ]
+          ],
+          "cube_linear_velocity_m_s": [
+            [
+              -0.00034783556475304067,
+              0.000273108045803383,
+              -6.309919990599155e-05
+            ]
+          ],
+          "cube_angular_velocity_rad_s": [
+            [
+              0.00010346152703277767,
+              -0.004808197263628244,
+              -0.000954096089117229
+            ]
+          ],
+          "cube_table_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.627839207649231
+            ]
+          ],
+          "cube_finger1_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "cube_finger2_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        "after_pulse": {
+          "cube_pose_world": [
+            [
+              -0.09645232558250427,
+              0.09425514191389084,
+              0.020000116899609566,
+              0.6151902675628662,
+              -6.056185242186984e-08,
+              4.893813709827555e-08,
+              0.7883787155151367
+            ]
+          ],
+          "cube_linear_velocity_m_s": [
+            [
+              -2.1582620320259593e-05,
+              0.4174483120441437,
+              -7.103762982296757e-07
+            ]
+          ],
+          "cube_angular_velocity_rad_s": [
+            [
+              6.938297883607447e-05,
+              5.930422048550099e-05,
+              0.002691510831937194
+            ]
+          ],
+          "cube_table_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.6278378367424011
+            ]
+          ],
+          "cube_finger1_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "cube_finger2_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        "peak_horizontal_displacement_from_pulse_start_m": 0.021000504960453137,
+        "peak_linear_speed_after_pulse_m_s": 0.41744831260267284,
+        "final_displacement_from_pulse_start_world_m": [
+          0.00032726675271987915,
+          0.020980551838874817,
+          3.725290298461914e-08
+        ],
+        "sampled_support_loss_after_pulse": false
+      },
+      "post_pulse_finger_contact": {
+        "samples_above_001n": 9,
+        "first": {
+          "step": 297,
+          "substep": 3,
+          "finger1_force_world_n": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "finger2_force_world_n": [
+            0.5061582326889038,
+            -2.019927978515625,
+            3.945478113109857e-07
+          ],
+          "finger1_norm_n": 0.0,
+          "finger2_norm_n": 2.0823796951826843,
+          "cube_pose_world": [
+            [
+              -0.09630077332258224,
+              0.10234386473894119,
+              0.020490366965532303,
+              0.6097107529640198,
+              0.00959747564047575,
+              -0.007555447518825531,
+              0.7925300002098083
+            ]
+          ],
+          "cube_linear_velocity_m_s": [
+            [
+              0.02267465554177761,
+              0.01941894181072712,
+              0.05069281905889511
+            ]
+          ]
+        },
+        "peak_force_n": 2.0823796951826843
+      }
+    },
+    {
+      "slot": 8,
+      "kind": "main",
+      "point_id": "model-drift-080mm",
+      "seed": 100,
+      "task_success_at_end": true,
+      "final_horizontal_error_m": 0.02149215890406861,
+      "controller_complete": true,
+      "steps": 800,
+      "excluded": false,
+      "first_reference_failure": null,
+      "command_force_y_n": 0.9775553345680237,
+      "estimated_drift_m": 0.08,
+      "physical_effects": {
+        "force_calls": 5,
+        "command_integral_y_ns": 0.04887776563589796,
+        "actual_application_duration_s": 0.04999999888241291,
+        "release_support_precondition": true,
+        "before_pulse": {
+          "cube_pose_world": [
+            [
+              0.05064164474606514,
+              -0.04724005609750748,
+              0.01999993808567524,
+              0.5272791385650635,
+              5.592035904555814e-06,
+              -1.7938832570507657e-06,
+              -0.8496921062469482
+            ]
+          ],
+          "cube_linear_velocity_m_s": [
+            [
+              0.000112546855234541,
+              -0.0001407616218784824,
+              -0.00010170412133447826
+            ]
+          ],
+          "cube_angular_velocity_rad_s": [
+            [
+              0.0036037026438862085,
+              0.0010472293943166733,
+              0.0006913195829838514
+            ]
+          ],
+          "cube_table_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.6278240084648132
+            ]
+          ],
+          "cube_finger1_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "cube_finger2_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        "after_pulse": {
+          "cube_pose_world": [
+            [
+              0.05064520984888077,
+              -0.028751730918884277,
+              0.020000183954834938,
+              0.5273103713989258,
+              -2.7804508135886863e-06,
+              -3.5243137972429395e-06,
+              -0.849672794342041
+            ]
+          ],
+          "cube_linear_velocity_m_s": [
+            [
+              7.833261042833328e-05,
+              0.616455078125,
+              -0.000203622505068779
+            ]
+          ],
+          "cube_angular_velocity_rad_s": [
+            [
+              0.02108951471745968,
+              -0.003722966415807605,
+              -0.0007650254410691559
+            ]
+          ],
+          "cube_table_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.6278424859046936
+            ]
+          ],
+          "cube_finger1_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "cube_finger2_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        "peak_horizontal_displacement_from_pulse_start_m": 0.021388946927537934,
+        "peak_linear_speed_after_pulse_m_s": 0.6164551167313175,
+        "final_displacement_from_pulse_start_world_m": [
+          -0.009097300469875336,
+          0.019183702766895294,
+          4.470348358154297e-08
+        ],
+        "sampled_support_loss_after_pulse": true
+      },
+      "post_pulse_finger_contact": {
+        "samples_above_001n": 1,
+        "first": {
+          "step": 297,
+          "substep": 1,
+          "finger1_force_world_n": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "finger2_force_world_n": [
+            -2.04606032371521,
+            -4.13041353225708,
+            3.891157030011527e-05
+          ],
+          "finger1_norm_n": 0.0,
+          "finger2_norm_n": 4.609411979553152,
+          "cube_pose_world": [
+            [
+              0.05035790428519249,
+              -0.02585299126803875,
+              0.020410915836691856,
+              0.49614429473876953,
+              0.008835281245410442,
+              0.005990835838019848,
+              -0.8681744933128357
+            ]
+          ],
+          "cube_linear_velocity_m_s": [
+            [
+              -0.21136313676834106,
+              -0.08254668116569519,
+              0.009997463785111904
+            ]
+          ]
+        },
+        "peak_force_n": 4.609411979553152
+      }
+    },
+    {
+      "slot": 9,
+      "kind": "main",
+      "point_id": "model-drift-080mm",
+      "seed": 101,
+      "task_success_at_end": true,
+      "final_horizontal_error_m": 0.01653847163367677,
+      "controller_complete": true,
+      "steps": 800,
+      "excluded": false,
+      "first_reference_failure": null,
+      "command_force_y_n": 0.9775553345680237,
+      "estimated_drift_m": 0.08,
+      "physical_effects": {
+        "force_calls": 5,
+        "command_integral_y_ns": 0.04887776563589796,
+        "actual_application_duration_s": 0.04999999888241291,
+        "release_support_precondition": true,
+        "before_pulse": {
+          "cube_pose_world": [
+            [
+              -0.09643740952014923,
+              0.08172137290239334,
+              0.019999882206320763,
+              0.6151221990585327,
+              5.429260454548057e-06,
+              -3.8412565572798485e-07,
+              0.7884318232536316
+            ]
+          ],
+          "cube_linear_velocity_m_s": [
+            [
+              -0.00034783556475304067,
+              0.000273108045803383,
+              -6.309919990599155e-05
+            ]
+          ],
+          "cube_angular_velocity_rad_s": [
+            [
+              0.00010346152703277767,
+              -0.004808197263628244,
+              -0.000954096089117229
+            ]
+          ],
+          "cube_table_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.627839207649231
+            ]
+          ],
+          "cube_finger1_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "cube_finger2_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        "after_pulse": {
+          "cube_pose_world": [
+            [
+              -0.09645359218120575,
+              0.10023172199726105,
+              0.020000120624899864,
+              0.6151824593544006,
+              2.632632956078851e-08,
+              1.1011778155989305e-09,
+              0.7883847951889038
+            ]
+          ],
+          "cube_linear_velocity_m_s": [
+            [
+              -0.00011435964552219957,
+              0.6168200969696045,
+              -4.2441371306267683e-07
+            ]
+          ],
+          "cube_angular_velocity_rad_s": [
+            [
+              -1.1243670087424107e-05,
+              1.7415628462913446e-05,
+              0.0015787016600370407
+            ]
+          ],
+          "cube_table_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.6278480291366577
+            ]
+          ],
+          "cube_finger1_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "cube_finger2_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        "peak_horizontal_displacement_from_pulse_start_m": 0.020524070100093578,
+        "peak_linear_speed_after_pulse_m_s": 0.6168201075710008,
+        "final_displacement_from_pulse_start_world_m": [
+          0.001406349241733551,
+          0.01667886972427368,
+          4.842877388000488e-08
+        ],
+        "sampled_support_loss_after_pulse": true
+      },
+      "post_pulse_finger_contact": {
+        "samples_above_001n": 1,
+        "first": {
+          "step": 297,
+          "substep": 1,
+          "finger1_force_world_n": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "finger2_force_world_n": [
+            1.1463972330093384,
+            -4.57425594329834,
+            -1.8936317758289078e-07
+          ],
+          "finger1_norm_n": 0.0,
+          "finger2_norm_n": 4.715723067637845,
+          "cube_pose_world": [
+            [
+              -0.09644162654876709,
+              0.10224544256925583,
+              0.020618939772248268,
+              0.6040505170822144,
+              0.006151321344077587,
+              -0.004065002780407667,
+              0.796911895275116
+            ]
+          ],
+          "cube_linear_velocity_m_s": [
+            [
+              0.04891423135995865,
+              -0.13051170110702515,
+              0.08632919937372208
+            ]
+          ]
+        },
+        "peak_force_n": 4.715723067637845
+      }
+    },
+    {
+      "slot": 10,
+      "kind": "main",
+      "point_id": "model-drift-120mm",
+      "seed": 100,
+      "task_success_at_end": false,
+      "final_horizontal_error_m": 0.04158238705568264,
+      "controller_complete": true,
+      "steps": 800,
+      "excluded": false,
+      "first_reference_failure": {
+        "step": 340,
+        "failure": "PLACEMENT_TARGET_NOT_REACHED"
+      },
+      "command_force_y_n": 1.1740388870239258,
+      "estimated_drift_m": 0.12,
+      "physical_effects": {
+        "force_calls": 5,
+        "command_integral_y_ns": 0.058701943039105586,
+        "actual_application_duration_s": 0.04999999888241291,
+        "release_support_precondition": true,
+        "before_pulse": {
+          "cube_pose_world": [
+            [
+              0.05064164474606514,
+              -0.04724005609750748,
+              0.01999993808567524,
+              0.5272791385650635,
+              5.592035904555814e-06,
+              -1.7938832570507657e-06,
+              -0.8496921062469482
+            ]
+          ],
+          "cube_linear_velocity_m_s": [
+            [
+              0.000112546855234541,
+              -0.0001407616218784824,
+              -0.00010170412133447826
+            ]
+          ],
+          "cube_angular_velocity_rad_s": [
+            [
+              0.0036037026438862085,
+              0.0010472293943166733,
+              0.0006913195829838514
+            ]
+          ],
+          "cube_table_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.6278240084648132
+            ]
+          ],
+          "cube_finger1_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "cube_finger2_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        "after_pulse": {
+          "cube_pose_world": [
+            [
+              0.05030519887804985,
+              -0.024837281554937363,
+              0.02000306360423565,
+              0.5157405734062195,
+              -7.256319076986983e-05,
+              -0.00015696932678110898,
+              -0.8567448258399963
+            ]
+          ],
+          "cube_linear_velocity_m_s": [
+            [
+              -0.2781820595264435,
+              0.20583553612232208,
+              -0.002555801533162594
+            ]
+          ],
+          "cube_angular_velocity_rad_s": [
+            [
+              0.04030407965183258,
+              -0.13120068609714508,
+              -15.96890926361084
+            ]
+          ],
+          "cube_table_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.6127533912658691
+            ]
+          ],
+          "cube_finger1_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "cube_finger2_contact_force_world_n": [
+            [
+              -1.7913012504577637,
+              -3.6160805225372314,
+              3.410412682569586e-05
+            ]
+          ]
+        },
+        "peak_horizontal_displacement_from_pulse_start_m": 0.041320245154445975,
+        "peak_linear_speed_after_pulse_m_s": 0.6159441272265361,
+        "final_displacement_from_pulse_start_world_m": [
+          -0.023402076214551926,
+          0.03405409585684538,
+          -3.725290298461914e-09
+        ],
+        "sampled_support_loss_after_pulse": false
+      },
+      "post_pulse_finger_contact": {
+        "samples_above_001n": 1,
+        "first": {
+          "step": 296,
+          "substep": 5,
+          "finger1_force_world_n": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "finger2_force_world_n": [
+            -1.7913012504577637,
+            -3.6160805225372314,
+            3.410412682569586e-05
+          ],
+          "finger1_norm_n": 0.0,
+          "finger2_norm_n": 4.035442790639928,
+          "cube_pose_world": [
+            [
+              0.05030519887804985,
+              -0.024837281554937363,
+              0.02000306360423565,
+              0.5157405734062195,
+              -7.256319076986983e-05,
+              -0.00015696932678110898,
+              -0.8567448258399963
+            ]
+          ],
+          "cube_linear_velocity_m_s": [
+            [
+              -0.2781820595264435,
+              0.20583553612232208,
+              -0.002555801533162594
+            ]
+          ]
+        },
+        "peak_force_n": 4.035442790639928
+      }
+    },
+    {
+      "slot": 11,
+      "kind": "main",
+      "point_id": "model-drift-120mm",
+      "seed": 101,
+      "task_success_at_end": true,
+      "final_horizontal_error_m": 0.018441530899725635,
+      "controller_complete": true,
+      "steps": 800,
+      "excluded": false,
+      "first_reference_failure": null,
+      "command_force_y_n": 1.1740388870239258,
+      "estimated_drift_m": 0.12,
+      "physical_effects": {
+        "force_calls": 5,
+        "command_integral_y_ns": 0.058701943039105586,
+        "actual_application_duration_s": 0.04999999888241291,
+        "release_support_precondition": true,
+        "before_pulse": {
+          "cube_pose_world": [
+            [
+              -0.09643740952014923,
+              0.08172137290239334,
+              0.019999882206320763,
+              0.6151221990585327,
+              5.429260454548057e-06,
+              -3.8412565572798485e-07,
+              0.7884318232536316
+            ]
+          ],
+          "cube_linear_velocity_m_s": [
+            [
+              -0.00034783556475304067,
+              0.000273108045803383,
+              -6.309919990599155e-05
+            ]
+          ],
+          "cube_angular_velocity_rad_s": [
+            [
+              0.00010346152703277767,
+              -0.004808197263628244,
+              -0.000954096089117229
+            ]
+          ],
+          "cube_table_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.627839207649231
+            ]
+          ],
+          "cube_finger1_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "cube_finger2_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        "after_pulse": {
+          "cube_pose_world": [
+            [
+              -0.09604813158512115,
+              0.10319682955741882,
+              0.019999073818325996,
+              0.6186387538909912,
+              -2.888024209823925e-05,
+              2.7327008865540847e-05,
+              0.785675585269928
+            ]
+          ],
+          "cube_linear_velocity_m_s": [
+            [
+              0.22025491297245026,
+              -0.12712045013904572,
+              -0.001443294109776616
+            ]
+          ],
+          "cube_angular_velocity_rad_s": [
+            [
+              -0.049880195409059525,
+              -0.00581002701073885,
+              -2.4910926818847656
+            ]
+          ],
+          "cube_table_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.61860591173172
+            ]
+          ],
+          "cube_finger1_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "cube_finger2_contact_force_world_n": [
+            [
+              1.4408949613571167,
+              -5.748970031738281,
+              -2.398492711108702e-07
+            ]
+          ]
+        },
+        "peak_horizontal_displacement_from_pulse_start_m": 0.021478984516326138,
+        "peak_linear_speed_after_pulse_m_s": 0.6163087144526723,
+        "final_displacement_from_pulse_start_world_m": [
+          0.008838094770908356,
+          0.016457445919513702,
+          6.705522537231445e-08
+        ],
+        "sampled_support_loss_after_pulse": false
+      },
+      "post_pulse_finger_contact": {
+        "samples_above_001n": 1,
+        "first": {
+          "step": 296,
+          "substep": 5,
+          "finger1_force_world_n": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "finger2_force_world_n": [
+            1.4408949613571167,
+            -5.748970031738281,
+            -2.398492711108702e-07
+          ],
+          "finger1_norm_n": 0.0,
+          "finger2_norm_n": 5.926789579147318,
+          "cube_pose_world": [
+            [
+              -0.09604813158512115,
+              0.10319682955741882,
+              0.019999073818325996,
+              0.6186387538909912,
+              -2.888024209823925e-05,
+              2.7327008865540847e-05,
+              0.785675585269928
+            ]
+          ],
+          "cube_linear_velocity_m_s": [
+            [
+              0.22025491297245026,
+              -0.12712045013904572,
+              -0.001443294109776616
+            ]
+          ]
+        },
+        "peak_force_n": 5.926789579147318
+      }
+    },
+    {
+      "slot": 12,
+      "kind": "main",
+      "point_id": "model-drift-200mm",
+      "seed": 100,
+      "task_success_at_end": false,
+      "final_horizontal_error_m": 0.03981109896291915,
+      "controller_complete": true,
+      "steps": 800,
+      "excluded": false,
+      "first_reference_failure": {
+        "step": 340,
+        "failure": "PLACEMENT_TARGET_NOT_REACHED"
+      },
+      "command_force_y_n": 1.486150860786438,
+      "estimated_drift_m": 0.2,
+      "physical_effects": {
+        "force_calls": 5,
+        "command_integral_y_ns": 0.07430754137841888,
+        "actual_application_duration_s": 0.04999999888241291,
+        "release_support_precondition": true,
+        "before_pulse": {
+          "cube_pose_world": [
+            [
+              0.05064164474606514,
+              -0.04724005609750748,
+              0.01999993808567524,
+              0.5272791385650635,
+              5.592035904555814e-06,
+              -1.7938832570507657e-06,
+              -0.8496921062469482
+            ]
+          ],
+          "cube_linear_velocity_m_s": [
+            [
+              0.000112546855234541,
+              -0.0001407616218784824,
+              -0.00010170412133447826
+            ]
+          ],
+          "cube_angular_velocity_rad_s": [
+            [
+              0.0036037026438862085,
+              0.0010472293943166733,
+              0.0006913195829838514
+            ]
+          ],
+          "cube_table_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.6278240084648132
+            ]
+          ],
+          "cube_finger1_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "cube_finger2_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        "after_pulse": {
+          "cube_pose_world": [
+            [
+              0.048686280846595764,
+              -0.024883203208446503,
+              0.020401574671268463,
+              0.46977341175079346,
+              0.007680289447307587,
+              0.0025785581674426794,
+              -0.8827499151229858
+            ]
+          ],
+          "cube_linear_velocity_m_s": [
+            [
+              -0.1632695496082306,
+              0.2613462805747986,
+              0.10301848500967026
+            ]
+          ],
+          "cube_angular_velocity_rad_s": [
+            [
+              -3.0182995796203613,
+              -1.7705821990966797,
+              -12.894379615783691
+            ]
+          ],
+          "cube_table_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "cube_finger1_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "cube_finger2_contact_force_world_n": [
+            [
+              -2.196443557739258,
+              -4.433888912200928,
+              4.167389124631882e-05
+            ]
+          ]
+        },
+        "peak_horizontal_displacement_from_pulse_start_m": 0.03954860806172467,
+        "peak_linear_speed_after_pulse_m_s": 0.8110140270952512,
+        "final_displacement_from_pulse_start_world_m": [
+          -0.02053924836218357,
+          0.033796826377511024,
+          -2.2351741790771484e-08
+        ],
+        "sampled_support_loss_after_pulse": true
+      },
+      "post_pulse_finger_contact": {
+        "samples_above_001n": 2,
+        "first": {
+          "step": 296,
+          "substep": 5,
+          "finger1_force_world_n": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "finger2_force_world_n": [
+            -2.196443557739258,
+            -4.433888912200928,
+            4.167389124631882e-05
+          ],
+          "finger1_norm_n": 0.0,
+          "finger2_norm_n": 4.948104201591689,
+          "cube_pose_world": [
+            [
+              0.048686280846595764,
+              -0.024883203208446503,
+              0.020401574671268463,
+              0.46977341175079346,
+              0.007680289447307587,
+              0.0025785581674426794,
+              -0.8827499151229858
+            ]
+          ],
+          "cube_linear_velocity_m_s": [
+            [
+              -0.1632695496082306,
+              0.2613462805747986,
+              0.10301848500967026
+            ]
+          ]
+        },
+        "peak_force_n": 4.948104201591689
+      }
+    },
+    {
+      "slot": 13,
+      "kind": "main",
+      "point_id": "model-drift-200mm",
+      "seed": 101,
+      "task_success_at_end": true,
+      "final_horizontal_error_m": 0.02180525511405177,
+      "controller_complete": true,
+      "steps": 800,
+      "excluded": false,
+      "first_reference_failure": null,
+      "command_force_y_n": 1.486150860786438,
+      "estimated_drift_m": 0.2,
+      "physical_effects": {
+        "force_calls": 5,
+        "command_integral_y_ns": 0.07430754137841888,
+        "actual_application_duration_s": 0.04999999888241291,
+        "release_support_precondition": true,
+        "before_pulse": {
+          "cube_pose_world": [
+            [
+              -0.09643740952014923,
+              0.08172137290239334,
+              0.019999882206320763,
+              0.6151221990585327,
+              5.429260454548057e-06,
+              -3.8412565572798485e-07,
+              0.7884318232536316
+            ]
+          ],
+          "cube_linear_velocity_m_s": [
+            [
+              -0.00034783556475304067,
+              0.000273108045803383,
+              -6.309919990599155e-05
+            ]
+          ],
+          "cube_angular_velocity_rad_s": [
+            [
+              0.00010346152703277767,
+              -0.004808197263628244,
+              -0.000954096089117229
+            ]
+          ],
+          "cube_table_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.627839207649231
+            ]
+          ],
+          "cube_finger1_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "cube_finger2_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        "after_pulse": {
+          "cube_pose_world": [
+            [
+              -0.09579062461853027,
+              0.10273367166519165,
+              0.02082553505897522,
+              0.6001058220863342,
+              0.00035281546297483146,
+              -0.000860117725096643,
+              0.7999201416969299
+            ]
+          ],
+          "cube_linear_velocity_m_s": [
+            [
+              0.05204102024435997,
+              0.18075530230998993,
+              0.09241168946027756
+            ]
+          ],
+          "cube_angular_velocity_rad_s": [
+            [
+              -0.5366766452789307,
+              -0.2836037874221802,
+              3.841635227203369
+            ]
+          ],
+          "cube_table_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "cube_finger1_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "cube_finger2_contact_force_world_n": [
+            [
+              1.321852445602417,
+              -5.273740768432617,
+              -7.121659109543543e-06
+            ]
+          ]
+        },
+        "peak_horizontal_displacement_from_pulse_start_m": 0.022018541010179075,
+        "peak_linear_speed_after_pulse_m_s": 0.8112443311624409,
+        "final_displacement_from_pulse_start_world_m": [
+          0.0035800933837890625,
+          0.021722421050071716,
+          1.6763806343078613e-08
+        ],
+        "sampled_support_loss_after_pulse": true
+      },
+      "post_pulse_finger_contact": {
+        "samples_above_001n": 3,
+        "first": {
+          "step": 296,
+          "substep": 5,
+          "finger1_force_world_n": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "finger2_force_world_n": [
+            1.321852445602417,
+            -5.273740768432617,
+            -7.121659109543543e-06
+          ],
+          "finger1_norm_n": 0.0,
+          "finger2_norm_n": 5.4368773740653795,
+          "cube_pose_world": [
+            [
+              -0.09579062461853027,
+              0.10273367166519165,
+              0.02082553505897522,
+              0.6001058220863342,
+              0.00035281546297483146,
+              -0.000860117725096643,
+              0.7999201416969299
+            ]
+          ],
+          "cube_linear_velocity_m_s": [
+            [
+              0.05204102024435997,
+              0.18075530230998993,
+              0.09241168946027756
+            ]
+          ]
+        },
+        "peak_force_n": 5.4368773740653795
+      }
+    },
+    {
+      "slot": 14,
+      "kind": "repeat",
+      "point_id": "normal",
+      "seed": 100,
+      "task_success_at_end": true,
+      "final_horizontal_error_m": 0.0002630005483300996,
+      "controller_complete": true,
+      "steps": 800,
+      "excluded": false,
+      "first_reference_failure": null,
+      "command_force_y_n": 0.0,
+      "estimated_drift_m": 0.0,
+      "physical_effects": {
+        "force_calls": 0,
+        "command_integral_y_ns": 0.0,
+        "actual_application_duration_s": 0.0,
+        "release_support_precondition": true,
+        "before_pulse": {
+          "cube_pose_world": [
+            [
+              0.05064164474606514,
+              -0.04724005609750748,
+              0.01999993808567524,
+              0.5272791385650635,
+              5.592035904555814e-06,
+              -1.7938832570507657e-06,
+              -0.8496921062469482
+            ]
+          ],
+          "cube_linear_velocity_m_s": [
+            [
+              0.000112546855234541,
+              -0.0001407616218784824,
+              -0.00010170412133447826
+            ]
+          ],
+          "cube_angular_velocity_rad_s": [
+            [
+              0.0036037026438862085,
+              0.0010472293943166733,
+              0.0006913195829838514
+            ]
+          ],
+          "cube_table_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.6278240084648132
+            ]
+          ],
+          "cube_finger1_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "cube_finger2_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        "after_pulse": {
+          "cube_pose_world": [
+            [
+              0.05064166337251663,
+              -0.04724004864692688,
+              0.01999995857477188,
+              0.5272790789604187,
+              5.442300789582077e-06,
+              -1.9624526430561673e-06,
+              -0.849692165851593
+            ]
+          ],
+          "cube_linear_velocity_m_s": [
+            [
+              0.00010212173947365955,
+              -0.00014923684648238122,
+              -9.938566654454917e-05
+            ]
+          ],
+          "cube_angular_velocity_rad_s": [
+            [
+              0.0037428312934935093,
+              0.0009015276446007192,
+              0.0007174400379881263
+            ]
+          ],
+          "cube_table_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.6279376745223999
+            ]
+          ],
+          "cube_finger1_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "cube_finger2_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        "peak_horizontal_displacement_from_pulse_start_m": 4.107459876609878e-07,
+        "peak_linear_speed_after_pulse_m_s": 0.0003072461491700836,
+        "final_displacement_from_pulse_start_world_m": [
+          -3.0919909477233887e-07,
+          2.60770320892334e-07,
+          4.284083843231201e-08
+        ],
+        "sampled_support_loss_after_pulse": false
+      },
+      "post_pulse_finger_contact": {
+        "samples_above_001n": 0,
+        "first": null,
+        "peak_force_n": 0.0
+      }
+    },
+    {
+      "slot": 15,
+      "kind": "repeat",
+      "point_id": "normal",
+      "seed": 101,
+      "task_success_at_end": true,
+      "final_horizontal_error_m": 0.00024397320931851153,
+      "controller_complete": true,
+      "steps": 800,
+      "excluded": false,
+      "first_reference_failure": null,
+      "command_force_y_n": 0.0,
+      "estimated_drift_m": 0.0,
+      "physical_effects": {
+        "force_calls": 0,
+        "command_integral_y_ns": 0.0,
+        "actual_application_duration_s": 0.0,
+        "release_support_precondition": true,
+        "before_pulse": {
+          "cube_pose_world": [
+            [
+              -0.09643740952014923,
+              0.08172137290239334,
+              0.019999882206320763,
+              0.6151221990585327,
+              5.429260454548057e-06,
+              -3.8412565572798485e-07,
+              0.7884318232536316
+            ]
+          ],
+          "cube_linear_velocity_m_s": [
+            [
+              -0.00034783556475304067,
+              0.000273108045803383,
+              -6.309919990599155e-05
+            ]
+          ],
+          "cube_angular_velocity_rad_s": [
+            [
+              0.00010346152703277767,
+              -0.004808197263628244,
+              -0.000954096089117229
+            ]
+          ],
+          "cube_table_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.627839207649231
+            ]
+          ],
+          "cube_finger1_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "cube_finger2_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        "after_pulse": {
+          "cube_pose_world": [
+            [
+              -0.09643740952014923,
+              0.08172136545181274,
+              0.019999906420707703,
+              0.6151221990585327,
+              5.461784439830808e-06,
+              -4.549301593215205e-07,
+              0.7884318232536316
+            ]
+          ],
+          "cube_linear_velocity_m_s": [
+            [
+              -0.0003482216561678797,
+              0.0002741807256825268,
+              -6.612502329517156e-05
+            ]
+          ],
+          "cube_angular_velocity_rad_s": [
+            [
+              -2.868337651307229e-05,
+              -0.004866105038672686,
+              -0.000951035472098738
+            ]
+          ],
+          "cube_table_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.6278195381164551
+            ]
+          ],
+          "cube_finger1_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "cube_finger2_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        "peak_horizontal_displacement_from_pulse_start_m": 4.335444130294369e-07,
+        "peak_linear_speed_after_pulse_m_s": 0.0004481137253710101,
+        "final_displacement_from_pulse_start_world_m": [
+          1.7136335372924805e-07,
+          -3.7997961044311523e-07,
+          3.3527612686157227e-08
+        ],
+        "sampled_support_loss_after_pulse": false
+      },
+      "post_pulse_finger_contact": {
+        "samples_above_001n": 0,
+        "first": null,
+        "peak_force_n": 0.0
+      }
+    },
+    {
+      "slot": 16,
+      "kind": "repeat",
+      "point_id": "model-drift-080mm",
+      "seed": 100,
+      "task_success_at_end": true,
+      "final_horizontal_error_m": 0.02149215890406861,
+      "controller_complete": true,
+      "steps": 800,
+      "excluded": false,
+      "first_reference_failure": null,
+      "command_force_y_n": 0.9775553345680237,
+      "estimated_drift_m": 0.08,
+      "physical_effects": {
+        "force_calls": 5,
+        "command_integral_y_ns": 0.04887776563589796,
+        "actual_application_duration_s": 0.04999999888241291,
+        "release_support_precondition": true,
+        "before_pulse": {
+          "cube_pose_world": [
+            [
+              0.05064164474606514,
+              -0.04724005609750748,
+              0.01999993808567524,
+              0.5272791385650635,
+              5.592035904555814e-06,
+              -1.7938832570507657e-06,
+              -0.8496921062469482
+            ]
+          ],
+          "cube_linear_velocity_m_s": [
+            [
+              0.000112546855234541,
+              -0.0001407616218784824,
+              -0.00010170412133447826
+            ]
+          ],
+          "cube_angular_velocity_rad_s": [
+            [
+              0.0036037026438862085,
+              0.0010472293943166733,
+              0.0006913195829838514
+            ]
+          ],
+          "cube_table_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.6278240084648132
+            ]
+          ],
+          "cube_finger1_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "cube_finger2_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        "after_pulse": {
+          "cube_pose_world": [
+            [
+              0.05064520984888077,
+              -0.028751730918884277,
+              0.020000183954834938,
+              0.5273103713989258,
+              -2.7804508135886863e-06,
+              -3.5243137972429395e-06,
+              -0.849672794342041
+            ]
+          ],
+          "cube_linear_velocity_m_s": [
+            [
+              7.833261042833328e-05,
+              0.616455078125,
+              -0.000203622505068779
+            ]
+          ],
+          "cube_angular_velocity_rad_s": [
+            [
+              0.02108951471745968,
+              -0.003722966415807605,
+              -0.0007650254410691559
+            ]
+          ],
+          "cube_table_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.6278424859046936
+            ]
+          ],
+          "cube_finger1_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "cube_finger2_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        "peak_horizontal_displacement_from_pulse_start_m": 0.021388946927537934,
+        "peak_linear_speed_after_pulse_m_s": 0.6164551167313175,
+        "final_displacement_from_pulse_start_world_m": [
+          -0.009097300469875336,
+          0.019183702766895294,
+          4.470348358154297e-08
+        ],
+        "sampled_support_loss_after_pulse": true
+      },
+      "post_pulse_finger_contact": {
+        "samples_above_001n": 1,
+        "first": {
+          "step": 297,
+          "substep": 1,
+          "finger1_force_world_n": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "finger2_force_world_n": [
+            -2.04606032371521,
+            -4.13041353225708,
+            3.891157030011527e-05
+          ],
+          "finger1_norm_n": 0.0,
+          "finger2_norm_n": 4.609411979553152,
+          "cube_pose_world": [
+            [
+              0.05035790428519249,
+              -0.02585299126803875,
+              0.020410915836691856,
+              0.49614429473876953,
+              0.008835281245410442,
+              0.005990835838019848,
+              -0.8681744933128357
+            ]
+          ],
+          "cube_linear_velocity_m_s": [
+            [
+              -0.21136313676834106,
+              -0.08254668116569519,
+              0.009997463785111904
+            ]
+          ]
+        },
+        "peak_force_n": 4.609411979553152
+      }
+    },
+    {
+      "slot": 17,
+      "kind": "repeat",
+      "point_id": "model-drift-080mm",
+      "seed": 101,
+      "task_success_at_end": true,
+      "final_horizontal_error_m": 0.01653847163367677,
+      "controller_complete": true,
+      "steps": 800,
+      "excluded": false,
+      "first_reference_failure": null,
+      "command_force_y_n": 0.9775553345680237,
+      "estimated_drift_m": 0.08,
+      "physical_effects": {
+        "force_calls": 5,
+        "command_integral_y_ns": 0.04887776563589796,
+        "actual_application_duration_s": 0.04999999888241291,
+        "release_support_precondition": true,
+        "before_pulse": {
+          "cube_pose_world": [
+            [
+              -0.09643740952014923,
+              0.08172137290239334,
+              0.019999882206320763,
+              0.6151221990585327,
+              5.429260454548057e-06,
+              -3.8412565572798485e-07,
+              0.7884318232536316
+            ]
+          ],
+          "cube_linear_velocity_m_s": [
+            [
+              -0.00034783556475304067,
+              0.000273108045803383,
+              -6.309919990599155e-05
+            ]
+          ],
+          "cube_angular_velocity_rad_s": [
+            [
+              0.00010346152703277767,
+              -0.004808197263628244,
+              -0.000954096089117229
+            ]
+          ],
+          "cube_table_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.627839207649231
+            ]
+          ],
+          "cube_finger1_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "cube_finger2_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        "after_pulse": {
+          "cube_pose_world": [
+            [
+              -0.09645359218120575,
+              0.10023172199726105,
+              0.020000120624899864,
+              0.6151824593544006,
+              2.632632956078851e-08,
+              1.1011778155989305e-09,
+              0.7883847951889038
+            ]
+          ],
+          "cube_linear_velocity_m_s": [
+            [
+              -0.00011435964552219957,
+              0.6168200969696045,
+              -4.2441371306267683e-07
+            ]
+          ],
+          "cube_angular_velocity_rad_s": [
+            [
+              -1.1243670087424107e-05,
+              1.7415628462913446e-05,
+              0.0015787016600370407
+            ]
+          ],
+          "cube_table_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.6278480291366577
+            ]
+          ],
+          "cube_finger1_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "cube_finger2_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        "peak_horizontal_displacement_from_pulse_start_m": 0.020524070100093578,
+        "peak_linear_speed_after_pulse_m_s": 0.6168201075710008,
+        "final_displacement_from_pulse_start_world_m": [
+          0.001406349241733551,
+          0.01667886972427368,
+          4.842877388000488e-08
+        ],
+        "sampled_support_loss_after_pulse": true
+      },
+      "post_pulse_finger_contact": {
+        "samples_above_001n": 1,
+        "first": {
+          "step": 297,
+          "substep": 1,
+          "finger1_force_world_n": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "finger2_force_world_n": [
+            1.1463972330093384,
+            -4.57425594329834,
+            -1.8936317758289078e-07
+          ],
+          "finger1_norm_n": 0.0,
+          "finger2_norm_n": 4.715723067637845,
+          "cube_pose_world": [
+            [
+              -0.09644162654876709,
+              0.10224544256925583,
+              0.020618939772248268,
+              0.6040505170822144,
+              0.006151321344077587,
+              -0.004065002780407667,
+              0.796911895275116
+            ]
+          ],
+          "cube_linear_velocity_m_s": [
+            [
+              0.04891423135995865,
+              -0.13051170110702515,
+              0.08632919937372208
+            ]
+          ]
+        },
+        "peak_force_n": 4.715723067637845
+      }
+    },
+    {
+      "slot": 18,
+      "kind": "repeat",
+      "point_id": "model-drift-200mm",
+      "seed": 100,
+      "task_success_at_end": false,
+      "final_horizontal_error_m": 0.03981109896291915,
+      "controller_complete": true,
+      "steps": 800,
+      "excluded": false,
+      "first_reference_failure": {
+        "step": 340,
+        "failure": "PLACEMENT_TARGET_NOT_REACHED"
+      },
+      "command_force_y_n": 1.486150860786438,
+      "estimated_drift_m": 0.2,
+      "physical_effects": {
+        "force_calls": 5,
+        "command_integral_y_ns": 0.07430754137841888,
+        "actual_application_duration_s": 0.04999999888241291,
+        "release_support_precondition": true,
+        "before_pulse": {
+          "cube_pose_world": [
+            [
+              0.05064164474606514,
+              -0.04724005609750748,
+              0.01999993808567524,
+              0.5272791385650635,
+              5.592035904555814e-06,
+              -1.7938832570507657e-06,
+              -0.8496921062469482
+            ]
+          ],
+          "cube_linear_velocity_m_s": [
+            [
+              0.000112546855234541,
+              -0.0001407616218784824,
+              -0.00010170412133447826
+            ]
+          ],
+          "cube_angular_velocity_rad_s": [
+            [
+              0.0036037026438862085,
+              0.0010472293943166733,
+              0.0006913195829838514
+            ]
+          ],
+          "cube_table_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.6278240084648132
+            ]
+          ],
+          "cube_finger1_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "cube_finger2_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        "after_pulse": {
+          "cube_pose_world": [
+            [
+              0.048686280846595764,
+              -0.024883203208446503,
+              0.020401574671268463,
+              0.46977341175079346,
+              0.007680289447307587,
+              0.0025785581674426794,
+              -0.8827499151229858
+            ]
+          ],
+          "cube_linear_velocity_m_s": [
+            [
+              -0.1632695496082306,
+              0.2613462805747986,
+              0.10301848500967026
+            ]
+          ],
+          "cube_angular_velocity_rad_s": [
+            [
+              -3.0182995796203613,
+              -1.7705821990966797,
+              -12.894379615783691
+            ]
+          ],
+          "cube_table_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "cube_finger1_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "cube_finger2_contact_force_world_n": [
+            [
+              -2.196443557739258,
+              -4.433888912200928,
+              4.167389124631882e-05
+            ]
+          ]
+        },
+        "peak_horizontal_displacement_from_pulse_start_m": 0.03954860806172467,
+        "peak_linear_speed_after_pulse_m_s": 0.8110140270952512,
+        "final_displacement_from_pulse_start_world_m": [
+          -0.02053924836218357,
+          0.033796826377511024,
+          -2.2351741790771484e-08
+        ],
+        "sampled_support_loss_after_pulse": true
+      },
+      "post_pulse_finger_contact": {
+        "samples_above_001n": 2,
+        "first": {
+          "step": 296,
+          "substep": 5,
+          "finger1_force_world_n": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "finger2_force_world_n": [
+            -2.196443557739258,
+            -4.433888912200928,
+            4.167389124631882e-05
+          ],
+          "finger1_norm_n": 0.0,
+          "finger2_norm_n": 4.948104201591689,
+          "cube_pose_world": [
+            [
+              0.048686280846595764,
+              -0.024883203208446503,
+              0.020401574671268463,
+              0.46977341175079346,
+              0.007680289447307587,
+              0.0025785581674426794,
+              -0.8827499151229858
+            ]
+          ],
+          "cube_linear_velocity_m_s": [
+            [
+              -0.1632695496082306,
+              0.2613462805747986,
+              0.10301848500967026
+            ]
+          ]
+        },
+        "peak_force_n": 4.948104201591689
+      }
+    },
+    {
+      "slot": 19,
+      "kind": "repeat",
+      "point_id": "model-drift-200mm",
+      "seed": 101,
+      "task_success_at_end": true,
+      "final_horizontal_error_m": 0.02180525511405177,
+      "controller_complete": true,
+      "steps": 800,
+      "excluded": false,
+      "first_reference_failure": null,
+      "command_force_y_n": 1.486150860786438,
+      "estimated_drift_m": 0.2,
+      "physical_effects": {
+        "force_calls": 5,
+        "command_integral_y_ns": 0.07430754137841888,
+        "actual_application_duration_s": 0.04999999888241291,
+        "release_support_precondition": true,
+        "before_pulse": {
+          "cube_pose_world": [
+            [
+              -0.09643740952014923,
+              0.08172137290239334,
+              0.019999882206320763,
+              0.6151221990585327,
+              5.429260454548057e-06,
+              -3.8412565572798485e-07,
+              0.7884318232536316
+            ]
+          ],
+          "cube_linear_velocity_m_s": [
+            [
+              -0.00034783556475304067,
+              0.000273108045803383,
+              -6.309919990599155e-05
+            ]
+          ],
+          "cube_angular_velocity_rad_s": [
+            [
+              0.00010346152703277767,
+              -0.004808197263628244,
+              -0.000954096089117229
+            ]
+          ],
+          "cube_table_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.627839207649231
+            ]
+          ],
+          "cube_finger1_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "cube_finger2_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        "after_pulse": {
+          "cube_pose_world": [
+            [
+              -0.09579062461853027,
+              0.10273367166519165,
+              0.02082553505897522,
+              0.6001058220863342,
+              0.00035281546297483146,
+              -0.000860117725096643,
+              0.7999201416969299
+            ]
+          ],
+          "cube_linear_velocity_m_s": [
+            [
+              0.05204102024435997,
+              0.18075530230998993,
+              0.09241168946027756
+            ]
+          ],
+          "cube_angular_velocity_rad_s": [
+            [
+              -0.5366766452789307,
+              -0.2836037874221802,
+              3.841635227203369
+            ]
+          ],
+          "cube_table_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "cube_finger1_contact_force_world_n": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "cube_finger2_contact_force_world_n": [
+            [
+              1.321852445602417,
+              -5.273740768432617,
+              -7.121659109543543e-06
+            ]
+          ]
+        },
+        "peak_horizontal_displacement_from_pulse_start_m": 0.022018541010179075,
+        "peak_linear_speed_after_pulse_m_s": 0.8112443311624409,
+        "final_displacement_from_pulse_start_world_m": [
+          0.0035800933837890625,
+          0.021722421050071716,
+          1.6763806343078613e-08
+        ],
+        "sampled_support_loss_after_pulse": true
+      },
+      "post_pulse_finger_contact": {
+        "samples_above_001n": 3,
+        "first": {
+          "step": 296,
+          "substep": 5,
+          "finger1_force_world_n": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "finger2_force_world_n": [
+            1.321852445602417,
+            -5.273740768432617,
+            -7.121659109543543e-06
+          ],
+          "finger1_norm_n": 0.0,
+          "finger2_norm_n": 5.4368773740653795,
+          "cube_pose_world": [
+            [
+              -0.09579062461853027,
+              0.10273367166519165,
+              0.02082553505897522,
+              0.6001058220863342,
+              0.00035281546297483146,
+              -0.000860117725096643,
+              0.7999201416969299
+            ]
+          ],
+          "cube_linear_velocity_m_s": [
+            [
+              0.05204102024435997,
+              0.18075530230998993,
+              0.09241168946027756
+            ]
+          ]
+        },
+        "peak_force_n": 5.4368773740653795
+      }
+    }
+  ],
+  "all_audit_checks_passed": true,
+  "fresh_study_started": false,
+  "force_family_frozen_for_fresh_study": false,
+  "training_occurred": false,
+  "interpretation": "Supported engine force propagates reproducibly, but gripper contacts constrain actual displacement; drift labels are predictions, not outcomes. More dose commissioning is needed before a final robustness family.",
+  "next_development_plan": {
+    "seeds": [
+      100,
+      101
+    ],
+    "system": "baseline",
+    "fixed_action": 296,
+    "fixed_substeps": 5,
+    "world_direction": [
+      0,
+      1,
+      0
+    ],
+    "zero_torque": true,
+    "existing_reference_max_force_n": 1.486150860786438,
+    "probe_multipliers_of_v1_max": [
+      1.25,
+      1.5625,
+      1.953125,
+      2.44140625
+    ],
+    "no_timing_controller_or_tolerance_change": true,
+    "fresh_execution_authorized_by_this_receipt": false
+  }
+}

@@ -1,0 +1,4033 @@
+{
+  "schema_version": 1,
+  "scope": "M8_fresh_first18_independent_pilot_review",
+  "measurement_commit": "e8184217dc4b3c205666787441b87b13ba8a489c",
+  "archive_name": "aether-cl-m8-placement-seeds160-179-pilot.tar.gz",
+  "archive_bytes": 9560357,
+  "archive_sha256": "535218e74854326946a157f8aa620aa1ca41db78351097074074702cd49d295c",
+  "log_sha256": "830d23903ded1a74ae9d057d6b9669175115d96a0c1df6d7f2ca6cbd9b90da0d",
+  "protocol_sha256": "3e67b43747b4d52b73b39c64d2b1f159a855f91cde012b8a5ceffbaf6c40a031",
+  "all_audit_checks_passed": true,
+  "performance_gate": false,
+  "M8_complete": false,
+  "M8_02_accepted": false,
+  "totals": {
+    "requested_episodes": 360,
+    "completed_episodes": 18,
+    "complete_matched_scene_conditions": 6,
+    "eligible_matched_scene_conditions": 6,
+    "v2_rescues": 1,
+    "v2_unnecessary_attempts": 0,
+    "v2_regressions": 0,
+    "analysis_unit": "20_common_seed_scenes_not360_independent_scenes",
+    "indexed_files": 221,
+    "source_snapshots": 21,
+    "replayed_control_actions": 14400,
+    "independently_checked_physics_samples": 72000,
+    "matched_controller_gate_actions": 14400,
+    "engine_force_calls": 60,
+    "matched_comparisons": 16,
+    "remaining_unstarted_episodes": 342,
+    "successes_by_system": {
+      "baseline": 5,
+      "v1": 5,
+      "v2": 6
+    },
+    "v2_attempts": 1,
+    "successful_recovery_episodes": 1
+  },
+  "source_snapshots": [
+    {
+      "name": "AETHER_CL_M8_Force_Response_Review_v1.json",
+      "path": "docs/research/experiments/evidence/AETHER_CL_M8_Force_Response_Review_v1.json",
+      "bytes": 115945,
+      "sha256": "b5b63bce1e560f0949ff4ddff6346481ed29b19c0e44e3f5e33a122a180bd83e",
+      "git_blob": "a710ac427c69c2022ce750589f85d3f3d1a0a759"
+    },
+    {
+      "name": "AETHER_CL_M8_Force_Response_Review_v2.json",
+      "path": "docs/research/experiments/evidence/AETHER_CL_M8_Force_Response_Review_v2.json",
+      "bytes": 132457,
+      "sha256": "9f838344d3f4811f069b19c9ff1d091b1ad8eef23a3790a7edff5040eea23a58",
+      "git_blob": "173d01f8bcf5725801810f2726337fd8bfc9d7d5"
+    },
+    {
+      "name": "AETHER_CL_M8_Installed_Physics_Inspection.json",
+      "path": "docs/research/experiments/evidence/AETHER_CL_M8_Installed_Physics_Inspection.json",
+      "bytes": 18408,
+      "sha256": "ac5ade880fca62ec42fa7356fc46e981398cde4d511e8426b8bd87fda881405a",
+      "git_blob": "988d13b881c79440114765dee958beebacaacab1"
+    },
+    {
+      "name": "AETHER_CL_M8_Matched_Commission_Review_v1.json",
+      "path": "docs/research/experiments/evidence/AETHER_CL_M8_Matched_Commission_Review_v1.json",
+      "bytes": 198026,
+      "sha256": "4b9d0e9f83d050e1b5c22d69f7f48e5801636cb132e25c0afc38c05ed3b73577",
+      "git_blob": "a8bb6f4086219680608d07cceaa297aac5eced92"
+    },
+    {
+      "name": "AETHER_CL_M8_Placement_Protocol.json",
+      "path": "docs/research/experiments/evidence/AETHER_CL_M8_Placement_Protocol.json",
+      "bytes": 11516,
+      "sha256": "3e67b43747b4d52b73b39c64d2b1f159a855f91cde012b8a5ceffbaf6c40a031",
+      "git_blob": "4e6c7e429f063f230bcb39dbc81e34ea0eb7fe0c"
+    },
+    {
+      "name": "m6_policy.py",
+      "path": "aura-sim/prototype_aether_cl/aether_cl/m6_policy.py",
+      "bytes": 10931,
+      "sha256": "e4b1d7ff5f74b9008c6f170f62f6da0a565873fb9b61cd3dbf798706ad590d4c",
+      "git_blob": "7182a37343585af71085c32ffe4c591a219edce3"
+    },
+    {
+      "name": "m6_runtime.py",
+      "path": "aura-sim/prototype_aether_cl/aether_cl/m6_runtime.py",
+      "bytes": 16184,
+      "sha256": "dd1c26a6299fc1c82fc0e30585f33b905dddecea3e4e6ecf88cf775389473ff7",
+      "git_blob": "5f338a2915ec4d609cd768c5a5d474af0103d3c4"
+    },
+    {
+      "name": "m6_task.py",
+      "path": "aura-sim/prototype_aether_cl/aether_cl/m6_task.py",
+      "bytes": 12607,
+      "sha256": "e63aff47dbc8f0c270f02c6a0d6bfa46970f96d9da149b18990d76eba4f6b62c",
+      "git_blob": "07ac537ee77988ccdc560ce576dc736d2e027cb8"
+    },
+    {
+      "name": "m6r_audit.py",
+      "path": "aura-sim/prototype_aether_cl/aether_cl/m6r_audit.py",
+      "bytes": 15255,
+      "sha256": "7059b86d74c0d5abd498e5dd460f6868f40ed2633f63f6c915700df4d462d518",
+      "git_blob": "476ac3fbace4009336588cc531825ae680a22678"
+    },
+    {
+      "name": "m6r_policy.py",
+      "path": "aura-sim/prototype_aether_cl/aether_cl/m6r_policy.py",
+      "bytes": 4472,
+      "sha256": "dd2628631641e500fe593155453b5c75408faf2f34c76ea761f057455e4e8981",
+      "git_blob": "46da36125792e03034a61c2129d72574f4ac5d11"
+    },
+    {
+      "name": "m6r_runtime.py",
+      "path": "aura-sim/prototype_aether_cl/aether_cl/m6r_runtime.py",
+      "bytes": 10835,
+      "sha256": "679faec4707f7d4baed7091f2069ecd18b5a905ef3197b2fe101da3a218f6ad0",
+      "git_blob": "8b56a3ff96f39b2b2bf7ccea96b64fa755b65c0f"
+    },
+    {
+      "name": "m8_force.py",
+      "path": "aura-sim/prototype_aether_cl/aether_cl/m8_force.py",
+      "bytes": 12213,
+      "sha256": "aafa9cfecb23ec5d6d359fe7eadb6d1db4762b5384852fc13ca04527a9196201",
+      "git_blob": "0e60a904f4aacaf28d6a2aa6731de6f00c9c3409"
+    },
+    {
+      "name": "m8_force_commission.py",
+      "path": "aura-sim/prototype_aether_cl/aether_cl/m8_force_commission.py",
+      "bytes": 20721,
+      "sha256": "e51d350a6256aa89b65759b59d115f2c8871ead5bde2a8244d04fd0b14c76344",
+      "git_blob": "63fc5bf350b4b927591257279b846bba950b7bae"
+    },
+    {
+      "name": "m8_force_refine.py",
+      "path": "aura-sim/prototype_aether_cl/aether_cl/m8_force_refine.py",
+      "bytes": 15891,
+      "sha256": "235b54005bda070ac44e385aec5ad44faf7fbebfa7b240ec0e070d663f95669e",
+      "git_blob": "46d7ea9cf61be1da20840cf19832d7fee4aa2a1d"
+    },
+    {
+      "name": "m8_frozen.py",
+      "path": "aura-sim/prototype_aether_cl/aether_cl/m8_frozen.py",
+      "bytes": 22067,
+      "sha256": "5b9c793c3487116022a684a12bf5522d39434d3a5add0a12e0849af6af9e3a8b",
+      "git_blob": "bc40c358317991187bf9d2bad29c7023b524ae63"
+    },
+    {
+      "name": "m8_matched.py",
+      "path": "aura-sim/prototype_aether_cl/aether_cl/m8_matched.py",
+      "bytes": 25426,
+      "sha256": "c7e872bcb24fdc40ccf15896721d7b51ed660d9b028fef4de8c032029c19cce8",
+      "git_blob": "5dbb07f024bf5772c5f9a287313783f677194ed8"
+    },
+    {
+      "name": "m8_physics_inspection.py",
+      "path": "tools/m8_physics_inspection.py",
+      "bytes": 21431,
+      "sha256": "3773932eedbbdc8bdbfa2528dc8e3ee9846e86142c7884be29df7837880a937a",
+      "git_blob": "31f0ddb40e6fef1e3741b7c6ccf8f8c999656c52"
+    },
+    {
+      "name": "m8_sweep.py",
+      "path": "aura-sim/prototype_aether_cl/aether_cl/m8_sweep.py",
+      "bytes": 23646,
+      "sha256": "7933c3939ab7756ec2af93b3de1c90434075f120b22f7ab492d227ea4b773daf",
+      "git_blob": "ec5aad815bfabfaa7f642d094192a7720bd28e61"
+    },
+    {
+      "name": "policies.py",
+      "path": "aura-sim/prototype_aether_cl/aether_cl/policies.py",
+      "bytes": 6708,
+      "sha256": "c4e16450ad64ad8683db69d7a166720e411e5e97c8c1def3471b1b04ced04f29",
+      "git_blob": "de38891b4c532b2119ff747ca6d588e8cfc3bb70"
+    },
+    {
+      "name": "runtime.py",
+      "path": "aura-sim/prototype_aether_cl/aether_cl/runtime.py",
+      "bytes": 23850,
+      "sha256": "471a5d26a384c6997f0d5a6713d5595bc07dcfe64e0bc2a19b13c786d9449c07",
+      "git_blob": "70effa40a970d614941a377dc52a53076bfc9f7c"
+    },
+    {
+      "name": "verification.py",
+      "path": "aura-sim/prototype_aether_cl/aether_cl/verification.py",
+      "bytes": 11848,
+      "sha256": "472073de5db587de20c2185b324181f169a7bc0e52cd5706aef7506f928f83a7",
+      "git_blob": "0e2ccb7e0b5b06bcbccec993541afd9355e8cf5d"
+    }
+  ],
+  "native_identity": {
+    "software": {
+      "python": "3.10.22",
+      "platform": "Linux-5.15.0-191-generic-x86_64-with-glibc2.35",
+      "packages": {
+        "torch": "2.4.1+cu121",
+        "numpy": "1.26.4",
+        "mani_skill": "3.0.1",
+        "sapien": "3.0.3",
+        "gymnasium": "1.1.1",
+        "Pillow": "11.3.0"
+      },
+      "git_commit": "e8184217dc4b3c205666787441b87b13ba8a489c",
+      "git_dirty": false,
+      "cuda_visible_devices": "1",
+      "native_library_environment": {
+        "LD_LIBRARY_PATH": "/home/jiangle/aura-work/aether-glvnd-1.4.0/usr/lib/x86_64-linux-gnu",
+        "LD_PRELOAD": null
+      },
+      "gpu_inventory": [
+        "0, NVIDIA A100 80GB PCIe, 81920 MiB, 595.91.07",
+        "1, NVIDIA A100 80GB PCIe, 81920 MiB, 595.91.07",
+        "2, NVIDIA A100 80GB PCIe, 81920 MiB, 595.91.07",
+        "3, NVIDIA A100 80GB PCIe, 81920 MiB, 595.91.07"
+      ]
+    },
+    "receipt_sha256": "ac5ade880fca62ec42fa7356fc46e981398cde4d511e8426b8bd87fda881405a",
+    "development_sources_sha256": {
+      "m8_force.py": "aafa9cfecb23ec5d6d359fe7eadb6d1db4762b5384852fc13ca04527a9196201",
+      "m8_force_commission.py": "e51d350a6256aa89b65759b59d115f2c8871ead5bde2a8244d04fd0b14c76344",
+      "m8_force_refine.py": "235b54005bda070ac44e385aec5ad44faf7fbebfa7b240ec0e070d663f95669e",
+      "m8_matched.py": "c7e872bcb24fdc40ccf15896721d7b51ed660d9b028fef4de8c032029c19cce8"
+    },
+    "installed_sources_sha256": {
+      "__init__.py": "35eafdb4f989800edac4909ba8ea5313c917bf9520ddf082db5bc177cf346e74",
+      "agents/controllers/pd_ee_pose.py": "318110fe18cb879eae00ca106f0117eed94679b79ee00ee226bacd38e4755f97",
+      "agents/robots/panda/__init__.py": "5671492dc98f3018e8fa6941a5f328e5a7182ae77fc2781101c7faeee8ae8129",
+      "agents/robots/panda/panda.py": "2a98a2133b49e5a94a83d05019c0ab833ad6767f85ff1bf66265cd9247cb0fda",
+      "agents/robots/panda/panda_stick.py": "3404d5e702e6f0ff5fc4f1002bb9e8c9f55677082559b871c5cfb805456ab2bd",
+      "agents/robots/panda/panda_wristcam.py": "792c3ae7609a03cd987deb42a9ab0718071491a27f6972628c99bab476662b24",
+      "envs/sapien_env.py": "459196c275764eaf53ccba8e154e3207036399e54c8bdd45f9e7d0919970464b",
+      "envs/tasks/dexterity/insert_flower.py": "3d50994864b3b5d71b1649d21d745c9ffcf7cc8e1f235168543c4ef29a009499",
+      "envs/tasks/tabletop/assembling_kits.py": "e89727485819c1c6f544795257410806290a7d2efd491e2a981142790d62272c",
+      "envs/tasks/tabletop/lift_peg_upright.py": "3c8679d25368418edd3a7bd5d43d2122cdd209369350e91f8d471ab9f6fb8063",
+      "envs/tasks/tabletop/peg_insertion_side.py": "79761d7a7b17ebdbd974c58f7427abcd3a50ec115f0340f6ed5d282a0d48fc6e",
+      "envs/tasks/tabletop/plug_charger.py": "13b08f30d4975185fdfa42380ab160f86624419e5d2e0749b3a845c92d81278c",
+      "utils/registration.py": "5e553c27ed82de4f8807f42819ac4c4cacc4a4a4ffbee23c3d6b91282d146060",
+      "utils/scene_builder/table/scene_builder.py": "251d40544a4cc3cbcdd7a8fb81835a898d165330ce819fcf2a9a7fab6c309d3a",
+      "utils/structs/actor.py": "dacf82803b63928a4317f400adfb7766cb7863d914058acbe226c47c90f28f24",
+      "utils/structs/pose.py": "f5578775b35bbd23c8cdcf5384467443a8921ce70120e0495fb06ed5481104f9",
+      "utils/structs/types.py": "86451c45e986ce7f789e01edecaa9ba6c3f89a08c3960ddb212ca0cf4499e156",
+      "envs/scene.py": "2e875f4a053fb5687bee3b7858716be3196bd8d6cae35fbf9ad110b031156fed",
+      "envs/tasks/tabletop/pick_cube.py": "6f881f11151bd124a4ec6d1189e86e20b17d366aa1cbcc6e2f751f1f5bb03ed1",
+      "utils/building/actor_builder.py": "d2de84ec1b96294d71e368a4c9c7c9c6302c6073b7a338d1d3624e425bd419f2",
+      "utils/building/actors/common.py": "3314dbf270ea34555c009427dd2a0b7fca6296d13972e6af02b186e55971c4d0",
+      "agents/base_agent.py": "64b0c9f45577ef842ae41449af36529e476ad68d26e726de5c9d858496f8824d"
+    },
+    "accepted_placement_sources_sha256": {
+      "runtime.py": "471a5d26a384c6997f0d5a6713d5595bc07dcfe64e0bc2a19b13c786d9449c07",
+      "policies.py": "c4e16450ad64ad8683db69d7a166720e411e5e97c8c1def3471b1b04ced04f29",
+      "verification.py": "472073de5db587de20c2185b324181f169a7bc0e52cd5706aef7506f928f83a7",
+      "m6_task.py": "e63aff47dbc8f0c270f02c6a0d6bfa46970f96d9da149b18990d76eba4f6b62c",
+      "m6_policy.py": "e4b1d7ff5f74b9008c6f170f62f6da0a565873fb9b61cd3dbf798706ad590d4c",
+      "m6_runtime.py": "dd1c26a6299fc1c82fc0e30585f33b905dddecea3e4e6ecf88cf775389473ff7",
+      "m6r_policy.py": "dd2628631641e500fe593155453b5c75408faf2f34c76ea761f057455e4e8981",
+      "m6r_runtime.py": "679faec4707f7d4baed7091f2069ecd18b5a905ef3197b2fe101da3a218f6ad0"
+    },
+    "sapien_binaries": [
+      {
+        "path": "pysapien.cpython-310-x86_64-linux-gnu.so",
+        "bytes": 3146137,
+        "sha256": "bdb8967f4fb2a9cedd1bbfaed0993cd4847a0f664b83d429c937cd0aeca0347c"
+      },
+      {
+        "path": "pysapien_pinocchio.cpython-310-x86_64-linux-gnu.so",
+        "bytes": 1483105,
+        "sha256": "dada569b8f080a6f8cce387f8f3a2ffe2b5849e8c2fb0dbc9e865279be204fcf"
+      }
+    ],
+    "response_review_sha256": "b5b63bce1e560f0949ff4ddff6346481ed29b19c0e44e3f5e33a122a180bd83e",
+    "development_stage": "frozen_fresh_M8",
+    "dose_review_sha256": "9f838344d3f4811f069b19c9ff1d091b1ad8eef23a3790a7edff5040eea23a58",
+    "study_sources_sha256": {
+      "runtime.py": "471a5d26a384c6997f0d5a6713d5595bc07dcfe64e0bc2a19b13c786d9449c07",
+      "policies.py": "c4e16450ad64ad8683db69d7a166720e411e5e97c8c1def3471b1b04ced04f29",
+      "verification.py": "472073de5db587de20c2185b324181f169a7bc0e52cd5706aef7506f928f83a7",
+      "m6_task.py": "e63aff47dbc8f0c270f02c6a0d6bfa46970f96d9da149b18990d76eba4f6b62c",
+      "m6_policy.py": "e4b1d7ff5f74b9008c6f170f62f6da0a565873fb9b61cd3dbf798706ad590d4c",
+      "m6_runtime.py": "dd1c26a6299fc1c82fc0e30585f33b905dddecea3e4e6ecf88cf775389473ff7",
+      "m6r_policy.py": "dd2628631641e500fe593155453b5c75408faf2f34c76ea761f057455e4e8981",
+      "m6r_runtime.py": "679faec4707f7d4baed7091f2069ecd18b5a905ef3197b2fe101da3a218f6ad0",
+      "m6r_audit.py": "7059b86d74c0d5abd498e5dd460f6868f40ed2633f63f6c915700df4d462d518",
+      "m8_force.py": "aafa9cfecb23ec5d6d359fe7eadb6d1db4762b5384852fc13ca04527a9196201",
+      "m8_force_commission.py": "e51d350a6256aa89b65759b59d115f2c8871ead5bde2a8244d04fd0b14c76344",
+      "m8_force_refine.py": "235b54005bda070ac44e385aec5ad44faf7fbebfa7b240ec0e070d663f95669e",
+      "m8_matched.py": "c7e872bcb24fdc40ccf15896721d7b51ed660d9b028fef4de8c032029c19cce8",
+      "m8_frozen.py": "5b9c793c3487116022a684a12bf5522d39434d3a5add0a12e0849af6af9e3a8b",
+      "m8_sweep.py": "7933c3939ab7756ec2af93b3de1c90434075f120b22f7ab492d227ea4b773daf"
+    },
+    "commissioning_review_sha256": "4b9d0e9f83d050e1b5c22d69f7f48e5801636cb132e25c0afc38c05ed3b73577",
+    "startup_environment_sha256": "83b43903c6b1e3adb2fb88867a3483275898598f982f42562009d6a5626b8338"
+  },
+  "history": {
+    "event_files_checked": 3216,
+    "reset_records": 5719,
+    "reset_index_sha256": "f330e9f28c1398fbe4e552ffef96048075b1647a1e959af9995f122b8fc6b586",
+    "selected_seeds": [
+      160,
+      161,
+      162,
+      163,
+      164,
+      165,
+      166,
+      167,
+      168,
+      169,
+      170,
+      171,
+      172,
+      173,
+      174,
+      175,
+      176,
+      177,
+      178,
+      179
+    ],
+    "selected_overlap": [],
+    "scope": "retained_native_history_not_unreported_or_deleted_runs"
+  },
+  "history_validation_limit": "Recorded retained-history guard and fingerprint verified; the full remote historical event corpus is not included in this upload.",
+  "commissioning_validation": {
+    "archive_sha256": "f8a05548c08e08a8b93f60dca2a29a14f919abf7e34e379fbe12ac256e2c165c",
+    "producer_commit": "a910a8cab8b0f0f67daeb0178f44457383aab814",
+    "indexed_files": 412,
+    "replayed_trials": 36,
+    "comparisons": 34,
+    "review_sha256": "4b9d0e9f83d050e1b5c22d69f7f48e5801636cb132e25c0afc38c05ed3b73577",
+    "report_sha256": "79ebddc55370ceab80305f2327fe9a42689daa44f0a5c27e28089dfaf4b7fc8f"
+  },
+  "comparisons": [
+    {
+      "kind": "passive",
+      "seed": 160,
+      "point_id": "normal",
+      "passed": true,
+      "checks": {
+        "shared_software_policy_task_support": true,
+        "exact_reset_including_contact": true,
+        "same_config_except_system_output": true,
+        "both_full_budget_or_same_initial_exclusion": true,
+        "system_and_conditions": true,
+        "exact_physical_prefix": true,
+        "exact_physics_prefix": true
+      },
+      "matched_steps": 800,
+      "invocation_trigger_step": null,
+      "first_recovery_action_step": null,
+      "prefix_through_step": 800
+    },
+    {
+      "kind": "recovery",
+      "seed": 160,
+      "point_id": "normal",
+      "passed": true,
+      "checks": {
+        "shared_software_policy_task_support": true,
+        "exact_reset_including_contact": true,
+        "same_config_except_system_output": true,
+        "both_full_budget_or_same_initial_exclusion": true,
+        "system_and_conditions": true,
+        "exact_physical_prefix": true,
+        "exact_physics_prefix": true,
+        "bounded_accepted_recovery": true,
+        "first_action_follows_recorded_trigger": true
+      },
+      "matched_steps": 800,
+      "invocation_trigger_step": null,
+      "first_recovery_action_step": null,
+      "prefix_through_step": 800
+    },
+    {
+      "kind": "passive",
+      "seed": 160,
+      "point_id": "force-easy-v1",
+      "passed": true,
+      "checks": {
+        "shared_software_policy_task_support": true,
+        "exact_reset_including_contact": true,
+        "same_config_except_system_output": true,
+        "both_full_budget_or_same_initial_exclusion": true,
+        "system_and_conditions": true,
+        "exact_physical_prefix": true,
+        "exact_physics_prefix": true
+      },
+      "matched_steps": 800,
+      "invocation_trigger_step": null,
+      "first_recovery_action_step": null,
+      "prefix_through_step": 800
+    },
+    {
+      "kind": "recovery",
+      "seed": 160,
+      "point_id": "force-easy-v1",
+      "passed": true,
+      "checks": {
+        "shared_software_policy_task_support": true,
+        "exact_reset_including_contact": true,
+        "same_config_except_system_output": true,
+        "both_full_budget_or_same_initial_exclusion": true,
+        "system_and_conditions": true,
+        "exact_physical_prefix": true,
+        "exact_physics_prefix": true,
+        "bounded_accepted_recovery": true,
+        "first_action_follows_recorded_trigger": true
+      },
+      "matched_steps": 800,
+      "invocation_trigger_step": null,
+      "first_recovery_action_step": null,
+      "prefix_through_step": 800
+    },
+    {
+      "kind": "pre_force_control",
+      "seed": 160,
+      "point_id": "force-easy-v1",
+      "passed": true,
+      "checks": {
+        "shared_software_policy_task_support": true,
+        "exact_reset_including_contact": true,
+        "same_config_except_system_output": true,
+        "both_full_budget_or_same_initial_exclusion": true,
+        "system_and_conditions": true,
+        "exact_physical_prefix": true,
+        "exact_physics_prefix": true
+      },
+      "matched_steps": 295,
+      "invocation_trigger_step": null,
+      "first_recovery_action_step": null,
+      "prefix_through_step": 295
+    },
+    {
+      "kind": "passive",
+      "seed": 160,
+      "point_id": "force-probe-2",
+      "passed": true,
+      "checks": {
+        "shared_software_policy_task_support": true,
+        "exact_reset_including_contact": true,
+        "same_config_except_system_output": true,
+        "both_full_budget_or_same_initial_exclusion": true,
+        "system_and_conditions": true,
+        "exact_physical_prefix": true,
+        "exact_physics_prefix": true
+      },
+      "matched_steps": 800,
+      "invocation_trigger_step": null,
+      "first_recovery_action_step": null,
+      "prefix_through_step": 800
+    },
+    {
+      "kind": "recovery",
+      "seed": 160,
+      "point_id": "force-probe-2",
+      "passed": true,
+      "checks": {
+        "shared_software_policy_task_support": true,
+        "exact_reset_including_contact": true,
+        "same_config_except_system_output": true,
+        "both_full_budget_or_same_initial_exclusion": true,
+        "system_and_conditions": true,
+        "exact_physical_prefix": true,
+        "exact_physics_prefix": true,
+        "bounded_accepted_recovery": true,
+        "first_action_follows_recorded_trigger": true
+      },
+      "matched_steps": 800,
+      "invocation_trigger_step": null,
+      "first_recovery_action_step": null,
+      "prefix_through_step": 800
+    },
+    {
+      "kind": "pre_force_control",
+      "seed": 160,
+      "point_id": "force-probe-2",
+      "passed": true,
+      "checks": {
+        "shared_software_policy_task_support": true,
+        "exact_reset_including_contact": true,
+        "same_config_except_system_output": true,
+        "both_full_budget_or_same_initial_exclusion": true,
+        "system_and_conditions": true,
+        "exact_physical_prefix": true,
+        "exact_physics_prefix": true
+      },
+      "matched_steps": 295,
+      "invocation_trigger_step": null,
+      "first_recovery_action_step": null,
+      "prefix_through_step": 295
+    },
+    {
+      "kind": "passive",
+      "seed": 161,
+      "point_id": "normal",
+      "passed": true,
+      "checks": {
+        "shared_software_policy_task_support": true,
+        "exact_reset_including_contact": true,
+        "same_config_except_system_output": true,
+        "both_full_budget_or_same_initial_exclusion": true,
+        "system_and_conditions": true,
+        "exact_physical_prefix": true,
+        "exact_physics_prefix": true
+      },
+      "matched_steps": 800,
+      "invocation_trigger_step": null,
+      "first_recovery_action_step": null,
+      "prefix_through_step": 800
+    },
+    {
+      "kind": "recovery",
+      "seed": 161,
+      "point_id": "normal",
+      "passed": true,
+      "checks": {
+        "shared_software_policy_task_support": true,
+        "exact_reset_including_contact": true,
+        "same_config_except_system_output": true,
+        "both_full_budget_or_same_initial_exclusion": true,
+        "system_and_conditions": true,
+        "exact_physical_prefix": true,
+        "exact_physics_prefix": true,
+        "bounded_accepted_recovery": true,
+        "first_action_follows_recorded_trigger": true
+      },
+      "matched_steps": 800,
+      "invocation_trigger_step": null,
+      "first_recovery_action_step": null,
+      "prefix_through_step": 800
+    },
+    {
+      "kind": "passive",
+      "seed": 161,
+      "point_id": "force-easy-v1",
+      "passed": true,
+      "checks": {
+        "shared_software_policy_task_support": true,
+        "exact_reset_including_contact": true,
+        "same_config_except_system_output": true,
+        "both_full_budget_or_same_initial_exclusion": true,
+        "system_and_conditions": true,
+        "exact_physical_prefix": true,
+        "exact_physics_prefix": true
+      },
+      "matched_steps": 800,
+      "invocation_trigger_step": null,
+      "first_recovery_action_step": null,
+      "prefix_through_step": 800
+    },
+    {
+      "kind": "recovery",
+      "seed": 161,
+      "point_id": "force-easy-v1",
+      "passed": true,
+      "checks": {
+        "shared_software_policy_task_support": true,
+        "exact_reset_including_contact": true,
+        "same_config_except_system_output": true,
+        "both_full_budget_or_same_initial_exclusion": true,
+        "system_and_conditions": true,
+        "exact_physical_prefix": true,
+        "exact_physics_prefix": true,
+        "bounded_accepted_recovery": true,
+        "first_action_follows_recorded_trigger": true
+      },
+      "matched_steps": 800,
+      "invocation_trigger_step": null,
+      "first_recovery_action_step": null,
+      "prefix_through_step": 800
+    },
+    {
+      "kind": "pre_force_control",
+      "seed": 161,
+      "point_id": "force-easy-v1",
+      "passed": true,
+      "checks": {
+        "shared_software_policy_task_support": true,
+        "exact_reset_including_contact": true,
+        "same_config_except_system_output": true,
+        "both_full_budget_or_same_initial_exclusion": true,
+        "system_and_conditions": true,
+        "exact_physical_prefix": true,
+        "exact_physics_prefix": true
+      },
+      "matched_steps": 295,
+      "invocation_trigger_step": null,
+      "first_recovery_action_step": null,
+      "prefix_through_step": 295
+    },
+    {
+      "kind": "passive",
+      "seed": 161,
+      "point_id": "force-probe-2",
+      "passed": true,
+      "checks": {
+        "shared_software_policy_task_support": true,
+        "exact_reset_including_contact": true,
+        "same_config_except_system_output": true,
+        "both_full_budget_or_same_initial_exclusion": true,
+        "system_and_conditions": true,
+        "exact_physical_prefix": true,
+        "exact_physics_prefix": true
+      },
+      "matched_steps": 800,
+      "invocation_trigger_step": null,
+      "first_recovery_action_step": null,
+      "prefix_through_step": 800
+    },
+    {
+      "kind": "recovery",
+      "seed": 161,
+      "point_id": "force-probe-2",
+      "passed": true,
+      "checks": {
+        "shared_software_policy_task_support": true,
+        "exact_reset_including_contact": true,
+        "same_config_except_system_output": true,
+        "both_full_budget_or_same_initial_exclusion": true,
+        "system_and_conditions": true,
+        "exact_physical_prefix": true,
+        "exact_physics_prefix": true,
+        "bounded_accepted_recovery": true,
+        "first_action_follows_recorded_trigger": true
+      },
+      "matched_steps": 342,
+      "invocation_trigger_step": 342,
+      "first_recovery_action_step": 343,
+      "prefix_through_step": 342
+    },
+    {
+      "kind": "pre_force_control",
+      "seed": 161,
+      "point_id": "force-probe-2",
+      "passed": true,
+      "checks": {
+        "shared_software_policy_task_support": true,
+        "exact_reset_including_contact": true,
+        "same_config_except_system_output": true,
+        "both_full_budget_or_same_initial_exclusion": true,
+        "system_and_conditions": true,
+        "exact_physical_prefix": true,
+        "exact_physics_prefix": true
+      },
+      "matched_steps": 295,
+      "invocation_trigger_step": null,
+      "first_recovery_action_step": null,
+      "prefix_through_step": 295
+    }
+  ],
+  "outcomes": [
+    {
+      "slot": 0,
+      "point_id": "normal",
+      "seed": 160,
+      "system": "baseline",
+      "command_force_y_n": 0.0,
+      "episode": {
+        "episode": 0,
+        "seed": 160,
+        "steps": 800,
+        "stopped": false,
+        "excluded": false,
+        "exclusion_reason": null,
+        "seconds": 6.5234717631246895,
+        "task_success_at_end": true,
+        "first_task_success_step": 316,
+        "release_success_at_end": true,
+        "support_stability_success_at_end": true,
+        "retraction_success_at_end": true,
+        "final_horizontal_error_m": 0.0002889319520683919,
+        "final_reference": {
+          "task_success": true,
+          "failure": null,
+          "release_success": true,
+          "supported": true,
+          "stable_frame": true,
+          "support_stability_success": true,
+          "support_stable_steps": 489,
+          "retracted": true,
+          "is_grasped": false,
+          "stable_steps": 489,
+          "max_cube_lift_m": 0.11970184370875359,
+          "horizontal_error_m": 0.0002889319520683919,
+          "cube_table_contact_force_world_n": [
+            0.0,
+            0.0,
+            0.627841591835022
+          ],
+          "bottom_height_m": -4.304665129246932e-07,
+          "linear_speed_m_s": 0.0,
+          "angular_speed_rad_s": 0.0
+        },
+        "final_verification": {
+          "status": "disabled",
+          "failure": null
+        },
+        "first_reference_failure": null,
+        "first_detected_failure": null,
+        "first_failure_latency_steps": null,
+        "nominal_schedule_complete": true,
+        "controller_complete": true,
+        "total_observed_tcp_path_m": 0.6975986156528332,
+        "disturbance_attempted": false,
+        "disturbance_applied": false,
+        "recovery": {
+          "state": "disabled",
+          "attempts": 0,
+          "action_steps": 0,
+          "observed_tcp_path_m": 0.0
+        },
+        "recovery_task_success": false,
+        "lower_transition_step": null,
+        "lower_phase_timeout": false,
+        "recovery_release_reached": false,
+        "recovery_release_first_action_step": null,
+        "recovery_release_executed": false,
+        "recovery_retraction_reached": false,
+        "recovery_retraction_first_action_step": null,
+        "recovery_retraction_executed": false
+      },
+      "verification_metrics": null,
+      "physical_effects": {
+        "force_calls": 0,
+        "command_integral_y_ns": 0.0,
+        "actual_application_duration_s": 0.0,
+        "release_support_precondition": true,
+        "peak_horizontal_displacement_from_pulse_start_m": 5.482874443299202e-07,
+        "peak_linear_speed_after_pulse_m_s": 0.00041277772557802553,
+        "final_displacement_from_pulse_start_world_m": [
+          5.010515451431274e-07,
+          -2.1513551473617554e-07,
+          -5.587935447692871e-09
+        ],
+        "sampled_support_loss_after_pulse": false
+      },
+      "physical_diagnostics": {
+        "window_end_action_before_first_recovery_or_episode_end": 800,
+        "pulse_displacement_world_m": [
+          5.587935447692871e-09,
+          3.725290298461914e-09,
+          -1.862645149230957e-08
+        ],
+        "pulse_delta_linear_velocity_world_m_s": [
+          3.428140189498663e-07,
+          8.883071132004261e-07,
+          -3.289227606728673e-06
+        ],
+        "pre_intervention_peak_horizontal_displacement_m": 5.482874443299202e-07,
+        "pre_intervention_peak_linear_speed_m_s": 0.00041277772557802553,
+        "pre_intervention_support_loss": false,
+        "whole_episode_effects_include_recovery": false
+      },
+      "max_action_replay_error": 0.0,
+      "controller_gate_actions": 800
+    },
+    {
+      "slot": 1,
+      "point_id": "normal",
+      "seed": 160,
+      "system": "v1",
+      "command_force_y_n": 0.0,
+      "episode": {
+        "episode": 0,
+        "seed": 160,
+        "steps": 800,
+        "stopped": false,
+        "excluded": false,
+        "exclusion_reason": null,
+        "seconds": 6.105482760118321,
+        "task_success_at_end": true,
+        "first_task_success_step": 316,
+        "release_success_at_end": true,
+        "support_stability_success_at_end": true,
+        "retraction_success_at_end": true,
+        "final_horizontal_error_m": 0.0002889319520683919,
+        "final_reference": {
+          "task_success": true,
+          "failure": null,
+          "release_success": true,
+          "supported": true,
+          "stable_frame": true,
+          "support_stability_success": true,
+          "support_stable_steps": 489,
+          "retracted": true,
+          "is_grasped": false,
+          "stable_steps": 489,
+          "max_cube_lift_m": 0.11970184370875359,
+          "horizontal_error_m": 0.0002889319520683919,
+          "cube_table_contact_force_world_n": [
+            0.0,
+            0.0,
+            0.627841591835022
+          ],
+          "bottom_height_m": -4.304665129246932e-07,
+          "linear_speed_m_s": 0.0,
+          "angular_speed_rad_s": 0.0
+        },
+        "final_verification": {
+          "status": "passed",
+          "success": true,
+          "failure": null,
+          "confidence": null,
+          "evidence": {
+            "horizontal_error_m": 0.0002889319520683919,
+            "released_geometry": true,
+            "supported_geometry": true,
+            "retracted": true,
+            "stable_frame": true,
+            "bottom_height_m": -4.304665129246932e-07,
+            "aperture_m": 0.07999995723366737
+          },
+          "stable_steps": 489,
+          "failure_persistence_steps": 0
+        },
+        "first_reference_failure": null,
+        "first_detected_failure": null,
+        "first_failure_latency_steps": null,
+        "nominal_schedule_complete": true,
+        "controller_complete": true,
+        "total_observed_tcp_path_m": 0.6975986156528332,
+        "disturbance_attempted": false,
+        "disturbance_applied": false,
+        "recovery": {
+          "state": "disabled",
+          "attempts": 0,
+          "action_steps": 0,
+          "observed_tcp_path_m": 0.0
+        },
+        "recovery_task_success": false,
+        "lower_transition_step": null,
+        "lower_phase_timeout": false,
+        "recovery_release_reached": false,
+        "recovery_release_first_action_step": null,
+        "recovery_release_executed": false,
+        "recovery_retraction_reached": false,
+        "recovery_retraction_first_action_step": null,
+        "recovery_retraction_executed": false
+      },
+      "verification_metrics": {
+        "scope": "privileged_state_simulator_reference_agreement",
+        "complete": true,
+        "steps": 800,
+        "uncertain_steps": 0,
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 0,
+        "true_negative": 800,
+        "uncertain_on_negative": 0,
+        "failure_detection_precision": null,
+        "failure_detection_recall": null,
+        "diagnosis_accuracy_when_failure_detected": null,
+        "observation_coverage": 1.0,
+        "confusion": {
+          "NONE->NONE": 800
+        }
+      },
+      "physical_effects": {
+        "force_calls": 0,
+        "command_integral_y_ns": 0.0,
+        "actual_application_duration_s": 0.0,
+        "release_support_precondition": true,
+        "peak_horizontal_displacement_from_pulse_start_m": 5.482874443299202e-07,
+        "peak_linear_speed_after_pulse_m_s": 0.00041277772557802553,
+        "final_displacement_from_pulse_start_world_m": [
+          5.010515451431274e-07,
+          -2.1513551473617554e-07,
+          -5.587935447692871e-09
+        ],
+        "sampled_support_loss_after_pulse": false
+      },
+      "physical_diagnostics": {
+        "window_end_action_before_first_recovery_or_episode_end": 800,
+        "pulse_displacement_world_m": [
+          5.587935447692871e-09,
+          3.725290298461914e-09,
+          -1.862645149230957e-08
+        ],
+        "pulse_delta_linear_velocity_world_m_s": [
+          3.428140189498663e-07,
+          8.883071132004261e-07,
+          -3.289227606728673e-06
+        ],
+        "pre_intervention_peak_horizontal_displacement_m": 5.482874443299202e-07,
+        "pre_intervention_peak_linear_speed_m_s": 0.00041277772557802553,
+        "pre_intervention_support_loss": false,
+        "whole_episode_effects_include_recovery": false
+      },
+      "max_action_replay_error": 0.0,
+      "controller_gate_actions": 800
+    },
+    {
+      "slot": 2,
+      "point_id": "normal",
+      "seed": 160,
+      "system": "v2",
+      "command_force_y_n": 0.0,
+      "episode": {
+        "episode": 0,
+        "seed": 160,
+        "steps": 800,
+        "stopped": false,
+        "excluded": false,
+        "exclusion_reason": null,
+        "seconds": 6.180248638149351,
+        "task_success_at_end": true,
+        "first_task_success_step": 316,
+        "release_success_at_end": true,
+        "support_stability_success_at_end": true,
+        "retraction_success_at_end": true,
+        "final_horizontal_error_m": 0.0002889319520683919,
+        "final_reference": {
+          "task_success": true,
+          "failure": null,
+          "release_success": true,
+          "supported": true,
+          "stable_frame": true,
+          "support_stability_success": true,
+          "support_stable_steps": 489,
+          "retracted": true,
+          "is_grasped": false,
+          "stable_steps": 489,
+          "max_cube_lift_m": 0.11970184370875359,
+          "horizontal_error_m": 0.0002889319520683919,
+          "cube_table_contact_force_world_n": [
+            0.0,
+            0.0,
+            0.627841591835022
+          ],
+          "bottom_height_m": -4.304665129246932e-07,
+          "linear_speed_m_s": 0.0,
+          "angular_speed_rad_s": 0.0
+        },
+        "final_verification": {
+          "status": "passed",
+          "success": true,
+          "failure": null,
+          "confidence": null,
+          "evidence": {
+            "horizontal_error_m": 0.0002889319520683919,
+            "released_geometry": true,
+            "supported_geometry": true,
+            "retracted": true,
+            "stable_frame": true,
+            "bottom_height_m": -4.304665129246932e-07,
+            "aperture_m": 0.07999995723366737
+          },
+          "stable_steps": 489,
+          "failure_persistence_steps": 0
+        },
+        "first_reference_failure": null,
+        "first_detected_failure": null,
+        "first_failure_latency_steps": null,
+        "nominal_schedule_complete": true,
+        "controller_complete": true,
+        "total_observed_tcp_path_m": 0.6975986156528332,
+        "disturbance_attempted": false,
+        "disturbance_applied": false,
+        "recovery": {
+          "state": "nominal",
+          "attempts": 0,
+          "reason": null,
+          "trigger_step": null,
+          "first_action_step": null,
+          "phase": null,
+          "phase_step": 0,
+          "action_steps": 0,
+          "action_budget": 400,
+          "observed_tcp_path_m": 0.0,
+          "candidate_persistence_steps": 0,
+          "attempt_max_cube_lift_m": 0.0,
+          "failure_detail": null,
+          "cached_cube_world_m": null
+        },
+        "recovery_task_success": false,
+        "lower_transition_step": null,
+        "lower_phase_timeout": false,
+        "recovery_release_reached": false,
+        "recovery_release_first_action_step": null,
+        "recovery_release_executed": false,
+        "recovery_retraction_reached": false,
+        "recovery_retraction_first_action_step": null,
+        "recovery_retraction_executed": false
+      },
+      "verification_metrics": {
+        "scope": "privileged_state_simulator_reference_agreement",
+        "complete": true,
+        "steps": 800,
+        "uncertain_steps": 0,
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 0,
+        "true_negative": 800,
+        "uncertain_on_negative": 0,
+        "failure_detection_precision": null,
+        "failure_detection_recall": null,
+        "diagnosis_accuracy_when_failure_detected": null,
+        "observation_coverage": 1.0,
+        "confusion": {
+          "NONE->NONE": 800
+        }
+      },
+      "physical_effects": {
+        "force_calls": 0,
+        "command_integral_y_ns": 0.0,
+        "actual_application_duration_s": 0.0,
+        "release_support_precondition": true,
+        "peak_horizontal_displacement_from_pulse_start_m": 5.482874443299202e-07,
+        "peak_linear_speed_after_pulse_m_s": 0.00041277772557802553,
+        "final_displacement_from_pulse_start_world_m": [
+          5.010515451431274e-07,
+          -2.1513551473617554e-07,
+          -5.587935447692871e-09
+        ],
+        "sampled_support_loss_after_pulse": false
+      },
+      "physical_diagnostics": {
+        "window_end_action_before_first_recovery_or_episode_end": 800,
+        "pulse_displacement_world_m": [
+          5.587935447692871e-09,
+          3.725290298461914e-09,
+          -1.862645149230957e-08
+        ],
+        "pulse_delta_linear_velocity_world_m_s": [
+          3.428140189498663e-07,
+          8.883071132004261e-07,
+          -3.289227606728673e-06
+        ],
+        "pre_intervention_peak_horizontal_displacement_m": 5.482874443299202e-07,
+        "pre_intervention_peak_linear_speed_m_s": 0.00041277772557802553,
+        "pre_intervention_support_loss": false,
+        "whole_episode_effects_include_recovery": false
+      },
+      "max_action_replay_error": 0.0,
+      "controller_gate_actions": 800
+    },
+    {
+      "slot": 3,
+      "point_id": "normal",
+      "seed": 161,
+      "system": "baseline",
+      "command_force_y_n": 0.0,
+      "episode": {
+        "episode": 0,
+        "seed": 161,
+        "steps": 800,
+        "stopped": false,
+        "excluded": false,
+        "exclusion_reason": null,
+        "seconds": 5.877112342044711,
+        "task_success_at_end": true,
+        "first_task_success_step": 316,
+        "release_success_at_end": true,
+        "support_stability_success_at_end": true,
+        "retraction_success_at_end": true,
+        "final_horizontal_error_m": 0.00023780224758594392,
+        "final_reference": {
+          "task_success": true,
+          "failure": null,
+          "release_success": true,
+          "supported": true,
+          "stable_frame": true,
+          "support_stability_success": true,
+          "support_stable_steps": 489,
+          "retracted": true,
+          "is_grasped": false,
+          "stable_steps": 489,
+          "max_cube_lift_m": 0.11978517100214958,
+          "horizontal_error_m": 0.00023780224758594392,
+          "cube_table_contact_force_world_n": [
+            0.0,
+            0.0,
+            0.6278446316719055
+          ],
+          "bottom_height_m": -1.6587993570058024e-07,
+          "linear_speed_m_s": 0.0,
+          "angular_speed_rad_s": 0.0
+        },
+        "final_verification": {
+          "status": "disabled",
+          "failure": null
+        },
+        "first_reference_failure": null,
+        "first_detected_failure": null,
+        "first_failure_latency_steps": null,
+        "nominal_schedule_complete": true,
+        "controller_complete": true,
+        "total_observed_tcp_path_m": 0.7459104082974711,
+        "disturbance_attempted": false,
+        "disturbance_applied": false,
+        "recovery": {
+          "state": "disabled",
+          "attempts": 0,
+          "action_steps": 0,
+          "observed_tcp_path_m": 0.0
+        },
+        "recovery_task_success": false,
+        "lower_transition_step": null,
+        "lower_phase_timeout": false,
+        "recovery_release_reached": false,
+        "recovery_release_first_action_step": null,
+        "recovery_release_executed": false,
+        "recovery_retraction_reached": false,
+        "recovery_retraction_first_action_step": null,
+        "recovery_retraction_executed": false
+      },
+      "verification_metrics": null,
+      "physical_effects": {
+        "force_calls": 0,
+        "command_integral_y_ns": 0.0,
+        "actual_application_duration_s": 0.0,
+        "release_support_precondition": true,
+        "peak_horizontal_displacement_from_pulse_start_m": 1.5494700031791197e-07,
+        "peak_linear_speed_after_pulse_m_s": 0.00014505831513664754,
+        "final_displacement_from_pulse_start_world_m": [
+          -4.470348358154297e-08,
+          -2.2351741790771484e-08,
+          -1.1175870895385742e-08
+        ],
+        "sampled_support_loss_after_pulse": false
+      },
+      "physical_diagnostics": {
+        "window_end_action_before_first_recovery_or_episode_end": 800,
+        "pulse_displacement_world_m": [
+          1.862645149230957e-09,
+          -1.1175870895385742e-08,
+          -1.4901161193847656e-08
+        ],
+        "pulse_delta_linear_velocity_world_m_s": [
+          -2.5560439098626375e-08,
+          -8.629467629361898e-07,
+          -2.6544148568063974e-07
+        ],
+        "pre_intervention_peak_horizontal_displacement_m": 1.5494700031791197e-07,
+        "pre_intervention_peak_linear_speed_m_s": 0.00014505831513664754,
+        "pre_intervention_support_loss": false,
+        "whole_episode_effects_include_recovery": false
+      },
+      "max_action_replay_error": 0.0,
+      "controller_gate_actions": 800
+    },
+    {
+      "slot": 4,
+      "point_id": "normal",
+      "seed": 161,
+      "system": "v1",
+      "command_force_y_n": 0.0,
+      "episode": {
+        "episode": 0,
+        "seed": 161,
+        "steps": 800,
+        "stopped": false,
+        "excluded": false,
+        "exclusion_reason": null,
+        "seconds": 6.048455650918186,
+        "task_success_at_end": true,
+        "first_task_success_step": 316,
+        "release_success_at_end": true,
+        "support_stability_success_at_end": true,
+        "retraction_success_at_end": true,
+        "final_horizontal_error_m": 0.00023780224758594392,
+        "final_reference": {
+          "task_success": true,
+          "failure": null,
+          "release_success": true,
+          "supported": true,
+          "stable_frame": true,
+          "support_stability_success": true,
+          "support_stable_steps": 489,
+          "retracted": true,
+          "is_grasped": false,
+          "stable_steps": 489,
+          "max_cube_lift_m": 0.11978517100214958,
+          "horizontal_error_m": 0.00023780224758594392,
+          "cube_table_contact_force_world_n": [
+            0.0,
+            0.0,
+            0.6278446316719055
+          ],
+          "bottom_height_m": -1.6587993570058024e-07,
+          "linear_speed_m_s": 0.0,
+          "angular_speed_rad_s": 0.0
+        },
+        "final_verification": {
+          "status": "passed",
+          "success": true,
+          "failure": null,
+          "confidence": null,
+          "evidence": {
+            "horizontal_error_m": 0.00023780224758594392,
+            "released_geometry": true,
+            "supported_geometry": true,
+            "retracted": true,
+            "stable_frame": true,
+            "bottom_height_m": -1.6587993570058024e-07,
+            "aperture_m": 0.07999993860721588
+          },
+          "stable_steps": 489,
+          "failure_persistence_steps": 0
+        },
+        "first_reference_failure": null,
+        "first_detected_failure": null,
+        "first_failure_latency_steps": null,
+        "nominal_schedule_complete": true,
+        "controller_complete": true,
+        "total_observed_tcp_path_m": 0.7459104082974711,
+        "disturbance_attempted": false,
+        "disturbance_applied": false,
+        "recovery": {
+          "state": "disabled",
+          "attempts": 0,
+          "action_steps": 0,
+          "observed_tcp_path_m": 0.0
+        },
+        "recovery_task_success": false,
+        "lower_transition_step": null,
+        "lower_phase_timeout": false,
+        "recovery_release_reached": false,
+        "recovery_release_first_action_step": null,
+        "recovery_release_executed": false,
+        "recovery_retraction_reached": false,
+        "recovery_retraction_first_action_step": null,
+        "recovery_retraction_executed": false
+      },
+      "verification_metrics": {
+        "scope": "privileged_state_simulator_reference_agreement",
+        "complete": true,
+        "steps": 800,
+        "uncertain_steps": 0,
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 0,
+        "true_negative": 800,
+        "uncertain_on_negative": 0,
+        "failure_detection_precision": null,
+        "failure_detection_recall": null,
+        "diagnosis_accuracy_when_failure_detected": null,
+        "observation_coverage": 1.0,
+        "confusion": {
+          "NONE->NONE": 800
+        }
+      },
+      "physical_effects": {
+        "force_calls": 0,
+        "command_integral_y_ns": 0.0,
+        "actual_application_duration_s": 0.0,
+        "release_support_precondition": true,
+        "peak_horizontal_displacement_from_pulse_start_m": 1.5494700031791197e-07,
+        "peak_linear_speed_after_pulse_m_s": 0.00014505831513664754,
+        "final_displacement_from_pulse_start_world_m": [
+          -4.470348358154297e-08,
+          -2.2351741790771484e-08,
+          -1.1175870895385742e-08
+        ],
+        "sampled_support_loss_after_pulse": false
+      },
+      "physical_diagnostics": {
+        "window_end_action_before_first_recovery_or_episode_end": 800,
+        "pulse_displacement_world_m": [
+          1.862645149230957e-09,
+          -1.1175870895385742e-08,
+          -1.4901161193847656e-08
+        ],
+        "pulse_delta_linear_velocity_world_m_s": [
+          -2.5560439098626375e-08,
+          -8.629467629361898e-07,
+          -2.6544148568063974e-07
+        ],
+        "pre_intervention_peak_horizontal_displacement_m": 1.5494700031791197e-07,
+        "pre_intervention_peak_linear_speed_m_s": 0.00014505831513664754,
+        "pre_intervention_support_loss": false,
+        "whole_episode_effects_include_recovery": false
+      },
+      "max_action_replay_error": 0.0,
+      "controller_gate_actions": 800
+    },
+    {
+      "slot": 5,
+      "point_id": "normal",
+      "seed": 161,
+      "system": "v2",
+      "command_force_y_n": 0.0,
+      "episode": {
+        "episode": 0,
+        "seed": 161,
+        "steps": 800,
+        "stopped": false,
+        "excluded": false,
+        "exclusion_reason": null,
+        "seconds": 6.285934253130108,
+        "task_success_at_end": true,
+        "first_task_success_step": 316,
+        "release_success_at_end": true,
+        "support_stability_success_at_end": true,
+        "retraction_success_at_end": true,
+        "final_horizontal_error_m": 0.00023780224758594392,
+        "final_reference": {
+          "task_success": true,
+          "failure": null,
+          "release_success": true,
+          "supported": true,
+          "stable_frame": true,
+          "support_stability_success": true,
+          "support_stable_steps": 489,
+          "retracted": true,
+          "is_grasped": false,
+          "stable_steps": 489,
+          "max_cube_lift_m": 0.11978517100214958,
+          "horizontal_error_m": 0.00023780224758594392,
+          "cube_table_contact_force_world_n": [
+            0.0,
+            0.0,
+            0.6278446316719055
+          ],
+          "bottom_height_m": -1.6587993570058024e-07,
+          "linear_speed_m_s": 0.0,
+          "angular_speed_rad_s": 0.0
+        },
+        "final_verification": {
+          "status": "passed",
+          "success": true,
+          "failure": null,
+          "confidence": null,
+          "evidence": {
+            "horizontal_error_m": 0.00023780224758594392,
+            "released_geometry": true,
+            "supported_geometry": true,
+            "retracted": true,
+            "stable_frame": true,
+            "bottom_height_m": -1.6587993570058024e-07,
+            "aperture_m": 0.07999993860721588
+          },
+          "stable_steps": 489,
+          "failure_persistence_steps": 0
+        },
+        "first_reference_failure": null,
+        "first_detected_failure": null,
+        "first_failure_latency_steps": null,
+        "nominal_schedule_complete": true,
+        "controller_complete": true,
+        "total_observed_tcp_path_m": 0.7459104082974711,
+        "disturbance_attempted": false,
+        "disturbance_applied": false,
+        "recovery": {
+          "state": "nominal",
+          "attempts": 0,
+          "reason": null,
+          "trigger_step": null,
+          "first_action_step": null,
+          "phase": null,
+          "phase_step": 0,
+          "action_steps": 0,
+          "action_budget": 400,
+          "observed_tcp_path_m": 0.0,
+          "candidate_persistence_steps": 0,
+          "attempt_max_cube_lift_m": 0.0,
+          "failure_detail": null,
+          "cached_cube_world_m": null
+        },
+        "recovery_task_success": false,
+        "lower_transition_step": null,
+        "lower_phase_timeout": false,
+        "recovery_release_reached": false,
+        "recovery_release_first_action_step": null,
+        "recovery_release_executed": false,
+        "recovery_retraction_reached": false,
+        "recovery_retraction_first_action_step": null,
+        "recovery_retraction_executed": false
+      },
+      "verification_metrics": {
+        "scope": "privileged_state_simulator_reference_agreement",
+        "complete": true,
+        "steps": 800,
+        "uncertain_steps": 0,
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 0,
+        "true_negative": 800,
+        "uncertain_on_negative": 0,
+        "failure_detection_precision": null,
+        "failure_detection_recall": null,
+        "diagnosis_accuracy_when_failure_detected": null,
+        "observation_coverage": 1.0,
+        "confusion": {
+          "NONE->NONE": 800
+        }
+      },
+      "physical_effects": {
+        "force_calls": 0,
+        "command_integral_y_ns": 0.0,
+        "actual_application_duration_s": 0.0,
+        "release_support_precondition": true,
+        "peak_horizontal_displacement_from_pulse_start_m": 1.5494700031791197e-07,
+        "peak_linear_speed_after_pulse_m_s": 0.00014505831513664754,
+        "final_displacement_from_pulse_start_world_m": [
+          -4.470348358154297e-08,
+          -2.2351741790771484e-08,
+          -1.1175870895385742e-08
+        ],
+        "sampled_support_loss_after_pulse": false
+      },
+      "physical_diagnostics": {
+        "window_end_action_before_first_recovery_or_episode_end": 800,
+        "pulse_displacement_world_m": [
+          1.862645149230957e-09,
+          -1.1175870895385742e-08,
+          -1.4901161193847656e-08
+        ],
+        "pulse_delta_linear_velocity_world_m_s": [
+          -2.5560439098626375e-08,
+          -8.629467629361898e-07,
+          -2.6544148568063974e-07
+        ],
+        "pre_intervention_peak_horizontal_displacement_m": 1.5494700031791197e-07,
+        "pre_intervention_peak_linear_speed_m_s": 0.00014505831513664754,
+        "pre_intervention_support_loss": false,
+        "whole_episode_effects_include_recovery": false
+      },
+      "max_action_replay_error": 0.0,
+      "controller_gate_actions": 800
+    },
+    {
+      "slot": 6,
+      "point_id": "force-easy-v1",
+      "seed": 160,
+      "system": "baseline",
+      "command_force_y_n": 0.41868388652801514,
+      "episode": {
+        "episode": 0,
+        "seed": 160,
+        "steps": 800,
+        "stopped": false,
+        "excluded": false,
+        "exclusion_reason": null,
+        "seconds": 6.438908196054399,
+        "task_success_at_end": true,
+        "first_task_success_step": 316,
+        "release_success_at_end": true,
+        "support_stability_success_at_end": true,
+        "retraction_success_at_end": true,
+        "final_horizontal_error_m": 0.00994631562851409,
+        "final_reference": {
+          "task_success": true,
+          "failure": null,
+          "release_success": true,
+          "supported": true,
+          "stable_frame": true,
+          "support_stability_success": true,
+          "support_stable_steps": 489,
+          "retracted": true,
+          "is_grasped": false,
+          "stable_steps": 489,
+          "max_cube_lift_m": 0.11970184370875359,
+          "horizontal_error_m": 0.00994631562851409,
+          "cube_table_contact_force_world_n": [
+            0.0,
+            0.0,
+            0.627803385257721
+          ],
+          "bottom_height_m": -4.2113450027594923e-07,
+          "linear_speed_m_s": 0.0,
+          "angular_speed_rad_s": 0.0
+        },
+        "final_verification": {
+          "status": "disabled",
+          "failure": null
+        },
+        "first_reference_failure": null,
+        "first_detected_failure": null,
+        "first_failure_latency_steps": null,
+        "nominal_schedule_complete": true,
+        "controller_complete": true,
+        "total_observed_tcp_path_m": 0.6975986156528332,
+        "disturbance_attempted": false,
+        "disturbance_applied": false,
+        "recovery": {
+          "state": "disabled",
+          "attempts": 0,
+          "action_steps": 0,
+          "observed_tcp_path_m": 0.0
+        },
+        "recovery_task_success": false,
+        "lower_transition_step": null,
+        "lower_phase_timeout": false,
+        "recovery_release_reached": false,
+        "recovery_release_first_action_step": null,
+        "recovery_release_executed": false,
+        "recovery_retraction_reached": false,
+        "recovery_retraction_first_action_step": null,
+        "recovery_retraction_executed": false
+      },
+      "verification_metrics": null,
+      "physical_effects": {
+        "force_calls": 5,
+        "command_integral_y_ns": 0.02093419385848505,
+        "actual_application_duration_s": 0.04999999888241291,
+        "release_support_precondition": true,
+        "peak_horizontal_displacement_from_pulse_start_m": 0.010098159890641518,
+        "peak_linear_speed_after_pulse_m_s": 0.18018157155126563,
+        "final_displacement_from_pulse_start_world_m": [
+          -1.4703720808029175e-05,
+          0.010097614023834467,
+          -3.725290298461914e-09
+        ],
+        "sampled_support_loss_after_pulse": false
+      },
+      "physical_diagnostics": {
+        "window_end_action_before_first_recovery_or_episode_end": 800,
+        "pulse_displacement_world_m": [
+          -1.0972842574119568e-05,
+          0.0054256480652838945,
+          1.9185245037078857e-07
+        ],
+        "pulse_delta_linear_velocity_world_m_s": [
+          0.0003993672871729359,
+          0.17990287888096645,
+          0.00015088794475559553
+        ],
+        "pre_intervention_peak_horizontal_displacement_m": 0.010098159890641518,
+        "pre_intervention_peak_linear_speed_m_s": 0.18018157155126563,
+        "pre_intervention_support_loss": false,
+        "whole_episode_effects_include_recovery": false
+      },
+      "max_action_replay_error": 0.0,
+      "controller_gate_actions": 800
+    },
+    {
+      "slot": 7,
+      "point_id": "force-easy-v1",
+      "seed": 160,
+      "system": "v1",
+      "command_force_y_n": 0.41868388652801514,
+      "episode": {
+        "episode": 0,
+        "seed": 160,
+        "steps": 800,
+        "stopped": false,
+        "excluded": false,
+        "exclusion_reason": null,
+        "seconds": 6.1532143340446055,
+        "task_success_at_end": true,
+        "first_task_success_step": 316,
+        "release_success_at_end": true,
+        "support_stability_success_at_end": true,
+        "retraction_success_at_end": true,
+        "final_horizontal_error_m": 0.00994631562851409,
+        "final_reference": {
+          "task_success": true,
+          "failure": null,
+          "release_success": true,
+          "supported": true,
+          "stable_frame": true,
+          "support_stability_success": true,
+          "support_stable_steps": 489,
+          "retracted": true,
+          "is_grasped": false,
+          "stable_steps": 489,
+          "max_cube_lift_m": 0.11970184370875359,
+          "horizontal_error_m": 0.00994631562851409,
+          "cube_table_contact_force_world_n": [
+            0.0,
+            0.0,
+            0.627803385257721
+          ],
+          "bottom_height_m": -4.2113450027594923e-07,
+          "linear_speed_m_s": 0.0,
+          "angular_speed_rad_s": 0.0
+        },
+        "final_verification": {
+          "status": "passed",
+          "success": true,
+          "failure": null,
+          "confidence": null,
+          "evidence": {
+            "horizontal_error_m": 0.00994631562851409,
+            "released_geometry": true,
+            "supported_geometry": true,
+            "retracted": true,
+            "stable_frame": true,
+            "bottom_height_m": -4.2113450027594923e-07,
+            "aperture_m": 0.07999995723366737
+          },
+          "stable_steps": 489,
+          "failure_persistence_steps": 0
+        },
+        "first_reference_failure": null,
+        "first_detected_failure": null,
+        "first_failure_latency_steps": null,
+        "nominal_schedule_complete": true,
+        "controller_complete": true,
+        "total_observed_tcp_path_m": 0.6975986156528332,
+        "disturbance_attempted": false,
+        "disturbance_applied": false,
+        "recovery": {
+          "state": "disabled",
+          "attempts": 0,
+          "action_steps": 0,
+          "observed_tcp_path_m": 0.0
+        },
+        "recovery_task_success": false,
+        "lower_transition_step": null,
+        "lower_phase_timeout": false,
+        "recovery_release_reached": false,
+        "recovery_release_first_action_step": null,
+        "recovery_release_executed": false,
+        "recovery_retraction_reached": false,
+        "recovery_retraction_first_action_step": null,
+        "recovery_retraction_executed": false
+      },
+      "verification_metrics": {
+        "scope": "privileged_state_simulator_reference_agreement",
+        "complete": true,
+        "steps": 800,
+        "uncertain_steps": 0,
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 0,
+        "true_negative": 800,
+        "uncertain_on_negative": 0,
+        "failure_detection_precision": null,
+        "failure_detection_recall": null,
+        "diagnosis_accuracy_when_failure_detected": null,
+        "observation_coverage": 1.0,
+        "confusion": {
+          "NONE->NONE": 800
+        }
+      },
+      "physical_effects": {
+        "force_calls": 5,
+        "command_integral_y_ns": 0.02093419385848505,
+        "actual_application_duration_s": 0.04999999888241291,
+        "release_support_precondition": true,
+        "peak_horizontal_displacement_from_pulse_start_m": 0.010098159890641518,
+        "peak_linear_speed_after_pulse_m_s": 0.18018157155126563,
+        "final_displacement_from_pulse_start_world_m": [
+          -1.4703720808029175e-05,
+          0.010097614023834467,
+          -3.725290298461914e-09
+        ],
+        "sampled_support_loss_after_pulse": false
+      },
+      "physical_diagnostics": {
+        "window_end_action_before_first_recovery_or_episode_end": 800,
+        "pulse_displacement_world_m": [
+          -1.0972842574119568e-05,
+          0.0054256480652838945,
+          1.9185245037078857e-07
+        ],
+        "pulse_delta_linear_velocity_world_m_s": [
+          0.0003993672871729359,
+          0.17990287888096645,
+          0.00015088794475559553
+        ],
+        "pre_intervention_peak_horizontal_displacement_m": 0.010098159890641518,
+        "pre_intervention_peak_linear_speed_m_s": 0.18018157155126563,
+        "pre_intervention_support_loss": false,
+        "whole_episode_effects_include_recovery": false
+      },
+      "max_action_replay_error": 0.0,
+      "controller_gate_actions": 800
+    },
+    {
+      "slot": 8,
+      "point_id": "force-easy-v1",
+      "seed": 160,
+      "system": "v2",
+      "command_force_y_n": 0.41868388652801514,
+      "episode": {
+        "episode": 0,
+        "seed": 160,
+        "steps": 800,
+        "stopped": false,
+        "excluded": false,
+        "exclusion_reason": null,
+        "seconds": 6.113585537998006,
+        "task_success_at_end": true,
+        "first_task_success_step": 316,
+        "release_success_at_end": true,
+        "support_stability_success_at_end": true,
+        "retraction_success_at_end": true,
+        "final_horizontal_error_m": 0.00994631562851409,
+        "final_reference": {
+          "task_success": true,
+          "failure": null,
+          "release_success": true,
+          "supported": true,
+          "stable_frame": true,
+          "support_stability_success": true,
+          "support_stable_steps": 489,
+          "retracted": true,
+          "is_grasped": false,
+          "stable_steps": 489,
+          "max_cube_lift_m": 0.11970184370875359,
+          "horizontal_error_m": 0.00994631562851409,
+          "cube_table_contact_force_world_n": [
+            0.0,
+            0.0,
+            0.627803385257721
+          ],
+          "bottom_height_m": -4.2113450027594923e-07,
+          "linear_speed_m_s": 0.0,
+          "angular_speed_rad_s": 0.0
+        },
+        "final_verification": {
+          "status": "passed",
+          "success": true,
+          "failure": null,
+          "confidence": null,
+          "evidence": {
+            "horizontal_error_m": 0.00994631562851409,
+            "released_geometry": true,
+            "supported_geometry": true,
+            "retracted": true,
+            "stable_frame": true,
+            "bottom_height_m": -4.2113450027594923e-07,
+            "aperture_m": 0.07999995723366737
+          },
+          "stable_steps": 489,
+          "failure_persistence_steps": 0
+        },
+        "first_reference_failure": null,
+        "first_detected_failure": null,
+        "first_failure_latency_steps": null,
+        "nominal_schedule_complete": true,
+        "controller_complete": true,
+        "total_observed_tcp_path_m": 0.6975986156528332,
+        "disturbance_attempted": false,
+        "disturbance_applied": false,
+        "recovery": {
+          "state": "nominal",
+          "attempts": 0,
+          "reason": null,
+          "trigger_step": null,
+          "first_action_step": null,
+          "phase": null,
+          "phase_step": 0,
+          "action_steps": 0,
+          "action_budget": 400,
+          "observed_tcp_path_m": 0.0,
+          "candidate_persistence_steps": 0,
+          "attempt_max_cube_lift_m": 0.0,
+          "failure_detail": null,
+          "cached_cube_world_m": null
+        },
+        "recovery_task_success": false,
+        "lower_transition_step": null,
+        "lower_phase_timeout": false,
+        "recovery_release_reached": false,
+        "recovery_release_first_action_step": null,
+        "recovery_release_executed": false,
+        "recovery_retraction_reached": false,
+        "recovery_retraction_first_action_step": null,
+        "recovery_retraction_executed": false
+      },
+      "verification_metrics": {
+        "scope": "privileged_state_simulator_reference_agreement",
+        "complete": true,
+        "steps": 800,
+        "uncertain_steps": 0,
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 0,
+        "true_negative": 800,
+        "uncertain_on_negative": 0,
+        "failure_detection_precision": null,
+        "failure_detection_recall": null,
+        "diagnosis_accuracy_when_failure_detected": null,
+        "observation_coverage": 1.0,
+        "confusion": {
+          "NONE->NONE": 800
+        }
+      },
+      "physical_effects": {
+        "force_calls": 5,
+        "command_integral_y_ns": 0.02093419385848505,
+        "actual_application_duration_s": 0.04999999888241291,
+        "release_support_precondition": true,
+        "peak_horizontal_displacement_from_pulse_start_m": 0.010098159890641518,
+        "peak_linear_speed_after_pulse_m_s": 0.18018157155126563,
+        "final_displacement_from_pulse_start_world_m": [
+          -1.4703720808029175e-05,
+          0.010097614023834467,
+          -3.725290298461914e-09
+        ],
+        "sampled_support_loss_after_pulse": false
+      },
+      "physical_diagnostics": {
+        "window_end_action_before_first_recovery_or_episode_end": 800,
+        "pulse_displacement_world_m": [
+          -1.0972842574119568e-05,
+          0.0054256480652838945,
+          1.9185245037078857e-07
+        ],
+        "pulse_delta_linear_velocity_world_m_s": [
+          0.0003993672871729359,
+          0.17990287888096645,
+          0.00015088794475559553
+        ],
+        "pre_intervention_peak_horizontal_displacement_m": 0.010098159890641518,
+        "pre_intervention_peak_linear_speed_m_s": 0.18018157155126563,
+        "pre_intervention_support_loss": false,
+        "whole_episode_effects_include_recovery": false
+      },
+      "max_action_replay_error": 0.0,
+      "controller_gate_actions": 800
+    },
+    {
+      "slot": 9,
+      "point_id": "force-easy-v1",
+      "seed": 161,
+      "system": "baseline",
+      "command_force_y_n": 0.41868388652801514,
+      "episode": {
+        "episode": 0,
+        "seed": 161,
+        "steps": 800,
+        "stopped": false,
+        "excluded": false,
+        "exclusion_reason": null,
+        "seconds": 6.216091759037226,
+        "task_success_at_end": true,
+        "first_task_success_step": 316,
+        "release_success_at_end": true,
+        "support_stability_success_at_end": true,
+        "retraction_success_at_end": true,
+        "final_horizontal_error_m": 0.010279313969449444,
+        "final_reference": {
+          "task_success": true,
+          "failure": null,
+          "release_success": true,
+          "supported": true,
+          "stable_frame": true,
+          "support_stability_success": true,
+          "support_stable_steps": 489,
+          "retracted": true,
+          "is_grasped": false,
+          "stable_steps": 489,
+          "max_cube_lift_m": 0.11978517100214958,
+          "horizontal_error_m": 0.010279313969449444,
+          "cube_table_contact_force_world_n": [
+            0.0,
+            0.0,
+            0.6278418898582458
+          ],
+          "bottom_height_m": -1.6674985789388863e-07,
+          "linear_speed_m_s": 0.0,
+          "angular_speed_rad_s": 0.0
+        },
+        "final_verification": {
+          "status": "disabled",
+          "failure": null
+        },
+        "first_reference_failure": null,
+        "first_detected_failure": null,
+        "first_failure_latency_steps": null,
+        "nominal_schedule_complete": true,
+        "controller_complete": true,
+        "total_observed_tcp_path_m": 0.7459104082974711,
+        "disturbance_attempted": false,
+        "disturbance_applied": false,
+        "recovery": {
+          "state": "disabled",
+          "attempts": 0,
+          "action_steps": 0,
+          "observed_tcp_path_m": 0.0
+        },
+        "recovery_task_success": false,
+        "lower_transition_step": null,
+        "lower_phase_timeout": false,
+        "recovery_release_reached": false,
+        "recovery_release_first_action_step": null,
+        "recovery_release_executed": false,
+        "recovery_retraction_reached": false,
+        "recovery_retraction_first_action_step": null,
+        "recovery_retraction_executed": false
+      },
+      "verification_metrics": null,
+      "physical_effects": {
+        "force_calls": 5,
+        "command_integral_y_ns": 0.02093419385848505,
+        "actual_application_duration_s": 0.04999999888241291,
+        "release_support_precondition": true,
+        "peak_horizontal_displacement_from_pulse_start_m": 0.010076703742620322,
+        "peak_linear_speed_after_pulse_m_s": 0.17987655553227483,
+        "final_displacement_from_pulse_start_world_m": [
+          -2.2351741790771484e-06,
+          0.010076679289340973,
+          -1.4901161193847656e-08
+        ],
+        "sampled_support_loss_after_pulse": false
+      },
+      "physical_diagnostics": {
+        "window_end_action_before_first_recovery_or_episode_end": 800,
+        "pulse_displacement_world_m": [
+          -2.514570951461792e-06,
+          0.0054130032658576965,
+          9.12696123123169e-08
+        ],
+        "pulse_delta_linear_velocity_world_m_s": [
+          0.00015380743207060732,
+          0.1799261173873674,
+          6.946491353687634e-05
+        ],
+        "pre_intervention_peak_horizontal_displacement_m": 0.010076703742620322,
+        "pre_intervention_peak_linear_speed_m_s": 0.17987655553227483,
+        "pre_intervention_support_loss": false,
+        "whole_episode_effects_include_recovery": false
+      },
+      "max_action_replay_error": 0.0,
+      "controller_gate_actions": 800
+    },
+    {
+      "slot": 10,
+      "point_id": "force-easy-v1",
+      "seed": 161,
+      "system": "v1",
+      "command_force_y_n": 0.41868388652801514,
+      "episode": {
+        "episode": 0,
+        "seed": 161,
+        "steps": 800,
+        "stopped": false,
+        "excluded": false,
+        "exclusion_reason": null,
+        "seconds": 6.443726507946849,
+        "task_success_at_end": true,
+        "first_task_success_step": 316,
+        "release_success_at_end": true,
+        "support_stability_success_at_end": true,
+        "retraction_success_at_end": true,
+        "final_horizontal_error_m": 0.010279313969449444,
+        "final_reference": {
+          "task_success": true,
+          "failure": null,
+          "release_success": true,
+          "supported": true,
+          "stable_frame": true,
+          "support_stability_success": true,
+          "support_stable_steps": 489,
+          "retracted": true,
+          "is_grasped": false,
+          "stable_steps": 489,
+          "max_cube_lift_m": 0.11978517100214958,
+          "horizontal_error_m": 0.010279313969449444,
+          "cube_table_contact_force_world_n": [
+            0.0,
+            0.0,
+            0.6278418898582458
+          ],
+          "bottom_height_m": -1.6674985789388863e-07,
+          "linear_speed_m_s": 0.0,
+          "angular_speed_rad_s": 0.0
+        },
+        "final_verification": {
+          "status": "passed",
+          "success": true,
+          "failure": null,
+          "confidence": null,
+          "evidence": {
+            "horizontal_error_m": 0.010279313969449444,
+            "released_geometry": true,
+            "supported_geometry": true,
+            "retracted": true,
+            "stable_frame": true,
+            "bottom_height_m": -1.6674985789388863e-07,
+            "aperture_m": 0.07999993860721588
+          },
+          "stable_steps": 489,
+          "failure_persistence_steps": 0
+        },
+        "first_reference_failure": null,
+        "first_detected_failure": null,
+        "first_failure_latency_steps": null,
+        "nominal_schedule_complete": true,
+        "controller_complete": true,
+        "total_observed_tcp_path_m": 0.7459104082974711,
+        "disturbance_attempted": false,
+        "disturbance_applied": false,
+        "recovery": {
+          "state": "disabled",
+          "attempts": 0,
+          "action_steps": 0,
+          "observed_tcp_path_m": 0.0
+        },
+        "recovery_task_success": false,
+        "lower_transition_step": null,
+        "lower_phase_timeout": false,
+        "recovery_release_reached": false,
+        "recovery_release_first_action_step": null,
+        "recovery_release_executed": false,
+        "recovery_retraction_reached": false,
+        "recovery_retraction_first_action_step": null,
+        "recovery_retraction_executed": false
+      },
+      "verification_metrics": {
+        "scope": "privileged_state_simulator_reference_agreement",
+        "complete": true,
+        "steps": 800,
+        "uncertain_steps": 0,
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 0,
+        "true_negative": 800,
+        "uncertain_on_negative": 0,
+        "failure_detection_precision": null,
+        "failure_detection_recall": null,
+        "diagnosis_accuracy_when_failure_detected": null,
+        "observation_coverage": 1.0,
+        "confusion": {
+          "NONE->NONE": 800
+        }
+      },
+      "physical_effects": {
+        "force_calls": 5,
+        "command_integral_y_ns": 0.02093419385848505,
+        "actual_application_duration_s": 0.04999999888241291,
+        "release_support_precondition": true,
+        "peak_horizontal_displacement_from_pulse_start_m": 0.010076703742620322,
+        "peak_linear_speed_after_pulse_m_s": 0.17987655553227483,
+        "final_displacement_from_pulse_start_world_m": [
+          -2.2351741790771484e-06,
+          0.010076679289340973,
+          -1.4901161193847656e-08
+        ],
+        "sampled_support_loss_after_pulse": false
+      },
+      "physical_diagnostics": {
+        "window_end_action_before_first_recovery_or_episode_end": 800,
+        "pulse_displacement_world_m": [
+          -2.514570951461792e-06,
+          0.0054130032658576965,
+          9.12696123123169e-08
+        ],
+        "pulse_delta_linear_velocity_world_m_s": [
+          0.00015380743207060732,
+          0.1799261173873674,
+          6.946491353687634e-05
+        ],
+        "pre_intervention_peak_horizontal_displacement_m": 0.010076703742620322,
+        "pre_intervention_peak_linear_speed_m_s": 0.17987655553227483,
+        "pre_intervention_support_loss": false,
+        "whole_episode_effects_include_recovery": false
+      },
+      "max_action_replay_error": 0.0,
+      "controller_gate_actions": 800
+    },
+    {
+      "slot": 11,
+      "point_id": "force-easy-v1",
+      "seed": 161,
+      "system": "v2",
+      "command_force_y_n": 0.41868388652801514,
+      "episode": {
+        "episode": 0,
+        "seed": 161,
+        "steps": 800,
+        "stopped": false,
+        "excluded": false,
+        "exclusion_reason": null,
+        "seconds": 6.101101136999205,
+        "task_success_at_end": true,
+        "first_task_success_step": 316,
+        "release_success_at_end": true,
+        "support_stability_success_at_end": true,
+        "retraction_success_at_end": true,
+        "final_horizontal_error_m": 0.010279313969449444,
+        "final_reference": {
+          "task_success": true,
+          "failure": null,
+          "release_success": true,
+          "supported": true,
+          "stable_frame": true,
+          "support_stability_success": true,
+          "support_stable_steps": 489,
+          "retracted": true,
+          "is_grasped": false,
+          "stable_steps": 489,
+          "max_cube_lift_m": 0.11978517100214958,
+          "horizontal_error_m": 0.010279313969449444,
+          "cube_table_contact_force_world_n": [
+            0.0,
+            0.0,
+            0.6278418898582458
+          ],
+          "bottom_height_m": -1.6674985789388863e-07,
+          "linear_speed_m_s": 0.0,
+          "angular_speed_rad_s": 0.0
+        },
+        "final_verification": {
+          "status": "passed",
+          "success": true,
+          "failure": null,
+          "confidence": null,
+          "evidence": {
+            "horizontal_error_m": 0.010279313969449444,
+            "released_geometry": true,
+            "supported_geometry": true,
+            "retracted": true,
+            "stable_frame": true,
+            "bottom_height_m": -1.6674985789388863e-07,
+            "aperture_m": 0.07999993860721588
+          },
+          "stable_steps": 489,
+          "failure_persistence_steps": 0
+        },
+        "first_reference_failure": null,
+        "first_detected_failure": null,
+        "first_failure_latency_steps": null,
+        "nominal_schedule_complete": true,
+        "controller_complete": true,
+        "total_observed_tcp_path_m": 0.7459104082974711,
+        "disturbance_attempted": false,
+        "disturbance_applied": false,
+        "recovery": {
+          "state": "nominal",
+          "attempts": 0,
+          "reason": null,
+          "trigger_step": null,
+          "first_action_step": null,
+          "phase": null,
+          "phase_step": 0,
+          "action_steps": 0,
+          "action_budget": 400,
+          "observed_tcp_path_m": 0.0,
+          "candidate_persistence_steps": 0,
+          "attempt_max_cube_lift_m": 0.0,
+          "failure_detail": null,
+          "cached_cube_world_m": null
+        },
+        "recovery_task_success": false,
+        "lower_transition_step": null,
+        "lower_phase_timeout": false,
+        "recovery_release_reached": false,
+        "recovery_release_first_action_step": null,
+        "recovery_release_executed": false,
+        "recovery_retraction_reached": false,
+        "recovery_retraction_first_action_step": null,
+        "recovery_retraction_executed": false
+      },
+      "verification_metrics": {
+        "scope": "privileged_state_simulator_reference_agreement",
+        "complete": true,
+        "steps": 800,
+        "uncertain_steps": 0,
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 0,
+        "true_negative": 800,
+        "uncertain_on_negative": 0,
+        "failure_detection_precision": null,
+        "failure_detection_recall": null,
+        "diagnosis_accuracy_when_failure_detected": null,
+        "observation_coverage": 1.0,
+        "confusion": {
+          "NONE->NONE": 800
+        }
+      },
+      "physical_effects": {
+        "force_calls": 5,
+        "command_integral_y_ns": 0.02093419385848505,
+        "actual_application_duration_s": 0.04999999888241291,
+        "release_support_precondition": true,
+        "peak_horizontal_displacement_from_pulse_start_m": 0.010076703742620322,
+        "peak_linear_speed_after_pulse_m_s": 0.17987655553227483,
+        "final_displacement_from_pulse_start_world_m": [
+          -2.2351741790771484e-06,
+          0.010076679289340973,
+          -1.4901161193847656e-08
+        ],
+        "sampled_support_loss_after_pulse": false
+      },
+      "physical_diagnostics": {
+        "window_end_action_before_first_recovery_or_episode_end": 800,
+        "pulse_displacement_world_m": [
+          -2.514570951461792e-06,
+          0.0054130032658576965,
+          9.12696123123169e-08
+        ],
+        "pulse_delta_linear_velocity_world_m_s": [
+          0.00015380743207060732,
+          0.1799261173873674,
+          6.946491353687634e-05
+        ],
+        "pre_intervention_peak_horizontal_displacement_m": 0.010076703742620322,
+        "pre_intervention_peak_linear_speed_m_s": 0.17987655553227483,
+        "pre_intervention_support_loss": false,
+        "whole_episode_effects_include_recovery": false
+      },
+      "max_action_replay_error": 0.0,
+      "controller_gate_actions": 800
+    },
+    {
+      "slot": 12,
+      "point_id": "force-probe-2",
+      "seed": 160,
+      "system": "baseline",
+      "command_force_y_n": 2.322110652923584,
+      "episode": {
+        "episode": 0,
+        "seed": 160,
+        "steps": 800,
+        "stopped": false,
+        "excluded": false,
+        "exclusion_reason": null,
+        "seconds": 5.781089531024918,
+        "task_success_at_end": true,
+        "first_task_success_step": 316,
+        "release_success_at_end": true,
+        "support_stability_success_at_end": true,
+        "retraction_success_at_end": true,
+        "final_horizontal_error_m": 0.018177082847456213,
+        "final_reference": {
+          "task_success": true,
+          "failure": null,
+          "release_success": true,
+          "supported": true,
+          "stable_frame": true,
+          "support_stability_success": true,
+          "support_stable_steps": 489,
+          "retracted": true,
+          "is_grasped": false,
+          "stable_steps": 489,
+          "max_cube_lift_m": 0.11970184370875359,
+          "horizontal_error_m": 0.018177082847456213,
+          "cube_table_contact_force_world_n": [
+            0.0,
+            0.0,
+            0.6278609037399292
+          ],
+          "bottom_height_m": -4.519116174744875e-07,
+          "linear_speed_m_s": 0.0,
+          "angular_speed_rad_s": 0.0
+        },
+        "final_verification": {
+          "status": "disabled",
+          "failure": null
+        },
+        "first_reference_failure": null,
+        "first_detected_failure": null,
+        "first_failure_latency_steps": null,
+        "nominal_schedule_complete": true,
+        "controller_complete": true,
+        "total_observed_tcp_path_m": 0.697659074427479,
+        "disturbance_attempted": false,
+        "disturbance_applied": false,
+        "recovery": {
+          "state": "disabled",
+          "attempts": 0,
+          "action_steps": 0,
+          "observed_tcp_path_m": 0.0
+        },
+        "recovery_task_success": false,
+        "lower_transition_step": null,
+        "lower_phase_timeout": false,
+        "recovery_release_reached": false,
+        "recovery_release_first_action_step": null,
+        "recovery_release_executed": false,
+        "recovery_retraction_reached": false,
+        "recovery_retraction_first_action_step": null,
+        "recovery_retraction_executed": false
+      },
+      "verification_metrics": null,
+      "physical_effects": {
+        "force_calls": 5,
+        "command_integral_y_ns": 0.11610553005101831,
+        "actual_application_duration_s": 0.04999999888241291,
+        "release_support_precondition": true,
+        "peak_horizontal_displacement_from_pulse_start_m": 0.02029017404574809,
+        "peak_linear_speed_after_pulse_m_s": 0.8239237982583177,
+        "final_displacement_from_pulse_start_world_m": [
+          -0.00016705505549907684,
+          0.01832709927111864,
+          -2.0489096641540527e-08
+        ],
+        "sampled_support_loss_after_pulse": true
+      },
+      "physical_diagnostics": {
+        "window_end_action_before_first_recovery_or_episode_end": 800,
+        "pulse_displacement_world_m": [
+          -0.0003305245190858841,
+          0.02007989026606083,
+          0.0011745244264602661
+        ],
+        "pulse_delta_linear_velocity_world_m_s": [
+          0.06629609112860635,
+          0.07479014742420986,
+          0.07946531601191964
+        ],
+        "pre_intervention_peak_horizontal_displacement_m": 0.02029017404574809,
+        "pre_intervention_peak_linear_speed_m_s": 0.8239237982583177,
+        "pre_intervention_support_loss": true,
+        "whole_episode_effects_include_recovery": false
+      },
+      "max_action_replay_error": 0.0,
+      "controller_gate_actions": 800
+    },
+    {
+      "slot": 13,
+      "point_id": "force-probe-2",
+      "seed": 160,
+      "system": "v1",
+      "command_force_y_n": 2.322110652923584,
+      "episode": {
+        "episode": 0,
+        "seed": 160,
+        "steps": 800,
+        "stopped": false,
+        "excluded": false,
+        "exclusion_reason": null,
+        "seconds": 6.427588765975088,
+        "task_success_at_end": true,
+        "first_task_success_step": 316,
+        "release_success_at_end": true,
+        "support_stability_success_at_end": true,
+        "retraction_success_at_end": true,
+        "final_horizontal_error_m": 0.018177082847456213,
+        "final_reference": {
+          "task_success": true,
+          "failure": null,
+          "release_success": true,
+          "supported": true,
+          "stable_frame": true,
+          "support_stability_success": true,
+          "support_stable_steps": 489,
+          "retracted": true,
+          "is_grasped": false,
+          "stable_steps": 489,
+          "max_cube_lift_m": 0.11970184370875359,
+          "horizontal_error_m": 0.018177082847456213,
+          "cube_table_contact_force_world_n": [
+            0.0,
+            0.0,
+            0.6278609037399292
+          ],
+          "bottom_height_m": -4.519116174744875e-07,
+          "linear_speed_m_s": 0.0,
+          "angular_speed_rad_s": 0.0
+        },
+        "final_verification": {
+          "status": "passed",
+          "success": true,
+          "failure": null,
+          "confidence": null,
+          "evidence": {
+            "horizontal_error_m": 0.018177082847456213,
+            "released_geometry": true,
+            "supported_geometry": true,
+            "retracted": true,
+            "stable_frame": true,
+            "bottom_height_m": -4.519116174744875e-07,
+            "aperture_m": 0.07999994978308678
+          },
+          "stable_steps": 489,
+          "failure_persistence_steps": 0
+        },
+        "first_reference_failure": null,
+        "first_detected_failure": null,
+        "first_failure_latency_steps": null,
+        "nominal_schedule_complete": true,
+        "controller_complete": true,
+        "total_observed_tcp_path_m": 0.697659074427479,
+        "disturbance_attempted": false,
+        "disturbance_applied": false,
+        "recovery": {
+          "state": "disabled",
+          "attempts": 0,
+          "action_steps": 0,
+          "observed_tcp_path_m": 0.0
+        },
+        "recovery_task_success": false,
+        "lower_transition_step": null,
+        "lower_phase_timeout": false,
+        "recovery_release_reached": false,
+        "recovery_release_first_action_step": null,
+        "recovery_release_executed": false,
+        "recovery_retraction_reached": false,
+        "recovery_retraction_first_action_step": null,
+        "recovery_retraction_executed": false
+      },
+      "verification_metrics": {
+        "scope": "privileged_state_simulator_reference_agreement",
+        "complete": true,
+        "steps": 800,
+        "uncertain_steps": 0,
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 0,
+        "true_negative": 800,
+        "uncertain_on_negative": 0,
+        "failure_detection_precision": null,
+        "failure_detection_recall": null,
+        "diagnosis_accuracy_when_failure_detected": null,
+        "observation_coverage": 1.0,
+        "confusion": {
+          "NONE->NONE": 800
+        }
+      },
+      "physical_effects": {
+        "force_calls": 5,
+        "command_integral_y_ns": 0.11610553005101831,
+        "actual_application_duration_s": 0.04999999888241291,
+        "release_support_precondition": true,
+        "peak_horizontal_displacement_from_pulse_start_m": 0.02029017404574809,
+        "peak_linear_speed_after_pulse_m_s": 0.8239237982583177,
+        "final_displacement_from_pulse_start_world_m": [
+          -0.00016705505549907684,
+          0.01832709927111864,
+          -2.0489096641540527e-08
+        ],
+        "sampled_support_loss_after_pulse": true
+      },
+      "physical_diagnostics": {
+        "window_end_action_before_first_recovery_or_episode_end": 800,
+        "pulse_displacement_world_m": [
+          -0.0003305245190858841,
+          0.02007989026606083,
+          0.0011745244264602661
+        ],
+        "pulse_delta_linear_velocity_world_m_s": [
+          0.06629609112860635,
+          0.07479014742420986,
+          0.07946531601191964
+        ],
+        "pre_intervention_peak_horizontal_displacement_m": 0.02029017404574809,
+        "pre_intervention_peak_linear_speed_m_s": 0.8239237982583177,
+        "pre_intervention_support_loss": true,
+        "whole_episode_effects_include_recovery": false
+      },
+      "max_action_replay_error": 0.0,
+      "controller_gate_actions": 800
+    },
+    {
+      "slot": 14,
+      "point_id": "force-probe-2",
+      "seed": 160,
+      "system": "v2",
+      "command_force_y_n": 2.322110652923584,
+      "episode": {
+        "episode": 0,
+        "seed": 160,
+        "steps": 800,
+        "stopped": false,
+        "excluded": false,
+        "exclusion_reason": null,
+        "seconds": 6.022537112003192,
+        "task_success_at_end": true,
+        "first_task_success_step": 316,
+        "release_success_at_end": true,
+        "support_stability_success_at_end": true,
+        "retraction_success_at_end": true,
+        "final_horizontal_error_m": 0.018177082847456213,
+        "final_reference": {
+          "task_success": true,
+          "failure": null,
+          "release_success": true,
+          "supported": true,
+          "stable_frame": true,
+          "support_stability_success": true,
+          "support_stable_steps": 489,
+          "retracted": true,
+          "is_grasped": false,
+          "stable_steps": 489,
+          "max_cube_lift_m": 0.11970184370875359,
+          "horizontal_error_m": 0.018177082847456213,
+          "cube_table_contact_force_world_n": [
+            0.0,
+            0.0,
+            0.6278609037399292
+          ],
+          "bottom_height_m": -4.519116174744875e-07,
+          "linear_speed_m_s": 0.0,
+          "angular_speed_rad_s": 0.0
+        },
+        "final_verification": {
+          "status": "passed",
+          "success": true,
+          "failure": null,
+          "confidence": null,
+          "evidence": {
+            "horizontal_error_m": 0.018177082847456213,
+            "released_geometry": true,
+            "supported_geometry": true,
+            "retracted": true,
+            "stable_frame": true,
+            "bottom_height_m": -4.519116174744875e-07,
+            "aperture_m": 0.07999994978308678
+          },
+          "stable_steps": 489,
+          "failure_persistence_steps": 0
+        },
+        "first_reference_failure": null,
+        "first_detected_failure": null,
+        "first_failure_latency_steps": null,
+        "nominal_schedule_complete": true,
+        "controller_complete": true,
+        "total_observed_tcp_path_m": 0.697659074427479,
+        "disturbance_attempted": false,
+        "disturbance_applied": false,
+        "recovery": {
+          "state": "nominal",
+          "attempts": 0,
+          "reason": null,
+          "trigger_step": null,
+          "first_action_step": null,
+          "phase": null,
+          "phase_step": 0,
+          "action_steps": 0,
+          "action_budget": 400,
+          "observed_tcp_path_m": 0.0,
+          "candidate_persistence_steps": 0,
+          "attempt_max_cube_lift_m": 0.0,
+          "failure_detail": null,
+          "cached_cube_world_m": null
+        },
+        "recovery_task_success": false,
+        "lower_transition_step": null,
+        "lower_phase_timeout": false,
+        "recovery_release_reached": false,
+        "recovery_release_first_action_step": null,
+        "recovery_release_executed": false,
+        "recovery_retraction_reached": false,
+        "recovery_retraction_first_action_step": null,
+        "recovery_retraction_executed": false
+      },
+      "verification_metrics": {
+        "scope": "privileged_state_simulator_reference_agreement",
+        "complete": true,
+        "steps": 800,
+        "uncertain_steps": 0,
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 0,
+        "true_negative": 800,
+        "uncertain_on_negative": 0,
+        "failure_detection_precision": null,
+        "failure_detection_recall": null,
+        "diagnosis_accuracy_when_failure_detected": null,
+        "observation_coverage": 1.0,
+        "confusion": {
+          "NONE->NONE": 800
+        }
+      },
+      "physical_effects": {
+        "force_calls": 5,
+        "command_integral_y_ns": 0.11610553005101831,
+        "actual_application_duration_s": 0.04999999888241291,
+        "release_support_precondition": true,
+        "peak_horizontal_displacement_from_pulse_start_m": 0.02029017404574809,
+        "peak_linear_speed_after_pulse_m_s": 0.8239237982583177,
+        "final_displacement_from_pulse_start_world_m": [
+          -0.00016705505549907684,
+          0.01832709927111864,
+          -2.0489096641540527e-08
+        ],
+        "sampled_support_loss_after_pulse": true
+      },
+      "physical_diagnostics": {
+        "window_end_action_before_first_recovery_or_episode_end": 800,
+        "pulse_displacement_world_m": [
+          -0.0003305245190858841,
+          0.02007989026606083,
+          0.0011745244264602661
+        ],
+        "pulse_delta_linear_velocity_world_m_s": [
+          0.06629609112860635,
+          0.07479014742420986,
+          0.07946531601191964
+        ],
+        "pre_intervention_peak_horizontal_displacement_m": 0.02029017404574809,
+        "pre_intervention_peak_linear_speed_m_s": 0.8239237982583177,
+        "pre_intervention_support_loss": true,
+        "whole_episode_effects_include_recovery": false
+      },
+      "max_action_replay_error": 0.0,
+      "controller_gate_actions": 800
+    },
+    {
+      "slot": 15,
+      "point_id": "force-probe-2",
+      "seed": 161,
+      "system": "baseline",
+      "command_force_y_n": 2.322110652923584,
+      "episode": {
+        "episode": 0,
+        "seed": 161,
+        "steps": 800,
+        "stopped": false,
+        "excluded": false,
+        "exclusion_reason": null,
+        "seconds": 6.032580903964117,
+        "task_success_at_end": false,
+        "first_task_success_step": null,
+        "release_success_at_end": true,
+        "support_stability_success_at_end": true,
+        "retraction_success_at_end": true,
+        "final_horizontal_error_m": 0.10764767297772873,
+        "final_reference": {
+          "task_success": false,
+          "failure": "PLACEMENT_TARGET_NOT_REACHED",
+          "release_success": true,
+          "supported": true,
+          "stable_frame": true,
+          "support_stability_success": true,
+          "support_stable_steps": 489,
+          "retracted": true,
+          "is_grasped": false,
+          "stable_steps": 0,
+          "max_cube_lift_m": 0.11978517100214958,
+          "horizontal_error_m": 0.10764767297772873,
+          "cube_table_contact_force_world_n": [
+            0.0,
+            0.0,
+            0.6277270913124084
+          ],
+          "bottom_height_m": -3.2133829111838375e-07,
+          "linear_speed_m_s": 0.0,
+          "angular_speed_rad_s": 0.0
+        },
+        "final_verification": {
+          "status": "disabled",
+          "failure": null
+        },
+        "first_reference_failure": {
+          "step": 340,
+          "failure": "PLACEMENT_TARGET_NOT_REACHED"
+        },
+        "first_detected_failure": null,
+        "first_failure_latency_steps": null,
+        "nominal_schedule_complete": true,
+        "controller_complete": true,
+        "total_observed_tcp_path_m": 0.7459099178252464,
+        "disturbance_attempted": false,
+        "disturbance_applied": false,
+        "recovery": {
+          "state": "disabled",
+          "attempts": 0,
+          "action_steps": 0,
+          "observed_tcp_path_m": 0.0
+        },
+        "recovery_task_success": false,
+        "lower_transition_step": null,
+        "lower_phase_timeout": false,
+        "recovery_release_reached": false,
+        "recovery_release_first_action_step": null,
+        "recovery_release_executed": false,
+        "recovery_retraction_reached": false,
+        "recovery_retraction_first_action_step": null,
+        "recovery_retraction_executed": false
+      },
+      "verification_metrics": null,
+      "physical_effects": {
+        "force_calls": 5,
+        "command_integral_y_ns": 0.11610553005101831,
+        "actual_application_duration_s": 0.04999999888241291,
+        "release_support_precondition": true,
+        "peak_horizontal_displacement_from_pulse_start_m": 0.10740991223975793,
+        "peak_linear_speed_after_pulse_m_s": 1.000129584778136,
+        "final_displacement_from_pulse_start_world_m": [
+          -0.05770575441420078,
+          0.09059210680425167,
+          -7.636845111846924e-08
+        ],
+        "sampled_support_loss_after_pulse": true
+      },
+      "physical_diagnostics": {
+        "window_end_action_before_first_recovery_or_episode_end": 800,
+        "pulse_displacement_world_m": [
+          -0.006712582893669605,
+          0.027967930305749178,
+          0.0011333487927913666
+        ],
+        "pulse_delta_linear_velocity_world_m_s": [
+          -0.37709513791196514,
+          0.471087073412491,
+          0.0666403235954931
+        ],
+        "pre_intervention_peak_horizontal_displacement_m": 0.10740991223975793,
+        "pre_intervention_peak_linear_speed_m_s": 1.000129584778136,
+        "pre_intervention_support_loss": true,
+        "whole_episode_effects_include_recovery": false
+      },
+      "max_action_replay_error": 0.0,
+      "controller_gate_actions": 800
+    },
+    {
+      "slot": 16,
+      "point_id": "force-probe-2",
+      "seed": 161,
+      "system": "v1",
+      "command_force_y_n": 2.322110652923584,
+      "episode": {
+        "episode": 0,
+        "seed": 161,
+        "steps": 800,
+        "stopped": false,
+        "excluded": false,
+        "exclusion_reason": null,
+        "seconds": 6.072324512992054,
+        "task_success_at_end": false,
+        "first_task_success_step": null,
+        "release_success_at_end": true,
+        "support_stability_success_at_end": true,
+        "retraction_success_at_end": true,
+        "final_horizontal_error_m": 0.10764767297772873,
+        "final_reference": {
+          "task_success": false,
+          "failure": "PLACEMENT_TARGET_NOT_REACHED",
+          "release_success": true,
+          "supported": true,
+          "stable_frame": true,
+          "support_stability_success": true,
+          "support_stable_steps": 489,
+          "retracted": true,
+          "is_grasped": false,
+          "stable_steps": 0,
+          "max_cube_lift_m": 0.11978517100214958,
+          "horizontal_error_m": 0.10764767297772873,
+          "cube_table_contact_force_world_n": [
+            0.0,
+            0.0,
+            0.6277270913124084
+          ],
+          "bottom_height_m": -3.2133829111838375e-07,
+          "linear_speed_m_s": 0.0,
+          "angular_speed_rad_s": 0.0
+        },
+        "final_verification": {
+          "status": "failed",
+          "success": false,
+          "failure": "PLACEMENT_TARGET_NOT_REACHED",
+          "confidence": null,
+          "evidence": {
+            "horizontal_error_m": 0.10764767297772873,
+            "released_geometry": true,
+            "supported_geometry": true,
+            "retracted": true,
+            "stable_frame": true,
+            "bottom_height_m": -3.2133829111838375e-07,
+            "aperture_m": 0.07999993860721588
+          },
+          "stable_steps": 0,
+          "failure_persistence_steps": 461
+        },
+        "first_reference_failure": {
+          "step": 340,
+          "failure": "PLACEMENT_TARGET_NOT_REACHED"
+        },
+        "first_detected_failure": {
+          "step": 342,
+          "failure": "PLACEMENT_TARGET_NOT_REACHED"
+        },
+        "first_failure_latency_steps": 2,
+        "nominal_schedule_complete": true,
+        "controller_complete": true,
+        "total_observed_tcp_path_m": 0.7459099178252464,
+        "disturbance_attempted": false,
+        "disturbance_applied": false,
+        "recovery": {
+          "state": "disabled",
+          "attempts": 0,
+          "action_steps": 0,
+          "observed_tcp_path_m": 0.0
+        },
+        "recovery_task_success": false,
+        "lower_transition_step": null,
+        "lower_phase_timeout": false,
+        "recovery_release_reached": false,
+        "recovery_release_first_action_step": null,
+        "recovery_release_executed": false,
+        "recovery_retraction_reached": false,
+        "recovery_retraction_first_action_step": null,
+        "recovery_retraction_executed": false
+      },
+      "verification_metrics": {
+        "scope": "privileged_state_simulator_reference_agreement",
+        "complete": true,
+        "steps": 800,
+        "uncertain_steps": 0,
+        "true_positive": 459,
+        "false_positive": 0,
+        "false_negative": 2,
+        "true_negative": 339,
+        "uncertain_on_negative": 0,
+        "failure_detection_precision": 1.0,
+        "failure_detection_recall": 0.9956616052060737,
+        "diagnosis_accuracy_when_failure_detected": 1.0,
+        "observation_coverage": 1.0,
+        "confusion": {
+          "NONE->NONE": 339,
+          "PLACEMENT_TARGET_NOT_REACHED->NONE": 2,
+          "PLACEMENT_TARGET_NOT_REACHED->PLACEMENT_TARGET_NOT_REACHED": 459
+        }
+      },
+      "physical_effects": {
+        "force_calls": 5,
+        "command_integral_y_ns": 0.11610553005101831,
+        "actual_application_duration_s": 0.04999999888241291,
+        "release_support_precondition": true,
+        "peak_horizontal_displacement_from_pulse_start_m": 0.10740991223975793,
+        "peak_linear_speed_after_pulse_m_s": 1.000129584778136,
+        "final_displacement_from_pulse_start_world_m": [
+          -0.05770575441420078,
+          0.09059210680425167,
+          -7.636845111846924e-08
+        ],
+        "sampled_support_loss_after_pulse": true
+      },
+      "physical_diagnostics": {
+        "window_end_action_before_first_recovery_or_episode_end": 800,
+        "pulse_displacement_world_m": [
+          -0.006712582893669605,
+          0.027967930305749178,
+          0.0011333487927913666
+        ],
+        "pulse_delta_linear_velocity_world_m_s": [
+          -0.37709513791196514,
+          0.471087073412491,
+          0.0666403235954931
+        ],
+        "pre_intervention_peak_horizontal_displacement_m": 0.10740991223975793,
+        "pre_intervention_peak_linear_speed_m_s": 1.000129584778136,
+        "pre_intervention_support_loss": true,
+        "whole_episode_effects_include_recovery": false
+      },
+      "max_action_replay_error": 0.0,
+      "controller_gate_actions": 800
+    },
+    {
+      "slot": 17,
+      "point_id": "force-probe-2",
+      "seed": 161,
+      "system": "v2",
+      "command_force_y_n": 2.322110652923584,
+      "episode": {
+        "episode": 0,
+        "seed": 161,
+        "steps": 800,
+        "stopped": false,
+        "excluded": false,
+        "exclusion_reason": null,
+        "seconds": 6.5915331861469895,
+        "task_success_at_end": true,
+        "first_task_success_step": 489,
+        "release_success_at_end": true,
+        "support_stability_success_at_end": true,
+        "retraction_success_at_end": true,
+        "final_horizontal_error_m": 0.0041210830127657245,
+        "final_reference": {
+          "task_success": true,
+          "failure": null,
+          "release_success": true,
+          "supported": true,
+          "stable_frame": true,
+          "support_stability_success": true,
+          "support_stable_steps": 316,
+          "retracted": true,
+          "is_grasped": false,
+          "stable_steps": 316,
+          "max_cube_lift_m": 0.11978517100214958,
+          "horizontal_error_m": 0.0041210830127657245,
+          "cube_table_contact_force_world_n": [
+            0.0,
+            0.0,
+            0.6279458999633789
+          ],
+          "bottom_height_m": -2.95518594990718e-07,
+          "linear_speed_m_s": 0.0,
+          "angular_speed_rad_s": 0.0
+        },
+        "final_verification": {
+          "status": "passed",
+          "success": true,
+          "failure": null,
+          "confidence": null,
+          "evidence": {
+            "horizontal_error_m": 0.0041210830127657245,
+            "released_geometry": true,
+            "supported_geometry": true,
+            "retracted": true,
+            "stable_frame": true,
+            "bottom_height_m": -2.95518594990718e-07,
+            "aperture_m": 0.07999992370605469
+          },
+          "stable_steps": 316,
+          "failure_persistence_steps": 0
+        },
+        "first_reference_failure": {
+          "step": 340,
+          "failure": "PLACEMENT_TARGET_NOT_REACHED"
+        },
+        "first_detected_failure": {
+          "step": 342,
+          "failure": "PLACEMENT_TARGET_NOT_REACHED"
+        },
+        "first_failure_latency_steps": 2,
+        "nominal_schedule_complete": false,
+        "controller_complete": true,
+        "total_observed_tcp_path_m": 1.3718067838423977,
+        "disturbance_attempted": false,
+        "disturbance_applied": false,
+        "recovery": {
+          "state": "attempt_complete",
+          "attempts": 1,
+          "reason": "PLACEMENT_TARGET_NOT_REACHED",
+          "trigger_step": 342,
+          "first_action_step": 343,
+          "phase": "settle",
+          "phase_step": 5,
+          "action_steps": 153,
+          "action_budget": 400,
+          "observed_tcp_path_m": 0.6250234344506391,
+          "candidate_persistence_steps": 0,
+          "attempt_max_cube_lift_m": 0.10350724309682846,
+          "failure_detail": null,
+          "cached_cube_world_m": [
+            -0.03589968383312225,
+            0.06429671496152878,
+            0.019999951124191284
+          ]
+        },
+        "recovery_task_success": true,
+        "lower_transition_step": 458,
+        "lower_phase_timeout": false,
+        "recovery_release_reached": true,
+        "recovery_release_first_action_step": 459,
+        "recovery_release_executed": true,
+        "recovery_retraction_reached": true,
+        "recovery_retraction_first_action_step": 469,
+        "recovery_retraction_executed": true
+      },
+      "verification_metrics": {
+        "scope": "privileged_state_simulator_reference_agreement",
+        "complete": true,
+        "steps": 800,
+        "uncertain_steps": 0,
+        "true_positive": 1,
+        "false_positive": 0,
+        "false_negative": 2,
+        "true_negative": 797,
+        "uncertain_on_negative": 0,
+        "failure_detection_precision": 1.0,
+        "failure_detection_recall": 0.3333333333333333,
+        "diagnosis_accuracy_when_failure_detected": 1.0,
+        "observation_coverage": 1.0,
+        "confusion": {
+          "NONE->NONE": 797,
+          "PLACEMENT_TARGET_NOT_REACHED->NONE": 2,
+          "PLACEMENT_TARGET_NOT_REACHED->PLACEMENT_TARGET_NOT_REACHED": 1
+        }
+      },
+      "physical_effects": {
+        "force_calls": 5,
+        "command_integral_y_ns": 0.11610553005101831,
+        "actual_application_duration_s": 0.04999999888241291,
+        "release_support_precondition": true,
+        "peak_horizontal_displacement_from_pulse_start_m": 0.10925688651906212,
+        "peak_linear_speed_after_pulse_m_s": 1.000129584778136,
+        "final_displacement_from_pulse_start_world_m": [
+          -0.002866765484213829,
+          0.0026315823197364807,
+          -3.725290298461914e-08
+        ],
+        "sampled_support_loss_after_pulse": true
+      },
+      "physical_diagnostics": {
+        "window_end_action_before_first_recovery_or_episode_end": 342,
+        "pulse_displacement_world_m": [
+          -0.006712582893669605,
+          0.027967930305749178,
+          0.0011333487927913666
+        ],
+        "pulse_delta_linear_velocity_world_m_s": [
+          -0.37709513791196514,
+          0.471087073412491,
+          0.0666403235954931
+        ],
+        "pre_intervention_peak_horizontal_displacement_m": 0.10740991223975793,
+        "pre_intervention_peak_linear_speed_m_s": 1.000129584778136,
+        "pre_intervention_support_loss": true,
+        "whole_episode_effects_include_recovery": true
+      },
+      "max_action_replay_error": 0.0,
+      "controller_gate_actions": 800
+    }
+  ],
+  "summary": {
+    "cells": [
+      {
+        "point_id": "normal",
+        "command_force_y_n": 0.0,
+        "system": "baseline",
+        "requested": 20,
+        "completed": 2,
+        "excluded": 0,
+        "eligible": 2,
+        "task_successes": 2,
+        "success_rate_requested": null,
+        "success_rate_eligible": null,
+        "force_applied_episodes": 0,
+        "controller_complete": 2,
+        "release_successes": 2,
+        "stable_support_successes": 2,
+        "retraction_successes": 2,
+        "recovery_attempts": 0,
+        "successful_recovery_episodes": 0,
+        "verification_counts": {
+          "steps": 0,
+          "uncertain_steps": 0,
+          "true_positive": 0,
+          "false_positive": 0,
+          "false_negative": 0,
+          "true_negative": 0,
+          "uncertain_on_negative": 0
+        },
+        "failure_detection_precision": null,
+        "failure_detection_recall": null,
+        "diagnosis_accuracy_when_failure_detected": null,
+        "diagnosis_confusion": {},
+        "failure_detection_latency_steps": [
+          null,
+          null
+        ],
+        "final_horizontal_error_m": [
+          0.0002889319520683919,
+          0.00023780224758594392
+        ],
+        "observed_tcp_path_m": [
+          0.6975986156528332,
+          0.7459104082974711
+        ],
+        "recovery_actions": [
+          0,
+          0
+        ]
+      },
+      {
+        "point_id": "normal",
+        "command_force_y_n": 0.0,
+        "system": "v1",
+        "requested": 20,
+        "completed": 2,
+        "excluded": 0,
+        "eligible": 2,
+        "task_successes": 2,
+        "success_rate_requested": null,
+        "success_rate_eligible": null,
+        "force_applied_episodes": 0,
+        "controller_complete": 2,
+        "release_successes": 2,
+        "stable_support_successes": 2,
+        "retraction_successes": 2,
+        "recovery_attempts": 0,
+        "successful_recovery_episodes": 0,
+        "verification_counts": {
+          "steps": 1600,
+          "uncertain_steps": 0,
+          "true_positive": 0,
+          "false_positive": 0,
+          "false_negative": 0,
+          "true_negative": 1600,
+          "uncertain_on_negative": 0
+        },
+        "failure_detection_precision": null,
+        "failure_detection_recall": null,
+        "diagnosis_accuracy_when_failure_detected": null,
+        "diagnosis_confusion": {
+          "NONE->NONE": 1600
+        },
+        "failure_detection_latency_steps": [
+          null,
+          null
+        ],
+        "final_horizontal_error_m": [
+          0.0002889319520683919,
+          0.00023780224758594392
+        ],
+        "observed_tcp_path_m": [
+          0.6975986156528332,
+          0.7459104082974711
+        ],
+        "recovery_actions": [
+          0,
+          0
+        ]
+      },
+      {
+        "point_id": "normal",
+        "command_force_y_n": 0.0,
+        "system": "v2",
+        "requested": 20,
+        "completed": 2,
+        "excluded": 0,
+        "eligible": 2,
+        "task_successes": 2,
+        "success_rate_requested": null,
+        "success_rate_eligible": null,
+        "force_applied_episodes": 0,
+        "controller_complete": 2,
+        "release_successes": 2,
+        "stable_support_successes": 2,
+        "retraction_successes": 2,
+        "recovery_attempts": 0,
+        "successful_recovery_episodes": 0,
+        "verification_counts": {
+          "steps": 1600,
+          "uncertain_steps": 0,
+          "true_positive": 0,
+          "false_positive": 0,
+          "false_negative": 0,
+          "true_negative": 1600,
+          "uncertain_on_negative": 0
+        },
+        "failure_detection_precision": null,
+        "failure_detection_recall": null,
+        "diagnosis_accuracy_when_failure_detected": null,
+        "diagnosis_confusion": {
+          "NONE->NONE": 1600
+        },
+        "failure_detection_latency_steps": [
+          null,
+          null
+        ],
+        "final_horizontal_error_m": [
+          0.0002889319520683919,
+          0.00023780224758594392
+        ],
+        "observed_tcp_path_m": [
+          0.6975986156528332,
+          0.7459104082974711
+        ],
+        "recovery_actions": [
+          0,
+          0
+        ]
+      },
+      {
+        "point_id": "force-easy-v1",
+        "command_force_y_n": 0.41868388652801514,
+        "system": "baseline",
+        "requested": 20,
+        "completed": 2,
+        "excluded": 0,
+        "eligible": 2,
+        "task_successes": 2,
+        "success_rate_requested": null,
+        "success_rate_eligible": null,
+        "force_applied_episodes": 2,
+        "controller_complete": 2,
+        "release_successes": 2,
+        "stable_support_successes": 2,
+        "retraction_successes": 2,
+        "recovery_attempts": 0,
+        "successful_recovery_episodes": 0,
+        "verification_counts": {
+          "steps": 0,
+          "uncertain_steps": 0,
+          "true_positive": 0,
+          "false_positive": 0,
+          "false_negative": 0,
+          "true_negative": 0,
+          "uncertain_on_negative": 0
+        },
+        "failure_detection_precision": null,
+        "failure_detection_recall": null,
+        "diagnosis_accuracy_when_failure_detected": null,
+        "diagnosis_confusion": {},
+        "failure_detection_latency_steps": [
+          null,
+          null
+        ],
+        "final_horizontal_error_m": [
+          0.00994631562851409,
+          0.010279313969449444
+        ],
+        "observed_tcp_path_m": [
+          0.6975986156528332,
+          0.7459104082974711
+        ],
+        "recovery_actions": [
+          0,
+          0
+        ]
+      },
+      {
+        "point_id": "force-easy-v1",
+        "command_force_y_n": 0.41868388652801514,
+        "system": "v1",
+        "requested": 20,
+        "completed": 2,
+        "excluded": 0,
+        "eligible": 2,
+        "task_successes": 2,
+        "success_rate_requested": null,
+        "success_rate_eligible": null,
+        "force_applied_episodes": 2,
+        "controller_complete": 2,
+        "release_successes": 2,
+        "stable_support_successes": 2,
+        "retraction_successes": 2,
+        "recovery_attempts": 0,
+        "successful_recovery_episodes": 0,
+        "verification_counts": {
+          "steps": 1600,
+          "uncertain_steps": 0,
+          "true_positive": 0,
+          "false_positive": 0,
+          "false_negative": 0,
+          "true_negative": 1600,
+          "uncertain_on_negative": 0
+        },
+        "failure_detection_precision": null,
+        "failure_detection_recall": null,
+        "diagnosis_accuracy_when_failure_detected": null,
+        "diagnosis_confusion": {
+          "NONE->NONE": 1600
+        },
+        "failure_detection_latency_steps": [
+          null,
+          null
+        ],
+        "final_horizontal_error_m": [
+          0.00994631562851409,
+          0.010279313969449444
+        ],
+        "observed_tcp_path_m": [
+          0.6975986156528332,
+          0.7459104082974711
+        ],
+        "recovery_actions": [
+          0,
+          0
+        ]
+      },
+      {
+        "point_id": "force-easy-v1",
+        "command_force_y_n": 0.41868388652801514,
+        "system": "v2",
+        "requested": 20,
+        "completed": 2,
+        "excluded": 0,
+        "eligible": 2,
+        "task_successes": 2,
+        "success_rate_requested": null,
+        "success_rate_eligible": null,
+        "force_applied_episodes": 2,
+        "controller_complete": 2,
+        "release_successes": 2,
+        "stable_support_successes": 2,
+        "retraction_successes": 2,
+        "recovery_attempts": 0,
+        "successful_recovery_episodes": 0,
+        "verification_counts": {
+          "steps": 1600,
+          "uncertain_steps": 0,
+          "true_positive": 0,
+          "false_positive": 0,
+          "false_negative": 0,
+          "true_negative": 1600,
+          "uncertain_on_negative": 0
+        },
+        "failure_detection_precision": null,
+        "failure_detection_recall": null,
+        "diagnosis_accuracy_when_failure_detected": null,
+        "diagnosis_confusion": {
+          "NONE->NONE": 1600
+        },
+        "failure_detection_latency_steps": [
+          null,
+          null
+        ],
+        "final_horizontal_error_m": [
+          0.00994631562851409,
+          0.010279313969449444
+        ],
+        "observed_tcp_path_m": [
+          0.6975986156528332,
+          0.7459104082974711
+        ],
+        "recovery_actions": [
+          0,
+          0
+        ]
+      },
+      {
+        "point_id": "force-probe-1",
+        "command_force_y_n": 1.857688546180725,
+        "system": "baseline",
+        "requested": 20,
+        "completed": 0,
+        "excluded": 0,
+        "eligible": 0,
+        "task_successes": 0,
+        "success_rate_requested": null,
+        "success_rate_eligible": null,
+        "force_applied_episodes": 0,
+        "controller_complete": 0,
+        "release_successes": 0,
+        "stable_support_successes": 0,
+        "retraction_successes": 0,
+        "recovery_attempts": 0,
+        "successful_recovery_episodes": 0,
+        "verification_counts": {
+          "steps": 0,
+          "uncertain_steps": 0,
+          "true_positive": 0,
+          "false_positive": 0,
+          "false_negative": 0,
+          "true_negative": 0,
+          "uncertain_on_negative": 0
+        },
+        "failure_detection_precision": null,
+        "failure_detection_recall": null,
+        "diagnosis_accuracy_when_failure_detected": null,
+        "diagnosis_confusion": {},
+        "failure_detection_latency_steps": [],
+        "final_horizontal_error_m": [],
+        "observed_tcp_path_m": [],
+        "recovery_actions": []
+      },
+      {
+        "point_id": "force-probe-1",
+        "command_force_y_n": 1.857688546180725,
+        "system": "v1",
+        "requested": 20,
+        "completed": 0,
+        "excluded": 0,
+        "eligible": 0,
+        "task_successes": 0,
+        "success_rate_requested": null,
+        "success_rate_eligible": null,
+        "force_applied_episodes": 0,
+        "controller_complete": 0,
+        "release_successes": 0,
+        "stable_support_successes": 0,
+        "retraction_successes": 0,
+        "recovery_attempts": 0,
+        "successful_recovery_episodes": 0,
+        "verification_counts": {
+          "steps": 0,
+          "uncertain_steps": 0,
+          "true_positive": 0,
+          "false_positive": 0,
+          "false_negative": 0,
+          "true_negative": 0,
+          "uncertain_on_negative": 0
+        },
+        "failure_detection_precision": null,
+        "failure_detection_recall": null,
+        "diagnosis_accuracy_when_failure_detected": null,
+        "diagnosis_confusion": {},
+        "failure_detection_latency_steps": [],
+        "final_horizontal_error_m": [],
+        "observed_tcp_path_m": [],
+        "recovery_actions": []
+      },
+      {
+        "point_id": "force-probe-1",
+        "command_force_y_n": 1.857688546180725,
+        "system": "v2",
+        "requested": 20,
+        "completed": 0,
+        "excluded": 0,
+        "eligible": 0,
+        "task_successes": 0,
+        "success_rate_requested": null,
+        "success_rate_eligible": null,
+        "force_applied_episodes": 0,
+        "controller_complete": 0,
+        "release_successes": 0,
+        "stable_support_successes": 0,
+        "retraction_successes": 0,
+        "recovery_attempts": 0,
+        "successful_recovery_episodes": 0,
+        "verification_counts": {
+          "steps": 0,
+          "uncertain_steps": 0,
+          "true_positive": 0,
+          "false_positive": 0,
+          "false_negative": 0,
+          "true_negative": 0,
+          "uncertain_on_negative": 0
+        },
+        "failure_detection_precision": null,
+        "failure_detection_recall": null,
+        "diagnosis_accuracy_when_failure_detected": null,
+        "diagnosis_confusion": {},
+        "failure_detection_latency_steps": [],
+        "final_horizontal_error_m": [],
+        "observed_tcp_path_m": [],
+        "recovery_actions": []
+      },
+      {
+        "point_id": "force-probe-2",
+        "command_force_y_n": 2.322110652923584,
+        "system": "baseline",
+        "requested": 20,
+        "completed": 2,
+        "excluded": 0,
+        "eligible": 2,
+        "task_successes": 1,
+        "success_rate_requested": null,
+        "success_rate_eligible": null,
+        "force_applied_episodes": 2,
+        "controller_complete": 2,
+        "release_successes": 2,
+        "stable_support_successes": 2,
+        "retraction_successes": 2,
+        "recovery_attempts": 0,
+        "successful_recovery_episodes": 0,
+        "verification_counts": {
+          "steps": 0,
+          "uncertain_steps": 0,
+          "true_positive": 0,
+          "false_positive": 0,
+          "false_negative": 0,
+          "true_negative": 0,
+          "uncertain_on_negative": 0
+        },
+        "failure_detection_precision": null,
+        "failure_detection_recall": null,
+        "diagnosis_accuracy_when_failure_detected": null,
+        "diagnosis_confusion": {},
+        "failure_detection_latency_steps": [
+          null,
+          null
+        ],
+        "final_horizontal_error_m": [
+          0.018177082847456213,
+          0.10764767297772873
+        ],
+        "observed_tcp_path_m": [
+          0.697659074427479,
+          0.7459099178252464
+        ],
+        "recovery_actions": [
+          0,
+          0
+        ]
+      },
+      {
+        "point_id": "force-probe-2",
+        "command_force_y_n": 2.322110652923584,
+        "system": "v1",
+        "requested": 20,
+        "completed": 2,
+        "excluded": 0,
+        "eligible": 2,
+        "task_successes": 1,
+        "success_rate_requested": null,
+        "success_rate_eligible": null,
+        "force_applied_episodes": 2,
+        "controller_complete": 2,
+        "release_successes": 2,
+        "stable_support_successes": 2,
+        "retraction_successes": 2,
+        "recovery_attempts": 0,
+        "successful_recovery_episodes": 0,
+        "verification_counts": {
+          "steps": 1600,
+          "uncertain_steps": 0,
+          "true_positive": 459,
+          "false_positive": 0,
+          "false_negative": 2,
+          "true_negative": 1139,
+          "uncertain_on_negative": 0
+        },
+        "failure_detection_precision": 1.0,
+        "failure_detection_recall": 0.9956616052060737,
+        "diagnosis_accuracy_when_failure_detected": 1.0,
+        "diagnosis_confusion": {
+          "NONE->NONE": 1139,
+          "PLACEMENT_TARGET_NOT_REACHED->NONE": 2,
+          "PLACEMENT_TARGET_NOT_REACHED->PLACEMENT_TARGET_NOT_REACHED": 459
+        },
+        "failure_detection_latency_steps": [
+          null,
+          2
+        ],
+        "final_horizontal_error_m": [
+          0.018177082847456213,
+          0.10764767297772873
+        ],
+        "observed_tcp_path_m": [
+          0.697659074427479,
+          0.7459099178252464
+        ],
+        "recovery_actions": [
+          0,
+          0
+        ]
+      },
+      {
+        "point_id": "force-probe-2",
+        "command_force_y_n": 2.322110652923584,
+        "system": "v2",
+        "requested": 20,
+        "completed": 2,
+        "excluded": 0,
+        "eligible": 2,
+        "task_successes": 2,
+        "success_rate_requested": null,
+        "success_rate_eligible": null,
+        "force_applied_episodes": 2,
+        "controller_complete": 2,
+        "release_successes": 2,
+        "stable_support_successes": 2,
+        "retraction_successes": 2,
+        "recovery_attempts": 1,
+        "successful_recovery_episodes": 1,
+        "verification_counts": {
+          "steps": 1600,
+          "uncertain_steps": 0,
+          "true_positive": 1,
+          "false_positive": 0,
+          "false_negative": 2,
+          "true_negative": 1597,
+          "uncertain_on_negative": 0
+        },
+        "failure_detection_precision": 1.0,
+        "failure_detection_recall": 0.3333333333333333,
+        "diagnosis_accuracy_when_failure_detected": 1.0,
+        "diagnosis_confusion": {
+          "NONE->NONE": 1597,
+          "PLACEMENT_TARGET_NOT_REACHED->NONE": 2,
+          "PLACEMENT_TARGET_NOT_REACHED->PLACEMENT_TARGET_NOT_REACHED": 1
+        },
+        "failure_detection_latency_steps": [
+          null,
+          2
+        ],
+        "final_horizontal_error_m": [
+          0.018177082847456213,
+          0.0041210830127657245
+        ],
+        "observed_tcp_path_m": [
+          0.697659074427479,
+          1.3718067838423977
+        ],
+        "recovery_actions": [
+          0,
+          153
+        ]
+      },
+      {
+        "point_id": "force-probe-3",
+        "command_force_y_n": 2.9026384353637695,
+        "system": "baseline",
+        "requested": 20,
+        "completed": 0,
+        "excluded": 0,
+        "eligible": 0,
+        "task_successes": 0,
+        "success_rate_requested": null,
+        "success_rate_eligible": null,
+        "force_applied_episodes": 0,
+        "controller_complete": 0,
+        "release_successes": 0,
+        "stable_support_successes": 0,
+        "retraction_successes": 0,
+        "recovery_attempts": 0,
+        "successful_recovery_episodes": 0,
+        "verification_counts": {
+          "steps": 0,
+          "uncertain_steps": 0,
+          "true_positive": 0,
+          "false_positive": 0,
+          "false_negative": 0,
+          "true_negative": 0,
+          "uncertain_on_negative": 0
+        },
+        "failure_detection_precision": null,
+        "failure_detection_recall": null,
+        "diagnosis_accuracy_when_failure_detected": null,
+        "diagnosis_confusion": {},
+        "failure_detection_latency_steps": [],
+        "final_horizontal_error_m": [],
+        "observed_tcp_path_m": [],
+        "recovery_actions": []
+      },
+      {
+        "point_id": "force-probe-3",
+        "command_force_y_n": 2.9026384353637695,
+        "system": "v1",
+        "requested": 20,
+        "completed": 0,
+        "excluded": 0,
+        "eligible": 0,
+        "task_successes": 0,
+        "success_rate_requested": null,
+        "success_rate_eligible": null,
+        "force_applied_episodes": 0,
+        "controller_complete": 0,
+        "release_successes": 0,
+        "stable_support_successes": 0,
+        "retraction_successes": 0,
+        "recovery_attempts": 0,
+        "successful_recovery_episodes": 0,
+        "verification_counts": {
+          "steps": 0,
+          "uncertain_steps": 0,
+          "true_positive": 0,
+          "false_positive": 0,
+          "false_negative": 0,
+          "true_negative": 0,
+          "uncertain_on_negative": 0
+        },
+        "failure_detection_precision": null,
+        "failure_detection_recall": null,
+        "diagnosis_accuracy_when_failure_detected": null,
+        "diagnosis_confusion": {},
+        "failure_detection_latency_steps": [],
+        "final_horizontal_error_m": [],
+        "observed_tcp_path_m": [],
+        "recovery_actions": []
+      },
+      {
+        "point_id": "force-probe-3",
+        "command_force_y_n": 2.9026384353637695,
+        "system": "v2",
+        "requested": 20,
+        "completed": 0,
+        "excluded": 0,
+        "eligible": 0,
+        "task_successes": 0,
+        "success_rate_requested": null,
+        "success_rate_eligible": null,
+        "force_applied_episodes": 0,
+        "controller_complete": 0,
+        "release_successes": 0,
+        "stable_support_successes": 0,
+        "retraction_successes": 0,
+        "recovery_attempts": 0,
+        "successful_recovery_episodes": 0,
+        "verification_counts": {
+          "steps": 0,
+          "uncertain_steps": 0,
+          "true_positive": 0,
+          "false_positive": 0,
+          "false_negative": 0,
+          "true_negative": 0,
+          "uncertain_on_negative": 0
+        },
+        "failure_detection_precision": null,
+        "failure_detection_recall": null,
+        "diagnosis_accuracy_when_failure_detected": null,
+        "diagnosis_confusion": {},
+        "failure_detection_latency_steps": [],
+        "final_horizontal_error_m": [],
+        "observed_tcp_path_m": [],
+        "recovery_actions": []
+      },
+      {
+        "point_id": "force-probe-4",
+        "command_force_y_n": 3.628298044204712,
+        "system": "baseline",
+        "requested": 20,
+        "completed": 0,
+        "excluded": 0,
+        "eligible": 0,
+        "task_successes": 0,
+        "success_rate_requested": null,
+        "success_rate_eligible": null,
+        "force_applied_episodes": 0,
+        "controller_complete": 0,
+        "release_successes": 0,
+        "stable_support_successes": 0,
+        "retraction_successes": 0,
+        "recovery_attempts": 0,
+        "successful_recovery_episodes": 0,
+        "verification_counts": {
+          "steps": 0,
+          "uncertain_steps": 0,
+          "true_positive": 0,
+          "false_positive": 0,
+          "false_negative": 0,
+          "true_negative": 0,
+          "uncertain_on_negative": 0
+        },
+        "failure_detection_precision": null,
+        "failure_detection_recall": null,
+        "diagnosis_accuracy_when_failure_detected": null,
+        "diagnosis_confusion": {},
+        "failure_detection_latency_steps": [],
+        "final_horizontal_error_m": [],
+        "observed_tcp_path_m": [],
+        "recovery_actions": []
+      },
+      {
+        "point_id": "force-probe-4",
+        "command_force_y_n": 3.628298044204712,
+        "system": "v1",
+        "requested": 20,
+        "completed": 0,
+        "excluded": 0,
+        "eligible": 0,
+        "task_successes": 0,
+        "success_rate_requested": null,
+        "success_rate_eligible": null,
+        "force_applied_episodes": 0,
+        "controller_complete": 0,
+        "release_successes": 0,
+        "stable_support_successes": 0,
+        "retraction_successes": 0,
+        "recovery_attempts": 0,
+        "successful_recovery_episodes": 0,
+        "verification_counts": {
+          "steps": 0,
+          "uncertain_steps": 0,
+          "true_positive": 0,
+          "false_positive": 0,
+          "false_negative": 0,
+          "true_negative": 0,
+          "uncertain_on_negative": 0
+        },
+        "failure_detection_precision": null,
+        "failure_detection_recall": null,
+        "diagnosis_accuracy_when_failure_detected": null,
+        "diagnosis_confusion": {},
+        "failure_detection_latency_steps": [],
+        "final_horizontal_error_m": [],
+        "observed_tcp_path_m": [],
+        "recovery_actions": []
+      },
+      {
+        "point_id": "force-probe-4",
+        "command_force_y_n": 3.628298044204712,
+        "system": "v2",
+        "requested": 20,
+        "completed": 0,
+        "excluded": 0,
+        "eligible": 0,
+        "task_successes": 0,
+        "success_rate_requested": null,
+        "success_rate_eligible": null,
+        "force_applied_episodes": 0,
+        "controller_complete": 0,
+        "release_successes": 0,
+        "stable_support_successes": 0,
+        "retraction_successes": 0,
+        "recovery_attempts": 0,
+        "successful_recovery_episodes": 0,
+        "verification_counts": {
+          "steps": 0,
+          "uncertain_steps": 0,
+          "true_positive": 0,
+          "false_positive": 0,
+          "false_negative": 0,
+          "true_negative": 0,
+          "uncertain_on_negative": 0
+        },
+        "failure_detection_precision": null,
+        "failure_detection_recall": null,
+        "diagnosis_accuracy_when_failure_detected": null,
+        "diagnosis_confusion": {},
+        "failure_detection_latency_steps": [],
+        "final_horizontal_error_m": [],
+        "observed_tcp_path_m": [],
+        "recovery_actions": []
+      }
+    ],
+    "paired_outcomes": [
+      {
+        "seed": 160,
+        "point_id": "normal",
+        "eligible": true,
+        "success": {
+          "baseline": true,
+          "v1": true,
+          "v2": true
+        },
+        "v2_attempts": 0,
+        "v2_recovery_actions": 0,
+        "v2_successful_recovery_episode": false,
+        "v2_rescue": false,
+        "v2_unnecessary_attempt": false,
+        "v2_final_regression": false,
+        "v2_added_tcp_path_m": 0.0,
+        "v1_detection": null,
+        "v2_detection": null,
+        "v2_recovery": {
+          "state": "nominal",
+          "attempts": 0,
+          "reason": null,
+          "trigger_step": null,
+          "first_action_step": null,
+          "phase": null,
+          "phase_step": 0,
+          "action_steps": 0,
+          "action_budget": 400,
+          "observed_tcp_path_m": 0.0,
+          "candidate_persistence_steps": 0,
+          "attempt_max_cube_lift_m": 0.0,
+          "failure_detail": null,
+          "cached_cube_world_m": null
+        },
+        "v2_lower_transition_step": null,
+        "v2_release_executed": false,
+        "v2_retraction_executed": false
+      },
+      {
+        "seed": 160,
+        "point_id": "force-easy-v1",
+        "eligible": true,
+        "success": {
+          "baseline": true,
+          "v1": true,
+          "v2": true
+        },
+        "v2_attempts": 0,
+        "v2_recovery_actions": 0,
+        "v2_successful_recovery_episode": false,
+        "v2_rescue": false,
+        "v2_unnecessary_attempt": false,
+        "v2_final_regression": false,
+        "v2_added_tcp_path_m": 0.0,
+        "v1_detection": null,
+        "v2_detection": null,
+        "v2_recovery": {
+          "state": "nominal",
+          "attempts": 0,
+          "reason": null,
+          "trigger_step": null,
+          "first_action_step": null,
+          "phase": null,
+          "phase_step": 0,
+          "action_steps": 0,
+          "action_budget": 400,
+          "observed_tcp_path_m": 0.0,
+          "candidate_persistence_steps": 0,
+          "attempt_max_cube_lift_m": 0.0,
+          "failure_detail": null,
+          "cached_cube_world_m": null
+        },
+        "v2_lower_transition_step": null,
+        "v2_release_executed": false,
+        "v2_retraction_executed": false
+      },
+      {
+        "seed": 160,
+        "point_id": "force-probe-2",
+        "eligible": true,
+        "success": {
+          "baseline": true,
+          "v1": true,
+          "v2": true
+        },
+        "v2_attempts": 0,
+        "v2_recovery_actions": 0,
+        "v2_successful_recovery_episode": false,
+        "v2_rescue": false,
+        "v2_unnecessary_attempt": false,
+        "v2_final_regression": false,
+        "v2_added_tcp_path_m": 0.0,
+        "v1_detection": null,
+        "v2_detection": null,
+        "v2_recovery": {
+          "state": "nominal",
+          "attempts": 0,
+          "reason": null,
+          "trigger_step": null,
+          "first_action_step": null,
+          "phase": null,
+          "phase_step": 0,
+          "action_steps": 0,
+          "action_budget": 400,
+          "observed_tcp_path_m": 0.0,
+          "candidate_persistence_steps": 0,
+          "attempt_max_cube_lift_m": 0.0,
+          "failure_detail": null,
+          "cached_cube_world_m": null
+        },
+        "v2_lower_transition_step": null,
+        "v2_release_executed": false,
+        "v2_retraction_executed": false
+      },
+      {
+        "seed": 161,
+        "point_id": "normal",
+        "eligible": true,
+        "success": {
+          "baseline": true,
+          "v1": true,
+          "v2": true
+        },
+        "v2_attempts": 0,
+        "v2_recovery_actions": 0,
+        "v2_successful_recovery_episode": false,
+        "v2_rescue": false,
+        "v2_unnecessary_attempt": false,
+        "v2_final_regression": false,
+        "v2_added_tcp_path_m": 0.0,
+        "v1_detection": null,
+        "v2_detection": null,
+        "v2_recovery": {
+          "state": "nominal",
+          "attempts": 0,
+          "reason": null,
+          "trigger_step": null,
+          "first_action_step": null,
+          "phase": null,
+          "phase_step": 0,
+          "action_steps": 0,
+          "action_budget": 400,
+          "observed_tcp_path_m": 0.0,
+          "candidate_persistence_steps": 0,
+          "attempt_max_cube_lift_m": 0.0,
+          "failure_detail": null,
+          "cached_cube_world_m": null
+        },
+        "v2_lower_transition_step": null,
+        "v2_release_executed": false,
+        "v2_retraction_executed": false
+      },
+      {
+        "seed": 161,
+        "point_id": "force-easy-v1",
+        "eligible": true,
+        "success": {
+          "baseline": true,
+          "v1": true,
+          "v2": true
+        },
+        "v2_attempts": 0,
+        "v2_recovery_actions": 0,
+        "v2_successful_recovery_episode": false,
+        "v2_rescue": false,
+        "v2_unnecessary_attempt": false,
+        "v2_final_regression": false,
+        "v2_added_tcp_path_m": 0.0,
+        "v1_detection": null,
+        "v2_detection": null,
+        "v2_recovery": {
+          "state": "nominal",
+          "attempts": 0,
+          "reason": null,
+          "trigger_step": null,
+          "first_action_step": null,
+          "phase": null,
+          "phase_step": 0,
+          "action_steps": 0,
+          "action_budget": 400,
+          "observed_tcp_path_m": 0.0,
+          "candidate_persistence_steps": 0,
+          "attempt_max_cube_lift_m": 0.0,
+          "failure_detail": null,
+          "cached_cube_world_m": null
+        },
+        "v2_lower_transition_step": null,
+        "v2_release_executed": false,
+        "v2_retraction_executed": false
+      },
+      {
+        "seed": 161,
+        "point_id": "force-probe-2",
+        "eligible": true,
+        "success": {
+          "baseline": false,
+          "v1": false,
+          "v2": true
+        },
+        "v2_attempts": 1,
+        "v2_recovery_actions": 153,
+        "v2_successful_recovery_episode": true,
+        "v2_rescue": true,
+        "v2_unnecessary_attempt": false,
+        "v2_final_regression": false,
+        "v2_added_tcp_path_m": 0.6258968660171513,
+        "v1_detection": {
+          "step": 342,
+          "failure": "PLACEMENT_TARGET_NOT_REACHED"
+        },
+        "v2_detection": {
+          "step": 342,
+          "failure": "PLACEMENT_TARGET_NOT_REACHED"
+        },
+        "v2_recovery": {
+          "state": "attempt_complete",
+          "attempts": 1,
+          "reason": "PLACEMENT_TARGET_NOT_REACHED",
+          "trigger_step": 342,
+          "first_action_step": 343,
+          "phase": "settle",
+          "phase_step": 5,
+          "action_steps": 153,
+          "action_budget": 400,
+          "observed_tcp_path_m": 0.6250234344506391,
+          "candidate_persistence_steps": 0,
+          "attempt_max_cube_lift_m": 0.10350724309682846,
+          "failure_detail": null,
+          "cached_cube_world_m": [
+            -0.03589968383312225,
+            0.06429671496152878,
+            0.019999951124191284
+          ]
+        },
+        "v2_lower_transition_step": 458,
+        "v2_release_executed": true,
+        "v2_retraction_executed": true
+      }
+    ],
+    "totals": {
+      "requested_episodes": 360,
+      "completed_episodes": 18,
+      "complete_matched_scene_conditions": 6,
+      "eligible_matched_scene_conditions": 6,
+      "v2_rescues": 1,
+      "v2_unnecessary_attempts": 0,
+      "v2_regressions": 0,
+      "analysis_unit": "20_common_seed_scenes_not360_independent_scenes"
+    }
+  },
+  "checks": {
+    "safe_unique_archive_complete_index": true,
+    "all21_snapshot_git_blobs_at_measurement_commit": true,
+    "protocol_plan_native_identity_environment_digest": true,
+    "all18_native_configuration_and_source_identities": true,
+    "all18_action_task_verifier_recovery_path_replays_exact": true,
+    "all18_physics_and_controller_gate_replays_exact": true,
+    "all16_exact_matched_comparisons": true,
+    "physical_diagnostics_summary_and_csv_regenerate_exactly": true,
+    "all18_log_start_end_slots_archive_hash_and_ready_marker": true,
+    "no_initial_goal_exclusions_or_missed_force_preconditions": true
+  },
+  "resume": {
+    "expected_head": "e8184217dc4b3c205666787441b87b13ba8a489c",
+    "pilot_sha256": "535218e74854326946a157f8aa620aa1ca41db78351097074074702cd49d295c",
+    "unstarted_episodes": 342,
+    "retain_original18": true,
+    "retune_or_replace": false
+  },
+  "limitations": "Two fresh common scenes and three of six frozen conditions; not the complete20-scene robustness curve. No training, physical robot execution or non-privileged perception.",
+  "replay_environment": {
+    "python": "3.10.21",
+    "numpy": "1.26.4",
+    "scipy": "1.10.1"
+  }
+}

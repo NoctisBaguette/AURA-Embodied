@@ -1,0 +1,80 @@
+{
+  "schema_version": 2,
+  "purpose": "fixed_pick_cube_baseline_candidate",
+  "config": {
+    "env_id": "PickCube-v1",
+    "seed": 0,
+    "episodes": 1,
+    "max_steps": 360,
+    "render": true,
+    "render_device": "cuda:0",
+    "fps": 10.0,
+    "output": "runs/baseline-live",
+    "controller": "fixed_pick_cube"
+  },
+  "software": {
+    "python": "3.10.22",
+    "platform": "Linux-5.15.0-191-generic-x86_64-with-glibc2.35",
+    "packages": {
+      "torch": "2.4.1+cu121",
+      "numpy": "1.26.4",
+      "mani_skill": "3.0.1",
+      "sapien": "3.0.3",
+      "gymnasium": "1.1.1",
+      "Pillow": "11.3.0"
+    },
+    "git_commit": "bfd144646187bb4985e5d6678320651e3b94b022",
+    "git_dirty": false,
+    "cuda_visible_devices": "1",
+    "native_library_environment": {
+      "LD_LIBRARY_PATH": "/home/jiangle/aura-work/aether-glvnd-1.4.0/usr/lib/x86_64-linux-gnu",
+      "LD_PRELOAD": null
+    },
+    "gpu_inventory": [
+      "0, NVIDIA A100 80GB PCIe, 81920 MiB, 595.91.07",
+      "1, NVIDIA A100 80GB PCIe, 81920 MiB, 595.91.07",
+      "2, NVIDIA A100 80GB PCIe, 81920 MiB, 595.91.07",
+      "3, NVIDIA A100 80GB PCIe, 81920 MiB, 595.91.07"
+    ]
+  },
+  "physics_backend": "cpu",
+  "observation_mode": "state_dict",
+  "control_mode": "pd_ee_pose",
+  "policy": "fixed_pick_cube",
+  "verification": false,
+  "recovery": false,
+  "policy_details": {
+    "name": "fixed_pick_cube",
+    "version": "0.1-candidate",
+    "settings": {
+      "approach_steps": 60,
+      "descend_steps": 40,
+      "close_steps": 25,
+      "lift_steps": 45,
+      "transport_steps": 60,
+      "lower_steps": 40,
+      "hold_steps": 50,
+      "clearance_m": 0.12,
+      "goal_clearance_m": 0.06,
+      "max_translation_m": 0.012,
+      "max_rotation_rad": 0.08
+    },
+    "scheduled_steps": 320,
+    "input_source": "privileged_simulator_state",
+    "reset_inputs": [
+      "obj_pose",
+      "goal_pos",
+      "tcp_pose",
+      "robot_base_pose"
+    ],
+    "step_inputs": [
+      "tcp_pose"
+    ],
+    "phase_transition": "elapsed_control_steps_only",
+    "verification": false,
+    "recovery": false
+  },
+  "action_space_shape": [
+    7
+  ]
+}

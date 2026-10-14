@@ -1,0 +1,36 @@
+{
+  "scope": "M7 development failure retention, not insertion outcomes",
+  "archive": "aether-cl-m7-development-normal6.tar.gz",
+  "archive_bytes": 99524,
+  "archive_sha256": "0043f87ba74dd6aa2b23bf293cab660d2eb8b4718ee3fae9d39d2cc69f248c8f",
+  "archive_index_verified_files": 16,
+  "archive_membership_exact": true,
+  "native_commit": "a1cab433f33755641c4113557cf666b37c0c5418",
+  "suite_state": "error",
+  "retained_trials": [
+    {
+      "ratio": 0.0,
+      "seed": 100,
+      "system": "baseline",
+      "state": "error",
+      "error": "RuntimeError: Child exit1; retain evidence and inspect /home/jiangle/aura-work/AURA-Embodied-offline/aura-sim/prototype_aether_cl/runs/m7-development-normal6/ratio-0/seed-100/baseline/process.stderr.log"
+    }
+  ],
+  "recorded_events": [
+    "run_started",
+    "reset",
+    "run_failed"
+  ],
+  "recorded_step_events": 0,
+  "failure": "ValueError: Insertion target/geometry changed",
+  "evidence_limit": "The failing post-action observation was not logged. Translation, orientation and dimension deltas cannot be recovered from this archive. Floating-point pose representation is a plausible mechanism, not established fact.",
+  "repair": "Development fixed-target physical-pose identity bounds of 1e-6 m and 1e-6 rad relative to reset, exact dimensions/radius, raw failure frame retention; exact cross-system physical traces unchanged.",
+  "replacement_policy": "Retain failed output/archive; launch repaired known-seed normal-six in a new output/archive. No fresh-native M7 outcomes authorized by this receipt.",
+  "local_validation": {
+    "focused_tests_passed": 26,
+    "seconds": 19.369,
+    "M0_M6R_preflight": "passed unchanged",
+    "Python_3_10_parse": "passed",
+    "native_repair_run": "pending"
+  }
+}
