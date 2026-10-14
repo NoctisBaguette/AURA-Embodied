@@ -309,3 +309,8 @@ This is not a scientific trend, but it is a serious external-communication issue
 **Required action**
 
 HQ + Branch 02 should decide whether **AETHER** remains an internal codename or should be renamed before external publication. Frontier Watch does not make that decision.
+
+
+## October 15 research trend: selective intervention
+
+RESCUE and ForkCast evaluate whether recovery actions improve expected outcomes relative to continuing. Intervention cost and detection confidence must be measured together. RoboRSI and SEAR challenge AETHER skill learning novelty.
