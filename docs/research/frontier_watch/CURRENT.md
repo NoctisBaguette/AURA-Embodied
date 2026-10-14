@@ -1,8 +1,22 @@
 # AURA Frontier Watch — Current Research Radar
 
-**Last updated:** 2026-10-09  
+**Last updated:** 2026-10-15  
 **Scope:** early October 2026  
 **Status:** active AURA research radar
+
+## October 15 delta — new priority radar
+
+**New Tier A / competitor reviews:** [RoboRSI](https://arxiv.org/abs/2610.12424) (skill-local validated revision), [SEAR](https://arxiv.org/abs/2610.18792) (true reusable learning vs more trials), [ForkCast](https://arxiv.org/abs/2610.18650) (counterfactual Commit/Reobserve/Replan), plus upstream [REMM](https://arxiv.org/abs/2610.12710) (revisable task beliefs) and [RESCUE](https://arxiv.org/abs/2610.13516) (intervention-value evaluation). All **DEEP DIVE**; the REMM and RESCUE principles are near-term **REPRODUCE** candidates.
+
+**New Tier B:** [LoopWAM](https://arxiv.org/abs/2610.18873) (failed-outcome model training) **DEEP DIVE**; [ChunkAct](https://arxiv.org/abs/2610.18874) (compiled routine skills + selective reasoning) **READ → DEEP DIVE**; [EmbodiedEvo](https://arxiv.org/abs/2610.18867) (procedural Skills/Lessons) **READ**.
+
+**Evaluation:** [WorldOracle](https://arxiv.org/abs/2610.18826) (action fidelity), [ForceWAM](https://arxiv.org/abs/2610.18852) (contact/wrench futures), [LIBERO-RIG](https://arxiv.org/abs/2610.18843) (hardware/setup shifts): **READ**, design focused evaluation before investing in large training or new sensors.
+
+**Architecture caution:** AETHER novelty is further narrowed by RoboRSI, SEAR, ForkCast, and ChunkAct. Prefer the smallest implementation with evidence-supported *revisable* beliefs and *cost-aware* intervention; measure learned-history/explicit-memory/compiled-routine alternatives under equal budgets. An alarm does not justify intervention by itself, and repeated attempts do not prove persistent learning.
+
+**Experiment shortlist:** evidence-backed task state under perturbation; simulator counterfactual Continue/Reobserve/Retry/Reset; per-step vs boundary-triggered reasoning; scoped skill correction with held-out transfer. See [Oct 15 report](2026/2026-10-15.md) and [experiments](2026/2026-10-15-experiments.md).
+
+---
 
 ## Working system hypothesis
 
