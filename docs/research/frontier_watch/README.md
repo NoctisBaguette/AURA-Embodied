@@ -77,6 +77,50 @@ EXPERIMENT_LOG.md
 
 This keeps AETHER evidence-driven rather than trend-driven.
 
+## Execution protection — 2026-10-19
+
+User direction: stay aware of the frontier while continuing to develop, test, and improve. Repeatedly revising the research direction is not a substitute for implementation.
+
+**Awareness can change weekly; an approved experiment does not automatically change weekly.**
+
+Read AURA's current `ROADMAP.md`, the Core continuity record, and the latest applicable engineering acceptance/authorization before recommending changes. Experiment evidence may live on the active experiment branch rather than `main`. Use current Core naming and routing; preserve historical AETHER-CL identifiers. This rule does not authorize a new experiment or override Core/02W gates.
+
+### Separate research interest from execution impact
+
+`READ`, `DEEP DIVE`, and `REPRODUCE` remain candidate dispositions, not commands to start work and not claims of completed reproduction. Give material findings a separate execution-impact assessment:
+
+| Impact | Meaning |
+| --- | --- |
+| **MONITOR / BACKLOG** | Preserve the source and implications. No change to active work. Default. |
+| **NEXT-CHECKPOINT CANDIDATE** | Could address a demonstrated bottleneck or provide an important comparator. Core considers it at the next bounded review. |
+| **IMMEDIATE REVIEW** | Evidence indicates a safety issue, invalid measurement/comparison, broken dependency, or decisive feasibility problem in the current study. Explain the exact affected assumption. Core/engineering decides whether to stop or repair. |
+
+A newer model, higher leaderboard score, or overlapping architecture name alone is not a reason to interrupt a valid experiment. Prior art can require revising a novelty claim without making the current instrument, baseline, or ablation useless.
+
+### Protect a bounded experiment
+
+Do not change its task, baseline, evaluation split/seeds, intervention, metrics, or resource budget mid-study because of a frontier item. Necessary corrections require a documented amendment and clear separation from frozen evidence. Review normal design changes at the agreed milestone boundary. A documented infrastructure blocker is not a reason to restart architecture design from scratch.
+
+Default to one active core hypothesis-driven experiment per owner, with a small next-step shortlist rather than activating the whole reading queue. A parallel independent hardware/engineering branch may continue. Any added experiment must identify its owner, measurable question, baseline, minimal intervention, feasible resources, completion criterion, and what it replaces or why capacity exists. Core/HQ retains approval authority.
+
+### Required execution-impact footer
+
+End each weekly report with:
+
+- **Continue:** current authorized work / documented next gate.
+- **Change now:** none, or a specific urgent concern and affected assumption.
+- **Next checkpoint:** normally at most one strongest new experiment candidate; zero is valid.
+- **Deferred:** important findings that do not change the present workload.
+- **Evidence produced:** distinguish sourced reading, implementation/tests, native runs, and audited results; report no verified new execution evidence when applicable.
+
+**"No change to the active experiment; continue" is a useful Frontier Watch outcome.**
+
+### Cross-project reuse
+
+Embodied-AI's broad learning/model/simulator milestones are not AURA's engineering status. Share pinned environments, adapters, protocols, and evidence where compatible, but do not reset AURA to first-simulator selection or duplicate the same experiment across projects. One deliverable should have one owner; a separate run is justified when the research question or evaluation conditions differ.
+
+Upstream summaries are research leads, not independent corroboration. Re-check load-bearing primary claims before promoting them into architecture evidence. Published author results, accessible code, locally executed tests, and independently audited runs are distinct evidence levels.
+
 ## Reading order
 
 1. `CURRENT.md` — active AURA radar and current priorities.
