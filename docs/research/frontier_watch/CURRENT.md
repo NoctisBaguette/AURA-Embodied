@@ -1,242 +1,71 @@
 # AURA Frontier Watch — Current Research Radar
 
-**Last updated:** 2026-10-15  
-**Scope:** early October 2026  
-**Status:** active AURA research radar
+**Updated:** 2026-10-19. **Latest update type:** cross-project decision checkpoint with targeted source checks; not a new full weekly scan or reproduction.
 
-## October 15 delta — new priority radar
+## Start here: decisions and collaboration
 
-**New Tier A / competitor reviews:** [RoboRSI](https://arxiv.org/abs/2610.12424) (skill-local validated revision), [SEAR](https://arxiv.org/abs/2610.18792) (true reusable learning vs more trials), [ForkCast](https://arxiv.org/abs/2610.18650) (counterfactual Commit/Reobserve/Replan), plus upstream [REMM](https://arxiv.org/abs/2610.12710) (revisable task beliefs) and [RESCUE](https://arxiv.org/abs/2610.13516) (intervention-value evaluation). All **DEEP DIVE**; the REMM and RESCUE principles are near-term **REPRODUCE** candidates.
+Read the [October 19 decision brief](2026/2026-10-19.md), then the [evidence register](2026/2026-10-19-evidence.md) and [team work packages](2026/2026-10-19-team-work.md). These combine AURA's October 15 watch with Embodied-AI's October 19 watch and translate the findings into reviewable choices for the user, HQ and Core/02.
 
-**New Tier B:** [LoopWAM](https://arxiv.org/abs/2610.18873) (failed-outcome model training) **DEEP DIVE**; [ChunkAct](https://arxiv.org/abs/2610.18874) (compiled routine skills + selective reasoning) **READ → DEEP DIVE**; [EmbodiedEvo](https://arxiv.org/abs/2610.18867) (procedural Skills/Lessons) **READ**.
+**HQ needs:** which bounded tasks to assign, to whom, with what time/resource limit and reviewer.
 
-**Evaluation:** [WorldOracle](https://arxiv.org/abs/2610.18826) (action fidelity), [ForceWAM](https://arxiv.org/abs/2610.18852) (contact/wrench futures), [LIBERO-RIG](https://arxiv.org/abs/2610.18843) (hardware/setup shifts): **READ**, design focused evaluation before investing in large training or new sensors.
+**Core/02 needs:** which hypothesis is worth the next experiment, what comparison discriminates it, what remains unsupported, and whether any active work actually needs to change.
 
-**Architecture caution:** AETHER novelty is further narrowed by RoboRSI, SEAR, ForkCast, and ChunkAct. Prefer the smallest implementation with evidence-supported *revisable* beliefs and *cost-aware* intervention; measure learned-history/explicit-memory/compiled-routine alternatives under equal budgets. An alarm does not justify intervention by itself, and repeated attempts do not prove persistent learning.
+**Teammates need:** exact inputs, outputs, acceptance criteria, dependencies, exclusions and return format. The linked work packages provide those; they are not assignments or new experimental authorization.
 
-**Experiment shortlist:** evidence-backed task state under perturbation; simulator counterfactual Continue/Reobserve/Retry/Reset; per-step vs boundary-triggered reasoning; scoped skill correction with held-out transfer. See [Oct 15 report](2026/2026-10-15.md) and [experiments](2026/2026-10-15-experiments.md).
+## Current execution context — do not reset development
 
----
+Public architecture identity is **AURA**. AETHER/AETHER-CL remains historical; BAGUETTE is provisional internal Core naming. The current [architecture](../../../ARCHITECTURE.md) already includes task-relevant state transitions, temporal/selective verification and bounded recovery.
 
-## Working system hypothesis
+The experiment branch `06-01/aether-cl-m0` contains newer M9a commissioning records than the October 9 Core continuity summary. The [commissioning-start record](https://github.com/NoctisBaguette/AURA-Embodied/blob/06-01/aether-cl-m0/docs/research/experiments/AURA_M9a_Commissioning_Start_v0.1.md) and [camera I/O record](https://github.com/NoctisBaguette/AURA-Embodied/blob/06-01/aether-cl-m0/docs/research/experiments/AURA_M9a_Camera_IO_Commissioning_v0.1.md) describe narrow sensor-verifier preparation, retained reporting corrections and a separate fresh-evaluation gate.
 
-Current combined evidence from the AURA and Embodied-AI frontier watches supports a refined working hypothesis:
+The inspected records do not establish completed native camera neutrality or sensor-verifier acceptance. Respect any current operator/HQ pause. No server health, new native result, fresh protocol approval or teammate availability is inferred here.
 
-> **Reliable manipulation likely requires access to task-relevant history, physical/task state, predictive information, trustworthy evidence of outcomes, and recovery/learning mechanisms. Which of these capabilities must be explicit, which can remain integrated inside learned policies, and how they should interact across timescales must be determined experimentally.**
+## What is newly useful from the combined watches?
 
-This is a hypothesis to test, not an architecture to defend.
+| Theme | Relevant sources | Research disposition | Execution impact |
+| --- | --- | --- | --- |
+| Evidence freshness and state revision | REMM + TacitVLA + once-per-episode Fast-VLA | DEEP DIVE scoped to current state/sensing questions | Next-checkpoint candidate after sensing baseline acceptance |
+| Cost-aware intervention | RESCUE + ForkCast; existing AURA recovery evidence | DEEP DIVE | Preserve as the next alternative, not additional M9a recovery behaviors |
+| Efficient learned baseline | Two distinct FastVLA repositories | READ / reproduction-feasibility candidate | One isolated source/artifact feasibility task if HQ allocates capacity |
+| Action-aware episode retrieval | Robota-Embed | DEEP DIVE conceptually | Backlog until usable corpus, action interface and artifacts exist |
+| Evaluation and labeling | LABIT; Anvil as an upstream review lead | READ | Small annotation/protocol task can support current work |
+| Skill reuse and selective reasoning | RoboRSI / ChunkAct; SEAR / LoopWAM retained leads | READ / DEEP DIVE by a bounded question | Not an instruction to train or reproduce every system |
 
-## Highest-priority developments
+**Critical distinction:** `Garfield-kh/FastVLA` caches task context and runs a streaming actor. `jiuyixu25/FastVLA` prunes visual tokens around compatible VLA backbones. Do not conflate their models, dependencies, checkpoints or experiments.
 
-| Development | AURA relevance | Current disposition |
-|---|---|---|
-| DynaHarness | execution governance, verification, failure attribution, replanning | **DEEP DIVE + REPRODUCE** |
-| HELM | episodic memory, learned state verification, rollback/replanning | **DEEP DIVE + baseline candidate** |
-| CRIS-0 / Aether AI | explicit task state, causal world modeling, verification, retry/replan | **DEEP DIVE / external comparator** |
-| Long-WAM | long causal visual history under real-time control | **DEEP DIVE + REPRODUCE candidate** |
-| VPP2 | strong WAM baseline, RoboDojo leader, Tsinghua-linked open research | **DEEP DIVE + baseline/reproduction candidate** |
-| EvoMem-VLA | state-evolution memory and progress tracking | **DEEP DIVE** |
-| The Planning Limits of Latent World Models | bounded predictive planning | **DEEP DIVE** |
-| RoboCoach | world-model-guided failure localization and targeted supervision | **DEEP DIVE + REPRODUCE** |
-| FailBank | runtime correction -> persistent learning | **DEEP DIVE** |
-| FoldBack | selective rollback and minimum-change recovery | **DEEP DIVE** |
-| D²-VLA | dual-timescale memory and long-horizon manipulation | **DEEP DIVE** |
-| FineART | explicit subtask supervision and long-horizon bimanual control | **DEEP DIVE** |
-| RoboICL | episodic interaction memory and in-context adaptation | **DEEP DIVE conceptually** |
-| Magic-W0 / CtrlWAM / ATI-VLA | action-relevant and physically consistent world modeling | **READ -> DEEP DIVE** |
-| Rho | embodiment midtraining and corrective adaptation | **READ + REPRODUCE candidate** |
-| RobotWorld / RoboQuest | information seeking and completion verification | **READ / DEEP DIVE conceptually** |
-| Rephrase Before You Act | instruction robustness as a failure source | **READ / small reproduce** |
-| OpenViTac | tactile/contact-rich evaluation | **READ / WATCH** |
-| RealtimeWAM / ESP | latency-aware policy execution | **READ / WATCH** |
-| RawVLA | sensor/ISP robustness | **WATCH / evaluation backlog** |
-| RoboDojo / WorldArena 2.0 | broader evaluation of manipulation and world models | **WATCH closely** |
+TacitVLA/Robota-Embed project extracts indicated forthcoming code; a complete runnable release was not verified in this pass. The two FastVLA READMEs advertise more concrete implementation paths, but no checkpoint download, import, local test or native evaluation was executed here.
 
-## Competitive signal — AETHER prior art is now substantial
+## Decisions awaiting the user, HQ and Core
 
-AURA should **not** claim novelty merely from:
+1. **D1:** confirm current M9a gate/blocker and support needs; do not add new mechanisms to its frozen scientific scope.
+2. **D2:** choose one next comparison. Current proposal: evidence freshness/invalidation after sensing acceptance; intervention-value evaluation remains an alternative.
+3. **D3:** choose one learned-baseline feasibility effort, reuse compatible Embodied-AI work, or defer it.
+4. **D4:** assign selected preparation tasks to actual teammates with reviewers and time caps; leave unselected work in backlog.
 
-```
-strong policy
-+ memory
-+ execution monitor
-+ verification
-+ rollback / recovery
-+ replanning
-```
+The detailed options, acceptance criteria and local decision register are in the [team packet](2026/2026-10-19-team-work.md). No decision is marked approved by this radar.
 
-Relevant external systems now include:
+## Working hypothesis
 
-- **DynaHarness** — execution governance, grounding, failure attribution, substitution and replanning;
-- **HELM** — episodic memory, learned verification, rollback and replanning;
-- **CRIS-0** — explicit task state, causal prediction, tool/policy orchestration, verification and retry/replanning;
-- **FoldBack** — selective rollback and trajectory repair;
-- **RoboCoach** — failure-localized supervision;
-- **FailBank** — persistent learning from runtime corrections.
+Reliable manipulation may benefit from task-relevant history, current evidence-supported state, action-relevant prediction and selective recovery/learning. The implementation could be explicit, learned, compiled or hybrid. Longer context, more modules, generated reasoning and more retries are not themselves proof of reliability or transfer.
 
-The immediate research question is:
+The current decision pressure is not simply whether to add memory. It is **which information must stay fresh, which computation must finish before action, and what evidence justifies intervention**. Compare simple alternatives before expanding the architecture.
 
-> **What do these systems already solve, what remains unsolved, and can AURA demonstrate a simpler, more reliable, or more general architecture through controlled experiments?**
+## Preserved earlier research map
 
-Potential remaining AURA research space:
+The [October 15 issue](2026/2026-10-15.md) retains RoboRSI, SEAR, ForkCast, REMM, RESCUE, LoopWAM, ChunkAct and physical-interface evaluation. The [October 9 issue](2026/2026-10-09.md) retains Long-WAM, HELM, CRIS-0, VPP2, EvoMem-VLA, FoldBack and related prior art. Earlier frontier classifications remain research leads, not executable assignments or newly revalidated numerical results.
 
-- diagnosis that separates perception, task-state, semantic, policy, geometry/contact, control, and environment failures;
-- hierarchical minimum-cost recovery across control-, skill-, subtask-, and task-level timescales;
-- choosing between integrated temporal memory, explicit external memory, and hybrid memory;
-- explicit outcome/state-transition representation rather than raw historical snapshots;
-- converting successful recovery into persistent reusable experience;
-- bounded, action-relevant world-model use for selection and verification;
-- separation of transferable task knowledge from embodiment-specific execution;
-- architecture ablations proving which explicit capabilities are actually necessary;
-- latency-aware architecture design.
+DynaHarness, HELM and similar systems remain comparison points. Broad component overlap requires careful novelty wording, not abandoning a valid experimental instrument. The historical Aether naming concern has already been addressed in the current public-naming guidance; do not reopen it automatically each week.
 
-**Branch 02 action candidate:** perform a structured AETHER ↔ DynaHarness ↔ HELM ↔ CRIS-0 comparison before strengthening any novelty claim.
+The complete pre-update radar is preserved in [Git history](https://github.com/NoctisBaguette/AURA-Embodied/blob/1986bca1530ac779e34f8d3de5cfe5a2364915c4/docs/research/frontier_watch/CURRENT.md).
 
-## Current synthesis
+## Execution-impact footer
 
-A useful capability view is now:
+**Continue:** latest authorized M9a commissioning/repair scope, subject to current pause and native acceptance gates. Independent physical engineering keeps its own authorization.
 
-```
-task goal / task state
-          ↕
-history / memory / state evolution
-          ↕
-reasoning / planning
-          ↓
-fast policy / capability
-          ↕
-bounded physical prediction
-          ↓
-physical execution
-          ↕
-verification / evidence gathering
-          ↓
-failure diagnosis
-          ↓
-hierarchical recovery
-          ↓
-persistent learning
-```
+**Change now:** no new model, intervention, native run or architecture change. Update coordination to the newer branch record.
 
-Important qualifications:
+**Next checkpoint:** normally zero or one strongest new experiment; evidence freshness/invalidation is the current proposal.
 
-- not every capability must be a separate module;
-- longer historical context and longer prediction horizon are different variables;
-- recovery does not imply learning;
-- action completion does not imply intended outcome completion;
-- verification may include deciding to gather more information before acting;
-- additional intelligence is only useful if latency remains compatible with physical control.
+**Deferred:** large model training, full memory/world-model stacks, additional benchmark platforms and hardware acquisition.
 
-## Active architecture questions
-
-1. **Integrated vs explicit memory**  
-   Long-WAM argues for learned causal history; HELM and EvoMem-VLA argue for explicit structured memory. Compare rather than assume.
-
-2. **State representation**  
-   CRIS-0 and EvoMem-VLA strengthen the case for task-relevant state / state-transition representations.
-
-3. **World-model role**  
-   Current evidence favors bounded, action-relevant prediction around selection/verification over assuming the world model is the entire long-horizon planner.
-
-4. **Recovery hierarchy**  
-   FoldBack and DynaHarness motivate local correction -> retry -> rollback -> alternate capability -> subtask replan -> task replan.
-
-5. **Recovery-to-learning**  
-   FailBank / RoboCoach motivate converting failure and recovery evidence into persistent improvement.
-
-6. **Information sufficiency**  
-   RobotWorld / RoboQuest motivate explicit evaluation of whether the agent knows enough to act and whether the task is truly complete.
-
-7. **Latency**  
-   Long-WAM, RealtimeWAM, and ESP make response time a first-class architecture metric.
-
-## Naming / communication risk
-
-Aether AI is now publicly operating in the same technical neighborhood as AURA's internal **AETHER** architecture name, including causal world models, task-state reasoning, verification, recovery, and physical-agent intelligence.
-
-This creates searchability and communication ambiguity.
-
-**HQ + Branch 02 action candidate:** decide whether AETHER remains an internal codename or should be renamed before external publication. Frontier Watch does not make that decision.
-
-## Near-term AURA research queue
-
-### Tier A — direct architecture / competitor review
-
-1. DynaHarness
-2. HELM
-3. CRIS-0
-4. Long-WAM
-5. The Planning Limits of Latent World Models
-6. RoboCoach
-7. FailBank
-
-### Tier B — strong model / mechanism baselines
-
-8. VPP2
-9. EvoMem-VLA
-10. FoldBack
-11. D²-VLA
-12. FineART
-13. RoboICL
-14. Magic-W0
-15. CtrlWAM
-16. Rho
-
-### Tier C — preserve and watch
-
-17. ATI-VLA
-18. RobotWorld / RoboQuest
-19. Rephrase Before You Act
-20. RealtimeWAM / ESP
-21. OpenViTac
-22. RawVLA
-23. RoboDojo / WorldArena 2.0
-24. human-behavior pretraining / cross-embodiment scaling
-
-## Experiment candidates
-
-1. **Execution governance ablation**  
-   Raw policy vs one-step replanning vs governed execution.
-
-2. **Integrated history vs external memory**  
-   Short history vs long causal history vs task/event memory vs hybrid.
-
-3. **Snapshot vs state-evolution memory**  
-   Compare stored frames/keyframes with explicit before/after state changes.
-
-4. **Failure-localized supervision**  
-   Random extra data vs data targeted at the first failing skill.
-
-5. **Recovery -> persistent learning**  
-   Recovery only vs selective reuse / policy update.
-
-6. **Hierarchical minimum-change recovery**  
-   Local correction, skill retry, rollback, alternate skill, subtask replan, full task replan.
-
-7. **Bounded world-model selector / verifier**  
-   No prediction vs short-horizon action ranking / verification.
-
-8. **Information-gathering before action**  
-   Immediate commitment vs inspect/test before deciding.
-
-9. **Latency accounting**  
-   Measure observation age, policy time, verifier time, prediction time, detection time, and recovery time.
-
-10. **Strong-policy + AETHER intervention**  
-    Where tractable, test architecture interventions around a strong baseline such as VPP2 rather than a weak policy.
-
-## Current architecture caution
-
-AETHER should remain a **capability-and-interface research framework**.
-
-Do not add components simply because frontier papers contain them. Each proposed mechanism should survive:
-
-```
-external evidence
--> explicit hypothesis
--> controlled intervention
--> measurable improvement
--> architecture decision
-```
-
-The target is not the largest architecture diagram. It is the **smallest architecture that measurably maintains reliable physical autonomy under uncertainty**.
+**Evidence produced:** source review and a decision/collaboration packet only. Historical reports, architecture decisions and frozen engineering sources are unchanged.

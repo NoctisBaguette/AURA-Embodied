@@ -121,8 +121,48 @@ Embodied-AI's broad learning/model/simulator milestones are not AURA's engineeri
 
 Upstream summaries are research leads, not independent corroboration. Re-check load-bearing primary claims before promoting them into architecture evidence. Published author results, accessible code, locally executed tests, and independently audited runs are distinct evidence levels.
 
+## Decision-ready publication contract — 2026-10-19
+
+User clarification: monitoring rules alone are insufficient. Each material update must leave enough **substantive technical and decision context** in GitHub for the user, HQ, Core/02 and teammates to act without a copied chat transcript.
+
+### How much belongs in GitHub?
+
+Use layered depth, not a fixed word quota:
+
+1. **CURRENT.md:** the active decision summary, latest engineering context, changed priorities, unresolved choices, recommendation and links to supporting detail. Keep it navigable rather than accumulating every old table forever; preserve prior dated issues and Git history.
+2. **Dated issue:** explain what each important method changes, why it matters for AURA, its capability, evidence/limitations and a feasible comparison. Include a cross-project delta; do not merely duplicate the upstream list.
+3. **Evidence detail when needed:** exact primary links and IDs, source/version check dates, reported metric and conditions, artifact status, compatibility/resource constraints and what has not been verified. Distinguish similar names and citations. Keep unverified leads visible but separate from established claims.
+4. **Decision/team detail when actionable:** options, recommendation, prerequisites, bounded deliverables, acceptance criteria, review owner, estimated effort, exclusions and the next approval gate. Assignees and decisions stay proposed until the user/HQ/Core actually assigns or approves them.
+
+A significant item is not ready for decision handoff with only its title, score and a DEEP DIVE tag. The receiving reader should be able to answer: **What changes? What supports it? What are the alternatives? What would we build or test? What would it cost? What would completion look like? Who must decide?**
+
+Do not paste full papers or all discussion. Preserve the reasoning and evidence needed for a decision, link deeper primary material, and attach technical detail where compression would hide an important limitation.
+
+### Collaboration requirements
+
+A proposed work package must include:
+
+- one concrete question and the decision it serves;
+- inputs with repository/branch/path or primary source;
+- deliverable and proposed destination;
+- testable acceptance criteria;
+- dependencies, resource needs and explicitly labeled effort estimates;
+- proposed role, reviewer, status and exclusions;
+- distinction between preparation, implementation, native execution and acceptance.
+
+A team may run independent approved packages in parallel. Protecting one experiment does not mean the entire team must wait or only one person can build. HQ chooses capacity and sequencing; Core resolves scientific scope; 06 controls integration and native evidence. Never mark people assigned, tasks accepted or other chats informed solely because a document was written.
+
+### Update the decision record, not just the watch
+
+Use local frontier packet IDs for proposed decisions rather than inventing global DEC IDs. Once reviewed, record approve/defer/reject, date, approver, reasoning, actual owner and evidence links. Keep prior alternatives and failed attempts traceable. Architecture decisions remain in the Core-owned records after review.
+
+An explicit no-change decision is valid, but must be supported by a current-scope comparison. Execution protection must not become an excuse to omit new findings, implementation options or useful teammate work.
+
+**Example complete handoff:** [October 19 decision brief](2026/2026-10-19.md), [evidence](2026/2026-10-19-evidence.md), [team work packages](2026/2026-10-19-team-work.md).
+
 ## Reading order
 
 1. `CURRENT.md` — active AURA radar and current priorities.
-2. `TREND_LEDGER.md` — persistent hypotheses and accumulated evidence.
-3. `YYYY/YYYY-MM-DD.md` — dated reports and handoffs preserving the evidence trail.
+2. Latest dated decision brief and its evidence/team attachments, when present.
+3. `TREND_LEDGER.md` — persistent hypotheses and accumulated evidence.
+4. Earlier dated reports only when needed for provenance or a deeper comparison.

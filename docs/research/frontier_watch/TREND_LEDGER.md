@@ -2,6 +2,24 @@
 
 This file tracks persistent research patterns relevant to AURA-Embodied. It should evolve more slowly than `CURRENT.md`.
 
+## October 19 refinement — freshness, computation timing and actionable collaboration
+
+**Evidence:** [combined decision checkpoint](2026/2026-10-19.md) and [primary-source register](2026/2026-10-19-evidence.md). This entry refines existing T4/T8/T10/T14 rather than declaring a new required architecture.
+
+REMM, TacitVLA and the once-per-episode Fast-VLA address different parts of a shared problem: retained history, current task beliefs and computation on the action critical path. A long history or a fixed task-context cache does not by itself establish that a completion condition is still true. Conversely, useful reasoning supervision does not require every generated reasoning token to precede the current action. Whether a validity check must be synchronous is a task-specific question, not answered by an aggregate inference-speed result.
+
+**Refined testable hypothesis:** keep the information needed for the next physical decision current, and move only demonstrably noncritical computation away from the action path. Compare simple temporal rules, explicit evidence-linked validity and learned context under matched observations and timing budgets. Missing evidence is not the same as observed contradiction.
+
+Robota-Embed adds a concrete action-aware retrieval mechanism to T4, but task-local context improvement does not establish general experience transfer. Artifact readiness and a usable action/episode interface remain prerequisites. The two similarly named FastVLA systems must be tracked separately: fixed task memory versus adaptive visual-token selection.
+
+**Execution consequence:** no new mechanism is inserted into M9a. Evidence freshness/invalidation is a proposed next-checkpoint comparison after sensing acceptance. Intervention-value evaluation remains a strong alternative. Source review, interface fixtures, feasibility checks and annotation design can be allocated as bounded preparation tasks through the [team packet](2026/2026-10-19-team-work.md).
+
+**Evidence caution:** historical strengthening labels below preserve earlier judgments; they are not a claim that every cited paper, release or company number was independently revalidated on October 19. The evidence register explicitly identifies retained upstream leads. Repeated agreement between the two reports is not independent experimental corroboration.
+
+**Naming/status note:** T11 below records the earlier collision concern. Current `ARCHITECTURE.md` already uses AURA publicly, preserves historical AETHER-CL identifiers and treats BAGUETTE as provisional internal naming. Do not reopen that naming decision automatically. Current engineering records include M9a commissioning on the experiment branch; use that record rather than an older main-branch summary.
+
+---
+
 ## T1 — From action prediction to governed manipulation-agent loops
 
 **Status:** strengthening strongly
