@@ -160,9 +160,23 @@ An explicit no-change decision is valid, but must be supported by a current-scop
 
 **Example complete handoff:** [October 19 decision brief](2026/2026-10-19.md), [evidence](2026/2026-10-19-evidence.md), [team work packages](2026/2026-10-19-team-work.md).
 
+## Language and Chinese teammate companions — 2026-10-19
+
+**User preference:** discussion with the user and the main research documents remain in English. Teammates need Chinese reading material. Future teammate-facing handoffs must therefore include a **Simplified Chinese companion**, not replace the English version.
+
+The Chinese material must let teammates understand the work without reconstructing the English chat. Include the relevant research background, what changed across the watches, technical mechanism and AURA relevance, source/evidence limitations, alternatives and decisions needed, and the complete work-package instructions. Translate substantive explanations from the decision brief/evidence register where needed for the assigned work; a Chinese task title followed only by English links is insufficient. Full translations of external papers are not required.
+
+For each work package preserve the same question, inputs, deliverables, acceptance criteria, dependencies, resource/effort estimates, reviewer, scope exclusions and approval status in both languages. Keep paper/model names, repository paths, commands, source links and IDs unchanged. Give important technical terms in Chinese with the English term on first use. Do not turn a proposed task into an approved assignment, remove uncertainty, or change numerical thresholds in translation.
+
+Prefer separate linked files rather than doubling every paragraph inline. For example, a future `YYYY-MM-DD-team-work.md` can have a `YYYY-MM-DD-team-work.zh-CN.md` companion; provide a Chinese decision/reading brief too when its context is necessary for teammate decisions. These are naming examples, not claims that those files already exist.
+
+Link the English and Chinese versions from each other and from the current handoff entry point. Identify the corresponding date/revision. Update both when scope, evidence, acceptance criteria or decisions materially change; explicitly flag a stale translation rather than presenting mismatched versions as synchronized. Check content parity before marking the bilingual handoff ready.
+
+This requirement applies to future teammate handoffs. It does not itself claim that the historical English-only packets have already been translated, change the user's preferred discussion language, or authorize any new experiment.
+
 ## Reading order
 
 1. `CURRENT.md` — active AURA radar and current priorities.
-2. Latest dated decision brief and its evidence/team attachments, when present.
+2. Latest dated decision brief and its evidence/team attachments, when present; use the linked Chinese companions for teammate-facing reading.
 3. `TREND_LEDGER.md` — persistent hypotheses and accumulated evidence.
 4. Earlier dated reports only when needed for provenance or a deeper comparison.
