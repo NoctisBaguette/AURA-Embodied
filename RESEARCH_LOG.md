@@ -4,6 +4,64 @@ This file records research decisions and evolution.
 
 ---
 
+## 2026-10-19 — M9a commissioning is current; 02W design step is already complete
+
+### Existing Knowledge
+
+The experiment branch now contains M9a commissioning records produced after the
+02W M9 design package was returned. Frontier Watch's October 19 cross-project
+checkpoint also reviewed those newer records.
+
+### Observation
+
+The previous Core continuity state ("go to 02W next") is stale.
+
+M9a is already in bounded engineering commissioning. It is isolating the
+non-privileged verifier information boundary while preserving the accepted M8
+task, executor, recovery and scoring. Source inspection is complete, but native
+camera/render neutrality and sensor-verifier acceptance are not yet established.
+
+The camera commissioning path has retained reporting/integration failures and
+now includes read-only Vulkan diagnostics. These are prerequisite/commissioning
+issues, not failed M9a scientific outcomes.
+
+Frontier Watch simultaneously identifies evidence freshness/state invalidation as
+a strong next research question and intervention value as another candidate, but
+explicitly recommends protecting the current M9a scope.
+
+### Decision
+
+Current routing:
+
+```text
+BAGUETTE Core
+→ return to 06-01 M9a commissioning
+→ complete camera/sensor I/O neutrality and executable protocol
+→ return to Core for freeze/acceptance
+→ only then fresh M9a evaluation
+```
+
+Do not create another 02W for M9a now and do not add Frontier Watch mechanisms to
+the active commissioning scope.
+
+Create
+`docs/research/coordination/BAGUETTE_Core_Research_Continuity_v0.2.md`
+as the current rollover checkpoint.
+
+### Experiment Opportunity
+
+After the sensor-verification baseline is accepted, the current strongest
+Frontier Watch proposal is a controlled evidence-freshness / task-state
+invalidation study. Intervention-value evaluation and an explicit transfer study
+remain strong alternatives to be prioritized by Core at that later checkpoint.
+
+### Notes
+
+Main and the experiment branch remain diverged. Avoid conflicting global decision
+IDs until the histories are reconciled.
+
+---
+
 ## 2026-10-09 — BAGUETTE provisional Core and chat-continuity protocol
 
 ### Observation
