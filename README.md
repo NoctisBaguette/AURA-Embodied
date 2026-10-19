@@ -4,6 +4,10 @@
 
 Research project exploring generalizable physical agents through adaptive manipulation intelligence, memory, and embodied AI systems.
 
+**团队成员从这里开始：[START_HERE.md — 项目是什么、已经做了什么、如何自由探索与协作](START_HERE.md)。**
+
+Quick navigation: [Current architecture](ARCHITECTURE.md) · [Roadmap](ROADMAP.md) · [Frontier Watch](docs/research/frontier_watch/CURRENT.md) · [Exploration notes](docs/exploration/README.md).
+
 ---
 
 ## Research Direction
@@ -58,7 +62,9 @@ Develop improvements
 
 ## Architecture Concept
 
-AETHER Framework:
+The historical AETHER chain below is a capability inventory, not a prescribed one-way implementation. The current public architecture identity is **AURA**; see [ARCHITECTURE.md](ARCHITECTURE.md) for the task-relevant state-transition framework, recurrent verification, bounded recovery, transfer and sensing questions. Capabilities need not map one-to-one to software modules.
+
+Historical inventory:
 
 ```
 Perception
@@ -82,6 +88,8 @@ Learning
 
 ## Repository Structure
 
+The following names describe the intended logical component areas, not a claim that every directory or subsystem is implemented:
+
 - `aura-core` — core architecture and shared interfaces
 - `aura-perception` — visual understanding and perception
 - `aura-manipulation` — manipulation skills and policies
@@ -90,6 +98,8 @@ Learning
 - `aura-system` — robotics integration and deployment
 - `aura-research` — research notes, experiments, and analysis
 - `aura-docs` — project documentation
+
+Current entry points and the main/engineering branch distinction are explained in [START_HERE.md](START_HERE.md). Follow linked records rather than assuming the full implementation is present on `main`.
 
 ---
 
@@ -104,4 +114,7 @@ It records:
 - experiments;
 - failures;
 - hypotheses;
-- architectural evolution.
+- architectural evolution;
+- exploratory sources, unfinished questions and clearly labeled AI-assisted notes.
+
+Exploration does not require prior assignment or a mature conclusion. Save sources and verification status; distinguish discovery from reviewed knowledge and experimental evidence. See [Exploration notes](docs/exploration/README.md). Merging an exploratory note does not adopt its claims or authorize a new experiment.
