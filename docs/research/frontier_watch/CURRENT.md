@@ -1,5 +1,7 @@
 # AURA Frontier Watch — Current Research Radar
 
+**Languages:** English · [简体中文](CURRENT.zh-CN.md) · [Chinese reading index / 中文阅读入口](README.zh-CN.md)
+
 **Updated:** 2026-10-19. **Latest update type:** cross-project decision checkpoint with targeted source checks; not a new full weekly scan or reproduction.
 
 ## Start here: decisions and collaboration

@@ -1,5 +1,9 @@
 # AURA-Embodied Frontier Watch
 
+**Languages:** English · [简体中文 / Chinese reading index](README.zh-CN.md)
+
+**Chinese companions published 2026-10-19:** [current radar](CURRENT.zh-CN.md), [October 19 decision brief](2026/2026-10-19.zh-CN.md), [evidence](2026/2026-10-19-evidence.zh-CN.md), [team work packages](2026/2026-10-19-team-work.zh-CN.md), [October 15 weekly report and linked appendices](2026/2026-10-15.zh-CN.md), and [trend ledger](TREND_LEDGER.zh-CN.md). The Chinese index pairs each file with its English source; earlier October 8/9 reports remain English-only.
+
 This directory is the durable research memory for **05 — Frontier Watch**.
 
 Its role is narrower than the companion Embodied-AI Research frontier watch. The Embodied-AI project scans embodied AI broadly; AURA uses that scan as one input, performs an independent scan, and then applies an AURA-specific filter focused on **adaptive robotic manipulation intelligence**.
