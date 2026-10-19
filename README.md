@@ -105,3 +105,24 @@ It records:
 - failures;
 - hypotheses;
 - architectural evolution.
+
+## Prototype Implementations
+
+- [AETHER-CL v0.1 — Prototype A held-cube experiment](aura-sim/prototype_aether_cl/README.md)
+  — fixed policy, passive verification, bounded recovery and audited A100
+  magnitude evaluation. M0–M4 findings
+  [returned to 02](docs/research/experiments/AETHER_CL_06_01_Return_to_02.md);
+  [M5 verification-gating attribution](docs/research/experiments/AETHER_CL_M5_Attribution.md)
+  is complete, independently audited and [accepted by 02](docs/research/experiments/AETHER_CL_M5_02_Research_Review_v0.1.md).
+  [M6 support placement/release](docs/research/experiments/AETHER_CL_M6_Placement.md):
+  native execution and [independent audit](docs/research/experiments/AETHER_CL_M6_Results.md)
+  are complete. V2 rescues none of 62 failed placements; all retries abort before release.
+  Prototype A remains open; insertion, physically applied disturbances and a
+  non-privileged verifier remain later closure dimensions. The
+  [M6 return to 02](docs/research/experiments/AETHER_CL_M6_Return_to_02.md) was [accepted by 02](docs/research/experiments/AETHER_CL_M6_02_Research_Review_v0.1.md).
+  [M6R fresh native evidence](docs/research/experiments/AETHER_CL_M6R_Results.md)
+  is [accepted by 02 under DEC-0006](docs/research/experiments/AETHER_CL_M6R_02_Research_Review_v0.1.md):
+  70 paired placement rescues, exact common-prefix evidence and no observed healthy regressions.
+  The active round is [M7 contact-rich insertion](docs/research/experiments/AETHER_CL_M7_Inspection.md),
+  with installed `PegInsertionSide-v1` selected and [normal-six development commissioning prepared](docs/research/experiments/AETHER_CL_M7_Development.md).
+  Return to 02 after M7 before further scope. This is the first AETHER experiment, not AETHER v1.0.

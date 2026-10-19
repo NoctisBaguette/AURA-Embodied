@@ -1,0 +1,51 @@
+{
+  "state": "finished",
+  "run_directory": "runs/baseline-live/20261005T004231Z-59ee234d",
+  "purpose": "fixed_pick_cube_baseline_candidate",
+  "controller": "fixed_pick_cube",
+  "episodes": [
+    {
+      "episode": 0,
+      "seed": 0,
+      "steps": 202,
+      "success_at_end": true,
+      "success_ever": true,
+      "terminated": true,
+      "truncated": false,
+      "stopped": false,
+      "seconds": 20.14475288009271,
+      "final_phase": "transport",
+      "schedule_complete": false,
+      "final_cube_goal_distance_m": 0.023378149725868044,
+      "final_is_grasped": true,
+      "final_is_obj_placed": true,
+      "final_is_robot_static": true
+    }
+  ],
+  "episode": 0,
+  "step": 202,
+  "phase": "transport",
+  "success": true,
+  "cube_position_world_m": [
+    0.017142219468951225,
+    0.01624426431953907,
+    0.27794304490089417
+  ],
+  "goal_position_world_m": [
+    0.026815734803676605,
+    -0.0019813179969787598,
+    0.2889334559440613
+  ],
+  "cube_goal_distance_m": 0.023378149725868044,
+  "evaluation": {
+    "requested_episodes": 1,
+    "recorded_episodes": 1,
+    "completed_episodes": 1,
+    "complete": true,
+    "success_rate_at_end": 1.0,
+    "success_rate_ever": 1.0,
+    "verification": false,
+    "recovery": false,
+    "input_source": "privileged_simulator_state"
+  }
+}

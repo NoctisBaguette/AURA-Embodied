@@ -1,0 +1,247 @@
+{
+  "name": "m6r_seed120_139_effect_aligned_placement",
+  "date": "2026-10-06",
+  "02_decision_commit": "33918f5f2da97c355a0c2d7cda60b448f77bb2a6",
+  "authority": "DEC-0005 and AETHER_CL_M6_02_Research_Review_v0.1",
+  "seeds": [
+    120,
+    121,
+    122,
+    123,
+    124,
+    125,
+    126,
+    127,
+    128,
+    129,
+    130,
+    131,
+    132,
+    133,
+    134,
+    135,
+    136,
+    137,
+    138,
+    139
+  ],
+  "systems": [
+    "baseline",
+    "v1",
+    "v2-old",
+    "v2r"
+  ],
+  "conditions": [
+    {
+      "point_id": "normal",
+      "condition": "none",
+      "magnitude_m": null,
+      "config_magnitude_m": 0.08
+    },
+    {
+      "point_id": "release-shift-010mm",
+      "condition": "post_release_shift",
+      "magnitude_m": 0.01,
+      "config_magnitude_m": 0.01
+    },
+    {
+      "point_id": "release-shift-040mm",
+      "condition": "post_release_shift",
+      "magnitude_m": 0.04,
+      "config_magnitude_m": 0.04
+    },
+    {
+      "point_id": "release-shift-080mm",
+      "condition": "post_release_shift",
+      "magnitude_m": 0.08,
+      "config_magnitude_m": 0.08
+    },
+    {
+      "point_id": "release-shift-120mm",
+      "condition": "post_release_shift",
+      "magnitude_m": 0.12,
+      "config_magnitude_m": 0.12
+    },
+    {
+      "point_id": "release-shift-200mm",
+      "condition": "post_release_shift",
+      "magnitude_m": 0.2,
+      "config_magnitude_m": 0.2
+    }
+  ],
+  "requested_episodes": 480,
+  "cells": 24,
+  "episodes_per_cell": 20,
+  "max_steps": 800,
+  "env_id": "PickCube-v1",
+  "physics_backend": "cpu",
+  "render": false,
+  "fps": 5.0,
+  "render_device": "cuda:0",
+  "nominal_phases": [
+    "approach",
+    "descend",
+    "close",
+    "lift",
+    "transport",
+    "lower",
+    "release",
+    "retract",
+    "settle"
+  ],
+  "nominal_durations": [
+    60,
+    40,
+    25,
+    45,
+    60,
+    40,
+    25,
+    35,
+    30
+  ],
+  "nominal_steps": 360,
+  "task_contract": {
+    "horizontal_tolerance_m": 0.025,
+    "minimum_lift_m": 0.05,
+    "cube_half_size_m": 0.02,
+    "support_height_m": 0.0,
+    "support_region_half_extent_m": 0.4,
+    "support_height_tolerance_m": 0.004,
+    "minimum_support_force_n": 0.01,
+    "retraction_clearance_m": 0.08,
+    "released_aperture_m": 0.06,
+    "maximum_linear_speed_m_s": 0.01,
+    "maximum_angular_speed_rad_s": 0.2,
+    "maximum_frame_translation_m": 0.001,
+    "maximum_frame_rotation_rad": 0.02,
+    "stable_steps": 5,
+    "failure_persistence_steps": 3,
+    "settle_grace_steps": 10,
+    "name": "released_cube_supported_on_designated_table",
+    "support_actor": "table-workspace",
+    "support_region": "world_xy_square_centered_at_origin",
+    "reference_support": "fresh_cube_table_pairwise_vertical_contact_force_and_bottom_geometry",
+    "verifier_support": "privileged_pose_geometry_and_velocity_proxy_no_contact_labels",
+    "requires_historical_contact_grasp_and_lift": true,
+    "requires_release_command_and_current_non_grasp": true,
+    "requires_open_gripper_and_vertical_and_euclidean_tcp_clearance": true,
+    "requires_consecutive_fresh_stability": true,
+    "termination": "full_frozen_action_budget",
+    "environment_success_is_not_task_success": true
+  },
+  "release_tcp_clearance_m": 0.002,
+  "recovery_settings": {
+    "durations": [
+      35,
+      60,
+      35,
+      25,
+      35,
+      80,
+      40,
+      25,
+      35,
+      30
+    ],
+    "action_budget": 400,
+    "maximum_attempts": 1,
+    "minimum_remaining_steps": 100,
+    "minimum_motion_steps": 3,
+    "minimum_close_steps": 10,
+    "arrival_tolerance_m": 0.02,
+    "lower_vertical_tolerance_m": 0.003,
+    "arrival_rotation_tolerance_rad": 0.15
+  },
+  "injection_step": 296,
+  "injection_timing": "after_nominal_release_before_final_stability_after_action_computation_before_physics",
+  "injection_precondition": "previous_observation_released_open_supported_geometry_and_current_nominal_retract_phase",
+  "invalid_release_precondition": "retain_episode_and_record_not_applied_no_exclusion_or_replacement",
+  "execution": "fresh_python_interpreter_and_simulator_per_point_seed_system",
+  "child_episodes": 1,
+  "first_24_slots": "normal, 10mm, 80mm; seeds120,121; Baseline,V1,V2-old,V2R; these remain in the full matrix",
+  "commissioning_gate": "first24_valid_replay_pairing_source_identity_at_least_one_eligible_healthy_baseline_placement_and_release_shift_applied_on_eligible_baseline_v1_sentinels_no_v2r_success_requirement",
+  "remaining_order": "point normal then ascending magnitude; seed ascending; Baseline,V1,V2-old,V2R; omit already selected first24",
+  "seed_selection": "fresh_preselected_120_139_no_native_outcomes_used_no_adaptive_replacement",
+  "analysis_unit": "20_common_seed_scenes_reused_across_conditions_not_480_independent_scenes",
+  "comparison_counts": {
+    "pairs": 120,
+    "recovery_pairs": 120,
+    "repair_pairs": 120,
+    "control_pairs": 100
+  },
+  "action_replay_tolerance": 3e-07,
+  "physical_pair_tolerance": "exact_no_relaxation",
+  "new_sources_sha256": {
+    "m6r_policy.py": "dd2628631641e500fe593155453b5c75408faf2f34c76ea761f057455e4e8981",
+    "m6r_runtime.py": "679faec4707f7d4baed7091f2069ecd18b5a905ef3197b2fe101da3a218f6ad0",
+    "m6r_audit.py": "7059b86d74c0d5abd498e5dd460f6868f40ed2633f63f6c915700df4d462d518",
+    "m6r_sweep.py": "3407f34c5f684c2a6f477402eb318877d449e3a28ff61520a2a34bebb7aaf7c4",
+    "m6r.py": "e652ec3b94476801303207dcef1cb7a0f0a4471f9754e654b31a044812d23e6e",
+    "m6r_index.html": "e1b1fbf1f0bfffd7db8eed906e67c60a5067c043775d28817a00f992b1e735ab"
+  },
+  "old_sources": "unchanged_M0_M6_preflight_chain",
+  "frozen_m6_protocol_sha256": "7dbdcec76079c987775539d16fd9be91357b14776be6eea470288f868396abe7",
+  "lower_transition_change": {
+    "phase": "lower",
+    "removed": "abs(tcp_z - lower_target_z) <= 0.003",
+    "replacement": "supported_geometry and horizontal_error_m <= 0.025",
+    "retained": [
+      "minimum_motion_steps",
+      "tcp_distance_0.02m",
+      "rotation_0.15rad",
+      "attachment_loss_monitoring"
+    ],
+    "inputs": [
+      "obj_pose",
+      "goal_pos",
+      "tcp_pose",
+      "qpos",
+      "obj_linear_velocity",
+      "obj_angular_velocity"
+    ],
+    "excluded_inputs": [
+      "info",
+      "is_grasped",
+      "contact_force",
+      "reference",
+      "environment_success",
+      "disturbance_identity"
+    ]
+  },
+  "engineering_only_seeds": [
+    100,
+    101
+  ],
+  "engineering_only_conditions": [
+    "normal",
+    "release-shift-080mm"
+  ],
+  "fresh_entry_gate": "validated_known16_report_raw_hashes_replay_comparisons_same_frozen_revision_no_native_success_gate",
+  "seed_provenance": "repository_preregistered_M2_20_39_M3_40_59_M4_60_79_M5_80_99_M6_100_119_no_recorded_native_120_139_before_freeze",
+  "repair_pair_contract": "exact_all_physical_verifier_and_recovery_states_until_first_post_lower_gate_state_divergence_including_its_same_action_observation_reference_verdict_step_full_equality_if_no_divergence",
+  "environment_normalization": [
+    "SSH_CLIENT",
+    "SSH_CONNECTION",
+    "SSH_TTY",
+    "TERM",
+    "SHLVL",
+    "_",
+    "PWD",
+    "OLDPWD"
+  ],
+  "required_native_packages": {
+    "mani_skill": "3.0.1",
+    "sapien": "3.0.3",
+    "numpy": "1.26.4"
+  },
+  "required_native_python": "3.10",
+  "native_source_identity": "five_installed_upstream_source_hashes_recorded_per_child_equal_across_entire_matrix",
+  "performance_gate": "none_task_failures_abort_false_alarm_missed_injection_are_retained_outcomes",
+  "unnecessary_recovery": "attempt_in_eligible_matched_pair_whose_baseline_succeeds",
+  "regression": "baseline_success_and_recovery_system_final_failure_in_eligible_matched_pair",
+  "paired_cost": "v2r_minus_v2old_and_each_recovery_minus_v1_total_path_and_retry_actions_include_zero_and_failed_attempts",
+  "resume": "only_unstarted_slots_sources_protocol_software_environment_raw_hashes_and_replay_checked",
+  "return_boundary": "M6R_native_execution_and_independent_audit_then_return_to02_before_further_scope",
+  "limitations": "privileged_state_one_cube_synthetic_postrelease_relocation_no_insertion_force_disturbance_camera_verifier_or_memory"
+}
