@@ -1,4 +1,18 @@
-# Current LingBot state — 21 October 2026, 19:06:05 Beijing watcher update
+# Current LingBot state — 21 October 2026, 22:14:03 Beijing watcher update
+
+## Latest: recovery stopped with a native crash
+
+Source: captain-uploaded status transcript; no fresh SSH query or independent review of the new run archive. This supersedes the recovery-not-run state retained below.
+
+The recovery ran and completed fresh simulator commissioning (16/16). The parent recorded 30/32 baseline episodes. The final randomized bottle case then exited with SIGSEGV (-11); its last progress record was about five minutes into a 20-minute case limit, with no shared stage deadline. Joint training did not start; candidate evaluation remains 0/32.
+
+The failed child recorded one additional completed episode, logged as a task failure. It is pending archive validation and parent integration: do not describe this as 31 validated episodes or 31 successes. The next candidate seed was recorded but did not complete. Native root cause and complete cleanup evidence remain unverified. A partial diagnostic stack does not identify the faulty library.
+
+Captain is reviewing this new failure before a targeted next action. A and B continue their existing CPU assignments and daily reports; there is no need to redistribute the onboarding bundle or wait for a new checkpoint. No new restart or runtime change accompanies this status update.
+
+中文：恢复运行已执行，16/16 仿真准备检查完成；父进程记录 baseline 30/32。最后一个随机化瓶子组合约运行5分钟后发生段错误（SIGSEGV），没有触发20分钟上限。子进程另外记录了1次已完成但任务失败的episode，仍需检查新归档，不能声称31次均已验证。训练尚未开始，根因未确定。A/B继续原定CPU任务与日报，不需要等待，也不用重发入门包。
+
+## Earlier snapshots (superseded by the update above)
 
 ## Archive-reviewed update: shared three-hour cutoff confirmed
 
