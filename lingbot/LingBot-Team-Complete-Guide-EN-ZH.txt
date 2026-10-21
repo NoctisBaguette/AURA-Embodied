@@ -19,11 +19,11 @@ A = make the selected trained policy exportable, complete and loadable in a fres
 B = build evaluation across all tasks/settings, reliable resume and honest result aggregation, consuming A's package.
 Captain = keep the existing server workflow moving, review evidence, supply specific assets, allocate GPU time, choose the final policy and integrate/submit the work.
 
-Latest supplied status, 21 October: run-L6iqyVGy was RUNNING / BASELINE; native commissioning 16/16, baseline 8/32 completed episodes, candidate 0/32. These are completion counts, NOT eight successes. No completed training or final score is established. This is a captain-provided snapshot, not live monitoring. An old watcher timestamp alone does not mean the child is stuck; the last reported run had advanced from 2 to 8 baseline episodes. Commissioning checks simulator readiness and is not learned-policy evaluation. A past intermittent native crash has not been causally resolved.
+Latest supplied status: watcher FAILED at 19:06:05 Beijing on 21 October; run-L6iqyVGy is ERROR / BASELINE, native commissioning 16/16, baseline 28/32 completed episodes, candidate 0/32. The clean pick_dual_bottles case timed out; new joint training was not reached. These are completion counts, NOT 28 successes. This is captain-provided status, not an independent archive audit or live monitoring. The code uses the same timeout message for a 20-minute case limit and a three-hour baseline-stage limit; which bound ended this attempt still needs the retained archive timings. The final supplied stack is in observer-camera capture during policy actions; it does not establish a renderer deadlock. Commissioning is not learned-policy evaluation. The watcher is stopped; its child's retained RUNNING label does not prove current liveness. A previous intermittent crash has not been causally resolved.
 
 The current guarded pilot is 8 tasks × 2 settings × 2 episodes = 32 episodes per checkpoint. Its plan is baseline → joint training (at most 100,000 examples / 22 hours) → candidate evaluation. The 22-hour limit is a bound, not a completion estimate. Full evaluation targets 50 tasks × 2 settings × 100 episodes = 10,000 episodes for one fixed policy. The pilot is not that full evaluation.
 
-Start CPU work NOW. Neither teammate needs to wait for new training to finish. The captain does not wait for your first draft before continuing the existing run. A and B can develop concurrently; real A-loader/B-evaluator integration needs both implementations and coordinated GPU access later. Do not recreate the whole server environment or download all training data onto your laptop just to start.
+Start CPU work NOW. Neither teammate needs to wait for new training to finish. The captain handles the stopped run and next reviewed runtime step while you develop; do not restart it yourselves. A and B can develop concurrently; real A-loader/B-evaluator integration needs both implementations and coordinated GPU access later. Do not recreate the whole server environment or download all training data onto your laptop just to start.
 
 2. WHAT YOU RECEIVE, WHAT TO OPEN, WHAT TO REQUEST
 
@@ -120,7 +120,7 @@ Runtime contract: three RGB views, each 240×320×3 uint8; 14D float32 joint/gri
 
 A can develop inventory/export checks before the final checkpoint exists. B can develop scheduling/ledger/aggregation before A's real loader exists. Their CPU fixtures are development aids, not native validation. Neither edits reference/, official/, the installed frozen server release or GPU dependencies. Only coordinate new GPU tests with the captain; do not contend with the current run or restart it.
 
-Captain continues the guarded pilot, reviews actual results, arranges assets/GPU, integrates useful partial work and selects the final checkpoint. A new candidate is not automatically promoted. The retained clean50 fallback also needs complete packaging/validation. Neither A nor B independently submits the official entry.
+Captain reviews the retained timeout evidence before the next runtime action, arranges assets/GPU, integrates useful partial work and selects the final checkpoint. A new candidate is not automatically promoted. The retained clean50 fallback also needs complete packaging/validation. Neither A nor B independently submits the official entry. B should distinguish case versus stage deadlines in the new runner's reports; this does not authorize changing frozen limits or rerunning failed seeds.
 
 Internal plan: first CPU drafts promptly; 22 October integrate what is ready; 23 October noon checkpoint/integration decision and takeover-ready handoff; aim to assemble submission materials by 25 October 20:00. The recorded official deadline is 26 October 24:00 Beijing; recheck official notices before submitting. Internal times are planning choices, not promises or organizer rules. If full evaluation cannot fit, surface the measured shortfall immediately; captain confirms organizer handling rather than inventing completion.
 
@@ -190,7 +190,7 @@ Upstream background:
   https://github.com/RoboTwin-Platform/RoboTwin
   https://huggingface.co/robbyant/lingbot-vla-v2-6b
   https://huggingface.co/datasets/TianxingChen/RoboTwin2.0
-Local evidence: progress/2026-10-21-baseline-008.json (attributed status); provenance/public-reference-manifest.json (copy identities); reference/ runtime producers/consumers. Exact original archive, for authorized readers: https://github.com/NoctisBaguette/Embodied-AI-Research/tree/d160e0eac2357674abc156bf6d489b356960278b/experiments/lingbot-competition
+Local evidence: progress/2026-10-21-baseline-028-timeout.json (latest attributed status; earlier 008 snapshot is historical); provenance/public-reference-manifest.json (copy identities); reference/ runtime producers/consumers. Exact original archive, for authorized readers: https://github.com/NoctisBaguette/Embodied-AI-Research/tree/d160e0eac2357674abc156bf6d489b356960278b/experiments/lingbot-competition
 Do not substitute moving upstream examples for this project's reviewed interfaces. The September Day-0 startup holds are historical, not today's instructions. Official rules govern participation; actual source/evidence govern implementation and observed progress; A/B allocation and reporting times are team choices.
 
 Before sending any handoff, include: role; actual changed code/commit; exact starting/test commands; PASSED/FAILED/NOT RUN evidence; missing inputs; remaining essentials and estimated effort; next delivery. A adds artifact/restore/parity status; B adds coverage/resume/aggregation status. No polished slide deck needed.
@@ -208,11 +208,11 @@ A：把选定模型完整导出，做到新进程可加载，并提供训练/评
 B：完成全任务评测调度、可靠续跑与结果汇总，使用 A 提供的模型包。
 队长：继续现有服务器流程，审查证据、提供具体资源、分配 GPU、选择最终模型、整合和提交。
 
-10 月 21 日最后一次队长提供的状态：run-L6iqyVGy 为 RUNNING / BASELINE；模拟器 commissioning 16/16，baseline 已完成 8/32 个 episode，candidate 0/32。8 是完成数，不是成功数；尚不能宣称训练完成或最终成绩。这是人工提供的快照，不是实时监控。watcher 时间戳旧，不等于子进程卡住；最近状态中 baseline 已从 2 增到 8。commissioning 是模拟器就绪检查，不是学习策略评测。过去一次间歇性原生崩溃的根因仍未确定。
+最新队长状态：10 月 21 日北京时间 19:06:05 watcher 为 FAILED；run-L6iqyVGy 为 ERROR / BASELINE；commissioning 16/16，baseline 完成 28/32，candidate 0/32。clean pick_dual_bottles 组合超时，新联合训练尚未开始。28 是完成数，不是成功数。这是人工状态，不是独立 ZIP 审核或实时监控。源码把“单组合 20 分钟”和“整个 baseline 阶段 3 小时”两个上限合并为同一超时消息，具体是哪一个需结合保留包时间信息判断。最后栈在策略动作期间的 observer 相机采集，不能据此认定渲染死锁。commissioning 不算学习策略成绩。watcher 已停止，子报告残留 RUNNING 不代表进程仍活着。过去一次间歇性崩溃的根因仍未确定。
 
 现有小规模流程是 8 任务 × 2 设置 × 2 episode，即每个 checkpoint 32 次。计划为 baseline → 联合训练（最多 100,000 个样本 / 22 小时）→ candidate 评测。22 小时是上限，不是预计完成时间。全量目标是 50 任务 × 2 设置 × 100 次，即一个固定策略 10,000 个 episode；当前小规模流程不等于全量评测。
 
-现在就开始 CPU 工作，不等新训练结束。队长也不需要等你们第一版才能继续当前运行。A/B 可以并行开发；之后真实加载器与评测器联调才依赖双方代码和队长安排的 GPU。不要为了开工先在自己电脑重装完整服务器环境或下载全部训练数据。
+现在就开始 CPU 工作，不等新训练结束。你们开发时，队长负责已停止的运行和下一步审查后的处理；不要自行重启。A/B 可以并行开发；之后真实加载器与评测器联调才依赖双方代码和队长安排的 GPU。不要为了开工先在自己电脑重装完整服务器环境或下载全部训练数据。
 
 2. 收到什么、读什么、缺什么怎么说
 
@@ -309,7 +309,7 @@ A 也要提供 B 所需的进程内 policy API；联调前约定调用签名、�
 
 A 可以先做清单/导出检查，不等最终 checkpoint；B 可以先做调度/记录/汇总，不等真实加载器。CPU fixtures 用于开发，不算原生验收。两人都不改 reference/、official/、服务器冻结版本或 GPU 依赖。新的 GPU 检查由队长协调，不抢占当前作业，也不重启它。
 
-队长继续当前 guarded pilot，审查真实结果、提供资源/GPU、整合部分成果并选择最终模型。candidate 不会自动胜出；保留的 clean50 fallback 也需要完整打包与验证。A/B 不自行提交官方参赛包。
+队长先审查保留的超时证据再决定运行操作，并提供资源/GPU、整合部分成果、选择最终模型。candidate 不会自动胜出；保留的 clean50 fallback 也需要完整打包与验证。A/B 不自行提交官方参赛包。B 的新 runner 应分别报告单组合和整个阶段的 deadline；这不授权修改冻结上限或重跑失败 seed。
 
 内部计划：尽快交第一版 CPU 草稿；22 日整合可用部分；23 日中午做模型/整合决策并交可接手成果；争取 25 日 20:00 组装好提交材料。记录的官方截止为 26 日 24:00 北京时间，提交前再核对公告。内部时间是计划，不是保证或官方要求。若全量评测跑不完，立即给实测缺口，由队长向主办方确认处理，不虚构已完成。
 
@@ -379,7 +379,7 @@ official/ 内四份主办方模板：code-requirements.md、results-template.jso
   https://github.com/RoboTwin-Platform/RoboTwin
   https://huggingface.co/robbyant/lingbot-vla-v2-6b
   https://huggingface.co/datasets/TianxingChen/RoboTwin2.0
-本地证据：progress/2026-10-21-baseline-008.json 是带来源的状态；provenance/public-reference-manifest.json 标识副本；reference/ 有实际 producer/consumer。获授权读者可访问准确私有原档：https://github.com/NoctisBaguette/Embodied-AI-Research/tree/d160e0eac2357674abc156bf6d489b356960278b/experiments/lingbot-competition
+本地证据：progress/2026-10-21-baseline-028-timeout.json 是最新带来源状态（008 快照保留作历史）；provenance/public-reference-manifest.json 标识副本；reference/ 有实际 producer/consumer。获授权读者可访问准确私有原档：https://github.com/NoctisBaguette/Embodied-AI-Research/tree/d160e0eac2357674abc156bf6d489b356960278b/experiments/lingbot-competition
 不要拿不断变化的上游示例替代本项目已审查接口。9 月 Day-0 的启动暂停说明是历史信息，不是今天的指令。官方规则管参赛，实际源码/证据决定实现事实与已观察进度，A/B 分工和日报时间属于团队安排。
 
 每次交接确认附上：角色、真实改动代码/commit、准确启动/检查命令、PASSED/FAILED/NOT RUN 证据、缺失输入、剩余必做项/估时、下次交付。A 加资源/恢复/一致性状态，B 加覆盖/续跑/汇总状态。不需要漂亮 PPT。

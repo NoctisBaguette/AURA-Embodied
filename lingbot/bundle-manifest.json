@@ -24,8 +24,8 @@
     "sha256": "05ffa1e4ef56dd1bbc31423115e577a4d2574be1b3c6d1d6d92a4b830b913c9f"
   },
   "05-SOURCES.txt": {
-    "bytes": 4882,
-    "sha256": "080c1a3bf51905aecc7d3ddddc77a96969d6ced21101f3b5136cb49f4e7cacc2"
+    "bytes": 5113,
+    "sha256": "cd1584e5d5ecd006b7544c3b93c7851e9e4be73fb18f460f07369d8c970f2f91"
   },
   "06-DAILY-REPORT-EN-ZH.txt": {
     "bytes": 9334,
@@ -48,8 +48,8 @@
     "sha256": "dc4dab127ffc413fa20c3a77cac1e47b9cae858911141941dc7c84c26a5699de"
   },
   "CURRENT.md": {
-    "bytes": 2477,
-    "sha256": "168d302cfc751cf29e579e505dfca4d2595ee62cb9cc12b76ad338b4f9707852"
+    "bytes": 2822,
+    "sha256": "219ba3c3266d96b8343a013c011f9cdbc0254897fc299b9770eac1ae7d6d5eeb"
   },
   "GITHUB-WORKFLOW-EN-ZH.txt": {
     "bytes": 6066,
@@ -60,12 +60,12 @@
     "sha256": "ad98ac1285083a68360d9cd74120a70f445fde3470ffa1f4cf25b5b2fe0b5eda"
   },
   "LingBot-Team-Complete-Guide-EN-ZH.txt": {
-    "bytes": 42335,
-    "sha256": "28531f2ca55e855c43b567049b816b7fb8402a2f1a3004b679901b7dbba6c520"
+    "bytes": 43358,
+    "sha256": "32c37e9844450e0af025363c2b72be230309844d64c68adae63ef8872a0deff3"
   },
   "README.md": {
-    "bytes": 2581,
-    "sha256": "ba7f6d4e6800fc541139d1f0f9032b2166ef725c935d039655d8c4e77ef78205"
+    "bytes": 2678,
+    "sha256": "a08241e29c266ffef929966c8bbd2d5dda0754afa4d561a6fa4c9599bb43e2c4"
   },
   "START-HERE.md": {
     "bytes": 934,
@@ -95,9 +95,13 @@
     "bytes": 1230,
     "sha256": "0409af8b10972624c408aced34cc8c4345e893e1d16ee521e3ee5e53719114d6"
   },
+  "progress/2026-10-21-baseline-028-timeout.json": {
+    "bytes": 1988,
+    "sha256": "195b3c015ad4a5d23504724ac09cb0d8482a51da601d13c9fe6f36c1af43fe58"
+  },
   "progress/current.json": {
-    "bytes": 1230,
-    "sha256": "0409af8b10972624c408aced34cc8c4345e893e1d16ee521e3ee5e53719114d6"
+    "bytes": 1988,
+    "sha256": "195b3c015ad4a5d23504724ac09cb0d8482a51da601d13c9fe6f36c1af43fe58"
   },
   "provenance/public-reference-manifest.json": {
     "bytes": 12792,
@@ -116,8 +120,8 @@
     "sha256": "a5a371f17188f602ff611154efce5299836a01a5e16d4b0f9b4bdbf6c714eb89"
   },
   "reference/current-state.json": {
-    "bytes": 1230,
-    "sha256": "0409af8b10972624c408aced34cc8c4345e893e1d16ee521e3ee5e53719114d6"
+    "bytes": 1988,
+    "sha256": "195b3c015ad4a5d23504724ac09cb0d8482a51da601d13c9fe6f36c1af43fe58"
   },
   "reference/inference_common.py": {
     "bytes": 13914,

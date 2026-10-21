@@ -1,32 +1,31 @@
-# Current LingBot state — 21 October 2026
+# Current LingBot state — 21 October 2026, 19:06:05 Beijing watcher update
 
-Source: the captain's latest pasted status. Exact capture time was not supplied. This is not a fresh SSH query or an independently audited run archive.
+Source: captain-pasted status, not a new SSH query or independent run-archive review. This supersedes the earlier RUNNING / 8-of-32 snapshot.
 
 | Item | Last reported value |
 |---|---|
-| Watcher | `wait-v6ie9xo8`, RUNNING |
-| Verified worker / lease | True / True |
-| Linked run | `run-L6iqyVGy`, verified process-tree relationship |
-| Phase | **BASELINE** |
+| Watcher | `wait-v6ie9xo8`, **FAILED** |
+| Worker identity / held lease | False / False |
+| Linked retained run | `run-L6iqyVGy`, **ERROR / BASELINE** |
 | Simulator commissions | **16/16** |
-| Baseline completed | **8/32**, previously 2/32 |
+| Baseline completed | **28/32**; success count not supplied |
 | Candidate completed | **0/32** |
-| Texture presence/header check | 1000/1000, no missing/extra/invalid files |
-| Success counts | Not supplied |
+| Failed case | `baseline/14-pick_dual_bottles-clean` — manager timeout |
+| Failed child record | RUNNING, zero completed episodes, seed 100000, no recorded rejection |
+| Textures presence/header check | 1000/1000; no missing/extra/invalid files |
 
-GPU admission has been passed. The existing checkpoint is being evaluated before new joint training. Let this workflow continue; this snapshot does not call for a restart.
+New joint training was not reached. The retained child RUNNING label is not a live process check. Actual cleanup must be checked in the new package. The review package is now `review-1792580758125196661.zip`; it has not yet been independently inspected.
 
-The watcher's 15:47:19 Beijing timestamp records its transition to RUNNING. The controller blocks while its child workflow executes, so that timestamp is not a per-episode heartbeat. Parent baseline counts are committed after a complete two-episode case and video checks. Recorded GPU samples are historical.
+## What the source establishes
 
-The displayed review package has the same filename as in the earlier 2/32 snapshot. It may lag the live report; do not claim that it contains all eight completed episodes without inspecting it. Commissioning is not learned-policy success. No completed new training, 32/32 baseline, 10,000-episode evaluation or final submission is established.
+The manager uses the earlier of a 20-minute case limit and a three-hour deadline for the entire baseline pilot, but reports both as “Simulator pilot case timed out”. Archive timings are needed to identify the exhausted bound. The stack's repeating 30-second “Timeout” entries are diagnostic dumps, not the manager's stop deadline. The final stack is in observer camera capture during policy actions; it does not prove a deadlock or identify a renderer defect. This is a timeout, not evidence that the earlier SIGSEGV recurred.
 
 ## Next work
 
-- Captain: continue the current workflow and review its actual reports when available; select one checkpoint from the baseline/candidate evidence. No automatic candidate promotion.
-- A: CPU-first export/loading work, followed by coordinated fresh-process validation.
-- B: CPU-first full-suite scheduling/results work, followed by coordinated integration and measured rollout throughput.
-- Both teammates: daily progress reports through 23 October; implementations and reports have not yet been received in this workspace.
+Captain: inspect the new retained package for timing, 28 completed records, policy activity and cleanup before deciding a correction. Keep this failed run and completed evidence; do not restart the whole workflow or change limits based solely on this display. A and B continue their CPU assignments now; no new checkpoint is needed to start inventory/export or scheduler/aggregation work. B's new runner should distinguish case and stage deadlines without changing the frozen release.
 
-Planned workflow: remaining baseline → joint continuation → candidate pilot. The 22-hour training-loop limit is a limit, not an ETA. Full-suite evaluation and final submission are separate downstream work.
+The [complete bilingual guide](LingBot-Team-Complete-Guide-EN-ZH.txt) and source ZIP include this status. Daily reports through 23 October still apply. No teammate implementations/reports or successful final acceptance are claimed. There is no automatic runtime feed or deployment from GitHub.
 
-Machine-readable snapshot: [progress/current.json](progress/current.json). Retained observation: [progress/2026-10-21-baseline-008.json](progress/2026-10-21-baseline-008.json). Update these with an attributed new observation, never a guessed counter.
+Latest attributed snapshot: [progress/2026-10-21-baseline-028-timeout.json](progress/2026-10-21-baseline-028-timeout.json). Earlier 8/32 evidence remains unchanged as history.
+
+中文：最新运行在 baseline 28/32 超时停止，训练尚未开始。20 分钟单组合与 3 小时阶段上限共用一条错误，需检查新包时间信息。A/B 的 CPU 任务继续，不等此次运行修复。

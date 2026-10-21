@@ -20,7 +20,7 @@ Owner pull requests target **lingbot/competition**, not main. Optional daily rep
 
 ## Evidence and references
 
-The last captain-supplied status reports commissioning 16/16 and baseline 8/32, not eight successes or completed training. See [CURRENT.md](CURRENT.md) for the attributed snapshot; this is not live server monitoring. No teammate implementation or native acceptance is claimed by creating these directories.
+The latest captain-supplied status reports a stopped run: ERROR / BASELINE, commissioning 16/16 and baseline 28/32 after a case/stage timeout. New joint training was not reached; 28 is a completion count, not successes. See [CURRENT.md](CURRENT.md) for the attributed snapshot; this is not live server monitoring. No teammate implementation or native acceptance is claimed by creating these directories.
 
 `reference/` contains retained source inputs with host paths replaced by placeholders; they are not a runnable portable release. `official/` retains the supplied organizer templates. Read [the copy manifest](provenance/public-reference-manifest.json) for identities. Weights, datasets, credentials, original private evidence and the full runtime environment are not in this public bundle. Existing AURA/M9a work remains separate.
 

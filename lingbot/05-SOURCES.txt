@@ -33,7 +33,8 @@ The private archive retains original frozen source and engineering evidence. Acc
 私有原档保留准确历史源码及工程证据；新A/B实现统一在本工作区开发。未提供权重、数据或完整环境，缺什么就具体索取。
 
 5. Runtime progress / 运行进度
-progress/2026-10-21-baseline-008.json is the captain-pasted status: run-L6iqyVGy, BASELINE, 16/16 commissions, 8/32 baseline, 0/32 candidate. Exact capture time was not supplied. The watcher update timestamp is not a live heartbeat; the reported review ZIP may be older than current progress. No success score or independent current-run archive audit is claimed.
+progress/2026-10-21-baseline-028-timeout.json is the latest captain-pasted status: watcher FAILED at19:06:05Beijing, run-L6iqyVGy ERROR/BASELINE,16/16commissions,28/32baseline,0/32candidate. The clean bottle case timed out before joint training. Case20minute/stage3hour bounds share a message; exact cause and cleanup require the new retained archive. Earlier008snapshot is historical. No success score or independent current-run archive audit is claimed.
+最新状态为 baseline28/32超时停止，训练未开始；须检查新保留包时间和清理证据。此前008快照仅作历史。
 reference/commission-negative-example.json is actual no-policy commissioning evidence and must never count in learned-policy results.
 
 6. Upstream background / 上游背景
