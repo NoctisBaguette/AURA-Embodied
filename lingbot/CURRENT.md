@@ -1,3 +1,17 @@
+# Current LingBot state — 22 October 2026, Beijing
+
+## Latest: 31 completed episodes verified; targeted recovery prepared
+
+Source: independent inspection of the captain-supplied recovery archive, not a live SSH query. All31 completed policy episodes and their videos validate:3task successes and28task failures. The final randomized bottle case completed its first episode as a failure; its next candidate has no completed record. Joint training has not started. Cleanup/source-preservation receipts pass.
+
+The actual stop was SIGSEGV about five minutes into the case. A recurring diagnostic stack dump ended partially; native cause remains unproved. A separate captain-owned recovery-v2 is prepared and CPU-checked. It removes recurring asynchronous stack dumping, retains31records with provenance, and resumes the interrupted candidate once after fresh qualification and policy identity checks. Once32baseline episodes complete, the existing jointtraining/candidate workflow proceeds. Native recovery-v2 has NOT RUN; this is a mitigation, not a demonstrated fix.
+
+A/B assignments and reports through23October continue. There is no need to wait, obtain a new checkpoint for CPU work, or redistribute the onboarding bundle. The captain's server runtime remains separate from this repository; this update does not deploy or launch it.
+
+中文：已独立检查新归档，确认31次完整episode及视频：3次任务成功、28次失败。最后一个随机瓶子组合的首个episode已完整失败，下一候选尚未完成；训练还未开始。新恢复版本已通过CPU检查：移除周期性异步堆栈转储，保留31次结果，经过新资格检查后仅补未完成候选，再进入训练和候选评测。服务器尚未执行新版，根因仍未证实。A/B继续任务与截至23日的日报，不需要重发入门包。
+
+## Earlier snapshots (superseded)
+
 # Current LingBot state — 21 October 2026, 22:14:03 Beijing watcher update
 
 ## Latest: recovery stopped with a native crash
@@ -58,3 +72,4 @@ The [complete bilingual guide](LingBot-Team-Complete-Guide-EN-ZH.txt) and source
 Latest attributed snapshot: [progress/2026-10-21-baseline-028-timeout.json](progress/2026-10-21-baseline-028-timeout.json). Earlier 8/32 evidence remains unchanged as history.
 
 中文：最新运行在 baseline 28/32 超时停止，训练尚未开始。20 分钟单组合与 3 小时阶段上限共用一条错误，需检查新包时间信息。A/B 的 CPU 任务继续，不等此次运行修复。
+
