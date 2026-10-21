@@ -1,3 +1,7 @@
+SUPERSEDED ONBOARDING / 入门说明已整合
+Read LingBot-Team-Complete-Guide-EN-ZH.txt for the complete A/B assignments, daily reports and GitHub workflow in one file. This older document remains a supporting reference.
+请先读上述完整双语文件；本旧文件仅保留作参考。
+
 LINGBOT GITHUB WORKFLOW / GITHUB 协作说明
 21 October 2026 / 2026 年 10 月 21 日
 

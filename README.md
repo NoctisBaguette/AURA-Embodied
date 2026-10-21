@@ -109,7 +109,7 @@ It records:
 
 ## LingBot competition workspace
 
-The separate [LingBot workspace](https://github.com/NoctisBaguette/AURA-Embodied/tree/lingbot/competition/lingbot) contains code references, current status, A/B assignments and daily reports. Its integration branch is `lingbot/competition`; it does not change the existing AURA/AETHER experiment scope.
+The separate [LingBot workspace](https://github.com/NoctisBaguette/AURA-Embodied/tree/lingbot/competition/lingbot) contains code references and [one complete bilingual guide](lingbot/LingBot-Team-Complete-Guide-EN-ZH.txt) covering context, A/B assignments, daily reports and GitHub collaboration. Its integration branch is `lingbot/competition`; it does not change the existing AURA/AETHER experiment scope.
 
-灵波比赛工作区入口：[`lingbot/`](https://github.com/NoctisBaguette/AURA-Embodied/tree/lingbot/competition/lingbot)。先读 README 与 CURRENT，再按 A/B 分工协作。
+灵波比赛工作区入口：[`lingbot/`](https://github.com/NoctisBaguette/AURA-Embodied/tree/lingbot/competition/lingbot)。先读 [完整双语交接说明](lingbot/LingBot-Team-Complete-Guide-EN-ZH.txt)，已包含 A/B 分工、日报和 GitHub 协作。
 

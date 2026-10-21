@@ -1,9 +1,9 @@
-# Start with the repository workspace
+# Read one complete guide / 先读一份完整说明
 
-Read [README.md](README.md), [CURRENT.md](CURRENT.md), [TASKS.md](TASKS.md) and [GITHUB-WORKFLOW-EN-ZH.txt](GITHUB-WORKFLOW-EN-ZH.txt). Then choose the English/Chinese read-first file and your assigned A/B task card.
+Start with [LingBot-Team-Complete-Guide-EN-ZH.txt](LingBot-Team-Complete-Guide-EN-ZH.txt). Choose English or Chinese: each includes the background, full A/B duties, daily-report template through 23 October, source-reading list, AI prompts and optional GitHub workflow.
 
-Repository branch: `lingbot/competition`. A's branch is `lingbot/portable-package`; B's branch is `lingbot/full-evaluation`. Owner PRs target the integration branch. All work is scoped under `lingbot/`.
+You do not need to piece together the old read-first, reporting and GitHub files. After reading, inspect your role's actual source files and start CPU work. GitHub access and the next training checkpoint are not prerequisites for the first draft.
 
-The current dated snapshot reports baseline 8/32 and commissioning 16/16. No fresh archive audit or completed training is claimed. Runtime references contain placeholder host paths and are not a deployable release; see the source map and provenance manifest.
+选择英文或中文部分，完整覆盖背景、A/B 分工、日报、交付与 GitHub。无须拼接旧文件。读完按角色查看真实源码即可开始 CPU 工作；不必等训练结束，也不必先配置好 GitHub。
 
-每日汇报到 23 日的要求保持有效。先读 GitHub 协作说明，再进入 A/B 任务。文件存在不代表工具已实现或验证通过。
+The source ZIP includes this same guide: [LingBot-AURA-Workspace-20261021.zip](deliverables/LingBot-AURA-Workspace-20261021.zip).

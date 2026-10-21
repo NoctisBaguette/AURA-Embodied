@@ -3,7 +3,7 @@ Repository edition, 21 October 2026.
 
 1. Current team workspace / 团队工作区
 https://github.com/NoctisBaguette/AURA-Embodied/tree/lingbot/competition/lingbot
-A works on lingbot/portable-package; B on lingbot/full-evaluation. PRs target lingbot/competition. See GITHUB-WORKFLOW-EN-ZH.txt. These are our work assignments, not organizer requirements.
+A works on lingbot/portable-package; B on lingbot/full-evaluation. PRs target lingbot/competition. See LingBot-Team-Complete-Guide-EN-ZH.txt for the full assignments, reporting and GitHub workflow. These are our work assignments, not organizer requirements.
 A/B 在各自分支开发，由整合分支审查合入。具体分工属于团队安排。
 
 2. Organizer / 主办方

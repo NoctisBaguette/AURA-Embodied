@@ -4,12 +4,12 @@
     "sha256": "4ce17d510904682fb878f5ba79173aad3fa0c75a5012ae61e9051f72ccf76ed7"
   },
   "00-READ-FIRST-EN.txt": {
-    "bytes": 14618,
-    "sha256": "ff398e79a9d38b91d107ed2daea217056eb823e9504d502c622161e3df41515c"
+    "bytes": 14911,
+    "sha256": "a01a2bd962fb15a87205c2d2bfb2da476c2534944798c10d742f3de80824cc72"
   },
   "00-READ-FIRST-ZH.txt": {
-    "bytes": 13082,
-    "sha256": "72c27c52a00d805df669f9d2db7599c5bd463ad77b46f8dad05b264cd96aca2a"
+    "bytes": 13375,
+    "sha256": "2291b80cb60557b14a26573a96409c586665e9c505b5271c27001d16ff414c50"
   },
   "02-AI-PROMPT-A.txt": {
     "bytes": 6813,
@@ -24,20 +24,20 @@
     "sha256": "05ffa1e4ef56dd1bbc31423115e577a4d2574be1b3c6d1d6d92a4b830b913c9f"
   },
   "05-SOURCES.txt": {
-    "bytes": 4814,
-    "sha256": "7aa83c0b09b97d7f9e13d9efc4bb1610303bd009102eb62a4246111cf6682dce"
+    "bytes": 4882,
+    "sha256": "080c1a3bf51905aecc7d3ddddc77a96969d6ced21101f3b5136cb49f4e7cacc2"
   },
   "06-DAILY-REPORT-EN-ZH.txt": {
-    "bytes": 9041,
-    "sha256": "794127e76261347257ae771b835b87d1b44bca79d1396a25cead56f197aed8ab"
+    "bytes": 9334,
+    "sha256": "2d2b0fbe34fea6cf2625de29ae4fc31b9a2f5a19786b660bec42b1081775ff40"
   },
   "A-PORTABLE-PACKAGE.md": {
     "bytes": 4716,
     "sha256": "7aa06c133a05ffb3b85ef808bf7a5a9e5ba6af8eb4015df9f2335ebd4348b8f3"
   },
   "AGENTS.md": {
-    "bytes": 2505,
-    "sha256": "e6b6215664fb0b5ac92a64a2bec5e60ec5b1d4e2877054dc105adbc2d5f4cd52"
+    "bytes": 2661,
+    "sha256": "6f8aef948c441458f59da907bdf1b92545daa564831b5a57b66e56d08d5bd8a0"
   },
   "B-EVALUATION-RESULTS.md": {
     "bytes": 4810,
@@ -52,20 +52,24 @@
     "sha256": "168d302cfc751cf29e579e505dfca4d2595ee62cb9cc12b76ad338b4f9707852"
   },
   "GITHUB-WORKFLOW-EN-ZH.txt": {
-    "bytes": 5773,
-    "sha256": "1806b14e6c578af16d5c285557d4f3e92c5393a6434a8ee106d7465cc28dff6c"
+    "bytes": 6066,
+    "sha256": "5fe11d67979d34f548dee78d0af8146d26a572494bbd8d37c973db5b578a9c45"
   },
   "INTERFACES.md": {
     "bytes": 2622,
     "sha256": "ad98ac1285083a68360d9cd74120a70f445fde3470ffa1f4cf25b5b2fe0b5eda"
   },
+  "LingBot-Team-Complete-Guide-EN-ZH.txt": {
+    "bytes": 42335,
+    "sha256": "28531f2ca55e855c43b567049b816b7fb8402a2f1a3004b679901b7dbba6c520"
+  },
   "README.md": {
-    "bytes": 4004,
-    "sha256": "ece8ff66bc93b62e1e9298679f9020ec93816f66faca26bf29c6cae28521c327"
+    "bytes": 2581,
+    "sha256": "ba7f6d4e6800fc541139d1f0f9032b2166ef725c935d039655d8c4e77ef78205"
   },
   "START-HERE.md": {
-    "bytes": 874,
-    "sha256": "337b8647293fb347b1326ee57c50054b75740cec48b4d871d3179e1926feade3"
+    "bytes": 934,
+    "sha256": "e7fb64a1f2a932ae6fe9b49ef5e23a2653488425a80bbe3a265e37d7fafe2c69"
   },
   "TASKS.md": {
     "bytes": 1923,
@@ -96,8 +100,8 @@
     "sha256": "0409af8b10972624c408aced34cc8c4345e893e1d16ee521e3ee5e53719114d6"
   },
   "provenance/public-reference-manifest.json": {
-    "bytes": 12793,
-    "sha256": "2d1d92c3ac0b8ec9bdd89141dc1c8c68f203ac77a175b924b80a11f2446c676b"
+    "bytes": 12792,
+    "sha256": "fc164410934e74cf8d33ba2b97c82c7a0b890dddb9fab03c98e33368cb078f01"
   },
   "reference/commission-negative-example.json": {
     "bytes": 567,
@@ -220,8 +224,8 @@
     "sha256": "6157bc8f54b06bef7b8f6fd54a7656be80a9bec90e62faeb932b3559f2dcf87c"
   },
   "reports/README.md": {
-    "bytes": 623,
-    "sha256": "bbc708f46e64249808507d9c3d9915d3f53e33076e91af09715df2f9360bc9e8"
+    "bytes": 964,
+    "sha256": "ec13c962e609aee2d2af80f664ed0cfcc0ef86dab9cd2589e0937d889fdceee7"
   },
   "submission/evaluation/README.md": {
     "bytes": 464,

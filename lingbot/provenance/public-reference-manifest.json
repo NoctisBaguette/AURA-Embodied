@@ -11,14 +11,14 @@
   "files": {
     "00-READ-FIRST-EN.txt": {
       "source_sha256": "c63754dfcc9f03d3768b89167e02159139cf32dcf6f4d580c6550f45f67b6808",
-      "public_sha256": "ff398e79a9d38b91d107ed2daea217056eb823e9504d502c622161e3df41515c",
-      "public_bytes": 14618,
+      "public_sha256": "a01a2bd962fb15a87205c2d2bfb2da476c2534944798c10d742f3de80824cc72",
+      "public_bytes": 14911,
       "source_changed": true
     },
     "00-READ-FIRST-ZH.txt": {
       "source_sha256": "195b7348cdd0fba5cb29266f2cde1be145fe56f5f748659dbbfffc2b4f828c51",
-      "public_sha256": "72c27c52a00d805df669f9d2db7599c5bd463ad77b46f8dad05b264cd96aca2a",
-      "public_bytes": 13082,
+      "public_sha256": "2291b80cb60557b14a26573a96409c586665e9c505b5271c27001d16ff414c50",
+      "public_bytes": 13375,
       "source_changed": true
     },
     "02-AI-PROMPT-A.txt": {
@@ -41,9 +41,9 @@
     },
     "06-DAILY-REPORT-EN-ZH.txt": {
       "source_sha256": "794127e76261347257ae771b835b87d1b44bca79d1396a25cead56f197aed8ab",
-      "public_sha256": "794127e76261347257ae771b835b87d1b44bca79d1396a25cead56f197aed8ab",
-      "public_bytes": 9041,
-      "source_changed": false
+      "public_sha256": "2d2b0fbe34fea6cf2625de29ae4fc31b9a2f5a19786b660bec42b1081775ff40",
+      "public_bytes": 9334,
+      "source_changed": true
     },
     "A-PORTABLE-PACKAGE.md": {
       "source_sha256": "eb1295e6ef0083bec1d3d0cff0eb8bb68008820e3a6e9689a1b0845e69e74b40",

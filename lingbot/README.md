@@ -1,43 +1,27 @@
-# LingBot competition workspace / 灵波比赛工作区
+# LingBot team workspace
 
-This is the shared GitHub home for our LingBot-VLA 2.0 / RoboTwin competition work. It is separate from AURA's AETHER/M9a experiments.
+**Read one file: [Complete Team Guide — English / 中文](LingBot-Team-Complete-Guide-EN-ZH.txt).**
 
-**Integration branch:** [`lingbot/competition`](https://github.com/NoctisBaguette/AURA-Embodied/tree/lingbot/competition/lingbot). Start here when returning in a new chat.
+It contains the project context, full A/B assignments, source-reading order, shared interfaces, acceptance checks, daily reports through 23 October, AI prompts and GitHub/direct-file handoff. Choose one language; both cover the complete instructions. Older onboarding files are optional reference appendices.
 
-**Latest captain-reported snapshot, 21 October:** `run-L6iqyVGy` is RUNNING / BASELINE; simulator commissioning **16/16**, baseline **8/32**, candidate **0/32**. Completion counts are not success scores. Read [CURRENT.md](CURRENT.md) for the evidence limits.
+**只需先读一份：[团队完整交接说明（中英双语）](LingBot-Team-Complete-Guide-EN-ZH.txt)。** 背景、A/B 分工、日报、交付和 GitHub 都已整合；选一种语言即可。开始实现时按其中清单阅读真实源码。
 
-## Start here
+Send the same guide to both teammates and tell each person their role. For code/templates, use this branch or [the source ZIP, including the guide](deliverables/LingBot-AURA-Workspace-20261021.zip). GitHub is optional: teammates may send reports and changed-code ZIPs directly to the captain.
 
-1. Read [CURRENT.md](CURRENT.md), [TASKS.md](TASKS.md) and [GITHUB-WORKFLOW-EN-ZH.txt](GITHUB-WORKFLOW-EN-ZH.txt).
-2. Read [English instructions](00-READ-FIRST-EN.txt) or [中文说明](00-READ-FIRST-ZH.txt).
-3. A reads [the packaging assignment](A-PORTABLE-PACKAGE.md); B reads [the evaluation assignment](B-EVALUATION-RESULTS.md). Both read [INTERFACES.md](INTERFACES.md).
-4. Your AI can use [A's prompt](02-AI-PROMPT-A.txt) or [B's prompt](03-AI-PROMPT-B.txt). Actual source navigation is in [CODE-MAP.md](CODE-MAP.md).
-5. Report daily through 23 October using [the bilingual report template](06-DAILY-REPORT-EN-ZH.txt). Place public summaries in [reports/](reports/README.md), or send them privately to the captain.
+## Work locations
 
-## Where work lives
+| Owner | Branch | New implementation |
+|---|---|---|
+| A: portable export/load | `lingbot/portable-package` | `submission/portable/` |
+| B: evaluation/results | `lingbot/full-evaluation` | `submission/evaluation/` |
+| Captain: integration | `lingbot/competition` | Reviews A/B pull requests and evidence |
 
-| Location | Purpose |
-|---|---|
-| `reference/runtime/` | 25 retained runtime reference files for inspection |
-| `reference/inference_common.py` | Existing preprocessing and inference support |
-| `reference/configs/` | Clean/randomized scene configuration references |
-| `official/` | Exact supplied organizer templates |
-| `submission/portable/` | A's new implementation area; currently awaiting teammate work |
-| `submission/evaluation/` | B's new implementation area; currently awaiting teammate work |
-| `reports/` | Dated teammate reports; no reports received yet |
-| `progress/` | Attributed status snapshots, not an automatic server feed |
-| `provenance/` | Original/public file identities and copy limitations |
+Owner pull requests target **lingbot/competition**, not main. Optional daily reports go under `reports/YYYY-MM-DD/A.md` or `B.md` on the owner's branch, with the PR link sent to the captain. This does not grant write access or automate review/deployment.
 
-## How changes move
+## Evidence and references
 
-A works on `lingbot/portable-package`; B works on `lingbot/full-evaluation`. Their pull requests target **`lingbot/competition`**, where the captain reviews and integrates them. The current server does not deploy from GitHub automatically. Changing this repository does not restart or update the running workflow.
+The last captain-supplied status reports commissioning 16/16 and baseline 8/32, not eight successes or completed training. See [CURRENT.md](CURRENT.md) for the attributed snapshot; this is not live server monitoring. No teammate implementation or native acceptance is claimed by creating these directories.
 
-This repository is public. Reference copies replace personal server paths with `/path/to/...` placeholders. They are useful source references, **not a runnable portable release**. Their hashes can differ from the exact frozen server files; see [provenance](provenance/public-reference-manifest.json). Weights, datasets, credentials, detailed private incidents and original server evidence are outside this public workspace. Missing dependencies are requested specifically, not fabricated.
+`reference/` contains retained source inputs with host paths replaced by placeholders; they are not a runnable portable release. `official/` retains the supplied organizer templates. Read [the copy manifest](provenance/public-reference-manifest.json) for identities. Weights, datasets, credentials, original private evidence and the full runtime environment are not in this public bundle. Existing AURA/M9a work remains separate.
 
-The original archive remains in the private [Embodied-AI-Research project](https://github.com/NoctisBaguette/Embodied-AI-Research/tree/main/experiments/lingbot-competition). Future A/B implementation work belongs here; original frozen references and historical evidence stay in that archive. Access to the private archive is not assumed for teammates or their AI tools.
-
-## 中文快速说明
-
-以后从本目录进入 LingBot 工作。先读 CURRENT、TASKS 和 GitHub 协作说明，再读自己的 A/B 任务卡。A 在 `lingbot/portable-package` 开发模型打包/加载，B 在 `lingbot/full-evaluation` 开发评测；PR 都提交到 `lingbot/competition`，由队长整合。原有 AURA/M9a 工作保持独立。
-
-当前最后一次队长报告为基线 8/32、模拟器验收 16/16，不是 8 次成功，也不代表训练完成。进度是人工提供的快照，GitHub 不会自动读取服务器。公网参考代码中的主机路径已替换为占位符，不能直接当作服务器发布版本执行。每日汇报与部分代码交接要求仍然有效。
+Supporting technical references: [interfaces](INTERFACES.md), [code map](CODE-MAP.md), [A card](A-PORTABLE-PACKAGE.md), [B card](B-EVALUATION-RESULTS.md), [sources](05-SOURCES.txt). They do not replace the single complete onboarding guide above.

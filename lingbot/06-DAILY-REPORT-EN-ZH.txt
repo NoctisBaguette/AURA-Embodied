@@ -1,3 +1,7 @@
+SUPERSEDED ONBOARDING / 入门说明已整合
+Read LingBot-Team-Complete-Guide-EN-ZH.txt for the complete A/B assignments, daily reports and GitHub workflow in one file. This older document remains a supporting reference.
+请先读上述完整双语文件；本旧文件仅保留作参考。
+
 DAILY TEAM REPORT / 每日进度报告
 For A and B | 21–23 October 2026 | Beijing time / 北京时间 UTC+8
 

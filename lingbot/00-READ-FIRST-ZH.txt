@@ -1,3 +1,7 @@
+SUPERSEDED ONBOARDING / 入门说明已整合
+Read LingBot-Team-Complete-Guide-EN-ZH.txt for the complete A/B assignments, daily reports and GitHub workflow in one file. This older document remains a supporting reference.
+请先读上述完整双语文件；本旧文件仅保留作参考。
+
 REPOSITORY EDITION: First read GITHUB-WORKFLOW-EN-ZH.txt. Work under lingbot/ on your A/B branch; PRs target lingbot/competition. This ZIP contains a top-level lingbot/ directory; instruction paths are relative to it. Public source references contain placeholder host paths and are not a deployable release.
 GitHub版：先读协作说明；解压后进入lingbot/，路径以该目录为准。参考代码主机路径已替换为占位符，不能直接部署。
 
