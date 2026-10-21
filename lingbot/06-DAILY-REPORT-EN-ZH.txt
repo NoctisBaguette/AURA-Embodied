@@ -1,0 +1,126 @@
+DAILY TEAM REPORT / 每日进度报告
+For A and B | 21–23 October 2026 | Beijing time / 北京时间 UTC+8
+
+ENGLISH INSTRUCTIONS
+
+Send Baguette one short report each day through 23 October, including when progress is limited or blocked. AI-assisted writing is welcome. Check that it describes your actual files and results before sending it. Do not spend time making a polished presentation: plain text or Markdown is enough.
+
+Suggested team check-in times:
+  21 October: by 22:00, after the first work session. If you receive this after 22:00, send a short starting-status report before stopping for the day.
+  22 October: by 22:00.
+  23 October: by 12:00 noon, with the latest code/patch and handover notes. This earlier final check-in supports the existing noon checkpoint/integration decision and leaves time for catch-up work that afternoon.
+
+These are internal planning times, not organizer deadlines. If a time is impossible, tell the captain when you can send the report. Report a blocking missing input or likely missed delivery as soon as it is known; do not wait for the daily check-in.
+
+Aim for about 200–400 English words, or a similarly short Chinese report. Attach/link actual changed files, commits and relevant logs separately. Do not resend the entire unchanged project. Explicitly separate code written, CPU checks passed, GPU/native checks passed, and checks NOT RUN. Waiting for captain-owned GPU time is a dependency, not a validation pass.
+
+COPY-AND-FILL REPORT
+
+Date/time (Beijing):
+Name / role (A or B):
+Overall delivery outlook: ON TRACK / AT RISK / BLOCKED — one-sentence reason.
+
+1. Completed since the last report
+   What now works? Give the file/commit or output location for each concrete change.
+   If no implementation was completed, say what was inspected or attempted and why.
+
+2. Verification evidence
+   Check → PASSED / FAILED / NOT RUN → command and real log/result file.
+   Label CPU/fixture checks versus actual checkpoint/GPU/simulator execution.
+   Do not report model readiness or evaluation success from a scaffold or fixture.
+
+3. Remaining work and estimate
+   List the must-finish items and their current state: NOT STARTED / IN PROGRESS / IMPLEMENTED, NOT VERIFIED / VERIFIED.
+   For each unfinished item, estimate hands-on hours remaining (a range is fine).
+   List GPU time and external waiting separately; use UNKNOWN if you cannot estimate yet.
+
+4. Blockers / input needed from Baguette or the other teammate
+   Exact missing artifact, decision or access; why it is needed; when it is needed.
+   What can continue while waiting?
+
+5. Next delivery
+   The next specific file or working behavior, and expected delivery time in Beijing.
+   State whether the 23 October handover is still feasible, and what is at risk.
+
+6. Catch-up / takeover notes
+   If the captain needs to take over: latest commit/ZIP, starting command, known failure, and first unfinished step.
+   State which task you recommend transferring, its estimated remaining effort, and what you will continue owning. Ownership changes are agreed with the captain, not assumed.
+
+7. Attachments
+   Changed code/patch or commit:
+   Real logs/check results:
+   Open issues / missing inputs:
+
+ROLE-SPECIFIC CONTENT — KEEP IT CONCRETE
+
+A: briefly state artifact-inventory status, export/loader status, entrypoint/documentation status, and fresh-process restore/prediction-comparison status. If weights or fixed reference inputs are missing, identify exactly which ones. A loader that has not loaded real weights remains unverified.
+
+B: briefly state 100-cell dry-run coverage, ledger/resume behavior, aggregation/negative-test status, A-loader integration status, and any actual evaluation coverage/throughput. Write zero real episodes if only fixtures ran. Infrastructure setup rejections and commissioning are not completed policy episodes.
+
+For the 23 October report, include your current code even if incomplete, exact reproduction commands and a prioritized list of unfinished essentials. Do not wait until everything is perfect to hand over useful work. The report itself does not replace implementation or acceptance checks.
+
+OPTIONAL AI PROMPT FOR WRITING THE REPORT
+
+Using my actual changed files, commands, logs and stated availability, draft today's A/B report in the format above. Ask only for missing facts needed to report accurately. Do not invent progress, tests, hours or completion percentages. Separate implemented-but-unverified work from verified behavior, CPU fixtures from native execution, and hands-on effort from waiting for GPU/assets. Make blockers, the next delivery and the work the captain may need to take over explicit. Keep the report concise. If you cannot inspect a cited file, label the claim as my report rather than independently verified.
+
+中文说明
+
+请 A、B 两人从 10 月 21 日到 23 日每天各向 Baguette 发一份简短进度报告，即使当天进度有限或被卡住也要说明。可以让 AI 帮忙写，但发送前要核对是否符合真实文件和运行结果。不需要做漂亮 PPT，纯文本或 Markdown 即可。
+
+建议的团队同步时间：
+  10 月 21 日：第一轮工作后，22:00 前。如果收到本说明时已过 22:00，当天结束前发一份简短起始状态即可。
+  10 月 22 日：22:00 前。
+  10 月 23 日：中午 12:00 前，同时交最新代码/补丁及接手说明。最后一次提前到中午，是为了配合原定模型/整合决策，并给下午补进度留时间。
+
+这些是团队内部计划，不是比赛官方截止时间。时间确实不合适就提前告诉队长何时能交。发现缺关键输入或可能错过交付时，及时说，不要等到日报时间。
+
+控制在大约 400–800 个中文字，复杂阻塞可以另附说明。实际改动、commit 和关键日志单独附上或给链接，不必每天重发整个未变的项目。区分“写了代码”“CPU 检查通过”“GPU/原生检查通过”和“未运行”。等待队长安排 GPU 是依赖，不能算验证通过。
+
+复制填写的报告模板
+
+日期/时间（北京时间）：
+姓名 / 角色（A 或 B）：
+整体交付判断：按计划 / 有延期风险 / 被阻塞 —— 一句话原因。
+
+1. 上次报告后完成了什么
+   现在具体能做什么？每项给文件、commit 或结果位置。
+   如果尚未完成实现，说明检查了什么、尝试了什么以及原因。
+
+2. 验证证据
+   检查项 → PASSED / FAILED / NOT RUN → 准确命令和真实日志/结果文件。
+   标明 CPU/测试样例与真实 checkpoint/GPU/仿真执行的区别。
+   只有框架或样例时，不能宣称模型可用或真实评测成功。
+
+3. 剩余工作和估时
+   列出必须完成的事项，状态写：未开始 / 进行中 / 已实现但未验证 / 已验证。
+   每项未完成工作估计还需要多少实际动手时间，范围也可以。
+   GPU 执行时间和等待外部资源的时间另列；估计不了就写 UNKNOWN。
+
+4. 阻塞 / 需要队长或另一位队友提供什么
+   明确文件、决定或访问条件，说明用途和最晚需要时间。
+   等待时哪些工作还能继续？
+
+5. 下一份交付
+   下一份具体文件或可运行行为，以及预计交付的北京时间。
+   23 日是否仍能交接？什么部分有延期风险？
+
+6. 补进度 / 接手说明
+   如果队长需要接手：最新 commit/ZIP、启动命令、已知失败和第一个未完成步骤。
+   建议转交哪一项、还需要多少工时、自己继续负责什么。职责转交要与队长确认，不能单方面默认已移交。
+
+7. 附件
+   修改代码/补丁或 commit：
+   真实日志/检查结果：
+   未解决问题/缺失输入：
+
+按角色补充具体信息
+
+A：简述资源清单、导出/加载器、入口和文档、新进程恢复/输出一致性对比各自的状态。缺权重或固定参考输入时写明具体缺什么。没有加载过真实权重的加载器仍属于未验证。
+
+B：简述 100 个组合的 dry-run 覆盖、记录/续跑、汇总/反例测试、与 A 加载器对接，以及真实评测覆盖和吞吐情况。如果只跑过样例，真实 episode 就写 0。基础设施错误、场景拒绝和 commissioning 不能算完成的策略评测。
+
+23 日请交当前代码，即使尚未全部完成，也要附准确复现命令和按优先级排列的剩余必做项。不要为了等全部完美才交出已有成果。报告本身不代替代码实现或验收。
+
+可交给 AI 的日报提示词
+
+请根据我实际修改的文件、命令、日志和说明的可用时间，按上面的 A/B 模板起草今天的日报。只询问准确报告所缺的事实，不编造进度、测试、工时或完成百分比。区分已实现但未验证与已验证、CPU 样例与原生执行、动手工时与等待 GPU/资源。明确阻塞、下一份交付和可能需要队长接手的工作，保持简短。如果你无法读取引用文件，就注明是我提供的情况，而不是你独立验证的结论。

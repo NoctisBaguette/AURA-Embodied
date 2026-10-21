@@ -1,0 +1,144 @@
+REPOSITORY EDITION: First read GITHUB-WORKFLOW-EN-ZH.txt. Work under lingbot/ on your A/B branch; PRs target lingbot/competition. This ZIP contains a top-level lingbot/ directory; instruction paths are relative to it. Public source references contain placeholder host paths and are not a deployable release.
+GitHub版：先读协作说明；解压后进入lingbot/，路径以该目录为准。参考代码主机路径已替换为占位符，不能直接部署。
+
+LINGBOT TEAM HANDOFF — READ FIRST (ENGLISH)
+Repository edition | 21 October 2026 | All planning times: Beijing / UTC+8
+For the two teammates and their own AI coding assistants.
+
+1. WHAT WE ARE BUILDING
+
+We are entering the LingBot-VLA 2.0 competition's RoboTwin simulation track. A policy takes three camera images, the robot's joint/gripper state and a task instruction, then predicts robot actions. Our training uses the prescribed clean demonstrations across 50 Aloha-AgileX tasks. The submitted model must be accompanied by working code, evaluation results and reproduction instructions.
+
+The official evaluation scope is 50 tasks × 2 settings (clean and randomized) × 100 episodes = 10,000 episodes. Our current 32-episode baseline and 32-episode candidate comparison are a small pilot, not that complete evaluation.
+
+We now have three concurrent jobs:
+- Captain Baguette + the existing assistant: operate the current run, review evidence, choose a checkpoint and integrate the submission.
+- A: make the model exportable, independently loadable and reproducible.
+- B: build full-suite evaluation, resumption and correct result accounting.
+
+These are substantial engineering assignments. They do not require designing another model or starting another training experiment.
+
+2. CURRENT STATUS — A DATED SNAPSHOT, NOT A LIVE DASHBOARD
+
+The latest status pasted by the captain on 21 October reports:
+  Watcher: wait-v6ie9xo8; verified worker identity and held lease: true/true
+  Run: run-L6iqyVGy; status RUNNING; phase BASELINE
+  Simulator commissioning: 16/16
+  Baseline episodes completed: 8/32
+  Candidate episodes completed: 0/32
+  Texture presence/header check: 1000/1000
+
+The run has passed GPU admission and entered baseline evaluation of the existing model. New joint training has not yet started in this snapshot. “8/32” is a completion count, not eight successes. Success counts and videos are not supplied by this status excerpt.
+
+The watcher's 15:47:19 timestamp records its transition to RUNNING. Its controller waits for the child workflow and does not rewrite that timestamp for every episode. The separately read run report contains stage progress. Parent episode counts are committed after each two-episode task/setting case and video checks, so the counter need not move continuously.
+
+The displayed package may be intermediate. This handoff is not a completed result or weight package. No independent audit of this run's archive has occurred in preparing this revision. Previous intermittent native failure is not proven fixed by this progress.
+
+Leave the current workflow running. Teammates must not restart it or modify its installed release. The captain supplies newer status when available.
+
+3. WHAT TO RECEIVE, READ AND UPLOAD TO YOUR AI
+
+Receive LingBot-AURA-Workspace-20261021.zip. The same ZIP works for both roles; the captain tells each person whether they own A or B.
+
+Read in this order:
+  1) This English file OR 00-READ-FIRST-ZH.txt; the two versions cover the same work.
+  2) A-PORTABLE-PACKAGE.md OR B-EVALUATION-RESULTS.md, according to your role.
+  3) INTERFACES.md — the shared integration contract.
+  4) The relevant official/ templates and reference code listed in your role card.
+  5) 06-DAILY-REPORT-EN-ZH.txt for daily progress reports through 23 October.
+  6) 04-RETURN-CHECKLIST.txt before delivering changes.
+
+For your AI assistant:
+- Attach the ZIP and paste the contents of 02-AI-PROMPT-A.txt or 03-AI-PROMPT-B.txt. Choose either language inside that prompt.
+- Require it to list the files it actually read and identify the real producer/consumer functions before proposing edits.
+- If it cannot open a ZIP, extract locally and attach the read-first file, your role card, INTERFACES.md, your AI prompt, the return checklist and your role's source files. The source list is in section 9 below.
+- If it cannot edit or execute code, ask for concrete files/patches and mark all execution checks as NOT RUN. An explanation or invented test output is not a completed implementation.
+- There are no weight binaries, training dataset, complete simulator installation or credentials in this ZIP. It supports source inspection and CPU development. Request specific missing artifacts instead of reinstalling/downloading the entire project.
+
+4. A — PORTABLE MODEL AND REPRODUCTION ENTRYPOINTS
+
+Goal: another process can load the same trained policy from a documented package, without depending on old experiment folders or the captain's home directory.
+
+First work:
+1) Inspect joint50_train.py checkpoint saving/restoration, model_core.py model state, and joint50_policy.py inference. Record exactly which state is saved and consumed.
+2) Inventory the base model revision, adapter, five trained projection modules, persistent buffers/model step, tokenizer/processor/configs, clean50 normalization and preprocessing/inference settings. Adapter weights alone are incomplete.
+3) Implement configurable export/load tools in new submission files. Require explicit paths, validate required inputs and reject missing/mismatched state. A CPU dry-run must not claim that a model was loaded.
+4) Prepare README.md, train.sh, eval.sh, configs/ and src/. train.sh represents the actual clean50 training pipeline and provenance; eval.sh delegates to B's evaluator.
+
+The current joint-training checkpoint format contains adapter_model.safetensors, projection_weights.safetensors, adapter_config.json, resume-state.pt, norm-stats-clean50.json and checkpoint.json. The existing fallback checkpoint must be inventoried separately: do not assume it has the identical layout. The source ZIP has no actual checkpoint directory or captured input/noise tensors.
+
+GPU validation, coordinated by the captain:
+- Start with the existing checkpoint so development need not wait for new training.
+- Export and load in a fresh process, checking exact restoration of named tensors, buffers and step.
+- Compare predictions with the reference on the same fixed input/noise: normalized output (1,50,55), decoded robot commands (50,14). Record tolerance and actual differences; do not invent a tolerance or equality result.
+- Verify the package's inference loader does not need training images or historical run directories. Record every external inference dependency.
+
+First delivery target: approximately four hours after assignment, a reviewable CPU draft containing the inventory, package structure, CLI and checks. This is NOT a four-hour target for final GPU acceptance.
+
+Final deliverables: export/load implementation, manifest and pinned dependencies, working entrypoints/configs/README, fresh-process reload/parity evidence, and explicit remaining external assets. A owns packaging and loading, not a second evaluation implementation.
+
+5. B — COMPLETE EVALUATION AND TRUSTWORTHY RESULTS
+
+Goal: run one fixed policy across all 100 task/setting cells, resume work correctly and emit the official counts with traceable episode records.
+
+First work:
+1) Read official/results-template.json, joint50_common.py, joint50_sim.py and manager.py. Inspect how real episodes end and how the parent accepts them.
+2) Implement a CPU-only dry-run covering exactly those 100 cells. Record task, setting, target episodes, proposed seeds, shard/output location and checkpoint content identity. The 100-episode target applies to EACH cell.
+3) Extend task/episode parameterization in a new submission runner. The current pilot hard-codes two episodes and has a finite candidate-seed budget; review these assumptions rather than repeatedly launching it unchanged.
+4) Implement immutable per-episode records and safe resumption. Prevent duplicate counting, conflicting records and mixed checkpoints. Distinguish completed policy failure, invalid setup rejection and fatal infrastructure failure.
+5) Aggregate actual completed policy episodes into the official results schema. Keep a separate coverage/error ledger and pending-work queue. Unfinished cells retain their actual counts. Commissioning and synthetic fixtures never count as scores.
+
+Validation:
+- CPU checks cover true/false outcomes, duplicate/conflicting records, mixed checkpoint identities, malformed counts, partial/error records, unexpected task/settings, and exclusion of commissioning/test fixtures.
+- After A's loader is available, use coordinated GPU time for a small real evaluation and a controlled interruption/resume test.
+- Measure real end-to-end throughput, including loading, simulator setup and inference. Estimate remaining wall time and resource needs before full rollout. Commissioning time is not a policy-episode speed estimate.
+- Preserve official task success checks, task action limits and existing model input/output semantics. Review any seed-budget/evaluator changes with the captain and document them.
+
+First delivery target: approximately four hours after assignment, the 100-cell dry-run, aggregation/validation code and resumption design. Actual 10,000-episode evaluation is a later compute task, not today's first draft.
+
+Final deliverables: runner/config, dry-run manifest, validator and meaningful tests, real results.json when episodes exist, coverage/error records and reproducible commands. Report/checkpoint links must identify actual files. A final score cannot mix per-task best checkpoints.
+
+6. SHARED INTERFACE AND DEPENDENCIES
+
+Agree the contract in INTERFACES.md before coding. Its CLI names are proposals, not commands already implemented in the ZIP.
+
+A supplies a model package and verified loader. B's evaluate command accepts that package. A's eval.sh calls B's evaluator. Every evaluation record identifies the same package content manifest, not just a mutable path.
+
+The existing inference contract is three RGB images (240×320×3 uint8), a 14-D float32 robot state and an instruction. Preprocessing maps state/actions to 55 dimensions. Preserve the existing 50-action chunk, 10 denoising steps, FP32 behavior and zero-padding; this handoff does not authorize changing the policy.
+
+A and B can develop independently against this contract. B can use explicitly marked CPU fixtures for wiring, but fixtures cannot establish model or simulator correctness. Integrated real evaluation waits for a working loader, a chosen checkpoint and coordinated GPU resources.
+
+Use separate new paths/branches, suggested names lingbot/portable-package and lingbot/full-evaluation. Keep reference/runtime/ unchanged. Do not upgrade the running environment, replace the planner, occupy the current training GPU or edit active server releases. Escalate an actual required interface change with a concrete explanation and patch.
+
+7. WHAT THE CAPTAIN CONTINUES TO DO
+
+The current workflow runs independently: commissioning → 32 baseline episodes → joint continuation (up to 100,000 examples / 22-hour training-loop limit) → 32 candidate episodes. These are limits and planned stages, not an ETA or guarantee of completion.
+
+The captain reviews evidence and selects one reproducible checkpoint. A candidate is not promoted automatically. The retained clean50 model remains a fallback candidate, subject to export/loading/evaluation checks; its broad score is not established.
+
+The captain supplies specific missing checkpoint metadata/weights/reference inputs, coordinates GPU time, reviews teammate patches, integrates A+B and handles actual submission. With two teammates, B also helps draft the evaluation section of the report; A supplies loading/training details. Everyone reports: files/commit, checks, one concrete blocker and the exact input needed.
+
+Proposed internal targets: CPU drafts on 21 October; first integrated load/evaluation on 22 October; checkpoint decision by 23 October noon; evaluation and packaging through 25 October; submission materials ready by 25 October 20:00. All are planning targets dependent on actual progress and compute. The official deadline is 26 October 24:00 Beijing. Check current organizer notices before submission.
+
+8. WHAT TO RETURN
+
+Send a short daily report to Baguette on 21, 22 and 23 October, even if blocked. AI-written summaries are acceptable after checking actual facts. Use 06-DAILY-REPORT-EN-ZH.txt: completed files, real checks, remaining work/effort, blockers, next delivery and takeover instructions. Suggested times are 22:00 on 21/22 October and 12:00 on 23 October (Beijing). If receiving this late on the 21st, send the starting status before stopping for the day. Raise blocking dependencies immediately. The 23rd report includes the latest partial code and reproduction commands so the captain can plan catch-up work that afternoon. These are team planning times.
+
+Use 04-RETURN-CHECKLIST.txt. Return a commit/patch or a small ZIP of new/changed files, exact commands and actual logs, dependencies and interface changes, unresolved items and a short acceptance summary. Keep synthetic fixtures separate. Do not return only chat screenshots or an AI-written claim of success. Do not send large weights through a chat unless specifically arranged; provide the exact artifact identity/location.
+
+9. SOURCES AND AUTHORITY
+
+Official requirements and templates define submission obligations. The bundled reference code defines our existing implementation. Owner cards/interfaces define our chosen work split. Sources and limitations are in 05-SOURCES.txt.
+
+A's minimum source attachments if ZIP reading fails:
+  official/code-requirements.md; official/reproduction-template.md
+  reference/runtime/joint50_train.py; model_core.py; joint50_policy.py
+  reference/runtime/lingbot_zero_padding.py; reference/inference_common.py
+
+B's minimum source attachments if ZIP reading fails:
+  official/results-template.json; official/code-requirements.md
+  reference/runtime/joint50_common.py; joint50_sim.py; manager.py
+  reference/runtime/joint50_policy.py; reference/commission-negative-example.json
+  reference/configs/demo_clean.yml; reference/configs/demo_randomized.yml
+
+Unqualified source filenames above are under reference/runtime/. Also provide the shared instruction files listed in section 3. If a required import is not bundled, identify it and request it; do not fabricate its behavior.

@@ -1,0 +1,48 @@
+SOURCES AND VERSION IDENTITY / 来源与版本
+Repository edition, 21 October 2026.
+
+1. Current team workspace / 团队工作区
+https://github.com/NoctisBaguette/AURA-Embodied/tree/lingbot/competition/lingbot
+A works on lingbot/portable-package; B on lingbot/full-evaluation. PRs target lingbot/competition. See GITHUB-WORKFLOW-EN-ZH.txt. These are our work assignments, not organizer requirements.
+A/B 在各自分支开发，由整合分支审查合入。具体分工属于团队安排。
+
+2. Organizer / 主办方
+https://tianchi.aliyun.com/competition/entrance/532514/information
+https://tianchi.aliyun.com/competition/entrance/532514/introduction
+The public requirements were checked on 21 October: prescribed clean training data, 50 tasks, clean/randomized evaluation, 100 episodes per task/setting, matching code/weights/results/reproduction materials and 26 October 24:00 deadline. Verify later official notices before submission. Internal report times and task targets are team choices.
+公开规则于10月21日核对，提交前再查最新公告；内部日报和交付时间不是官方规定。
+
+3. Organizer templates / 官方模板
+official/code-requirements.md
+official/results-template.json
+official/reproduction-template.md
+official/optional-robot-demo-template.md
+These four files retain the exact bytes supplied in the captain's template ZIP; filenames were normalized. Original archive SHA256:
+c301f471417b6d37bf9b7b325f72b08bb3f6d108a967ef64cba41d62258b74c0
+Use official/results-template.json for final output. The runtime copy is retained separately and must be compared rather than assumed identical.
+
+4. Exact private archive and public references / 私有原档与公开参考副本
+https://github.com/NoctisBaguette/Embodied-AI-Research/tree/d160e0eac2357674abc156bf6d489b356960278b/experiments/lingbot-competition
+Source handoff: LingBot-Team-Handoff-20261021-v3.zip
+Source SHA256: 69eb8c91e1f0d1fc60fd8f0e5e61f99d9ed48d543e457c0f38f44dfb83be4112
+
+The public workspace has 25 runtime reference files, inference_common.py, scene configurations and a commission-negative example. Python source transformations are limited to replacing host-specific absolute paths with /path/to/... placeholders. The public reference manifest records original and public SHA256 values. A copied source file can therefore differ from a deployed-source hash; it is not a qualified portable runtime. Do not update original integrity pins merely to make placeholder copies pass runtime checks.
+公开参考Python代码只替换主机特定绝对路径；manifest分别记录原版和公开版哈希。它们不是已经验收的便携运行版本，不能为通过检查而修改原版校验标识。
+
+The private archive retains original frozen source and engineering evidence. Access is not assumed for teammates or their AI. New A/B implementation belongs in this AURA workspace, while that archive remains the original-evidence source. Weights, data and complete server/upstream environments are not included. Request specific missing artifacts.
+私有原档保留准确历史源码及工程证据；新A/B实现统一在本工作区开发。未提供权重、数据或完整环境，缺什么就具体索取。
+
+5. Runtime progress / 运行进度
+progress/2026-10-21-baseline-008.json is the captain-pasted status: run-L6iqyVGy, BASELINE, 16/16 commissions, 8/32 baseline, 0/32 candidate. Exact capture time was not supplied. The watcher update timestamp is not a live heartbeat; the reported review ZIP may be older than current progress. No success score or independent current-run archive audit is claimed.
+reference/commission-negative-example.json is actual no-policy commissioning evidence and must never count in learned-policy results.
+
+6. Upstream background / 上游背景
+https://github.com/Robbyant/lingbot-vla-v2
+https://github.com/RoboTwin-Platform/RoboTwin
+https://huggingface.co/robbyant/lingbot-vla-v2-6b
+https://huggingface.co/datasets/TianxingChen/RoboTwin2.0
+Do not substitute moving upstream examples for this project's reviewed inputs. The captain's Day-0 briefing is dated 22 September and contains historical startup holds; it is not the current run instruction. Existing upstream notices and licensing remain applicable; this workspace does not relicense dependencies or weights.
+
+7. Authority / 优先级
+Current official rules govern participation. Actual sources define implementation facts. Attributed run evidence defines observed progress. Owner cards and interfaces define assigned changes. Identify concrete conflicts for captain review; do not silently change the policy or evaluation semantics.
+最新官方规则、准确源码、带来源的运行证据及明确任务接口各自适用于对应问题；冲突时指出原因，不暗中改策略或评测语义。

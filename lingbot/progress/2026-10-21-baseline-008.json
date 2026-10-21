@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "recorded_date_beijing": "2026-10-21",
+  "exact_capture_time": null,
+  "evidence_type": "USER_PASTED_STATUS_NOT_ARCHIVE_AUDIT",
+  "watcher": "wait-v6ie9xo8",
+  "watcher_status": "RUNNING",
+  "worker_identity_verified": true,
+  "worker_lease_held": true,
+  "watcher_record_updated_beijing": "2026-10-21T15:47:19+08:00",
+  "run": "run-L6iqyVGy",
+  "run_status": "RUNNING",
+  "phase": "BASELINE",
+  "commission_completed": 16,
+  "commission_target": 16,
+  "baseline_completed": 8,
+  "baseline_target": 32,
+  "candidate_completed": 0,
+  "candidate_target": 32,
+  "baseline_successes": null,
+  "candidate_successes": null,
+  "texture_presence_header_verified": 1000,
+  "texture_expected": 1000,
+  "reported_package_kind": "WATCHER-LINKED RUN PACKAGE (may be intermediate)",
+  "limits": [
+    "Status snapshot supplied by captain, not an independent archive review or continuous monitoring",
+    "Episode completion count is not task success count",
+    "Recorded watcher timestamp and GPU samples are historical",
+    "The displayed package name is unchanged from the earlier 2/32 snapshot and may lag live progress",
+    "No completed joint training, full-suite score or final submission established"
+  ]
+}
