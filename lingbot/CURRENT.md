@@ -1,5 +1,20 @@
 # Current LingBot state — 21 October 2026, 19:06:05 Beijing watcher update
 
+## Archive-reviewed update: shared three-hour cutoff confirmed
+
+The newly supplied archive has now been inspected. The baseline-ready timestamp is16:05:48Beijing and the timeout log19:05:48; the interrupted bottle case began about one minute earlier. The shared three-hour stage limit caused this stop; there is no evidence here of a20minute bottle-case stall or renderer deadlock. The old ambiguity below is retained as the earlier status-only interpretation.
+
+All28completed baseline episodes are preserved and independently checked, including their videos;3were successful. This is incomplete pilot evidence, not an official score.16commission receipts and cleanup/source-preservation receipts pass. Joint training did not start.
+
+A separate captain-owned recovery release is prepared and CPU-checked, but NOT RUN on the server. It verifies original archive/source/checkpoint identities, repeats fresh admission/normal/16commission gates, imports the28completed records with provenance, and runs only the remaining4baseline episodes before training/candidate evaluation. The interrupted original seed restarts from setup in a new run; its earlier partial attempt remains unscored. The shared three-hour pilot limit is removed for bothbaseline/candidate; individual20minute case bounds and fatal/cancel guards remain. The old run/release stays intact.
+
+A/B assignments and daily reports remain unchanged; both can work now. They do not need another handoff bundle for this runtime correction. Latest evidence: [progress/2026-10-21-timeout-reviewed.json](progress/2026-10-21-timeout-reviewed.json). Recovery execution and outcome are still pending; no automatic server deployment or monitoring occurred.
+
+中文：新ZIP已确认是整个baseline的3小时上限中断了刚开始约1分钟的瓶子组合。28次已完成/3次成功的证据保留。独立恢复版本已通过CPU检查，尚未在服务器执行；验证后复用28次，仅补剩余4次，再训练/评测。A/B任务和日报不变。
+
+## Earlier user-status interpretation (superseded above)
+
+
 Source: captain-pasted status, not a new SSH query or independent run-archive review. This supersedes the earlier RUNNING / 8-of-32 snapshot.
 
 | Item | Last reported value |
