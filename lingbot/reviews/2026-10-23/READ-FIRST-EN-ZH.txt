@@ -1,0 +1,50 @@
+LingBot overnight takeover — 23 October 2026 Beijing
+Internal finish date: 24 October. Evidence snapshot: captain's 22 October 17:24 UTC terminal output.
+
+ENGLISH
+
+Tonight's server action is already requested. Do not restart training.
+The existing detached recovery job completed 32 baseline episodes with 3 successes. At update 24,880 / 49,760 samples, the captain requested the existing graceful stop. It finishes a completed update, then generated-action diagnostics, checkpoint save/restore checks and 32 candidate episodes. The second status was only about 18 seconds later. It does not prove failure or completed evaluation. Training progress may remain at its last update during post-loop checks. Training consumed about 11.35 hours; low loss does not establish task success.
+
+We are taking over A's core export/loading implementation so this work does not wait for teammates to wake up. New code lives in lingbot/submission/portable on a separate review branch. Original A ZIP remains unchanged. Implemented: strict five-file fallback versus six-file joint checkpoint validation; exact LoRA/projection identities; tensor payload checks; atomic export; complete copied-asset manifest; offline FP32 model construction; adapter/projection/buffer/counter restoration; captured-input/noise fresh-process parity; bounded GPU admission. Read its README before native use.
+
+Validation: 27 synthetic CPU boundary tests pass. Builder function matches retained actual builder AST except a GPU log label. Original fallback identity equals retained resolved inputs. No Torch/model weights/CUDA are available in this review environment; real loading, portability and RoboTwin success are NOT RUN here. This is implementation for qualification, not a verified final submission. Do not mark A done until real load/parity passes. train.sh, B's evaluation integration and final submission packaging remain separate work.
+
+What A does on waking:
+1. Review the takeover diff and tests instead of rewriting a second loader.
+2. Captain selects a completed immutable checkpoint and arranges access to existing assets; do not use .partial folders. Run CPU export/verification with the model environment and a captured matching reference.
+3. In the captain's allocated GPU window, fresh-process parity must pass. Report actual missing assets or full error, not a synthetic PASS. B consumes PortablePolicy.predict(packet_bytes, noise=explicit_float32_array) and package manifest hash; it returns normalized actions and decoded commands.
+4. Finish reproduction-entrypoint integration with B; keep one fixed checkpoint and original task success/seed rules.
+
+What B does on waking:
+1. Continue the existing evaluation/resume/aggregation code.
+2. Review current candidate results against the same 32 baseline episode identities. Report completed/failures/infrastructure errors separately and include one whole-action-sequence video for every failing task/setting reviewed.
+3. Check actual camera input and predicted arm/gripper motion, not loss alone. Coordinate the inference input/output contract with A; do not independently change normalization, action order, chunk length, success predicates or checkpoints per task.
+
+Captain's morning decision:
+- If candidate is still running and advancing, preserve it.
+- If complete, compare paired success changes and videos, then freeze one globally selected checkpoint. A 32-episode pilot is not an official 10,000-episode result.
+- If failed or unchanged for an unexpectedly long period, inspect this run's current policy.log/check.log/report and failure evidence. Do not restart the completed prefix or launch another long training run on loss alone.
+- If export parity fails, repair that interface before evaluating the exported model. Passing parity only reproduces behavior; it does not improve task competence.
+
+Daily report (23 October, and final handoff on 24 October): role, exact commit/files, completed checks and commands, actual results/videos, missing inputs, blockers, remaining hours, next action, takeover instructions. AI may help write it; label observed results separately from guesses. GitHub report under lingbot/reports/YYYY-MM-DD/A.md or B.md is convenient; sending the TXT/code ZIP remains acceptable. No messages were sent to teammates by the assistant.
+
+RESEARCH RESULTS — sources and applicability are in RESEARCH-EN-ZH.txt.
+There is a confirmed upstream BF16/FP32 evaluation issue, but our retained runtime already enforces FP32. Official clean-only checkpoint is not released according to an upstream contributor. The available official RoboTwin checkpoint uses a different post-training scope; our supplied competition briefing requires base initialization and clean-only training. Other V2 LoRA implementations provide engineering reference, not proof of a ready legal policy for our tasks. No pretrained model has been swapped and no active server source has been modified.
+
+简体中文
+
+今晚的服务器操作已经请求成功，不要重启训练。
+现有后台 recovery 作业已完成32个基线回合，其中3个成功。队长在24,880次更新、49,760个样本时请求正常结束训练。现有流程会完成当前更新，再做生成动作诊断、保存/恢复检查，然后评测32个候选模型回合。两次状态相隔约18秒，并不代表失败，也不代表评测完成。训练循环结束后的检查期间，训练进度文件可能仍保留最后一次更新。训练累计约11.35小时；loss低不能证明机器人能完成任务。
+
+我们现在接手A的核心导出/加载代码，不等队友醒来。实现放在独立审核分支的lingbot/submission/portable，A原始ZIP保持不变。已实现：旧基线5文件/新联合训练6文件分别校验，精确LoRA和投影层名称/形状，tensor数据长度检查，原子导出，完整文件清单，离线FP32模型构建，adapter/投影层/持久buffer/计数器恢复，固定输入和噪声的新进程输出比对，有限等待的GPU准入。运行前阅读该目录README。
+
+验证范围：27项合成CPU边界测试通过。模型构建函数与留存的实际函数AST一致，仅GPU日志标签改变；旧checkpoint identity与原resolved-inputs完全一致。本审查环境没有Torch、模型权重或CUDA，真实模型加载、可移植性和机器人任务成功率尚未验证。这是待联调的实现，不是可直接提交的已验证成品。真实加载和输出一致性通过前，不能把A任务标为完成；train.sh、B的评测对接及最终提交打包仍需完成。
+
+A醒来后：审核接手代码，不要再另写一套加载器；由队长选定完整不可变checkpoint并提供现有资产；先CPU导出/校验，再在队长安排的GPU窗口做新进程固定输入/噪声一致性验收；如实报告缺少文件或完整错误；最后与B对接复现入口。不要用.partial目录，不要把合成测试称为真实加载通过。
+
+B醒来后：继续评测/恢复/汇总代码；对照同一组32个基线身份检查候选模型结果；分别报告完成的失败回合和基础设施错误，附实际视频及观察；检查相机输入、左右臂和夹爪的全过程；与A共用固定接口，不能各自改归一化、动作顺序、chunk长度、成功判据或按任务切换checkpoint。
+
+队长明早：若候选评测正常推进，继续现有作业；若完成，比较配对结果和视频，再选一个全局固定checkpoint；若失败或长时间无变化，查看本次作业的policy.log/check.log/report及错误证据，不重跑已完成部分，不因loss低而再开长训练。导出一致性失败则先修接口；一致性通过仅说明复现相同行为，不等于任务能力改善。
+
+23日日报和24日最终交接必须包括：角色、具体commit/文件、执行命令和检查、真实结果/视频、缺少输入、阻塞、剩余工时、下一步、接手说明。可以让AI协助写，但要区分实测与猜测。可提交到lingbot/reports/YYYY-MM-DD/A.md或B.md；直接发TXT和代码ZIP也可以。本次没有自动联系队友。

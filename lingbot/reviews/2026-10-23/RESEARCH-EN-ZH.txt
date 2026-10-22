@@ -1,0 +1,34 @@
+LingBot V2 targeted research — 22 October 2026 UTC / 23 October Beijing
+
+1. Confirmed evaluation precision issue, already covered by our runtime.
+https://github.com/Robbyant/lingbot-vla-v2/issues/29#issuecomment-5556899647
+Upstream contributor LuFan31 reports reproduced BF16 degradation and says FP32 restores their published benchmark. Our actual joint50_policy and retained builder use all-FP32 parameters, FP32 inputs/noise, eager attention and highest float32 matmul precision. This is important confirmation, not a newly applicable performance fix. No BF16 conversion or new dependency stack is justified tonight.
+
+2. Clean-only official checkpoint is not available as a rescue download.
+https://github.com/Robbyant/lingbot-vla-v2/issues/43#issuecomment-6262097777
+On 19 October, contributor LuFan31 states they trained a clean-only version but do not plan to release it. The official available RoboTwin card reports 93.52% clean / 92.80% randomized:
+https://huggingface.co/robbyant/lingbot-vla-v2-6b-robotwin
+The official README's post-training example uses clean and randomized data together:
+https://github.com/Robbyant/lingbot-vla-v2
+Our supplied Day0 competition briefing requires official base initialization and clean-only demonstrations. Do not initialize our competition model from the post-trained checkpoint or transplant its weights. A separately disclosed diagnostic control is a different experiment and has not been run here.
+
+3. Useful real LoRA/export contribution, not a demonstrated task-success solution.
+https://github.com/Robbyant/lingbot-vla-v2/pull/45
+Reviewed PR head: 301a963bd7ab4194c1843bbb655d155da8242272, still unmerged when read.
+It adapts language AND action attention; our current baseline adapts action attention, and new continuation also trains five state/action/time projections. The PR reports real 6B/50-episode adjust_bottle data checks over 100 updates, exports and deterministic eager-path comparisons. It explicitly makes no converged-policy or task-success claim. Its adapter format and trainable scope differ from ours. It preserves routing buffers and precision, supporting our requirement to restore these too. It reports repeat differences on native fused inference; that observation is a reason for our fixed-input repeat/parity gate, not proof that our model has the same issue. Do not drop its adapter into our loader or silently change MoE kernels mid-run.
+
+4. Other released V2 LoRA exists, but uses a different robot/data/action contract.
+https://huggingface.co/ezhoureal/lingbot-vla-v2-unibot-lora
+Author reports rank64 UniBot G1_Dex1, 32 tasks/33,276 episodes, delta arm actions, mean/std normalization and BF16 deployment. Our RoboTwin contract is absolute 14D targets with bounds_99_woclip normalization and FP32. This is export/training reference, not a compatible checkpoint or evidence of clean-only RoboTwin success.
+
+5. RoboTwin reproduction guide has deployment detail, not a ready broad-score rescue.
+https://github.com/ZiguanWang/Robotwin-radeon-cloud
+https://github.com/ZiguanWang/Robotwin-radeon-cloud/blob/main/Reproduce_Guide.md
+Provides actual LoRA/full-training/merge/evaluation commands for AMD ROCm. Its reported 1/1 adjust_bottle result is attached to disabling an optional CUDA denoiser in an AMD setup. Our A100 renderer already produces audited videos. That is not evidence that disabling our renderer features would repair grasping, nor evidence that the guide's model would succeed on all our tasks. Changing planner/evaluator/dependencies wholesale would also invalidate our current comparison.
+
+What these sources justify now: preserve FP32, complete restoration and same-input reproducibility; obtain the candidate's actual paired videos/successes; finish portable inference and evaluation integration. They do not justify a guaranteed score, an overnight whole-stack migration, another long training run without feedback, or violating the supplied training scope.
+
+中文结论
+已找到同版本的真实案例和问题，不是凭空说“再训练就好”。官方评测确实曾有BF16精度导致性能下降的问题，但我们当前留存代码已使用FP32。上游贡献者明确表示clean-only模型暂不发布；公开的高分RoboTwin模型不能按我们的比赛要求直接拿来初始化或替换。
+PR45是有真实6B模型训练/恢复/导出验证的LoRA贡献，但只有100步功能检查，作者明确没有宣称任务成功率提升；其训练范围和adapter格式不同。UniBot的LoRA使用另一种机器人、数据、增量动作和归一化，不能直接套用。AMD复现指南可参考部署方法，其1/1结果与AMD环境去噪器设置相关，不能解释我们已正常渲染但抓取失败的所有问题。
+今晚落实的是精确恢复、导出和固定输入一致性检查；现有作业继续完成候选评测。下一步用候选的真实成功率和视频决定，而不是再根据loss盲目训练。以上问题/PR为来源作者的陈述；本次没有独立复现它们的GPU实验。
