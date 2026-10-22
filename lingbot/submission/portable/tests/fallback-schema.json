@@ -1,0 +1,12 @@
+{
+  "source": "Original retained update-010000 checkpoint.json; metadata subset only",
+  "batch_size": 4,
+  "completed_updates": 10000,
+  "samples_consumed": 40000,
+  "payload_files": [
+    "adapter_config.json",
+    "adapter_model.safetensors",
+    "norm-stats-clean50.json",
+    "resume-state.pt"
+  ]
+}

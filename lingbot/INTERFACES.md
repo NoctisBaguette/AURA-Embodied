@@ -25,3 +25,8 @@ The complete guide defines priorities and reporting. A/B agree this API within t
 ## 22 October checkpoint schema clarification after A's handoff
 
 The original clean50 fallback is update10000/samples40000/batch4, with checkpoint.json plus adapter weights/config, resume-state and normalization (five total files). Its projections remain in the pinned frozen base. The new joint continuation is batch2 and six total files, adding separately trained projection_weights.safetensors. Validate their producer-specific identities and complete file sets; do not fabricate a missing projection file or apply the new cursor formula to the old fallback. See reviews/2026-10-22/01-A-REVIEW-EN-ZH.txt. A's proposed callable loader remains unimplemented, not accepted integration.
+
+
+## 23 October takeover implementation on review branch
+
+A core implementation now lives in submission/portable. export_checkpoint accepts --source-checkpoint with --assets-plan or --assets-root and --output. prepare_assets builds a CPU hash/copy plan from existing assets. load_policy defaults to CPU manifest verification; explicit CUDA mode performs restoration and reference-bound parity after bounded same-UUID admission. PortablePolicy.predict consumes existing NPZ packet bytes and an explicit (1,50,55) float32 noise array, returns normalized/commands/images/lang_tokens/lang_masks. Model construction is not performed on import. B's final scheduler/HTTP bridge and train.sh/eval.sh are still integration work. The code is CPU checked, not a native-qualified or final submission package. See the implementation README for exact CLI and limits.

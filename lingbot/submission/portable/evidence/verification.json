@@ -1,0 +1,18 @@
+{
+  "scope": "CPU synthetic boundary tests and actual retained producer-source inspection",
+  "tests_passed": 27,
+  "real_model_load": "NOT RUN",
+  "cuda": "NOT RUN",
+  "simulator": "NOT RUN",
+  "original_fallback_identity_equals_resolved_inputs": true,
+  "builder_function_ast_matches_retained_with_disclosed_log_substitution": true,
+  "builder_source_sha256": "e87f3036866274b4f5153d7a821059d3c237a288f2d17921a14824022172e5c8",
+  "new_source_sha256": {
+    "export_checkpoint.py": "514bbceb731f44dd15103a6badbb487f2f6d1e16671801b8e9797474ec3531b3",
+    "gpu_admission.py": "429ad4d233af0658dbc83d72f7a8d0df99b7cefbfbc5d1e3dd28714ed84bd35e",
+    "load_policy.py": "4d79062130b03a1d9f180cb2b5a727de092531cdc488f9b081bf43e9b44e6594",
+    "model_builder.py": "0673bb7f0ebd8e103dd24994ea951bb319c4ff95b996367f5dd8ee0aa56e6f9f",
+    "portable_manifest.py": "a85dee712c8083dd70c60dc35afdf717343a6509a1e514f0095b3a9ec5b45e0d",
+    "prepare_assets.py": "714dfee9de188694659a7613711cd19d492db3b429bd6f4898e40102ece13bef"
+  }
+}

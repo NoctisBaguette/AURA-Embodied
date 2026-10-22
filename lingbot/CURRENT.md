@@ -1,3 +1,9 @@
+# Latest — 23 October Beijing: early candidate evaluation requested; portable takeover
+
+Captain terminal observation at 22 October 17:24:51 UTC: run-AQMVYnGr RUNNING/JOINT_TRAINING, baseline32 completed/3successes, candidate0, update24880/samples49760. Existing STOP_TRAIN receipt accepted; the second status about18seconds later is not proof of failure or completion. Post-loop diagnostics/checkpoint/restore then candidate32 are still pending. No restart or new training requested.
+
+Captain authorizes taking over A overnight. This branch implements strict export and fresh-process loader/parity under submission/portable;27CPUboundary checks pass, real Torch/CUDA/model/portability NOT RUN. See reviews/2026-10-23/READ-FIRST-EN-ZH.txt and RESEARCH-EN-ZH.txt. Original A ZIP and running server release remain unchanged. No teammate was contacted. The integration base retains prior status until this review is accepted; this is a manually dated observation, not live monitoring.
+
 ## Latest — 22 October: training23,300; A handoff reviewed; real baseline visuals available
 
 Captain-pasted status reports RUNNING / JOINT_TRAINING,16commissions,32baseline completions,0candidate completions;23,300/50,000updates and46,600samples. Latest batch loss0.0407627 is not a task-success measure. No fresh server query was made.

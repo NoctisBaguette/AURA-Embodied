@@ -1,0 +1,40 @@
+test_admission_stability_and_deadline (__main__.Boundaries.test_admission_stability_and_deadline) ... {"stage": "GPU_ADMISSION", "uuid": "GPU-fixture", "free_gib": 60.0, "utilization": 0.0, "stable_samples": 1, "required_samples": 3}
+{"stage": "GPU_ADMISSION", "uuid": "GPU-fixture", "free_gib": 58.59375, "utilization": 0.0, "stable_samples": 0, "required_samples": 3}
+{"stage": "GPU_ADMISSION", "uuid": "GPU-fixture", "free_gib": 68.359375, "utilization": 0.0, "stable_samples": 1, "required_samples": 3}
+{"stage": "GPU_ADMISSION", "uuid": "GPU-fixture", "free_gib": 68.359375, "utilization": 0.0, "stable_samples": 2, "required_samples": 3}
+{"stage": "GPU_ADMISSION", "uuid": "GPU-fixture", "free_gib": 68.359375, "utilization": 0.0, "stable_samples": 3, "required_samples": 3}
+{"stage": "GPU_ADMISSION", "uuid": "GPU-fixture", "free_gib": 0.09765625, "utilization": 99.0, "stable_samples": 0, "required_samples": 3}
+{"stage": "GPU_ADMISSION", "uuid": "GPU-fixture", "free_gib": 0.09765625, "utilization": 99.0, "stable_samples": 0, "required_samples": 3}
+{"stage": "GPU_ADMISSION", "uuid": "GPU-fixture", "free_gib": 0.09765625, "utilization": 99.0, "stable_samples": 0, "required_samples": 3}
+ok
+test_asset_collision (__main__.Boundaries.test_asset_collision) ... ok
+test_atomic_no_replace (__main__.Boundaries.test_atomic_no_replace) ... ok
+test_atomic_publish (__main__.Boundaries.test_atomic_publish) ... ok
+test_complete_cpu_package_roundtrip_and_tamper (__main__.Boundaries.test_complete_cpu_package_roundtrip_and_tamper) ... ok
+test_duplicate_json (__main__.Boundaries.test_duplicate_json) ... ok
+test_empty_identity (__main__.Boundaries.test_empty_identity) ... ok
+test_empty_package (__main__.Boundaries.test_empty_package) ... ok
+test_empty_payload (__main__.Boundaries.test_empty_payload) ... ok
+test_extra_file (__main__.Boundaries.test_extra_file) ... ok
+test_failed_export_cleanup (__main__.Boundaries.test_failed_export_cleanup) ... ok
+test_hash (__main__.Boundaries.test_hash) ... ok
+test_import_does_not_load_torch (__main__.Boundaries.test_import_does_not_load_torch) ... ok
+test_invalid_tensor_payload (__main__.Boundaries.test_invalid_tensor_payload) ... ok
+test_joint_contract (__main__.Boundaries.test_joint_contract) ... ok
+test_nan (__main__.Boundaries.test_nan) ... ok
+test_old_contract (__main__.Boundaries.test_old_contract) ... ok
+test_original_real_metadata_generation (__main__.Boundaries.test_original_real_metadata_generation) ... ok
+test_partial (__main__.Boundaries.test_partial) ... ok
+test_reserved_plan_destination (__main__.Boundaries.test_reserved_plan_destination) ... ok
+test_same_shape_wrong_projection_name (__main__.Boundaries.test_same_shape_wrong_projection_name) ... ok
+test_tensor_gap (__main__.Boundaries.test_tensor_gap) ... ok
+test_tiny_adapter (__main__.Boundaries.test_tiny_adapter) ... ok
+test_traversal (__main__.Boundaries.test_traversal) ... ok
+test_wrong_batch (__main__.Boundaries.test_wrong_batch) ... ok
+test_wrong_cursor (__main__.Boundaries.test_wrong_cursor) ... ok
+test_wrong_norm (__main__.Boundaries.test_wrong_norm) ... ok
+
+----------------------------------------------------------------------
+Ran 27 tests in 3.771s
+
+OK
