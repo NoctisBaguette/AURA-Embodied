@@ -1,73 +1,61 @@
 # AURA Frontier Watch — Current Research Radar
 
-**Languages:** English · [简体中文](CURRENT.zh-CN.md) · [Chinese reading index / 中文阅读入口](README.zh-CN.md)
+**Languages:** English · [简体中文](CURRENT.zh-CN.md) · [Chinese reading index](README.zh-CN.md)
 
-**Updated:** 2026-10-19. **Latest update type:** cross-project decision checkpoint with targeted source checks; not a new full weekly scan or reproduction.
+**Updated:** 2026-10-22. **Latest issue:** [October 22 weekly watch](2026/2026-10-22.md), [Chinese companion](2026/2026-10-22.zh-CN.md). Prepared manually after the scheduled run failed; no new model tests or native experiments.
 
-## Start here: decisions and collaboration
+## Current decision
 
-Read the [October 19 decision brief](2026/2026-10-19.md), then the [evidence register](2026/2026-10-19-evidence.md) and [team work packages](2026/2026-10-19-team-work.md). These combine AURA's October 15 watch with Embodied-AI's October 19 watch and translate the findings into reviewable choices for the user, HQ and Core/02.
+**No change to the active experiment.** Core continuity v0.2 confirms M9a commissioning/repair, followed by Core acceptance/protocol freeze before fresh evaluation. Respect the current operator pause. Do not restart 02W, migrate the simulator or insert a new memory/policy mechanism because a new paper appeared.
 
-**HQ needs:** which bounded tasks to assign, to whom, with what time/resource limit and reviewer.
+Public naming is AURA; BAGUETTE remains provisional internal naming; historical AETHER-CL identifiers stay unchanged. Authoritative engineering evidence remains on `06-01/aether-cl-m0`, not main's old experiment-log template.
 
-**Core/02 needs:** which hypothesis is worth the next experiment, what comparison discriminates it, what remains unsupported, and whether any active work actually needs to change.
+## October 22 delta
 
-**Teammates need:** exact inputs, outputs, acceptance criteria, dependencies, exclusions and return format. The linked work packages provide those; they are not assignments or new experimental authorization.
-
-## Current execution context — do not reset development
-
-Public architecture identity is **AURA**. AETHER/AETHER-CL remains historical; BAGUETTE is provisional internal Core naming. The current [architecture](../../../ARCHITECTURE.md) already includes task-relevant state transitions, temporal/selective verification and bounded recovery.
-
-The experiment branch `06-01/aether-cl-m0` contains newer M9a commissioning records than the October 9 Core continuity summary. The [commissioning-start record](https://github.com/NoctisBaguette/AURA-Embodied/blob/06-01/aether-cl-m0/docs/research/experiments/AURA_M9a_Commissioning_Start_v0.1.md) and [camera I/O record](https://github.com/NoctisBaguette/AURA-Embodied/blob/06-01/aether-cl-m0/docs/research/experiments/AURA_M9a_Camera_IO_Commissioning_v0.1.md) describe narrow sensor-verifier preparation, retained reporting corrections and a separate fresh-evaluation gate.
-
-The inspected records do not establish completed native camera neutrality or sensor-verifier acceptance. Respect any current operator/HQ pause. No server health, new native result, fresh protocol approval or teammate availability is inferred here.
-
-## What is newly useful from the combined watches?
-
-| Theme | Relevant sources | Research disposition | Execution impact |
+| Item | What was checked | Disposition | Execution impact |
 | --- | --- | --- | --- |
-| Evidence freshness and state revision | REMM + TacitVLA + once-per-episode Fast-VLA | DEEP DIVE scoped to current state/sensing questions | Next-checkpoint candidate after sensing baseline acceptance |
-| Cost-aware intervention | RESCUE + ForkCast; existing AURA recovery evidence | DEEP DIVE | Preserve as the next alternative, not additional M9a recovery behaviors |
-| Efficient learned baseline | Two distinct FastVLA repositories | READ / reproduction-feasibility candidate | One isolated source/artifact feasibility task if HQ allocates capacity |
-| Action-aware episode retrieval | Robota-Embed | DEEP DIVE conceptually | Backlog until usable corpus, action interface and artifacts exist |
-| Evaluation and labeling | LABIT; Anvil as an upstream review lead | READ | Small annotation/protocol task can support current work |
-| Skill reuse and selective reasoning | RoboRSI / ChunkAct; SEAR / LoopWAM retained leads | READ / DEEP DIVE by a bounded question | Not an instruction to train or reproduce every system |
+| UniWALM, October 20 | Primary abstract: joint video/action/language generation and next-step textual memory; not full ablations/code | DEEP DIVE, bounded information-flow comparison | MONITOR/BACKLOG; WP1 comparator, not M9a integration |
+| AWLS, October 20 | Primary abstract: frozen decoder with learned latent-noise adapter | READ | MONITOR/BACKLOG; requires a compatible learned baseline |
+| NVIDIA Isaac expansion, October 21 | Official release: learning/runtime/data updates with distinct access/availability conditions | WATCH / READ | MONITOR/BACKLOG; no pinned-environment or driver change |
+| RoboDojo, October 17–21 news | Official news distinguishes sim agent-track and real-world entries; separate leaderboard retrieval was older | READ / WATCH | MONITOR/BACKLOG; no unqualified overall rank claim |
+| CBST, October 15 | Primary abstract: task-level cross-embodiment transfer under predefined causal/semantic assumptions | READ | MONITOR/BACKLOG; keep transfer separate from sensing ablation |
+| Both FastVLA methods, October 15 | Independently checked primary abstracts; different inference mechanisms | READ / existing REPRODUCE-feasibility candidate | MONITOR/BACKLOG; retain one bounded WP3 feasibility review |
 
-**Critical distinction:** `Garfield-kh/FastVLA` caches task context and runs a streaming actor. `jiuyixu25/FastVLA` prunes visual tokens around compatible VLA backbones. Do not conflate their models, dependencies, checkpoints or experiments.
+The dated issue includes technical explanations, source dates/versions, limitations, reproduction ideas and a complete Chinese companion. Source access was partial for several primary pages; no full-paper or runnable-release audit is claimed.
 
-TacitVLA/Robota-Embed project extracts indicated forthcoming code; a complete runnable release was not verified in this pass. The two FastVLA READMEs advertise more concrete implementation paths, but no checkpoint download, import, local test or native evaluation was executed here.
+## What HQ and Core/02 should decide
 
-## Decisions awaiting the user, HQ and Core
+The [October 19 decision brief](2026/2026-10-19.md), [evidence register](2026/2026-10-19-evidence.md) and [team work packages](2026/2026-10-19-team-work.md) remain the allocation basis. Their [Chinese decision brief](2026/2026-10-19.zh-CN.md), [evidence](2026/2026-10-19-evidence.zh-CN.md) and [work packages](2026/2026-10-19-team-work.zh-CN.md) remain available.
 
-1. **D1:** confirm current M9a gate/blocker and support needs; do not add new mechanisms to its frozen scientific scope.
-2. **D2:** choose one next comparison. Current proposal: evidence freshness/invalidation after sensing acceptance; intervention-value evaluation remains an alternative.
-3. **D3:** choose one learned-baseline feasibility effort, reuse compatible Embodied-AI work, or defer it.
-4. **D4:** assign selected preparation tasks to actual teammates with reviewers and time caps; leave unselected work in backlog.
+- **D1:** confirm M9a's current blocker/pause and support needs; preserve its existing scope and fresh-evaluation gate.
+- **D2:** at the next accepted sensing checkpoint, select one comparison. Evidence freshness/invalidation remains the strongest existing proposal; intervention value remains an alternative. No new experiment is nominated this week.
+- **D3:** approve one isolated learned-baseline feasibility task, reuse compatible Embodied-AI work, or defer. Keep the two FastVLA identities separate; evaluate new infrastructure only against a documented obstacle.
+- **D4:** assign actual people, reviewers and budgets only when HQ/user capacity is known. This radar does not assign teammates.
 
-The detailed options, acceptance criteria and local decision register are in the [team packet](2026/2026-10-19-team-work.md). No decision is marked approved by this radar.
+WP1 may add UniWALM as an integrated alternative in its existing comparison table. WP3 may add an artifact/compatibility row for NVIDIA's announcement. WP2/WP4 keep their scope. These refine existing deliverables rather than generating a fresh task list.
 
-## Working hypothesis
+## Current evidence and source of scope
 
-Reliable manipulation may benefit from task-relevant history, current evidence-supported state, action-relevant prediction and selective recovery/learning. The implementation could be explicit, learned, compiled or hybrid. Longer context, more modules, generated reasoning and more retries are not themselves proof of reliability or transfer.
+Read [Core continuity v0.2](../coordination/BAGUETTE_Core_Research_Continuity_v0.2.md), [architecture](../../../ARCHITECTURE.md), [roadmap](../../../ROADMAP.md), and the experiment-branch [M9a camera commissioning record](https://github.com/NoctisBaguette/AURA-Embodied/blob/06-01/aether-cl-m0/docs/research/experiments/AURA_M9a_Camera_IO_Commissioning_v0.1.md).
 
-The current decision pressure is not simply whether to add memory. It is **which information must stay fresh, which computation must finish before action, and what evidence justifies intervention**. Compare simple alternatives before expanding the architecture.
+M9a isolates non-privileged verification around a preserved executor. The inspected records do not establish sensor-verifier acceptance, current server health or completed fresh M9a results. Missing/stale evidence is not automatically confirmed physical failure.
 
-## Preserved earlier research map
+## Working hypothesis and preserved research
 
-The [October 15 issue](2026/2026-10-15.md) retains RoboRSI, SEAR, ForkCast, REMM, RESCUE, LoopWAM, ChunkAct and physical-interface evaluation. The [October 9 issue](2026/2026-10-09.md) retains Long-WAM, HELM, CRIS-0, VPP2, EvoMem-VLA, FoldBack and related prior art. Earlier frontier classifications remain research leads, not executable assignments or newly revalidated numerical results.
+Reliable manipulation may benefit from relevant history, current evidence-supported state, useful prediction and selective recovery/learning. Explicit, integrated and hybrid implementations remain alternatives. Generating memory text is not evidence that its physical claims are true; freezing decoder weights is not evidence that an adapter leaves behavior unchanged.
 
-DynaHarness, HELM and similar systems remain comparison points. Broad component overlap requires careful novelty wording, not abandoning a valid experimental instrument. The historical Aether naming concern has already been addressed in the current public-naming guidance; do not reopen it automatically each week.
+DynaHarness remains a verified older comparator, not a new weekly release. Its same-capability-library comparison is particularly relevant when separating policy/library strength from execution governance. Existing HELM, Long-WAM, REMM, RESCUE and other historical entries remain leads at their recorded evidence levels; they were not all re-audited this week.
 
-The complete pre-update radar is preserved in [Git history](https://github.com/NoctisBaguette/AURA-Embodied/blob/1986bca1530ac779e34f8d3de5cfe5a2364915c4/docs/research/frontier_watch/CURRENT.md).
+Earlier [October 15](2026/2026-10-15.md) and [October 19](2026/2026-10-19.md) issues are unchanged. The [previous current-radar snapshot](https://github.com/NoctisBaguette/AURA-Embodied/blob/5ef6ee848751277c8754f79a66a29dc3c4e4aadb/docs/research/frontier_watch/CURRENT.md) remains in Git history. No material new persistent-trend judgment was made, so both trend ledgers remain unchanged.
 
 ## Execution-impact footer
 
-**Continue:** latest authorized M9a commissioning/repair scope, subject to current pause and native acceptance gates. Independent physical engineering keeps its own authorization.
+**Continue:** authorized M9a commissioning/repair, subject to pause and acceptance gates.
 
-**Change now:** no new model, intervention, native run or architecture change. Update coordination to the newer branch record.
+**Change now:** watch scheduling/delivery correction only; no scientific or infrastructure change.
 
-**Next checkpoint:** normally zero or one strongest new experiment; evidence freshness/invalidation is the current proposal.
+**Next checkpoint:** zero newly added experiments; preserve evidence freshness/invalidation as the existing candidate.
 
-**Deferred:** large model training, full memory/world-model stacks, additional benchmark platforms and hardware acquisition.
+**Deferred:** large training, new memory/world-model stacks, platform migration and hardware purchases.
 
-**Evidence produced:** source review and a decision/collaboration packet only. Historical reports, architecture decisions and frozen engineering sources are unchanged.
+**Evidence produced:** targeted primary-source/repository review, bilingual synthesis and GitHub publication checks. No new local model test, native run or audited scientific result.
