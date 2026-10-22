@@ -1,0 +1,41 @@
+A — REVIEW OF THE ACTUAL 22 OCTOBER ZIP
+
+ENGLISH
+Original ZIP SHA256: cc91665d463745060257190d981b71b1c99aaf6b653286477c8b9b4851069755.
+Your 7/7 synthetic dry-run was independently reproduced in a separate copy. The separation of CPU evidence from real loading is useful. However, this is a validator/export draft; a usable loader is NOT IMPLEMENTED. load_policy.py returns3 even when Torch/PEFT import successfully. Do not present that as merely waiting to run an implemented loader.
+
+Confirmed boundaries, reproduced in review/review_a_boundaries.py:
+1. checkpoint.json files={} is accepted: the five required payloads need complete hash coverage, not only verification of whatever names happen to be listed.
+2. identity={} is accepted. Inventory warnings must become mandatory identity checks before export/load. Validate values and normalization identity, not presence alone.
+3. Arbitrarily renamed projection tensors and an extra projection tensor are accepted. Equal-shaped state_proj/action_in_proj and multiple768D biases make shape matching unsafe. Bind exact names from the producer/model, require exactly ten tensors, and actually connect the strict mapping config to the validator.
+4. A safetensors declaration of1000FP32 elements with only one payload byte is accepted. Use the real safetensors reader when available or validate dtype/shape byte count, nonnegative offsets, bounds, overlaps/holes, names and metadata correctly. Header reading alone is not tensor validation.
+5. A package manifest with zero files passes verify_package. Verify format/schema/required file set and reconstruct checkpoint validation too; hashes of an arbitrary subset do not establish completeness.
+6. Extra assets can overwrite adapter_config.json, then package verification still passes. Flattening nested assets to basenames also loses layout and collides on config.json/tokenizer files. Preserve relative paths, reject collisions/traversal and bind every required base/tokenizer/processor/config/code asset in the content identity.
+7. A missing extra asset raises after checkpoint files have been copied, leaving partial output. Validate inputs first and publish a new package from staging atomically; do not merge into an existing destination.
+8. dry_run.expect returns True when an expected rejection unexpectedly succeeds. The displayed FAIL does not propagate into all_pass/exit status. patches/dry-run-failure-propagation.patch fixes that one defect; other fixes are still your next implementation work.
+9. LoRA mismatch is report-only and resume-state.pt is not inspected. Real acceptance must require the expected288tensor/3,833,856parameter layout and exact keys/shapes, finite tensors, expected buffers/model_steps, and real restore/parity. A fixture with fake adapter/resume data is explicitly not a real checkpoint.
+
+Important correction to our handoff: there are TWO checkpoint formats.
+- OLD clean50 fallback: update10000,40000samples,batch4; checkpoint.json plus FOUR payloads (adapter weights/config,resume-state,norm stats). No separate trained projection file; projection weights come from the pinned frozen base. Its identity schema is the original resolved-inputs schema.
+- NEW joint continuation: batch2, six total files, including projection_weights.safetensors. Its identity is the joint50_train producer schema. New update10000 is a different checkpoint from old update10000.
+Do not enforce updates*2 or six files on the old fallback, and do not manufacture a projection file to make it pass. Implement explicit supported schemas or reject an unsupported format accurately. Do not infer identity from an update number.
+
+Inputs provided NOW in real-reference/:
+- Exact clean50 normalization JSON, hash ec2d49756c8d5a2b8e4f0bb8c75a8d72c1154e6a8cb5598d5df629ee6a45baed.
+- Actual baseline raw packet and recorded normalized/decoded/noise output for clean pick_dual_bottles seed100000 chunk1, noise777/10denoising steps. Their identity is OLD fallback10000, not the new candidate. Array hashes and source entry names are in provenance.json. This is a recorded comparison fixture, not new inference.
+- Captured runtime metadata/config/source hashes, including model and data settings. Recorded package versions: torch2.8.0, transformers4.57.3, peft0.15.2, numpy1.26.4, datasets3.6.0, lerobot0.4.2,triton3.4.0. These are retained model-runtime identities, not a new live version query. Safetensors version remains unprovided; do not guess it.
+- Actual retained raw-packet preprocessing function (host paths removed elsewhere); it shows resize, transform.apply, masks, mapping and state checks.
+
+Still captain-owned: actual selected weight/resume files, full base/Qwen asset manifests and binaries, current installed source/version confirmation, and coordinated GPU access. Keep these exact missing inputs in one list. Hash strings identify assets but cannot load them. A and B can implement the API and scripts before these bytes arrive.
+
+Next2working hours: apply failure-propagation fix; repair strict manifest/export boundaries; return tests that now reject the reproduced bad packages. Implement load() against the actual builder/restore producer: base + correct adapter + projections when applicable + all persistent buffers/model_steps + correct normalization/processor + cache/zero-padding path. No half-loading or silent missing keys. A owns raw preprocessing/decode; agree one callable wrapper with B so B does not reimplement them. Return train.sh/eval.sh drafts with genuine required inputs and nonzero errors, not placeholder success.
+Acceptance: a clean process loads the full selected policy, runs a matching input/noise reference and compares BOTH normalized1x50x55 and decoded50x14 outputs; record max absolute errors/tolerance and asset identity. Training-mode state and RNG for resume are distinct from inference state. Current recorded decoded reference is float64 before JSON transport; simulator receives its float32 cast. Preserve that distinction; do not silently overwrite reference arrays.
+
+中文
+已在独立副本复现你原包7/7合成CPU自测。它是校验/导出草稿，但真实loader目前是“未实现”，不只是“未运行”：即使torch/peft可导入，load_policy仍返回3。
+实际复现的问题：空checkpoint哈希表通过；identity全空通过；投影张量全改名或多一个张量仍通过；1000个FP32元素却只有1字节载荷的safetensors头通过；空package文件表通过；额外资产可覆盖adapter_config且复核仍通过；相对目录被压平会产生config.json重名；导出缺失资产失败后留下半包；expect在应拒绝却通过时仍返回True，导致all_pass/退出码可能错误。LoRA和resume状态也尚未形成真实验收门槛。
+请运行review/review_a_boundaries.py对照证据，先修复必需文件完整哈希覆盖、准确identity、精确张量名/数量/类型/形状、合法数据区、目录/重名检查、暂存目录原子发布及拒绝测试。patches/已给expect的单项修复，其余仍需实现。形状相同不等于张量身份相同。
+我们交接说明需要纠正：旧fallback是batch4/update10000/samples40000，总共5文件，没有单独投影权重文件；投影来自固定base。新joint续训才是batch2、6文件、包含训练后的projection_weights。两者同叫update10000也不是同一个checkpoint。请使用明确的格式分支和对应identity，不能伪造投影文件或对旧格式硬套updates*2。
+real-reference/现在提供真实旧baseline输入/噪声/输出对、准确norm JSON及哈希、已捕获模型配置/版本/来源哈希、真实packet_observation实现。这个parity样本属于旧fallback，不可拿来要求新候选输出一样。参考decoded为传输前float64，模拟器收到其float32转换；请保留区别。
+仍需队长提供：所选真实权重/resume文件、完整base/Qwen资产及manifest、当前环境核实和GPU联调窗口。哈希不能代替权重本身。没有GPU不阻塞现在实现loader/接口/脚本和严格CPU拒绝测试。
+接下来2个工作小时交修复文件和反例拒绝结果，然后按实际producer实现base、adapter、适用的projections、所有buffers/model_steps、norm和processor、缓存/zero-padding完整恢复。A统一负责原始输入预处理和动作解码，与B约定一个调用边界，避免两份不一致实现。验收必须新进程真实加载，并比较同checkpoint、同输入、同噪声下normalized和decoded两级输出，记录最大误差、容差和完整资产身份。训练resume还另需optimizer/scheduler/RNG。

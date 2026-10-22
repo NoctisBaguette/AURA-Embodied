@@ -1,0 +1,463 @@
+LINGBOT — COMPLETE TEAM GUIDE / 团队完整交接说明
+22 October 2026 — revised for delivery by 24 October | Beijing, UTC+8 / 时间均为北京时间
+
+ONE READING FILE FOR BOTH TEAMMATES. English first; 完整中文版在后半部分。
+This replaces the earlier scattered onboarding/GitHub instructions. Read ONE language, then your role's actual source files. You do not need to assemble the older guides to understand your assignment.
+本文件整合背景、A/B 全部分工、日报、交付、GitHub 和 AI 使用说明。选择一种语言阅读即可；开始写代码时再阅读对应源码，无须拼接旧说明。
+
+SEND WITH THESE TWO FILES / 队长发送方式
+1) This TXT; 2) LingBot-AURA-Workspace-20261022.zip. Tell each recipient A or B.
+English message: “You are [A/B]. Please read one language of the attached guide and use the ZIP as source material. Our internal finish date is 24 October; this plan uses 20:00 Beijing as the cutoff. Please reply with your role, available work hours and any immediate blocker. Start the CPU draft now; send code and evidence, even if incomplete, at the listed checkpoints. AI assistance is fine, but verify its output.”
+中文消息：“你负责[A/B]。请先选一种语言读完整说明，再用ZIP里的源码开工。我们的内部截止是10月24日，本计划具体按北京时间20:00安排。请回复职责、这三天可用时间和当前阻塞。现在先做CPU草稿，到节点就交代码和证据，未完成也交。可以用AI，但要自己核对输出。”
+Only the date was set by the captain; 20:00 is an explicit planning assumption, not a newly verified organizer deadline. / 队长指定了24日，20:00是本计划明确采用的安排，不是新核实的主办方截止。
+
+======================================================================
+ENGLISH
+======================================================================
+
+1. READ FIRST — WHAT WE ARE DOING
+
+We are preparing a LingBot-VLA entry for the RoboTwin competition. The policy takes three robot-camera images, robot state and a language instruction, then predicts a chunk of robot actions. We need a reproducible model package and trustworthy evaluation results, as well as the model itself.
+
+Captain: Baguette. A and B are role labels; the captain tells each teammate which role they own. Read both role summaries so you understand the handoff, then work on your assigned role.
+
+A = make the selected trained policy exportable, complete and loadable in a fresh process, with usable reproduction entrypoints.
+B = build evaluation across all tasks/settings, reliable resume and honest result aggregation, consuming A's package.
+Captain = keep the existing server workflow moving, review evidence, supply specific assets, allocate GPU time, choose the final policy and integrate/submit the work.
+
+Latest captain-supplied status on 22 October: the recovery workflow is RUNNING / JOINT_TRAINING. Commissioning 16/16 and baseline 32/32 are complete; training has reached 5,420/50,000 updates and 10,840/100,000 examples; candidate evaluation is still 0/32. This is a pasted status snapshot, not a live feed or a new archive audit. Earlier audited evidence contained 31 completed policy episodes, including 3 successes; the latest final bottle result is consistent with 3/32 overall. That is a weak small pilot, not zero successes across every task, and not a full 50-task score. Candidate quality is unknown. Neither lower training loss nor completed commissioning proves improved task success. Historical crashes are retained; do not claim the intermittent native cause is solved.
+
+The current guarded pilot is 8 tasks × 2 settings × 2 episodes = 32 episodes per checkpoint. Its plan is baseline → joint training (at most 100,000 examples / 22 hours) → candidate evaluation. The 22-hour limit is a bound, not a completion estimate. Full evaluation targets 50 tasks × 2 settings × 100 episodes = 10,000 episodes for one fixed policy. The pilot is not that full evaluation.
+
+Start CPU work NOW. Neither teammate needs to wait for new training to finish. The captain keeps the current server workflow running, reviews its results and arranges resources while you develop; do not restart it yourselves. A and B can develop concurrently; real A-loader/B-evaluator integration needs both implementations and coordinated GPU access later. Do not recreate the whole server environment or download all training data onto your laptop just to start.
+
+2. WHAT YOU RECEIVE, WHAT TO OPEN, WHAT TO REQUEST
+
+The captain sends both teammates:
+  • This complete TXT, with your assigned role A or B stated in the message.
+  • LingBot-AURA-Workspace-20261022.zip, OR the canonical repository link below. Both provide the code/template reading material; the ZIP also includes this guide.
+
+Canonical workspace:
+https://github.com/NoctisBaguette/AURA-Embodied/tree/lingbot/competition/lingbot
+
+Extract the ZIP and open its lingbot/ folder. Paths below are relative to that folder. The bundle contains retained runtime references, scene configs, official submission templates and new implementation directories. It does NOT contain weights, datasets or the complete simulator/upstream environment. Public reference paths use /path/to/... placeholders; reference files are reading material, not an already portable or qualified runtime. The copy manifest records original/public hashes. Do not change original integrity pins merely to make transformed copies pass.
+
+Both first inspect official/code-requirements.md, official/results-template.json and official/reproduction-template.md. Then read your role's producer/consumer files listed below. The role cards are extracts of this guide; they are optional reading aids, not a second assignment.
+
+If missing something, send the captain an exact request: filename/artifact identity, why needed, when needed, and what can continue meanwhile. A should request the selected checkpoint manifest/files, base/tokenizer/processor/config identities and a fixed input/noise/reference-output sample for parity. B should request the authoritative 50-task list/config, actual completed episode records and later A's loader/package identity. Request runtime/import receipts where relevant. Do not assume access to the captain's private archive, SSH account or GPU.
+
+Captain's handoffs (send privately where appropriate; these are NOT included in this public ZIP):
+  A: an immutable complete checkpoint/manifest, exact base/tokenizer/processor/config locations and revisions, normalization, external inference modules, and a captured fixed-input/fixed-noise/reference-output pair. Use the retained fallback or a completed milestone for integration; do not wait for the final candidate or copy a .partial checkpoint. Record which checkpoint was actually tested.
+  B: the actual baseline episode reports, videos and timing/telemetry records; later the candidate package and A's loader identity. Missing videos mean NOT REVIEWED, not a guessed failure diagnosis. The captain provides a private approved evidence location; do not publish raw server archives to GitHub.
+  Both: confirm the proposed CLI/API within the first two work hours. Report exact missing inputs immediately, with a latest-needed time. Keep CPU work moving while waiting.
+
+reference/ is a frozen source-reading snapshot, not the currently installed recovery-v2 release. The training/checkpoint/inference contract remains the reference for this handoff; startup, recovery and status wrappers have changed. Do not deploy the reference manager or its old timeout/watchdog logic. Later manual status belongs in CURRENT.md and progress/current.json; reference/current-state.json is historical.
+
+3. A — PORTABLE MODEL PACKAGE AND REPRODUCTION
+
+Your outcome: the same selected policy can be restored outside the historical training run, with complete state and traceable identity. You own export/load/manifest and packaging; B owns scheduling and scoring.
+
+Read these real sources before choosing a generic adapter-export recipe:
+  reference/runtime/joint50_train.py — save_checkpoint / restore_checkpoint
+  reference/runtime/model_core.py — projection_parameters, restore_capacity_start, snapshot_branch
+  reference/runtime/joint50_policy.py — inference transform/noise/state path
+  reference/runtime/lingbot_zero_padding.py
+  reference/inference_common.py
+
+First work session, target a reviewable draft in roughly four hours:
+  1) Inventory saved state and external dependencies; distinguish present, missing and unverified assets.
+  2) Build new code under submission/portable/: configurable exporter/loader, manifest and CPU dry-run, plus README/config/src structure and entrypoint design.
+  3) Return that code, inventory, exact commands/check output and precise missing-input requests. This is a first draft target, not a promise of GPU acceptance in four hours.
+
+The policy identity must include exact base revision, adapter, FIVE trained projection modules including biases, persistent buffers/model step, tokenizer/processor/model config, clean50 normalization, preprocessing/zero-padding and inference settings. Adapter-only export is incomplete.
+
+Projection shapes (out,in): state_proj (768,55); action_in_proj (768,55); action_out_proj (55,768); action_time_mlp_in (768,1536); action_time_mlp_out (768,768). Include all 10 weight/bias tensors and exact named mapping/dtypes.
+
+Current joint-training checkpoint files:
+  adapter_model.safetensors; projection_weights.safetensors; adapter_config.json;
+  resume-state.pt; norm-stats-clean50.json; checkpoint.json.
+resume-state.pt also carries persistent_buffers/model_steps, beyond optimizer/scheduler/RNG. Inventory any older fallback separately; its layout may differ. Separate inference state from resume-only state only after checking the actual loader. Follow its trusted-checkpoint/weights_only handling; do not treat arbitrary external pickle files as trusted.
+
+THREE-DAY PRIORITIES FOR A
+P0, usable draft by 23 October 12:00: artifact inventory; manifest validation; configurable export/load implementation; exact missing dependency list; CPU rejection checks; agreed B-facing API. Send runnable partial code tonight, not just a design description.
+P0, integration by 23 October evening if resources are available: a fresh-process real load and fixed-input/noise comparison on one complete checkpoint, coordinated by the captain. Match every required tensor/buffer/model step and record actual numeric differences. A copied folder or CPU fixture is not this acceptance.
+P0, delivery by 24 October 20:00: one selected package identity; actual load/eval commands; configs/dependencies; manifest; reload/parity evidence; README and verified reproduction entrypoints. Missing native evidence remains an explicit blocker, not a PASS.
+Use the existing approved training pipeline for train.sh; the captain supplies its exact sources/config/asset identity. Wire and document that pipeline, rather than designing a new trainer. Do not launch another training run merely to complete this assignment. If an entrypoint cannot yet work, return the missing dependency and exact failing command.
+Defer optional LoRA merging, quantization, performance rewrites, container rebuilds, fancy UI and broad dependency upgrades. Keep the retained fallback package intact. A does not own tuning the policy or collecting 10,000 episodes.
+
+Required behavior and acceptance:
+  • Resolve paths relative to the package or explicit assets-root; inference must not depend on training-corpus images, a personal home directory or old run folders.
+  • Hash every required inference artifact and pin revisions/config. Reject missing projections, wrong shapes/dtypes, mismatched normalization/hashes and partial checkpoints. CPU dry-run must not announce that real weights loaded.
+  • During captain-arranged GPU time, load in a fresh process; verify restored tensors/buffers/model step. Compare fixed-input/fixed-noise normalized predictions (1,50,55) and decoded actions (50,14) with the reference. Record actual maximum differences and chosen tolerances. An in-process save/restore is insufficient.
+  • Preserve inference behavior. Do not hurry into a LoRA merge without a before/after prediction comparison.
+  • Provide a real train.sh for the actual permitted clean50 pipeline and continuation provenance; eval.sh delegates to B's runner using the frozen package. Scripts that only print placeholders are unfinished.
+
+Return: implementation, README, configs, dependency/asset inventory, content manifest, exact commands, CPU evidence, real reload/parity evidence when available, and a clear NOT RUN / missing list. No new model training is assigned to A.
+
+4. B — FULL EVALUATION, RESUME AND RESULTS
+
+Your outcome: evaluate one fixed policy across the required task/setting grid, retain every actual outcome and resume without fabricating or duplicating results. You own the runner, ledger, aggregation and coverage/error reporting.
+
+Read:
+  official/results-template.json
+  reference/runtime/joint50_common.py — results_document and conversions
+  reference/runtime/joint50_sim.py — episode completion and scene rejection
+  reference/runtime/manager.py — current pilot/gates/receipts
+  reference/runtime/joint50_policy.py — policy request identity/behavior
+  reference/configs/demo_clean.yml and demo_randomized.yml
+  reference/commission-negative-example.json — must be excluded from policy results
+
+First work session, target a reviewable draft in roughly four hours:
+  1) Under submission/evaluation/, implement a CPU-only dry-run schedule for all 100 task/setting cells. No GPU/model/physics imports or launch in this mode.
+  2) Include manifest SHA, task, setting, target episodes, seed plan, shard identity, unique episode/request IDs and output paths.
+  3) Implement aggregator/validation tests using clearly marked fixtures and the real commissioning negative example. Return code, schedule and check outputs, with zero real episodes if only fixtures ran.
+
+The current pilot hard-codes test_num=2, two-episode assertions and a 64-candidate bound. Parameterize a new runner; do not repeat the unchanged pilot and call it a full suite. A 64-candidate limit cannot deliver 100 valid episodes. Propose an explicit finite budget and seed policy for review before real execution, retaining every typed invalid-scene rejection. Infrastructure/model/planner failures remain terminal for the affected shard; do not hide them by trying fresh seeds.
+
+Preserve official task success, full task action limits, clean/seen versus randomized/unseen instructions and the policy contract in section 5. Distinguish a completed policy failure, rejected setup and infrastructure crash. No task-specific controller tricks or per-task best-checkpoint mixture.
+
+Each immutable record needs checkpoint-content identity, task/setting/seed, episode/shard ID, outcome, action count, elapsed wall time, log/video references and errors/rejections. A path alone is not checkpoint identity. Resume must retain old records, deduplicate identical episode identities, reject conflicting duplicates/mixed checkpoint hashes and keep request IDs unique. Review shared policy-server/cache behavior before adding concurrent workers.
+
+THREE-DAY PRIORITIES FOR B
+P0 tonight: a CPU schedule for all 100 cells, ledger/aggregation implementation, a failure-review table, and exact missing real-evidence requests. Start failure review on the captain-provided baseline videos as soon as they arrive, while training continues.
+P0 by 23 October 12:00: runnable runner/aggregation draft with resume identity checks and actual CPU evidence. Return partial code even if A integration is blocked. Keep the real episode count at zero for fixture-only runs.
+P0 by 23 October evening when resources are available: one real cell using A's loader, safe resume demonstration, measured throughput and a concrete estimate of coverage achievable by the 24th. Multi-GPU concurrency is optional only after model lifetime/cache/resource behavior is reviewed; no assumption of four available GPUs.
+P0 by 24 October 20:00: executable parameterized runner, actual result/coverage/error ledgers for the selected fixed policy, comparison evidence and reproduction commands. The full target remains 10,000 episodes, but completing them in three days is NOT promised. Report the measured shortfall early; the captain checks organizer handling. Do not fabricate counts or quietly treat partial coverage as a complete suite.
+
+FAILURE REVIEW THAT DIRECTLY HELPS THE MODEL DECISION
+Create failure-review.csv or an equivalent table: checkpoint hash, task/setting/seed, success flag from the official predicate, video/log path and inspected timestamp/frame, observed behavior, possible cause, confidence, and one discriminating next check. Review all available pilot failures; first inspect at least one failure per failing task/setting and the successful examples for contrast. Distinguish wrong arm/target, failure to reach, gripper/grasp, dropped object/placement, action-budget exhaustion and infrastructure failure. Multiple labels and UNKNOWN are allowed. An observed missed grasp is not proof of a training-data or coordinate bug.
+With A, check input ordering, image/state preprocessing, normalization, action dimensions and complete checkpoint restoration against real producer/consumer code and parity evidence. Never change official success predicates, hide failures, hard-code task-specific actions, or choose a different checkpoint per task.
+When candidate results arrive, compare the same task/setting/seed panel and one fixed checkpoint at a time; keep failures and caveats. If candidate results are unavailable, say PENDING. If it underperforms, send evidence to the captain for a fallback/correction decision; do not automatically promote it because it trained longer.
+
+Required checks and delivery:
+  • Cover true AND false task_success, including NumPy bool; duplicate/conflicting records; wrong checkpoint hash; unexpected task/setting; malformed counts; partial/error reports; fixture and commissioning exclusion.
+  • Match all 100 official cells, with integer counts and 0 <= successes <= attempts. Keep actual partial counts and separate coverage/error/remaining-work ledgers. Do not average percentages as a replacement for counts.
+  • Separate baseline and candidate. Production results contain only actual completed learned-policy episodes. Commissioning is explicitly NO_MODEL_TRANSPORT_COMMISSION, episodes=[], policy_actions_executed=0; it is never a success score.
+  • Before full rollout, run one coordinated real cell through A's fresh loader and demonstrate safe interruption/resume. Measure throughput including startup, scene setup and inference; estimate remaining wall time/workers from real measurements. Do not promise 10,000 episodes will fit before measuring.
+  • Return runner/configs, dry-run schedule, aggregator/checks and logs, real results when available, coverage/errors, failure-video references and exact commands. Keep synthetic fixture outputs outside final submission results.
+
+5. HOW A, B AND THE CAPTAIN FIT TOGETHER
+
+Agree on this proposed CLI contract early; these names are a specification, NOT commands already implemented in the bundle:
+  A: export_checkpoint --source-checkpoint PATH --assets-root PATH --output PATH
+  A: load_policy --package PATH --device DEVICE --verify-manifest
+  B: evaluate --policy-package PATH --tasks-file PATH --setting clean|randomized --episodes N --output PATH --resume
+     --dry-run performs CPU planning only.
+  B: aggregate_results --records PATH --checkpoint-manifest-sha256 HASH --team-id ID --output PATH
+
+A also exposes the in-process policy API B needs; agree its callable signature, ownership of model lifetime and errors before integration. A's eval.sh invokes B's evaluator. If a signature must change, tell the other owner/captain first and update the shared contract.
+
+Runtime contract: three RGB views, each 240×320×3 uint8; 14D float32 joint/gripper state; instruction. Existing preprocessing maps to a 55D canonical representation. Preserve FP32 inference, 50 actions/chunk, 10 denoising steps and fixed per-request noise identity. Normalized prediction shape (1,50,55), decoded command chunk (50,14), finite values. All evaluation shards identify the same complete package by manifest SHA.
+
+A can develop inventory/export checks before the final checkpoint exists. B can develop scheduling/ledger/aggregation before A's real loader exists. Their CPU fixtures are development aids, not native validation. Neither edits reference/, official/, the installed frozen server release or GPU dependencies. Only coordinate new GPU tests with the captain; do not contend with the current run or restart it.
+
+Captain monitors the current training/candidate workflow through supplied status, reviews existing baseline failures with B, arranges assets/GPU, integrates useful partial work and selects the final checkpoint. A new candidate is not automatically promoted. The retained clean50 fallback also needs complete packaging/validation. Neither A nor B independently submits the official entry. B should distinguish case versus stage deadlines in the new runner's reports; this does not authorize changing frozen limits or rerunning failed seeds.
+
+FIXED TEAM PLAN — 22 TO 24 OCTOBER, BEIJING
+22 October, now: captain sends this guide + ZIP and assigns A/B. Within two work hours, each owner confirms availability, interface and missing inputs. Both start CPU work; captain supplies assets/evidence and keeps current training running.
+22 October, 22:00: first code/command/evidence handoff and short report. If the guide arrives later than this, send an initial report within two hours of reading and state the earliest code delivery; do not silently assume an impossible overnight commitment.
+23 October, 12:00: takeover-ready implementation drafts, with remaining items and hands-on time estimates. This is an intermediate handoff, not the final deadline. Captain can integrate or reassign blocked essentials immediately.
+23 October, evening / report by 22:00: integrate A/B; perform coordinated fresh load, one real evaluation cell/resume and throughput measurement if resources permit; compare the completed candidate pilot when available. Native checks that have not run remain NOT RUN.
+24 October, 12:00: readiness decision and proposed checkpoint freeze. If candidate evidence is incomplete or no better, the captain assesses the validated fallback. Freeze only an identified, tested policy; a deadline does not make a weak or untested checkpoint acceptable. Any essential corrective change creates a new identity and needs matching revalidation. Stop optional feature work.
+24 October, 20:00: final team handoff of package/code/configs, actual result and coverage ledgers, reproduction instructions, validation evidence and explicit unresolved blockers. This is the internal hard finish used by this plan; official submission is a separate captain action.
+
+This is a feasible division of implementation work only if both owners start now and receive the required assets/resource time. It does not guarantee model success, native stability or full evaluation coverage. Twenty-four October is the captain's new internal finish date; 20:00 is the planning assumption. No organizer rule or official deadline is changed by this plan. We are not planning required work for the 25th/26th.
+
+PERFORMANCE DECISION / CAPTAIN OWNERSHIP
+Do not wait until the 24th to watch the first failure video. Review baseline failures now; use A's parity work to rule in/out concrete packaging/input defects. Let the current candidate workflow run. Compare baseline/candidate success and behavior on the same pilot, including regressions and infrastructure errors. Preserve the fallback; neither a lower loss nor a larger update count is sufficient for selection. If a specific bug is demonstrated, prepare one focused correction and an attributable re-test; no speculative stack upgrade or broad last-minute hyperparameter search. If no acceptable policy is validated by the freeze, record that delivery/performance risk plainly and let the captain decide the official submission action. Packaging alone does not repair poor policy behavior.
+
+6. DAILY REPORTS — 22 AND 23 OCTOBER, PLUS FINAL REPORT ON THE 24TH
+
+Send a short report even if blocked or no code was completed. AI can draft it; YOU check it against actual files/logs. Reports: 22 and 23 October by 22:00 Beijing, with a code handoff on the 23rd at 12:00; readiness update on the 24th at 12:00 and final report/code at 20:00. If receiving the guide after a checkpoint, report within two hours of reading and state your actual availability. Report critical blockers immediately; do not wait for the evening.
+
+Use about 200–400 English words (or 400–800 Chinese characters); attach evidence separately. Copy this template:
+
+Date/time (Beijing):
+Name / role A or B:
+Delivery outlook: ON TRACK / AT RISK / BLOCKED — reason.
+1) Completed: what now works; changed file/commit/output for each item. If none, what was inspected/attempted?
+2) Verification: check → PASSED / FAILED / NOT RUN → exact command + real log/result. Separate CPU fixtures from actual weight loading/GPU/simulator runs.
+3) Remaining: each essential item → NOT STARTED / IN PROGRESS / IMPLEMENTED, NOT VERIFIED / VERIFIED. Estimate hands-on hours remaining as a range. List GPU execution and external waiting separately; UNKNOWN is acceptable.
+4) Blockers: exact input/access/decision, who needs to provide it, needed by when, and what can continue meanwhile.
+5) Next delivery: specific file/behavior + expected Beijing time; can you meet the 23 October draft and 24 October finish? If not, identify what must be transferred now.
+6) Takeover: latest commit/ZIP, starting command, known failure, first unfinished step, suggested work to transfer and remaining effort. Agree ownership changes with captain.
+7) Attachments: changed code/patch or commit; real checks/logs; missing-input list.
+
+A reports inventory/export/load/entrypoints and fresh-process parity status, including exact missing weights/reference inputs. B reports 100-cell planning, ledger/resume/aggregation, A integration, actual episode counts and measured throughput. Report zero native episodes when only fixtures ran.
+
+On the 23rd at noon, hand over current code EVEN IF INCOMPLETE, exact commands and prioritized unfinished essentials. The captain uses that afternoon and the 24th for integration and remaining essentials. On the 24th include a final verified/unverified checklist and reproducible package/result identities. Reports do not replace implementation.
+
+AI report prompt: “Use my actual files, commands, logs and stated availability to fill the report template above. Do not invent progress, tests, hours or percentages. Separate implemented/unverified from verified, CPU fixtures from native runs, and work time from waiting. Identify blockers, next delivery and takeover steps. Ask only for missing reporting facts. If you cannot inspect evidence, attribute it to my report.”
+
+7. GITHUB OR DIRECT HANDOFF — CHOOSE ONE
+
+GitHub is convenient but NOT required to start or report. The integration branch is lingbot/competition, not the repository's default main. Main also hosts other AURA work; do not modify unrelated experiments.
+
+If using GitHub:
+  A branch: lingbot/portable-package; new code: lingbot/submission/portable/
+  B branch: lingbot/full-evaluation; new code: lingbot/submission/evaluation/
+  Both open/update pull requests with base = lingbot/competition.
+  Daily report: lingbot/reports/YYYY-MM-DD/A.md or B.md on your own branch.
+  Commit the report/code, put the PR/commit link in your daily handoff to captain. Keep pending reports visible in the PR; captain reviews/merges and updates shared progress. Do not assume an unmerged branch report is visible on the integration page.
+
+Optional commands for a NEW checkout with Git installed:
+  git clone --branch lingbot/competition https://github.com/NoctisBaguette/AURA-Embodied.git
+  cd AURA-Embodied
+  A chooses: git switch --track origin/lingbot/portable-package
+  B chooses: git switch --track origin/lingbot/full-evaluation
+Run only your role's switch command. Existing checkout/branch users should fetch and switch their existing branch without discarding local edits. Select only your changed code/report files for commits; do not accidentally add weights or private logs.
+
+Branches do not grant write permission. If you lack access, use a fork/PR if familiar, or simply use direct handoff. Do not lose a day setting up Git.
+
+Direct handoff alternative:
+  Send captain A-2026-10-22.txt or B-2026-10-22.txt (adjust date), plus changed code ZIP/patch and small relevant check outputs. Preserve paths under lingbot/submission/<role>/ so the captain can integrate them. Include commands and missing inputs. You do not need to resend unchanged source material every day. Keep credentials out of all shared files; use captain-arranged private storage for large weights/evidence.
+
+This repository is public: public reports should contain sanitized summaries, code identities and non-sensitive outputs. Do not commit SSH credentials, personal host addresses/paths, private raw logs/incidents, weights or datasets. GitHub does not automatically deploy to the running server or monitor it. The captain's assistant reviews updates when asked; a commit alone does not trigger a review or reminder.
+
+8. USING YOUR OWN GPT / DEEPSEEK / OTHER AI
+
+Give the AI this TXT plus the source ZIP or canonical branch URL. A URL does not guarantee the AI can access files. If it cannot unpack a ZIP, extract and attach the role-specific files in sections 2–4; ask it to name files actually read. It should request missing dependencies precisely, not invent implementations from filenames.
+
+Starter prompt (replace A/B):
+“I am teammate [A or B] on this LingBot project. Read the attached Complete Team Guide and actual source bundle. Follow my role, shared interface, acceptance checks and daily reports and the 24 October deadline. First list files you actually read, extract the real producer/consumer contract, then implement a useful CPU-first draft in my assigned directory. Preserve official success, checkpoint completeness, source evidence and the active server. Do not launch GPU work or alter environments. Label unavailable checks NOT RUN; fixtures do not prove native success. Return actual code, commands, check outputs, specific missing inputs and today's report, including remaining work/effort and takeover steps. Do not claim access to a URL/file you could not read.”
+
+9. SOURCES AND FINAL RETURN CHECKLIST
+
+Competition rules (historical source links; this revision does not claim a new live rules check; captain verifies notices before official submission):
+  https://tianchi.aliyun.com/competition/entrance/532514/information
+  https://tianchi.aliyun.com/competition/entrance/532514/introduction
+Organizer files in official/: code-requirements.md, results-template.json, reproduction-template.md, optional-robot-demo-template.md. These supplied template bytes are retained exactly. Use the official results schema, not an invented one.
+Upstream background:
+  https://github.com/Robbyant/lingbot-vla-v2
+  https://github.com/RoboTwin-Platform/RoboTwin
+  https://huggingface.co/robbyant/lingbot-vla-v2-6b
+  https://huggingface.co/datasets/TianxingChen/RoboTwin2.0
+Local evidence: progress/2026-10-22-training-5420-user.json and progress/current.json (latest attributed snapshot; earlier files and reference/current-state.json are historical); provenance/public-reference-manifest.json (copy identities); reference/ runtime producers/consumers. Exact original archive, for authorized readers: https://github.com/NoctisBaguette/Embodied-AI-Research/tree/d160e0eac2357674abc156bf6d489b356960278b/experiments/lingbot-competition
+Do not substitute moving upstream examples for this project's reviewed interfaces. The September Day-0 startup holds are historical, not today's instructions. Official rules govern participation; actual source/evidence govern implementation and observed progress; A/B allocation and reporting times are team choices.
+
+Before sending any handoff, include: role; actual changed code/commit; exact starting/test commands; PASSED/FAILED/NOT RUN evidence; missing inputs; remaining essentials and estimated effort; next delivery. A adds artifact/restore/parity status; B adds coverage/resume/aggregation status. No polished slide deck needed.
+
+======================================================================
+中文完整说明
+======================================================================
+
+1. 先读这里：项目在做什么
+
+我们在准备 LingBot-VLA 的 RoboTwin 比赛提交。模型输入是三路机器人相机图像、机器人状态和语言指令，输出一段机器人动作。除了模型本身，还要交可复现的模型包与可信的评测结果。
+
+队长是 Baguette。A、B 是职责代号，由队长告诉每个人负责哪个角色。先了解两人的职责，再专注自己的部分。
+A：把选定模型完整导出，做到新进程可加载，并提供训练/评测复现入口。
+B：完成全任务评测调度、可靠续跑与结果汇总，使用 A 提供的模型包。
+队长：继续现有服务器流程，审查证据、提供具体资源、分配 GPU、选择最终模型、整合和提交。
+
+10月22日队长最新状态：恢复流程为 RUNNING / JOINT_TRAINING，16/16 commissioning 和32/32 baseline 已完成；训练达到5,420/50,000次更新、10,840/100,000个样本，candidate 为0/32。这是队长粘贴的状态快照，不是实时监控或新归档的独立审核。此前审核确认31次完整策略episode中有3次成功；最新最后一个瓶子组合的结果与总计3/32成功一致。这说明小规模baseline较弱，但不是“所有任务全部失败”，也不是完整50任务成绩。candidate效果未知，loss降低和仿真准备检查完成都不能证明任务成功率提高。历史失败保留，不能声称间歇性原生崩溃的根因已解决。
+
+现有小规模流程是 8 任务 × 2 设置 × 2 episode，即每个 checkpoint 32 次。计划为 baseline → 联合训练（最多 100,000 个样本 / 22 小时）→ candidate 评测。22 小时是上限，不是预计完成时间。全量目标是 50 任务 × 2 设置 × 100 次，即一个固定策略 10,000 个 episode；当前小规模流程不等于全量评测。
+
+现在就开始 CPU 工作，不等新训练结束。你们开发时，队长负责当前训练、结果审查及资源安排；不要自行重启。A/B 可以并行开发；之后真实加载器与评测器联调才依赖双方代码和队长安排的 GPU。不要为了开工先在自己电脑重装完整服务器环境或下载全部训练数据。
+
+2. 收到什么、读什么、缺什么怎么说
+
+队长给两人相同的：
+  • 本完整 TXT，并在消息里说明你是 A 还是 B。
+  • LingBot-AURA-Workspace-20261022.zip，或下方仓库链接。两者提供源码/模板资料，ZIP 内也有本说明。
+
+统一工作区：
+https://github.com/NoctisBaguette/AURA-Embodied/tree/lingbot/competition/lingbot
+
+解压后进入 lingbot/。下面的相对路径均从该目录算起。包内有运行参考代码、场景配置、官方模板和新实现目录；没有模型权重、数据集或完整仿真/上游环境。公开参考代码把个人服务器路径替换成 /path/to/...，它们不是已经可运行、已经验收的便携版本。manifest 分别记录原版和公开副本哈希，不要为通过检查而篡改原版校验标识。
+
+两人先看 official/code-requirements.md、official/results-template.json、official/reproduction-template.md，然后按下面职责阅读真实源码。任务卡是本说明的摘录，可选阅读，不是另一套任务。
+
+缺资源时，向队长写清：准确文件/资源身份、用途、最晚需要时间、等待时能继续什么。A 应索取选定 checkpoint 的 manifest/文件、base/tokenizer/processor/config 身份，以及固定输入/噪声/参考输出样本。B 应索取权威 50 任务列表/配置、真实完成的 episode 记录，之后再要 A 的加载器与模型包身份。必要时索取环境/import 信息。不要默认自己或 AI 有私有仓库、SSH 或 GPU 权限。
+
+队长需另外交付的输入（按需要私下共享，不在公开ZIP里）：
+  A：不可变的完整checkpoint/manifest，准确base/tokenizer/processor/config位置与版本、normalization、外部推理模块，以及固定输入/噪声/参考输出。可以先用保留fallback或完整的中间checkpoint联调，不等最终candidate；不读取.partial目录。记录实际测试的checkpoint身份。
+  B：真实baseline episode报告、视频、时间与telemetry记录；之后提供candidate包及A的加载器身份。缺视频就写NOT REVIEWED，不能猜失败根因。队长提供获准的私有证据位置，原始服务器归档不发公开GitHub。
+  两人：开始后两个工作小时内确认CLI/API；马上列缺失输入和最晚需要时间，等待时继续CPU工作。
+
+reference/是冻结的源码阅读快照，不是服务器当前安装的recovery-v2。训练/checkpoint/推理契约供本次实现参考；启动、恢复及状态封装已有更新。不要部署参考manager或其旧timeout/watchdog逻辑。最新人工状态在CURRENT.md和progress/current.json，reference/current-state.json属于历史。
+
+3. A：模型便携打包与复现入口
+
+目标：离开历史训练目录后，仍能完整恢复同一个选定策略，并明确模型身份。你负责导出、加载、manifest 和打包；B 负责调度与计分。
+
+先读真实保存者和使用者，不能直接套“只导出 LoRA”的通用方案：
+  reference/runtime/joint50_train.py：save_checkpoint / restore_checkpoint
+  reference/runtime/model_core.py：projection_parameters、restore_capacity_start、snapshot_branch
+  reference/runtime/joint50_policy.py：推理变换、噪声与状态
+  reference/runtime/lingbot_zero_padding.py
+  reference/inference_common.py
+
+第一轮工作，争取约四小时内交可审查的 CPU 草稿：
+  1）列保存状态和外部依赖清单，区分已提供、缺失、未验证。
+  2）在 submission/portable/ 写新实现：可配置导出/加载器、manifest、CPU dry-run，以及 README/config/src 结构和入口设计。
+  3）交代码、清单、准确命令/检查输出和具体缺失输入请求。四小时是第一版目标，不是四小时完成 GPU 验收的承诺。
+
+完整策略身份包括：准确 base revision、adapter、五个训练过的 projection 模块及 bias、persistent buffers/model step、tokenizer/processor/model config、clean50 normalization、预处理/zero-padding 和推理设置。只有 adapter 不完整。
+
+Projection 形状（out,in）：state_proj (768,55)；action_in_proj (768,55)；action_out_proj (55,768)；action_time_mlp_in (768,1536)；action_time_mlp_out (768,768)。包含全部 10 个 weight/bias tensor，按准确名称映射，保留 dtype。
+
+当前联合训练保存：
+  adapter_model.safetensors、projection_weights.safetensors、adapter_config.json、
+  resume-state.pt、norm-stats-clean50.json、checkpoint.json。
+resume-state.pt 除 optimizer/scheduler/RNG 外还含 persistent_buffers/model_steps。旧 fallback 的格式可能不同，必须单独盘点。只有核对真实加载逻辑后，才能拆分推理必需状态与仅续训需要的状态。遵循现有受信 checkpoint / weights_only 处理，不把任意外来 pickle 当可信文件加载。
+
+A的三天优先级
+P0，23日12:00前可用草稿：资源清单、manifest验证、可配置导出/加载实现、准确缺依赖列表、CPU拒绝检查、与B约定API。今晚交可运行的部分代码，不只交设计说明。
+P0，资源允许时23日晚联调：由队长安排，对一个完整checkpoint做新进程真实加载、固定输入/噪声对比，核对tensor/buffer/model step并记录实际误差。复制目录或CPU样例不等于这项验收。
+P0，24日20:00前最终交付：一个选定模型包身份、准确加载/评测命令、配置/依赖、manifest、新进程一致性证据、README和已验证复现入口。缺原生证据仍是阻塞，不能写PASS。
+train.sh对接现有获准训练流程；队长提供准确源码/配置/资源身份。你负责接线和复现说明，不另写训练框架，也不为完成任务再开一轮训练。入口不能运行就交准确缺依赖与失败命令。
+暂缓可选LoRA合并、量化、性能重写、容器重建、漂亮界面和大范围依赖升级。保留fallback包。A不负责重新调模型或亲自收集10,000次episode。
+
+必须实现并验收：
+  • 路径从包内或显式 assets-root 解析；推理不能依赖训练图片、某个人主目录或历史 run 目录。
+  • 所有推理资源进入哈希 manifest，锁定版本/配置。拒绝缺 projection、形状/dtype 不符、normalization/哈希不符及不完整 checkpoint。CPU dry-run 不能谎报真实权重已加载。
+  • 队长安排 GPU 后，在新进程加载并核对 tensor/buffer/model step。用固定输入和噪声对比参考输出：normalized (1,50,55)，decoded (50,14)。记录实际最大差异和容差；只在同一进程保存再读回不够。
+  • 保留推理行为。若考虑 LoRA 合并，必须做合并前后输出对比，不能临时图省事。
+  • train.sh 应对应实际允许的 clean50 训练流程及继续训练来源；eval.sh 用冻结模型包调用 B 的 runner。只打印占位命令的脚本属于未完成。
+
+交付：实现代码、README、配置、依赖/资源清单、content manifest、准确命令、CPU 证据，以及具备条件后的真实新进程加载/一致性报告。缺的或没运行的明确写 NOT RUN。A 不负责另开一轮模型训练。
+
+4. B：全量评测、续跑与结果
+
+目标：让一个固定策略覆盖所有任务/设置，保留实际结果，续跑时不重复、不造分。你负责 runner、episode ledger、汇总及覆盖/错误报告。
+
+先读：
+  official/results-template.json
+  reference/runtime/joint50_common.py：results_document 与转换
+  reference/runtime/joint50_sim.py：episode 完成与场景拒绝
+  reference/runtime/manager.py：当前 pilot、门槛和回执
+  reference/runtime/joint50_policy.py：请求身份与策略行为
+  reference/configs/demo_clean.yml、demo_randomized.yml
+  reference/commission-negative-example.json：必须排除在策略成绩之外
+
+第一轮工作，争取约四小时内交 CPU 草稿：
+  1）在 submission/evaluation/ 实现 100 个 task/setting 组合的 CPU dry-run 调度，不导入或启动 GPU/model/physics。
+  2）计划包含 manifest SHA、task、setting、目标次数、seed 计划、shard 身份、唯一 episode/request ID 和输出路径。
+  3）用明确标记的 fixtures 和真实 commissioning 反例实现汇总/校验。交代码、计划和检查结果；如果只跑样例，真实 episode 就是 0。
+
+现有 pilot 写死 test_num=2、两次 episode 断言及 64 个候选 seed 上限。应在新 runner 参数化，不能重复调用旧文件后称为全量方案。64 个候选不可能产出 100 个有效 episode。提出明确有限的候选预算和 seed 方案，在真实执行前交审查；保留所有有类型的无效场景拒绝。基础设施、模型或 planner 错误应让对应 shard 终止，不能换 seed 偷偷掩盖。
+
+保持官方成功判据、完整任务动作上限、clean/seen 与 randomized/unseen 指令设置以及第 5 节策略契约。区分“完整执行但策略失败”“初始化场景被拒绝”“基础设施崩溃”。不能做按任务特调控制器或拼接各任务最优 checkpoint。
+
+不可覆盖的记录应含：checkpoint 内容身份、task/setting/seed、episode/shard ID、结果、动作数、墙钟时间、日志/视频引用及错误/拒绝原因。相同路径不等于相同权重。续跑保留旧记录，去重相同 episode 身份，拒绝冲突重复和混合 checkpoint 哈希；请求 ID 全局唯一。并发前审查共享 policy server/cache 行为。
+
+B的三天优先级
+P0今晚：100组合CPU计划、ledger/汇总实现、失败复盘表和准确缺证据请求。baseline视频一到就开始看，不等训练结束。
+P0，23日12:00前：可运行的runner/汇总草稿、续跑身份校验及真实CPU检查证据。A接口未接好也交已有代码；只跑fixtures时真实episode数为0。
+P0，资源允许时23日晚：接A加载器跑一个真实组合，演示安全续跑，测吞吐并估24日前可完成覆盖。并发是可选优化，先审查模型生命周期/cache/资源行为，不假设有4张可用GPU。
+P0，24日20:00前：可执行参数化runner，选定固定模型的真实结果/覆盖/错误清单、对比证据和复现命令。全量目标仍是10,000次，但不承诺三天内跑完；尽早报告实测缺口，由队长确认主办方处理。不能造计数或把部分覆盖说成全量完成。
+
+直接帮助模型决策的失败复盘
+建立failure-review.csv或等价表：checkpoint哈希、task/setting/seed、官方判据的success标志、视频/日志路径与已查看时间点/帧、观察到的动作、可能原因、置信度、一个能区分原因的下一步检查。复盘所有可获得的pilot失败；先覆盖每个失败task/setting至少一条，并看成功样例作对照。区分错臂/错目标、到达失败、夹爪/抓取、掉落/放置、动作预算耗尽、基础设施失败；允许多标签及UNKNOWN。看到“没抓住”不等于证明数据或坐标系有错。
+与A对照真实producer/consumer及一致性证据，检查输入顺序、图像/状态预处理、normalization、动作维数及完整权重恢复。不能改官方成功判据、隐藏失败、硬编码按任务动作或逐任务选不同checkpoint。
+candidate结果到后，按相同task/setting/seed面板和单一固定checkpoint比较；保留失败及限制。未到就写PENDING。若更差，提交证据让队长决定fallback或纠错，不因训练步数更多就自动采用。
+
+必做检查与交付：
+  • task_success 的 true/false（包括 NumPy bool）、重复/冲突、错误 checkpoint 哈希、未知 task/setting、非法计数、未完成/错误报告、fixtures 与 commissioning 排除。
+  • 准确对应官方 100 个组合；整数计数满足 0 <= successes <= attempts。未完成项保留真实部分计数，另给覆盖/错误/剩余队列，不能用平均百分比冒充计数。
+  • baseline/candidate 分开。正式结果只计真实完成的学习策略 episode。commissioning 记录为 NO_MODEL_TRANSPORT_COMMISSION、episodes=[]、policy_actions_executed=0，不能当成绩。
+  • 全量前，用 A 的新进程加载器跑一个真实组合，并验证安全中断/续跑。吞吐测量包括启动、场景设置和推理，再估剩余时间/worker 数；未测量前不能保证 10,000 次一定赶得上。
+  • 交 runner/config、CPU 计划、汇总器/检查/日志、已有的真实 results、覆盖/错误清单、失败视频引用和准确命令。样例输出放在正式提交结果之外。
+
+5. A、B、队长如何配合
+
+尽早对齐下面的 CLI 设计。它们是拟定接口，不是包内已经实现的命令：
+  A: export_checkpoint --source-checkpoint PATH --assets-root PATH --output PATH
+  A: load_policy --package PATH --device DEVICE --verify-manifest
+  B: evaluate --policy-package PATH --tasks-file PATH --setting clean|randomized --episodes N --output PATH --resume
+     --dry-run 仅做 CPU 计划。
+  B: aggregate_results --records PATH --checkpoint-manifest-sha256 HASH --team-id ID --output PATH
+
+A 也要提供 B 所需的进程内 policy API；联调前约定调用签名、模型生命周期由谁管理、错误如何返回。A 的 eval.sh 调 B 的 evaluator。需要改接口时先通知另一位和队长，并同步契约。
+
+运行契约：三路 RGB，各 240×320×3 uint8；14D float32 关节/夹爪状态；语言指令。既有预处理映射到 55D canonical 表示。保留 FP32、每段 50 个动作、10 denoising steps、每请求固定噪声身份。normalized 输出 (1,50,55)，decoded 动作 (50,14)，数值均有限。所有评测 shard 用完整模型包 manifest SHA 标识同一个策略。
+
+A 可以先做清单/导出检查，不等最终 checkpoint；B 可以先做调度/记录/汇总，不等真实加载器。CPU fixtures 用于开发，不算原生验收。两人都不改 reference/、official/、服务器冻结版本或 GPU 依赖。新的 GPU 检查由队长协调，不抢占当前作业，也不重启它。
+
+队长通过提供的状态跟进当前训练/candidate流程，与B复盘baseline失败，提供资源/GPU、整合部分成果、选择最终模型。candidate 不会自动胜出；保留的 clean50 fallback 也需要完整打包与验证。A/B 不自行提交官方参赛包。B 的新 runner 应分别报告单组合和整个阶段的 deadline；这不授权修改冻结上限或重跑失败 seed。
+
+固定团队计划：10月22日至24日，北京时间
+22日现在：队长发说明+ZIP并分配A/B。开始后两个工作小时内确认可用时间、接口和缺输入。双方先做CPU；队长提供资源/证据并保持当前训练运行。
+22日22:00：首份代码/命令/证据及简短日报。若收到时已经过点，阅读后两小时内先报起始状态和最早代码交付时间，不默认承诺不现实的通宵工作。
+23日12:00：交可接手的实现草稿、剩余项与动手工时。这是中间交接，不是最终截止；队长当天下午可整合或转交阻塞的必做项。
+23日晚、22:00前日报：接通A/B；资源允许时完成真实新进程加载、一个评测组合/续跑与吞吐测量；candidate完成后做对比。没跑的原生检查仍写NOT RUN。
+24日12:00：检查就绪状态，计划冻结checkpoint。candidate证据未完成或没有更好时，由队长评估已验证fallback。只冻结身份明确且已测试的策略；截止不会让弱模型或未验证模型自动合格。必要修复形成新身份并做对应复验。停止可选功能。
+24日20:00：最终交模型包/代码/配置、真实结果与覆盖清单、复现说明、验证证据及未解决阻塞。这是本计划使用的团队内部硬截止；正式提交由队长另行执行。
+
+这是一套在两人现在开工、及时获得输入与资源时可执行的实现分工，不保证模型效果、原生稳定性或全量评测覆盖。队长指定内部完成日为24日，20:00是本计划的明确安排，不修改主办方规则/正式截止，也不把必做项留到25/26日。
+
+模型效果决策由队长负责
+不要等到24日才看第一段失败视频。现在复盘baseline；用A的一致性检查定位或排除具体打包/输入缺陷；保持当前candidate流程运行。完成后比较相同面板的成功数、行为、退化与基础设施错误。保留fallback，不凭loss较低或更新更多选模型。确证具体bug时，准备一次针对性修复和有身份记录的复测，不做猜测性升级或最后一刻大范围超参搜索。冻结时仍无可接受的已验证模型，就如实记录交付/效果风险，由队长决定正式提交操作。打包本身不能修复差的策略行为。
+
+6. 日报：22日、23日每天交，24日交最终报告
+
+被卡住或没写完也交简短报告。允许AI起草，本人核对实际文件/日志。22/23日22:00前日报，23日12:00另交代码草稿；24日12:00报就绪情况，20:00交最终报告与代码。收到时已过节点，阅读后两小时内先报起始状态及实际可用时间。关键阻塞发现就说，不等晚间日报。
+
+建议约 400–800 个中文字，证据另附。直接复制填写：
+
+日期/时间（北京时间）：
+姓名 / 角色 A 或 B：
+交付判断：按计划 / 有延期风险 / 被阻塞 —— 原因。
+1）完成项：现在具体能做什么；每项给修改文件/commit/输出。未实现则说明检查或尝试了什么。
+2）验证：检查 → PASSED / FAILED / NOT RUN → 准确命令 + 真实日志/结果。区分 CPU 样例与真实权重/GPU/仿真运行。
+3）剩余：逐项写必须完成的工作，状态为未开始 / 进行中 / 已实现未验证 / 已验证。未完成项估剩余动手工时（可给范围）；GPU 执行与等待外部资源另列，不知道就写 UNKNOWN。
+4）阻塞：准确需要的输入/权限/决定、谁提供、最晚何时要、等待时能继续什么。
+5）下一份交付：具体文件/行为 + 预计北京时间；23日草稿及24日最终交付能否赶上？不能就说明现在需要转交什么。
+6）接手：最新 commit/ZIP、启动命令、已知失败、第一个未完成步骤、建议转交工作和剩余工时。职责转交须和队长确认。
+7）附件：修改代码/补丁或 commit；真实检查/日志；缺失输入清单。
+
+A 必须覆盖清单、导出、加载、入口、新进程一致性状态，写明缺哪些权重/参考输入。B 必须覆盖 100 组合计划、记录/续跑/汇总、与 A 联调、真实 episode 数和实测吞吐。只跑 fixtures 时，真实 episode 写 0。
+
+23日中午即使未完成也交当前代码、准确命令和按优先级排列的剩余必做项，队长可在下午及24日整合补齐。24日附最终已验证/未验证清单、可复现的模型包/结果身份。日报不能代替实现。
+
+给 AI 的日报提示词：“根据我实际文件、命令、日志和可用时间，填写上述日报。不编造进度、测试、工时或百分比。区分已实现未验证与已验证、CPU 样例与原生执行、动手与等待。明确阻塞、下一份交付和接手步骤；只询问准确报告所缺事实。不能读取的证据注明是我提供的情况。”
+
+7. GitHub 或直接发文件，二选一即可
+
+GitHub 方便协作，但不是开工和日报的前提。整合分支是 lingbot/competition，不是默认 main；main 上还有其他 AURA 工作，别改不相关实验。
+
+使用 GitHub 时：
+  A 分支：lingbot/portable-package；新代码：lingbot/submission/portable/
+  B 分支：lingbot/full-evaluation；新代码：lingbot/submission/evaluation/
+  两人的 PR base 都选 lingbot/competition。
+  日报放自己分支的 lingbot/reports/YYYY-MM-DD/A.md 或 B.md。
+  commit 后把 PR/commit 链接发给队长。未合并报告在 PR 中可见，队长审查合并后更新共享进度；不能默认个人分支报告已出现在整合分支页面。
+
+已装 Git、需要新建本地 checkout 时可用：
+  git clone --branch lingbot/competition https://github.com/NoctisBaguette/AURA-Embodied.git
+  cd AURA-Embodied
+  A 选：git switch --track origin/lingbot/portable-package
+  B 选：git switch --track origin/lingbot/full-evaluation
+只执行自己的切分支命令。已有 checkout/分支就 fetch 后切已有分支，不丢弃本地修改。提交时只选相关代码/日报，避免误加权重或私人日志。
+
+分支存在不代表你自动获得写权限。没有权限时，熟悉 fork/PR 就用它，否则直接交文件，不要为 Git 配置浪费一天。
+
+直接交接方式：
+  发 A-2026-10-22.txt 或 B-2026-10-22.txt（按当天改日期），附修改代码 ZIP/patch 和少量关键检查输出。代码保留 lingbot/submission/<对应目录>/ 层级，方便队长整合；附命令和缺失输入。无需每天重发没变的整个项目。任何共享文件都不放凭据，大权重/证据用队长安排的私有存储。
+
+仓库是公开的：公开日报放脱敏摘要、代码身份和非敏感输出。不要提交 SSH 凭据、个人服务器地址/路径、私有原始日志/事故记录、模型权重或数据集。GitHub 不会自动部署到正在运行的服务器，也不会自动监控它。队长的助手在收到请求后审查更新；commit 本身不会触发审查或提醒。
+
+8. 怎么交给自己的 GPT / DeepSeek / 其他 AI
+
+给 AI 本 TXT + 源码 ZIP 或准确分支链接。链接存在不代表 AI 真能读取。不能解 ZIP 就先解压，按第 2–4 节附对应文件，让它列出实际读过哪些。缺依赖要具体索取，不能凭文件名编代码。
+
+开工提示词（替换 A/B）：
+“我是 LingBot 项目的队友 [A 或 B]。请读附件 Complete Team Guide 和真实源码包，按我的职责、共享接口、验收条件及日报及24日截止要求工作。先列实际读取的文件，从真实 producer/consumer 提取契约，再在指定目录实现有用的 CPU 第一版。保留官方成功判据、完整 checkpoint、原始证据和当前服务器状态，不启动 GPU 或改环境。做不了的检查写 NOT RUN，fixtures 不能证明原生成功。交实际代码、命令、检查输出、具体缺失输入及今天日报，含剩余工作/工时和接手步骤。读不到的链接/文件不要假装读过。”
+
+9. 来源和交付前自查
+
+比赛规则（历史来源链接，本次更新不声称重新在线核实规则；正式提交前由队长核对公告）：
+  https://tianchi.aliyun.com/competition/entrance/532514/information
+  https://tianchi.aliyun.com/competition/entrance/532514/introduction
+official/ 内四份主办方模板：code-requirements.md、results-template.json、reproduction-template.md、optional-robot-demo-template.md。提供的模板字节保持原样，正式结果按官方 schema。
+上游背景：
+  https://github.com/Robbyant/lingbot-vla-v2
+  https://github.com/RoboTwin-Platform/RoboTwin
+  https://huggingface.co/robbyant/lingbot-vla-v2-6b
+  https://huggingface.co/datasets/TianxingChen/RoboTwin2.0
+本地证据：progress/2026-10-22-training-5420-user.json和progress/current.json是最新带来源快照；更早文件及reference/current-state.json为历史；provenance/public-reference-manifest.json 标识副本；reference/ 有实际 producer/consumer。获授权读者可访问准确私有原档：https://github.com/NoctisBaguette/Embodied-AI-Research/tree/d160e0eac2357674abc156bf6d489b356960278b/experiments/lingbot-competition
+不要拿不断变化的上游示例替代本项目已审查接口。9 月 Day-0 的启动暂停说明是历史信息，不是今天的指令。官方规则管参赛，实际源码/证据决定实现事实与已观察进度，A/B 分工和日报时间属于团队安排。
+
+每次交接确认附上：角色、真实改动代码/commit、准确启动/检查命令、PASSED/FAILED/NOT RUN 证据、缺失输入、剩余必做项/估时、下次交付。A 加资源/恢复/一致性状态，B 加覆盖/续跑/汇总状态。不需要漂亮 PPT。

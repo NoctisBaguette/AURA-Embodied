@@ -1,0 +1,33 @@
+WHAT THE EVIDENCE DOES AND DOES NOT SHOW
+
+ENGLISH
+1. Latest pasted progress:23300/50000updates,46600examples,loss0.0407627. Training is advancing; candidate outcomes remain unobserved. MODEL_LOADING and the watcher timestamp are retained transition fields, not the current training phase. A low denoising/training loss is not closed-loop task success.
+2. The audited retained baseline has3/31successes, all click_bell. The later status's completed32 and final bottle0/2 are consistent with3/32, but the new complete archive has not been audited. This eight-task/two-setting pilot is not a50-task official score.
+3. Motor/controller evidence: across31episodes, joint tracking RMSE is0.124–1.826degrees against instantaneous drive targets. There are34116observed TOPP calls,2exceptions,0empty results. Those two exceptions occur in distinct can/basket and randomized block-stack episodes; they cannot explain all task failures. Low joint error does not prove a successful grasp or correct Cartesian target.
+4. The command decode/transport boundary is directly checked for24retained bottle chunks: original clean50 bounds_99_woclip inverse normalization, active canonical arms0..11/grippers28,29, reassembled controller left6+gripper/right6+gripper. It reproduces saved decoded commands exactly; bridge commands equal their float32 cast. The retained upstream evaluator calls take_action in qpos mode, not Cartesian/delta mode. No supported basis for arbitrarily swapping arms, multiplying angles by57.3, or flipping grippers was found.
+5. Real images/instructions are present. Camera mapping is head->cam_high,left->left_wrist,right->right_wrist; retained source resizes CHW float RGB to256x256 before FeatureTransform. Source and rollout camera comparisons show similar geometry/style. These observations do NOT establish that the learned visual encoder uses the images effectively, or independently re-run the current installed processor. Most processed image tensors are not in this trimmed archive. A fresh matching-asset preprocessing/inference parity check is still needed.
+6. Visible failures involve grasp precision, one-sided motion on dual-arm tasks, and missing later task phases. These are observations, not proof of a unique root cause. Learned-policy weakness, insufficient adaptation, or an upstream conditioning mismatch remain hypotheses. Do not claim that a lower loss or more hours will necessarily repair them.
+7. The baseline is our old clean50 LoRA-fine-tuned10000update checkpoint. It is not the raw released base, nor the official separately RoboTwin-post-trained model. The upstream model card's high RoboTwin numbers describe that separately post-trained model. The retained competition briefing requires base initialization/clean-only data and prohibits using the already RoboTwin-post-trained model as the competition initializer. Do not substitute it as a submission shortcut. Current official rule page retrieval exposes only part of the text; the explicit prohibition here is attributed to the supplied Day0 rules record.
+
+Deadline decision: prioritize a measured candidate result and complete export over another unexamined training cycle. The existing trainer supports STOP_TRAIN: after the current completed update it runs generated-action diagnostics, saves/restores the full checkpoint and proceeds to the existing32candidate episodes. Captain-only optional control is delivered separately. This intentionally forgoes remaining planned updates; it is not a temporary pause that auto-resumes. It starts no new GPU process itself and does not change the success predicate, seeds, action mapping or timeouts. Saving/evaluation can still fail; no native result is claimed from the CPU control tests. If candidate is already evaluating, the control is a no-op.
+
+Candidate decision: inspect official success AND failures/videos across the same panel. Improvement is only pilot evidence; select no checkpoint automatically. If it remains weak, test one concrete hypothesis against the recorded input/output/visual boundary before spending another training budget. Never manufacture a nonzero score, soften success, skip failed tasks, or choose different weights per task.
+
+Sources:
+Actual A ZIP identified in01; retained rollout ZIP SHA2562b293855efc02fdab2ae8eb427ae5ced55df4eaaef5783a044d976e1efdc42ce; source entries recorded inprovenance.json.
+Runtime producer/consumer references: reference/runtime/joint50_train.py,joint50_policy.py,joint50_sim.py,model_core.py,rollout_telemetry.py in the existing project ZIP. Current recovery-v2 changes startup/recovery/diagnostics, not these reviewed policy/train decode contracts.
+https://github.com/Robbyant/lingbot-vla-v2/blob/ecca77bb259b9592d5fc0eb2b4972d4a236ed2c8/configs/robot_configs/robotwin.yaml
+https://github.com/Robbyant/lingbot-vla-v2/blob/ecca77bb259b9592d5fc0eb2b4972d4a236ed2c8/lingbotvla/data/vla_data/transform.py
+https://huggingface.co/robbyant/lingbot-vla-v2-6b-robotwin
+https://tianchi.aliyun.com/competition/entrance/532514/information
+Official sources define upstream/rules context; actual run records define our results. No current server query or model rerun was performed by the reviewer.
+
+中文
+当前终端记录训练23300/50000更新、46600样本、loss约0.04076，训练在推进，但candidate尚无结果。旧MODEL_LOADING/时间戳不是当前训练进度。loss下降不能当成闭环成功率。
+独立复核的旧baseline是31回合3次成功，都在click_bell；后续32完成及最后bottle0/2与总3/32一致，但新完整包尚未复核。这个8任务小面板不是50任务正式得分。
+31回合的关节实际值相对瞬时驱动目标RMSE为0.124–1.826度；34116次TOPP中2次异常、0次空结果。不能把所有失败归因于这两次异常，也不能用小关节误差证明抓取正确。
+24个保留的bottle策略chunk经过独立NumPy反归一化/55维到14维重组，和原decoded输出最大误差0；模拟器指令等于其float32转换。现有evaluator使用qpos绝对关节模式。没有证据支持现在盲目交换左右手、乘57.3或反转夹爪。
+真实相机和文本存在；源码映射和3相机对照未显示明显丢相机/左右颠倒，但这不证明视觉编码器有效使用图像，也不等于已重新运行当前完整processor。精简归档未保留大部分处理后图像tensor；仍需A完成同资产新进程parity。
+可见问题包括抓取不准、双手任务单侧运动、后续阶段未完成。策略学习不足或上游条件处理不匹配等仍是假设，尚不能定唯一根因。当前baseline是我们以前的clean50微调权重，不是裸base，也不是官方RoboTwin后训练高分权重。保留的比赛规则要求base初始化/clean-only，不能直接拿官方RoboTwin后训练模型替代参赛模型。
+期限策略：优先拿到当前候选的真实成功率和完整导出，不继续盲目叠训练。现有STOP_TRAIN可以在本次更新完成后结束训练阶段，做诊断、保存/恢复检查，再接着32候选回合。队长专用控制单独交付；这会放弃本轮剩余更新，并非自动续训的暂停。它不改变动作、成功判定、种子或超时，也不保证后续保存/评测一定成功。候选若已开始则无需改变。
+用相同面板的成败和完整视频判断候选；小面板改善不等于正式全任务得分，不自动选权重。若仍差，先验证一个有证据的具体原因，再决定新训练。不要伪造成绩、放宽成功、跳过失败或按任务挑不同模型。

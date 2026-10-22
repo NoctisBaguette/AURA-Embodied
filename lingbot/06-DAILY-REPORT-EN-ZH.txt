@@ -1,0 +1,48 @@
+REPORT TEMPLATE — 22–24 OCTOBER 2026 / 日报与最终交接
+Read the complete guide for your assignment. / 分工见完整指南。
+
+6. DAILY REPORTS — 22 AND 23 OCTOBER, PLUS FINAL REPORT ON THE 24TH
+
+Send a short report even if blocked or no code was completed. AI can draft it; YOU check it against actual files/logs. Reports: 22 and 23 October by 22:00 Beijing, with a code handoff on the 23rd at 12:00; readiness update on the 24th at 12:00 and final report/code at 20:00. If receiving the guide after a checkpoint, report within two hours of reading and state your actual availability. Report critical blockers immediately; do not wait for the evening.
+
+Use about 200–400 English words (or 400–800 Chinese characters); attach evidence separately. Copy this template:
+
+Date/time (Beijing):
+Name / role A or B:
+Delivery outlook: ON TRACK / AT RISK / BLOCKED — reason.
+1) Completed: what now works; changed file/commit/output for each item. If none, what was inspected/attempted?
+2) Verification: check → PASSED / FAILED / NOT RUN → exact command + real log/result. Separate CPU fixtures from actual weight loading/GPU/simulator runs.
+3) Remaining: each essential item → NOT STARTED / IN PROGRESS / IMPLEMENTED, NOT VERIFIED / VERIFIED. Estimate hands-on hours remaining as a range. List GPU execution and external waiting separately; UNKNOWN is acceptable.
+4) Blockers: exact input/access/decision, who needs to provide it, needed by when, and what can continue meanwhile.
+5) Next delivery: specific file/behavior + expected Beijing time; can you meet the 23 October draft and 24 October finish? If not, identify what must be transferred now.
+6) Takeover: latest commit/ZIP, starting command, known failure, first unfinished step, suggested work to transfer and remaining effort. Agree ownership changes with captain.
+7) Attachments: changed code/patch or commit; real checks/logs; missing-input list.
+
+A reports inventory/export/load/entrypoints and fresh-process parity status, including exact missing weights/reference inputs. B reports 100-cell planning, ledger/resume/aggregation, A integration, actual episode counts and measured throughput. Report zero native episodes when only fixtures ran.
+
+On the 23rd at noon, hand over current code EVEN IF INCOMPLETE, exact commands and prioritized unfinished essentials. The captain uses that afternoon and the 24th for integration and remaining essentials. On the 24th include a final verified/unverified checklist and reproducible package/result identities. Reports do not replace implementation.
+
+AI report prompt: “Use my actual files, commands, logs and stated availability to fill the report template above. Do not invent progress, tests, hours or percentages. Separate implemented/unverified from verified, CPU fixtures from native runs, and work time from waiting. Identify blockers, next delivery and takeover steps. Ask only for missing reporting facts. If you cannot inspect evidence, attribute it to my report.”
+
+6. 日报：22日、23日每天交，24日交最终报告
+
+被卡住或没写完也交简短报告。允许AI起草，本人核对实际文件/日志。22/23日22:00前日报，23日12:00另交代码草稿；24日12:00报就绪情况，20:00交最终报告与代码。收到时已过节点，阅读后两小时内先报起始状态及实际可用时间。关键阻塞发现就说，不等晚间日报。
+
+建议约 400–800 个中文字，证据另附。直接复制填写：
+
+日期/时间（北京时间）：
+姓名 / 角色 A 或 B：
+交付判断：按计划 / 有延期风险 / 被阻塞 —— 原因。
+1）完成项：现在具体能做什么；每项给修改文件/commit/输出。未实现则说明检查或尝试了什么。
+2）验证：检查 → PASSED / FAILED / NOT RUN → 准确命令 + 真实日志/结果。区分 CPU 样例与真实权重/GPU/仿真运行。
+3）剩余：逐项写必须完成的工作，状态为未开始 / 进行中 / 已实现未验证 / 已验证。未完成项估剩余动手工时（可给范围）；GPU 执行与等待外部资源另列，不知道就写 UNKNOWN。
+4）阻塞：准确需要的输入/权限/决定、谁提供、最晚何时要、等待时能继续什么。
+5）下一份交付：具体文件/行为 + 预计北京时间；23日草稿及24日最终交付能否赶上？不能就说明现在需要转交什么。
+6）接手：最新 commit/ZIP、启动命令、已知失败、第一个未完成步骤、建议转交工作和剩余工时。职责转交须和队长确认。
+7）附件：修改代码/补丁或 commit；真实检查/日志；缺失输入清单。
+
+A 必须覆盖清单、导出、加载、入口、新进程一致性状态，写明缺哪些权重/参考输入。B 必须覆盖 100 组合计划、记录/续跑/汇总、与 A 联调、真实 episode 数和实测吞吐。只跑 fixtures 时，真实 episode 写 0。
+
+23日中午即使未完成也交当前代码、准确命令和按优先级排列的剩余必做项，队长可在下午及24日整合补齐。24日附最终已验证/未验证清单、可复现的模型包/结果身份。日报不能代替实现。
+
+给 AI 的日报提示词：“根据我实际文件、命令、日志和可用时间，填写上述日报。不编造进度、测试、工时或百分比。区分已实现未验证与已验证、CPU 样例与原生执行、动手与等待。明确阻塞、下一份交付和接手步骤；只询问准确报告所缺事实。不能读取的证据注明是我提供的情况。”

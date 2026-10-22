@@ -1,0 +1,11 @@
+RETURN CHECKLIST / 交付清单 — 24 OCTOBER 20:00 BEIJING
+Both: code/commit; exact setup/run/test commands; configs; real PASSED/FAILED/NOT RUN evidence; asset/dependency identities; missing inputs; remaining essential effort; takeover steps.
+A: complete package manifest; exact inference state; fresh-process restore/parity; real train/eval entrypoints; package/reproduction README.
+B: 100-cell dry-run; parameterized runner; immutable ledger/resume; official-schema actual counts; coverage/errors; failure-review table; same-panel comparison; measured throughput.
+Only real completed policy episodes enter results. Fixtures, commissioning and unexecuted cells cannot become successes.
+23 October noon: return current code even if incomplete; 24 October noon: readiness/freeze decision; 24 October 20:00: final code/evidence/report. Daily reports on 22/23 October at22:00.
+
+两人：代码/commit、准确环境/运行/检查命令、配置、真实PASSED/FAILED/NOT RUN证据、资源依赖身份、缺输入、剩余必做工时及接手步骤。
+A：完整manifest与推理状态、新进程恢复/一致性、真实train/eval入口及复现说明。
+B：100组合CPU计划、参数化runner、不可覆盖记录/续跑、官方schema真实计数、覆盖/错误、失败复盘、同面板对比与实测吞吐。
+只计真实完整策略episode，不把fixtures、commissioning或未跑组合当成功。23日中午先交已有代码；24日中午就绪/冻结决策；24日20:00最终代码/证据/报告。22/23日22:00日报。
