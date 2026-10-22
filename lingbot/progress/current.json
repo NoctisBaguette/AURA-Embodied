@@ -13,12 +13,12 @@
   "candidate_target": 32,
   "training": {
     "status": "TRAINING",
-    "completed_updates": 5420,
+    "completed_updates": 23300,
     "max_updates": 50000,
-    "samples_consumed": 10840,
+    "samples_consumed": 46600,
     "max_samples": 100000,
     "batch_size": 2,
-    "last_batch_loss": 0.11704578250646591,
+    "last_batch_loss": 0.04076269641518593,
     "update_loop_budget_hours": 22,
     "eta": null
   },
@@ -38,11 +38,25 @@
     "time_is_planning_assumption": true,
     "intermediate_code_handoff_beijing": "2026-10-23T12:00:00+08:00"
   },
-  "teammate_work": "Not supplied yet; captain says guide has not been sent",
+  "teammate_work": {
+    "A": "22 October handoff received and reviewed: CPU validator/export draft; loader not implemented; real loading/parity NOT RUN",
+    "B": "No new handoff supplied in this turn"
+  },
   "limits": [
     "Manual snapshot, not a live dashboard",
     "Loss is not task success",
     "Candidate performance, fresh-process portable load and full-suite evaluation pending",
     "Reference status files and previous snapshots are historical"
-  ]
+  ],
+  "review_evidence": {
+    "baseline_numeric_episodes": 31,
+    "baseline_successes": 3,
+    "decoded_chunks_checked": 24,
+    "decoded_max_absolute_error": 0,
+    "simulator_float32_cast_matches": true,
+    "top_p_calls": 34116,
+    "top_p_exceptions": 2,
+    "top_p_empty": 0,
+    "observer_sequences_sampled": 3
+  }
 }

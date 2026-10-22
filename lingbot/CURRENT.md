@@ -1,3 +1,15 @@
+## Latest — 22 October: training23,300; A handoff reviewed; real baseline visuals available
+
+Captain-pasted status reports RUNNING / JOINT_TRAINING,16commissions,32baseline completions,0candidate completions;23,300/50,000updates and46,600samples. Latest batch loss0.0407627 is not a task-success measure. No fresh server query was made.
+
+A's original22October ZIP is received. Independent repetition confirms7/7synthetic tests, but the real loader is not implemented and fresh-process parity has not run. Focused review reproduces incomplete-manifest/identity acceptance, ambiguous projection names, malformed tensor-payload acceptance, asset collisions, partial export and incorrect rejection-test success propagation. See reviews/2026-10-22/01-A-REVIEW-EN-ZH.txt. Old fallback(batch4/fivefiles) and new joint continuation(batch2/sixfiles) require distinct schemas; this corrects the earlier handoff ambiguity.
+
+Recovered baseline evidence:31completed episodes/3successes(allclick_bell); no current candidate result. Real camera samples show failed grasp/dual-arm sequencing. Independent inverse normalization/mapping reproduces24retained bottle chunks exactly and their simulator float32 casts; this does not qualify the full encoder or policy. Across31episodes, tracking RMSE0.124–1.826degrees versus drive targets;2TOPPexceptions among34,116calls. Full unchanged example videos, real baseline input/output/noise, exact normalization and metadata are supplied in the new direct handoff ZIP.
+
+A fixes packaging and implements full loading; B analyzes real failures while finishing evaluation/resume/aggregation. Read reviews/2026-10-22/00-READ-FIRST-EN-ZH.txt. Internal24October deadline and daily reporting remain. Captain-only optional early transition to candidate evaluation uses the current trainer's existing graceful stop; it is prepared/CPU-checked, NOT executed by the reviewer. It ends this training stage rather than automatically resuming unused updates. No runtime code, dependency, seed, success rule or active worker has been changed here.
+
+Earlier observations below are historical.
+
 # Current LingBot state — 22 October 2026, Beijing
 
 ## Team delivery update — 24 October internal finish

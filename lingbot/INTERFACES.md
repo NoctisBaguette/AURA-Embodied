@@ -21,3 +21,7 @@ A owns export/load/manifest/packaging. B owns evaluation scheduling/episode ledg
 ## 22–24 October delivery
 
 The complete guide defines priorities and reporting. A/B agree this API within the first two work hours, deliver partial code by 23 October 12:00 Beijing, and aim for real integration that evening with captain-arranged resources. Final internal delivery is 24 October; the plan uses 20:00 Beijing. Do not rebuild the model stack or introduce unmeasured concurrency to meet the date.
+
+## 22 October checkpoint schema clarification after A's handoff
+
+The original clean50 fallback is update10000/samples40000/batch4, with checkpoint.json plus adapter weights/config, resume-state and normalization (five total files). Its projections remain in the pinned frozen base. The new joint continuation is batch2 and six total files, adding separately trained projection_weights.safetensors. Validate their producer-specific identities and complete file sets; do not fabricate a missing projection file or apply the new cursor formula to the old fallback. See reviews/2026-10-22/01-A-REVIEW-EN-ZH.txt. A's proposed callable loader remains unimplemented, not accepted integration.
