@@ -1,6 +1,30 @@
 # Current LingBot state — 22 October 2026, Beijing
 
-## Latest: 31 completed episodes verified; targeted recovery prepared
+## Latest: baseline complete; joint training is running
+
+Source: captain-pasted server status received on 22 October 2026, Beijing. Exact observation time is not supplied. This is a manual status update, not a live SSH query or an independent audit of the new run archive.
+
+| Item | Reported state |
+|---|---|
+| Workflow | RUNNING / JOINT_TRAINING |
+| Simulator commissioning | 16/16 complete |
+| Baseline policy episodes | 32/32 complete; completion does not mean task success |
+| Training updates | 5,420/50,000 maximum |
+| Consumed training examples | 10,840/100,000 maximum; batch size 2 |
+| Latest batch loss | 0.11704578250646591 |
+| Candidate policy episodes | 0/32; evaluation follows training |
+
+Training is 10.84% of the maximum update/sample budget. The update loop also has a 22-hour budget; it can stop earlier than 50,000 updates. Post-training checkpoint save/restore checks and 32 candidate episodes follow. Neither 22 hours nor the maximum update count is an end-to-end ETA. This snapshot lacks the training elapsed time needed for a credible throughput estimate.
+
+The baseline's 0/2 lines are task failures. Batch training loss is not a task-success score; improvement must be assessed in candidate evaluation. The current run has passed the previously failing baseline boundary, but this does not prove the intermittent native crash is eliminated.
+
+Some status fields retain earlier stages: MODEL_LOADING is the admission receipt, and the last pilot record is historical baseline progress. Current phase and training update counters establish the reported training state. The advertised package now belongs to the current attempt but is still intermediate.
+
+A/B: continue the same portable-package and evaluation-runner assignments. No new onboarding ZIP is needed. Today's report target is 22 October 22:00 Beijing; the 23 October 12:00 handoff includes current code even if incomplete, exact commands/evidence, blockers and takeover steps. No teammate completion or actual GPU acceptance is claimed. This repository update does not deploy to or restart the server.
+
+中文：队长最新状态显示，16/16仿真准备检查和32/32 baseline已完成，现已进入联合训练。已完成5,420次更新、消耗10,840个训练样本，达到50,000次更新/100,000样本上限的10.84%。训练循环还受22小时预算约束，可能先达到时间预算；之后仍有checkpoint校验和32次candidate评测，不能把22小时当作整个流程的完成时间。32次完成不代表32次成功，日志里的0/2是任务失败；loss也不是机器人任务成功率。当前已通过之前中断的baseline边界，但不能据此声称间歇性崩溃根因已解决。MODEL_LOADING和最后的pilot记录属于较早阶段；以当前JOINT_TRAINING及更新计数判断。A/B继续原任务，22日22:00前交日报，23日12:00交可接手代码与未完成项，无须重发入门包。
+
+## Earlier: 31 completed episodes verified; targeted recovery prepared
 
 Source: independent inspection of the captain-supplied recovery archive, not a live SSH query. All31 completed policy episodes and their videos validate:3task successes and28task failures. The final randomized bottle case completed its first episode as a failure; its next candidate has no completed record. Joint training has not started. Cleanup/source-preservation receipts pass.
 
