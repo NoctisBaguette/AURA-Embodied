@@ -1,63 +1,53 @@
-SUPERSEDED ONBOARDING / 入门说明已整合
-Read LingBot-Team-Complete-Guide-EN-ZH.txt for the complete A/B assignments, daily reports and GitHub workflow in one file. This older document remains a supporting reference.
-请先读上述完整双语文件；本旧文件仅保留作参考。
+GITHUB OR DIRECT FILE HANDOFF — 22 OCTOBER REVISION
+Full A/B tasks and deadlines are in LingBot-Team-Complete-Guide-EN-ZH.txt.
+完整分工与时间表见该完整指南。
 
-LINGBOT GITHUB WORKFLOW / GITHUB 协作说明
-21 October 2026 / 2026 年 10 月 21 日
+7. GITHUB OR DIRECT HANDOFF — CHOOSE ONE
 
-ENGLISH
+GitHub is convenient but NOT required to start or report. The integration branch is lingbot/competition, not the repository's default main. Main also hosts other AURA work; do not modify unrelated experiments.
 
-Repository: https://github.com/NoctisBaguette/AURA-Embodied
-Shared LingBot workspace:
-https://github.com/NoctisBaguette/AURA-Embodied/tree/lingbot/competition/lingbot
+If using GitHub:
+  A branch: lingbot/portable-package; new code: lingbot/submission/portable/
+  B branch: lingbot/full-evaluation; new code: lingbot/submission/evaluation/
+  Both open/update pull requests with base = lingbot/competition.
+  Daily report: lingbot/reports/YYYY-MM-DD/A.md or B.md on your own branch.
+  Commit the report/code, put the PR/commit link in your daily handoff to captain. Keep pending reports visible in the PR; captain reviews/merges and updates shared progress. Do not assume an unmerged branch report is visible on the integration page.
 
-Use these branches:
-  lingbot/competition — shared integration branch; captain reviews and integrates.
-  lingbot/portable-package — teammate A's work.
-  lingbot/full-evaluation — teammate B's work.
-
-All LingBot files are under lingbot/. Do not work on AURA's main or AETHER/M9a experiment branch for this assignment. Pull requests from A and B target lingbot/competition, not main. The two teammate branches start from the same initial workspace; being created does not mean their assignments are complete.
-
-Read lingbot/README.md and CURRENT.md first. A develops in lingbot/submission/portable/; B develops in lingbot/submission/evaluation/. These directories initially contain only ownership/readme files, not completed tools. reference/ contains the actual source references; keep it unchanged. A's eval.sh will call B's evaluator after interface agreement.
-
-For a new local checkout, if Git is already available:
+Optional commands for a NEW checkout with Git installed:
   git clone --branch lingbot/competition https://github.com/NoctisBaguette/AURA-Embodied.git
   cd AURA-Embodied
-Then choose ONE role branch:
-  A: git switch --track origin/lingbot/portable-package
-  B: git switch --track origin/lingbot/full-evaluation
+  A chooses: git switch --track origin/lingbot/portable-package
+  B chooses: git switch --track origin/lingbot/full-evaluation
+Run only your role's switch command. Existing checkout/branch users should fetch and switch their existing branch without discarding local edits. Select only your changed code/report files for commits; do not accidentally add weights or private logs.
 
-Existing checkout: do not overwrite uncommitted work; use a separate checkout or preserve your changes first. No GPU/environment setup is needed merely to read and edit CPU tools. Repository write permission is not automatically granted by this handoff. Without permission, return changed files/patches to the captain or use your own fork and PR. No access invitation has been sent on your behalf.
+Branches do not grant write permission. If you lack access, use a fork/PR if familiar, or simply use direct handoff. Do not lose a day setting up Git.
 
-Your AI may read the branch URLs or the attached LingBot-AURA-Workspace-20261021.zip. Start with the role-specific prompt inside lingbot/. If it cannot browse the branch or inspect ZIPs, attach the source files listed in the read-first document. Do not assume it can SSH into the server or access the private archive.
+Direct handoff alternative:
+  Send captain A-2026-10-22.txt or B-2026-10-22.txt (adjust date), plus changed code ZIP/patch and small relevant check outputs. Preserve paths under lingbot/submission/<role>/ so the captain can integrate them. Include commands and missing inputs. You do not need to resend unchanged source material every day. Keep credentials out of all shared files; use captain-arranged private storage for large weights/evidence.
 
-Daily reports: reports/YYYY-MM-DD/A.md or B.md, on the owner's branch, or send the report privately. Follow 06-DAILY-REPORT-EN-ZH.txt through 23 October. Include actual file/commit identities, checks versus NOT RUN, remaining work and takeover steps. Remove host details/private logs from public reports. Reports are not scheduled or sent automatically.
+This repository is public: public reports should contain sanitized summaries, code identities and non-sensitive outputs. Do not commit SSH credentials, personal host addresses/paths, private raw logs/incidents, weights or datasets. GitHub does not automatically deploy to the running server or monitor it. The captain's assistant reviews updates when asked; a commit alone does not trigger a review or reminder.
 
-The current server workflow continues independently. GitHub changes do not deploy, restart or monitor it. The latest supplied snapshot is BASELINE 8/32, commission 16/16. Dates and evidence attribution matter; do not treat this as a live dashboard.
+7. GitHub 或直接发文件，二选一即可
 
-AURA-Embodied is public. Reference copies replace host-specific paths with /path/to/...; they are for inspection and adaptation, not direct server execution. The full exact-source archive and private engineering evidence remain in NoctisBaguette/Embodied-AI-Research. New A/B implementation work is integrated here, so there are not two competing development copies. The earlier teammate ZIP remains useful background, but follow this branch/path routing going forward.
+GitHub 方便协作，但不是开工和日报的前提。整合分支是 lingbot/competition，不是默认 main；main 上还有其他 AURA 工作，别改不相关实验。
 
-中文
+使用 GitHub 时：
+  A 分支：lingbot/portable-package；新代码：lingbot/submission/portable/
+  B 分支：lingbot/full-evaluation；新代码：lingbot/submission/evaluation/
+  两人的 PR base 都选 lingbot/competition。
+  日报放自己分支的 lingbot/reports/YYYY-MM-DD/A.md 或 B.md。
+  commit 后把 PR/commit 链接发给队长。未合并报告在 PR 中可见，队长审查合并后更新共享进度；不能默认个人分支报告已出现在整合分支页面。
 
-仓库：https://github.com/NoctisBaguette/AURA-Embodied
-LingBot 工作入口：
-https://github.com/NoctisBaguette/AURA-Embodied/tree/lingbot/competition/lingbot
+已装 Git、需要新建本地 checkout 时可用：
+  git clone --branch lingbot/competition https://github.com/NoctisBaguette/AURA-Embodied.git
+  cd AURA-Embodied
+  A 选：git switch --track origin/lingbot/portable-package
+  B 选：git switch --track origin/lingbot/full-evaluation
+只执行自己的切分支命令。已有 checkout/分支就 fetch 后切已有分支，不丢弃本地修改。提交时只选相关代码/日报，避免误加权重或私人日志。
 
-分支：
-  lingbot/competition：公共整合分支，由队长审查合入。
-  lingbot/portable-package：队友 A 开发分支。
-  lingbot/full-evaluation：队友 B 开发分支。
+分支存在不代表你自动获得写权限。没有权限时，熟悉 fork/PR 就用它，否则直接交文件，不要为 Git 配置浪费一天。
 
-所有 LingBot 文件位于 lingbot/。本任务不要改 AURA 的 main 或 AETHER/M9a 实验分支。A/B 的 PR 目标都是 lingbot/competition，不是 main。两人的分支从同一个初始工作区建立，建好分支不代表任务已完成。
+直接交接方式：
+  发 A-2026-10-22.txt 或 B-2026-10-22.txt（按当天改日期），附修改代码 ZIP/patch 和少量关键检查输出。代码保留 lingbot/submission/<对应目录>/ 层级，方便队长整合；附命令和缺失输入。无需每天重发没变的整个项目。任何共享文件都不放凭据，大权重/证据用队长安排的私有存储。
 
-先读 lingbot/README.md 和 CURRENT.md。A 在 lingbot/submission/portable/ 开发，B 在 lingbot/submission/evaluation/ 开发；初始目录只有职责说明，还没有完成的工具。reference/ 保存实际参考源码，请保持不变。接口确认后，A 的 eval.sh 调用 B 的评测器。
-
-如果电脑已有 Git，新建本地副本可用上面的 clone/cd 命令，再只选择自己角色对应的 switch 命令。已有副本不要覆盖未提交改动，先保留工作或另开副本。阅读和 CPU 工具开发不要求先安装整套 GPU 环境。交接包不会自动授予仓库写权限；没有权限时可交补丁/修改文件给队长，或从自己的 fork 提 PR。这里没有替你发送访问邀请。
-
-可把分支链接或 LingBot-AURA-Workspace-20261021.zip 交给自己的 AI，再使用 lingbot/ 中相应角色的提示词。AI 不能浏览或解压时，按先读文档提供单独源码。不要默认它有服务器 SSH 权限或私有仓库权限。
-
-日报可以放在本人分支的 reports/YYYY-MM-DD/A.md 或 B.md（相对于 lingbot/），也可以私发队长。按 06-DAILY-REPORT-EN-ZH.txt 每天汇报到 23 日，附实际文件/commit、已运行和未运行检查、剩余任务及接手步骤。公开报告去掉主机信息和私有日志。报告不会自动定时发送。
-
-服务器上的当前流程独立运行，GitHub 改动不会自动部署、重启或监控它。最后收到的快照为基线 8/32、验收 16/16；它不是实时看板。
-
-AURA-Embodied 是公开仓库。参考代码中的服务器路径已替换为 /path/to/... 占位符，用于阅读和后续适配，不能直接作为服务器运行版本。准确原始源码及私有工程证据保留在 Embodied-AI-Research。今后的 A/B 新代码在这里统一整合，不建立两套并行开发副本。之前的队友 ZIP 仍可参考，后续按本文件的分支和目录协作。
+仓库是公开的：公开日报放脱敏摘要、代码身份和非敏感输出。不要提交 SSH 凭据、个人服务器地址/路径、私有原始日志/事故记录、模型权重或数据集。GitHub 不会自动部署到正在运行的服务器，也不会自动监控它。队长的助手在收到请求后审查更新；commit 本身不会触发审查或提醒。

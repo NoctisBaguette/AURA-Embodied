@@ -16,4 +16,8 @@ The current reporter records successful commissioning as COMPLETE with native_co
 
 ## Change ownership
 
-A owns export/load/manifest/packaging. B owns evaluation scheduling/episode ledgers/aggregation. Optional C owns prose/provenance/uploads. Baguette owns live resource allocation, frozen-policy choice and actual submission. Work on separate branches/new files; review the interface together before merging. Neither teammate edits the installed frozen v3 release, changes dataset labels, restarts the active worker, or upgrades GPU packages.
+A owns export/load/manifest/packaging. B owns evaluation scheduling/episode ledgers/aggregation. Baguette owns live resource allocation, frozen-policy choice and actual submission. Work on separate branches/new files; review the interface together before merging. Neither teammate edits the active server release, changes dataset labels, restarts the active worker, or upgrades GPU packages.
+
+## 22–24 October delivery
+
+The complete guide defines priorities and reporting. A/B agree this API within the first two work hours, deliver partial code by 23 October 12:00 Beijing, and aim for real integration that evening with captain-arranged resources. Final internal delivery is 24 October; the plan uses 20:00 Beijing. Do not rebuild the model stack or introduce unmeasured concurrency to meet the date.

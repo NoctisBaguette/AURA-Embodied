@@ -1,59 +1,11 @@
-RETURN CHECKLIST / 队友交付清单
+RETURN CHECKLIST / 交付清单 — 24 OCTOBER 20:00 BEIJING
+Both: code/commit; exact setup/run/test commands; configs; real PASSED/FAILED/NOT RUN evidence; asset/dependency identities; missing inputs; remaining essential effort; takeover steps.
+A: complete package manifest; exact inference state; fresh-process restore/parity; real train/eval entrypoints; package/reproduction README.
+B: 100-cell dry-run; parameterized runner; immutable ledger/resume; official-schema actual counts; coverage/errors; failure-review table; same-panel comparison; measured throughput.
+Only real completed policy episodes enter results. Fixtures, commissioning and unexecuted cells cannot become successes.
+23 October noon: return current code even if incomplete; 24 October noon: readiness/freeze decision; 24 October 20:00: final code/evidence/report. Daily reports on 22/23 October at22:00.
 
-Return a commit/patch or small ZIP with these items. A code-capable AI may help prepare it, but the teammate checks the actual files and claims before sending.
-交 commit/补丁或小 ZIP，并附以下内容。可以由 AI 协助，但队友本人要核对实际文件和所声称的验证。
-
-1. Identity / 身份
-   Owner and role / 负责人及 A/B：
-   Source handoff / 来源：LingBot-AURA-Workspace-20261021.zip
-   Commit or changed-file list / commit 或修改文件清单：
-   Implemented behavior / 已实现行为：
-   Remaining scaffolds / 尚属框架的部分：
-
-2. Reproduction / 复现
-   OS and Python / 系统及 Python：
-   Dependency versions / 依赖版本：
-   Exact working directory and commands / 工作目录和准确命令：
-   Expected inputs / 需要的输入：
-   Output files / 输出文件：
-   Include code and real stdout/stderr or log files. Avoid absolute paths that only exist on your own machine.
-   附代码及真实日志。避免只能在自己电脑上使用的绝对路径。
-
-3. Verification / 验证
-   For every check: PASSED / FAILED / NOT RUN, command, result file and limitation.
-   每项写状态、命令、结果文件和局限；未运行就是 NOT RUN。
-   Separate CPU unit checks, simulated fixtures, real checkpoint loading and real native rollouts.
-   区分 CPU 单测、模拟样例、真实权重加载和真实仿真。
-   A: artifact validation; exact state restore; fresh-process loading; fixed-input/noise output comparison.
-   A：资源校验、准确恢复状态、新进程加载、固定输入/噪声输出对比。
-   B: all 100 cells; duplicate/conflict/mixed-checkpoint protection; commission/fixture exclusion; resume; actual coverage.
-   B：100 个组合、重复/冲突/混模型检查、排除验收与样例、续跑、实际覆盖情况。
-
-4. Interface and integration / 接口及整合
-   Changes to INTERFACES.md, with a concrete example / 接口变化及具体例子：
-   What the other owner must supply / 需要另一角色提供什么：
-   GPU operation requested, resource and estimated duration / 请求的 GPU 操作、资源及预计时长：
-   Do not start the GPU operation yourself while the captain's run owns it.
-   当前资源由队长流程占用时，不自行启动 GPU 操作。
-
-5. Missing items and next step / 缺失项及下一步
-   Exact missing file or metadata, why needed, which work can continue / 缺什么、用途、不受影响的工作：
-   Known failure and retained evidence / 已知失败及证据：
-   Next concrete deliverable / 下一份具体交付物：
-
-6. Packaging / 打包
-   Include only intended code/docs/tests/logs and clearly marked fixtures.
-   只交需要的代码、文档、测试、日志及明确标注的样例。
-   Keep real evaluation results separate; do not include fake scores, caches, virtual environments, credentials or unrelated project files.
-   真实评测单独存放，不夹带假分数、缓存、虚拟环境、凭据或无关项目文件。
-   Large weights/datasets remain at agreed storage locations with identities/checksums; do not replace them with dummy files.
-   大权重/数据保留在约定位置并提供标识/校验值，不能用假文件代替。
-
-The captain reviews and integrates these deliverables. Sending a ZIP is not automatic acceptance or permission to overwrite the running release.
-队长审查后整合；交 ZIP 不等于自动验收通过，也不等于可以覆盖活动版本。
-
-7. Daily reports through 23 October / 每日报告到 23 日
-   Follow 06-DAILY-REPORT-EN-ZH.txt. AI summaries are fine when grounded in actual files/logs.
-   按日报模板交实际完成、验证、剩余工时、阻塞和接手信息；AI 可协助。
-   Daily report filenames: A-20261021.txt / B-20261021.txt, changing date for each day.
-   日报文件名按角色和日期，例如 A-20261021.txt；每日报告单独保留。
+两人：代码/commit、准确环境/运行/检查命令、配置、真实PASSED/FAILED/NOT RUN证据、资源依赖身份、缺输入、剩余必做工时及接手步骤。
+A：完整manifest与推理状态、新进程恢复/一致性、真实train/eval入口及复现说明。
+B：100组合CPU计划、参数化runner、不可覆盖记录/续跑、官方schema真实计数、覆盖/错误、失败复盘、同面板对比与实测吞吐。
+只计真实完整策略episode，不把fixtures、commissioning或未跑组合当成功。23日中午先交已有代码；24日中午就绪/冻结决策；24日20:00最终代码/证据/报告。22/23日22:00日报。

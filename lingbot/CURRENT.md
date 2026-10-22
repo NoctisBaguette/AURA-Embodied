@@ -1,5 +1,15 @@
 # Current LingBot state — 22 October 2026, Beijing
 
+## Team delivery update — 24 October internal finish
+
+The captain confirms the teammate guide has not yet been sent and sets24October as the internal final date. The revised complete guide uses24October20:00Beijing as an explicit planning assumption, with23October12:00partial-code handoff and24October12:00readiness/checkpoint decision. A owns complete export/load/reproduction; B owns evaluation/resume/results plus immediate failure-video review. Reports22/23October22:00, final report24October20:00; late recipients follow the guide's two-hour initial-status rule.
+
+Use `LingBot-Team-Complete-Guide-EN-ZH.txt` and `deliverables/LingBot-AURA-Workspace-20261022.zip`. No teammate implementation or native acceptance is claimed. The older guide/bundle is superseded for onboarding. Current public structured evidence: `progress/current.json` and `progress/2026-10-22-training-5420-user.json`; reference status files remain historical.
+
+The three-day goal is a verified, reproducible selected policy and honest results; improved policy performance and completing10,000episodes are not guaranteed. The captain will review baseline failures now and candidate evidence when ready, preserving the fallback. This document does not change the active server workflow or official deadline.
+
+中文：队长尚未发送旧说明，内部完成日改为24日。本计划具体按北京时间24日20:00安排，23日12:00先交代码草稿，24日12:00检查就绪并决定模型。A做完整打包/新进程加载，B做评测/续跑/汇总并马上复盘已有失败；22/23日晚日报，24日最终交接。使用22日新版说明与ZIP。不能承诺三天内模型提升或跑完10,000次，不改当前服务器流程或官方截止。
+
 ## Latest: baseline complete; joint training is running
 
 Source: captain-pasted server status received on 22 October 2026, Beijing. Exact observation time is not supplied. This is a manual status update, not a live SSH query or an independent audit of the new run archive.

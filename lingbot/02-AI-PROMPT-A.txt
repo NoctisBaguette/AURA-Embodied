@@ -1,41 +1,6 @@
-REPOSITORY EDITION: First read GITHUB-WORKFLOW-EN-ZH.txt. Work under lingbot/ on your A/B branch; PRs target lingbot/competition. This ZIP contains a top-level lingbot/ directory; instruction paths are relative to it. Public source references contain placeholder host paths and are not a deployable release.
-GitHub版：先读协作说明；解压后进入lingbot/，路径以该目录为准。参考代码主机路径已替换为占位符，不能直接部署。
+ROLE A AI STARTER / A角色AI开工提示
+Attach the complete guide and source ZIP. / 附完整指南及源码ZIP。
 
-ROLE A — COPY ONE LANGUAGE BELOW INTO YOUR AI CHAT
-Attach LingBot-AURA-Workspace-20261021.zip first.
+I am teammate A. Read one full language of LingBot-Team-Complete-Guide-EN-ZH.txt and the real role-specific sources. Follow its P0 priorities, 23 October noon draft, 24 October 20:00 Beijing delivery, shared interfaces and reports. List files actually read. Implement a useful CPU draft now. Use fixtures only as labelled development evidence; do not invent real loading, robot episodes or missing code. Return code, exact commands/results, missing inputs, remaining hours and takeover instructions. Preserve the running server and one fixed policy identity. Do not launch GPUs or change dependencies.
 
-ENGLISH PROMPT
-
-You are helping me implement teammate A's part of an existing LingBot-VLA/RoboTwin competition project. I own portable model export/loading and reproduction packaging. The captain runs training and chooses the final checkpoint. Work from the attached files; you do not have the captain's server, weights or prior chat unless explicitly supplied.
-
-First read 00-READ-FIRST-EN.txt, A-PORTABLE-PACKAGE.md, INTERFACES.md, 04-RETURN-CHECKLIST.txt, official/code-requirements.md and official/reproduction-template.md. Then inspect the actual checkpoint producer/consumer in reference/runtime/joint50_train.py, model_core.py, joint50_policy.py, lingbot_zero_padding.py and reference/inference_common.py. Report filenames and function names you actually inspected. If you cannot read the ZIP, say so and request these files. Do not pretend to have inspected inaccessible content.
-
-Implement a CPU-first draft in new lingbot/submission/portable files: explicit artifact inventory; configurable export/load interfaces; manifest validation; missing/partial/incompatible checkpoint rejection; package structure and concrete dependency requests. Keep heavy model/GPU imports out of the CPU-only inventory path. Do not assume the existing fallback uses the new joint-training save layout. Inspect/request its real checkpoint metadata before supporting that layout.
-
-Preserve the policy: exact base revision, adapter, five trained projections including biases, required buffers/model step, tokenizer/processor/configuration, clean50 normalization, preprocessing, zero-padding and inference settings. Do not replace state with defaults, drop buffers or merge adapters without verified numerical parity. An adapter-only package is incomplete. Refer to the source, not generic PEFT assumptions.
-
-Own README/train.sh/eval.sh/configs/src integration, with eval.sh delegating to B's proposed evaluator. CLI names in INTERFACES.md are not implemented commands. Agree any interface changes before building incompatible entrypoints. A scaffold must be labelled a scaffold; a script that only prints commands is not a working final entrypoint.
-
-Keep reference code and the active server environment unchanged. No remote execution, dependency upgrades, new training, simulator launch or GPU load is part of this initial draft. Request exact missing checkpoint/config/reference-input assets. A CPU dry-run cannot establish CUDA loading, tensor parity or native evaluation success.
-
-Read 06-DAILY-REPORT-EN-ZH.txt and help draft daily reports for 21–23 October from actual artifacts/logs. Include remaining hands-on effort, external/GPU waits, blockers and takeover steps; use NOT RUN for unexecuted checks. Suggested check-ins are 22:00 on 21/22 October and 12:00 on 23 October, Beijing time. Reports are prepared when asked, not an unattended monitoring service.
-
-Deliver actual files/patches and focused verification evidence, following the return checklist. Mark each check PASSED, FAILED or NOT RUN; retain actual output. Include a later fresh-process GPU validation plan using captured fixed input/noise, exact state restoration and comparison of the complete normalized (1,50,55) and decoded (50,14) outputs. The captain coordinates execution. Start by summarizing the observed save/load contract and then implement the bounded CPU draft rather than proposing an unrelated architecture.
-
-中文提示词
-
-你帮助我实现已有 LingBot-VLA/RoboTwin 比赛项目中队友 A 的部分：模型独立导出/加载和复现打包。队长负责服务器训练及最终 checkpoint 选择。以附件为依据；除非明确提供，否则你没有队长的服务器、权重或历史聊天。
-
-先读 00-READ-FIRST-ZH.txt、A-PORTABLE-PACKAGE.md、INTERFACES.md、04-RETURN-CHECKLIST.txt、official/code-requirements.md、official/reproduction-template.md；再检查 reference/runtime/ 下 joint50_train.py、model_core.py、joint50_policy.py、lingbot_zero_padding.py，以及 reference/inference_common.py 中真实的保存/加载实现。列出实际检查过的文件与函数。不能读 ZIP 就明确说明并索取这些文件，不要假装读过。
-
-在新的 lingbot/submission/portable 文件中实现 CPU 初稿：明确的资源清单、可配置导出/加载接口、manifest 校验、对缺失/不完整/不兼容 checkpoint 的拒绝、包目录和具体的缺失依赖请求。CPU 清单路径不要导入重型模型/GPU 模块。已有备用 checkpoint 可能不同于新联合训练格式，支持它之前先检查或索取真实元数据。
-
-完整保留策略：基础模型版本、adapter、五个投影模块及 bias、必要 buffer/模型 step、tokenizer/processor/配置、clean50 归一化、预处理、零填充和推理设置。不能用默认值替代状态、丢弃 buffer，或在没有数值一致性证据时合并 adapter。仅 adapter 不完整，不能套用通用 PEFT 假设代替源码检查。
-
-你负责 README/train.sh/eval.sh/configs/src 的打包对接，eval.sh 调用 B 的评测器。INTERFACES.md 的命令是拟定接口，并非已实现命令。接口变化先提出，不要各做一套。框架必须标为框架，只打印命令的脚本不算可运行的最终入口。
-
-参考源码及服务器活动环境保持不变。初稿不包括远程执行、升级依赖、新训练、启动仿真或 GPU 加载。缺什么 checkpoint/配置/参考输入就具体列出。CPU dry-run 不能证明 CUDA 加载、张量一致性或原生评测成功。
-
-阅读 06-DAILY-REPORT-EN-ZH.txt，根据实际文件/日志协助写 21–23 日日报，包括剩余动手工时、GPU/外部等待、阻塞和接手步骤；未执行检查写 NOT RUN。建议北京时间 21/22 日 22:00、23 日中午 12:00 同步。收到请求时起草报告，不声称可以无人值守持续监控。
-
-按交付清单交具体文件/补丁和针对性验证证据。每项检查标明 PASSED、FAILED 或 NOT RUN，保留真实输出。附后续新进程 GPU 验证方案：固定输入/噪声、准确恢复状态、对比完整 (1,50,55) 归一化输出和 (50,14) 解码动作，由队长安排执行。先解释实际保存/加载契约，再实现有明确边界的 CPU 初稿，不提出无关的新架构。
+我是队友A。请读完整指南的一种语言及对应真实源码，按P0优先级、23日中午草稿、24日北京时间20:00交付、共享接口及日报要求执行。列出实际读过的文件，马上做有用CPU草稿。fixtures只作明确标注的开发证据，不虚构加载、机器人episode或缺失实现。交代码、准确命令/结果、缺输入、剩余工时及接手步骤。保留当前服务器和单一固定模型身份，不启动GPU或改依赖。

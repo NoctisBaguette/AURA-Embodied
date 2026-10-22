@@ -1,45 +1,6 @@
-REPOSITORY EDITION: First read GITHUB-WORKFLOW-EN-ZH.txt. Work under lingbot/ on your A/B branch; PRs target lingbot/competition. This ZIP contains a top-level lingbot/ directory; instruction paths are relative to it. Public source references contain placeholder host paths and are not a deployable release.
-GitHub版：先读协作说明；解压后进入lingbot/，路径以该目录为准。参考代码主机路径已替换为占位符，不能直接部署。
+ROLE B AI STARTER / B角色AI开工提示
+Attach the complete guide and source ZIP. / 附完整指南及源码ZIP。
 
-ROLE B — COPY ONE LANGUAGE BELOW INTO YOUR AI CHAT
-Attach LingBot-AURA-Workspace-20261021.zip first.
+I am teammate B. Read one full language of LingBot-Team-Complete-Guide-EN-ZH.txt and the real role-specific sources. Follow its P0 priorities, 23 October noon draft, 24 October 20:00 Beijing delivery, shared interfaces and reports. List files actually read. Implement a useful CPU draft now. Use fixtures only as labelled development evidence; do not invent real loading, robot episodes or missing code. Return code, exact commands/results, missing inputs, remaining hours and takeover instructions. Preserve the running server and one fixed policy identity. Do not launch GPUs or change dependencies.
 
-ENGLISH PROMPT
-
-You are helping me implement teammate B's part of an existing LingBot-VLA/RoboTwin competition project. I own full-suite evaluation scheduling, resumption and truthful aggregation. A owns model export/loading; the captain runs the current workflow, allocates GPUs and chooses one final checkpoint.
-
-Read 00-READ-FIRST-EN.txt, B-EVALUATION-RESULTS.md, INTERFACES.md, 04-RETURN-CHECKLIST.txt and official/results-template.json. Inspect reference/runtime/joint50_common.py, joint50_sim.py, manager.py and joint50_policy.py, both reference/configs YAMLs, and reference/commission-negative-example.json. Identify actual episode producers and consumers, fields and completion checks. List files/functions you read. If the ZIP is inaccessible, request the specific files rather than inventing their contents.
-
-Implement the initial work in new lingbot/submission/evaluation files without changing reference/runtime or the active server release:
-1. A CPU-only dry-run covering the exact 50 tasks × two settings in the official template. Parameterize target episodes; 100 per cell means 10,000 total. Record proposed seed allocation, output/shard paths and checkpoint content identity.
-2. Immutable per-episode records and safe resume planning. No duplicate counts, conflicting records, mixed checkpoints or overwriting prior evidence. Include unique episode/request identities for future workers.
-3. An aggregator producing official integer attempts/successes, with separate coverage/errors and remaining-work records. Real completed policy episodes only; unfinished cells retain actual counts.
-4. Focused tests with explicitly labelled fixtures, including the supplied actual commissioning negative example. Cover true/false outcomes including NumPy bool, duplicates/conflicts, wrong checkpoint, malformed counts, unexpected cells, partial/error records and fixture/commission exclusion.
-
-Read the current two-episode assertions, test_num=2 and finite candidate-seed bound before designing the full runner. A budget of 64 candidate seeds cannot support 100 accepted episodes. Propose a finite explicit budget and preserve the typed rejection rules; do not silently turn fatal failures into seed retries. Preserve official success predicates, task action limits, settings/instructions and existing policy semantics.
-
-The shared CLI is a proposal; integrate with A's loader rather than rewriting model code. CPU fixtures can check orchestration but cannot prove native simulation or model correctness. Do not import GPU/physics merely to perform a scheduling dry-run. Do not start a server job, download the full dataset, install CUDA or allocate GPUs for the draft.
-
-Read 06-DAILY-REPORT-EN-ZH.txt and help draft daily reports for 21–23 October from actual artifacts/logs. Include remaining hands-on effort, external/GPU waits, blockers and takeover steps; use NOT RUN for unexecuted checks. Suggested check-ins are 22:00 on 21/22 October and 12:00 on 23 October, Beijing time. Reports are prepared when asked, not an unattended monitoring service.
-
-Return actual files/patches, real check outputs and a small integration/resumption test plan using A's loader. Mark PASSED/FAILED/NOT RUN accurately. Keep fixture results separate from the submission. Later, the captain will coordinate a real small evaluation to measure end-to-end throughput before full rollout. Do not promise 10,000 episodes fit the deadline without measurement. Start by mapping the actual record contract, then implement the bounded CPU draft.
-
-中文提示词
-
-你帮助我实现已有 LingBot-VLA/RoboTwin 比赛项目中队友 B 的部分：全任务评测调度、续跑和真实统计。A 负责模型导出/加载；队长操作当前流程、分配 GPU 并选择一个最终 checkpoint。
-
-先读 00-READ-FIRST-ZH.txt、B-EVALUATION-RESULTS.md、INTERFACES.md、04-RETURN-CHECKLIST.txt、official/results-template.json。检查 reference/runtime/ 下 joint50_common.py、joint50_sim.py、manager.py、joint50_policy.py，reference/configs/ 的两份 YAML，以及 reference/commission-negative-example.json。指出真实 episode 记录的生产/消费函数、字段和完成检查，列出实际读过的文件与函数。无法读取 ZIP 时索取明确文件，不编造内容。
-
-在新的 lingbot/submission/evaluation 文件中实现初稿，不修改 reference/runtime 或服务器活动版本：
-1）CPU dry-run，覆盖官方模板中的准确 50 个任务 × 两种设置；目标次数可配置。每组合 100 次，共 10,000 次，记录拟定种子、分片/输出路径和模型内容标识。
-2）不可覆盖的逐 episode 记录和安全续跑设计，防止重复、冲突、混合 checkpoint 或覆盖证据，为未来并行 worker 设计唯一 episode/request 标识。
-3）按官方模板输出整数 attempts/successes，另存进度、错误和剩余任务。只统计真实完成的策略评测，未完成组合保留实际次数。
-4）使用明确标注的测试样例做针对性验证，包含随包真实的 commissioning 反例。覆盖真假结果（含 NumPy bool）、重复/冲突、错误模型标识、非法计数、未知组合、部分完成/错误记录、排除样例及 commissioning。
-
-设计完整 runner 前，检查现有两次评测断言、test_num=2 和有限候选种子预算。64 个候选种子不可能支持 100 个有效 episode；必须提出明确有限预算，保留按类型处理无效场景的规则，不能把致命失败偷偷转为换种子重试。保留官方成功判定、任务动作上限、设置/指令及现有策略语义。
-
-共同 CLI 是拟定接口，接 A 的加载器，不重写模型。CPU 样例只能验证调度，不能证明仿真和模型正确。调度 dry-run 不应导入 GPU/物理引擎。初稿不启动服务器任务、不下载完整数据集、不安装 CUDA、不占用 GPU。
-
-阅读 06-DAILY-REPORT-EN-ZH.txt，根据实际文件/日志协助写 21–23 日日报，包括剩余动手工时、GPU/外部等待、阻塞和接手步骤；未执行检查写 NOT RUN。建议北京时间 21/22 日 22:00、23 日中午 12:00 同步。收到请求时起草报告，不声称可以无人值守持续监控。
-
-交具体文件/补丁、真实检查输出，以及通过 A 加载器进行小规模联调和续跑测试的方案。准确标明 PASSED/FAILED/NOT RUN。测试结果与提交结果分开。后续由队长安排真实小规模评测并测量总吞吐，再决定全量运行。未测量前不能保证 10,000 次能按期完成。先解释实际记录契约，再实现有边界的 CPU 初稿。
+我是队友B。请读完整指南的一种语言及对应真实源码，按P0优先级、23日中午草稿、24日北京时间20:00交付、共享接口及日报要求执行。列出实际读过的文件，马上做有用CPU草稿。fixtures只作明确标注的开发证据，不虚构加载、机器人episode或缺失实现。交代码、准确命令/结果、缺输入、剩余工时及接手步骤。保留当前服务器和单一固定模型身份，不启动GPU或改依赖。

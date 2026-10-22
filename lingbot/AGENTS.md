@@ -9,7 +9,9 @@ These instructions apply only under `lingbot/`. The user explicitly requested a 
 5. Preserve checkpoint completeness, preprocessing, official task success, finite rejection rules, resource gates, failure evidence and one fixed final policy identity. Propose a concrete interface change for captain review when required.
 6. The active server run is independent of this repository. No checkout, import, test, merge or report update may automatically launch GPU work or deploy to it. Coordinate actual GPU use with the captain.
 7. Keep public commits free of credentials, personal host addresses/paths, raw private incident history, weight/data binaries and private raw logs. The exact original archive and engineering history remain in the private repository; review applicable records there when authorized access is available, and state access limits otherwise.
-8. Daily reports through 23 October follow section 6 of LingBot-Team-Complete-Guide-EN-ZH.txt. Return actual files, commands, evidence, remaining effort and takeover steps. Do not invent teammate progress or promise unattended monitoring.
+8. Reports and the 24 October delivery follow section 6 of LingBot-Team-Complete-Guide-EN-ZH.txt. Return actual files, commands, evidence, remaining effort and takeover steps. Do not invent teammate progress or promise unattended monitoring.
 9. Status observations are dated and attributed. CURRENT.md is a manually maintained summary, not a live dashboard. A stale watcher timestamp alone does not establish a stalled child.
 
 No new simulator, training, dependency upgrade or alternate scientific experiment is authorized merely by reading this file.
+
+22October planning update: use the revised complete guide and22October ZIP.23October noon is the intermediate code handoff;24October20:00Beijing is the chosen internal finish time. Prioritize documented P0 export/load, evaluation/resume/aggregation and failure analysis. Do not promise model improvement or full10,000episode coverage; report actual evidence. Older reference status is historical.

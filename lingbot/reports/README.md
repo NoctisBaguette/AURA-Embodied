@@ -1,9 +1,7 @@
-# Daily reports / 每日报告
+# Reports — 22–24 October 2026
 
-Use section 6 of [the complete bilingual guide](../LingBot-Team-Complete-Guide-EN-ZH.txt): daily through 23 October, including blocked days. AI drafting is fine; authors verify actual files and results. Suggested Beijing check-ins: 21/22 October 22:00, 23 October 12:00 with incomplete code and takeover notes.
+Use `06-DAILY-REPORT-EN-ZH.txt`, extracted from the complete guide. Reports on22/23 October by 22:00 Beijing; code handoff23 October 12:00; readiness24 October 12:00; final report/code24 October 20:00. The date24 October is the captain's internal finish;20:00 is the plan's explicit time assumption.
 
-Optional GitHub route: add `YYYY-MM-DD/A.md` or `B.md` on your own branch and open/update a PR targeting `lingbot/competition`. Send its link to the captain. Pending branch reports are not automatically merged into this directory. Direct TXT report plus changed-code ZIP is equally acceptable.
+Optional path: `reports/YYYY-MM-DD/A.md` or `B.md` on the owner branch, with PR/commit link sent to captain. Direct TXT+changed-code ZIP is equally acceptable. AI drafting is fine; verify actual evidence. Report blockers immediately. No fabricated progress or native checks.
 
-日报按完整说明第 6 节填写。可在个人分支提交并通过 PR 交给队长，也可直接发 TXT 和改动代码 ZIP。公开摘要须脱敏；日报不等于代码验收。
-
-No teammate reports have been received in this workspace yet. Do not create filled examples that could be mistaken for actual progress.
+22/23日晚日报，23日中午代码草稿，24日中午就绪报告，24日20:00最终交接。选GitHub或直接发TXT+代码ZIP均可；AI可起草，本人核实。

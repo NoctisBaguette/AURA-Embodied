@@ -1,9 +1,7 @@
-# Read one complete guide / 先读一份完整说明
+# Start here — 22 October revision
 
-Start with [LingBot-Team-Complete-Guide-EN-ZH.txt](LingBot-Team-Complete-Guide-EN-ZH.txt). Choose English or Chinese: each includes the background, full A/B duties, daily-report template through 23 October, source-reading list, AI prompts and optional GitHub workflow.
+Read [LingBot-Team-Complete-Guide-EN-ZH.txt](LingBot-Team-Complete-Guide-EN-ZH.txt). One full English section and one full Chinese section cover A/B duties, P0 priorities, the24 October deadline, reports, sources and GitHub/direct handoff.
 
-You do not need to piece together the old read-first, reporting and GitHub files. After reading, inspect your role's actual source files and start CPU work. GitHub access and the next training checkpoint are not prerequisites for the first draft.
+Use [the 22 October source ZIP](deliverables/LingBot-AURA-Workspace-20261022.zip), or this branch. Choose one language; then inspect your actual source files. [CURRENT.md](CURRENT.md) contains later manual status.
 
-选择英文或中文部分，完整覆盖背景、A/B 分工、日报、交付与 GitHub。无须拼接旧文件。读完按角色查看真实源码即可开始 CPU 工作；不必等训练结束，也不必先配置好 GitHub。
-
-The source ZIP includes this same guide: [LingBot-AURA-Workspace-20261021.zip](deliverables/LingBot-AURA-Workspace-20261021.zip).
+先读唯一完整中英指南，再读角色对应源码。24日内部截止，具体按北京时间20:00安排；23日中午先交草稿。只需发指南与22日ZIP，不再发21日旧包。

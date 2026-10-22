@@ -1,24 +1,13 @@
-# LingBot work and ownership
+# Delivery plan — 22–24 October
 
-Last update: 21 October 2026. Role names A/B are placeholders for the captain to assign; no teammate work is claimed as completed.
+Read [the complete bilingual guide](LingBot-Team-Complete-Guide-EN-ZH.txt). Internal hard finish:24 October; this plan uses 20:00 Beijing.
 
-| Work | Owner | Evidence-backed status | Next delivery |
+| Owner | First useful output | By 23 October noon | By 24 October 20:00 |
 |---|---|---|---|
-| Existing baseline/train/candidate workflow | Captain + assistant | Captain reports BASELINE 8/32, commission 16/16 | Actual baseline/candidate evidence |
-| Portable export and loading | A | Assignment delivered; implementation not reported | Artifact inventory and CPU draft |
-| Full evaluation and resumption | B | Assignment delivered; implementation not reported | 100-cell dry-run and result validator |
-| Fresh-process loading and parity | A + captain | Pending | Real checkpoint/load comparison |
-| Integrated evaluator | B + A + captain | Pending | Small real cell and resume test |
-| Final checkpoint decision | Captain | Pending | One reproducible fixed identity |
-| Full evaluation/results | B + captain | Pending | Actual coverage, outcomes and throughput |
-| Reproduction and submission | A/B + captain | Pending | Matching code/config/weights/results |
+| A | Artifact inventory, manifest checks, export/load draft | Runnable CPU draft and B-facing API; exact missing inputs | Complete identified package, real fresh-load/parity evidence, reproduction entrypoints |
+| B |100-cell plan, ledger/aggregation, baseline failure-review table | Runnable draft, resume checks, available video findings | Runner, actual results/coverage/errors, comparison, measured throughput and commands |
+| Captain | Supply assets/evidence, keep current training running | Integrate partial code; arrange native validation | Select/freeze a validated policy, integrate/verify final materials; decide official submission separately |
 
-## Daily handover
+22/23 October 22:00reports;23 October 12:00partial-code handoff;24 October 12:00readiness/checkpoint decision;24 October 20:00final handoff. See guide for late-start fallback. Actual GPU validation depends on coordinated resources; do not label it passed if absent. Full 10,000-episode completion and improved policy success are not promised.
 
-Use [06-DAILY-REPORT-EN-ZH.txt](06-DAILY-REPORT-EN-ZH.txt). Suggested Beijing check-ins: 21/22 October 22:00; 23 October 12:00 with current code and commands. These are internal targets. Report blocking dependencies promptly.
-
-Public reports go in `reports/YYYY-MM-DD/A.md` or `B.md` on the owner's branch. Do not commit placeholder reports as if a teammate had submitted them. A private TXT/ZIP sent to the captain is also acceptable; the captain can record a sanitized summary with attribution.
-
-## Integration decisions
-
-A owns the loader and package; B owns the evaluator and records. A's eval.sh invokes B's evaluator. Both use [INTERFACES.md](INTERFACES.md). Planned CLI names are not implemented tools yet. The captain reviews code and execution evidence before integration and server use.
+中文：22–24日分工保持A打包、B评测并复盘失败，队长负责当前训练、资源、模型选择及整合。23日中午必须先交可接手草稿；24日20:00为本计划最终交付时间。完整要求与AI提示词见唯一完整指南。
