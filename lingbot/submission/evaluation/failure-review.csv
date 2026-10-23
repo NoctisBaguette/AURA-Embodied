@@ -1,0 +1,1 @@
+checkpoint_manifest_sha256,stage,task,setting,scene_seed,episode_id,official_task_success,video_ref,log_ref,review_status,inspected_time_or_frame,observed_behavior,labels,possible_cause,confidence,next_discriminating_check

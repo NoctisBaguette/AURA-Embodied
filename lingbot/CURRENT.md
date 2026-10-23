@@ -1,3 +1,11 @@
+# Latest — 23 October 19:55 Beijing: candidate progressing; B CPU integration reviewed
+
+Captain-pasted status, not an independent server query: fixed-checkpoint candidate23/32 completed with5successes; baseline32/32 with3successes;16nativecommissions. Current child progresses through stack_blocks_two randomized, seed100001,591actions, about1second since progress. Candidate restore and the separate later offline replay both PASS; no new training. Header timestamps/older probe pointers are historical. Evaluation remains RUNNING; no final coverage or broad improvement established. Four candidate successes are bell and one is randomized open_laptop.
+
+B's uploaded CPU handoff contains useful schedule/ledger/aggregation code and explicitly no native adapter. Original50CPUtests reproduce. Integration revision under submission/evaluation passes57CPUtests on Python3.12.14: align package-manifest.json with the actual portable exporter, validate full package before backend startup, require explicitUTF8 transport, reject setup rejections carrying policy attempts/results, and separate runner wall time. Tests are CPU fixtures; real exported portable package, model loading, native adapter/rollouts, submission entrypoints and full evaluation remain pending.
+
+The separate private team ZIP now supplies four genuine baseline videos,31full episode records and32compact records, plus a review CSV, unchanged sources, and bilingual next steps. B can immediately analyze videos and implement the native bridge while A/captain finish owned runtime evidence and portable qualification. Never commit that private evidence to this public repository. See reviews/2026-10-23/B-INTEGRATION-EN-ZH.txt and submission/evaluation/BACKEND-CONTRACT.md. This review branch does not deploy or modify the active server release.
+
 # Latest — 23 October Beijing: early candidate evaluation requested; portable takeover
 
 Captain terminal observation at 22 October 17:24:51 UTC: run-AQMVYnGr RUNNING/JOINT_TRAINING, baseline32 completed/3successes, candidate0, update24880/samples49760. Existing STOP_TRAIN receipt accepted; the second status about18seconds later is not proof of failure or completion. Post-loop diagnostics/checkpoint/restore then candidate32 are still pending. No restart or new training requested.
@@ -124,4 +132,5 @@ The [complete bilingual guide](LingBot-Team-Complete-Guide-EN-ZH.txt) and source
 Latest attributed snapshot: [progress/2026-10-21-baseline-028-timeout.json](progress/2026-10-21-baseline-028-timeout.json). Earlier 8/32 evidence remains unchanged as history.
 
 中文：最新运行在 baseline 28/32 超时停止，训练尚未开始。20 分钟单组合与 3 小时阶段上限共用一条错误，需检查新包时间信息。A/B 的 CPU 任务继续，不等此次运行修复。
+
 
