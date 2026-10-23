@@ -1,3 +1,13 @@
+# Latest — 24 October: completed candidate evidence reviewed
+
+The reports-only final archive has been checked: all 490 included manifest hashes match, all 29 runtime payloads match the reviewed release, and all 64 baseline/candidate episode records reconcile. Final state is COMPLETE/FINISHED with exit code 0, completed policy reports, unchanged parameters/buffers, and passing restore/replay receipts.
+
+Candidate: 6/32 successes. Baseline: 3/32. Candidate successes are bell 4/4, laptop 1/4 and bottles 1/4; all 26 failures reached full action limits. Only 29 exact scene seeds match across stages, and all three added successes occur among those matches. This is an eight-task pilot, not an official full-suite score. Candidate videos and NPZ files are absent from the smaller archive.
+
+B is unavailable tonight. Captain/assistant own native adapter and portable integration; B can review videos when awake. This supersedes the earlier two-working-hour adapter assignment. Portable native qualification and reproducible submission entrypoints remain pending. See the dated candidate final report review. This documentation update performs no deployment or GPU execution.
+
+Earlier observations below are historical.
+
 # Latest — 23 October 19:55 Beijing: candidate progressing; B CPU integration reviewed
 
 Captain-pasted status, not an independent server query: fixed-checkpoint candidate23/32 completed with5successes; baseline32/32 with3successes;16nativecommissions. Current child progresses through stack_blocks_two randomized, seed100001,591actions, about1second since progress. Candidate restore and the separate later offline replay both PASS; no new training. Header timestamps/older probe pointers are historical. Evaluation remains RUNNING; no final coverage or broad improvement established. Four candidate successes are bell and one is randomized open_laptop.

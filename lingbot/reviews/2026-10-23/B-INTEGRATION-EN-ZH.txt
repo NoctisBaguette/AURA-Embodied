@@ -1,3 +1,10 @@
+UPDATE — 24 October: B is unavailable tonight. The native adapter assignment in sections 3 and 5 below is superseded: the captain/assistant own adapter and portable integration. B's next available work is timestamped video analysis; no overnight two-hour delivery is required. The candidate run is COMPLETE with 6/32 successes; baseline is 3/32. Only 29 scene seeds match, and all three added successes occur among those matches. Full review: ../2026-10-24/CANDIDATE-FINAL-REVIEW.md.
+
+更新（10月24日）：B今晚休息。下文第3、5节的真实适配器分工已调整：队长/本对话助手接管适配器和 portable 集成；B醒后做带时间点的视频分析，不要求今晚再投入两小时。当前 candidate 已完成，成功 6/32；baseline 为 3/32。两阶段有29个场景种子一致，新增3次成功均来自这些一致场景。完整评审见 ../2026-10-24/CANDIDATE-FINAL-REVIEW.md。
+
+以下为历史交接说明；最新状态和分工以上述更新为准。
+The instructions below are the earlier handoff; the update above supersedes their status and allocation.
+
 LINGBOT — B INTEGRATION AND REAL BASELINE EVIDENCE
 23 October 2026. Internal finish: 24 October, 20:00 Beijing.
 Send this ONE ZIP to B; A can use the same copy. No server launch happens on extraction.
