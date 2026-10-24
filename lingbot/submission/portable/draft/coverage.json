@@ -1,0 +1,14 @@
+{
+  "status": "DRAFT_NOT_READY_TO_SUBMIT",
+  "completed_policy_episodes": 32,
+  "successes": 6,
+  "task_setting_cells_with_coverage": 16,
+  "required_grid_cells": 100,
+  "untested_cells": 84,
+  "team_id": "UNFILLED",
+  "evaluation_execution_prefix": 50,
+  "new_prefix_diagnostic_included": false,
+  "source_archive_sha256": "6c4818b218c7f0049510adb9c27cf1aabe6f46cd247785ff9293f497f2730982",
+  "checkpoint_metadata_sha256": "061339c410892d83522c3b1ca3dcb0ba45e1c0a38eb3c8e580c73a036eadfe00",
+  "scope": "Actual retained candidate pilot only. No fabricated attempts for untested tasks. Native portable qualification and broader coverage remain pending."
+}

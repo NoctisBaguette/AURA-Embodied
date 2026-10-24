@@ -81,3 +81,12 @@ PASS requires exact live adapter/buffer/projection restoration, fixed model coun
 4. Freeze one checkpoint after candidate comparison; retain actual coverage, failures and videos. Export/load work preserves behavior and does not itself improve success.
 
 中文：这是A核心导出/加载工作的接手实现，尚未通过真实GPU联调。不要把27项CPU测试称为真实模型成功。当前后台评测继续；等队长安排资源后，用同一个checkpoint的输入/噪声/参考输出做新进程验收。原始A包和现有服务器release都不改。B仍需完成评测对接，train.sh/eval.sh和最终提交包还需联调。失败要提交完整日志，不能用旧模型参考输出为新模型做验收，也不能降低一致性标准来让测试“通过”。
+
+
+## 24 October admission and bounded execution update
+
+PortablePolicy now accepts optional admission_deadline_epoch, admission_progress and cancelled arguments. Admission requires three stable samples of the selected UUID plus a separate fresh final recheck. An absolute epoch deadline is preserved across prerequisite work; cancellation is checked during waits. Default callers remain supported. CPU fixture tests include the final sample. No GPU or native simulator success is established by these tests.
+
+execution_contract.py supplies a finite request/progress contract for separately reviewed execution-prefix consumers:700actions with10-target prefixes require70requests. It rejects skipped/duplicate chunks, inconsistent completed actions, unsupported prefixes and noise schedule changes. This module does not by itself change the default policy, route tasks, alter success predicates or authorize replacing evaluation results.
+
+The captain's isolated workflow exports the fixed checkpoint, requires actual fresh-process parity, then compares two already-inspected laptop scenes at execution prefixes50and10 with videos and full action evidence. Four development episodes are not an official score or broad validation. No automatic prefix promotion or training is scheduled. Native model load, parity and comparison remain pending until run.

@@ -57,7 +57,7 @@ def restore_state(model, checkpoint):
 
 
 class PortablePolicy:
-    def __init__(self, package, *, admitted_gpu_uuid, admission_timeout=600):
+    def __init__(self, package, *, admitted_gpu_uuid, admission_timeout=600, admission_deadline_epoch=None, admission_progress=None, cancelled=None):
         self.root=Path(package).resolve()
         self.receipt=verify_package(self.root)
         require(isinstance(admitted_gpu_uuid,str) and admitted_gpu_uuid.startswith('GPU-') and os.environ.get('CUDA_VISIBLE_DEVICES')==admitted_gpu_uuid, 'Use exactly the captain-admitted UUID in CUDA_VISIBLE_DEVICES')
@@ -68,7 +68,8 @@ class PortablePolicy:
         for name,version in versions.items():
             require(importlib.metadata.version(name)==version,'Export/load dependency differs: '+name)
         from gpu_admission import wait_gpu
-        wait_gpu(admitted_gpu_uuid,timeout=admission_timeout)
+        wait_gpu(admitted_gpu_uuid,timeout=admission_timeout,deadline_epoch=admission_deadline_epoch,progress=admission_progress,cancelled=cancelled)
+        if admission_progress: admission_progress(dict(status='MODEL_LOADING',model_load_started=True))
         sys.dont_write_bytecode=True
         sys.path.insert(0,str(self.root/'source'))
         # No already-imported unrelated checkout can silently supply the model implementation.
