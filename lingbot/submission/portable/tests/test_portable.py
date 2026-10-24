@@ -143,7 +143,7 @@ class Boundaries(unittest.TestCase):
     def test_admission_stability_and_deadline(self):
         from gpu_admission import wait_gpu
         import os
-        now=[0]; values=iter([[("GPU-fixture",61440,0)],[("GPU-fixture",60000,0)],[("GPU-fixture",70000,0)],[("GPU-fixture",70000,0)],[("GPU-fixture",70000,0)]])
+        now=[0]; values=iter([[("GPU-fixture",61440,0)],[("GPU-fixture",60000,0)],[("GPU-fixture",70000,0)],[("GPU-fixture",70000,0)],[("GPU-fixture",70000,0)],[("GPU-fixture",70000,0)]])
         with patch.dict(os.environ,{'CUDA_VISIBLE_DEVICES':'GPU-fixture'}):
             wait_gpu('GPU-fixture',timeout=30,query=lambda:next(values),sleep=lambda n:now.__setitem__(0,now[0]+n),clock=lambda:now[0])
             self.assertEqual(now[0],20)

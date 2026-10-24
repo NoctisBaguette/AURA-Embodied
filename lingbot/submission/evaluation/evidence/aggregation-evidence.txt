@@ -1,0 +1,27 @@
+[Public reference copy: local workstation paths replaced with placeholders; original retained in private handoff.]
+LingBot B aggregation evidence — 2026-10-22
+
+Scope
+CPU-only aggregation contract and CLI. No model, simulator, GPU, native runtime, or policy episode was run. The committed commissioning example and a record marked evidence_kind=fixture were used only to verify exclusion.
+
+Test-first evidence
+Before aggregate_results.py existed, from submission/evaluation:
+  python -m unittest tests.test_aggregation -v
+Observed: ImportError, ModuleNotFoundError: No module named 'aggregate_results'. This was the expected missing production module.
+
+Focused green command (Python 3.12.10, executable <PYTHON_EXECUTABLE>):
+  python -m unittest discover -s tests -p test_aggregation.py -v
+Observed: Ran 24 tests in 0.569s; OK. NumPy 2.5.0 was installed; numpy.bool_ resolves to <class 'numpy.bool'>. test_numpy_boolean_success_is_accepted_when_numpy_is_available passed (not skipped).
+The focused suite also verifies that a matching STARTED/TERMINAL fixture pair is excluded in either input order, while changing the terminal evidence_kind to real_policy is rejected in either order.
+
+Zero-real CLI demonstration
+The temporary input directory contained one support episode changed to evidence_kind=fixture and reference/commission-negative-example.json. CLI arguments were:
+  python aggregate_results.py --records <temporary-records-directory> --checkpoint-manifest-sha256 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa --team-id fixture-team --output <temporary-directory>/official.json
+Observed: exit_code=0; stdout empty; real_policy_episodes=0; excluded={"commissioning":1,"fixture":1,"other":0}; clean/lift_pot={"attempts":0,"successes":0}; official top-level keys=["schema_version","team_id","results"]. The output sidecar was <output>.coverage.json.
+
+Full-suite status
+The full evaluation suite was attempted once before the runner implementation was ready. It reached the runner tests, which failed importing SerialEvaluator from evaluate.py. Per coordination, no further full-suite run was made while that work was in progress. No claim is made about full-suite integration.
+
+Frozen source identities at evidence capture
+aggregate_results.py SHA256: FD0526DBCCAD64F88BD20EC71D59FA94A0785F576087ADF38E7D77210808A57C
+tests/test_aggregation.py SHA256: 289C374C730A4109BAB6E4E7C109C4EF8879709F7245D71194DAA5579DF914BC

@@ -1,0 +1,27 @@
+[
+  {
+    "evidence_kind": "fixture",
+    "status": "COMPLETE",
+    "note": "synthetic exclusion-only fixture, no policy actions"
+  },
+  {
+    "status": "COMPLETE",
+    "stage": "commission",
+    "task": "pick_dual_bottles",
+    "setting": "randomized",
+    "checkpoint": "NO_MODEL_TRANSPORT_COMMISSION",
+    "episodes": [],
+    "rejections": [],
+    "candidate_seeds": [
+      100000
+    ],
+    "scope": "Native expert/setup/camera/recorder/transport commissioning; no learned policy or policy actions; no task score",
+    "native_commissioned": true,
+    "policy_actions_executed": 0,
+    "chunks": 1,
+    "scene_seed": 100000,
+    "directory": "commission-job-15-seed-100000-ep-000",
+    "video": "observer.mp4",
+    "video_frames": 1
+  }
+]
