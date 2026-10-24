@@ -1,3 +1,9 @@
+# Latest — 25 October: portable precision mismatch identified; corrected replay pending
+
+Native two-loader evidence shows identical parameter/buffer fingerprints and model inputs. Original loader exactly matches its reference; portable repeats consistently but differs in actions. The upstream constructor overwrote the portable loader's early highest setting with high/TF32. The corrected portable loader reapplies highest after construction/restoration and guards each prediction; mismatch evidence is retained in full. See submission/portable/README.md. Public code checks:27 existing portable tests plus2precision-contract CPU checks pass. Corrected GPU replay and the captain's four laptop development episodes remain NOT RUN. No server deployment occurs from this branch. The prior6/32candidate result is unchanged; this packaging defect does not explain earlier original-loader task failures.
+
+中文：已定位可移植加载器精度设置被构造函数覆盖的问题。权重和输入相同，原加载器精确匹配参考。新版调整顺序并在推理时检查，仍需真实GPU验收；没有重新训练或修改旧6/32结果，GitHub更新不自动启动服务器。
+
 # Latest — 24 October: completed candidate evidence reviewed
 
 The reports-only final archive has been checked: all 490 included manifest hashes match, all 29 runtime payloads match the reviewed release, and all 64 baseline/candidate episode records reconcile. Final state is COMPLETE/FINISHED with exit code 0, completed policy reports, unchanged parameters/buffers, and passing restore/replay receipts.
@@ -142,5 +148,3 @@ The [complete bilingual guide](LingBot-Team-Complete-Guide-EN-ZH.txt) and source
 Latest attributed snapshot: [progress/2026-10-21-baseline-028-timeout.json](progress/2026-10-21-baseline-028-timeout.json). Earlier 8/32 evidence remains unchanged as history.
 
 中文：最新运行在 baseline 28/32 超时停止，训练尚未开始。20 分钟单组合与 3 小时阶段上限共用一条错误，需检查新包时间信息。A/B 的 CPU 任务继续，不等此次运行修复。
-
-

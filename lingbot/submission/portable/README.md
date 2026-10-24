@@ -90,3 +90,13 @@ PortablePolicy now accepts optional admission_deadline_epoch, admission_progress
 execution_contract.py supplies a finite request/progress contract for separately reviewed execution-prefix consumers:700actions with10-target prefixes require70requests. It rejects skipped/duplicate chunks, inconsistent completed actions, unsupported prefixes and noise schedule changes. This module does not by itself change the default policy, route tasks, alter success predicates or authorize replacing evaluation results.
 
 The captain's isolated workflow exports the fixed checkpoint, requires actual fresh-process parity, then compares two already-inspected laptop scenes at execution prefixes50and10 with videos and full action evidence. Four development episodes are not an official score or broad validation. No automatic prefix promotion or training is scheduled. Native model load, parity and comparison remain pending until run.
+
+## Precision correction — native diagnostic reviewed, corrected replay pending
+
+The supplied two-loader native replay finds all 1,960 parameter and 147 buffer fingerprints equal. Inputs, noise, processed cameras, tokens and joint masks match; both loaders repeat exactly. The retained original loader matches the saved reference, while the previous portable loader differs only in normalized predictions and decoded commands. Native runtime receipts show portable high/TF32 matrix multiplication versus original highest/TF32 disabled. The pinned upstream constructor sets high, overwriting the portable loader's premature precision setting.
+
+The loader now reapplies highest after construction/restoration and checks it at prediction entry and sampling boundaries. Convolution precision stays unchanged. Parity saves both predictions, reference and comparison metrics before rejecting a mismatch; no tolerance is widened. The CLI creates a new sibling `REPORT-STEM-evidence` directory; that directory must not already exist. Package bytes remain immutable.
+
+Run `python tests/test_precision_contract.py` for two CPU construction-order/guard checks. These use a Torch stand-in and do not establish corrected CUDA equality. The captain's isolated workflow additionally exercised native retained numeric arrays through the real parity writer and tests precheck failure/packaging boundaries. Corrected native replay remains NOT RUN. Prior original-loader 6/32 pilot results are unchanged; this portable correction does not explain or fix those task failures.
+
+中文：真实对照已确认参数、buffer及输入相同，原加载器精确匹配参考，可移植加载器在构造后变成high/TF32。新版将highest设置移到构造恢复之后，并在推理时检查；失败时保存完整比对证据，不降低标准。CPU检查不是GPU验收，新版真实输出仍待验证，旧6/32任务结果不变。

@@ -56,6 +56,20 @@ def restore_state(model, checkpoint):
     return info
 
 
+def inference_precision():
+    import torch
+    return dict(matmul_precision=torch.get_float32_matmul_precision(),
+                cuda_matmul_allow_tf32=bool(torch.backends.cuda.matmul.allow_tf32),
+                cudnn_allow_tf32=bool(torch.backends.cudnn.allow_tf32))
+
+
+def require_inference_precision():
+    value=inference_precision()
+    require(value['matmul_precision']=='highest' and value['cuda_matmul_allow_tf32'] is False,
+            'Inference precision changed: require highest FP32 with CUDA matrix TF32 disabled')
+    return value
+
+
 class PortablePolicy:
     def __init__(self, package, *, admitted_gpu_uuid, admission_timeout=600, admission_deadline_epoch=None, admission_progress=None, cancelled=None):
         self.root=Path(package).resolve()
@@ -83,7 +97,6 @@ class PortablePolicy:
         import random
         random.seed(42); np.random.seed(42); torch.manual_seed(42)
         require(torch.cuda.is_available() and torch.cuda.device_count()==1, 'One admitted CUDA device required')
-        torch.set_float32_matmul_precision('highest')
         builder=module_from_file('portable_builder',self.root/'runtime/model_builder.py')
         self.model,self.config,_=builder.build_inference_policy(copy.deepcopy(identity['model_settings']),self.root)
         self.info=restore_state(self.model,self.root/'checkpoint')
@@ -101,8 +114,12 @@ class PortablePolicy:
         self.buffers={n:v.detach().cpu().clone() for n,v in self.model.named_buffers() if n in self.model.state_dict()}
         self.step=self.model.model.steps
         self.cache.clear_visual_cache(self.model)
+        # The upstream constructor sets 'high'. Apply this AFTER all construction/imports.
+        torch.set_float32_matmul_precision('highest')
+        self.precision=require_inference_precision()
 
     def predict(self, packet, *, noise):
+        require_inference_precision()
         import numpy as np
         import torch
         with np.load(io.BytesIO(packet),allow_pickle=False) as item:
@@ -126,7 +143,9 @@ class PortablePolicy:
         self.cache.clear_visual_cache(self.model)
         try:
             with torch.inference_mode(),self.cache.inference_cache_scope(self.model,self.config):
+                require_inference_precision()
                 predicted=self.padding.sample_actions(self.model.model,observation,action_joint_mask=applied['action_joint_mask'],noise=torch.from_numpy(noise.copy()).to(self.device))
+            require_inference_precision()
             decoded=self.transform.unapply({**copy.deepcopy(applied),'actions':predicted[0].detach().cpu().clone()})
             commands=decoded['action'].numpy().copy()
             require(commands.shape==(50,14) and np.isfinite(commands).all(),'Invalid decoded actions')
@@ -134,32 +153,54 @@ class PortablePolicy:
             live=dict(self.model.named_buffers())
             require(all(torch.equal(live[n].detach().cpu(),v) for n,v in self.buffers.items()),'Inference changed persistent buffers')
             return {'normalized':predicted.detach().cpu().numpy(),'commands':commands,
-                    'images':applied['images'].cpu().numpy(),'lang_tokens':applied['lang_tokens'].cpu().numpy(),'lang_masks':applied['lang_masks'].cpu().numpy()}
+                    'images':applied['images'].cpu().numpy(),'lang_tokens':applied['lang_tokens'].cpu().numpy(),'lang_masks':applied['lang_masks'].cpu().numpy(),
+                    'state':state.copy(),'noise':noise.copy(),'normalized_state':applied['state'].cpu().numpy(),
+                    'img_masks':applied['img_masks'].cpu().numpy(),'image_grid_thw':applied['image_grid_thw'].cpu().numpy(),
+                    'action_joint_mask':applied['action_joint_mask'].cpu().numpy(),'state_joint_mask':applied['state_joint_mask'].cpu().numpy()}
         finally:
             self.cache.clear_visual_cache(self.model)
 
 
-def parity(policy, packet, reference, *, checkpoint_metadata_sha256):
+def parity(policy, packet, reference, *, checkpoint_metadata_sha256, evidence_dir=None):
     import numpy as np
+    from parity_evidence import compare_sets, save_json
     require(sha(policy.root/'checkpoint/checkpoint.json')==checkpoint_metadata_sha256,'Reference checkpoint binding differs')
     with np.load(reference,allow_pickle=False) as ref:
         required={'normalized','commands','noise','lang_tokens','lang_masks'}
         require(required<=set(ref.files),'Reference missing arrays')
         frozen={k:ref[k].copy() for k in ref.files}
-    first=policy.predict(Path(packet).read_bytes(),noise=frozen['noise'])
-    second=policy.predict(Path(packet).read_bytes(),noise=frozen['noise'])
-    metrics={}
-    for k in ('normalized','commands','lang_tokens','lang_masks'):
-        expected=frozen[k]; actual=first[k]
-        require(actual.shape==expected.shape and actual.dtype==expected.dtype,'Reference layout differs: '+k)
-        require(np.array_equal(actual,second[k]),'Same-input repeat differs: '+k)
-        require(np.array_equal(actual,expected),'Fresh-process reference differs: '+k)
-        metrics[k]={'exact':True,'shape':list(actual.shape),'dtype':str(actual.dtype)}
-    if 'images' in frozen:
-        require(np.array_equal(first['images'],frozen['images']),'Processed images differ')
-    return {'status':'PASS','scope':'Fresh-process captured-input output parity; no simulator task success claimed',
-            'manifest_sha256':policy.receipt['manifest_sha256'],'checkpoint_metadata_sha256':checkpoint_metadata_sha256,
-            'packet_sha256':sha(packet),'reference_sha256':sha(reference),'arrays':metrics,'processed_images_checked':'images' in frozen}
+    required|={'images','state'} & set(frozen)
+    folder=Path(evidence_dir).resolve() if evidence_dir is not None else None
+    if folder is not None:
+        require(folder!=policy.root and policy.root not in folder.parents,'Evidence must be outside package')
+        folder.mkdir(parents=True,exist_ok=False)
+        (folder/'captured-input.npz').write_bytes(Path(packet).read_bytes())
+        (folder/'reference.npz').write_bytes(Path(reference).read_bytes())
+    captures=[]
+    for index in (1,2):
+        actual=policy.predict(Path(packet).read_bytes(),noise=frozen['noise'])
+        if folder is not None:np.savez_compressed(folder/f'actual-{index}.npz',**actual)
+        captures.append(actual)
+    first,second=captures
+    comparisons=compare_sets(first,frozen)
+    repeats=compare_sets(first,second)
+    missing={label:sorted(required-set(values)) for label,values in (('first',first),('second',second))}
+    okay=(not any(missing.values()) and set(first)==set(second)
+          and all(comparisons[k]['exact'] for k in required)
+          and all(v['exact'] for v in repeats.values()))
+    result=dict(status='PASS' if okay else 'FAIL',
+        scope='Fresh-process captured-input output parity; no simulator success claimed',
+        manifest_sha256=policy.receipt['manifest_sha256'],checkpoint_metadata_sha256=checkpoint_metadata_sha256,
+        packet_sha256=sha(packet),reference_sha256=sha(reference),arrays=comparisons,
+        same_input_repeat=repeats,missing=missing,processed_images_checked='images' in frozen,
+        precision=inference_precision())
+    if folder is not None:save_json(folder/'comparison.json',result)
+    if not okay:
+        error=ValueError('Fresh-process exact parity failed; all available differences are retained')
+        error.comparison=result
+        raise error
+    return result
+
 
 
 def main():
@@ -179,7 +220,7 @@ def main():
         require(Path(a.input).is_file() and Path(a.reference).is_file(),'Missing captured input/reference')
         require(sha(root/'checkpoint/checkpoint.json')==a.reference_checkpoint_sha256,'Reference checkpoint binding differs')
         policy=PortablePolicy(a.package,admitted_gpu_uuid=a.admitted_gpu_uuid,admission_timeout=a.admission_timeout)
-        result=parity(policy,a.input,a.reference,checkpoint_metadata_sha256=a.reference_checkpoint_sha256)
+        result=parity(policy,a.input,a.reference,checkpoint_metadata_sha256=a.reference_checkpoint_sha256,evidence_dir=report.with_name(report.stem+'-evidence'))
     except Exception as error:
         with report.open('x',encoding='utf-8') as f:
             json.dump({'status':'FAIL','scope':'Portable load/parity attempt; no task-success claim','error_type':type(error).__name__,'error':str(error)},f,indent=2,allow_nan=False)
