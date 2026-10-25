@@ -1,3 +1,11 @@
+# Latest — 26 October: coverage stopped after six new episodes
+
+Captain-reported status: portable precheck/replay and all16commissions passed; six new episodes completed with zero successes. Combined with the retained pilot,38episodes/6successes across22cells are recorded. The next cabinet/clean case exited1; its actual child exception has not yet been supplied.
+
+The failure reader missed the new coverage directory. A separate read-only correction has seven CPU discovery checks; it does not repair or diagnose the simulator failure. Next action is to read the exact retained child traceback and log. Preserve completed outcomes and leave the failed workflow stopped pending that evidence. Submission implementation remains captain/assistant owned.
+
+中文：新版已通过模型重放和16项仿真检查，新增6次均失败，累计38次/6次成功。下一个柜子clean任务异常退出，真正子进程异常仍需读取。报告工具遗漏coverage目录的问题已在独立只读版本修正，不能据此宣称仿真问题修复。保留结果，先读取现有日志，不盲目重启。
+
 # Latest — 25 October: coverage preparation failed; corrected replacement prepared
 
 The captain reports coverage-v1 FAILED during CPU preparation, before GPU polling and before any new coverage episode. Its prior-evidence check used a reports-only ZIP hash for the full archive. The isolated v2 correction binds the exact reviewed manifest and report/source contents, while recording the container identity separately. Original results and checkpoint remain unchanged.
