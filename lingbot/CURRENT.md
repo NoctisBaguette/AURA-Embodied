@@ -1,3 +1,11 @@
+# Latest — 25 October: captain/assistant own remaining delivery
+
+The captain explicitly requests that submission progress must not depend on A or B delivering in time. Captain/assistant own the remaining native evaluation integration, working train.sh/eval.sh, configurations, training-history reconstruction, honest results aggregation, and final package assembly. Existing teammate code is input; future contributions are optional and reviewed before integration. No teammate report or response is a prerequisite.
+
+See [CAPTAIN-TAKEOVER-EN-ZH.txt](CAPTAIN-TAKEOVER-EN-ZH.txt) for ownership, order and acceptance limits. The verified portable loader and selected checkpoint/50-action execution remain the basis. The prepared coverage launcher's 15 CPU checks do not establish a server run; no new runtime status has been supplied. Generic reproduction entrypoints and final package validation remain unfinished. This update changes ownership/documentation only and launches no server work.
+
+中文：队长与助手接管剩余仿真对接、train.sh/eval.sh、配置、训练链说明、真实结果整理及最终打包；不再等待A/B交付或日报。已有工作继续利用，后续贡献核验后再合并。当前复现入口和最终包仍未完成，覆盖任务是否运行仍需实际输出，不能因文档更新而宣称完成。
+
 # Latest — 25 October: native portable qualification passed; retain50-action execution
 
 Captain supplied the completed delivery archive. Independent review confirms exact saved-reference replay in two fresh processes,16commission cases and4native development episodes. Same two randomizedlaptop scenes: prefix50=1/2, prefix10=0/2. Keep50; development repeats are excluded from the original6/32pilot and officialcounts. Parameter/input/precision repair is now natively qualified for the testedruntime/reference; it does not improve priorpolicyperformance byitself.
