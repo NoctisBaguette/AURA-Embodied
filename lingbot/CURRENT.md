@@ -1,3 +1,11 @@
+# Latest — 25 October: coverage preparation failed; corrected replacement prepared
+
+The captain reports coverage-v1 FAILED during CPU preparation, before GPU polling and before any new coverage episode. Its prior-evidence check used a reports-only ZIP hash for the full archive. The isolated v2 correction binds the exact reviewed manifest and report/source contents, while recording the container identity separately. Original results and checkpoint remain unchanged.
+
+The replacement has24 passing CPU checks, including the actual preparation boundary with retained report bytes. Server execution remains pending. The captain has a single-file Start/Status/Download launcher; this GitHub update launches nothing. The84-cell coverage plan is unchanged. Remaining submission implementation and packaging stay captain/assistant owned; teammate delivery is optional.
+
+中文：覆盖V1在CPU准备阶段停止，未进行GPU轮询或新增评测。原因是把精简报告ZIP哈希用到了完整ZIP。独立V2改为严格核对已审查文件内容，并单独记录完整容器身份。24项CPU检查通过，服务器执行待验证；原模型和结果不变，后续实现与打包继续由我们负责。
+
 # Latest — 25 October: captain/assistant own remaining delivery
 
 The captain explicitly requests that submission progress must not depend on A or B delivering in time. Captain/assistant own the remaining native evaluation integration, working train.sh/eval.sh, configurations, training-history reconstruction, honest results aggregation, and final package assembly. Existing teammate code is input; future contributions are optional and reviewed before integration. No teammate report or response is a prerequisite.
