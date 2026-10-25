@@ -1,3 +1,11 @@
+# Latest — 26 October: expert scene rejection recovery prepared
+
+The retained coverage error is now diagnosed: a scripted expert could not produce a grasp pose during scene screening, before learned-policy execution for that case. Our wrapper turned the upstream expert rejection into a fatal stop. This does not identify why that scene lacked a pose or establish checkpoint corruption.
+
+Prepared isolated coverage-v3 preserves all38 completed outcomes/6successes, verifies and imports the six new failures, retains the original rejected seeds and resumes cabinet screening at100002. Only the exact missing-grasp expert assertion is eligible for skipping within the original64-candidate bound. Policy faults and other errors remain fatal. Fixed checkpoint/prefix50, fresh replay/native commissioning,78remaining cells, no training. Integrated status now includes coverage child errors.
+
+32 CPU tests pass using the actual pinned evaluator/grasp helpers and actual packaging/preparation/manager interfaces, with explicit physics/model/video substitutes. Server recovery has NOT RUN. No new success or final submission readiness is claimed. Captain/assistant own remaining reproduction entrypoints and submission assembly; A/B are optional.
+
 # Latest — 26 October: coverage stopped after six new episodes
 
 Captain-reported status: portable precheck/replay and all16commissions passed; six new episodes completed with zero successes. Combined with the retained pilot,38episodes/6successes across22cells are recorded. The next cabinet/clean case exited1; its actual child exception has not yet been supplied.
