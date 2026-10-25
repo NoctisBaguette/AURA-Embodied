@@ -1,3 +1,11 @@
+# Latest — 25 October: native portable qualification passed; retain50-action execution
+
+Captain supplied the completed delivery archive. Independent review confirms exact saved-reference replay in two fresh processes,16commission cases and4native development episodes. Same two randomizedlaptop scenes: prefix50=1/2, prefix10=0/2. Keep50; development repeats are excluded from the original6/32pilot and officialcounts. Parameter/input/precision repair is now natively qualified for the testedruntime/reference; it does not improve priorpolicyperformance byitself.
+
+The captain has a separately prepared boundedcoverage launcher for42previouslyuntestedtasks ×2settings ×1episode, preservingprior32/6.15CPUtests pass; nativeexpandedcoverage NOTRUN. Atmost116combinedepisodes across100cells, not10,000. No training orautomaticdeployment fromthisbranch. Workingtrain.sh/eval.sh,completeconfigs,teamidentifier andhonestpartialcoverage/disclosure remain deliverypriorities. Fullsubmissionreadiness is not established.
+
+中文：新包已真实GPU通过严格输出一致性，16项仿真准备和4次对照运行全部完成。50步1/2，10步0/2，保留50步，重复诊断不加到旧6/32分数。队长有独立的84个未测组合覆盖脚本，15项CPU检查通过，服务器尚未执行。最多116次，不是10,000次；复现入口、配置和真实覆盖说明仍需完成。
+
 # Latest — 25 October: portable precision mismatch identified; corrected replay pending
 
 Native two-loader evidence shows identical parameter/buffer fingerprints and model inputs. Original loader exactly matches its reference; portable repeats consistently but differs in actions. The upstream constructor overwrote the portable loader's early highest setting with high/TF32. The corrected portable loader reapplies highest after construction/restoration and guards each prediction; mismatch evidence is retained in full. See submission/portable/README.md. Public code checks:27 existing portable tests plus2precision-contract CPU checks pass. Corrected GPU replay and the captain's four laptop development episodes remain NOT RUN. No server deployment occurs from this branch. The prior6/32candidate result is unchanged; this packaging defect does not explain earlier original-loader task failures.

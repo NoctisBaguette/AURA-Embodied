@@ -1,0 +1,27 @@
+{
+  "date_beijing": "2026-10-25",
+  "source_archive_sha256": "364bd83bf889f8a94375d1ac45e1801d85061f5f1352da09636bb6f5e3fb39d8",
+  "native_portable_parity": "PASS",
+  "fresh_processes": 2,
+  "reference_arrays_exact": 7,
+  "repeated_arrays_exact": 12,
+  "commission_cases": 16,
+  "development_episodes": 4,
+  "prefix50": {
+    "attempts": 2,
+    "successes": 1
+  },
+  "prefix10": {
+    "attempts": 2,
+    "successes": 0
+  },
+  "execution_decision": "Retain50",
+  "prior_candidate": {
+    "attempts": 32,
+    "successes": 6
+  },
+  "development_episodes_added_to_score": false,
+  "new_training_updates": 0,
+  "coverage_expansion_native": "NOT RUN",
+  "scope": "Joint50 captured-reference/runtime qualification and two-scene development comparison. Not full competition evaluation or fallback checkpoint qualification."
+}

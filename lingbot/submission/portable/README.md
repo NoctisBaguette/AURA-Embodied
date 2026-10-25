@@ -1,3 +1,9 @@
+# Native qualification update — 25 October 2026
+
+The corrected joint50 portable loader has now passed actual fresh-process saved-reference equality twice in the captain's A100 environment. Seven reference arrays match exactly; all12captured fields repeat exactly. Four native development episodes completed after16commissions. This qualifies the testedcheckpoint/runtime/request; the older fallbackgeneration and a newsubmissionenvironment remain unqualified. See evidence/delivery-native-review.json. Keep50-actionexecution:1/2pairedlaptop successes versus0/2with10. The original6/32pilot is unchanged; diagnosticrepeats are excluded. Source/mapping/cleanup receipts pass. Workingtrain.sh/eval.sh,completeconfigs andfullcoverage remain outstanding; no finalsubmissionreadiness is claimed.
+
+The dated sections below retain their historical CPU-only/native-pending status and are superseded on this specific joint50 native parity result.
+
 # Portable LingBot checkpoint implementation
 
 Captain-authorized takeover of A's core export/loading work, 23 October Beijing. Original A handoff remains unchanged. **Implemented, CPU checked, native qualification pending.** This is not a final competition submission and does not include model weights.
