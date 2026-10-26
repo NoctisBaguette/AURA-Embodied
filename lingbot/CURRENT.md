@@ -1,3 +1,13 @@
+# Latest — 26 October 21:27 Beijing: new evaluation entrypoint passed native validation
+
+Captain-supplied server status reports COMPLETE / ENTRYPOINT_NATIVE_PASS at21:06:39Beijing. The new evaluation entrypoint passed normal scene qualification,16native commissioning checks, portable model precheck and exact replay. Its two separate diagnostic episodes (click_bell clean/randomized, seed100000) both succeeded; owned child processes stopped and no worker lease remains. No new training occurred.
+
+The final materials archive is ready on the server. Source provenance is recorded through verified file snapshots, with Git metadata availability explicit. This update is based on pasted terminal receipts; it is not a fresh independent materials-archive audit.
+
+Submission counts remain116completed/20successful across100task-setting cells. The two diagnostics are excluded and do not establish broader policy improvement. Next: download final v2 materials, reuse/download the frozen full weights, build the final archive with the real team ID, upload and retain the organizer receipt. Local weight-transfer completion, Windows final archive assembly and organizer acceptance remain unobserved. Captain/assistant own delivery without a teammate dependency. No further training or broad evaluation is planned before the recorded midnight deadline.
+
+---
+
 # Latest — 26 October 20:36 Beijing: final assembly correction prepared
 
 The captain's first final assembly attempt stopped during CPU source collection. It did not reach the new entrypoint's GPU validation. Its error evidence is retained separately. The corrected isolated v2 assembly launcher is prepared and locally checked; actual server execution and Windows final ZIP assembly remain pending. Exact deployable files and source identities are kept in the private project record.

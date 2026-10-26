@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "recorded_date_beijing": "2026-10-26",
-  "source": "Independent compact final-review audit plus captain-supplied failed CPU assembly status and local v2 correction checks; no new SSH/GPU execution",
+  "source": "Independent earlier compact review audit plus captain-pasted final v2 native entrypoint status; no direct assistant SSH",
   "observation_time": null,
   "workflow_status": "COMPLETE",
   "phase": "FINISHED",
@@ -78,19 +78,23 @@
     }
   },
   "submission": {
-    "status": "V1_CPU_ASSEMBLY_ERROR_V2_PREPARED",
-    "new_eval_entrypoint_native": "NOT_RUN",
+    "status": "ENTRYPOINT_NATIVE_PASS_MATERIALS_READY",
+    "new_eval_entrypoint_native": "PASS",
     "new_training_wrapper_full_retraining": "NOT_RUN",
-    "windows_final_zip_assembly": "NOT_RUN",
-    "actual_upload": "NOT_DONE",
+    "windows_final_zip_assembly": "NOT_OBSERVED",
+    "actual_upload": "NOT_OBSERVED",
     "team_id": "UNFILLED",
     "new_training_updates": 0,
     "diagnostics_excluded_from_116": true,
     "v1_assembly": "ERROR",
-    "v2_server_execution": "NOT_RUN",
+    "v2_server_execution": "COMPLETE",
     "v2_provenance_regressions": 8,
-    "v2_embedded_installer_tests": 2
+    "v2_embedded_installer_tests": 2,
+    "native_diagnostic_episodes": 2,
+    "native_diagnostic_successes": 2,
+    "completed_beijing": "2026-10-26T21:06:39.279+08:00",
+    "weights_download": "NOT_OBSERVED"
   },
-  "snapshot_updated_beijing": "2026-10-26T20:36:00+08:00",
+  "snapshot_updated_beijing": "2026-10-26T21:27:00+08:00",
   "workflow_status_scope": "Completed coverage run only; current submission assembly status is separate"
 }
