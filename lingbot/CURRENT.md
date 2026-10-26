@@ -1,3 +1,20 @@
+# Latest — 26 October: reviewed 116 outcomes; final package validation pending
+
+The supplied compact final review has now been independently checked:697unique archive entries, all696listed member hashes,116unique completed policy outcomes and20successes across100task/setting cells. Clean9/58; randomized11/58. All84coverage child records agree with their parent records. The32prior candidate episodes/6successes remain included exactly once; diagnostics and commissions are excluded. This is partial self-evaluation, not10000episodes or an official score.
+
+One frozen portable model remains selected. Its completed coverage run records exact fresh-process reference replay and16native commissions. No new training or model promotion is planned. The actual training ancestry is10000initialclean50updates followed by24892jointupdates; historical+200startup labels do not describe this ancestry.
+
+Captain/assistant have prepared real training/evaluation entrypoints, pinned configs, an English/Chinese reproduction report, actual results and a final assembly launcher. It assembles code/materials, then runs the new eval.sh through fresh qualification and two separate diagnostic episodes. These new entrypoints are source/CPU checked; native integration and Windows final assembly are still NOT RUN. Full retraining through the relocated train.sh is also NOT RUN. Exact frozen sources are retained privately rather than publishing private host paths or raw logs.
+
+Local evidence:11focusedCPU checks,7actualupstream evaluator/expert boundary tests with explicit physics/model substitutes,1isolated owned-child process check and2embeddedinstaller transport/byte checks. These do not establish native GPU/renderer success. Existing planner absolute paths and raw conversion-source recovery remain disclosed reproduction limitations.
+
+The remaining captain steps are to run the short native check, download the complete frozen model, enter the true competition team ID, assemble/upload the final ZIP and retain the actual organizer acceptance receipt. No teammate response is a prerequisite. No external submission or social publication has occurred. The recorded briefing deadline is26October24:00Beijing; authenticated current portal instructions still require the captain's check.
+
+This is a manually updated summary, not a live monitor. The stale22Octobertraining snapshot in progress/current.json has been corrected to this completed-evaluation/unfinished-submission state.
+
+
+---
+
 # Latest — 26 October: all100cells covered; submission work is captain-owned
 
 Captain-reported terminal run is COMPLETE at14:05Beijing. The selected fixed model completed116 actual episodes with20successes across all50tasks ×2settings. The new panel contributes84/14; the retained pilot32/6 remains included once. Portable model precheck/exact replay and16native commissions passed. Prefix50 and the same selected checkpoint remain; no new training.
