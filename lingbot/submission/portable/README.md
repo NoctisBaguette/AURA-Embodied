@@ -1,3 +1,9 @@
+# Native qualification update — 25 October 2026
+
+The corrected joint50 portable loader has now passed actual fresh-process saved-reference equality twice in the captain's A100 environment. Seven reference arrays match exactly; all12captured fields repeat exactly. Four native development episodes completed after16commissions. This qualifies the testedcheckpoint/runtime/request; the older fallbackgeneration and a newsubmissionenvironment remain unqualified. See evidence/delivery-native-review.json. Keep50-actionexecution:1/2pairedlaptop successes versus0/2with10. The original6/32pilot is unchanged; diagnosticrepeats are excluded. Source/mapping/cleanup receipts pass. Workingtrain.sh/eval.sh,completeconfigs andfullcoverage remain outstanding; no finalsubmissionreadiness is claimed.
+
+The dated sections below retain their historical CPU-only/native-pending status and are superseded on this specific joint50 native parity result.
+
 # Portable LingBot checkpoint implementation
 
 Captain-authorized takeover of A's core export/loading work, 23 October Beijing. Original A handoff remains unchanged. **Implemented, CPU checked, native qualification pending.** This is not a final competition submission and does not include model weights.
@@ -81,3 +87,22 @@ PASS requires exact live adapter/buffer/projection restoration, fixed model coun
 4. Freeze one checkpoint after candidate comparison; retain actual coverage, failures and videos. Export/load work preserves behavior and does not itself improve success.
 
 中文：这是A核心导出/加载工作的接手实现，尚未通过真实GPU联调。不要把27项CPU测试称为真实模型成功。当前后台评测继续；等队长安排资源后，用同一个checkpoint的输入/噪声/参考输出做新进程验收。原始A包和现有服务器release都不改。B仍需完成评测对接，train.sh/eval.sh和最终提交包还需联调。失败要提交完整日志，不能用旧模型参考输出为新模型做验收，也不能降低一致性标准来让测试“通过”。
+
+
+## 24 October admission and bounded execution update
+
+PortablePolicy now accepts optional admission_deadline_epoch, admission_progress and cancelled arguments. Admission requires three stable samples of the selected UUID plus a separate fresh final recheck. An absolute epoch deadline is preserved across prerequisite work; cancellation is checked during waits. Default callers remain supported. CPU fixture tests include the final sample. No GPU or native simulator success is established by these tests.
+
+execution_contract.py supplies a finite request/progress contract for separately reviewed execution-prefix consumers:700actions with10-target prefixes require70requests. It rejects skipped/duplicate chunks, inconsistent completed actions, unsupported prefixes and noise schedule changes. This module does not by itself change the default policy, route tasks, alter success predicates or authorize replacing evaluation results.
+
+The captain's isolated workflow exports the fixed checkpoint, requires actual fresh-process parity, then compares two already-inspected laptop scenes at execution prefixes50and10 with videos and full action evidence. Four development episodes are not an official score or broad validation. No automatic prefix promotion or training is scheduled. Native model load, parity and comparison remain pending until run.
+
+## Precision correction — native diagnostic reviewed, corrected replay pending
+
+The supplied two-loader native replay finds all 1,960 parameter and 147 buffer fingerprints equal. Inputs, noise, processed cameras, tokens and joint masks match; both loaders repeat exactly. The retained original loader matches the saved reference, while the previous portable loader differs only in normalized predictions and decoded commands. Native runtime receipts show portable high/TF32 matrix multiplication versus original highest/TF32 disabled. The pinned upstream constructor sets high, overwriting the portable loader's premature precision setting.
+
+The loader now reapplies highest after construction/restoration and checks it at prediction entry and sampling boundaries. Convolution precision stays unchanged. Parity saves both predictions, reference and comparison metrics before rejecting a mismatch; no tolerance is widened. The CLI creates a new sibling `REPORT-STEM-evidence` directory; that directory must not already exist. Package bytes remain immutable.
+
+Run `python tests/test_precision_contract.py` for two CPU construction-order/guard checks. These use a Torch stand-in and do not establish corrected CUDA equality. The captain's isolated workflow additionally exercised native retained numeric arrays through the real parity writer and tests precheck failure/packaging boundaries. Corrected native replay remains NOT RUN. Prior original-loader 6/32 pilot results are unchanged; this portable correction does not explain or fix those task failures.
+
+中文：真实对照已确认参数、buffer及输入相同，原加载器精确匹配参考，可移植加载器在构造后变成high/TF32。新版将highest设置移到构造恢复之后，并在推理时检查；失败时保存完整比对证据，不降低标准。CPU检查不是GPU验收，新版真实输出仍待验证，旧6/32任务结果不变。

@@ -1,36 +1,35 @@
 {
   "schema_version": 1,
-  "recorded_date_beijing": "2026-10-22",
-  "source": "captain-pasted Status; no fresh SSH query or new archive audit",
+  "recorded_date_beijing": "2026-10-26",
+  "source": "Independent earlier compact review audit plus captain-pasted final v2 native entrypoint status; no direct assistant SSH",
   "observation_time": null,
-  "workflow_status": "RUNNING",
-  "phase": "JOINT_TRAINING",
+  "workflow_status": "COMPLETE",
+  "phase": "FINISHED",
   "commissioned_cases": 16,
   "commission_target": 16,
   "baseline_completed": 32,
   "baseline_target": 32,
-  "candidate_completed": 0,
+  "candidate_completed": 32,
   "candidate_target": 32,
   "training": {
-    "status": "TRAINING",
-    "completed_updates": 23300,
+    "status": "PAUSED",
+    "completed_updates": 24892,
     "max_updates": 50000,
-    "samples_consumed": 46600,
+    "samples_consumed": 49784,
     "max_samples": 100000,
     "batch_size": 2,
-    "last_batch_loss": 0.04076269641518593,
+    "last_batch_loss": null,
     "update_loop_budget_hours": 22,
-    "eta": null
+    "eta": null,
+    "initial_clean50_updates": 10000,
+    "initial_clean50_samples": 40000
   },
   "success_evidence": {
-    "independently_audited_completed_episodes": 31,
-    "independently_audited_successes": 3,
-    "latest_final_bottle_case_successes": 0,
-    "latest_final_bottle_case_episodes": 2,
-    "combined_inference_successes": 3,
-    "combined_inference_completed": 32,
-    "new_full_aggregate_audited": false,
-    "official_score": false
+    "independently_audited_completed_episodes": 116,
+    "independently_audited_successes": 20,
+    "new_full_aggregate_audited": true,
+    "official_score": false,
+    "scope": "Actual partial counts, not requested full10000episodes"
   },
   "internal_delivery": {
     "date": "2026-10-24",
@@ -39,24 +38,63 @@
     "intermediate_code_handoff_beijing": "2026-10-23T12:00:00+08:00"
   },
   "teammate_work": {
-    "A": "22 October handoff received and reviewed: CPU validator/export draft; loader not implemented; real loading/parity NOT RUN",
-    "B": "No new handoff supplied in this turn"
+    "A": "Optional input; no delivery dependency",
+    "B": "Optional input; no delivery dependency",
+    "delivery_owner": "Captain and assistant"
   },
   "limits": [
     "Manual snapshot, not a live dashboard",
-    "Loss is not task success",
-    "Candidate performance, fresh-process portable load and full-suite evaluation pending",
-    "Reference status files and previous snapshots are historical"
+    "116episodes are not10000episodes or an official score",
+    "Retained native portable replay differs from new-entrypoint validation",
+    "Compact review omits videos; no new local video decoding",
+    "Training reproduction wrapper and Windows assembly are not natively validated",
+    "Recorded deadline is the supplied briefing, not a new authenticated organizer notice"
   ],
   "review_evidence": {
-    "baseline_numeric_episodes": 31,
-    "baseline_successes": 3,
-    "decoded_chunks_checked": 24,
-    "decoded_max_absolute_error": 0,
-    "simulator_float32_cast_matches": true,
-    "top_p_calls": 34116,
-    "top_p_exceptions": 2,
-    "top_p_empty": 0,
-    "observer_sequences_sampled": 3
-  }
+    "compact_members": 697,
+    "verified_member_hashes": 696,
+    "coverage_child_records_compared": 84,
+    "unique_completed_episodes": 116,
+    "prior_records_preserved": 32,
+    "policy_actions": 63283,
+    "policy_chunks": 1274
+  },
+  "baseline_successes": 3,
+  "candidate_successes": 6,
+  "coverage": {
+    "completed": 116,
+    "successes": 20,
+    "cells": 100,
+    "target_cells": 100,
+    "requested_full_episodes": 10000,
+    "official_full_evaluation": false,
+    "clean": {
+      "completed": 58,
+      "successes": 9
+    },
+    "randomized": {
+      "completed": 58,
+      "successes": 11
+    }
+  },
+  "submission": {
+    "status": "ENTRYPOINT_NATIVE_PASS_MATERIALS_READY",
+    "new_eval_entrypoint_native": "PASS",
+    "new_training_wrapper_full_retraining": "NOT_RUN",
+    "windows_final_zip_assembly": "NOT_OBSERVED",
+    "actual_upload": "NOT_OBSERVED",
+    "team_id": "UNFILLED",
+    "new_training_updates": 0,
+    "diagnostics_excluded_from_116": true,
+    "v1_assembly": "ERROR",
+    "v2_server_execution": "COMPLETE",
+    "v2_provenance_regressions": 8,
+    "v2_embedded_installer_tests": 2,
+    "native_diagnostic_episodes": 2,
+    "native_diagnostic_successes": 2,
+    "completed_beijing": "2026-10-26T21:06:39.279+08:00",
+    "weights_download": "NOT_OBSERVED"
+  },
+  "snapshot_updated_beijing": "2026-10-26T21:27:00+08:00",
+  "workflow_status_scope": "Completed coverage run only; current submission assembly status is separate"
 }

@@ -1,0 +1,14 @@
+{
+  "checkpoint_manifest_sha256": "9e4f4a0ed5ab4f30056d1077caa29e72ea4cc4fb2551a64b0b86176d9558e08b",
+  "completed_episodes": 0,
+  "episodes": [],
+  "errors": [],
+  "evidence_kind": "fixture",
+  "note": "Dry run writes schedule only; no backend or model was launched.",
+  "real_policy_episodes": 0,
+  "rejections": [],
+  "run_id": "16bc0e3eb8adf413a80f20cf",
+  "schema_version": 1,
+  "stage": "baseline",
+  "status": "NOT_RUN"
+}

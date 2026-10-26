@@ -1,3 +1,84 @@
+LINGBOT — CAPTAIN / ASSISTANT TAKEOVER
+25 October 2026 | Supersedes earlier A/B delivery dependencies
+
+We will prepare the remaining submission ourselves. Do not wait for A or B,
+a daily report, or another handoff ZIP before implementing or integrating.
+Their existing code remains useful input. Any later contribution is optional
+until its actual files and checks have been reviewed.
+
+OWNERSHIP AND ORDER
+
+1. Evaluation entrypoint — captain/assistant.
+   Connect the verified fixed-checkpoint portable loader to the real simulator.
+   Produce eval.sh for clean and randomized, retaining official action budgets,
+   task success predicates, typed setup rejections, videos and failure evidence.
+   Reuse reviewed components; preserve the checkpoint and 50-action execution.
+   The bounded coverage launcher is already prepared. Its native run has not
+   been observed here; do not start a second competing GPU workflow.
+
+2. Training reproduction — captain/assistant.
+   Recover the actual initialization and continuation chain, training configs,
+   clean-only 50-task corpus identities, normalization, and dependencies.
+   Produce a train.sh that invokes real training code with documented inputs.
+   Preparing a training entrypoint does not authorize another training run.
+   Do not substitute an unrelated upstream recipe or call the 24,892-update
+   continuation the complete training history.
+
+3. Submission assembly — captain/assistant.
+   Assemble the official directories, source, configs, selected checkpoint
+   materials, reproduction report, and results with actual episode counts.
+   Preserve the original 6/32 pilot separately from repeated diagnostics.
+   Record untested cells and unfinished checks explicitly.
+   Verify file completeness and the final archive before recommending upload.
+
+4. Teammate contributions — optional.
+   Accept partial source, commands, receipts, or concise visual findings.
+   We review and merge useful contributions without stopping our own work.
+   No mandatory next report, overnight response, or teammate completion is
+   needed to continue. No messages are sent automatically.
+
+WHAT STILL NEEDS THE CAPTAIN
+- Run the reviewed PowerShell launcher and provide its returned status/evidence:
+  this assistant has no authenticated SSH session to the server.
+- Supply the final team identifier and confirm any updated organizer deadline
+  or handling of incomplete self-evaluation.
+- Perform the final authenticated submission once the package is reviewed.
+We can prepare code, reports, and packaging before those final details arrive.
+
+CURRENT EVIDENCE / LIMITS
+The delivered portable loader passes real GPU reference replay. The paired
+laptop diagnostics support retaining 50-action execution (1/2 versus 0/2).
+The original candidate pilot is 6/32, not a full-suite score.
+The new coverage launcher has 15 passing CPU tests and targets 84 new cells;
+that does not prove the new native run has started or completed.
+Working general train.sh/eval.sh and a fully checked final package are still
+unfinished. This ownership correction does not mark them complete.
+No new model, training run, runtime change, or server restart is performed by
+this document. GitHub updates do not provide unattended job monitoring.
+
+中文
+后续提交工作由队长和本聊天助手接管，不再等待A/B完成、日报或新的交接包。
+已有代码继续利用；他们之后交来的文件属于可选补充，核验后再合并。
+
+我们负责：
+1. 基于已真实GPU验证的加载器，补齐真实仿真对接及clean/randomized的eval.sh；
+   保留官方动作上限、成功判定、有效的场景拒绝规则和视频/失败记录。
+2. 从实际保留的源码和记录恢复训练链，补齐train.sh、clean 50任务配置、
+   初始化权重、归一化及依赖说明。编写复现入口不等于现在再启动训练。
+3. 整理官方目录、对应模型文件、复现报告和真实结果，检查最终压缩包。
+   原6/32与重复诊断分开，未测和未验证的内容明确标注。
+
+A/B即使没有及时回复，我们也继续。若他们提供部分代码或分析，核验后利用，
+不把他们的下一次交付当成推进条件。
+
+队长只需承担必须使用本人权限的操作：执行已审查的服务器命令并提供输出、
+确认team_id和主办方要求、最终登录提交。其余实现与整合由我们继续推进。
+当前通用train.sh/eval.sh及最终包仍未完成，不能因接管计划已写好就称为完成。
+
+
+HISTORICAL TEAM GUIDE BELOW — old deadlines and A/B ownership are superseded.
+以下保留历史分工资料；旧截止时间及A/B依赖已被上方接管安排取代。
+
 LINGBOT — COMPLETE TEAM GUIDE / 团队完整交接说明
 22 October 2026 — revised for delivery by 24 October | Beijing, UTC+8 / 时间均为北京时间
 

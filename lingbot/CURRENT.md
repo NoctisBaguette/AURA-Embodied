@@ -1,3 +1,116 @@
+# Latest — 26 October 21:27 Beijing: new evaluation entrypoint passed native validation
+
+Captain-supplied server status reports COMPLETE / ENTRYPOINT_NATIVE_PASS at21:06:39Beijing. The new evaluation entrypoint passed normal scene qualification,16native commissioning checks, portable model precheck and exact replay. Its two separate diagnostic episodes (click_bell clean/randomized, seed100000) both succeeded; owned child processes stopped and no worker lease remains. No new training occurred.
+
+The final materials archive is ready on the server. Source provenance is recorded through verified file snapshots, with Git metadata availability explicit. This update is based on pasted terminal receipts; it is not a fresh independent materials-archive audit.
+
+Submission counts remain116completed/20successful across100task-setting cells. The two diagnostics are excluded and do not establish broader policy improvement. Next: download final v2 materials, reuse/download the frozen full weights, build the final archive with the real team ID, upload and retain the organizer receipt. Local weight-transfer completion, Windows final archive assembly and organizer acceptance remain unobserved. Captain/assistant own delivery without a teammate dependency. No further training or broad evaluation is planned before the recorded midnight deadline.
+
+---
+
+# Latest — 26 October 20:36 Beijing: final assembly correction prepared
+
+The captain's first final assembly attempt stopped during CPU source collection. It did not reach the new entrypoint's GPU validation. Its error evidence is retained separately. The corrected isolated v2 assembly launcher is prepared and locally checked; actual server execution and Windows final ZIP assembly remain pending. Exact deployable files and source identities are kept in the private project record.
+
+The selected model and all116completed outcomes/20successes/100task-setting cells are unchanged. No additional training or evaluation outcomes are claimed. Eight focused provenance regressions and two exact generated-installer tests passed; local results do not establish native GPU success. The existing full weight archive is reused. Captain/assistant own the remaining assembly, validation and upload without a teammate dependency.
+
+Next: run the prepared v2 Start/Status, obtain its actual terminal validation receipt, download its separate v2 materials archive, build using the existing frozen weights and genuine team ID, then upload through the organizer's actual route. The failed first-attempt debug ZIP is not completed submission material. The recorded deadline remains midnight26OctoberBeijing; organizer receipt is still pending.
+
+---
+
+# Latest — 26 October: reviewed 116 outcomes; final package validation pending
+
+The supplied compact final review has now been independently checked:697unique archive entries, all696listed member hashes,116unique completed policy outcomes and20successes across100task/setting cells. Clean9/58; randomized11/58. All84coverage child records agree with their parent records. The32prior candidate episodes/6successes remain included exactly once; diagnostics and commissions are excluded. This is partial self-evaluation, not10000episodes or an official score.
+
+One frozen portable model remains selected. Its completed coverage run records exact fresh-process reference replay and16native commissions. No new training or model promotion is planned. The actual training ancestry is10000initialclean50updates followed by24892jointupdates; historical+200startup labels do not describe this ancestry.
+
+Captain/assistant have prepared real training/evaluation entrypoints, pinned configs, an English/Chinese reproduction report, actual results and a final assembly launcher. It assembles code/materials, then runs the new eval.sh through fresh qualification and two separate diagnostic episodes. These new entrypoints are source/CPU checked; native integration and Windows final assembly are still NOT RUN. Full retraining through the relocated train.sh is also NOT RUN. Exact frozen sources are retained privately rather than publishing private host paths or raw logs.
+
+Local evidence:11focusedCPU checks,7actualupstream evaluator/expert boundary tests with explicit physics/model substitutes,1isolated owned-child process check and2embeddedinstaller transport/byte checks. These do not establish native GPU/renderer success. Existing planner absolute paths and raw conversion-source recovery remain disclosed reproduction limitations.
+
+The remaining captain steps are to run the short native check, download the complete frozen model, enter the true competition team ID, assemble/upload the final ZIP and retain the actual organizer acceptance receipt. No teammate response is a prerequisite. No external submission or social publication has occurred. The recorded briefing deadline is26October24:00Beijing; authenticated current portal instructions still require the captain's check.
+
+This is a manually updated summary, not a live monitor. The stale22Octobertraining snapshot in progress/current.json has been corrected to this completed-evaluation/unfinished-submission state.
+
+
+---
+
+# Latest — 26 October: all100cells covered; submission work is captain-owned
+
+Captain-reported terminal run is COMPLETE at14:05Beijing. The selected fixed model completed116 actual episodes with20successes across all50tasks ×2settings. The new panel contributes84/14; the retained pilot32/6 remains included once. Portable model precheck/exact replay and16native commissions passed. Prefix50 and the same selected checkpoint remain; no new training.
+
+This is bounded self-evaluation, not100episodes per cell or an official score. The final archive's independent review is pending. The old progress record can remain stale after terminal completion; no restart is needed.
+
+Captain reports A/B have not delivered. Captain/assistant own entrypoints, configs, truthful results, reproduction report, weights packaging and submission; no waiting on teammates. A CPU-only archive tool is prepared to preserve exact portable weights and collect final structured evidence. Its nine CPU checks do not establish server execution. The inner LoRA checkpoint alone is not the full portable package.
+
+Final train.sh/eval.sh integration, team identity and the complete organizer package remain unfinished. Staged weights/evidence must not be advertised as submission-ready. Preserve this checkpoint/results and prioritize delivery over new training. The recorded organizer deadline is26October midnight Beijing from the provided briefing; no new authenticated schedule check is claimed.
+
+中文：本次已于北京时间14:05完成，50任务×2设置全部覆盖，共实际116回合、成功20回合；不是10000回合或官方分数。模型可移植重放和16项仿真准备检查通过，不用重跑。队长与助手接管剩余入口、配置、报告、权重与提交，不再等待A/B。CPU权重归档工具已准备，服务器执行待确认；正式训练/评测入口和最终材料仍未完成，不能把证据包当作可提交包。
+
+# Latest — 26 October: expert scene rejection recovery prepared
+
+The retained coverage error is now diagnosed: a scripted expert could not produce a grasp pose during scene screening, before learned-policy execution for that case. Our wrapper turned the upstream expert rejection into a fatal stop. This does not identify why that scene lacked a pose or establish checkpoint corruption.
+
+Prepared isolated coverage-v3 preserves all38 completed outcomes/6successes, verifies and imports the six new failures, retains the original rejected seeds and resumes cabinet screening at100002. Only the exact missing-grasp expert assertion is eligible for skipping within the original64-candidate bound. Policy faults and other errors remain fatal. Fixed checkpoint/prefix50, fresh replay/native commissioning,78remaining cells, no training. Integrated status now includes coverage child errors.
+
+32 CPU tests pass using the actual pinned evaluator/grasp helpers and actual packaging/preparation/manager interfaces, with explicit physics/model/video substitutes. Server recovery has NOT RUN. No new success or final submission readiness is claimed. Captain/assistant own remaining reproduction entrypoints and submission assembly; A/B are optional.
+
+# Latest — 26 October: coverage stopped after six new episodes
+
+Captain-reported status: portable precheck/replay and all16commissions passed; six new episodes completed with zero successes. Combined with the retained pilot,38episodes/6successes across22cells are recorded. The next cabinet/clean case exited1; its actual child exception has not yet been supplied.
+
+The failure reader missed the new coverage directory. A separate read-only correction has seven CPU discovery checks; it does not repair or diagnose the simulator failure. Next action is to read the exact retained child traceback and log. Preserve completed outcomes and leave the failed workflow stopped pending that evidence. Submission implementation remains captain/assistant owned.
+
+中文：新版已通过模型重放和16项仿真检查，新增6次均失败，累计38次/6次成功。下一个柜子clean任务异常退出，真正子进程异常仍需读取。报告工具遗漏coverage目录的问题已在独立只读版本修正，不能据此宣称仿真问题修复。保留结果，先读取现有日志，不盲目重启。
+
+# Latest — 25 October: coverage preparation failed; corrected replacement prepared
+
+The captain reports coverage-v1 FAILED during CPU preparation, before GPU polling and before any new coverage episode. Its prior-evidence check used a reports-only ZIP hash for the full archive. The isolated v2 correction binds the exact reviewed manifest and report/source contents, while recording the container identity separately. Original results and checkpoint remain unchanged.
+
+The replacement has24 passing CPU checks, including the actual preparation boundary with retained report bytes. Server execution remains pending. The captain has a single-file Start/Status/Download launcher; this GitHub update launches nothing. The84-cell coverage plan is unchanged. Remaining submission implementation and packaging stay captain/assistant owned; teammate delivery is optional.
+
+中文：覆盖V1在CPU准备阶段停止，未进行GPU轮询或新增评测。原因是把精简报告ZIP哈希用到了完整ZIP。独立V2改为严格核对已审查文件内容，并单独记录完整容器身份。24项CPU检查通过，服务器执行待验证；原模型和结果不变，后续实现与打包继续由我们负责。
+
+# Latest — 25 October: captain/assistant own remaining delivery
+
+The captain explicitly requests that submission progress must not depend on A or B delivering in time. Captain/assistant own the remaining native evaluation integration, working train.sh/eval.sh, configurations, training-history reconstruction, honest results aggregation, and final package assembly. Existing teammate code is input; future contributions are optional and reviewed before integration. No teammate report or response is a prerequisite.
+
+See [CAPTAIN-TAKEOVER-EN-ZH.txt](CAPTAIN-TAKEOVER-EN-ZH.txt) for ownership, order and acceptance limits. The verified portable loader and selected checkpoint/50-action execution remain the basis. The prepared coverage launcher's 15 CPU checks do not establish a server run; no new runtime status has been supplied. Generic reproduction entrypoints and final package validation remain unfinished. This update changes ownership/documentation only and launches no server work.
+
+中文：队长与助手接管剩余仿真对接、train.sh/eval.sh、配置、训练链说明、真实结果整理及最终打包；不再等待A/B交付或日报。已有工作继续利用，后续贡献核验后再合并。当前复现入口和最终包仍未完成，覆盖任务是否运行仍需实际输出，不能因文档更新而宣称完成。
+
+# Latest — 25 October: native portable qualification passed; retain50-action execution
+
+Captain supplied the completed delivery archive. Independent review confirms exact saved-reference replay in two fresh processes,16commission cases and4native development episodes. Same two randomizedlaptop scenes: prefix50=1/2, prefix10=0/2. Keep50; development repeats are excluded from the original6/32pilot and officialcounts. Parameter/input/precision repair is now natively qualified for the testedruntime/reference; it does not improve priorpolicyperformance byitself.
+
+The captain has a separately prepared boundedcoverage launcher for42previouslyuntestedtasks ×2settings ×1episode, preservingprior32/6.15CPUtests pass; nativeexpandedcoverage NOTRUN. Atmost116combinedepisodes across100cells, not10,000. No training orautomaticdeployment fromthisbranch. Workingtrain.sh/eval.sh,completeconfigs,teamidentifier andhonestpartialcoverage/disclosure remain deliverypriorities. Fullsubmissionreadiness is not established.
+
+中文：新包已真实GPU通过严格输出一致性，16项仿真准备和4次对照运行全部完成。50步1/2，10步0/2，保留50步，重复诊断不加到旧6/32分数。队长有独立的84个未测组合覆盖脚本，15项CPU检查通过，服务器尚未执行。最多116次，不是10,000次；复现入口、配置和真实覆盖说明仍需完成。
+
+# Latest — 25 October: portable precision mismatch identified; corrected replay pending
+
+Native two-loader evidence shows identical parameter/buffer fingerprints and model inputs. Original loader exactly matches its reference; portable repeats consistently but differs in actions. The upstream constructor overwrote the portable loader's early highest setting with high/TF32. The corrected portable loader reapplies highest after construction/restoration and guards each prediction; mismatch evidence is retained in full. See submission/portable/README.md. Public code checks:27 existing portable tests plus2precision-contract CPU checks pass. Corrected GPU replay and the captain's four laptop development episodes remain NOT RUN. No server deployment occurs from this branch. The prior6/32candidate result is unchanged; this packaging defect does not explain earlier original-loader task failures.
+
+中文：已定位可移植加载器精度设置被构造函数覆盖的问题。权重和输入相同，原加载器精确匹配参考。新版调整顺序并在推理时检查，仍需真实GPU验收；没有重新训练或修改旧6/32结果，GitHub更新不自动启动服务器。
+
+# Latest — 24 October: completed candidate evidence reviewed
+
+The reports-only final archive has been checked: all 490 included manifest hashes match, all 29 runtime payloads match the reviewed release, and all 64 baseline/candidate episode records reconcile. Final state is COMPLETE/FINISHED with exit code 0, completed policy reports, unchanged parameters/buffers, and passing restore/replay receipts.
+
+Candidate: 6/32 successes. Baseline: 3/32. Candidate successes are bell 4/4, laptop 1/4 and bottles 1/4; all 26 failures reached full action limits. Only 29 exact scene seeds match across stages, and all three added successes occur among those matches. This is an eight-task pilot, not an official full-suite score. Candidate videos and NPZ files are absent from the smaller archive.
+
+B is unavailable tonight. Captain/assistant own native adapter and portable integration; B can review videos when awake. This supersedes the earlier two-working-hour adapter assignment. Portable native qualification and reproducible submission entrypoints remain pending. See the dated candidate final report review. This documentation update performs no deployment or GPU execution.
+
+Earlier observations below are historical.
+
+# Latest — 23 October 19:55 Beijing: candidate progressing; B CPU integration reviewed
+
+Captain-pasted status, not an independent server query: fixed-checkpoint candidate23/32 completed with5successes; baseline32/32 with3successes;16nativecommissions. Current child progresses through stack_blocks_two randomized, seed100001,591actions, about1second since progress. Candidate restore and the separate later offline replay both PASS; no new training. Header timestamps/older probe pointers are historical. Evaluation remains RUNNING; no final coverage or broad improvement established. Four candidate successes are bell and one is randomized open_laptop.
+
+B's uploaded CPU handoff contains useful schedule/ledger/aggregation code and explicitly no native adapter. Original50CPUtests reproduce. Integration revision under submission/evaluation passes57CPUtests on Python3.12.14: align package-manifest.json with the actual portable exporter, validate full package before backend startup, require explicitUTF8 transport, reject setup rejections carrying policy attempts/results, and separate runner wall time. Tests are CPU fixtures; real exported portable package, model loading, native adapter/rollouts, submission entrypoints and full evaluation remain pending.
+
+The separate private team ZIP now supplies four genuine baseline videos,31full episode records and32compact records, plus a review CSV, unchanged sources, and bilingual next steps. B can immediately analyze videos and implement the native bridge while A/captain finish owned runtime evidence and portable qualification. Never commit that private evidence to this public repository. See reviews/2026-10-23/B-INTEGRATION-EN-ZH.txt and submission/evaluation/BACKEND-CONTRACT.md. This review branch does not deploy or modify the active server release.
+
 # Latest — 23 October Beijing: early candidate evaluation requested; portable takeover
 
 Captain terminal observation at 22 October 17:24:51 UTC: run-AQMVYnGr RUNNING/JOINT_TRAINING, baseline32 completed/3successes, candidate0, update24880/samples49760. Existing STOP_TRAIN receipt accepted; the second status about18seconds later is not proof of failure or completion. Post-loop diagnostics/checkpoint/restore then candidate32 are still pending. No restart or new training requested.
@@ -124,4 +237,3 @@ The [complete bilingual guide](LingBot-Team-Complete-Guide-EN-ZH.txt) and source
 Latest attributed snapshot: [progress/2026-10-21-baseline-028-timeout.json](progress/2026-10-21-baseline-028-timeout.json). Earlier 8/32 evidence remains unchanged as history.
 
 中文：最新运行在 baseline 28/32 超时停止，训练尚未开始。20 分钟单组合与 3 小时阶段上限共用一条错误，需检查新包时间信息。A/B 的 CPU 任务继续，不等此次运行修复。
-

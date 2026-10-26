@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "python": "3.12.10",
+  "official_cells": 100,
+  "target_real_episodes": 10000,
+  "planned_candidate_ids": 100000,
+  "unique_episode_ids": 100000,
+  "unique_request_namespaces": 100000,
+  "real_policy_episodes": 0,
+  "excluded_fixture": 1,
+  "excluded_commissioning": 1,
+  "remaining_real_episodes": 10000,
+  "protected_files": 34,
+  "protected_changed": 0,
+  "native_checks": "NOT RUN",
+  "scope": "CPU schedule and negative aggregation acceptance only"
+}

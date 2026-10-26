@@ -30,3 +30,9 @@ The original clean50 fallback is update10000/samples40000/batch4, with checkpoin
 ## 23 October takeover implementation on review branch
 
 A core implementation now lives in submission/portable. export_checkpoint accepts --source-checkpoint with --assets-plan or --assets-root and --output. prepare_assets builds a CPU hash/copy plan from existing assets. load_policy defaults to CPU manifest verification; explicit CUDA mode performs restoration and reference-bound parity after bounded same-UUID admission. PortablePolicy.predict consumes existing NPZ packet bytes and an explicit (1,50,55) float32 noise array, returns normalized/commands/images/lang_tokens/lang_masks. Model construction is not performed on import. B's final scheduler/HTTP bridge and train.sh/eval.sh are still integration work. The code is CPU checked, not a native-qualified or final submission package. See the implementation README for exact CLI and limits.
+
+
+## 23 October B integration review
+
+The canonical portable manifest is package-manifest.json, format lingbot-portable-v2; checkpoint_manifest_sha256 in B records is the SHA256 of those exact bytes, not inner checkpoint metadata. B runs the sibling portable full CPU validator before a production backend/ledger. Its runner/ledger/aggregation now have57passingCPUtests, while the real native adapter remains unimplemented. ExplicitUTF8 transport, post-policy-rejection refusal and runner_wall_seconds are added. Use BACKEND-CONTRACT.md and the bilingual review handoff for implementation; a per-scene backend should connect to a separately owned persistent policy service. The current server's successful restore/offline replay does not establish portable CUDA qualification. No new GPU work occurs on import/test/checkout.
+
