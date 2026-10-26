@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "recorded_date_beijing": "2026-10-26",
-  "source": "Independent compact final-review audit plus retained server receipts; no new SSH/GPU execution",
+  "source": "Independent compact final-review audit plus captain-supplied failed CPU assembly status and local v2 correction checks; no new SSH/GPU execution",
   "observation_time": null,
   "workflow_status": "COMPLETE",
   "phase": "FINISHED",
@@ -78,13 +78,19 @@
     }
   },
   "submission": {
-    "status": "PREPARED_NATIVE_VALIDATION_PENDING",
+    "status": "V1_CPU_ASSEMBLY_ERROR_V2_PREPARED",
     "new_eval_entrypoint_native": "NOT_RUN",
     "new_training_wrapper_full_retraining": "NOT_RUN",
     "windows_final_zip_assembly": "NOT_RUN",
     "actual_upload": "NOT_DONE",
     "team_id": "UNFILLED",
     "new_training_updates": 0,
-    "diagnostics_excluded_from_116": true
-  }
+    "diagnostics_excluded_from_116": true,
+    "v1_assembly": "ERROR",
+    "v2_server_execution": "NOT_RUN",
+    "v2_provenance_regressions": 8,
+    "v2_embedded_installer_tests": 2
+  },
+  "snapshot_updated_beijing": "2026-10-26T20:36:00+08:00",
+  "workflow_status_scope": "Completed coverage run only; current submission assembly status is separate"
 }

@@ -1,3 +1,13 @@
+# Latest — 26 October 20:36 Beijing: final assembly correction prepared
+
+The captain's first final assembly attempt stopped during CPU source collection. It did not reach the new entrypoint's GPU validation. Its error evidence is retained separately. The corrected isolated v2 assembly launcher is prepared and locally checked; actual server execution and Windows final ZIP assembly remain pending. Exact deployable files and source identities are kept in the private project record.
+
+The selected model and all116completed outcomes/20successes/100task-setting cells are unchanged. No additional training or evaluation outcomes are claimed. Eight focused provenance regressions and two exact generated-installer tests passed; local results do not establish native GPU success. The existing full weight archive is reused. Captain/assistant own the remaining assembly, validation and upload without a teammate dependency.
+
+Next: run the prepared v2 Start/Status, obtain its actual terminal validation receipt, download its separate v2 materials archive, build using the existing frozen weights and genuine team ID, then upload through the organizer's actual route. The failed first-attempt debug ZIP is not completed submission material. The recorded deadline remains midnight26OctoberBeijing; organizer receipt is still pending.
+
+---
+
 # Latest — 26 October: reviewed 116 outcomes; final package validation pending
 
 The supplied compact final review has now been independently checked:697unique archive entries, all696listed member hashes,116unique completed policy outcomes and20successes across100task/setting cells. Clean9/58; randomized11/58. All84coverage child records agree with their parent records. The32prior candidate episodes/6successes remain included exactly once; diagnostics and commissions are excluded. This is partial self-evaluation, not10000episodes or an official score.
