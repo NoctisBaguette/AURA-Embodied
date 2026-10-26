@@ -1,3 +1,15 @@
+# Latest — 26 October: all100cells covered; submission work is captain-owned
+
+Captain-reported terminal run is COMPLETE at14:05Beijing. The selected fixed model completed116 actual episodes with20successes across all50tasks ×2settings. The new panel contributes84/14; the retained pilot32/6 remains included once. Portable model precheck/exact replay and16native commissions passed. Prefix50 and the same selected checkpoint remain; no new training.
+
+This is bounded self-evaluation, not100episodes per cell or an official score. The final archive's independent review is pending. The old progress record can remain stale after terminal completion; no restart is needed.
+
+Captain reports A/B have not delivered. Captain/assistant own entrypoints, configs, truthful results, reproduction report, weights packaging and submission; no waiting on teammates. A CPU-only archive tool is prepared to preserve exact portable weights and collect final structured evidence. Its nine CPU checks do not establish server execution. The inner LoRA checkpoint alone is not the full portable package.
+
+Final train.sh/eval.sh integration, team identity and the complete organizer package remain unfinished. Staged weights/evidence must not be advertised as submission-ready. Preserve this checkpoint/results and prioritize delivery over new training. The recorded organizer deadline is26October midnight Beijing from the provided briefing; no new authenticated schedule check is claimed.
+
+中文：本次已于北京时间14:05完成，50任务×2设置全部覆盖，共实际116回合、成功20回合；不是10000回合或官方分数。模型可移植重放和16项仿真准备检查通过，不用重跑。队长与助手接管剩余入口、配置、报告、权重与提交，不再等待A/B。CPU权重归档工具已准备，服务器执行待确认；正式训练/评测入口和最终材料仍未完成，不能把证据包当作可提交包。
+
 # Latest — 26 October: expert scene rejection recovery prepared
 
 The retained coverage error is now diagnosed: a scripted expert could not produce a grasp pose during scene screening, before learned-policy execution for that case. Our wrapper turned the upstream expert rejection into a fatal stop. This does not identify why that scene lacked a pose or establish checkpoint corruption.
