@@ -1,6 +1,8 @@
 # AURA-Embodied Frontier Watch
 
 **Languages:** English · [简体中文 / Chinese reading index](README.zh-CN.md)
+**Latest bilingual watch (2026-10-29):** [English Frontier Watch](2026/2026-10-29.md) · [中文周报](2026/2026-10-29.zh-CN.md) · [HQ/Core/team decision handoff](2026/2026-10-29-handoff.md) · [中文分工交接](2026/2026-10-29-handoff.zh-CN.md). Current priorities are in [CURRENT.md](CURRENT.md) / [当前研究雷达](CURRENT.zh-CN.md). These are research dispositions, not experiment authorization.
+
 
 **Chinese companions published 2026-10-19:** [current radar](CURRENT.zh-CN.md), [October 19 decision brief](2026/2026-10-19.zh-CN.md), [evidence](2026/2026-10-19-evidence.zh-CN.md), [team work packages](2026/2026-10-19-team-work.zh-CN.md), [October 15 weekly report and linked appendices](2026/2026-10-15.zh-CN.md), and [trend ledger](TREND_LEDGER.zh-CN.md). The Chinese index pairs each file with its English source; earlier October 8/9 reports remain English-only.
 

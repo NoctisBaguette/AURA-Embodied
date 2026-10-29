@@ -345,3 +345,20 @@ ChunkAct compiles known routines to reduce high-level deliberation; Chronos Poli
 ## T15 — Physical-interface fidelity is distinct from image OOD (2026-10-15)
 
 WorldOracle scores action predictions against executed physical outcomes; ForceWAM models wrench/contact; LIBERO-RIG perturbs camera, calibration, actuation and grippers. Future AURA benchmarks should include these shifts, with clean/perturbed results reported separately.
+
+
+---
+
+## T16 — Predictive intelligence can be distilled into the fast actor (2026-10-29)
+
+**Status:** emerging; **architecture-hypothesis challenge, not yet an AURA experiment.**
+
+**New source:** [PDRVLA, arXiv:2610.37381, first posted Oct 27](https://arxiv.org/abs/2610.37381) trains a lightweight action-conditioning physical-dynamics representation using future RGB/depth/flow prediction and a frozen video-world-model teacher; its deployed policy does **not** generate online future videos. Contrast this with earlier bounded *runtime* predictive selection (Planning Limits, RoboCoach/ForkCast) and integrated joint future/action streams (AW-0, UniWALM, E0.5).
+
+**Refinement:** The hypothesis that action-relevant physical prediction helps manipulation is consistent with several *different* mechanisms. AURA should **not assume an online world model is necessary**. A cheaper policy-native physical representation, teacher-distilled future features, a small explicit state verifier, or a bounded runtime model may each be sufficient in different regimes.
+
+**Discriminating comparison (later, only after Core approval and compatible learned baseline):** under matched task, observations, training data, control frequency and end-to-end latency, compare action-only, training-time predictive physical tokens and an online action-conditional predictor. Measure physical effect correctness under perturbation, calibrated uncertainty, healthy-case preservation and total inference/intervention cost. An accuracy score alone cannot justify the additional runtime model.
+
+**Prior-art addendum to T7 (2026-10-29):** [RoboDoctor](https://arxiv.org/abs/2610.35604) (policy/agent allocation, selective correction, linked experience), [RoboAuto](https://arxiv.org/abs/2610.36533) (object/scene/interaction knowledge, active physical probes and effect checks), and [UniManip](https://arxiv.org/abs/2602.13086) (February original, October 24 revision of hierarchical object-centric graph and recovery) make generic AURA/AETHER “planner + state + verification + recovery + reusable skills” novelty claims particularly weak. RoboDoctor's available code is not a locally audited reproduction and its cross-episode experience contribution is not causally isolated. The remaining publishable claim must be demonstrated by rigorous ablations, nonprivileged sensing, matched cost, realistic physics effects, and independent held-out transfer.
+
+**Execution impact:** MONITOR/BACKLOG; add to existing WP1 comparison only, not M9a. [Oct 29 source and decision report](2026/2026-10-29.md).
