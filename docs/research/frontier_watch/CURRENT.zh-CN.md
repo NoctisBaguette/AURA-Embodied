@@ -1,5 +1,22 @@
 # AURA 前沿观察：当前研究雷达
 
+## 2026 年 11 月 5 日 — 最新研究和决策更新
+
+[中文完整周报](2026/2026-11-05.zh-CN.md) · [English](2026/2026-11-05.md) · [中文 HQ/Core/队友交接](2026/2026-11-05-handoff.zh-CN.md) · [英文交接](2026/2026-11-05-handoff.md)。
+
+**M9a 不变。** 11 月 5 日核实工程分支 `06-01/aether-cl-m0` head `cd8185dbe36676c1edd90031e13a105795b617d5`；Core 连续性 v0.2 仍规定有限相机/渲染/传感器 I/O 调试及另行 Core 评审的新鲜评估关卡。现有记录**没有**证明渲染中立性或非特权验证器已验收。遵守操作员暂停。
+
+**新重点：**[RoboArchitect（10 月 30 日）](https://arxiv.org/abs/2610.42141) **DEEP DIVE**（公开代码、自动改写 harness、持久记忆，创新性竞争）；[DiMuRe（11 月 3 日）](https://arxiv.org/abs/2611.04226) **DEEP DIVE**（诊断驱动的分层恢复，Full／Local 预算不同）；[REA（10 月 30 日）](https://arxiv.org/abs/2610.42053) **DEEP DIVE**（策略路由、边界验证和恢复共享预算）；[几何抽象（11 月 3 日）](https://arxiv.org/abs/2611.05058) **DEEP DIVE**（根据 RGB-D 刷新“已观测／推断／不可得”事实，公开代码）；[ARP（11 月 3 日）](https://arxiv.org/abs/2611.05155) **DEEP DIVE**（基于记忆年龄的异步动作，综合基准仍有退步）；[DreamFree（11 月 4 日 v2）](https://arxiv.org/abs/2611.04527) 和 [HiLo-WAM（11 月 3 日）](https://arxiv.org/abs/2611.05023) **READ/DEEP DIVE**（不同预测策略）；[LoopQ（11 月 3 日）](https://arxiv.org/abs/2611.05093) **READ**（量化省显存≠一定提速或保持扰动成功率）。
+
+**上游已覆盖：**LOGIV、ReSTEP/REMORA、JAM、Utility-WAM、CuraEval，以及 10 月末补充审查，见 [Embodied-AI 11 月 2 日周报](https://github.com/NoctisBaguette/Embodied-AI-Research/blob/main/reports/frontier_watch/2026/2026-11-02.md)。AURA 独立查证 LOGIV（**11 月 2 日 v3**）、ReSTEP、JAM、Utility-WAM 的原始摘要；本周新发现不等于本组完成实证。
+
+**交给 Core/HQ：**在现有 WP1 加入 RoboArchitect/DiMuRe/REA/几何抽象的竞品对比；仅在获批资料准备时将证据状态/时间戳加入 WP2/WP4；在 WP3 考虑 ARP/DreamFree/LoopQ 可行性，不直接开新实验。AURA 创新必须落在**非特权效果正确性、过期/未知证据、干预代价、未见迁移**等量化证据上，不能只拼模块。没有分配人员/执行/资源。**本周零项新增实验，保留 M9a 后既定证据时效／任务失效候选。**
+
+**执行总结：**继续已有 M9a 范围；现在不改实验；下关卡仍为既定单问题；大型 WAM／harness／RL／平台迁移暂缓；本次只做来源查阅和中英文档，**没有新 CPU、模型、仿真、真机或审计结果**。
+
+---
+
+
 [English](CURRENT.md) · [中文阅读入口](README.zh-CN.md)。**更新：2026-10-29。**
 
 **最新材料：**[10月29日中文周报](2026/2026-10-29.zh-CN.md) · [English watch](2026/2026-10-29.md) · [HQ/Core/队友中文交接](2026/2026-10-29-handoff.zh-CN.md) · [英文交接](2026/2026-10-29-handoff.md)。

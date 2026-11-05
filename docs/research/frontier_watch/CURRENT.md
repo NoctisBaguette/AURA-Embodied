@@ -1,5 +1,22 @@
 # AURA Frontier Watch — Current Research Radar
 
+## November 5, 2026 — newest research/decision delta
+
+[Full English watch](2026/2026-11-05.md) · [中文周报](2026/2026-11-05.zh-CN.md) · [HQ/Core handoff](2026/2026-11-05-handoff.md) · [中文队友交接](2026/2026-11-05-handoff.zh-CN.md).
+
+**No change to M9a.** Checked Nov 5 engineering branch `06-01/aether-cl-m0` head `cd8185dbe36676c1edd90031e13a105795b617d5`; Core continuity v0.2 still limits work to the narrow camera/render/sensor-I/O commissioning and a separate Core-approved fresh-evaluation gate. Published records do **not** establish camera neutrality or an accepted nonprivileged verifier. Honor operator pause.
+
+**This week's newest high-signal priorities:** [RoboArchitect Oct 30](https://arxiv.org/abs/2610.42141) **DEEP DIVE / prior-art pressure** (public code, automatic harness evolution + persistent memory); [DiMuRe Nov 3](https://arxiv.org/abs/2611.04226) **DEEP DIVE** (diagnosis-guided multilevel recovery; different Full vs Local budgets); [REA Oct 30](https://arxiv.org/abs/2610.42053) **DEEP DIVE** (boundary judge, policy routing, shared cost budget); [Geometric abstraction Nov 3](https://arxiv.org/abs/2611.05058) **DEEP DIVE** (observed/inferred/unavailable, refreshed RGB-D metric state, public code); [ARP Nov 3](https://arxiv.org/abs/2611.05155) **DEEP DIVE** (stale-age-conditioned asynchronous actor, admits losses on broad benchmark); [DreamFree Nov 4 v2](https://arxiv.org/abs/2611.04527) and [HiLo-WAM Nov 3](https://arxiv.org/abs/2611.05023) **READ/DEEP DIVE**, competing inference-time world-model designs; [LoopQ Nov 3](https://arxiv.org/abs/2611.05093) **READ** (quantization memory savings are not guaranteed latency or OOD gains).
+
+**Upstream already identified:** LOGIV, ReSTEP/REMORA, JAM, Utility-WAM, CuraEval and late-October supplementary checks in [Embodied-AI Nov 2](https://github.com/NoctisBaguette/Embodied-AI-Research/blob/main/reports/frontier_watch/2026/2026-11-02.md). AURA independently inspected primary records for LOGIV (**v3 on Nov 2**), ReSTEP, JAM and Utility-WAM. New papers above are independent AURA discoveries, not independent empirical replications.
+
+**Core decision candidates:** add RoboArchitect/DiMuRe/REA/geometry to existing WP1 prior-art matrix; feed evidence-state/time semantics into existing WP2/WP4 only if approved as preparation; screen ARP/DreamFree/LoopQ inside WP3 (not a new benchmark). AURA novelty cannot be an undifferentiated planner+memory+verification+recovery wrapper. Distinguish *measured nonprivileged effect correctness, late/stale evidence, intervention cost and held-out transfer*. No teammate, run or resources assigned. **Zero newly nominated experiments; keep existing post-M9a evidence-freshness/invalidation candidate.**
+
+**Execution footer:** Continue existing M9a scope; Change now none; Next checkpoint existing single question only; Deferred full new WAM/harness/RL/cross-platform projects; Evidence sourced reading and bilingual review documents, **no new model/CPU/native/audited results**.
+
+---
+
+
 **Languages:** English · [简体中文](CURRENT.zh-CN.md) · [Chinese reading index](README.zh-CN.md). **Updated:** 2026-10-29.
 
 **Latest:** [October 29 Frontier Watch](2026/2026-10-29.md) · [中文周报](2026/2026-10-29.zh-CN.md) · [HQ/Core/team handoff](2026/2026-10-29-handoff.md) · [中文分工交接](2026/2026-10-29-handoff.zh-CN.md).
