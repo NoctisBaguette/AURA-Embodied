@@ -4,6 +4,34 @@ This file records research decisions and evolution.
 
 ---
 
+## 2026-11-12 — Core lifts M9a commissioning pause
+
+### Existing Knowledge
+
+The October 29 and November 5 Frontier Watch checkpoints both explicitly
+recommend continuing the existing M9a Vulkan/rendering/camera/sensor-I/O
+commissioning and nominate no replacement experiment.
+
+The experiment branch remains at
+`cd8185dbe36676c1edd90031e13a105795b617d5`; no later completed native
+camera-neutrality or non-privileged verifier evidence is recorded.
+
+### Decision
+
+The user/operator explicitly elects to continue the experiment. BAGUETTE Core
+therefore lifts the pause for the **already-authorized M9a commissioning scope**.
+
+This does not authorize fresh scientific evaluation. 06-01 must first return
+commissioning evidence and a complete executable protocol to Core.
+
+### Notes
+
+Frontier Watch's next issue may alter prior-art interpretation but does not
+automatically revoke this scope unless it identifies a material validity or
+safety conflict.
+
+---
+
 ## 2026-10-19 — M9a commissioning is current; 02W design step is already complete
 
 ### Existing Knowledge
