@@ -1,0 +1,678 @@
+{
+  "source_archive": "aether-cl-m2-evidence.tar.gz",
+  "source_archive_sha256": "d157a2e11268a170515e4f5f36b6be5f8080a001e03b998aac500757d970e306",
+  "source_archive_bytes": 883072,
+  "indexed_files_verified": 23,
+  "original_suite_state": "failed",
+  "suite_revision": "3ae309991542ecd01e803c0883097b8338e07fae",
+  "scope": "seed0_native_development_checks_not_a_held_out_robustness_benchmark",
+  "audit_method": [
+    "archive file size/hash verification",
+    "fresh-observation geometry and task-stability recomputation",
+    "controller replay using Panda base pose from ManiSkill 3.0.1 table scene builder",
+    "reference/verifier replay against every logged state",
+    "independent confusion counts from logged reference and verifier labels",
+    "canonical pair trace equality and manifest comparison",
+    "rendered live versus nonrendered shift trace comparison"
+  ],
+  "policy_replay_base_pose_source": "mani_skill/utils/scene_builder/table/scene_builder.py: Panda sapien.Pose([-0.615,0,0]); float32 raw pose",
+  "trials": [
+    {
+      "condition": "none",
+      "system": "baseline",
+      "source": "none-baseline",
+      "revision": "3ae309991542ecd01e803c0883097b8338e07fae",
+      "clean_revision": true,
+      "render": false,
+      "steps": 360,
+      "episode": {
+        "episode": 0,
+        "seed": 0,
+        "steps": 360,
+        "success_at_end": true,
+        "success_ever": true,
+        "terminated": true,
+        "truncated": true,
+        "stopped": false,
+        "seconds": 1.8861588269937783,
+        "final_phase": "hold",
+        "schedule_complete": true,
+        "final_cube_goal_distance_m": 0.0004579700860397016,
+        "final_is_grasped": true,
+        "final_is_obj_placed": true,
+        "final_is_robot_static": true,
+        "excluded": false,
+        "task_success_at_end": true,
+        "first_reference_failure": null,
+        "first_detected_failure": null,
+        "first_failure_latency_steps": null,
+        "final_verification": {
+          "status": "disabled",
+          "failure": null
+        },
+        "max_cube_lift_m": 0.3285265378654003,
+        "disturbance_applied": false
+      },
+      "policy_replay_max_action_absolute_difference": 2.9802322387695312e-08,
+      "first_fresh_grasp_step": 102,
+      "first_task_success_step": 206,
+      "final_task_stability_steps": 123,
+      "metrics": null,
+      "intervention_audit": null
+    },
+    {
+      "condition": "none",
+      "system": "v1",
+      "source": "none-v1",
+      "revision": "3ae309991542ecd01e803c0883097b8338e07fae",
+      "clean_revision": true,
+      "render": false,
+      "steps": 360,
+      "episode": {
+        "episode": 0,
+        "seed": 0,
+        "steps": 360,
+        "success_at_end": true,
+        "success_ever": true,
+        "terminated": true,
+        "truncated": true,
+        "stopped": false,
+        "seconds": 1.5893118209205568,
+        "final_phase": "hold",
+        "schedule_complete": true,
+        "final_cube_goal_distance_m": 0.0004579700860397016,
+        "final_is_grasped": true,
+        "final_is_obj_placed": true,
+        "final_is_robot_static": true,
+        "excluded": false,
+        "task_success_at_end": true,
+        "first_reference_failure": null,
+        "first_detected_failure": null,
+        "first_failure_latency_steps": null,
+        "final_verification": {
+          "status": "passed",
+          "success": true,
+          "failure": null,
+          "confidence": null,
+          "expected_outcome": "grasp_and_goal_stability",
+          "evidence": {
+            "cube_tcp_distance_m": 0.00020740785884384682,
+            "gripper_aperture_m": 0.03660046309232712,
+            "max_cube_lift_m": 0.3285265378654003,
+            "cube_goal_distance_m": 0.0004579700860397016,
+            "robot_static": true,
+            "stable_steps": 123,
+            "failure_persistence_steps": 0
+          }
+        },
+        "max_cube_lift_m": 0.3285265378654003,
+        "disturbance_applied": false
+      },
+      "policy_replay_max_action_absolute_difference": 2.9802322387695312e-08,
+      "first_fresh_grasp_step": 102,
+      "first_task_success_step": 206,
+      "final_task_stability_steps": 123,
+      "metrics": {
+        "scope": "privileged_state_simulator_reference_agreement",
+        "complete": true,
+        "steps": 360,
+        "uncertain_steps": 0,
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 0,
+        "true_negative": 360,
+        "uncertain_on_negative": 0,
+        "failure_detection_precision": null,
+        "failure_detection_recall": null,
+        "diagnosis_accuracy_when_failure_detected": null,
+        "observation_coverage": 1.0,
+        "confusion": {
+          "NONE->NONE": 360
+        }
+      },
+      "intervention_audit": null
+    },
+    {
+      "condition": "object_drop",
+      "system": "baseline",
+      "source": "object_drop-baseline",
+      "revision": "3ae309991542ecd01e803c0883097b8338e07fae",
+      "clean_revision": true,
+      "render": false,
+      "steps": 360,
+      "episode": {
+        "episode": 0,
+        "seed": 0,
+        "steps": 360,
+        "success_at_end": false,
+        "success_ever": false,
+        "terminated": false,
+        "truncated": true,
+        "stopped": false,
+        "seconds": 1.4386046309955418,
+        "final_phase": "hold",
+        "schedule_complete": true,
+        "final_cube_goal_distance_m": 0.3159005841917534,
+        "final_is_grasped": false,
+        "final_is_obj_placed": false,
+        "final_is_robot_static": true,
+        "excluded": false,
+        "task_success_at_end": false,
+        "first_reference_failure": {
+          "step": 181,
+          "failure": "OBJECT_LOST"
+        },
+        "first_detected_failure": null,
+        "first_failure_latency_steps": null,
+        "final_verification": {
+          "status": "disabled",
+          "failure": null
+        },
+        "max_cube_lift_m": 0.1615089736878872,
+        "disturbance_applied": true
+      },
+      "policy_replay_max_action_absolute_difference": 2.9802322387695312e-08,
+      "first_fresh_grasp_step": 102,
+      "first_task_success_step": null,
+      "final_task_stability_steps": 0,
+      "metrics": null,
+      "intervention_audit": {
+        "injection_step": 181,
+        "injection": {
+          "name": "object_drop",
+          "step": 181,
+          "magnitude_m": 0.12,
+          "axis": "world_y",
+          "timing": "after_action_computation_before_physics_step",
+          "implementation": "one_time_pose_relocation_with_zero_velocity",
+          "before_pose_world": [
+            0.0037974449805915356,
+            0.042202338576316833,
+            0.18150897324085236,
+            0.5703725814819336,
+            -0.0010284152813255787,
+            0.0008952395874075592,
+            0.8213850855827332
+          ],
+          "after_pose_world": [
+            0.0037974449805915356,
+            0.16220233857631683,
+            0.019999999552965164,
+            0.5703725814819336,
+            -0.0010284152813255787,
+            0.0008952395874075592,
+            0.8213850855827332
+          ],
+          "velocities_zeroed": true
+        },
+        "max_cube_displacement_from_injected_pose_m": 5.5122815766093556e-05,
+        "post_injection_max_height_m": 0.019999926909804344
+      }
+    },
+    {
+      "condition": "object_drop",
+      "system": "v1",
+      "source": "object_drop-v1",
+      "revision": "3ae309991542ecd01e803c0883097b8338e07fae",
+      "clean_revision": true,
+      "render": false,
+      "steps": 360,
+      "episode": {
+        "episode": 0,
+        "seed": 0,
+        "steps": 360,
+        "success_at_end": false,
+        "success_ever": false,
+        "terminated": false,
+        "truncated": true,
+        "stopped": false,
+        "seconds": 1.4786883601918817,
+        "final_phase": "hold",
+        "schedule_complete": true,
+        "final_cube_goal_distance_m": 0.3159005841917534,
+        "final_is_grasped": false,
+        "final_is_obj_placed": false,
+        "final_is_robot_static": true,
+        "excluded": false,
+        "task_success_at_end": false,
+        "first_reference_failure": {
+          "step": 181,
+          "failure": "OBJECT_LOST"
+        },
+        "first_detected_failure": {
+          "step": 183,
+          "failure": "OBJECT_LOST"
+        },
+        "first_failure_latency_steps": 2,
+        "final_verification": {
+          "status": "failed",
+          "success": false,
+          "failure": "OBJECT_LOST",
+          "confidence": null,
+          "expected_outcome": "grasp_and_goal_stability",
+          "evidence": {
+            "cube_tcp_distance_m": 0.3158974349132443,
+            "gripper_aperture_m": 0.0,
+            "max_cube_lift_m": 0.1615089736878872,
+            "cube_goal_distance_m": 0.3159005841917534,
+            "robot_static": true,
+            "stable_steps": 0,
+            "failure_persistence_steps": 180
+          }
+        },
+        "max_cube_lift_m": 0.1615089736878872,
+        "disturbance_applied": true
+      },
+      "policy_replay_max_action_absolute_difference": 2.9802322387695312e-08,
+      "first_fresh_grasp_step": 102,
+      "first_task_success_step": null,
+      "final_task_stability_steps": 0,
+      "metrics": {
+        "scope": "privileged_state_simulator_reference_agreement",
+        "complete": true,
+        "steps": 360,
+        "uncertain_steps": 0,
+        "true_positive": 178,
+        "false_positive": 0,
+        "false_negative": 2,
+        "true_negative": 180,
+        "uncertain_on_negative": 0,
+        "failure_detection_precision": 1.0,
+        "failure_detection_recall": 0.9888888888888889,
+        "diagnosis_accuracy_when_failure_detected": 1.0,
+        "observation_coverage": 1.0,
+        "confusion": {
+          "NONE->NONE": 180,
+          "OBJECT_LOST->NONE": 2,
+          "OBJECT_LOST->OBJECT_LOST": 178
+        }
+      },
+      "intervention_audit": {
+        "injection_step": 181,
+        "injection": {
+          "name": "object_drop",
+          "step": 181,
+          "magnitude_m": 0.12,
+          "axis": "world_y",
+          "timing": "after_action_computation_before_physics_step",
+          "implementation": "one_time_pose_relocation_with_zero_velocity",
+          "before_pose_world": [
+            0.0037974449805915356,
+            0.042202338576316833,
+            0.18150897324085236,
+            0.5703725814819336,
+            -0.0010284152813255787,
+            0.0008952395874075592,
+            0.8213850855827332
+          ],
+          "after_pose_world": [
+            0.0037974449805915356,
+            0.16220233857631683,
+            0.019999999552965164,
+            0.5703725814819336,
+            -0.0010284152813255787,
+            0.0008952395874075592,
+            0.8213850855827332
+          ],
+          "velocities_zeroed": true
+        },
+        "max_cube_displacement_from_injected_pose_m": 5.5122815766093556e-05,
+        "post_injection_max_height_m": 0.019999926909804344
+      }
+    },
+    {
+      "condition": "object_shift",
+      "system": "baseline",
+      "source": "object_shift-baseline",
+      "revision": "3ae309991542ecd01e803c0883097b8338e07fae",
+      "clean_revision": true,
+      "render": false,
+      "steps": 360,
+      "episode": {
+        "episode": 0,
+        "seed": 0,
+        "steps": 360,
+        "success_at_end": false,
+        "success_ever": false,
+        "terminated": false,
+        "truncated": true,
+        "stopped": false,
+        "seconds": 1.4040692900307477,
+        "final_phase": "hold",
+        "schedule_complete": true,
+        "final_cube_goal_distance_m": 0.32237953896282034,
+        "final_is_grasped": false,
+        "final_is_obj_placed": false,
+        "final_is_robot_static": true,
+        "excluded": false,
+        "task_success_at_end": false,
+        "first_reference_failure": {
+          "step": 125,
+          "failure": "GRASP_FAILURE"
+        },
+        "first_detected_failure": null,
+        "first_failure_latency_steps": null,
+        "final_verification": {
+          "status": "disabled",
+          "failure": null
+        },
+        "max_cube_lift_m": 0.0,
+        "disturbance_applied": true
+      },
+      "policy_replay_max_action_absolute_difference": 2.9802322387695312e-08,
+      "first_fresh_grasp_step": null,
+      "first_task_success_step": null,
+      "final_task_stability_steps": 0,
+      "metrics": null,
+      "intervention_audit": {
+        "injection_step": 81,
+        "injection": {
+          "name": "object_shift",
+          "step": 81,
+          "magnitude_m": 0.12,
+          "axis": "world_y",
+          "timing": "after_action_computation_before_physics_step",
+          "implementation": "one_time_pose_relocation_with_zero_velocity",
+          "before_pose_world": [
+            -0.0007480092463083565,
+            0.05364290997385979,
+            0.01999993994832039,
+            0.5687590837478638,
+            6.9242241806932725e-06,
+            -3.313078650535317e-06,
+            0.8225041627883911
+          ],
+          "after_pose_world": [
+            -0.0007480092463083565,
+            0.17364290997385978,
+            0.01999993994832039,
+            0.5687590837478638,
+            6.9242241806932725e-06,
+            -3.313078650535317e-06,
+            0.8225041627883911
+          ],
+          "velocities_zeroed": true
+        },
+        "max_cube_displacement_from_injected_pose_m": 1.2615214634862777e-06,
+        "post_injection_max_height_m": 0.01999996043741703
+      }
+    },
+    {
+      "condition": "object_shift",
+      "system": "v1",
+      "source": "object_shift-v1",
+      "revision": "3ae309991542ecd01e803c0883097b8338e07fae",
+      "clean_revision": true,
+      "render": false,
+      "steps": 360,
+      "episode": {
+        "episode": 0,
+        "seed": 0,
+        "steps": 360,
+        "success_at_end": false,
+        "success_ever": false,
+        "terminated": false,
+        "truncated": true,
+        "stopped": false,
+        "seconds": 1.4202459380030632,
+        "final_phase": "hold",
+        "schedule_complete": true,
+        "final_cube_goal_distance_m": 0.32237953896282034,
+        "final_is_grasped": false,
+        "final_is_obj_placed": false,
+        "final_is_robot_static": true,
+        "excluded": false,
+        "task_success_at_end": false,
+        "first_reference_failure": {
+          "step": 125,
+          "failure": "GRASP_FAILURE"
+        },
+        "first_detected_failure": {
+          "step": 127,
+          "failure": "GRASP_FAILURE"
+        },
+        "first_failure_latency_steps": 2,
+        "final_verification": {
+          "status": "failed",
+          "success": false,
+          "failure": "GRASP_FAILURE",
+          "confidence": null,
+          "expected_outcome": "grasp_and_goal_stability",
+          "evidence": {
+            "cube_tcp_distance_m": 0.3223760777346728,
+            "gripper_aperture_m": 0.0,
+            "max_cube_lift_m": 0.0,
+            "cube_goal_distance_m": 0.32237953896282034,
+            "robot_static": true,
+            "stable_steps": 0,
+            "failure_persistence_steps": 236
+          }
+        },
+        "max_cube_lift_m": 0.0,
+        "disturbance_applied": true
+      },
+      "policy_replay_max_action_absolute_difference": 2.9802322387695312e-08,
+      "first_fresh_grasp_step": null,
+      "first_task_success_step": null,
+      "final_task_stability_steps": 0,
+      "metrics": {
+        "scope": "privileged_state_simulator_reference_agreement",
+        "complete": true,
+        "steps": 360,
+        "uncertain_steps": 0,
+        "true_positive": 234,
+        "false_positive": 0,
+        "false_negative": 2,
+        "true_negative": 124,
+        "uncertain_on_negative": 0,
+        "failure_detection_precision": 1.0,
+        "failure_detection_recall": 0.9915254237288136,
+        "diagnosis_accuracy_when_failure_detected": 1.0,
+        "observation_coverage": 1.0,
+        "confusion": {
+          "NONE->NONE": 124,
+          "GRASP_FAILURE->NONE": 2,
+          "GRASP_FAILURE->GRASP_FAILURE": 234
+        }
+      },
+      "intervention_audit": {
+        "injection_step": 81,
+        "injection": {
+          "name": "object_shift",
+          "step": 81,
+          "magnitude_m": 0.12,
+          "axis": "world_y",
+          "timing": "after_action_computation_before_physics_step",
+          "implementation": "one_time_pose_relocation_with_zero_velocity",
+          "before_pose_world": [
+            -0.0007480092463083565,
+            0.05364290997385979,
+            0.01999993994832039,
+            0.5687590837478638,
+            6.9242241806932725e-06,
+            -3.313078650535317e-06,
+            0.8225041627883911
+          ],
+          "after_pose_world": [
+            -0.0007480092463083565,
+            0.17364290997385978,
+            0.01999993994832039,
+            0.5687590837478638,
+            6.9242241806932725e-06,
+            -3.313078650535317e-06,
+            0.8225041627883911
+          ],
+          "velocities_zeroed": true
+        },
+        "max_cube_displacement_from_injected_pose_m": 1.2615214634862777e-06,
+        "post_injection_max_height_m": 0.01999996043741703
+      }
+    },
+    {
+      "condition": "object_shift",
+      "system": "v1",
+      "source": "prior-live-run",
+      "revision": "34ce567134871d7ddb04cdb61636e1a4b2e977ae",
+      "clean_revision": true,
+      "render": true,
+      "steps": 360,
+      "episode": {
+        "episode": 0,
+        "seed": 0,
+        "steps": 360,
+        "success_at_end": false,
+        "success_ever": false,
+        "terminated": false,
+        "truncated": true,
+        "stopped": false,
+        "seconds": 35.95969669893384,
+        "final_phase": "hold",
+        "schedule_complete": true,
+        "final_cube_goal_distance_m": 0.32237953896282034,
+        "final_is_grasped": false,
+        "final_is_obj_placed": false,
+        "final_is_robot_static": true,
+        "excluded": false,
+        "task_success_at_end": false,
+        "first_reference_failure": {
+          "step": 125,
+          "failure": "GRASP_FAILURE"
+        },
+        "first_detected_failure": {
+          "step": 127,
+          "failure": "GRASP_FAILURE"
+        },
+        "first_failure_latency_steps": 2,
+        "final_verification": {
+          "status": "failed",
+          "success": false,
+          "failure": "GRASP_FAILURE",
+          "confidence": null,
+          "expected_outcome": "grasp_and_goal_stability",
+          "evidence": {
+            "cube_tcp_distance_m": 0.3223760777346728,
+            "gripper_aperture_m": 0.0,
+            "max_cube_lift_m": 0.0,
+            "cube_goal_distance_m": 0.32237953896282034,
+            "robot_static": true,
+            "stable_steps": 0,
+            "failure_persistence_steps": 236
+          }
+        },
+        "max_cube_lift_m": 0.0,
+        "disturbance_applied": true
+      },
+      "policy_replay_max_action_absolute_difference": 2.9802322387695312e-08,
+      "first_fresh_grasp_step": null,
+      "first_task_success_step": null,
+      "final_task_stability_steps": 0,
+      "metrics": {
+        "scope": "privileged_state_simulator_reference_agreement",
+        "complete": true,
+        "steps": 360,
+        "uncertain_steps": 0,
+        "true_positive": 234,
+        "false_positive": 0,
+        "false_negative": 2,
+        "true_negative": 124,
+        "uncertain_on_negative": 0,
+        "failure_detection_precision": 1.0,
+        "failure_detection_recall": 0.9915254237288136,
+        "diagnosis_accuracy_when_failure_detected": 1.0,
+        "observation_coverage": 1.0,
+        "confusion": {
+          "NONE->NONE": 124,
+          "GRASP_FAILURE->NONE": 2,
+          "GRASP_FAILURE->GRASP_FAILURE": 234
+        }
+      },
+      "intervention_audit": {
+        "injection_step": 81,
+        "injection": {
+          "name": "object_shift",
+          "step": 81,
+          "magnitude_m": 0.12,
+          "axis": "world_y",
+          "timing": "after_action_computation_before_physics_step",
+          "implementation": "one_time_pose_relocation_with_zero_velocity",
+          "before_pose_world": [
+            -0.0007480092463083565,
+            0.05364290997385979,
+            0.01999993994832039,
+            0.5687590837478638,
+            6.9242241806932725e-06,
+            -3.313078650535317e-06,
+            0.8225041627883911
+          ],
+          "after_pose_world": [
+            -0.0007480092463083565,
+            0.17364290997385978,
+            0.01999993994832039,
+            0.5687590837478638,
+            6.9242241806932725e-06,
+            -3.313078650535317e-06,
+            0.8225041627883911
+          ],
+          "velocities_zeroed": true
+        },
+        "max_cube_displacement_from_injected_pose_m": 1.2615214634862777e-06,
+        "post_injection_max_height_m": 0.01999996043741703
+      }
+    }
+  ],
+  "pairs": [
+    {
+      "condition": "none",
+      "exact_trace_equal": true,
+      "records": 361,
+      "trace_sha256": "9bec33e7a113e7ed31ab08a262384ae0a268b4e827e6fbb4ac26c2b70396d48e",
+      "software_differences": {
+        "native_library_environment": {
+          "baseline": {
+            "LD_LIBRARY_PATH": "/home/jiangle/aura-work/aether-glvnd-1.4.0/usr/lib/x86_64-linux-gnu",
+            "LD_PRELOAD": null
+          },
+          "v1": {
+            "LD_LIBRARY_PATH": "/home/jiangle/miniconda3/envs/aether-cl/lib/python3.10/site-packages/cv2/../../lib64:/home/jiangle/aura-work/aether-glvnd-1.4.0/usr/lib/x86_64-linux-gnu",
+            "LD_PRELOAD": null
+          }
+        }
+      }
+    },
+    {
+      "condition": "object_shift",
+      "exact_trace_equal": true,
+      "records": 362,
+      "trace_sha256": "944fc2a305aee3f62315f52e0f2907d370b2821c38220a41794d88f06feb34a9",
+      "software_differences": {}
+    },
+    {
+      "condition": "object_drop",
+      "exact_trace_equal": true,
+      "records": 362,
+      "trace_sha256": "7e54edcdd237698128edafe04f1639821d65c5b103c10d4ffc793a8abd314d26",
+      "software_differences": {}
+    }
+  ],
+  "prior_live_audit": {
+    "exact_trace_equal_to_nonrendered_shift_v1": true,
+    "all_360_verdicts_equal": true,
+    "supplied_viewer_status_equals_raw_result_excluding_frame_number": true,
+    "live_revision": "34ce567134871d7ddb04cdb61636e1a4b2e977ae",
+    "frame_number_only_present_in_viewer": 361,
+    "live_render_device": "cuda:0"
+  },
+  "native_episodes_audited": 7,
+  "native_actions_audited": 2520,
+  "conclusion": "All six native behavioral checks and three exact trace comparisons pass; original suite remains failed solely for startup native-library environment mismatch. Process-isolated rerun pending.",
+  "startup_environment_root_cause": {
+    "original_runner": "same interpreter reused across six cells",
+    "differing_software_field": "native_library_environment.LD_LIBRARY_PATH",
+    "reviewed_source": "OpenCV 4.11.0.86 wheel cv2/__init__.py line 147 prepends BINARIES_PATHS during import",
+    "opencv_wheel_sha256": "6b02611523803495003bd87362db3e1d2a0454a6a63025dc6658a9830570aa0d",
+    "correction": "fresh Python interpreter per cell with identical captured suite-start environment; strict software equality retained",
+    "original_suite_failed_state_preserved": true,
+    "corrected_native_rerun": "pending",
+    "local_tests_passed": 52
+  }
+}

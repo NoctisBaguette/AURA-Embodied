@@ -1,0 +1,2201 @@
+{
+  "scope": "M7 known-seed normal-six-v5 commissioning audit; not confirmatory evaluation or model training",
+  "archive_name": "aether-cl-m7-development-normal6-v5.tar.gz",
+  "archive_sha256": "ef02160bb65d45ac0c283c75b3458e315e7f45f4d8f2ce717f4ad4a7acfff0c1",
+  "indexed_files": 41,
+  "exact_membership": true,
+  "all_sizes_and_hashes": true,
+  "native_commit": "fff75c25f2b5d1dc01a224be86a4cb60b1152afb",
+  "execution_sources": [
+    {
+      "path": "aura-sim/prototype_aether_cl/aether_cl/m7_task.py",
+      "sha256": "34a59f771446015cd4d0ea1f52ad6e1fcdd16c268d4e3743c0a4583e69ccd72f",
+      "git_blob": "8bd8196d90895ad689d203760bbd9d004bc6d564"
+    },
+    {
+      "path": "aura-sim/prototype_aether_cl/aether_cl/m7_policy.py",
+      "sha256": "bcd9a2eae4058726a86cfb38afda4cc0d20e181887b2bde9d0cbeccc65ce5333",
+      "git_blob": "3cce4a1913edf5315a697e2a92c408af279f37a1"
+    },
+    {
+      "path": "aura-sim/prototype_aether_cl/aether_cl/m7_runtime.py",
+      "sha256": "c5692cdf8bf84eb50c378f68ba3f2a5dc801bfca74d5ba55be6a5f205020b309",
+      "git_blob": "c496b8693c060d974db1654bd397c4df8b5c6bea"
+    },
+    {
+      "path": "aura-sim/prototype_aether_cl/aether_cl/m7_audit.py",
+      "sha256": "93574f0092b5eb9073e39f1cc0bca159742d61ca2950c9c4d177d3bb273be970",
+      "git_blob": "af220e5042638554b358d82e50e65196d08419ba"
+    },
+    {
+      "path": "aura-sim/prototype_aether_cl/aether_cl/m7_development.py",
+      "sha256": "44e271356e025bdc1b3f19081391f305664edc7d961e47f71f79a417a3f24cd2",
+      "git_blob": "73cf6604e95e8e3b421a64748c6046b16687d6c6"
+    },
+    {
+      "path": "aura-sim/prototype_aether_cl/aether_cl/policies.py",
+      "sha256": "c4e16450ad64ad8683db69d7a166720e411e5e97c8c1def3471b1b04ced04f29",
+      "git_blob": "de38891b4c532b2119ff747ca6d588e8cfc3bb70"
+    },
+    {
+      "path": "aura-sim/prototype_aether_cl/aether_cl/runtime.py",
+      "sha256": "471a5d26a384c6997f0d5a6713d5595bc07dcfe64e0bc2a19b13c786d9449c07",
+      "git_blob": "70effa40a970d614941a377dc52a53076bfc9f7c"
+    },
+    {
+      "path": "aura-sim/prototype_aether_cl/aether_cl/verification.py",
+      "sha256": "472073de5db587de20c2185b324181f169a7bc0e52cd5706aef7506f928f83a7",
+      "git_blob": "0e2ccb7e0b5b06bcbccec993541afd9355e8cf5d"
+    }
+  ],
+  "original_inspection_report_hash_verified": true,
+  "inspection_receipt_git_blob_verified": true,
+  "all_child_parent_software_source_environment_config_matches": true,
+  "all_child_result_suite_copies_match": true,
+  "archived_source_replay": {
+    "native_commit": "fff75c25f2b5d1dc01a224be86a4cb60b1152afb",
+    "review_numpy": "1.26.4",
+    "review_scipy": "1.10.1",
+    "rows": [
+      {
+        "seed": 100,
+        "system": "baseline",
+        "audit": {
+          "passed": true,
+          "steps": 1200,
+          "maximum_action_replay_error": 0.0,
+          "physics_substep_samples": 6000,
+          "raw_endpoint_reconstructions": 1200,
+          "action_replay_bound": 3e-07,
+          "derived_scalar_replay_bound": 1e-10,
+          "physical_pair_tolerance": "exact"
+        },
+        "task_success": true,
+        "valid_acquisition": true,
+        "first_failure": null,
+        "first_detection": null,
+        "recovery": {
+          "state": "disabled",
+          "attempts": 0,
+          "action_steps": 0,
+          "observed_tcp_path_m": 0.0,
+          "completed_stages": []
+        },
+        "first_guard": {
+          "raw_pose_equal": false,
+          "translation_delta_m": 1.4901161193847656e-08,
+          "rotation_delta_rad": 1.2115067967921062e-07,
+          "maximum_translation_delta_m": 1e-06,
+          "maximum_rotation_delta_rad": 1e-06,
+          "passed": true,
+          "half_size_equal": true,
+          "hole_radius_equal": true
+        },
+        "maximum_target_translation_m": 1.4901161193847656e-08,
+        "maximum_target_rotation_rad": 1.2115067967921062e-07
+      },
+      {
+        "seed": 100,
+        "system": "v1",
+        "audit": {
+          "passed": true,
+          "steps": 1200,
+          "maximum_action_replay_error": 0.0,
+          "physics_substep_samples": 6000,
+          "raw_endpoint_reconstructions": 1200,
+          "action_replay_bound": 3e-07,
+          "derived_scalar_replay_bound": 1e-10,
+          "physical_pair_tolerance": "exact"
+        },
+        "task_success": true,
+        "valid_acquisition": true,
+        "first_failure": null,
+        "first_detection": null,
+        "recovery": {
+          "state": "disabled",
+          "attempts": 0,
+          "action_steps": 0,
+          "observed_tcp_path_m": 0.0,
+          "completed_stages": []
+        },
+        "first_guard": {
+          "raw_pose_equal": false,
+          "translation_delta_m": 1.4901161193847656e-08,
+          "rotation_delta_rad": 1.2115067967921062e-07,
+          "maximum_translation_delta_m": 1e-06,
+          "maximum_rotation_delta_rad": 1e-06,
+          "passed": true,
+          "half_size_equal": true,
+          "hole_radius_equal": true
+        },
+        "maximum_target_translation_m": 1.4901161193847656e-08,
+        "maximum_target_rotation_rad": 1.2115067967921062e-07
+      },
+      {
+        "seed": 100,
+        "system": "v2",
+        "audit": {
+          "passed": true,
+          "steps": 1200,
+          "maximum_action_replay_error": 0.0,
+          "physics_substep_samples": 6000,
+          "raw_endpoint_reconstructions": 1200,
+          "action_replay_bound": 3e-07,
+          "derived_scalar_replay_bound": 1e-10,
+          "physical_pair_tolerance": "exact"
+        },
+        "task_success": true,
+        "valid_acquisition": true,
+        "first_failure": null,
+        "first_detection": null,
+        "recovery": {
+          "state": "nominal",
+          "attempts": 0,
+          "reason": null,
+          "trigger_step": null,
+          "first_action_step": null,
+          "phase": null,
+          "phase_step": 0,
+          "action_steps": 0,
+          "observed_tcp_path_m": 0.0,
+          "completed_stages": [],
+          "failure_detail": null,
+          "stable_steps": 0,
+          "refresh_record": null,
+          "fixed_target_check": null,
+          "pose_stability": null,
+          "tcp_tracking_offset_world_m": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "first_guard": {
+          "raw_pose_equal": false,
+          "translation_delta_m": 1.4901161193847656e-08,
+          "rotation_delta_rad": 1.2115067967921062e-07,
+          "maximum_translation_delta_m": 1e-06,
+          "maximum_rotation_delta_rad": 1e-06,
+          "passed": true,
+          "half_size_equal": true,
+          "hole_radius_equal": true
+        },
+        "maximum_target_translation_m": 1.4901161193847656e-08,
+        "maximum_target_rotation_rad": 1.2115067967921062e-07
+      },
+      {
+        "seed": 101,
+        "system": "baseline",
+        "audit": {
+          "passed": true,
+          "steps": 1200,
+          "maximum_action_replay_error": 0.0,
+          "physics_substep_samples": 6000,
+          "raw_endpoint_reconstructions": 1200,
+          "action_replay_bound": 3e-07,
+          "derived_scalar_replay_bound": 1e-10,
+          "physical_pair_tolerance": "exact"
+        },
+        "task_success": true,
+        "valid_acquisition": true,
+        "first_failure": null,
+        "first_detection": null,
+        "recovery": {
+          "state": "disabled",
+          "attempts": 0,
+          "action_steps": 0,
+          "observed_tcp_path_m": 0.0,
+          "completed_stages": []
+        },
+        "first_guard": {
+          "raw_pose_equal": false,
+          "translation_delta_m": 1.5359765386647212e-08,
+          "rotation_delta_rad": 7.626123652783102e-08,
+          "maximum_translation_delta_m": 1e-06,
+          "maximum_rotation_delta_rad": 1e-06,
+          "passed": true,
+          "half_size_equal": true,
+          "hole_radius_equal": true
+        },
+        "maximum_target_translation_m": 1.5359765386647212e-08,
+        "maximum_target_rotation_rad": 7.626123652783102e-08
+      },
+      {
+        "seed": 101,
+        "system": "v1",
+        "audit": {
+          "passed": true,
+          "steps": 1200,
+          "maximum_action_replay_error": 0.0,
+          "physics_substep_samples": 6000,
+          "raw_endpoint_reconstructions": 1200,
+          "action_replay_bound": 3e-07,
+          "derived_scalar_replay_bound": 1e-10,
+          "physical_pair_tolerance": "exact"
+        },
+        "task_success": true,
+        "valid_acquisition": true,
+        "first_failure": null,
+        "first_detection": null,
+        "recovery": {
+          "state": "disabled",
+          "attempts": 0,
+          "action_steps": 0,
+          "observed_tcp_path_m": 0.0,
+          "completed_stages": []
+        },
+        "first_guard": {
+          "raw_pose_equal": false,
+          "translation_delta_m": 1.5359765386647212e-08,
+          "rotation_delta_rad": 7.626123652783102e-08,
+          "maximum_translation_delta_m": 1e-06,
+          "maximum_rotation_delta_rad": 1e-06,
+          "passed": true,
+          "half_size_equal": true,
+          "hole_radius_equal": true
+        },
+        "maximum_target_translation_m": 1.5359765386647212e-08,
+        "maximum_target_rotation_rad": 7.626123652783102e-08
+      },
+      {
+        "seed": 101,
+        "system": "v2",
+        "audit": {
+          "passed": true,
+          "steps": 1200,
+          "maximum_action_replay_error": 0.0,
+          "physics_substep_samples": 6000,
+          "raw_endpoint_reconstructions": 1200,
+          "action_replay_bound": 3e-07,
+          "derived_scalar_replay_bound": 1e-10,
+          "physical_pair_tolerance": "exact"
+        },
+        "task_success": true,
+        "valid_acquisition": true,
+        "first_failure": null,
+        "first_detection": null,
+        "recovery": {
+          "state": "nominal",
+          "attempts": 0,
+          "reason": null,
+          "trigger_step": null,
+          "first_action_step": null,
+          "phase": null,
+          "phase_step": 0,
+          "action_steps": 0,
+          "observed_tcp_path_m": 0.0,
+          "completed_stages": [],
+          "failure_detail": null,
+          "stable_steps": 0,
+          "refresh_record": null,
+          "fixed_target_check": null,
+          "pose_stability": null,
+          "tcp_tracking_offset_world_m": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "first_guard": {
+          "raw_pose_equal": false,
+          "translation_delta_m": 1.5359765386647212e-08,
+          "rotation_delta_rad": 7.626123652783102e-08,
+          "maximum_translation_delta_m": 1e-06,
+          "maximum_rotation_delta_rad": 1e-06,
+          "passed": true,
+          "half_size_equal": true,
+          "hole_radius_equal": true
+        },
+        "maximum_target_translation_m": 1.5359765386647212e-08,
+        "maximum_target_rotation_rad": 7.626123652783102e-08
+      }
+    ],
+    "pairs": [
+      {
+        "ratio": 0.0,
+        "seed": 100,
+        "systems": [
+          "baseline",
+          "v1"
+        ],
+        "passed": true,
+        "exact_steps": 1200
+      },
+      {
+        "ratio": 0.0,
+        "seed": 100,
+        "systems": [
+          "v1",
+          "v2"
+        ],
+        "passed": true,
+        "exact_steps": 1200
+      },
+      {
+        "ratio": 0.0,
+        "seed": 101,
+        "systems": [
+          "baseline",
+          "v1"
+        ],
+        "passed": true,
+        "exact_steps": 1200
+      },
+      {
+        "ratio": 0.0,
+        "seed": 101,
+        "systems": [
+          "v1",
+          "v2"
+        ],
+        "passed": true,
+        "exact_steps": 1200
+      }
+    ]
+  },
+  "total_actions": 7200,
+  "total_physics_substep_samples_verified": 36000,
+  "independent_endpoints_reconstructed": 7200,
+  "development_scenes": 2,
+  "matched_system_trials": 6,
+  "active_successes": 6,
+  "legacy_velocity_shadow_successes": 0,
+  "recovery_attempts": 0,
+  "normal_viability_on_retained_development_scenes": true,
+  "fresh_native": false,
+  "protocol_frozen": false,
+  "model_training": false,
+  "candidate_series": false,
+  "history_after": {
+    "root": "/home/jiangle/aura-work/AURA-Embodied-offline/aura-sim/prototype_aether_cl/runs",
+    "event_files_checked": 2740,
+    "recorded_reset_seeds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      96,
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      126,
+      127,
+      128,
+      129,
+      130,
+      131,
+      132,
+      133,
+      134,
+      135,
+      136,
+      137,
+      138,
+      139
+    ],
+    "preferred_seeds": [
+      140,
+      141,
+      142,
+      143,
+      144,
+      145,
+      146,
+      147,
+      148,
+      149,
+      150,
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158,
+      159
+    ],
+    "preferred_overlap": [],
+    "first_unused_contiguous_20_from140": [
+      140,
+      141,
+      142,
+      143,
+      144,
+      145,
+      146,
+      147,
+      148,
+      149,
+      150,
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158,
+      159
+    ],
+    "scope": "available_native_runs_history_not_unreported_or_deleted_runs",
+    "fresh_entry_must_recheck": true
+  },
+  "diagnostics": [
+    {
+      "seed": 100,
+      "system": "baseline",
+      "steps": 1200,
+      "valid_acquisition_first_step": 178,
+      "first_task_success_step": 618,
+      "success_retained_through_final": true,
+      "final_reference": {
+        "depth_m": 0.10624963680870943,
+        "orientation_error_rad": 0.003565779967822808,
+        "lateral_error_m": 0.00027274961087248614,
+        "channel_margin_m": 0.0026720792421008055,
+        "alignment_margin_m": 0.0026720792421008055,
+        "aperture_m": 0.03249010443687439,
+        "attachment_proxy": true,
+        "linear_speed_m_s": 0.02066352063400468,
+        "angular_speed_rad_s": 0.5469200858002705,
+        "frame_translation_m": 2.4295983823606797e-07,
+        "frame_rotation_rad": 1.6147722440558738e-06,
+        "stable_frame": true,
+        "relation_ready": true,
+        "peg_head_position_hole_m": [
+          -0.0004865612589556728,
+          -2.427414357178258e-05,
+          -0.00027166728950123734
+        ],
+        "object_target_relative_pose": {
+          "position_m": [
+            -0.10722261695458445,
+            -8.483313641305142e-06,
+            -9.804952211015543e-05
+          ],
+          "rotation_matrix": [
+            [
+              0.9999986661316507,
+              0.0001530977089808531,
+              0.0016261291494102882
+            ],
+            [
+              -0.00014794259320035822,
+              0.9999949651535016,
+              -0.0031698234392249754
+            ],
+            [
+              -0.001626606254806054,
+              0.0031695786373345755,
+              0.9999936539415406
+            ]
+          ]
+        },
+        "pose_stability": {
+          "stable_frame": true,
+          "relation_all_substeps": true,
+          "maximum_substep_pose_speed_m_s": 2.539491750190019e-05,
+          "maximum_substep_pose_angular_speed_rad_s": 0.0002721187153008548,
+          "relative_frame_translation_m": 2.4295983823476306e-07,
+          "relative_frame_rotation_rad": 1.6147722440560995e-06,
+          "window_control_observations": 10,
+          "window_physics_samples": 50,
+          "window_translation_diameter_m": 7.195814210076243e-07,
+          "window_rotation_diameter_rad": 1.337437538670522e-05,
+          "window_ready": true
+        },
+        "legacy_velocity_stable_frame": false,
+        "legacy_velocity_stable_steps": 0,
+        "legacy_velocity_task_success": false,
+        "fixed_target_check": {
+          "raw_pose_equal": false,
+          "translation_delta_m": 1.4901161193847656e-08,
+          "rotation_delta_rad": 1.2115067967921062e-07,
+          "maximum_translation_delta_m": 1e-06,
+          "maximum_rotation_delta_rad": 1e-06,
+          "passed": true,
+          "half_size_equal": true,
+          "hole_radius_equal": true
+        },
+        "task_success": true,
+        "failure": null,
+        "stable_steps": 592,
+        "valid_acquisition": true,
+        "ever_contact_grasped": true,
+        "current_contact_grasped": true,
+        "max_lift_m": 0.33061183243989944
+      },
+      "final_verification": {
+        "status": "disabled",
+        "failure": null
+      },
+      "built_in_success_at_end": true,
+      "first_reference_failure": null,
+      "first_detected_failure": null,
+      "controller_complete": true,
+      "total_observed_tcp_path_m": 1.0056643558598777,
+      "recovery": {
+        "state": "disabled",
+        "attempts": 0,
+        "action_steps": 0,
+        "observed_tcp_path_m": 0.0,
+        "completed_stages": []
+      },
+      "injection": {
+        "implementation": "synthetic_cached_nominal_waypoint_lateral_bias_not_force_or_actor_teleport",
+        "step": 431,
+        "clearance_ratio": 0.0,
+        "requested_magnitude_m": 0.0,
+        "axis": "hole_local_positive_y",
+        "world_offset_m": [
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "precondition": true,
+        "applied": false,
+        "missed_precondition_retained": false,
+        "physical_precondition_state": {
+          "maximum_vertex_axial_m": -0.16692877259698574,
+          "channel_front_x_m": -0.1067361980676651,
+          "alignment_margin_m": 0.002821053878921332,
+          "orientation_error_rad": 0.003183147726368542,
+          "peg_box_contact_force_world_n": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "actual_offset_must_be_measured_before_insertion": true
+      },
+      "pre_insert_reference": {
+        "depth_m": -0.06020781141597023,
+        "orientation_error_rad": 0.003183224128851895,
+        "lateral_error_m": 0.00012490491636786064,
+        "channel_margin_m": null,
+        "alignment_margin_m": 0.0028217674358373655,
+        "aperture_m": 0.03249150514602661,
+        "attachment_proxy": true,
+        "linear_speed_m_s": 0.020636665389638167,
+        "angular_speed_rad_s": 0.547116035414315,
+        "frame_translation_m": 1.7269442955403416e-07,
+        "frame_rotation_rad": 2.314835974310356e-06,
+        "stable_frame": true,
+        "relation_ready": false,
+        "peg_head_position_hole_m": [
+          -0.16694400948363533,
+          -1.999244226202278e-05,
+          -0.00012329452698827287
+        ],
+        "object_target_relative_pose": {
+          "position_m": [
+            -0.27368017778416404,
+            -7.1939984995361285e-06,
+            -4.461377405515736e-05
+          ],
+          "rotation_matrix": [
+            [
+              0.9999997211148894,
+              0.00012218769224376071,
+              0.000736776975083851
+            ],
+            [
+              -0.00011990724790827865,
+              0.9999952051051977,
+              -0.0030944125234464498
+            ],
+            [
+              -0.000737151541440853,
+              0.003094323315561467,
+              0.9999949408726144
+            ]
+          ]
+        },
+        "pose_stability": {
+          "stable_frame": true,
+          "relation_all_substeps": false,
+          "maximum_substep_pose_speed_m_s": 1.3263092930582e-05,
+          "maximum_substep_pose_angular_speed_rad_s": 0.00018175329874663335,
+          "relative_frame_translation_m": 1.7269442959090121e-07,
+          "relative_frame_rotation_rad": 2.314835974313844e-06,
+          "window_control_observations": 10,
+          "window_physics_samples": 50,
+          "window_translation_diameter_m": 7.543712854368508e-07,
+          "window_rotation_diameter_rad": 1.0265265072736678e-05,
+          "window_ready": false
+        },
+        "legacy_velocity_stable_frame": false,
+        "legacy_velocity_stable_steps": 0,
+        "legacy_velocity_task_success": false,
+        "fixed_target_check": {
+          "raw_pose_equal": false,
+          "translation_delta_m": 1.4901161193847656e-08,
+          "rotation_delta_rad": 1.2115067967921062e-07,
+          "maximum_translation_delta_m": 1e-06,
+          "maximum_rotation_delta_rad": 1e-06,
+          "passed": true,
+          "half_size_equal": true,
+          "hole_radius_equal": true
+        },
+        "task_success": false,
+        "failure": null,
+        "stable_steps": 0,
+        "valid_acquisition": true,
+        "ever_contact_grasped": true,
+        "current_contact_grasped": true,
+        "max_lift_m": 0.33061183243989944
+      },
+      "first_peg_box_contact_step": null,
+      "first_positive_depth_step": 532,
+      "lift_grasp_translation_change_m": 1.4426356470157014e-05,
+      "lift_grasp_rotation_change_rad": 0.004512483461644168,
+      "post_lift_grasp_rotation_drift_at430_rad": 0.00017256731341770958,
+      "post_lift_grasp_rotation_drift_at1200_rad": 0.000177352162181473,
+      "final_ten_control_windows": {
+        "all_ready": true,
+        "maximum_substep_pose_speed_m_s": 4.3969583239704476e-05,
+        "maximum_substep_pose_angular_speed_rad_s": 0.0007595673819667471,
+        "maximum_translation_diameter_m": 7.195814210076243e-07,
+        "maximum_rotation_diameter_rad": 1.337437538670522e-05
+      },
+      "cross_version_diagnostics": [
+        {
+          "version": 3,
+          "exact_action_observation_info_prefix_steps": 370,
+          "first_difference_step": 371,
+          "old_lift_grasp_translation_change_m": 1.4426356470157014e-05,
+          "old_lift_grasp_rotation_change_rad": 0.004512483461644168,
+          "old_original_task_success": false
+        },
+        {
+          "version": 4,
+          "exact_action_observation_info_prefix_steps": 170,
+          "first_difference_step": 171,
+          "old_lift_grasp_translation_change_m": 0.006105184978876977,
+          "old_lift_grasp_rotation_change_rad": 0.889437946145245,
+          "old_original_task_success": false
+        }
+      ]
+    },
+    {
+      "seed": 100,
+      "system": "v1",
+      "steps": 1200,
+      "valid_acquisition_first_step": 178,
+      "first_task_success_step": 618,
+      "success_retained_through_final": true,
+      "final_reference": {
+        "depth_m": 0.10624963680870943,
+        "orientation_error_rad": 0.003565779967822808,
+        "lateral_error_m": 0.00027274961087248614,
+        "channel_margin_m": 0.0026720792421008055,
+        "alignment_margin_m": 0.0026720792421008055,
+        "aperture_m": 0.03249010443687439,
+        "attachment_proxy": true,
+        "linear_speed_m_s": 0.02066352063400468,
+        "angular_speed_rad_s": 0.5469200858002705,
+        "frame_translation_m": 2.4295983823606797e-07,
+        "frame_rotation_rad": 1.6147722440558738e-06,
+        "stable_frame": true,
+        "relation_ready": true,
+        "peg_head_position_hole_m": [
+          -0.0004865612589556728,
+          -2.427414357178258e-05,
+          -0.00027166728950123734
+        ],
+        "object_target_relative_pose": {
+          "position_m": [
+            -0.10722261695458445,
+            -8.483313641305142e-06,
+            -9.804952211015543e-05
+          ],
+          "rotation_matrix": [
+            [
+              0.9999986661316507,
+              0.0001530977089808531,
+              0.0016261291494102882
+            ],
+            [
+              -0.00014794259320035822,
+              0.9999949651535016,
+              -0.0031698234392249754
+            ],
+            [
+              -0.001626606254806054,
+              0.0031695786373345755,
+              0.9999936539415406
+            ]
+          ]
+        },
+        "pose_stability": {
+          "stable_frame": true,
+          "relation_all_substeps": true,
+          "maximum_substep_pose_speed_m_s": 2.539491750190019e-05,
+          "maximum_substep_pose_angular_speed_rad_s": 0.0002721187153008548,
+          "relative_frame_translation_m": 2.4295983823476306e-07,
+          "relative_frame_rotation_rad": 1.6147722440560995e-06,
+          "window_control_observations": 10,
+          "window_physics_samples": 50,
+          "window_translation_diameter_m": 7.195814210076243e-07,
+          "window_rotation_diameter_rad": 1.337437538670522e-05,
+          "window_ready": true
+        },
+        "legacy_velocity_stable_frame": false,
+        "legacy_velocity_stable_steps": 0,
+        "legacy_velocity_task_success": false,
+        "fixed_target_check": {
+          "raw_pose_equal": false,
+          "translation_delta_m": 1.4901161193847656e-08,
+          "rotation_delta_rad": 1.2115067967921062e-07,
+          "maximum_translation_delta_m": 1e-06,
+          "maximum_rotation_delta_rad": 1e-06,
+          "passed": true,
+          "half_size_equal": true,
+          "hole_radius_equal": true
+        },
+        "task_success": true,
+        "failure": null,
+        "stable_steps": 592,
+        "valid_acquisition": true,
+        "ever_contact_grasped": true,
+        "current_contact_grasped": true,
+        "max_lift_m": 0.33061183243989944
+      },
+      "final_verification": {
+        "depth_m": 0.10624963680870943,
+        "orientation_error_rad": 0.003565779967822808,
+        "lateral_error_m": 0.00027274961087248614,
+        "channel_margin_m": 0.0026720792421008055,
+        "alignment_margin_m": 0.0026720792421008055,
+        "aperture_m": 0.03249010443687439,
+        "attachment_proxy": true,
+        "linear_speed_m_s": 0.02066352063400468,
+        "angular_speed_rad_s": 0.5469200858002705,
+        "frame_translation_m": 2.4295983823606797e-07,
+        "frame_rotation_rad": 1.6147722440558738e-06,
+        "stable_frame": true,
+        "relation_ready": true,
+        "peg_head_position_hole_m": [
+          -0.0004865612589556728,
+          -2.427414357178258e-05,
+          -0.00027166728950123734
+        ],
+        "object_target_relative_pose": {
+          "position_m": [
+            -0.10722261695458445,
+            -8.483313641305142e-06,
+            -9.804952211015543e-05
+          ],
+          "rotation_matrix": [
+            [
+              0.9999986661316507,
+              0.0001530977089808531,
+              0.0016261291494102882
+            ],
+            [
+              -0.00014794259320035822,
+              0.9999949651535016,
+              -0.0031698234392249754
+            ],
+            [
+              -0.001626606254806054,
+              0.0031695786373345755,
+              0.9999936539415406
+            ]
+          ]
+        },
+        "pose_stability": {
+          "stable_frame": true,
+          "relation_all_substeps": true,
+          "maximum_substep_pose_speed_m_s": 2.539491750190019e-05,
+          "maximum_substep_pose_angular_speed_rad_s": 0.0002721187153008548,
+          "relative_frame_translation_m": 2.4295983823476306e-07,
+          "relative_frame_rotation_rad": 1.6147722440560995e-06,
+          "window_control_observations": 10,
+          "window_physics_samples": 50,
+          "window_translation_diameter_m": 7.195814210076243e-07,
+          "window_rotation_diameter_rad": 1.337437538670522e-05,
+          "window_ready": true
+        },
+        "legacy_velocity_stable_frame": false,
+        "legacy_velocity_stable_steps": 0,
+        "legacy_velocity_task_success": false,
+        "status": "succeeded",
+        "failure": null,
+        "pending_failure": null,
+        "failure_persistence_steps": 0,
+        "stable_steps": 592,
+        "max_lift_m": 0.33061183243989944
+      },
+      "built_in_success_at_end": true,
+      "first_reference_failure": null,
+      "first_detected_failure": null,
+      "controller_complete": true,
+      "total_observed_tcp_path_m": 1.0056643558598777,
+      "recovery": {
+        "state": "disabled",
+        "attempts": 0,
+        "action_steps": 0,
+        "observed_tcp_path_m": 0.0,
+        "completed_stages": []
+      },
+      "injection": {
+        "implementation": "synthetic_cached_nominal_waypoint_lateral_bias_not_force_or_actor_teleport",
+        "step": 431,
+        "clearance_ratio": 0.0,
+        "requested_magnitude_m": 0.0,
+        "axis": "hole_local_positive_y",
+        "world_offset_m": [
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "precondition": true,
+        "applied": false,
+        "missed_precondition_retained": false,
+        "physical_precondition_state": {
+          "maximum_vertex_axial_m": -0.16692877259698574,
+          "channel_front_x_m": -0.1067361980676651,
+          "alignment_margin_m": 0.002821053878921332,
+          "orientation_error_rad": 0.003183147726368542,
+          "peg_box_contact_force_world_n": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "actual_offset_must_be_measured_before_insertion": true
+      },
+      "pre_insert_reference": {
+        "depth_m": -0.06020781141597023,
+        "orientation_error_rad": 0.003183224128851895,
+        "lateral_error_m": 0.00012490491636786064,
+        "channel_margin_m": null,
+        "alignment_margin_m": 0.0028217674358373655,
+        "aperture_m": 0.03249150514602661,
+        "attachment_proxy": true,
+        "linear_speed_m_s": 0.020636665389638167,
+        "angular_speed_rad_s": 0.547116035414315,
+        "frame_translation_m": 1.7269442955403416e-07,
+        "frame_rotation_rad": 2.314835974310356e-06,
+        "stable_frame": true,
+        "relation_ready": false,
+        "peg_head_position_hole_m": [
+          -0.16694400948363533,
+          -1.999244226202278e-05,
+          -0.00012329452698827287
+        ],
+        "object_target_relative_pose": {
+          "position_m": [
+            -0.27368017778416404,
+            -7.1939984995361285e-06,
+            -4.461377405515736e-05
+          ],
+          "rotation_matrix": [
+            [
+              0.9999997211148894,
+              0.00012218769224376071,
+              0.000736776975083851
+            ],
+            [
+              -0.00011990724790827865,
+              0.9999952051051977,
+              -0.0030944125234464498
+            ],
+            [
+              -0.000737151541440853,
+              0.003094323315561467,
+              0.9999949408726144
+            ]
+          ]
+        },
+        "pose_stability": {
+          "stable_frame": true,
+          "relation_all_substeps": false,
+          "maximum_substep_pose_speed_m_s": 1.3263092930582e-05,
+          "maximum_substep_pose_angular_speed_rad_s": 0.00018175329874663335,
+          "relative_frame_translation_m": 1.7269442959090121e-07,
+          "relative_frame_rotation_rad": 2.314835974313844e-06,
+          "window_control_observations": 10,
+          "window_physics_samples": 50,
+          "window_translation_diameter_m": 7.543712854368508e-07,
+          "window_rotation_diameter_rad": 1.0265265072736678e-05,
+          "window_ready": false
+        },
+        "legacy_velocity_stable_frame": false,
+        "legacy_velocity_stable_steps": 0,
+        "legacy_velocity_task_success": false,
+        "fixed_target_check": {
+          "raw_pose_equal": false,
+          "translation_delta_m": 1.4901161193847656e-08,
+          "rotation_delta_rad": 1.2115067967921062e-07,
+          "maximum_translation_delta_m": 1e-06,
+          "maximum_rotation_delta_rad": 1e-06,
+          "passed": true,
+          "half_size_equal": true,
+          "hole_radius_equal": true
+        },
+        "task_success": false,
+        "failure": null,
+        "stable_steps": 0,
+        "valid_acquisition": true,
+        "ever_contact_grasped": true,
+        "current_contact_grasped": true,
+        "max_lift_m": 0.33061183243989944
+      },
+      "first_peg_box_contact_step": null,
+      "first_positive_depth_step": 532,
+      "lift_grasp_translation_change_m": 1.4426356470157014e-05,
+      "lift_grasp_rotation_change_rad": 0.004512483461644168,
+      "post_lift_grasp_rotation_drift_at430_rad": 0.00017256731341770958,
+      "post_lift_grasp_rotation_drift_at1200_rad": 0.000177352162181473,
+      "final_ten_control_windows": {
+        "all_ready": true,
+        "maximum_substep_pose_speed_m_s": 4.3969583239704476e-05,
+        "maximum_substep_pose_angular_speed_rad_s": 0.0007595673819667471,
+        "maximum_translation_diameter_m": 7.195814210076243e-07,
+        "maximum_rotation_diameter_rad": 1.337437538670522e-05
+      }
+    },
+    {
+      "seed": 100,
+      "system": "v2",
+      "steps": 1200,
+      "valid_acquisition_first_step": 178,
+      "first_task_success_step": 618,
+      "success_retained_through_final": true,
+      "final_reference": {
+        "depth_m": 0.10624963680870943,
+        "orientation_error_rad": 0.003565779967822808,
+        "lateral_error_m": 0.00027274961087248614,
+        "channel_margin_m": 0.0026720792421008055,
+        "alignment_margin_m": 0.0026720792421008055,
+        "aperture_m": 0.03249010443687439,
+        "attachment_proxy": true,
+        "linear_speed_m_s": 0.02066352063400468,
+        "angular_speed_rad_s": 0.5469200858002705,
+        "frame_translation_m": 2.4295983823606797e-07,
+        "frame_rotation_rad": 1.6147722440558738e-06,
+        "stable_frame": true,
+        "relation_ready": true,
+        "peg_head_position_hole_m": [
+          -0.0004865612589556728,
+          -2.427414357178258e-05,
+          -0.00027166728950123734
+        ],
+        "object_target_relative_pose": {
+          "position_m": [
+            -0.10722261695458445,
+            -8.483313641305142e-06,
+            -9.804952211015543e-05
+          ],
+          "rotation_matrix": [
+            [
+              0.9999986661316507,
+              0.0001530977089808531,
+              0.0016261291494102882
+            ],
+            [
+              -0.00014794259320035822,
+              0.9999949651535016,
+              -0.0031698234392249754
+            ],
+            [
+              -0.001626606254806054,
+              0.0031695786373345755,
+              0.9999936539415406
+            ]
+          ]
+        },
+        "pose_stability": {
+          "stable_frame": true,
+          "relation_all_substeps": true,
+          "maximum_substep_pose_speed_m_s": 2.539491750190019e-05,
+          "maximum_substep_pose_angular_speed_rad_s": 0.0002721187153008548,
+          "relative_frame_translation_m": 2.4295983823476306e-07,
+          "relative_frame_rotation_rad": 1.6147722440560995e-06,
+          "window_control_observations": 10,
+          "window_physics_samples": 50,
+          "window_translation_diameter_m": 7.195814210076243e-07,
+          "window_rotation_diameter_rad": 1.337437538670522e-05,
+          "window_ready": true
+        },
+        "legacy_velocity_stable_frame": false,
+        "legacy_velocity_stable_steps": 0,
+        "legacy_velocity_task_success": false,
+        "fixed_target_check": {
+          "raw_pose_equal": false,
+          "translation_delta_m": 1.4901161193847656e-08,
+          "rotation_delta_rad": 1.2115067967921062e-07,
+          "maximum_translation_delta_m": 1e-06,
+          "maximum_rotation_delta_rad": 1e-06,
+          "passed": true,
+          "half_size_equal": true,
+          "hole_radius_equal": true
+        },
+        "task_success": true,
+        "failure": null,
+        "stable_steps": 592,
+        "valid_acquisition": true,
+        "ever_contact_grasped": true,
+        "current_contact_grasped": true,
+        "max_lift_m": 0.33061183243989944
+      },
+      "final_verification": {
+        "depth_m": 0.10624963680870943,
+        "orientation_error_rad": 0.003565779967822808,
+        "lateral_error_m": 0.00027274961087248614,
+        "channel_margin_m": 0.0026720792421008055,
+        "alignment_margin_m": 0.0026720792421008055,
+        "aperture_m": 0.03249010443687439,
+        "attachment_proxy": true,
+        "linear_speed_m_s": 0.02066352063400468,
+        "angular_speed_rad_s": 0.5469200858002705,
+        "frame_translation_m": 2.4295983823606797e-07,
+        "frame_rotation_rad": 1.6147722440558738e-06,
+        "stable_frame": true,
+        "relation_ready": true,
+        "peg_head_position_hole_m": [
+          -0.0004865612589556728,
+          -2.427414357178258e-05,
+          -0.00027166728950123734
+        ],
+        "object_target_relative_pose": {
+          "position_m": [
+            -0.10722261695458445,
+            -8.483313641305142e-06,
+            -9.804952211015543e-05
+          ],
+          "rotation_matrix": [
+            [
+              0.9999986661316507,
+              0.0001530977089808531,
+              0.0016261291494102882
+            ],
+            [
+              -0.00014794259320035822,
+              0.9999949651535016,
+              -0.0031698234392249754
+            ],
+            [
+              -0.001626606254806054,
+              0.0031695786373345755,
+              0.9999936539415406
+            ]
+          ]
+        },
+        "pose_stability": {
+          "stable_frame": true,
+          "relation_all_substeps": true,
+          "maximum_substep_pose_speed_m_s": 2.539491750190019e-05,
+          "maximum_substep_pose_angular_speed_rad_s": 0.0002721187153008548,
+          "relative_frame_translation_m": 2.4295983823476306e-07,
+          "relative_frame_rotation_rad": 1.6147722440560995e-06,
+          "window_control_observations": 10,
+          "window_physics_samples": 50,
+          "window_translation_diameter_m": 7.195814210076243e-07,
+          "window_rotation_diameter_rad": 1.337437538670522e-05,
+          "window_ready": true
+        },
+        "legacy_velocity_stable_frame": false,
+        "legacy_velocity_stable_steps": 0,
+        "legacy_velocity_task_success": false,
+        "status": "succeeded",
+        "failure": null,
+        "pending_failure": null,
+        "failure_persistence_steps": 0,
+        "stable_steps": 592,
+        "max_lift_m": 0.33061183243989944
+      },
+      "built_in_success_at_end": true,
+      "first_reference_failure": null,
+      "first_detected_failure": null,
+      "controller_complete": true,
+      "total_observed_tcp_path_m": 1.0056643558598777,
+      "recovery": {
+        "state": "nominal",
+        "attempts": 0,
+        "reason": null,
+        "trigger_step": null,
+        "first_action_step": null,
+        "phase": null,
+        "phase_step": 0,
+        "action_steps": 0,
+        "observed_tcp_path_m": 0.0,
+        "completed_stages": [],
+        "failure_detail": null,
+        "stable_steps": 0,
+        "refresh_record": null,
+        "fixed_target_check": null,
+        "pose_stability": null,
+        "tcp_tracking_offset_world_m": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "injection": {
+        "implementation": "synthetic_cached_nominal_waypoint_lateral_bias_not_force_or_actor_teleport",
+        "step": 431,
+        "clearance_ratio": 0.0,
+        "requested_magnitude_m": 0.0,
+        "axis": "hole_local_positive_y",
+        "world_offset_m": [
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "precondition": true,
+        "applied": false,
+        "missed_precondition_retained": false,
+        "physical_precondition_state": {
+          "maximum_vertex_axial_m": -0.16692877259698574,
+          "channel_front_x_m": -0.1067361980676651,
+          "alignment_margin_m": 0.002821053878921332,
+          "orientation_error_rad": 0.003183147726368542,
+          "peg_box_contact_force_world_n": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "actual_offset_must_be_measured_before_insertion": true
+      },
+      "pre_insert_reference": {
+        "depth_m": -0.06020781141597023,
+        "orientation_error_rad": 0.003183224128851895,
+        "lateral_error_m": 0.00012490491636786064,
+        "channel_margin_m": null,
+        "alignment_margin_m": 0.0028217674358373655,
+        "aperture_m": 0.03249150514602661,
+        "attachment_proxy": true,
+        "linear_speed_m_s": 0.020636665389638167,
+        "angular_speed_rad_s": 0.547116035414315,
+        "frame_translation_m": 1.7269442955403416e-07,
+        "frame_rotation_rad": 2.314835974310356e-06,
+        "stable_frame": true,
+        "relation_ready": false,
+        "peg_head_position_hole_m": [
+          -0.16694400948363533,
+          -1.999244226202278e-05,
+          -0.00012329452698827287
+        ],
+        "object_target_relative_pose": {
+          "position_m": [
+            -0.27368017778416404,
+            -7.1939984995361285e-06,
+            -4.461377405515736e-05
+          ],
+          "rotation_matrix": [
+            [
+              0.9999997211148894,
+              0.00012218769224376071,
+              0.000736776975083851
+            ],
+            [
+              -0.00011990724790827865,
+              0.9999952051051977,
+              -0.0030944125234464498
+            ],
+            [
+              -0.000737151541440853,
+              0.003094323315561467,
+              0.9999949408726144
+            ]
+          ]
+        },
+        "pose_stability": {
+          "stable_frame": true,
+          "relation_all_substeps": false,
+          "maximum_substep_pose_speed_m_s": 1.3263092930582e-05,
+          "maximum_substep_pose_angular_speed_rad_s": 0.00018175329874663335,
+          "relative_frame_translation_m": 1.7269442959090121e-07,
+          "relative_frame_rotation_rad": 2.314835974313844e-06,
+          "window_control_observations": 10,
+          "window_physics_samples": 50,
+          "window_translation_diameter_m": 7.543712854368508e-07,
+          "window_rotation_diameter_rad": 1.0265265072736678e-05,
+          "window_ready": false
+        },
+        "legacy_velocity_stable_frame": false,
+        "legacy_velocity_stable_steps": 0,
+        "legacy_velocity_task_success": false,
+        "fixed_target_check": {
+          "raw_pose_equal": false,
+          "translation_delta_m": 1.4901161193847656e-08,
+          "rotation_delta_rad": 1.2115067967921062e-07,
+          "maximum_translation_delta_m": 1e-06,
+          "maximum_rotation_delta_rad": 1e-06,
+          "passed": true,
+          "half_size_equal": true,
+          "hole_radius_equal": true
+        },
+        "task_success": false,
+        "failure": null,
+        "stable_steps": 0,
+        "valid_acquisition": true,
+        "ever_contact_grasped": true,
+        "current_contact_grasped": true,
+        "max_lift_m": 0.33061183243989944
+      },
+      "first_peg_box_contact_step": null,
+      "first_positive_depth_step": 532,
+      "lift_grasp_translation_change_m": 1.4426356470157014e-05,
+      "lift_grasp_rotation_change_rad": 0.004512483461644168,
+      "post_lift_grasp_rotation_drift_at430_rad": 0.00017256731341770958,
+      "post_lift_grasp_rotation_drift_at1200_rad": 0.000177352162181473,
+      "final_ten_control_windows": {
+        "all_ready": true,
+        "maximum_substep_pose_speed_m_s": 4.3969583239704476e-05,
+        "maximum_substep_pose_angular_speed_rad_s": 0.0007595673819667471,
+        "maximum_translation_diameter_m": 7.195814210076243e-07,
+        "maximum_rotation_diameter_rad": 1.337437538670522e-05
+      }
+    },
+    {
+      "seed": 101,
+      "system": "baseline",
+      "steps": 1200,
+      "valid_acquisition_first_step": 178,
+      "first_task_success_step": 612,
+      "success_retained_through_final": true,
+      "final_reference": {
+        "depth_m": 0.10529862079463971,
+        "orientation_error_rad": 0.00497112505184785,
+        "lateral_error_m": 0.000272595075638148,
+        "channel_margin_m": 0.0026323235151681883,
+        "alignment_margin_m": 0.0026323235151681883,
+        "aperture_m": 0.038039619103074074,
+        "attachment_proxy": true,
+        "linear_speed_m_s": 0.023377562805023584,
+        "angular_speed_rad_s": 0.4267053641173155,
+        "frame_translation_m": 9.395286268926553e-08,
+        "frame_rotation_rad": 1.0745564867597659e-06,
+        "stable_frame": true,
+        "relation_ready": true,
+        "peg_head_position_hole_m": [
+          -0.0003573250428580005,
+          -3.211646087207899e-05,
+          -0.00027069652418015985
+        ],
+        "object_target_relative_pose": {
+          "position_m": [
+            -0.10601313040572512,
+            -1.0010269814029282e-05,
+            -9.983032941818237e-05
+          ],
+          "rotation_matrix": [
+            [
+              0.9999986704521976,
+              0.0002168201923811232,
+              0.0016161939369025444
+            ],
+            [
+              -0.00020922808350085426,
+              0.9999889508413258,
+              -0.004696213248376252
+            ],
+            [
+              -0.0016171943131792627,
+              0.0046958688513762635,
+              0.9999876666730867
+            ]
+          ]
+        },
+        "pose_stability": {
+          "stable_frame": true,
+          "relation_all_substeps": true,
+          "maximum_substep_pose_speed_m_s": 1.6139581071255012e-05,
+          "maximum_substep_pose_angular_speed_rad_s": 0.00026147714345735117,
+          "relative_frame_translation_m": 9.3952862687549e-08,
+          "relative_frame_rotation_rad": 1.0745564867538023e-06,
+          "window_control_observations": 10,
+          "window_physics_samples": 50,
+          "window_translation_diameter_m": 7.798679700290729e-07,
+          "window_rotation_diameter_rad": 9.462041954985613e-06,
+          "window_ready": true
+        },
+        "legacy_velocity_stable_frame": false,
+        "legacy_velocity_stable_steps": 0,
+        "legacy_velocity_task_success": false,
+        "fixed_target_check": {
+          "raw_pose_equal": false,
+          "translation_delta_m": 1.5359765386647212e-08,
+          "rotation_delta_rad": 7.626123652783102e-08,
+          "maximum_translation_delta_m": 1e-06,
+          "maximum_rotation_delta_rad": 1e-06,
+          "passed": true,
+          "half_size_equal": true,
+          "hole_radius_equal": true
+        },
+        "task_success": true,
+        "failure": null,
+        "stable_steps": 598,
+        "valid_acquisition": true,
+        "ever_contact_grasped": true,
+        "current_contact_grasped": true,
+        "max_lift_m": 0.32669682055711746
+      },
+      "final_verification": {
+        "status": "disabled",
+        "failure": null
+      },
+      "built_in_success_at_end": true,
+      "first_reference_failure": null,
+      "first_detected_failure": null,
+      "controller_complete": true,
+      "total_observed_tcp_path_m": 1.3444865429301631,
+      "recovery": {
+        "state": "disabled",
+        "attempts": 0,
+        "action_steps": 0,
+        "observed_tcp_path_m": 0.0,
+        "completed_stages": []
+      },
+      "injection": {
+        "implementation": "synthetic_cached_nominal_waypoint_lateral_bias_not_force_or_actor_teleport",
+        "step": 431,
+        "clearance_ratio": 0.0,
+        "requested_magnitude_m": 0.0,
+        "axis": "hole_local_positive_y",
+        "world_offset_m": [
+          -0.0,
+          -0.0,
+          0.0
+        ],
+        "precondition": true,
+        "applied": false,
+        "missed_precondition_retained": false,
+        "physical_precondition_state": {
+          "maximum_vertex_axial_m": -0.16564080620513832,
+          "channel_front_x_m": -0.10565594583749771,
+          "alignment_margin_m": 0.002814165703683612,
+          "orientation_error_rad": 0.004560158708831813,
+          "peg_box_contact_force_world_n": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "actual_offset_must_be_measured_before_insertion": true
+      },
+      "pre_insert_reference": {
+        "depth_m": -0.0599994509588439,
+        "orientation_error_rad": 0.004561491176359968,
+        "lateral_error_m": 9.382331983226072e-05,
+        "channel_margin_m": null,
+        "alignment_margin_m": 0.0028175200633414783,
+        "aperture_m": 0.038040295243263245,
+        "attachment_proxy": true,
+        "linear_speed_m_s": 0.023433241686675634,
+        "angular_speed_rad_s": 0.42641311914250357,
+        "frame_translation_m": 1.862645149230957e-07,
+        "frame_rotation_rad": 1.0614862517731775e-06,
+        "stable_frame": true,
+        "relation_ready": false,
+        "peg_head_position_hole_m": [
+          -0.16565539679634161,
+          -2.986342346463189e-05,
+          -8.894375348116786e-05
+        ],
+        "object_target_relative_pose": {
+          "position_m": [
+            -0.27131132639613326,
+            -9.323424075473504e-06,
+            -3.4086406230926514e-05
+          ],
+          "rotation_matrix": [
+            [
+              0.9999998463152646,
+              0.00019675337751657508,
+              0.0005183218646928154
+            ],
+            [
+              -0.00019440457634773887,
+              0.9999897309762308,
+              -0.004527709017391522
+            ],
+            [
+              -0.0005192073840748512,
+              0.004527607557409243,
+              0.9999896155428307
+            ]
+          ]
+        },
+        "pose_stability": {
+          "stable_frame": true,
+          "relation_all_substeps": false,
+          "maximum_substep_pose_speed_m_s": 2.725324207347498e-05,
+          "maximum_substep_pose_angular_speed_rad_s": 0.0004152040956143138,
+          "relative_frame_translation_m": 1.86264514923165e-07,
+          "relative_frame_rotation_rad": 1.061486251777521e-06,
+          "window_control_observations": 10,
+          "window_physics_samples": 50,
+          "window_translation_diameter_m": 8.416848056233524e-07,
+          "window_rotation_diameter_rad": 1.3089213004650118e-05,
+          "window_ready": false
+        },
+        "legacy_velocity_stable_frame": false,
+        "legacy_velocity_stable_steps": 0,
+        "legacy_velocity_task_success": false,
+        "fixed_target_check": {
+          "raw_pose_equal": false,
+          "translation_delta_m": 1.5359765386647212e-08,
+          "rotation_delta_rad": 7.626123652783102e-08,
+          "maximum_translation_delta_m": 1e-06,
+          "maximum_rotation_delta_rad": 1e-06,
+          "passed": true,
+          "half_size_equal": true,
+          "hole_radius_equal": true
+        },
+        "task_success": false,
+        "failure": null,
+        "stable_steps": 0,
+        "valid_acquisition": true,
+        "ever_contact_grasped": true,
+        "current_contact_grasped": true,
+        "max_lift_m": 0.32669682055711746
+      },
+      "first_peg_box_contact_step": null,
+      "first_positive_depth_step": 530,
+      "lift_grasp_translation_change_m": 1.6819326332880934e-05,
+      "lift_grasp_rotation_change_rad": 0.0054763718319100286,
+      "post_lift_grasp_rotation_drift_at430_rad": 0.0008462246516614657,
+      "post_lift_grasp_rotation_drift_at1200_rad": 0.0008439181704267007,
+      "final_ten_control_windows": {
+        "all_ready": true,
+        "maximum_substep_pose_speed_m_s": 3.993539000516908e-05,
+        "maximum_substep_pose_angular_speed_rad_s": 0.0005065034315363654,
+        "maximum_translation_diameter_m": 9.38420147149976e-07,
+        "maximum_rotation_diameter_rad": 9.462041954985613e-06
+      },
+      "cross_version_diagnostics": [
+        {
+          "version": 3,
+          "exact_action_observation_info_prefix_steps": 378,
+          "first_difference_step": 379,
+          "old_lift_grasp_translation_change_m": 1.6819326332880934e-05,
+          "old_lift_grasp_rotation_change_rad": 0.0054763718319100286,
+          "old_original_task_success": false
+        },
+        {
+          "version": 4,
+          "exact_action_observation_info_prefix_steps": 170,
+          "first_difference_step": 171,
+          "old_lift_grasp_translation_change_m": 0.003752580825835912,
+          "old_lift_grasp_rotation_change_rad": 0.7590294845631457,
+          "old_original_task_success": false
+        }
+      ]
+    },
+    {
+      "seed": 101,
+      "system": "v1",
+      "steps": 1200,
+      "valid_acquisition_first_step": 178,
+      "first_task_success_step": 612,
+      "success_retained_through_final": true,
+      "final_reference": {
+        "depth_m": 0.10529862079463971,
+        "orientation_error_rad": 0.00497112505184785,
+        "lateral_error_m": 0.000272595075638148,
+        "channel_margin_m": 0.0026323235151681883,
+        "alignment_margin_m": 0.0026323235151681883,
+        "aperture_m": 0.038039619103074074,
+        "attachment_proxy": true,
+        "linear_speed_m_s": 0.023377562805023584,
+        "angular_speed_rad_s": 0.4267053641173155,
+        "frame_translation_m": 9.395286268926553e-08,
+        "frame_rotation_rad": 1.0745564867597659e-06,
+        "stable_frame": true,
+        "relation_ready": true,
+        "peg_head_position_hole_m": [
+          -0.0003573250428580005,
+          -3.211646087207899e-05,
+          -0.00027069652418015985
+        ],
+        "object_target_relative_pose": {
+          "position_m": [
+            -0.10601313040572512,
+            -1.0010269814029282e-05,
+            -9.983032941818237e-05
+          ],
+          "rotation_matrix": [
+            [
+              0.9999986704521976,
+              0.0002168201923811232,
+              0.0016161939369025444
+            ],
+            [
+              -0.00020922808350085426,
+              0.9999889508413258,
+              -0.004696213248376252
+            ],
+            [
+              -0.0016171943131792627,
+              0.0046958688513762635,
+              0.9999876666730867
+            ]
+          ]
+        },
+        "pose_stability": {
+          "stable_frame": true,
+          "relation_all_substeps": true,
+          "maximum_substep_pose_speed_m_s": 1.6139581071255012e-05,
+          "maximum_substep_pose_angular_speed_rad_s": 0.00026147714345735117,
+          "relative_frame_translation_m": 9.3952862687549e-08,
+          "relative_frame_rotation_rad": 1.0745564867538023e-06,
+          "window_control_observations": 10,
+          "window_physics_samples": 50,
+          "window_translation_diameter_m": 7.798679700290729e-07,
+          "window_rotation_diameter_rad": 9.462041954985613e-06,
+          "window_ready": true
+        },
+        "legacy_velocity_stable_frame": false,
+        "legacy_velocity_stable_steps": 0,
+        "legacy_velocity_task_success": false,
+        "fixed_target_check": {
+          "raw_pose_equal": false,
+          "translation_delta_m": 1.5359765386647212e-08,
+          "rotation_delta_rad": 7.626123652783102e-08,
+          "maximum_translation_delta_m": 1e-06,
+          "maximum_rotation_delta_rad": 1e-06,
+          "passed": true,
+          "half_size_equal": true,
+          "hole_radius_equal": true
+        },
+        "task_success": true,
+        "failure": null,
+        "stable_steps": 598,
+        "valid_acquisition": true,
+        "ever_contact_grasped": true,
+        "current_contact_grasped": true,
+        "max_lift_m": 0.32669682055711746
+      },
+      "final_verification": {
+        "depth_m": 0.10529862079463971,
+        "orientation_error_rad": 0.00497112505184785,
+        "lateral_error_m": 0.000272595075638148,
+        "channel_margin_m": 0.0026323235151681883,
+        "alignment_margin_m": 0.0026323235151681883,
+        "aperture_m": 0.038039619103074074,
+        "attachment_proxy": true,
+        "linear_speed_m_s": 0.023377562805023584,
+        "angular_speed_rad_s": 0.4267053641173155,
+        "frame_translation_m": 9.395286268926553e-08,
+        "frame_rotation_rad": 1.0745564867597659e-06,
+        "stable_frame": true,
+        "relation_ready": true,
+        "peg_head_position_hole_m": [
+          -0.0003573250428580005,
+          -3.211646087207899e-05,
+          -0.00027069652418015985
+        ],
+        "object_target_relative_pose": {
+          "position_m": [
+            -0.10601313040572512,
+            -1.0010269814029282e-05,
+            -9.983032941818237e-05
+          ],
+          "rotation_matrix": [
+            [
+              0.9999986704521976,
+              0.0002168201923811232,
+              0.0016161939369025444
+            ],
+            [
+              -0.00020922808350085426,
+              0.9999889508413258,
+              -0.004696213248376252
+            ],
+            [
+              -0.0016171943131792627,
+              0.0046958688513762635,
+              0.9999876666730867
+            ]
+          ]
+        },
+        "pose_stability": {
+          "stable_frame": true,
+          "relation_all_substeps": true,
+          "maximum_substep_pose_speed_m_s": 1.6139581071255012e-05,
+          "maximum_substep_pose_angular_speed_rad_s": 0.00026147714345735117,
+          "relative_frame_translation_m": 9.3952862687549e-08,
+          "relative_frame_rotation_rad": 1.0745564867538023e-06,
+          "window_control_observations": 10,
+          "window_physics_samples": 50,
+          "window_translation_diameter_m": 7.798679700290729e-07,
+          "window_rotation_diameter_rad": 9.462041954985613e-06,
+          "window_ready": true
+        },
+        "legacy_velocity_stable_frame": false,
+        "legacy_velocity_stable_steps": 0,
+        "legacy_velocity_task_success": false,
+        "status": "succeeded",
+        "failure": null,
+        "pending_failure": null,
+        "failure_persistence_steps": 0,
+        "stable_steps": 598,
+        "max_lift_m": 0.32669682055711746
+      },
+      "built_in_success_at_end": true,
+      "first_reference_failure": null,
+      "first_detected_failure": null,
+      "controller_complete": true,
+      "total_observed_tcp_path_m": 1.3444865429301631,
+      "recovery": {
+        "state": "disabled",
+        "attempts": 0,
+        "action_steps": 0,
+        "observed_tcp_path_m": 0.0,
+        "completed_stages": []
+      },
+      "injection": {
+        "implementation": "synthetic_cached_nominal_waypoint_lateral_bias_not_force_or_actor_teleport",
+        "step": 431,
+        "clearance_ratio": 0.0,
+        "requested_magnitude_m": 0.0,
+        "axis": "hole_local_positive_y",
+        "world_offset_m": [
+          -0.0,
+          -0.0,
+          0.0
+        ],
+        "precondition": true,
+        "applied": false,
+        "missed_precondition_retained": false,
+        "physical_precondition_state": {
+          "maximum_vertex_axial_m": -0.16564080620513832,
+          "channel_front_x_m": -0.10565594583749771,
+          "alignment_margin_m": 0.002814165703683612,
+          "orientation_error_rad": 0.004560158708831813,
+          "peg_box_contact_force_world_n": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "actual_offset_must_be_measured_before_insertion": true
+      },
+      "pre_insert_reference": {
+        "depth_m": -0.0599994509588439,
+        "orientation_error_rad": 0.004561491176359968,
+        "lateral_error_m": 9.382331983226072e-05,
+        "channel_margin_m": null,
+        "alignment_margin_m": 0.0028175200633414783,
+        "aperture_m": 0.038040295243263245,
+        "attachment_proxy": true,
+        "linear_speed_m_s": 0.023433241686675634,
+        "angular_speed_rad_s": 0.42641311914250357,
+        "frame_translation_m": 1.862645149230957e-07,
+        "frame_rotation_rad": 1.0614862517731775e-06,
+        "stable_frame": true,
+        "relation_ready": false,
+        "peg_head_position_hole_m": [
+          -0.16565539679634161,
+          -2.986342346463189e-05,
+          -8.894375348116786e-05
+        ],
+        "object_target_relative_pose": {
+          "position_m": [
+            -0.27131132639613326,
+            -9.323424075473504e-06,
+            -3.4086406230926514e-05
+          ],
+          "rotation_matrix": [
+            [
+              0.9999998463152646,
+              0.00019675337751657508,
+              0.0005183218646928154
+            ],
+            [
+              -0.00019440457634773887,
+              0.9999897309762308,
+              -0.004527709017391522
+            ],
+            [
+              -0.0005192073840748512,
+              0.004527607557409243,
+              0.9999896155428307
+            ]
+          ]
+        },
+        "pose_stability": {
+          "stable_frame": true,
+          "relation_all_substeps": false,
+          "maximum_substep_pose_speed_m_s": 2.725324207347498e-05,
+          "maximum_substep_pose_angular_speed_rad_s": 0.0004152040956143138,
+          "relative_frame_translation_m": 1.86264514923165e-07,
+          "relative_frame_rotation_rad": 1.061486251777521e-06,
+          "window_control_observations": 10,
+          "window_physics_samples": 50,
+          "window_translation_diameter_m": 8.416848056233524e-07,
+          "window_rotation_diameter_rad": 1.3089213004650118e-05,
+          "window_ready": false
+        },
+        "legacy_velocity_stable_frame": false,
+        "legacy_velocity_stable_steps": 0,
+        "legacy_velocity_task_success": false,
+        "fixed_target_check": {
+          "raw_pose_equal": false,
+          "translation_delta_m": 1.5359765386647212e-08,
+          "rotation_delta_rad": 7.626123652783102e-08,
+          "maximum_translation_delta_m": 1e-06,
+          "maximum_rotation_delta_rad": 1e-06,
+          "passed": true,
+          "half_size_equal": true,
+          "hole_radius_equal": true
+        },
+        "task_success": false,
+        "failure": null,
+        "stable_steps": 0,
+        "valid_acquisition": true,
+        "ever_contact_grasped": true,
+        "current_contact_grasped": true,
+        "max_lift_m": 0.32669682055711746
+      },
+      "first_peg_box_contact_step": null,
+      "first_positive_depth_step": 530,
+      "lift_grasp_translation_change_m": 1.6819326332880934e-05,
+      "lift_grasp_rotation_change_rad": 0.0054763718319100286,
+      "post_lift_grasp_rotation_drift_at430_rad": 0.0008462246516614657,
+      "post_lift_grasp_rotation_drift_at1200_rad": 0.0008439181704267007,
+      "final_ten_control_windows": {
+        "all_ready": true,
+        "maximum_substep_pose_speed_m_s": 3.993539000516908e-05,
+        "maximum_substep_pose_angular_speed_rad_s": 0.0005065034315363654,
+        "maximum_translation_diameter_m": 9.38420147149976e-07,
+        "maximum_rotation_diameter_rad": 9.462041954985613e-06
+      }
+    },
+    {
+      "seed": 101,
+      "system": "v2",
+      "steps": 1200,
+      "valid_acquisition_first_step": 178,
+      "first_task_success_step": 612,
+      "success_retained_through_final": true,
+      "final_reference": {
+        "depth_m": 0.10529862079463971,
+        "orientation_error_rad": 0.00497112505184785,
+        "lateral_error_m": 0.000272595075638148,
+        "channel_margin_m": 0.0026323235151681883,
+        "alignment_margin_m": 0.0026323235151681883,
+        "aperture_m": 0.038039619103074074,
+        "attachment_proxy": true,
+        "linear_speed_m_s": 0.023377562805023584,
+        "angular_speed_rad_s": 0.4267053641173155,
+        "frame_translation_m": 9.395286268926553e-08,
+        "frame_rotation_rad": 1.0745564867597659e-06,
+        "stable_frame": true,
+        "relation_ready": true,
+        "peg_head_position_hole_m": [
+          -0.0003573250428580005,
+          -3.211646087207899e-05,
+          -0.00027069652418015985
+        ],
+        "object_target_relative_pose": {
+          "position_m": [
+            -0.10601313040572512,
+            -1.0010269814029282e-05,
+            -9.983032941818237e-05
+          ],
+          "rotation_matrix": [
+            [
+              0.9999986704521976,
+              0.0002168201923811232,
+              0.0016161939369025444
+            ],
+            [
+              -0.00020922808350085426,
+              0.9999889508413258,
+              -0.004696213248376252
+            ],
+            [
+              -0.0016171943131792627,
+              0.0046958688513762635,
+              0.9999876666730867
+            ]
+          ]
+        },
+        "pose_stability": {
+          "stable_frame": true,
+          "relation_all_substeps": true,
+          "maximum_substep_pose_speed_m_s": 1.6139581071255012e-05,
+          "maximum_substep_pose_angular_speed_rad_s": 0.00026147714345735117,
+          "relative_frame_translation_m": 9.3952862687549e-08,
+          "relative_frame_rotation_rad": 1.0745564867538023e-06,
+          "window_control_observations": 10,
+          "window_physics_samples": 50,
+          "window_translation_diameter_m": 7.798679700290729e-07,
+          "window_rotation_diameter_rad": 9.462041954985613e-06,
+          "window_ready": true
+        },
+        "legacy_velocity_stable_frame": false,
+        "legacy_velocity_stable_steps": 0,
+        "legacy_velocity_task_success": false,
+        "fixed_target_check": {
+          "raw_pose_equal": false,
+          "translation_delta_m": 1.5359765386647212e-08,
+          "rotation_delta_rad": 7.626123652783102e-08,
+          "maximum_translation_delta_m": 1e-06,
+          "maximum_rotation_delta_rad": 1e-06,
+          "passed": true,
+          "half_size_equal": true,
+          "hole_radius_equal": true
+        },
+        "task_success": true,
+        "failure": null,
+        "stable_steps": 598,
+        "valid_acquisition": true,
+        "ever_contact_grasped": true,
+        "current_contact_grasped": true,
+        "max_lift_m": 0.32669682055711746
+      },
+      "final_verification": {
+        "depth_m": 0.10529862079463971,
+        "orientation_error_rad": 0.00497112505184785,
+        "lateral_error_m": 0.000272595075638148,
+        "channel_margin_m": 0.0026323235151681883,
+        "alignment_margin_m": 0.0026323235151681883,
+        "aperture_m": 0.038039619103074074,
+        "attachment_proxy": true,
+        "linear_speed_m_s": 0.023377562805023584,
+        "angular_speed_rad_s": 0.4267053641173155,
+        "frame_translation_m": 9.395286268926553e-08,
+        "frame_rotation_rad": 1.0745564867597659e-06,
+        "stable_frame": true,
+        "relation_ready": true,
+        "peg_head_position_hole_m": [
+          -0.0003573250428580005,
+          -3.211646087207899e-05,
+          -0.00027069652418015985
+        ],
+        "object_target_relative_pose": {
+          "position_m": [
+            -0.10601313040572512,
+            -1.0010269814029282e-05,
+            -9.983032941818237e-05
+          ],
+          "rotation_matrix": [
+            [
+              0.9999986704521976,
+              0.0002168201923811232,
+              0.0016161939369025444
+            ],
+            [
+              -0.00020922808350085426,
+              0.9999889508413258,
+              -0.004696213248376252
+            ],
+            [
+              -0.0016171943131792627,
+              0.0046958688513762635,
+              0.9999876666730867
+            ]
+          ]
+        },
+        "pose_stability": {
+          "stable_frame": true,
+          "relation_all_substeps": true,
+          "maximum_substep_pose_speed_m_s": 1.6139581071255012e-05,
+          "maximum_substep_pose_angular_speed_rad_s": 0.00026147714345735117,
+          "relative_frame_translation_m": 9.3952862687549e-08,
+          "relative_frame_rotation_rad": 1.0745564867538023e-06,
+          "window_control_observations": 10,
+          "window_physics_samples": 50,
+          "window_translation_diameter_m": 7.798679700290729e-07,
+          "window_rotation_diameter_rad": 9.462041954985613e-06,
+          "window_ready": true
+        },
+        "legacy_velocity_stable_frame": false,
+        "legacy_velocity_stable_steps": 0,
+        "legacy_velocity_task_success": false,
+        "status": "succeeded",
+        "failure": null,
+        "pending_failure": null,
+        "failure_persistence_steps": 0,
+        "stable_steps": 598,
+        "max_lift_m": 0.32669682055711746
+      },
+      "built_in_success_at_end": true,
+      "first_reference_failure": null,
+      "first_detected_failure": null,
+      "controller_complete": true,
+      "total_observed_tcp_path_m": 1.3444865429301631,
+      "recovery": {
+        "state": "nominal",
+        "attempts": 0,
+        "reason": null,
+        "trigger_step": null,
+        "first_action_step": null,
+        "phase": null,
+        "phase_step": 0,
+        "action_steps": 0,
+        "observed_tcp_path_m": 0.0,
+        "completed_stages": [],
+        "failure_detail": null,
+        "stable_steps": 0,
+        "refresh_record": null,
+        "fixed_target_check": null,
+        "pose_stability": null,
+        "tcp_tracking_offset_world_m": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "injection": {
+        "implementation": "synthetic_cached_nominal_waypoint_lateral_bias_not_force_or_actor_teleport",
+        "step": 431,
+        "clearance_ratio": 0.0,
+        "requested_magnitude_m": 0.0,
+        "axis": "hole_local_positive_y",
+        "world_offset_m": [
+          -0.0,
+          -0.0,
+          0.0
+        ],
+        "precondition": true,
+        "applied": false,
+        "missed_precondition_retained": false,
+        "physical_precondition_state": {
+          "maximum_vertex_axial_m": -0.16564080620513832,
+          "channel_front_x_m": -0.10565594583749771,
+          "alignment_margin_m": 0.002814165703683612,
+          "orientation_error_rad": 0.004560158708831813,
+          "peg_box_contact_force_world_n": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "actual_offset_must_be_measured_before_insertion": true
+      },
+      "pre_insert_reference": {
+        "depth_m": -0.0599994509588439,
+        "orientation_error_rad": 0.004561491176359968,
+        "lateral_error_m": 9.382331983226072e-05,
+        "channel_margin_m": null,
+        "alignment_margin_m": 0.0028175200633414783,
+        "aperture_m": 0.038040295243263245,
+        "attachment_proxy": true,
+        "linear_speed_m_s": 0.023433241686675634,
+        "angular_speed_rad_s": 0.42641311914250357,
+        "frame_translation_m": 1.862645149230957e-07,
+        "frame_rotation_rad": 1.0614862517731775e-06,
+        "stable_frame": true,
+        "relation_ready": false,
+        "peg_head_position_hole_m": [
+          -0.16565539679634161,
+          -2.986342346463189e-05,
+          -8.894375348116786e-05
+        ],
+        "object_target_relative_pose": {
+          "position_m": [
+            -0.27131132639613326,
+            -9.323424075473504e-06,
+            -3.4086406230926514e-05
+          ],
+          "rotation_matrix": [
+            [
+              0.9999998463152646,
+              0.00019675337751657508,
+              0.0005183218646928154
+            ],
+            [
+              -0.00019440457634773887,
+              0.9999897309762308,
+              -0.004527709017391522
+            ],
+            [
+              -0.0005192073840748512,
+              0.004527607557409243,
+              0.9999896155428307
+            ]
+          ]
+        },
+        "pose_stability": {
+          "stable_frame": true,
+          "relation_all_substeps": false,
+          "maximum_substep_pose_speed_m_s": 2.725324207347498e-05,
+          "maximum_substep_pose_angular_speed_rad_s": 0.0004152040956143138,
+          "relative_frame_translation_m": 1.86264514923165e-07,
+          "relative_frame_rotation_rad": 1.061486251777521e-06,
+          "window_control_observations": 10,
+          "window_physics_samples": 50,
+          "window_translation_diameter_m": 8.416848056233524e-07,
+          "window_rotation_diameter_rad": 1.3089213004650118e-05,
+          "window_ready": false
+        },
+        "legacy_velocity_stable_frame": false,
+        "legacy_velocity_stable_steps": 0,
+        "legacy_velocity_task_success": false,
+        "fixed_target_check": {
+          "raw_pose_equal": false,
+          "translation_delta_m": 1.5359765386647212e-08,
+          "rotation_delta_rad": 7.626123652783102e-08,
+          "maximum_translation_delta_m": 1e-06,
+          "maximum_rotation_delta_rad": 1e-06,
+          "passed": true,
+          "half_size_equal": true,
+          "hole_radius_equal": true
+        },
+        "task_success": false,
+        "failure": null,
+        "stable_steps": 0,
+        "valid_acquisition": true,
+        "ever_contact_grasped": true,
+        "current_contact_grasped": true,
+        "max_lift_m": 0.32669682055711746
+      },
+      "first_peg_box_contact_step": null,
+      "first_positive_depth_step": 530,
+      "lift_grasp_translation_change_m": 1.6819326332880934e-05,
+      "lift_grasp_rotation_change_rad": 0.0054763718319100286,
+      "post_lift_grasp_rotation_drift_at430_rad": 0.0008462246516614657,
+      "post_lift_grasp_rotation_drift_at1200_rad": 0.0008439181704267007,
+      "final_ten_control_windows": {
+        "all_ready": true,
+        "maximum_substep_pose_speed_m_s": 3.993539000516908e-05,
+        "maximum_substep_pose_angular_speed_rad_s": 0.0005065034315363654,
+        "maximum_translation_diameter_m": 9.38420147149976e-07,
+        "maximum_rotation_diameter_rad": 9.462041954985613e-06
+      }
+    }
+  ],
+  "findings": [
+    "All six original v5 scores independently reproduce as success. Every action and all 36000 external physics samples replay; the former velocity score reproduces as failure on all six new trajectories.",
+    "Baseline/V1 and V1/V2 are exactly physically matched through all 1200 actions for both scenes. V2 performs no intervention, so this record validates normal commissioning, not recovery effectiveness.",
+    "The stronger holding command removes the large lift-time in-hand rotation seen in v4 in these scenes. Grip restoration and the new stability signal were jointly commissioned; later outcome improvement is not attributed to one isolated change.",
+    "All zero-offset injection readiness checks pass with no applied disturbance. Actual insertion-depth/orientation/clipped-volume/pose-window relations pass; built-in success agrees but does not drive the controller or independent score.",
+    "Two known scenes do not establish fresh-seed insertion generalization. No disturbance robustness curve or successful recovery has yet been commissioned.",
+    "Fresh seeds140-159 remain unused within the retained native history guard, which checks2740 event files after this suite. Deleted/unreported runs are outside its scope; recheck before fresh entry."
+  ],
+  "next_authorized_development": "Commission the existing unfrozen lateral candidate series0/.5/1/2/4/8 on known100/101 only; inspect achieved pre-contact object offsets and bounded recovery before selecting and freezing fresh-native M7.",
+  "limitations": [
+    "Privileged simulator state, synthetic task design, one peg and one arm.",
+    "External100Hz physics samples do not observe internal solver iterations or stability after release.",
+    "No learning algorithm, optimizer or neural-model training occurs in this M7 fixed-controller experiment."
+  ],
+  "runtime_code_changed_by_this_review": false
+}

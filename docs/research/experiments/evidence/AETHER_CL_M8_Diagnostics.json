@@ -1,0 +1,679 @@
+{
+  "schema_version": 1,
+  "measurement_commit": "e8184217dc4b3c205666787441b87b13ba8a489c",
+  "analysis_unit": "20 common scenes reused across conditions; descriptive counts, no independent360-scene inference",
+  "cells": [
+    {
+      "point_id": "normal",
+      "command_force_y_n": 0.0,
+      "successes": {
+        "baseline": 20,
+        "v1": 20,
+        "v2": 20
+      },
+      "v2_rescues": 0,
+      "v2_mean_recovery_actions_all20": 0,
+      "v2_mean_added_tcp_path_m_all20": 0.0,
+      "baseline_pre_intervention_peak_xy_displacement_m": {
+        "count": 20,
+        "minimum": 1.48311475197929e-07,
+        "median": 4.92404646144337e-07,
+        "mean": 4.6603155597575234e-07,
+        "maximum": 8.635685748268781e-07
+      },
+      "baseline_pulse_y_displacement_m": {
+        "count": 20,
+        "minimum": -1.4156103134155273e-07,
+        "median": 6.51925802230835e-09,
+        "mean": -3.888271749019623e-09,
+        "maximum": 1.4901161193847656e-08
+      },
+      "baseline_pulse_y_velocity_change_m_s": {
+        "count": 20,
+        "minimum": -8.87521673575975e-06,
+        "median": -1.0861549526453018e-07,
+        "mean": 1.9582257664296777e-07,
+        "maximum": 1.4686083886772394e-05
+      },
+      "baseline_pre_intervention_support_loss_count": 0
+    },
+    {
+      "point_id": "force-easy-v1",
+      "command_force_y_n": 0.41868388652801514,
+      "successes": {
+        "baseline": 20,
+        "v1": 20,
+        "v2": 20
+      },
+      "v2_rescues": 0,
+      "v2_mean_recovery_actions_all20": 0,
+      "v2_mean_added_tcp_path_m_all20": 0.0,
+      "baseline_pre_intervention_peak_xy_displacement_m": {
+        "count": 20,
+        "minimum": 0.010014947983328708,
+        "median": 0.01008091060708053,
+        "mean": 0.010066758086258863,
+        "maximum": 0.010112413490336437
+      },
+      "baseline_pulse_y_displacement_m": {
+        "count": 20,
+        "minimum": 0.0053887516260147095,
+        "median": 0.005416193976998329,
+        "mean": 0.005411036920850165,
+        "maximum": 0.005430981516838074
+      },
+      "baseline_pulse_y_velocity_change_m_s": {
+        "count": 20,
+        "minimum": 0.1798971048410749,
+        "median": 0.17992979258997366,
+        "mean": 0.18026932433103865,
+        "maximum": 0.18161573700490408
+      },
+      "baseline_pre_intervention_support_loss_count": 0
+    },
+    {
+      "point_id": "force-probe-1",
+      "command_force_y_n": 1.857688546180725,
+      "successes": {
+        "baseline": 7,
+        "v1": 7,
+        "v2": 20
+      },
+      "v2_rescues": 13,
+      "v2_mean_recovery_actions_all20": 88.35,
+      "v2_mean_added_tcp_path_m_all20": 0.3439383898992566,
+      "baseline_pre_intervention_peak_xy_displacement_m": {
+        "count": 20,
+        "minimum": 0.019633320921469057,
+        "median": 0.03435513556857302,
+        "mean": 0.04590742309153375,
+        "maximum": 0.1633218234475364
+      },
+      "baseline_pulse_y_displacement_m": {
+        "count": 20,
+        "minimum": 0.019377537071704865,
+        "median": 0.02196234092116356,
+        "mean": 0.0224350744363619,
+        "maximum": 0.03196360729634762
+      },
+      "baseline_pulse_y_velocity_change_m_s": {
+        "count": 20,
+        "minimum": -0.048052744299639016,
+        "median": 0.051827737646817695,
+        "mean": 0.10110022294074952,
+        "maximum": 0.7003188660546584
+      },
+      "baseline_pre_intervention_support_loss_count": 9
+    },
+    {
+      "point_id": "force-probe-2",
+      "command_force_y_n": 2.322110652923584,
+      "successes": {
+        "baseline": 9,
+        "v1": 9,
+        "v2": 19
+      },
+      "v2_rescues": 10,
+      "v2_mean_recovery_actions_all20": 74.65,
+      "v2_mean_added_tcp_path_m_all20": 0.2932087585577741,
+      "baseline_pre_intervention_peak_xy_displacement_m": {
+        "count": 20,
+        "minimum": 0.01994468594312506,
+        "median": 0.038907960086013396,
+        "mean": 0.05531093573748723,
+        "maximum": 0.18928420288562478
+      },
+      "baseline_pulse_y_displacement_m": {
+        "count": 20,
+        "minimum": 0.019585944712162018,
+        "median": 0.02236749790608883,
+        "mean": 0.02354969654697925,
+        "maximum": 0.03561942279338837
+      },
+      "baseline_pulse_y_velocity_change_m_s": {
+        "count": 20,
+        "minimum": 0.018968253367347643,
+        "median": 0.17885412253963295,
+        "mean": 0.23538420835366197,
+        "maximum": 0.7949513724252029
+      },
+      "baseline_pre_intervention_support_loss_count": 19
+    },
+    {
+      "point_id": "force-probe-3",
+      "command_force_y_n": 2.9026384353637695,
+      "successes": {
+        "baseline": 7,
+        "v1": 7,
+        "v2": 18
+      },
+      "v2_rescues": 11,
+      "v2_mean_recovery_actions_all20": 91.95,
+      "v2_mean_added_tcp_path_m_all20": 0.35856416857939233,
+      "baseline_pre_intervention_peak_xy_displacement_m": {
+        "count": 20,
+        "minimum": 0.01927326172040918,
+        "median": 0.06206797435662606,
+        "mean": 0.0970572157217588,
+        "maximum": 0.41300182048963197
+      },
+      "baseline_pulse_y_displacement_m": {
+        "count": 20,
+        "minimum": 0.01764848828315735,
+        "median": 0.025331923738121986,
+        "mean": 0.026305498415604235,
+        "maximum": 0.04623980633914471
+      },
+      "baseline_pulse_y_velocity_change_m_s": {
+        "count": 20,
+        "minimum": -0.09854330797679722,
+        "median": 0.18865752104466083,
+        "mean": 0.31911782624056284,
+        "maximum": 1.3234135439797683
+      },
+      "baseline_pre_intervention_support_loss_count": 12
+    },
+    {
+      "point_id": "force-probe-4",
+      "command_force_y_n": 3.628298044204712,
+      "successes": {
+        "baseline": 7,
+        "v1": 7,
+        "v2": 18
+      },
+      "v2_rescues": 11,
+      "v2_mean_recovery_actions_all20": 106.55,
+      "v2_mean_added_tcp_path_m_all20": 0.4300067183013939,
+      "baseline_pre_intervention_peak_xy_displacement_m": {
+        "count": 20,
+        "minimum": 0.02030461586341984,
+        "median": 0.13177426184206875,
+        "mean": 0.14801019054167056,
+        "maximum": 0.5649211536663626
+      },
+      "baseline_pulse_y_displacement_m": {
+        "count": 20,
+        "minimum": 0.02012372761964798,
+        "median": 0.02815483696758747,
+        "mean": 0.02900240763556212,
+        "maximum": 0.05038500251248479
+      },
+      "baseline_pulse_y_velocity_change_m_s": {
+        "count": 20,
+        "minimum": 0.09210700332187116,
+        "median": 0.49142148519604234,
+        "mean": 0.4914179715499813,
+        "maximum": 1.3951507141991897
+      },
+      "baseline_pre_intervention_support_loss_count": 17
+    }
+  ],
+  "distinct_scenes_with_at_least_one_rescue": 14,
+  "recovery": {
+    "attempts": 50,
+    "successful_episodes": 45,
+    "failed_episodes": 5,
+    "success_fraction_of_attempts": 0.9,
+    "all_attempt_action_cost": {
+      "count": 50,
+      "minimum": 63,
+      "median": 137.5,
+      "mean": 144.6,
+      "maximum": 227
+    },
+    "successful_attempt_action_cost": {
+      "count": 45,
+      "minimum": 120,
+      "median": 143,
+      "mean": 152.86666666666667,
+      "maximum": 227
+    },
+    "all120_mean_recovery_actions": 60.25,
+    "all120_mean_added_tcp_path_m": 0.23761967255630284,
+    "rescue_conditioned_added_tcp_path_m": {
+      "count": 45,
+      "minimum": 0.4659118197000709,
+      "median": 0.5552345165214537,
+      "mean": 0.6057897677806902,
+      "maximum": 0.9541720148317325
+    },
+    "successful_lower_release_retract_count": 45,
+    "failed_phases": {
+      "descend": 1,
+      "approach": 4
+    },
+    "all_attempts_total_budget_exhausted_count": 0
+  },
+  "detection": {
+    "v1": {
+      "reference_first_onsets": 50,
+      "detected_first_onsets": 50,
+      "diagnosis_matches_first_reference": 50,
+      "detection_without_reference_or_before_reference": 0,
+      "latency_steps": {
+        "2": 50
+      },
+      "failure_labels": {
+        "PLACEMENT_TARGET_NOT_REACHED": 50
+      },
+      "frame_counts": {
+        "steps": 96000,
+        "uncertain_steps": 0,
+        "true_positive": 22950,
+        "false_positive": 0,
+        "false_negative": 100,
+        "true_negative": 72950,
+        "uncertain_on_negative": 0
+      },
+      "frame_metric_interpretation": "V2 changes recovery phases and reference exposure; frame ratios are not independent sensor accuracy or directly comparable static-classifier performance."
+    },
+    "v2": {
+      "reference_first_onsets": 50,
+      "detected_first_onsets": 50,
+      "diagnosis_matches_first_reference": 50,
+      "detection_without_reference_or_before_reference": 0,
+      "latency_steps": {
+        "2": 50
+      },
+      "failure_labels": {
+        "PLACEMENT_TARGET_NOT_REACHED": 50
+      },
+      "frame_counts": {
+        "steps": 96000,
+        "uncertain_steps": 0,
+        "true_positive": 55,
+        "false_positive": 0,
+        "false_negative": 100,
+        "true_negative": 95845,
+        "uncertain_on_negative": 0
+      },
+      "frame_metric_interpretation": "V2 changes recovery phases and reference exposure; frame ratios are not independent sensor accuracy or directly comparable static-classifier performance."
+    }
+  },
+  "failures": [
+    {
+      "seed": 172,
+      "point_id": "force-probe-2",
+      "native_directory": "slot-218-force-probe-2-seed172-v2/native/20261008T181923Z-7d0e18ad",
+      "first_abort_action": 414,
+      "failed_phase": "descend",
+      "failure_detail": "retry_descend_not_completed",
+      "stage_actions_at_abort": 35,
+      "recovery_actions": 72,
+      "target_world_m": [
+        0.15371675789356232,
+        0.2353135198354721,
+        0.019999900832772255
+      ],
+      "tcp_world_m_at_abort": [
+        0.1505350023508072,
+        0.2324516922235489,
+        0.0444377139210701
+      ],
+      "tcp_target_error_m_at_abort": 0.024809682266260496,
+      "arrival_tolerance_m": 0.02,
+      "rotation_error_rad_at_abort": 0.0069214629921929794,
+      "rotation_tolerance_rad": 0.15,
+      "position_gate_passed": false,
+      "rotation_gate_passed": true,
+      "gripper_at_abort": "open",
+      "is_grasped_at_abort": false,
+      "lower_transition_step": null,
+      "lower_timeout": false,
+      "recovery_release_executed": false,
+      "recovery_retraction_executed": false,
+      "final_horizontal_error_m": 0.17684291462862647,
+      "final_reference": {
+        "task_success": false,
+        "failure": "PLACEMENT_TARGET_NOT_REACHED",
+        "release_success": true,
+        "supported": true,
+        "stable_frame": true,
+        "support_stability_success": false,
+        "support_stable_steps": 0,
+        "retracted": false,
+        "is_grasped": false,
+        "stable_steps": 0,
+        "max_cube_lift_m": 0.11970704421401024,
+        "horizontal_error_m": 0.17684291462862647,
+        "cube_table_contact_force_world_n": [
+          0.0,
+          0.0,
+          0.6278439164161682
+        ],
+        "bottom_height_m": -3.9262446032556353e-07,
+        "linear_speed_m_s": 0.0002551039423963264,
+        "angular_speed_rad_s": 0.001906192057182312
+      },
+      "physical_diagnostics": {
+        "window_end_action_before_first_recovery_or_episode_end": 342,
+        "pulse_displacement_world_m": [
+          0.009445276111364365,
+          0.03561942279338837,
+          1.5813857316970825e-06
+        ],
+        "pulse_delta_linear_velocity_world_m_s": [
+          0.543483253211889,
+          0.7175902775343275,
+          -0.002380522681050934
+        ],
+        "pre_intervention_peak_horizontal_displacement_m": 0.17704534251608547,
+        "pre_intervention_peak_linear_speed_m_s": 1.0000408980591544,
+        "pre_intervention_support_loss": true,
+        "whole_episode_effects_include_recovery": true
+      },
+      "interpretation": "Frozen phase deadline expires before target arrival; this does not independently prove kinematic unreachability or a unique controller/contact root cause."
+    },
+    {
+      "seed": 172,
+      "point_id": "force-probe-3",
+      "native_directory": "slot-278-force-probe-3-seed172-v2/native/20261008T183455Z-ce3daa93",
+      "first_abort_action": 422,
+      "failed_phase": "approach",
+      "failure_detail": "retry_approach_not_completed",
+      "stage_actions_at_abort": 60,
+      "recovery_actions": 80,
+      "target_world_m": [
+        0.1512424796819687,
+        0.39603063464164734,
+        0.13999992690980434
+      ],
+      "tcp_world_m_at_abort": [
+        0.12726731598377228,
+        0.3094136416912079,
+        0.13912975788116455
+      ],
+      "tcp_target_error_m_at_abort": 0.08987807928672151,
+      "arrival_tolerance_m": 0.02,
+      "rotation_error_rad_at_abort": 0.0028435162485917894,
+      "rotation_tolerance_rad": 0.15,
+      "position_gate_passed": false,
+      "rotation_gate_passed": true,
+      "gripper_at_abort": "open",
+      "is_grasped_at_abort": false,
+      "lower_transition_step": null,
+      "lower_timeout": false,
+      "recovery_release_executed": false,
+      "recovery_retraction_executed": false,
+      "final_horizontal_error_m": 0.3234526568266349,
+      "final_reference": {
+        "task_success": false,
+        "failure": "PLACEMENT_TARGET_NOT_REACHED",
+        "release_success": true,
+        "supported": false,
+        "stable_frame": true,
+        "support_stability_success": false,
+        "support_stable_steps": 0,
+        "retracted": true,
+        "is_grasped": false,
+        "stable_steps": 0,
+        "max_cube_lift_m": 0.11970704421401024,
+        "horizontal_error_m": 0.3234526568266349,
+        "cube_table_contact_force_world_n": [
+          0.0,
+          0.0,
+          0.6278188824653625
+        ],
+        "bottom_height_m": -3.8149936516448935e-07,
+        "linear_speed_m_s": 0.0,
+        "angular_speed_rad_s": 0.0
+      },
+      "physical_diagnostics": {
+        "window_end_action_before_first_recovery_or_episode_end": 342,
+        "pulse_displacement_world_m": [
+          0.008909415453672409,
+          0.043231941759586334,
+          0.00015498697757720947
+        ],
+        "pulse_delta_linear_velocity_world_m_s": [
+          0.37821045109740226,
+          1.1782261184271192,
+          -0.03321827251056675
+        ],
+        "pre_intervention_peak_horizontal_displacement_m": 0.32362591807711,
+        "pre_intervention_peak_linear_speed_m_s": 1.2377750447209248,
+        "pre_intervention_support_loss": true,
+        "whole_episode_effects_include_recovery": true
+      },
+      "interpretation": "Frozen phase deadline expires before target arrival; this does not independently prove kinematic unreachability or a unique controller/contact root cause."
+    },
+    {
+      "seed": 178,
+      "point_id": "force-probe-3",
+      "native_directory": "slot-296-force-probe-3-seed178-v2/native/20261008T183933Z-21de4454",
+      "first_abort_action": 412,
+      "failed_phase": "approach",
+      "failure_detail": "retry_approach_not_completed",
+      "stage_actions_at_abort": 60,
+      "recovery_actions": 70,
+      "target_world_m": [
+        -0.07431526482105255,
+        0.3371536433696747,
+        0.13999990455806255
+      ],
+      "tcp_world_m_at_abort": [
+        -0.03351224586367607,
+        0.21261398494243622,
+        0.14010295271873474
+      ],
+      "tcp_target_error_m_at_abort": 0.1310535138641184,
+      "arrival_tolerance_m": 0.02,
+      "rotation_error_rad_at_abort": 0.00028126383666991626,
+      "rotation_tolerance_rad": 0.15,
+      "position_gate_passed": false,
+      "rotation_gate_passed": true,
+      "gripper_at_abort": "open",
+      "is_grasped_at_abort": false,
+      "lower_transition_step": null,
+      "lower_timeout": false,
+      "recovery_release_executed": false,
+      "recovery_retraction_executed": false,
+      "final_horizontal_error_m": 0.41320648128807225,
+      "final_reference": {
+        "task_success": false,
+        "failure": "PLACEMENT_TARGET_NOT_REACHED",
+        "release_success": true,
+        "supported": true,
+        "stable_frame": true,
+        "support_stability_success": true,
+        "support_stable_steps": 489,
+        "retracted": true,
+        "is_grasped": false,
+        "stable_steps": 0,
+        "max_cube_lift_m": 0.11975976452231407,
+        "horizontal_error_m": 0.41320648128807225,
+        "cube_table_contact_force_world_n": [
+          0.0,
+          0.0,
+          0.627823531627655
+        ],
+        "bottom_height_m": -4.37156164902891e-07,
+        "linear_speed_m_s": 0.0,
+        "angular_speed_rad_s": 0.0
+      },
+      "physical_diagnostics": {
+        "window_end_action_before_first_recovery_or_episode_end": 342,
+        "pulse_displacement_world_m": [
+          -0.009842995554208755,
+          0.04623980633914471,
+          0.00017318502068519592
+        ],
+        "pulse_delta_linear_velocity_world_m_s": [
+          -0.4428957510681357,
+          1.3234135439797683,
+          -0.015487129690882284
+        ],
+        "pre_intervention_peak_horizontal_displacement_m": 0.41300182048963197,
+        "pre_intervention_peak_linear_speed_m_s": 1.3956619102160672,
+        "pre_intervention_support_loss": false,
+        "whole_episode_effects_include_recovery": true
+      },
+      "interpretation": "Frozen phase deadline expires before target arrival; this does not independently prove kinematic unreachability or a unique controller/contact root cause."
+    },
+    {
+      "seed": 172,
+      "point_id": "force-probe-4",
+      "native_directory": "slot-338-force-probe-4-seed172-v2/native/20261008T185024Z-238c5994",
+      "first_abort_action": 405,
+      "failed_phase": "approach",
+      "failure_detail": "retry_approach_not_completed",
+      "stage_actions_at_abort": 60,
+      "recovery_actions": 63,
+      "target_world_m": [
+        0.32876676321029663,
+        0.44994646310806274,
+        0.13999994926154613
+      ],
+      "tcp_world_m_at_abort": [
+        0.15935052931308746,
+        0.21421878039836884,
+        0.13902942836284637
+      ],
+      "tcp_target_error_m_at_abort": 0.29029354559550724,
+      "arrival_tolerance_m": 0.02,
+      "rotation_error_rad_at_abort": 0.0036589866115565813,
+      "rotation_tolerance_rad": 0.15,
+      "position_gate_passed": false,
+      "rotation_gate_passed": true,
+      "gripper_at_abort": "open",
+      "is_grasped_at_abort": false,
+      "lower_transition_step": null,
+      "lower_timeout": false,
+      "recovery_release_executed": false,
+      "recovery_retraction_executed": false,
+      "final_horizontal_error_m": 0.45305426299034407,
+      "final_reference": {
+        "task_success": false,
+        "failure": "PLACEMENT_TARGET_NOT_REACHED",
+        "release_success": true,
+        "supported": false,
+        "stable_frame": true,
+        "support_stability_success": false,
+        "support_stable_steps": 0,
+        "retracted": true,
+        "is_grasped": false,
+        "stable_steps": 0,
+        "max_cube_lift_m": 0.11970704421401024,
+        "horizontal_error_m": 0.45305426299034407,
+        "cube_table_contact_force_world_n": [
+          0.0,
+          0.0,
+          0.6278722882270813
+        ],
+        "bottom_height_m": -3.67068102517798e-07,
+        "linear_speed_m_s": 0.0,
+        "angular_speed_rad_s": 0.0
+      },
+      "physical_diagnostics": {
+        "window_end_action_before_first_recovery_or_episode_end": 342,
+        "pulse_displacement_world_m": [
+          0.02261922135949135,
+          0.04639657586812973,
+          2.2351741790771484e-07
+        ],
+        "pulse_delta_linear_velocity_world_m_s": [
+          0.9551379639815423,
+          1.2241284898336744,
+          0.0001566481605550507
+        ],
+        "pre_intervention_peak_horizontal_displacement_m": 0.4532609060226555,
+        "pre_intervention_peak_linear_speed_m_s": 1.552603493683891,
+        "pre_intervention_support_loss": false,
+        "whole_episode_effects_include_recovery": true
+      },
+      "interpretation": "Frozen phase deadline expires before target arrival; this does not independently prove kinematic unreachability or a unique controller/contact root cause."
+    },
+    {
+      "seed": 178,
+      "point_id": "force-probe-4",
+      "native_directory": "slot-356-force-probe-4-seed178-v2/native/20261008T185505Z-571f861b",
+      "first_abort_action": 408,
+      "failed_phase": "approach",
+      "failure_detail": "retry_approach_not_completed",
+      "stage_actions_at_abort": 60,
+      "recovery_actions": 66,
+      "target_world_m": [
+        -0.2713678181171417,
+        0.407254695892334,
+        0.14000001445412635
+      ],
+      "tcp_world_m_at_abort": [
+        -0.10846353322267532,
+        0.17584966123104095,
+        0.14021067321300507
+      ],
+      "tcp_target_error_m_at_abort": 0.2829949478006355,
+      "arrival_tolerance_m": 0.02,
+      "rotation_error_rad_at_abort": 0.00030840816918221384,
+      "rotation_tolerance_rad": 0.15,
+      "position_gate_passed": false,
+      "rotation_gate_passed": true,
+      "gripper_at_abort": "open",
+      "is_grasped_at_abort": false,
+      "lower_transition_step": null,
+      "lower_timeout": false,
+      "recovery_release_executed": false,
+      "recovery_retraction_executed": false,
+      "final_horizontal_error_m": 0.5651243922171857,
+      "final_reference": {
+        "task_success": false,
+        "failure": "PLACEMENT_TARGET_NOT_REACHED",
+        "release_success": true,
+        "supported": false,
+        "stable_frame": true,
+        "support_stability_success": false,
+        "support_stable_steps": 0,
+        "retracted": true,
+        "is_grasped": false,
+        "stable_steps": 0,
+        "max_cube_lift_m": 0.11975976452231407,
+        "horizontal_error_m": 0.5651243922171857,
+        "cube_table_contact_force_world_n": [
+          0.0,
+          0.0,
+          0.6277341842651367
+        ],
+        "bottom_height_m": -3.817112614080964e-07,
+        "linear_speed_m_s": 0.0,
+        "angular_speed_rad_s": 0.0
+      },
+      "physical_diagnostics": {
+        "window_end_action_before_first_recovery_or_episode_end": 342,
+        "pulse_displacement_world_m": [
+          -0.02371528558433056,
+          0.05038500251248479,
+          0.0023234691470861435
+        ],
+        "pulse_delta_linear_velocity_world_m_s": [
+          -1.0165507901401725,
+          1.3951507141991897,
+          0.06517254944628803
+        ],
+        "pre_intervention_peak_horizontal_displacement_m": 0.5649211536663626,
+        "pre_intervention_peak_linear_speed_m_s": 1.7274586038102355,
+        "pre_intervention_support_loss": false,
+        "whole_episode_effects_include_recovery": true
+      },
+      "interpretation": "Frozen phase deadline expires before target arrival; this does not independently prove kinematic unreachability or a unique controller/contact root cause."
+    }
+  ],
+  "nonmonotonic_baseline_success_transitions": [
+    {
+      "seed": 175,
+      "lower_force_condition_failed": "force-probe-1",
+      "higher_force_condition_succeeded": "force-probe-2"
+    },
+    {
+      "seed": 175,
+      "lower_force_condition_failed": "force-probe-3",
+      "higher_force_condition_succeeded": "force-probe-4"
+    },
+    {
+      "seed": 179,
+      "lower_force_condition_failed": "force-probe-1",
+      "higher_force_condition_succeeded": "force-probe-2"
+    }
+  ],
+  "limits": "All failures are retained. One bounded strategy with phase deadlines; privileged state and one cube/arm/task. No M8 retuning or second attempt.",
+  "application_milestone": "M6R/M7 are accepted; completed independently audited M8 evidence returns to02 before acceptance or verifier work."
+}

@@ -1,0 +1,8 @@
+# Initial Linux/Python 3.10 runtime. Transitive dependencies are recorded per run.
+# Install the cu121 torch wheel separately, as described in README.md.
+torch==2.4.1
+numpy==1.26.4
+mani_skill==3.0.1
+sapien==3.0.3
+gymnasium==1.1.1
+Pillow==11.3.0

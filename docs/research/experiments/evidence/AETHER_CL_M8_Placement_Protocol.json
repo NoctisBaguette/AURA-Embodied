@@ -1,0 +1,346 @@
+{
+  "name": "m8_seed160_179_physics_propagated_placement",
+  "date": "2026-10-08",
+  "authority_commit": "4d477da2a583717b773b3a1c746996a3c2127e40",
+  "status": "frozen_before_fresh_native_M8",
+  "seeds": [
+    160,
+    161,
+    162,
+    163,
+    164,
+    165,
+    166,
+    167,
+    168,
+    169,
+    170,
+    171,
+    172,
+    173,
+    174,
+    175,
+    176,
+    177,
+    178,
+    179
+  ],
+  "systems": [
+    "baseline",
+    "v1",
+    "v2"
+  ],
+  "points": [
+    {
+      "point_id": "normal",
+      "estimated_drift_m": null,
+      "command_force_y_n": 0.0,
+      "command_force_world_n": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "torque_world_nm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "planned_nominal_duration_s": 0.05,
+      "planned_command_integral_y_ns": 0.0,
+      "prediction_is_not_actor_state_command": true,
+      "reference_v1_point_id": "normal",
+      "input_kind": "v1_zero_easy_or_high_reference"
+    },
+    {
+      "point_id": "force-easy-v1",
+      "estimated_drift_m": null,
+      "command_force_y_n": 0.41868388652801514,
+      "command_force_world_n": [
+        0.0,
+        0.41868388652801514,
+        0.0
+      ],
+      "torque_world_nm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "planned_nominal_duration_s": 0.05,
+      "planned_command_integral_y_ns": 0.02093419385848505,
+      "prediction_is_not_actor_state_command": true,
+      "reference_v1_point_id": "model-drift-010mm",
+      "input_kind": "v1_zero_easy_or_high_reference"
+    },
+    {
+      "point_id": "force-probe-1",
+      "estimated_drift_m": null,
+      "command_force_y_n": 1.857688546180725,
+      "command_force_world_n": [
+        0.0,
+        1.857688546180725,
+        0.0
+      ],
+      "torque_world_nm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "planned_nominal_duration_s": 0.05,
+      "planned_command_integral_y_ns": 0.09288442523290752,
+      "prediction_is_not_actor_state_command": true,
+      "input_kind": "development_geometric_force_probe_not_desired_displacement",
+      "multiplier_of_v1_highest_force": 1.25
+    },
+    {
+      "point_id": "force-probe-2",
+      "estimated_drift_m": null,
+      "command_force_y_n": 2.322110652923584,
+      "command_force_world_n": [
+        0.0,
+        2.322110652923584,
+        0.0
+      ],
+      "torque_world_nm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "planned_nominal_duration_s": 0.05,
+      "planned_command_integral_y_ns": 0.11610553005101831,
+      "prediction_is_not_actor_state_command": true,
+      "input_kind": "development_geometric_force_probe_not_desired_displacement",
+      "multiplier_of_v1_highest_force": 1.5625
+    },
+    {
+      "point_id": "force-probe-3",
+      "estimated_drift_m": null,
+      "command_force_y_n": 2.9026384353637695,
+      "command_force_world_n": [
+        0.0,
+        2.9026384353637695,
+        0.0
+      ],
+      "torque_world_nm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "planned_nominal_duration_s": 0.05,
+      "planned_command_integral_y_ns": 0.14513191852423724,
+      "prediction_is_not_actor_state_command": true,
+      "input_kind": "development_geometric_force_probe_not_desired_displacement",
+      "multiplier_of_v1_highest_force": 1.953125
+    },
+    {
+      "point_id": "force-probe-4",
+      "estimated_drift_m": null,
+      "command_force_y_n": 3.628298044204712,
+      "command_force_world_n": [
+        0.0,
+        3.628298044204712,
+        0.0
+      ],
+      "torque_world_nm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "planned_nominal_duration_s": 0.05,
+      "planned_command_integral_y_ns": 0.18141489815529654,
+      "prediction_is_not_actor_state_command": true,
+      "input_kind": "development_geometric_force_probe_not_desired_displacement",
+      "multiplier_of_v1_highest_force": 2.44140625
+    }
+  ],
+  "requested_episodes": 360,
+  "cells": 18,
+  "episodes_per_cell": 20,
+  "analysis_unit": "20_common_seed_scenes_reused_across_conditions_and_systems_not360_independent_scenes",
+  "seed_selection": "preselected160_179_only_if_retained_history_unused_no_adaptive_replacement",
+  "task": "PickCube-v1_accepted_released_support_placement",
+  "task_contract": {
+    "horizontal_tolerance_m": 0.025,
+    "minimum_lift_m": 0.05,
+    "cube_half_size_m": 0.02,
+    "support_height_m": 0.0,
+    "support_region_half_extent_m": 0.4,
+    "support_height_tolerance_m": 0.004,
+    "minimum_support_force_n": 0.01,
+    "retraction_clearance_m": 0.08,
+    "released_aperture_m": 0.06,
+    "maximum_linear_speed_m_s": 0.01,
+    "maximum_angular_speed_rad_s": 0.2,
+    "maximum_frame_translation_m": 0.001,
+    "maximum_frame_rotation_rad": 0.02,
+    "stable_steps": 5,
+    "failure_persistence_steps": 3,
+    "settle_grace_steps": 10,
+    "name": "released_cube_supported_on_designated_table",
+    "support_actor": "table-workspace",
+    "support_region": "world_xy_square_centered_at_origin",
+    "reference_support": "fresh_cube_table_pairwise_vertical_contact_force_and_bottom_geometry",
+    "verifier_support": "privileged_pose_geometry_and_velocity_proxy_no_contact_labels",
+    "requires_historical_contact_grasp_and_lift": true,
+    "requires_release_command_and_current_non_grasp": true,
+    "requires_open_gripper_and_vertical_and_euclidean_tcp_clearance": true,
+    "requires_consecutive_fresh_stability": true,
+    "termination": "full_frozen_action_budget",
+    "environment_success_is_not_task_success": true
+  },
+  "physics_backend": "cpu",
+  "robot": "panda",
+  "observation_mode": "state_dict",
+  "control_mode": "pd_ee_pose",
+  "render": false,
+  "max_steps": 800,
+  "nominal_controller": "unchanged_FixedPlacement",
+  "legacy_system_mapping": {
+    "baseline": "baseline",
+    "v1": "v1",
+    "v2": "v2r"
+  },
+  "recovery_controller": "unchanged_accepted_EffectAlignedRecovery",
+  "recovery_settings": {
+    "durations": [
+      35,
+      60,
+      35,
+      25,
+      35,
+      80,
+      40,
+      25,
+      35,
+      30
+    ],
+    "action_budget": 400,
+    "maximum_attempts": 1,
+    "minimum_remaining_steps": 100,
+    "minimum_motion_steps": 3,
+    "minimum_close_steps": 10,
+    "arrival_tolerance_m": 0.02,
+    "lower_vertical_tolerance_m": 0.003,
+    "arrival_rotation_tolerance_rad": 0.15
+  },
+  "lower_contract": {
+    "phase": "lower",
+    "removed": "abs(tcp_z - lower_target_z) <= 0.003",
+    "replacement": "supported_geometry and horizontal_error_m <= 0.025",
+    "retained": [
+      "minimum_motion_steps",
+      "tcp_distance_0.02m",
+      "rotation_0.15rad",
+      "attachment_loss_monitoring"
+    ],
+    "inputs": [
+      "obj_pose",
+      "goal_pos",
+      "tcp_pose",
+      "qpos",
+      "obj_linear_velocity",
+      "obj_angular_velocity"
+    ],
+    "excluded_inputs": [
+      "info",
+      "is_grasped",
+      "contact_force",
+      "reference",
+      "environment_success",
+      "disturbance_identity"
+    ]
+  },
+  "recovery_attempts_maximum": 1,
+  "force_api": "PhysxRigidBodyComponent.add_force_torque",
+  "mode": "force",
+  "world_axis": "+Y",
+  "torque_world_nm": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "injection_action": 296,
+  "window_substeps": 5,
+  "actual_timestep_s": 0.009999999776482582,
+  "nominal_duration_s": 0.05,
+  "force_gate": "active_nominal_retract_released_geometry_designated_support_not_grasped_contact_z_at_least0.01N",
+  "missed_precondition_or_initial_failure": "retain_nonapplication_and_outcome_no_retime_or_replacement",
+  "disturbance_implementation": "unchanged_engine_force_adapter_no_cube_pose_or_velocity_overwrite",
+  "force_input_and_actual_effect": "report_separately_input_monotonic_effect_need_not_be",
+  "point_label_provenance": "retained_development_identifiers_frozen_vectors_not_displacement_targets",
+  "pilot": {
+    "episodes": 18,
+    "points": [
+      "normal",
+      "force-easy-v1",
+      "force-probe-2"
+    ],
+    "seeds": [
+      160,
+      161
+    ],
+    "retained_in_final": true,
+    "gate": "complete_replays_identities_pairs_and_fixed_force_provenance_no_task_success_gate",
+    "review_boundary": "pause_first18_for_independent_review_before342_unstarted_slots"
+  },
+  "order": "pilot_point_seed_system_then_remaining_point_seed_system_skip_only_completed_pilot_slots",
+  "comparison_counts": {
+    "passive": 120,
+    "recovery": 120,
+    "pre_force_control": 100
+  },
+  "pilot_comparison_counts": {
+    "passive": 6,
+    "recovery": 6,
+    "pre_force_control": 4
+  },
+  "action_replay_tolerance": 3e-07,
+  "physical_pair_tolerance": "exact_no_relaxation",
+  "execution": "fresh_interpreter_and_native_environment_per_slot_all800_actions_unless_frozen_initial_goal_exclusion",
+  "model_training": false,
+  "performance_gate": "none_task_failures_retained",
+  "resume": "only_unstarted_slots_from_valid_paused_checkpoint_full_hash_replay_and_immutable_pilot_checks",
+  "environment_normalization": [
+    "SSH_CLIENT",
+    "SSH_CONNECTION",
+    "SSH_TTY",
+    "TERM",
+    "SHLVL",
+    "_",
+    "PWD",
+    "OLDPWD",
+    "XDG_SESSION_ID"
+  ],
+  "child_timeout_s": 600,
+  "constructor_initialization_reset_seeds": [
+    2022
+  ],
+  "commissioning_commit": "a910a8cab8b0f0f67daeb0178f44457383aab814",
+  "commissioning_archive_sha256": "f8a05548c08e08a8b93f60dca2a29a14f919abf7e34e379fbe12ac256e2c165c",
+  "commissioning_review_sha256": "4b9d0e9f83d050e1b5c22d69f7f48e5801636cb132e25c0afc38c05ed3b73577",
+  "sources_sha256": {
+    "runtime.py": "471a5d26a384c6997f0d5a6713d5595bc07dcfe64e0bc2a19b13c786d9449c07",
+    "policies.py": "c4e16450ad64ad8683db69d7a166720e411e5e97c8c1def3471b1b04ced04f29",
+    "verification.py": "472073de5db587de20c2185b324181f169a7bc0e52cd5706aef7506f928f83a7",
+    "m6_task.py": "e63aff47dbc8f0c270f02c6a0d6bfa46970f96d9da149b18990d76eba4f6b62c",
+    "m6_policy.py": "e4b1d7ff5f74b9008c6f170f62f6da0a565873fb9b61cd3dbf798706ad590d4c",
+    "m6_runtime.py": "dd1c26a6299fc1c82fc0e30585f33b905dddecea3e4e6ecf88cf775389473ff7",
+    "m6r_policy.py": "dd2628631641e500fe593155453b5c75408faf2f34c76ea761f057455e4e8981",
+    "m6r_runtime.py": "679faec4707f7d4baed7091f2069ecd18b5a905ef3197b2fe101da3a218f6ad0",
+    "m6r_audit.py": "7059b86d74c0d5abd498e5dd460f6868f40ed2633f63f6c915700df4d462d518",
+    "m8_force.py": "aafa9cfecb23ec5d6d359fe7eadb6d1db4762b5384852fc13ca04527a9196201",
+    "m8_force_commission.py": "e51d350a6256aa89b65759b59d115f2c8871ead5bde2a8244d04fd0b14c76344",
+    "m8_force_refine.py": "235b54005bda070ac44e385aec5ad44faf7fbebfa7b240ec0e070d663f95669e",
+    "m8_matched.py": "c7e872bcb24fdc40ccf15896721d7b51ed660d9b028fef4de8c032029c19cce8",
+    "m8_frozen.py": "5b9c793c3487116022a684a12bf5522d39434d3a5add0a12e0849af6af9e3a8b",
+    "m8_sweep.py": "7933c3939ab7756ec2af93b3de1c90434075f120b22f7ab492d227ea4b773daf"
+  },
+  "history_guard_source_sha256": "3773932eedbbdc8bdbfa2528dc8e3ee9846e86142c7884be29df7837880a937a",
+  "receipt_sources_sha256": {
+    "AETHER_CL_M8_Installed_Physics_Inspection.json": "ac5ade880fca62ec42fa7356fc46e981398cde4d511e8426b8bd87fda881405a",
+    "AETHER_CL_M8_Force_Response_Review_v1.json": "b5b63bce1e560f0949ff4ddff6346481ed29b19c0e44e3f5e33a122a180bd83e",
+    "AETHER_CL_M8_Force_Response_Review_v2.json": "9f838344d3f4811f069b19c9ff1d091b1ad8eef23a3790a7edff5040eea23a58",
+    "AETHER_CL_M8_Matched_Commission_Review_v1.json": "4b9d0e9f83d050e1b5c22d69f7f48e5801636cb132e25c0afc38c05ed3b73577"
+  },
+  "return_boundary": "after_frozen_native_M8_and_independent_audit_return_to02_before_further_scope",
+  "limitations": "privileged_state_one_cube_one_arm_engine_force_single_recovery_no_sensor_verifier_or_learning"
+}
