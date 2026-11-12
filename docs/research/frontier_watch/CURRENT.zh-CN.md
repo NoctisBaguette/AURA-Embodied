@@ -1,5 +1,26 @@
 # AURA 前沿观察：当前研究雷达
 
+
+## 2026年11月12日 — 最新研究/决策更新
+
+[中文完整周报](2026/2026-11-12.zh-CN.md) · [English report](2026/2026-11-12.md) · [中文 HQ/Core/队友交接](2026/2026-11-12-handoff.zh-CN.md) · [English handoff](2026/2026-11-12-handoff.md)。
+
+**执行范围不变：**检查 `06-01/aether-cl-m0` head `cd8185dbe36676c1edd90031e13a105795b617d5`。**Core 连续性 v0.3 与[11月12日恢复授权](../coordination/BAGUETTE_M9a_Resume_Authorization_2026-11-12.md)已解除原有 M9a 调试的操作暂停**，仅允许继续有边界的相机/渲染/Vulkan/传感器 I/O 调试，尚未批准新的正式科学评估。本期无已验收的新相机/物理中立性或非特权验证器证据；Core 已确认原调试暂停解除；服务器实时健康状况仍未核查。
+
+**新发现与创新竞争：**[AMP1](https://arxiv.org/abs/2611.09892) **DEEP DIVE**：工具/代码型通用智能体是专用 VLA 的真实替代，公平比较需计算仿真暂停、外部 API 和墙钟成本；[kNN 检索动作](https://arxiv.org/abs/2611.13160) **DEEP DIVE**：作者声称**无需策略训练就在 LIBERO 取得 91.7%**，其宣称代码仓库检查时返回 404，目前只能作为低成本对照假设；[记忆时间捷径/虚假进展](https://arxiv.org/abs/2611.14488) **DEEP DIVE**：无物理事件时按时间记录的记忆会推断出假进展，强化原有证据时效性假设；[RoboACE](https://arxiv.org/abs/2611.13034) **DEEP DIVE**：练习/执行 harness 共同演化，进一步压缩纯组合架构创新空间；[传感器返回适配](https://arxiv.org/abs/2611.13229) **DEEP DIVE 概念**：以小标定数据应对真实相机返回分布变化；[OopsieRecover](https://arxiv.org/abs/2611.08462) **READ→DEEP DIVE**：将纠正语义迁移到新场景。[MR0](https://arxiv.org/abs/2611.08577)、[Elastic-WAM](https://arxiv.org/abs/2611.14257)、[BEHAVIOR 2026 方案](https://arxiv.org/abs/2611.14432)、Panasonic T-Rex 为 **READ/WATCH**。
+
+**上游11月9日已覆盖：**Open-HumanWAM、通用策略 RL、RoboColosseum、VLA-Tug、HiLo-WAM、SLA、Spatial-UMI、NEO-VLA。AURA 独立核对选定论文原始记录；**Open-HumanWAM 在11月10日更新至 v3**，但全量数据是否上传完毕未重新审计；上游汇总不是独立实验验证。
+
+**战略细化：**围绕低适配成本的**场景、数据、传感器和本体迁移**，加强负对照、可兼容的策略适配接口与匹配的算力/时延预算；不固定某个架构组合。[11月12日研究工作台方案](../coordination/AURA_Research_Workbench_Proposal_2026-11-12.zh-CN.md)**尚未批准/部署**。不得用缺乏证据的排行榜勾选替代真实测量。
+
+**交给 HQ/Core：**在原 WP1–WP4 上增补，**没有新分派**。WP1 比较 AMP1/RoboACE 与 DynaHarness/RoboArchitect 以及廉价基线；WP2/WP4 仅在批准的离线准备范围内设计空事件/过期证据与迁移负对照；WP3 与另一项目 VLA 负责人协调 kNN/策略/agent/适配器可行性。**本周无新提名实验；保留 M9a 后既有证据时效性/失效研究，并考虑无事件负对照。**
+
+**执行总结：**继续现有授权的 M9a 调试，按 Core 11月12日明确恢复授权继续原范围；现在不改任何冻结实验；下关卡无新激活实验；大规模训练、新传感器、完整 agent 复现和工作台自动同步暂缓；证据只有一手来源阅读与双语报告/交接，**没有新模型推理、CPU/原生/实机执行或审计验收。**
+
+---
+
+
+
 ## 2026 年 11 月 5 日 — 最新研究和决策更新
 
 [中文完整周报](2026/2026-11-05.zh-CN.md) · [English](2026/2026-11-05.md) · [中文 HQ/Core/队友交接](2026/2026-11-05-handoff.zh-CN.md) · [英文交接](2026/2026-11-05-handoff.md)。

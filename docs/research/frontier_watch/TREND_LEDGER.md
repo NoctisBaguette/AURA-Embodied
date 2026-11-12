@@ -1,5 +1,22 @@
 # AURA Frontier Watch — Trend Ledger
 
+
+## November 12, 2026 — T17: event-grounded progress, cheap baselines and transfer claims
+
+**Status:** material counterevidence to naive 'more memory/architecture' reasoning; **hypothesis refinement, not implementation mandate**. Sources: [Nov 12 watch](2026/2026-11-12.md), [memory-clock](https://arxiv.org/abs/2611.14488), [kNN](https://arxiv.org/abs/2611.13160), [AMP1](https://arxiv.org/abs/2611.09892), [sensor adapter](https://arxiv.org/abs/2611.13229), [RoboColosseum](https://arxiv.org/abs/2611.02497).
+
+- A temporal memory may confuse idle time with physical progress. **Time elapsed, observations collected, effect evidence, and actual task-state transitions must be distinguished.** A simpler event-indexed representation may suffice; do not mandate a large external state graph.
+- Training-free retrieval of demonstration action chunks can score surprisingly well on certain manipulation benchmarks. **Compare against cheap retrieval, no-extra-memory and unchanged-controller controls** before attributing a benchmark gain to reasoning/adaptation.
+- Agentic tool controllers are credible alternative routes; their reasoning/tool wall-clock and simulation pause, sensing privilege, external API and human-correction costs must be included in fair comparisons.
+- Transfer must be measured by specific **object, scene, dataset, sensing and embodiment axes**, with source/target performance and adaptation budget; successful integration or compression alone is not transfer evidence.
+- Small calibrated sensor/semantic correction adapters deserve attention within realistic compute budgets, but a reconstruction or correction-data metric does not automatically mean improved closed-loop manipulation success.
+
+**Status/impact:** preserve active M9a approval boundary. Refine only the *existing proposed* post-M9a evidence-freshness question with null-event/phantom-progress controls. No new experiment authorization. New multiple-route research workbench is a **proposal**, not a deployed system.
+
+---
+
+
+
 This file tracks persistent research patterns relevant to AURA-Embodied. It should evolve more slowly than `CURRENT.md`.
 
 ## October 19 refinement — freshness, computation timing and actionable collaboration

@@ -1,5 +1,26 @@
 # AURA Frontier Watch — Current Research Radar
 
+
+## November 12, 2026 — newest research and decisions
+
+[Full English watch](2026/2026-11-12.md) · [完整中文周报](2026/2026-11-12.zh-CN.md) · [HQ/Core/team handoff](2026/2026-11-12-handoff.md) · [中文决策交接](2026/2026-11-12-handoff.zh-CN.md).
+
+**Execution remains unchanged:** The inspected `06-01/aether-cl-m0` branch head is `cd8185dbe36676c1edd90031e13a105795b617d5`. **Core continuity v0.3 and [Nov 12 resume authorization](../coordination/BAGUETTE_M9a_Resume_Authorization_2026-11-12.md) explicitly lift the operator pause for bounded M9a camera/render/Vulkan/sensor I/O commissioning only**, not fresh scientific evaluation. No new native camera-neutrality or nonprivileged verifier acceptance was established; **the existing commissioning pause has been lifted by Core**; live server health was not verified.
+
+**New research pressure and opportunity:** [AMP1](https://arxiv.org/abs/2611.09892) **DEEP DIVE**: generalist tool/coding control as a genuine alternative to trained VLAs, but simulation pause/API/tool cost must be matched; [kNN action retrieval](https://arxiv.org/abs/2611.13160) **DEEP DIVE**: **91.7% LIBERO author claim without policy training**, official advertised repo returned 404 in our check—use as a cheap-control hypothesis rather than a ready artifact; [memory as clock / phantom progress](https://arxiv.org/abs/2611.14488) **DEEP DIVE**: null events create false progress in time-indexed memory, strengthening the existing evidence-freshness proposal; [RoboACE](https://arxiv.org/abs/2611.13034) **DEEP DIVE**: adversarial practice + revision harness, adding prior-art overlap; [small sensor-return adaptation](https://arxiv.org/abs/2611.13229) **DEEP DIVE concept**: deployment sensing calibration and environment transfer; [OopsieRecover](https://arxiv.org/abs/2611.08462) **READ→DEEP DIVE**: semantic transfer of corrective experience. [MR0](https://arxiv.org/abs/2611.08577), [Elastic-WAM](https://arxiv.org/abs/2611.14257), [BEHAVIOR 2026 solution](https://arxiv.org/abs/2611.14432) and Panasonic T-Rex remain **READ/WATCH**.
+
+**Upstream Nov 9 already covered:** Open-HumanWAM, generalist RL improvement, RoboColosseum, VLA-Tug, HiLo-WAM, SLA, Spatial-UMI and NEO-VLA. AURA inspected selected primary records; **Open-HumanWAM was revised to v3 on Nov 10**, and complete dataset availability was not re-audited. Upstream summaries are not independent validation.
+
+**Strategic refinement:** prioritize **scene/data/sensor/embodiment migration with low adaptation cost**, negative controls, modular-but-compatible policy adapters and matched resource/latency budgets—not a fixed architecture recipe. The [Nov 12 workbench proposal](../coordination/AURA_Research_Workbench_Proposal_2026-11-12.md) is **unapproved**, not a deployed collaboration app. Use actual model and experiment evidence rather than unverified benchmark badges.
+
+**HQ/Core action candidates:** Extend existing WP1–WP4, **without new assignments**. WP1 compares AMP1/RoboACE against DynaHarness/RoboArchitect and cheap baselines; WP2/WP4 define null-event/stale evidence and transfer controls, only as approved offline preparation; WP3 checks kNN/policy/agent/adapter feasibility, coordinating with Embodied-AI's separate VLA owner. **No new experiment nominated; retain the existing post-M9a evidence freshness/invalidation comparison, with a null-event negative control.**
+
+**Execution footer:** Continue authorized M9a commissioning under Core's Nov 12 resume authorization; Change now **none**; Next checkpoint **no newly activated experiment**; Deferred massive training, new sensors, agentic full reproduction and workspace automation; Evidence produced **sourced reading, bilingual report/decision materials only**, no model inference, CPU/native/physical test or accepted audit.
+
+---
+
+
+
 ## November 5, 2026 — newest research/decision delta
 
 [Full English watch](2026/2026-11-05.md) · [中文周报](2026/2026-11-05.zh-CN.md) · [HQ/Core handoff](2026/2026-11-05-handoff.md) · [中文队友交接](2026/2026-11-05-handoff.zh-CN.md).
