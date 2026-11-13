@@ -1,0 +1,21 @@
+# Keep model/data binaries and local runtime products outside the public tree.
+*.safetensors
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.npz
+*.npy
+*.mp4
+*.avi
+*.tar
+*.tar.gz
+*.part
+checkpoints/
+datasets/
+local-runs/
+private-artifacts/
+__pycache__/
+.env
+.env.*
+.venv/

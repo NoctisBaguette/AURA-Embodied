@@ -1,0 +1,2 @@
+START HERE — 22 OCTOBER 2026
+Read LingBot-Team-Complete-Guide-EN-ZH.txt, ENGLISH section. It includes both roles, sources, the 24 October deadline, reports, GitHub and AI prompts. Use LingBot-AURA-Workspace-20261022.zip as source material. CURRENT.md carries later manual status. The older 21 October bundle is superseded for onboarding.

@@ -1,0 +1,6 @@
+ROLE A AI STARTER / A角色AI开工提示
+Attach the complete guide and source ZIP. / 附完整指南及源码ZIP。
+
+I am teammate A. Read one full language of LingBot-Team-Complete-Guide-EN-ZH.txt and the real role-specific sources. Follow its P0 priorities, 23 October noon draft, 24 October 20:00 Beijing delivery, shared interfaces and reports. List files actually read. Implement a useful CPU draft now. Use fixtures only as labelled development evidence; do not invent real loading, robot episodes or missing code. Return code, exact commands/results, missing inputs, remaining hours and takeover instructions. Preserve the running server and one fixed policy identity. Do not launch GPUs or change dependencies.
+
+我是队友A。请读完整指南的一种语言及对应真实源码，按P0优先级、23日中午草稿、24日北京时间20:00交付、共享接口及日报要求执行。列出实际读过的文件，马上做有用CPU草稿。fixtures只作明确标注的开发证据，不虚构加载、机器人episode或缺失实现。交代码、准确命令/结果、缺输入、剩余工时及接手步骤。保留当前服务器和单一固定模型身份，不启动GPU或改依赖。

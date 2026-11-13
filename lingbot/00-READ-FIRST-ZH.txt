@@ -1,0 +1,2 @@
+先读这里 — 2026年10月22日
+阅读LingBot-Team-Complete-Guide-EN-ZH.txt的中文完整说明：含A/B职责、来源、24日截止、日报、GitHub及AI提示词。源码使用LingBot-AURA-Workspace-20261022.zip，后续人工状态看CURRENT.md。21日旧包不再作为当前入门资料。
