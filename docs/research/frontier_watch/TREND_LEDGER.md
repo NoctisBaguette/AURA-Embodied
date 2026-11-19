@@ -1,5 +1,21 @@
 # AURA Frontier Watch — Trend Ledger
 
+## November 19, 2026 — Transfer-aware policy interfaces are emerging as a separate research axis
+
+**Status: emerging, material hypothesis refinement, not an approved module or experiment.** [Full dated review](2026/2026-11-19.md) · [中文](2026/2026-11-19.zh-CN.md).
+
+New evidence contrasts **InteractVLA (Nov17)**, a frozen flow policy exposed through geometric target guidance and inspectable action chunks; **CoBoVLA (Nov17)**, explicit step/action codes in a 250M learned policy; and **MARS (Nov14)**, stage-conditioned skill routing. Upstream **PEAR (Nov13)** uses robot-use RL inside a reasoning model, whereas **Reins (Nov12)** uses guarded external actions and fresh observations. They represent **competing implementation locations for robot intelligence**: policy-native, policy interface, or external execution structure. None proves arbitrary trained parts are interchangeable. [InteractVLA](https://arxiv.org/abs/2611.22584) · [CoBoVLA](https://arxiv.org/abs/2611.22395) · [PEAR](https://arxiv.org/abs/2611.18562) · [Reins](https://arxiv.org/abs/2611.16632).
+
+**Falsifiable hypothesis:** under a common frozen policy and task, a transparent, versioned geometric/action interface may reduce the target-scene adaptation or correction cost relative to an opaque language-only call, **only when its coordinate frames, action semantics and sensing satisfy compatibility**. An integrated learned policy or cheap retrieval/control may still win, especially after counting tool calls, gradient guidance, calibration and wall time. “Modular software” does **not** imply “interchangeable learned representation” or “transfer accomplished.”
+
+**Evaluation guard:** source/target objects, layouts, sensor configurations, data, robot/action frames and target demonstrations must be explicit, with matched policy, success predicates, full latency and interventions. [Nov13 sensor-bias study](https://arxiv.org/abs/2611.17658) further requires testing **persistent closed-loop calibration bias**, not just random open-loop noise. Compare with Nov12 phantom-progress negative control, without altering M9a.
+
+**Execution:** MONITOR/BACKLOG; no current architecture decision, new experiment or change to Core-authorized M9a commissioning. This entry extends earlier architecture/intervention/transfer trends; it does not invalidate previous evidence.
+
+
+---
+
+
 
 ## November 12, 2026 — T17: event-grounded progress, cheap baselines and transfer claims
 
