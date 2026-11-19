@@ -1,5 +1,8 @@
 # AURA-Embodied Frontier Watch
 
+**Newest bilingual Frontier Watch — November 19, 2026:** [English full report](2026/2026-11-19.md) · [中文周报](2026/2026-11-19.zh-CN.md) · [HQ/Core/team handoff](2026/2026-11-19-handoff.md) · [中文决策与分工交接](2026/2026-11-19-handoff.zh-CN.md) · [current radar](CURRENT.md) · [中文雷达](CURRENT.zh-CN.md). Current 06-01 M9a commissioning authorization remains unchanged; new policy/transfer research is NOT a new experiment authorization.
+
+
 **Latest bilingual watch (2026-11-12):** [English report](2026/2026-11-12.md) · [中文周报](2026/2026-11-12.zh-CN.md) · [HQ/Core/team handoff](2026/2026-11-12-handoff.md) · [中文分工交接](2026/2026-11-12-handoff.zh-CN.md). [Current research radar](CURRENT.md) · [当前研究雷达](CURRENT.zh-CN.md). The Nov 12 transfer-first [research workbench proposal](../coordination/AURA_Research_Workbench_Proposal_2026-11-12.md) is **proposed, not implemented or authorized**. No new M9a experiments were initiated.
 
 **Languages:** English · [简体中文 / Chinese reading index](README.zh-CN.md)
