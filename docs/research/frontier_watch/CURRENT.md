@@ -1,5 +1,23 @@
 # AURA Frontier Watch — Current Research Radar
 
+## November 19, 2026 — newest watch / decision delta
+
+**New reports:** [English Nov19](2026/2026-11-19.md) · [中文周报](2026/2026-11-19.zh-CN.md) · [HQ/Core handoff](2026/2026-11-19-handoff.md) · [中文决策交接](2026/2026-11-19-handoff.zh-CN.md).
+
+**Confirmed engineering gate (Nov19 exact ref):** experiment branch **06-01/aether-cl-m0 = cd8185dbe36676c1edd90031e13a105795b617d5**. [Core v0.3](../coordination/BAGUETTE_Core_Research_Continuity_v0.3.md) and [Nov12 resume authorization](../coordination/BAGUETTE_M9a_Resume_Authorization_2026-11-12.md) **permit existing Vulkan/render/camera/sensor-I/O commissioning only**, not fresh M9a science; no newly accepted camera-neutrality/nonprivileged verifier evidence was established from the inspected repo. Server liveness unverified. **No changes to controller, task, seeds, phase limits, recovery, scorer or 800-action budget.**
+
+**AURA independently discovered in Nov12–18 scan:** [InteractVLA Nov17](https://arxiv.org/abs/2611.22584) **DEEP DIVE** (frozen flow-VLA steered via geometry and inspectable action chunks; [official source](https://github.com/LingwuPro/InteractVLA) inspected; cross-protocol results are author-only); [CoBoVLA Nov17](https://arxiv.org/abs/2611.22395) **DEEP DIVE** (250M step/action-code policy, assets unverified); [MARS Nov14](https://arxiv.org/abs/2611.19324) **READ→DEEP DIVE** (specialist skill routing and switching cost); [ThinkWAM Nov16](https://arxiv.org/abs/2611.21258) and [Task Convergent Nov17](https://arxiv.org/abs/2611.22609) **DEEP DIVE** (runtime prediction/search and privileged progress; do not mistake latter for sensor verification); [ReLAP Nov17](https://arxiv.org/abs/2611.22077), [PriDex Nov16](https://arxiv.org/abs/2611.21908), [JointGV Nov17](https://arxiv.org/abs/2611.22543) and [ScaleVLA Nov16](https://arxiv.org/abs/2611.21607) **READ/WATCH** (video-only training, human-to-robot mapping, inaccessible code, huge model respectively).
+
+**Upstream Nov16 already found; original primary sources checked:** [PEAR](https://arxiv.org/abs/2611.18562) (27B robot-use RL, official [repo](https://github.com/mit-han-lab/pear) read; H100/H200 training), [Reins](https://arxiv.org/abs/2611.16632) (guarded action chains and concurrent observations, code not confirmed), [Agentic-Teacher](https://arxiv.org/abs/2611.17394) (failure-state demonstrations for VLA post-training), [STVLA](https://arxiv.org/abs/2611.16589) (geometry-aware history), [closed-loop persistent noise bias](https://arxiv.org/abs/2611.17658) (simple but valuable negative control). GR00T2, Gemini Robotics 2.5, Praxis-1 and LingBot-Touch remain important **upstream-only / not fully re-audited** this week. Read [Embodied-AI Nov16](https://github.com/NoctisBaguette/Embodied-AI-Research/blob/main/reports/frontier_watch/2026/2026-11-16.md), not its M4 experiment as AURA evidence.
+
+**HQ/Core proposal:** Keep multiple competing policy, interface, memory and prediction routes; update **existing WP1–WP4** only and evaluate **actual held-out scene/data/sensor/embodiment transfer per adaptation cost** against cheap baselines. The strongest *design-only* addition to existing post-M9a **evidence-freshness/state invalidation** candidate is **persistent calibration bias vs transient sensor noise**, alongside the earlier null-event/phantom-progress control. **No new experiment family nominated; no teammate assigned.** The separate Feishu workbench proposal is not evidence of a deployed synchronized system.
+
+**Execution footer:** **Continue** resumed M9a commissioning; **Change now none**; **Next checkpoint** zero new studies, Core may consider controls after sensing acceptance; **Deferred** full PEAR/ScaleVLA training, WAM/policy integration, new hardware/simulator migration; **Evidence produced** primary-source reading, two official GitHub READMEs, repo ref check and bilingual documents—**no local/model/native/audited runs, no reproduction or new approval**.
+
+
+---
+
+
 
 ## November 12, 2026 — newest research and decisions
 
