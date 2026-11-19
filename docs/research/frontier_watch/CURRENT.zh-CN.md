@@ -1,5 +1,23 @@
 # AURA 前沿观察：当前研究雷达
 
+## 2026年11月19日 — 最新研究与决策更新
+
+**新文件：**[中文完整周报](2026/2026-11-19.zh-CN.md) · [English](2026/2026-11-19.md) · [中文 HQ/Core/队友交接](2026/2026-11-19-handoff.zh-CN.md) · [English handoff](2026/2026-11-19-handoff.md)。
+
+**工程边界已核对（11月19日 Git ref）：**实验分支 **06-01/aether-cl-m0 = cd8185dbe36676c1edd90031e13a105795b617d5**。[Core v0.3](../coordination/BAGUETTE_Core_Research_Continuity_v0.3.md) 与[11月12日恢复授权](../coordination/BAGUETTE_M9a_Resume_Authorization_2026-11-12.md)**仅允许原有 Vulkan/渲染/相机/传感器 I/O commissioning**，不代表新 M9a 科学评测已授权。已读仓库尚无新的相机/物理中立性、非特权验证器接受凭据；服务器实时健康未查。**控制器、任务、种子、阶段、恢复、评分、800动作预算均不改。**
+
+**AURA 11月12–18日独立新发现：**[InteractVLA（11月17日）](https://arxiv.org/abs/2611.22584) **DEEP DIVE**（冻结流式VLA的几何引导和可检查动作块，[官方代码](https://github.com/LingwuPro/InteractVLA) 已读，但作者分数跨协议）；[CoBoVLA（11月17日）](https://arxiv.org/abs/2611.22395) **DEEP DIVE**（250M参数步骤/动作码，权重可用性未确认）；[MARS（11月14日）](https://arxiv.org/abs/2611.19324) **READ→DEEP DIVE**（专业技能路由，需考虑切换成本）；[ThinkWAM（11月16日）](https://arxiv.org/abs/2611.21258) 和[Task Convergent（11月17日）](https://arxiv.org/abs/2611.22609) **DEEP DIVE**（在线预测/搜索、使用特权模拟进展，不能直接当非特权验证器）；[ReLAP（11月17日）](https://arxiv.org/abs/2611.22077)、[PriDex（11月16日）](https://arxiv.org/abs/2611.21908)、[JointGV（11月17日）](https://arxiv.org/abs/2611.22543) 和[ScaleVLA（11月16日）](https://arxiv.org/abs/2611.21607) **READ/WATCH**（纯视频训练、人类到机器人迁移、代码404、超大模型成本）。
+
+**上游11月16日已发现、AURA独立阅读论文/官方代码：**[PEAR](https://arxiv.org/abs/2611.18562)（27B robot-use RL，[代码](https://github.com/mit-han-lab/pear)已读，H100/H200训练），[Reins](https://arxiv.org/abs/2611.16632)（条件动作/并发观测，代码未核实），[Agentic-Teacher](https://arxiv.org/abs/2611.17394)（从首错点示范补训），[STVLA](https://arxiv.org/abs/2611.16589)（几何时序记忆），[闭环持续偏移](https://arxiv.org/abs/2611.17658)（廉价负对照）。GR00T2、Gemini 2.5、Praxis-1 和 LingBot-Touch 此次保留为**上游线索/未全面重新核验**。详见[Embodied-AI 11月16日报告](https://github.com/NoctisBaguette/Embodied-AI-Research/blob/main/reports/frontier_watch/2026/2026-11-16.md)，不得把其 M4 误认为 AURA 进度。
+
+**HQ/Core 拟议：**开放不同政策/接口/记忆/预测路线，在原**WP1–WP4**上更新，不无限增加新工作；用实际未见场景、数据、传感、本体的**源→目标效果/适配成本**与简单基线公平比较。原 M9a 后“**证据时效性/任务状态失效**”可增加“**持续标定偏差 vs 短时随机噪声**”离线负对照，保留上期“空事件/假进展”对照。**新提名实验零个，队友未分配。**独立飞书工作台提案不能当作已部署/同步系统。
+
+**执行总结：****Continue** 现有 M9a 调试；**Change now 无**；**Next checkpoint** 无新实验，感知验收后由 Core 考虑负对照；**Deferred** 超大模型训练、额外 WAM/策略集成、新硬件和模拟器迁移；**Evidence** 一手来源阅读、两个官方仓库 README、分支 ref 检查和中英文报告，**没有本地/模型/原生/审计实验，也未新授权复现**。
+
+
+---
+
+
 
 ## 2026年11月12日 — 最新研究/决策更新
 
