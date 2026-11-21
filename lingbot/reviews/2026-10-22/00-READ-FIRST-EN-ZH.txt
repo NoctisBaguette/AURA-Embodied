@@ -1,0 +1,23 @@
+LINGBOT: A/B HANDOFF REVIEW + REAL BASELINE VISUALS
+22 October 2026 evidence update. Internal finish date remains 24 October.
+
+ENGLISH
+This supplements the complete bilingual guide; it does not replace the project source ZIP.
+A's original 22 October handoff is retained unchanged under A-original/.
+Read 01-A-REVIEW-EN-ZH.txt (A), 02-B-VISUAL-TRIAGE-EN-ZH.txt (B), and 03-PERFORMANCE-FINDINGS-EN-ZH.txt (both).
+The videos/arrays are actual retained BASELINE evidence, not current trained-candidate results. The 31 reviewed completed episodes contain 3 successes, all click_bell. The latest captain-pasted status reports baseline32/32 and training23300/50000 updates, but candidate0/32. Its loss0.04076 does not establish task success.
+The captain is preparing an optional existing graceful training-stop request to obtain candidate feedback sooner. This ends that training stage, preserving a checkpoint and continuing the existing candidate evaluation; it does not automatically resume the remaining training updates. Teammates must not operate the server controls or start a second GPU job independently.
+
+Do useful CPU work now. A: fix rejection boundaries and implement the real loader. B: analyze these real failures while completing evaluation/resume/aggregation. A missing GPU window blocks GPU validation, not writing and reviewing those components. Report actual remaining blockers immediately rather than waiting until the daily report.
+Next handoff: within 2 working hours, return concrete changed files + test output + exact missing inputs. Keep the existing 23 October noon intermediate handoff and 24 October final delivery; if a target has already passed, send a partial immediately with remaining hours. Daily report at22:00 Beijing on22/23, plus final24October report. Each report: completed files/commit, commands and evidence, NOT IMPLEMENTED vs NOT RUN, blocker/owner, next delivery time, takeover steps. AI-assisted reports are welcome; inspect their claims yourself.
+
+GitHub: https://github.com/NoctisBaguette/AURA-Embodied/tree/lingbot/competition/lingbot
+A branch lingbot/portable-package; B branch lingbot/full-evaluation; PR base lingbot/competition. Direct ZIP handoff remains acceptable. Do not commit weights, raw private logs or machine credentials. Do not change reference/ or official/.
+
+中文
+本包是完整中英指南的补充，不替代项目源码ZIP。A在10月22日交付的原ZIP保存在A-original/，未修改。
+A读01，B读02，两人都读03。视频和数组均来自真实的旧baseline，并非当前训练候选策略。已复核31个完成回合，3次成功，全部来自click_bell。队长最新终端信息显示baseline32/32完成、训练23300/50000更新，但候选评测0/32。loss0.04076不等于任务成功率。
+队长准备了可选的现有平滑结束训练控制，以提前获得候选评测反馈。其效果是结束本轮训练阶段，保存检查checkpoint，然后继续现有候选评测；不会自动接着训练剩余更新。队员不要自行操作服务器控制或另开GPU任务。
+A现在修复校验拒绝边界并实现真实loader；B现在用这些真实视频分析失败，同时完成评测、续评和汇总代码。没有GPU只阻塞GPU验收，不阻塞代码实现和CPU审查。遇到阻塞立刻报，不要等日报。
+从收到本包开始2个工作小时内交一次具体文件/测试/缺失输入。保留23日中午阶段交付、24日最终交付；如时间已过，立即交部分成果和剩余工时。22/23日北京时间22:00日报，24日交最终报告。写清文件/commit、实际运行命令与证据、未实现和未运行的区别、阻塞及责任人、下一次交付时间、接手步骤。可以用AI写，但本人要核实。
+GitHub地址如上；A用lingbot/portable-package，B用lingbot/full-evaluation，PR目标lingbot/competition。直接ZIP交接也可以。不要上传权重、私有原始日志或凭据，不要改reference/和official/。

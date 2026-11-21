@@ -1,0 +1,31 @@
+9. SOURCES AND FINAL RETURN CHECKLIST
+
+Competition rules (historical source links; this revision does not claim a new live rules check; captain verifies notices before official submission):
+  https://tianchi.aliyun.com/competition/entrance/532514/information
+  https://tianchi.aliyun.com/competition/entrance/532514/introduction
+Organizer files in official/: code-requirements.md, results-template.json, reproduction-template.md, optional-robot-demo-template.md. These supplied template bytes are retained exactly. Use the official results schema, not an invented one.
+Upstream background:
+  https://github.com/Robbyant/lingbot-vla-v2
+  https://github.com/RoboTwin-Platform/RoboTwin
+  https://huggingface.co/robbyant/lingbot-vla-v2-6b
+  https://huggingface.co/datasets/TianxingChen/RoboTwin2.0
+Local evidence: progress/2026-10-22-training-5420-user.json and progress/current.json (latest attributed snapshot; earlier files and reference/current-state.json are historical); provenance/public-reference-manifest.json (copy identities); reference/ runtime producers/consumers. Exact original archive, for authorized readers: https://github.com/NoctisBaguette/Embodied-AI-Research/tree/d160e0eac2357674abc156bf6d489b356960278b/experiments/lingbot-competition
+Do not substitute moving upstream examples for this project's reviewed interfaces. The September Day-0 startup holds are historical, not today's instructions. Official rules govern participation; actual source/evidence govern implementation and observed progress; A/B allocation and reporting times are team choices.
+
+Before sending any handoff, include: role; actual changed code/commit; exact starting/test commands; PASSED/FAILED/NOT RUN evidence; missing inputs; remaining essentials and estimated effort; next delivery. A adds artifact/restore/parity status; B adds coverage/resume/aggregation status. No polished slide deck needed.
+
+9. 来源和交付前自查
+
+比赛规则（历史来源链接，本次更新不声称重新在线核实规则；正式提交前由队长核对公告）：
+  https://tianchi.aliyun.com/competition/entrance/532514/information
+  https://tianchi.aliyun.com/competition/entrance/532514/introduction
+official/ 内四份主办方模板：code-requirements.md、results-template.json、reproduction-template.md、optional-robot-demo-template.md。提供的模板字节保持原样，正式结果按官方 schema。
+上游背景：
+  https://github.com/Robbyant/lingbot-vla-v2
+  https://github.com/RoboTwin-Platform/RoboTwin
+  https://huggingface.co/robbyant/lingbot-vla-v2-6b
+  https://huggingface.co/datasets/TianxingChen/RoboTwin2.0
+本地证据：progress/2026-10-22-training-5420-user.json和progress/current.json是最新带来源快照；更早文件及reference/current-state.json为历史；provenance/public-reference-manifest.json 标识副本；reference/ 有实际 producer/consumer。获授权读者可访问准确私有原档：https://github.com/NoctisBaguette/Embodied-AI-Research/tree/d160e0eac2357674abc156bf6d489b356960278b/experiments/lingbot-competition
+不要拿不断变化的上游示例替代本项目已审查接口。9 月 Day-0 的启动暂停说明是历史信息，不是今天的指令。官方规则管参赛，实际源码/证据决定实现事实与已观察进度，A/B 分工和日报时间属于团队安排。
+
+每次交接确认附上：角色、真实改动代码/commit、准确启动/检查命令、PASSED/FAILED/NOT RUN 证据、缺失输入、剩余必做项/估时、下次交付。A 加资源/恢复/一致性状态，B 加覆盖/续跑/汇总状态。不需要漂亮 PPT。

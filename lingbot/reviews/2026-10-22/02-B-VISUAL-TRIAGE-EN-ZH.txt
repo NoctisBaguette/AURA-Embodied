@@ -1,0 +1,27 @@
+B — START FROM THESE REAL FAILURES NOW
+
+ENGLISH
+Numeric review covers31completed baseline episodes. Representative model-facing head-camera samples cover eight clean tasks; observer-camera sequences cover lift_pot/handover_block/place_can_basket. This is not a claim that every frame of every failure was manually reviewed. All scenes are retained baseline, not the current candidate.
+videos/ has full unchanged recorded observer videos: one click_bell success and three failures. They are actual simulator renders, not reconstructed animation. The observer camera is additional to the three model input cameras. Playback time is encoded10fps recording time, not measured wall-clock or a claim of real-time speed. camera-sheets/ shows actual archived camera JPEGs and decoded training-image comparisons. Beginning wrist views can be mostly table/wall in both source and live scenes; a blank-looking wrist view alone is not proof of a missing camera.
+
+Confirmed examples (clean,seed100000):
+- lift_pot: official failure after400actions. Mean across six joints of each arm's measured range: left6.4degrees,right92.9degrees. Left gripper commands stay about0.99–1.01. Images show one-sided approach and no successful dual-handle lift. These ranges are joint-motion summaries, not end-effector distance or an automatically inferred 'correct arm'.
+- handover_block: failure after800actions; left130.2degrees vs right7.2degrees mean joint range. Block is knocked over in early samples; no completed handover/placement in the sampled sequence.
+- place_can_basket: failure after700actions; can is on its side by the middle samples and never produces official success. One right-arm TOPP exception at action385 is recorded; keep it as an event, not a diagnosis of all failures.
+- click_bell success is included as a positive control; do not remove it from aggregates or call all outcomes zero.
+
+episode-metrics.json lists all31outcomes/arm ranges/tracking/TOPP counts. decoded-action-crosscheck.json independently reconstructs all24available normalized-policy outputs through the exact normalization and55D-to14Dmapping: max error0, and all24simulator command arrays equal the float32 cast of the recorded decoded output. This covers the retained bottle chunks, not every task or the neural encoder itself.
+
+Deliver within2working hours a CSV or Markdown table:
+task,setting,scene_seed,checkpoint identity,official success,total actions,first observable deviation(action/chunk/video frame),failure stage(approach/grasp/transport/handover/release),camera evidence,commands/state evidence,known fact vs hypothesis,one discriminating next check.
+Analyze full videos, not just final frames. For exact action alignment use tracking.npz action_index vs recorded frame order or the archived chunk-N camera files (before action50*(N-1)); do not equate a video second with action number. State any sampling uncertainty. Existing reported RMSE is measured joints versus instantaneous drive targets, not gripper grasp quality or Cartesian error.
+
+In parallel finish evaluator ledger/resume/aggregation using the actual episode producer. Keep COMPLETE/failed policy episodes, typed setup rejections, fatal infrastructure errors and commissioning separate. Never count commissioning as success, rerun a completed failure for a better seed, or fill unrun cells as zero. Use one fixed final model manifest per scored evaluation. Do not launch10,000episodes or multi-GPU concurrency without captain resource allocation and a measured throughput estimate.
+Keep candidate comparisons paired to the baseline protocol. Inspect early candidate episodes as they finish; an unchanged failure pattern is a reason to test a specific boundary, not a reason to automatically launch more training. Coordinate fresh-process parity with A.
+
+中文
+31个旧baseline完成回合的数值记录已汇总；8个clean任务有代表性输入头相机序列，3个失败任务有observer完整过程采样。本包不声称人工逐帧看完全部失败，也不是当前candidate结果。
+videos/包含真实模拟器observer视频：click_bell一次成功，以及lift_pot、handover_block、place_can_basket三个失败。不是动画重建。observer不是模型输入三相机之一；视频10fps时间不等于实际耗时。camera-sheets/是归档真实输入截图和训练源图像对照；初始腕部镜头在训练和现场都可能主要看到桌面/墙，不能据此直接断言相机丢失。
+例子都是clean/seed100000：lift_pot左/右六关节平均活动范围6.4/92.9度，左夹爪基本保持张开，未形成双手抬锅；handover_block左/右130.2/7.2度，早期方块倒下，未完成交接；place_can_basket中段罐子已侧倒，无成功，action385有一次右臂TOPP异常。活动范围不是末端位移，也不是自动判断“应该用哪只手”的标准。click_bell成功作为正对照保留。
+现在2个工作小时内交表：任务/setting/seed/checkpoint身份/正式成败/总动作数/第一个可见偏差的动作或chunk或视频帧/失败阶段/图像证据/指令和实际状态证据/事实与假设/下一项能区分原因的检查。先看完整过程，不要只看结尾。动作对齐用tracking.npz或chunk截图，不要把视频秒数当动作编号。RMSE是关节实际值对瞬时驱动目标，不代表夹住物体或末端轨迹正确。
+同时完成实际评测ledger、续评和汇总。保留完整策略失败；commission、合法setup拒绝和基础设施fatal错误分别记，不能算成功，不能刷seed替换失败，未跑任务不能伪装成0分结果。A负责真实加载/parity，B负责评测；同一份最终权重身份。GPU和并发由队长安排，先测吞吐再决定覆盖范围。不要等训练结束才开始这些工作。
