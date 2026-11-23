@@ -1,0 +1,165 @@
+{
+  "passed": true,
+  "review_date_utc": "2026-10-08",
+  "full_native_audit_passed": true,
+  "exact_original_audit_program_retained": true,
+  "portable_replay_and_pair_functions_ast_identical": true,
+  "portable_input_only_smoke_passed": true,
+  "portable_input_only_log_sha256": "e17a9b94c2275efed57127c746463b698f2edf93792efbd02fdb3b9b2c50796f",
+  "all15_snapshot_sources_unchanged": true,
+  "csv_rows": {
+    "episodes": 360,
+    "cells": 18,
+    "paired": 120
+  },
+  "figure_source": "native curve.csv; all twenty scenes retained; linear requested-offset axis",
+  "figure_rendered_inspected": true,
+  "document_links": [
+    {
+      "from": "docs/research/experiments/AETHER_CL_M7_Results.md",
+      "target": "docs/research/experiments/AETHER_CL_M7_Insertion_Preregistration.md"
+    },
+    {
+      "from": "docs/research/experiments/AETHER_CL_M7_Results.md",
+      "target": "docs/research/experiments/evidence/AETHER_CL_M7_Insertion_Protocol.json"
+    },
+    {
+      "from": "docs/research/experiments/AETHER_CL_M7_Results.md",
+      "target": "docs/research/experiments/evidence/AETHER_CL_M7_Freeze_Receipt.json"
+    },
+    {
+      "from": "docs/research/experiments/AETHER_CL_M7_Results.md",
+      "target": "docs/research/experiments/evidence/AETHER_CL_M7_Candidates_v5_Review.json"
+    },
+    {
+      "from": "docs/research/experiments/AETHER_CL_M7_Results.md",
+      "target": "docs/research/experiments/evidence/AETHER_CL_M7_Robustness.svg"
+    },
+    {
+      "from": "docs/research/experiments/AETHER_CL_M7_Results.md",
+      "target": "docs/research/experiments/evidence/AETHER_CL_M7_Executed_Review.py"
+    },
+    {
+      "from": "docs/research/experiments/AETHER_CL_M7_Results.md",
+      "target": "tools/m7_native_review.py"
+    },
+    {
+      "from": "docs/research/experiments/AETHER_CL_M7_Results.md",
+      "target": "docs/research/experiments/evidence/AETHER_CL_M7_Native_Audit.json"
+    },
+    {
+      "from": "docs/research/experiments/AETHER_CL_M7_Results.md",
+      "target": "docs/research/experiments/evidence/AETHER_CL_M7_Episode_Outcomes.csv"
+    },
+    {
+      "from": "docs/research/experiments/AETHER_CL_M7_Results.md",
+      "target": "docs/research/experiments/evidence/AETHER_CL_M7_Cell_Outcomes.csv"
+    },
+    {
+      "from": "docs/research/experiments/AETHER_CL_M7_Results.md",
+      "target": "docs/research/experiments/evidence/AETHER_CL_M7_Paired_Outcomes.csv"
+    },
+    {
+      "from": "docs/research/experiments/AETHER_CL_M7_Results.md",
+      "target": "docs/research/experiments/evidence/AETHER_CL_M7_Diagnostics.json"
+    },
+    {
+      "from": "docs/research/experiments/AETHER_CL_M7_Results.md",
+      "target": "docs/research/experiments/AETHER_CL_M7_First18_Review.md"
+    },
+    {
+      "from": "docs/research/experiments/AETHER_CL_M7_Results.md",
+      "target": "docs/research/experiments/AETHER_CL_M7_Return_to_02.md"
+    },
+    {
+      "from": "docs/research/experiments/AETHER_CL_M7_Return_to_02.md",
+      "target": "docs/research/experiments/AETHER_CL_M7_Results.md"
+    },
+    {
+      "from": "docs/research/experiments/AETHER_CL_M7_Return_to_02.md",
+      "target": "docs/research/experiments/evidence/AETHER_CL_M7_Native_Audit.json"
+    },
+    {
+      "from": "docs/research/experiments/AETHER_CL_M7_Return_to_02.md",
+      "target": "docs/research/experiments/evidence/AETHER_CL_M7_Episode_Outcomes.csv"
+    },
+    {
+      "from": "docs/research/experiments/AETHER_CL_M7_Return_to_02.md",
+      "target": "docs/research/experiments/evidence/AETHER_CL_M7_Cell_Outcomes.csv"
+    },
+    {
+      "from": "docs/research/experiments/AETHER_CL_M7_Return_to_02.md",
+      "target": "docs/research/experiments/evidence/AETHER_CL_M7_Paired_Outcomes.csv"
+    },
+    {
+      "from": "docs/research/experiments/AETHER_CL_M7_Return_to_02.md",
+      "target": "docs/research/experiments/evidence/AETHER_CL_M7_Diagnostics.json"
+    }
+  ],
+  "measurement_code_changes": 0,
+  "proposed_change_paths_all_new": true,
+  "publication_base_commit": "c04ef54c76a2dcfd7f10b6d9a63e4815c9977847",
+  "parent_blob_count": 174,
+  "files": [
+    {
+      "path": "docs/research/experiments/AETHER_CL_M7_Results.md",
+      "bytes": 15204,
+      "sha256": "dd05cb790258fbfd929d9b7fb6981c4b19dfda7363e219453dae53f72febe2c8",
+      "git_blob": "9c0bc8483407a98af1474c1a0df76b31fc4b6304"
+    },
+    {
+      "path": "docs/research/experiments/AETHER_CL_M7_Return_to_02.md",
+      "bytes": 4688,
+      "sha256": "6a23280696c9f7d5786f5a9b261de177aea051793f4670351feadd3d1f61241c",
+      "git_blob": "e85b28b524b6078f1da5f3f598d784195e21aa2b"
+    },
+    {
+      "path": "tools/m7_native_review.py",
+      "bytes": 13281,
+      "sha256": "3cf0d2498ecd291849ed087b4a96d0c7b1c39bb5318881f6aa68deb794828b0e",
+      "git_blob": "f3b020fb998293884fc85832c3d3f4fa80c3de5a"
+    },
+    {
+      "path": "docs/research/experiments/evidence/AETHER_CL_M7_Native_Audit.json",
+      "bytes": 605648,
+      "sha256": "f2a96079b5d15823bb147f02e2759d84a22f19ea92ab82a99c674977a486d304",
+      "git_blob": "a4515fba7480b5129df884fece048c8c7c2a8842"
+    },
+    {
+      "path": "docs/research/experiments/evidence/AETHER_CL_M7_Diagnostics.json",
+      "bytes": 807015,
+      "sha256": "9198288890f182edc8dde4d9e5960f32beeb935765b5be08724bed2da0c06390",
+      "git_blob": "b9b9abdd99521e515f6b4c198ecc3544b2a44e85"
+    },
+    {
+      "path": "docs/research/experiments/evidence/AETHER_CL_M7_Executed_Review.py",
+      "bytes": 11835,
+      "sha256": "5df6595b6a0fe082645acb127248378d4bd694c5a5bc65a47d98840a7aaccec8",
+      "git_blob": "764ffa417d21291265f8a23c077cafc80a5036b1"
+    },
+    {
+      "path": "docs/research/experiments/evidence/AETHER_CL_M7_Episode_Outcomes.csv",
+      "bytes": 374757,
+      "sha256": "2a55c721299138c6f1d9f53301174ae6681c97581ae9979a90b5f99d661400ef",
+      "git_blob": "d6f9e3c037666fd3e006e35a8ad01f034c520af5"
+    },
+    {
+      "path": "docs/research/experiments/evidence/AETHER_CL_M7_Cell_Outcomes.csv",
+      "bytes": 6971,
+      "sha256": "5d9c98215fb7a42e1f585eecad1f943e5b9c8bbee83562924a5db942923493bc",
+      "git_blob": "598c11dd2f348eaa9f26e47781656716407d2939"
+    },
+    {
+      "path": "docs/research/experiments/evidence/AETHER_CL_M7_Paired_Outcomes.csv",
+      "bytes": 14849,
+      "sha256": "db7a935e64a9d3b40418978a30f8b2c14932d121bc9dcf321c75976e2dbe9966",
+      "git_blob": "d4670de62ca2a392c41865f5989fd6a6568b888d"
+    },
+    {
+      "path": "docs/research/experiments/evidence/AETHER_CL_M7_Robustness.svg",
+      "bytes": 14283,
+      "sha256": "b74a34fbde0032d25d4ebb565db1046177e76b5a2600e5f7da9d42f96dfeb8f1",
+      "git_blob": "1dfef1be4a9be389574cd8b81e1330a7aaf272e6"
+    }
+  ]
+}
