@@ -1,5 +1,19 @@
 # AURA 前沿观察：当前研究雷达
 
+## 2026年11月26日 — 当前研究与决策更新
+
+[中文报告](2026/2026-11-26.zh-CN.md) · [English](2026/2026-11-26.md) · [中文HQ/Core交接](2026/2026-11-26-handoff.zh-CN.md) · [English handoff](2026/2026-11-26-handoff.md)。
+
+**工程不变：**11月26日精确分支06-01/aether-cl-m0 = cd8185dbe36676c1edd90031e13a105795b617d5。Core v0.3/11月12日恢复授权仅调试，非新M9a科学评测。已查记录无正式原生相机中立性/传感验证器验收；实时服务器未核实。保留冻结参数和审批。
+
+**新优先级：**[OmniAct v2](https://arxiv.org/abs/2611.33158v2)本体条件策略，资产待发；[Screw Attention v1](https://arxiv.org/abs/2611.32797v1)30K可训练参数不含冻结感知/语言，诊断消融有真值位姿；[MPQ](https://arxiv.org/abs/2611.32858v1)及[Keypose/Dense](https://arxiv.org/abs/2611.32788v1)分离选择/执行及控制器依赖；[iWAM](https://arxiv.org/abs/2611.33141v1)无显式视频的未来特定条件，计时协议有局限；[RoC](https://arxiv.org/abs/2611.26341)/[Embodied-Harness](https://arxiv.org/abs/2611.27689)强先前技术。均DEEP DIVE、BACKLOG。RoboRecast、MXI-MemICL、Support2Sim、WALL-OSS-1.0 READ/WATCH。关注全链路成本和留出场景/数据/传感/本体迁移；简单控制也可能获胜。
+
+**11月23日上游核查：**ForceHarness留出82.5 vs 62.5%，开发结果分开；Mind2Act资产v1.0.1/评估v1.0.2；PhysVAM、OVOA及AgentRoboCritic核查原始来源。**AgenticTask v2 11月24日撤回**（[来源](https://arxiv.org/abs/2611.26046v2)），移出活动证据/复现队列，保留历史；原因是作者同意问题，非已证实数字无效。RageVLA直接访问失败，仅上游。详见报告。
+
+**执行：**继续授权调试；当前不改实验（只修正文献）。下一关卡新候选零个，Core传感验收后原时效性/状态失效。推迟训练、策略/世界模型/包装/力控集成及硬件改动。证据仅阅读分析，无本地/原生/审计运行。延伸原WP1–WP4，无分配、无工作台同步。
+
+---
+
 ## 2026年11月19日 — 最新研究与决策更新
 
 **新文件：**[中文完整周报](2026/2026-11-19.zh-CN.md) · [English](2026/2026-11-19.md) · [中文 HQ/Core/队友交接](2026/2026-11-19-handoff.zh-CN.md) · [English handoff](2026/2026-11-19-handoff.md)。

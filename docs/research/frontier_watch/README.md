@@ -1,9 +1,11 @@
 # AURA-Embodied Frontier Watch
 
-**Newest bilingual Frontier Watch — November 19, 2026:** [English full report](2026/2026-11-19.md) · [中文周报](2026/2026-11-19.zh-CN.md) · [HQ/Core/team handoff](2026/2026-11-19-handoff.md) · [中文决策与分工交接](2026/2026-11-19-handoff.zh-CN.md) · [current radar](CURRENT.md) · [中文雷达](CURRENT.zh-CN.md). Current 06-01 M9a commissioning authorization remains unchanged; new policy/transfer research is NOT a new experiment authorization.
+**Newest bilingual watch — November 26, 2026:** [English](2026/2026-11-26.md) · [中文](2026/2026-11-26.zh-CN.md) · [HQ/Core handoff](2026/2026-11-26-handoff.md) · [中文交接](2026/2026-11-26-handoff.zh-CN.md) · [radar](CURRENT.md). No change to current M9a; AgenticTask withdrawn Nov24.
+
+**Previous bilingual Frontier Watch — November 19, 2026:** [English full report](2026/2026-11-19.md) · [中文周报](2026/2026-11-19.zh-CN.md) · [HQ/Core/team handoff](2026/2026-11-19-handoff.md) · [中文决策与分工交接](2026/2026-11-19-handoff.zh-CN.md) · [current radar](CURRENT.md) · [中文雷达](CURRENT.zh-CN.md). Current 06-01 M9a commissioning authorization remains unchanged; new policy/transfer research is NOT a new experiment authorization.
 
 
-**Latest bilingual watch (2026-11-12):** [English report](2026/2026-11-12.md) · [中文周报](2026/2026-11-12.zh-CN.md) · [HQ/Core/team handoff](2026/2026-11-12-handoff.md) · [中文分工交接](2026/2026-11-12-handoff.zh-CN.md). [Current research radar](CURRENT.md) · [当前研究雷达](CURRENT.zh-CN.md). The Nov 12 transfer-first [research workbench proposal](../coordination/AURA_Research_Workbench_Proposal_2026-11-12.md) is **proposed, not implemented or authorized**. No new M9a experiments were initiated.
+**Earlier bilingual watch (2026-11-12):** [English report](2026/2026-11-12.md) · [中文周报](2026/2026-11-12.zh-CN.md) · [HQ/Core/team handoff](2026/2026-11-12-handoff.md) · [中文分工交接](2026/2026-11-12-handoff.zh-CN.md). [Current research radar](CURRENT.md) · [当前研究雷达](CURRENT.zh-CN.md). The Nov 12 transfer-first [research workbench proposal](../coordination/AURA_Research_Workbench_Proposal_2026-11-12.md) is **proposed, not implemented or authorized**. No new M9a experiments were initiated.
 
 **Languages:** English · [简体中文 / Chinese reading index](README.zh-CN.md)
 **Previous bilingual watch (2026-10-29):** [English Frontier Watch](2026/2026-10-29.md) · [中文周报](2026/2026-10-29.zh-CN.md) · [HQ/Core/team decision handoff](2026/2026-10-29-handoff.md) · [中文分工交接](2026/2026-10-29-handoff.zh-CN.md). Current priorities are in [CURRENT.md](CURRENT.md) / [当前研究雷达](CURRENT.zh-CN.md). These are research dispositions, not experiment authorization.

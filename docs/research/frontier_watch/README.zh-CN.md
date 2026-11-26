@@ -1,9 +1,11 @@
 # AURA 前沿观察：中文阅读入口与协作规则
 
-**最新中英文前沿观察（2026-11-19）：**[中文完整周报](2026/2026-11-19.zh-CN.md) · [English](2026/2026-11-19.md) · [中文HQ/Core/队友交接](2026/2026-11-19-handoff.zh-CN.md) · [English handoff](2026/2026-11-19-handoff.md) · [当前雷达](CURRENT.zh-CN.md) · [English radar](CURRENT.md)。06-01 M9a 仍只按已批准的 commissioning 范围推进；新增模型与迁移研究不构成新实验许可。
+**最新双语周报（2026-11-26）：**[中文](2026/2026-11-26.zh-CN.md) · [English](2026/2026-11-26.md) · [中文交接](2026/2026-11-26-handoff.zh-CN.md) · [English handoff](2026/2026-11-26-handoff.md) · [当前雷达](CURRENT.zh-CN.md)。M9a不改，AgenticTask于11月24日撤回。
+
+**上一期中英文前沿观察（2026-11-19）：**[中文完整周报](2026/2026-11-19.zh-CN.md) · [English](2026/2026-11-19.md) · [中文HQ/Core/队友交接](2026/2026-11-19-handoff.zh-CN.md) · [English handoff](2026/2026-11-19-handoff.md) · [当前雷达](CURRENT.zh-CN.md) · [English radar](CURRENT.md)。06-01 M9a 仍只按已批准的 commissioning 范围推进；新增模型与迁移研究不构成新实验许可。
 
 
-**最新中英文周报（2026-11-12）：**[中文完整周报](2026/2026-11-12.zh-CN.md) · [English](2026/2026-11-12.md) · [中文HQ/Core/队友交接](2026/2026-11-12-handoff.zh-CN.md) · [English handoff](2026/2026-11-12-handoff.md)。[当前中文研究雷达](CURRENT.zh-CN.md) · [English radar](CURRENT.md)。[11月12日场景迁移与研究工作台提案](../coordination/AURA_Research_Workbench_Proposal_2026-11-12.zh-CN.md)**尚未批准/部署**；本期没有启动 M9a 新实验。
+**此前中英文周报（2026-11-12）：**[中文完整周报](2026/2026-11-12.zh-CN.md) · [English](2026/2026-11-12.md) · [中文HQ/Core/队友交接](2026/2026-11-12-handoff.zh-CN.md) · [English handoff](2026/2026-11-12-handoff.md)。[当前中文研究雷达](CURRENT.zh-CN.md) · [English radar](CURRENT.md)。[11月12日场景迁移与研究工作台提案](../coordination/AURA_Research_Workbench_Proposal_2026-11-12.zh-CN.md)**尚未批准/部署**；本期没有启动 M9a 新实验。
 
 [English / 英文说明](README.md) · [当前研究雷达（中文）](CURRENT.zh-CN.md)
 **上一期中英文周报（2026-10-29）：**[10月29日中文完整周报](2026/2026-10-29.zh-CN.md) · [英文周报](2026/2026-10-29.md) · [HQ/Core/队友中文决策与分工交接](2026/2026-10-29-handoff.zh-CN.md) · [英文交接](2026/2026-10-29-handoff.md)。当前优先级还应查[中文研究雷达](CURRENT.zh-CN.md)。全部为研究判断/拟议分工，不构成新的实验批准。

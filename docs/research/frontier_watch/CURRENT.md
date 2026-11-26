@@ -1,5 +1,19 @@
 # AURA Frontier Watch — Current Research Radar
 
+## November 26, 2026 — current decision delta
+
+[Report](2026/2026-11-26.md) · [中文](2026/2026-11-26.zh-CN.md) · [HQ/Core handoff](2026/2026-11-26-handoff.md) · [中文交接](2026/2026-11-26-handoff.zh-CN.md).
+
+**Engineering unchanged:** exact branch 06-01/aether-cl-m0 = cd8185dbe36676c1edd90031e13a105795b617d5 checked Nov26. Core v0.3 / Nov12 resume authorizes commissioning, not fresh M9a. No accepted native camera neutrality or sensor verifier found in inspected records; live server unverified. Preserve frozen controls and gate.
+
+**New priorities:** [OmniAct v2](https://arxiv.org/abs/2611.33158v2) — morphology-conditioned policy, release pending; [Screw Attention v1](https://arxiv.org/abs/2611.32797v1) — 30K trainable parameters excludes frozen perception/language, ground truth in diagnostic ablations; [MPQ](https://arxiv.org/abs/2611.32858v1) and [Keypose/Dense](https://arxiv.org/abs/2611.32788v1) — isolate skill selection vs execution and controller dependence; [iWAM](https://arxiv.org/abs/2611.33141v1) — future-specific conditioning without explicit video, latency protocol caveat; [RoC](https://arxiv.org/abs/2611.26341) / [Embodied-Harness](https://arxiv.org/abs/2611.27689) — strong prior-art overlap. DEEP DIVE, all backlog. RoboRecast, MXI-MemICL, Support2Sim and WALL-OSS-1.0 READ/WATCH. Keep full-stack cost and held-out scene/data/sensor/embodiment transfer primary; simple control may win.
+
+**Upstream Nov23 rechecks:** ForceHarness held-out 82.5 vs 62.5%, distinct development results; Mind2Act asset v1.0.1/evaluator v1.0.2; PhysVAM, OVOA and AgentRoboCritic primary sources checked. **AgenticTask v2 withdrawn Nov24** ([source](https://arxiv.org/abs/2611.26046v2)); remove from active evidence and replication queue, retain history; withdrawal rationale is author consent, not proven numerical invalidity. RageVLA direct access failed; upstream-only. Full source/evidence limits in report.
+
+**Execution:** continue authorized commissioning. Change now none (literature correction only). Next checkpoint zero new candidates, existing freshness/state invalidation after Core sensing acceptance. Deferred training, policy/world-model/harness or force integration, hardware changes. Evidence reading/analysis only, no local/native/audited runs. Existing WP1–WP4 extended, no assignments. No workspace synchronization claimed.
+
+---
+
 ## November 19, 2026 — newest watch / decision delta
 
 **New reports:** [English Nov19](2026/2026-11-19.md) · [中文周报](2026/2026-11-19.zh-CN.md) · [HQ/Core handoff](2026/2026-11-19-handoff.md) · [中文决策交接](2026/2026-11-19-handoff.zh-CN.md).

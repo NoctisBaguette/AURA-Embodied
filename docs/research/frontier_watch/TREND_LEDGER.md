@@ -1,5 +1,13 @@
 # AURA Frontier Watch — Trend Ledger
 
+## November 26 — Refine transfer interfaces: geometry, skill coverage and executor cost
+
+[Issue](2026/2026-11-26.md) · [中文](2026/2026-11-26.zh-CN.md). **Material hypothesis refinement, not an architecture decision.** OmniAct (Nov24 v1/Nov25 v2) learns morphology-conditioned joint actions; Screw Attention (Nov24 v1) instead supplies geometry to compact end-effector control, with frozen perception/language and mesh assumptions. MPQ and Keypose/Dense (Nov24 v1) show that even when skill selection or abstraction works, placement/correction or executor mismatch can dominate failures; offline representation error does not establish closed-loop benefit. Thus the prior transfer-interface hypothesis must distinguish representation compatibility, sensing fidelity, library coverage, selection and physical execution. A small geometry-based system may outperform a larger policy, or lose when geometry is unavailable. Measure entire stack, nonprivileged sensing, matched source/target adaptation and controller costs. [OmniAct](https://arxiv.org/abs/2611.33158v2) · [Screw Attention](https://arxiv.org/abs/2611.32797v1) · [MPQ](https://arxiv.org/abs/2611.32858v1) · [Keypose/Dense](https://arxiv.org/abs/2611.32788v1).
+
+Prediction refinement: [iWAM](https://arxiv.org/abs/2611.33141v1) reports a substantial shifted-DROID loss from discarding future conditioning and recovery via a learned one-pass proxy; not proof that explicit future video or a separate world model is necessary. Match operating-point success and latency, rather than combining success and timing from different action denoising budgets. Include PhysVAM task-value and Z-sight latent-token alternatives. No training or new experiment. MONITOR/BACKLOG.
+
+---
+
 ## November 19, 2026 — Transfer-aware policy interfaces are emerging as a separate research axis
 
 **Status: emerging, material hypothesis refinement, not an approved module or experiment.** [Full dated review](2026/2026-11-19.md) · [中文](2026/2026-11-19.zh-CN.md).
